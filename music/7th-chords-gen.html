@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>7th Chord Generator</title>
+<title>7th Chords Gen</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
-
 body {
   font-family: system-ui, sans-serif;
   min-height:100vh;
@@ -16,49 +14,35 @@ body {
   background:linear-gradient(180deg,#1c1c1e,#2a2a45);
   color:#fff;
 }
-
-/* ---------- HEADER ---------- */
-header {
-  padding:3rem 1rem 2rem; /* reduced bottom padding for less space */
+header h1 {
   text-align:center;
-}
-
-h1 {
-  margin-bottom:2rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:0.7rem;
+  margin:3rem 0 2rem;
   font-size:3.2rem;
   font-weight:900;
   color:#c77dff;
   letter-spacing:0.05em;
   text-shadow:0 3px 10px rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:0.7rem;
 }
-
-h1 span { font-size:3.5rem; }
-
-/* ---------- CONTROL PANEL ---------- */
 .control-container {
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:1.5rem;
+  gap:1rem;
 }
-
 .control-panel {
   display:flex;
   gap:2rem;
   padding:1.7rem 2.4rem;
   border-radius:24px;
   background:linear-gradient(135deg,#2d2d35,#3a3a45);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.05),
-    0 14px 36px rgba(0,0,0,0.6);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05),
+              0 14px 36px rgba(0,0,0,0.6);
   flex-wrap:wrap;
 }
-
-/* ---------- MODES ---------- */
 .mode-selector {
   display:flex;
   flex-direction:column;
@@ -66,64 +50,21 @@ h1 span { font-size:3.5rem; }
   font-size:1.15rem;
   font-weight:700;
 }
-
-.mode-selector label {
-  display:flex;
-  align-items:center;
-  gap:0.6rem;
-  cursor:pointer;
-}
-
-.mode-selector input {
-  accent-color:#ffd166;
-  transform:scale(1.2);
-}
-
-/* ---------- BUTTONS ---------- */
-.button-column {
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
-
+.mode-selector label { display:flex; align-items:center; gap:0.6rem; cursor:pointer; }
+.mode-selector input { accent-color:#ffd166; transform:scale(1.2); }
+.button-column { display:flex; flex-direction:column; gap:1rem; }
 button {
   font-weight:800;
   cursor:pointer;
   border:none;
   outline:none;
-  transition: transform 0.12s ease, box-shadow 0.15s;
+  transition: transform 0.12s ease;
   color:#1c1c1e;
 }
-
-button:disabled {
-  opacity:0.4;
-  cursor:not-allowed;
-  box-shadow:none;
-}
-
-/* Play */
-.play {
-  background:#4cc9f0;
-  padding:0.6rem 1.6rem;
-  font-size:1.3rem;
-  border-radius:14px;
-  box-shadow:0 6px 0 #3295b3;
-}
-
-/* Stats */
-.stats-btn {
-  background:#e0e0e0;
-  padding:0.6rem 1.6rem;
-  font-size:1.3rem;
-  border-radius:14px;
-  box-shadow:0 6px 0 #bcbcbc;
-}
-
-/* ---------- NEXT (PRIMARY) ---------- */
-.next-row {
-  margin-top:1.5rem;
-}
-
+button:active { transform: scale(0.96); }
+button:disabled { opacity:0.4; cursor:not-allowed; box-shadow:none; }
+.play { background:#2ecc71; padding:0.6rem 1.6rem; font-size:1.3rem; border-radius:14px; box-shadow:0 6px 0 #1e8449; }
+.stats-btn { background:#e0e0e0; padding:0.6rem 1.6rem; font-size:1.3rem; border-radius:14px; box-shadow:0 6px 0 #bcbcbc; }
 .next-btn {
   background:#ff6f61;
   box-shadow:0 7px 0 #cc5547;
@@ -131,266 +72,231 @@ button:disabled {
   padding:0.9rem 3rem;
   border-radius:50px;
   letter-spacing:0.05em;
+  margin-top:0.5rem;
 }
-
-/* ---------- INFO ---------- */
-.info-box {
-  display:flex;
-  gap:1rem;
-  margin-top:1rem;
-  font-size:1.2rem;
-  font-weight:800;
-}
-
-.pill {
-  padding:0.35rem 0.9rem;
-  border-radius:999px;
-}
-
-.pill.key  { background:#9d4edd; }
-.pill.step { background:#4361ee; }
-
-/* ---------- STATS LINE ---------- */
 .stats-line {
   font-size:1.05rem;
   font-weight:700;
   color:#ffd166;
-  text-shadow:0 1px 3px rgba(0,0,0,0.5);
-  margin-bottom:1rem;
+  display:none;
+  margin-top:1rem;
 }
-
-/* ---------- MAIN ---------- */
 main {
   flex:1;
   display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  margin-top:0.5rem;
+  flex-direction:column;
+  align-items:center;
   padding:1rem;
 }
-
+.pills-spacer { height:4rem; }
 .chord {
   font-size:clamp(6rem, 13vw, 20rem);
   font-weight:900;
   white-space:nowrap;
   line-height:1;
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  color:#ffffff;
+  text-shadow:0 2px 6px rgba(0,0,0,0.5);
+  margin-top:2rem;
 }
-
-/* ---------- ANTICIPATION ANIMATION ---------- */
-button.anticipate {
-  transform: scale(1.12);
+.info-box {
+  display:none;
+  gap:1rem;
+  font-size:1.2rem;
+  margin-top:2rem; 
 }
-
+.pill { padding:0.35rem 0.9rem; border-radius:999px; }
+.pill.key  { background:#9d4edd; }
+.pill.step { background:#4361ee; }
+.pill-label { font-weight:400; margin-right:0.25rem; }
+.pill-value { font-weight:800; }
 sup { font-size:0.5em; }
 .qual { font-size:0.6em; }
+button.anticipate { transform: scale(1.12); }
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1><span>🎷</span>7th Chord Generator</h1>
-
-  <div class="control-container">
-
-    <div class="control-panel">
-
-      <div class="mode-selector">
-        <label><input type="radio" name="mode" value="random" checked> Random</label>
-        <label><input type="radio" name="mode" value="major"> ii–V–I (major)</label>
-        <label><input type="radio" name="mode" value="minor"> iiø–V–i (minor)</label>
-        <label><input type="radio" name="mode" value="cycle"> Cycle-of-Fifths</label>
-      </div>
-
-      <div class="button-column">
-        <button id="playBtn" class="play" disabled>▶ Play</button>
-        <button id="statsBtn" class="stats-btn">📊 Stats</button>
-      </div>
-
-    </div>
-
-    <!-- ---------- STATS LINE ---------- -->
-    <div class="stats-line" id="statsLine" style="display:none;">
-      Chords generated: <span id="count">0</span>
-    </div>
-
-    <div class="next-row">
-      <button id="nextBtn" class="next-btn">🎵 Next</button>
-    </div>
-
-    <div class="info-box" id="infoBox" style="display:none;">
-      <span class="pill key" id="keyPill"></span>
-      <span class="pill step" id="stepPill"></span>
-    </div>
-
-  </div>
+  <h1>🎷 7th Chords Gen</h1>
 </header>
 
+<div class="control-container">
+  <div class="control-panel">
+    <div class="mode-selector">
+      <label><input type="radio" name="mode" value="random" checked> Random</label>
+      <label><input type="radio" name="mode" value="maj251"> ii–V–I (major)</label>
+      <label><input type="radio" name="mode" value="min251"> iiø–V–i (minor)</label>
+      <label><input type="radio" name="mode" value="cycle"> Cycle-of-Fifths</label>
+    </div>
+    <div class="button-column">
+      <button class="play" id="playBtn" disabled>▶ Play</button>
+      <button class="stats-btn" id="statsBtn">📊 Stats</button>
+    </div>
+  </div>
+
+  <button class="next-btn" id="nextBtn">🎵 Next</button>
+</div>
+
 <main>
-  <div class="chord" id="display">🎵</div>
+  <div class="pills-spacer"></div>
+
+  <div class="info-box" id="infoBox">
+    <div class="pill key"><span class="pill-label">Key:</span> <span class="pill-value" id="keyLabel"></span></div>
+    <div class="pill step"><span class="pill-label">Step:</span> <span class="pill-value" id="stepLabel"></span></div>
+  </div>
+
+  <div class="chord" id="chordDisplay"></div>
+
+  <div class="stats-line" id="statsLine">
+    Chords generated: <span id="statsCount">0</span>
+  </div>
 </main>
 
 <script>
 "use strict";
+(() => {
+  const KEYS = {
+    C:  ["C","D","E","F","G","A","B"],
+    Db: ["Db","Eb","F","Gb","Ab","Bb","C"],
+    D:  ["D","E","F#","G","A","B","C#"],
+    Eb: ["Eb","F","G","Ab","Bb","C","D"],
+    E:  ["E","F#","G#","A","B","C#","D#"],
+    F:  ["F","G","A","Bb","C","D","E"],
+    Gb: ["Gb","Ab","Bb","Cb","Db","Eb","F"],
+    G:  ["G","A","B","C","D","E","F#"],
+    Ab: ["Ab","Bb","C","Db","Eb","F","G"],
+    A:  ["A","B","C#","D","E","F#","G#"],
+    Bb: ["Bb","C","D","Eb","F","G","A"],
+    B:  ["B","C#","D#","E","F#","G#","A#"]
+  };
 
-/* ---------- DOM ---------- */
-const display = document.getElementById("display");
-const nextBtn = document.getElementById("nextBtn");
-const playBtn = document.getElementById("playBtn");
-const statsBtn = document.getElementById("statsBtn");
-const infoBox = document.getElementById("infoBox");
-const keyPill = document.getElementById("keyPill");
-const stepPill = document.getElementById("stepPill");
-const statsLine = document.getElementById("statsLine");
-const countEl = document.getElementById("count");
-const radios = document.querySelectorAll("input[name='mode']");
+  const FLAT_EQUIV = {"F#":"Gb","C#":"Db","G#":"Ab","D#":"Eb","A#":"Bb","Cb":"B","E#":"F"};
+  const keyLabelFlat = key => FLAT_EQUIV[key] || key;
 
-/* ---------- STATE ---------- */
-let audioCtx = null;
-let currentChord = null;
-let currentKey = null;
-let stepIndex = 0;
-let mode = "random";
-let count = 0;
-let statsVisible = false;
-let hasChord = false;
+  const CYCLE_FIFTHS = ["C","F","Bb","Eb","Ab","Db","Gb","B","E","A","D","G"];
+  const PROGS = {
+    maj251:[
+      {step:"ii", quality:"m7", deg:1},
+      {step:"V",  quality:"7",  deg:4},
+      {step:"I",  quality:"maj7",deg:0}
+    ],
+    min251:[
+      {step:"iiø", quality:"ø7", deg:1},
+      {step:"V",  quality:"7",  deg:4, harmonic:true},
+      {step:"i",  quality:"m7", deg:0}
+    ]
+  };
 
-/* ---------- HELPERS ---------- */
-function setPlayEnabled(enabled){
-  playBtn.disabled = !enabled;
-  hasChord = enabled;
-}
+  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+  const fmt = s => s.replace(/#/g,"<sup>♯</sup>").replace(/b/g,"<sup>♭</sup>");
+  const renderChord = chord => fmt(chord.root) +
+    (chord.quality==="maj7" ? "<span class='qual'>maj</span><sup>7</sup>" :
+     chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
+     chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
+                               "<sup>7</sup>");
 
-function anticipate(btn){
-  if(btn.disabled) return;
-  btn.classList.add("anticipate");
-  setTimeout(()=>btn.classList.remove("anticipate"),120);
-}
+  const ctx = new (window.AudioContext||window.webkitAudioContext)();
+  const MIN_MIDI = 60; // C4
+  const INTERVALS = { maj7:[0,4,7,11], m7:[0,3,7,10], 7:[0,4,7,10], ø7:[0,3,6,10] };
+  const SEMI = ["C","C#","D","Eb","E","F","F#","G","Ab","A","Bb","B"];
 
-/* ---------- MUSIC ---------- */
-const roots = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
-const freqs = { C:261.63,Db:277.18,D:293.66,Eb:311.13,E:329.63,F:349.23,Gb:369.99,G:392,Ab:415.3,A:440,Bb:466.16,B:493.88 };
-const intervals = { "7":[0,4,7,10],"maj7":[0,4,7,11],"m7":[0,3,7,10],"ø7":[0,3,6,10],"o7":[0,3,6,9] };
+  let currentMode="random", stepIndex=0, currentKey=null, currentChord=null, chordCount=0;
+  let cycleIndex = Math.floor(Math.random()*CYCLE_FIFTHS.length);
 
-const iiVIMajor = [{deg:"ii",q:"m7",off:2},{deg:"V",q:"7",off:7},{deg:"I",q:"maj7",off:0}];
-const iiVIMinor = [{deg:"iiø",q:"ø7",off:2},{deg:"V",q:"7",off:7},{deg:"i",q:"m7",off:0}];
+  const chordEl=document.getElementById("chordDisplay");
+  const playBtn=document.getElementById("playBtn");
+  const statsBtn=document.getElementById("statsBtn");
+  const statsLine=document.getElementById("statsLine");
+  const statsCount=document.getElementById("statsCount");
+  const infoBox=document.getElementById("infoBox");
+  const keyLabel=document.getElementById("keyLabel");
+  const stepLabel=document.getElementById("stepLabel");
+  const nextBtn=document.getElementById("nextBtn");
 
-function buildChord(r,q){
-  return { root:r, quality:q, notes:intervals[q].map(i=>freqs[r]*Math.pow(2,i/12)) };
-}
-
-function formatChord(c){
-  const r = c.root.includes("b") ? `${c.root[0]}<sup>b</sup>` : c.root;
-  if (c.quality==="7") return `${r}<sup>7</sup>`;
-  if (c.quality==="maj7") return `${r}<span class="qual">maj</span><sup>7</sup>`;
-  if (c.quality==="m7") return `${r}<span class="qual">m</span><sup>7</sup>`;
-  return `${r}<sup>${c.quality}</sup>`;
-}
-
-/* ---------- GENERATE ---------- */
-function nextChord(){
-  if(nextBtn.disabled) return;
-
-  if(mode==="cycle"){
-    if(!currentKey) currentKey="C";
-    const q = Object.keys(intervals)[Math.floor(Math.random()*5)];
-    currentChord = buildChord(currentKey,q);
-    currentKey = roots[(roots.indexOf(currentKey)-7+12)%12]; // down a 5th
-    infoBox.style.display="none";
-  } else {
-    if(mode==="random"){
-      currentChord = buildChord(
-        roots[Math.floor(Math.random()*12)],
-        Object.keys(intervals)[Math.floor(Math.random()*5)]
-      );
+  function nextChord(){
+    if(currentMode==="random"){
+      const k=pick(Object.keys(KEYS));
+      currentChord={root:pick(KEYS[k]), quality:pick(["maj7","m7","7","ø7"])};
+      infoBox.style.display="none";
+    } else if(currentMode==="cycle"){
+      cycleIndex=(cycleIndex+1)%CYCLE_FIFTHS.length;
+      const k = CYCLE_FIFTHS[cycleIndex];
+      currentChord = { root: KEYS[k][0], quality: "7" };
       infoBox.style.display="none";
     } else {
-      if(!currentKey||stepIndex===0) currentKey=roots[Math.floor(Math.random()*12)];
-      const seq = mode==="major"?iiVIMajor:iiVIMinor;
-      const s = seq[stepIndex];
-      currentChord = buildChord(roots[(roots.indexOf(currentKey)+s.off)%12],s.q);
-      keyPill.textContent=`Key: ${currentKey}`;
-      stepPill.textContent=`Step: ${s.deg}`;
+      if(stepIndex===0) currentKey=pick(Object.keys(KEYS));
+      const prog=PROGS[currentMode][stepIndex];
+      const deg = prog.deg;
+      currentChord={root:KEYS[currentKey][deg], quality:prog.quality};
+      if(prog.harmonic && currentMode==="min251"){currentChord.harmonic=true;}
+      keyLabel.innerHTML=fmt(keyLabelFlat(currentKey)) + (currentMode==="maj251"?"":"m");
+      stepLabel.textContent=prog.step;
       infoBox.style.display="flex";
       stepIndex=(stepIndex+1)%3;
     }
+    chordEl.innerHTML=renderChord(currentChord);
+    playBtn.disabled=false;
+    statsCount.textContent=++chordCount;
   }
 
-  display.innerHTML=formatChord(currentChord);
-  setPlayEnabled(true);
-  count++;
-  if(statsVisible) {
-    statsLine.style.display="block";
-    countEl.textContent=count;
+  function animateButton(btn){
+    btn.classList.add("anticipate");
+    setTimeout(()=>btn.classList.remove("anticipate"),150);
   }
-  nextBtn.focus();
-}
 
-/* ---------- AUDIO ---------- */
-function playChord(c){
-  if(!hasChord || !c) return;
-  if(!audioCtx) audioCtx=new AudioContext();
-  const t=audioCtx.currentTime, step=0.2;
+  function playChord(chord){
+    if(!chord) return;
+    const base=MIN_MIDI + SEMI.indexOf(chord.root);
+    let notes=INTERVALS[chord.quality].map(i=>base+i);
+    if(chord.harmonic && chord.quality==="7") notes[1]+=1;
+    notes.sort((a,b)=>a-b);
+    const step = 0.3;
+    const dur = 0.5;
+    const t0 = ctx.currentTime;
+    notes.forEach((m,i)=>{
+      const o=ctx.createOscillator();
+      const g=ctx.createGain();
+      o.frequency.value=440*Math.pow(2,(m-69)/12);
+      g.gain.setValueAtTime(0, t0+i*step);
+      g.gain.linearRampToValueAtTime(0.25, t0+i*step+0.05);
+      g.gain.linearRampToValueAtTime(0, t0+i*step+dur);
+      o.connect(g).connect(ctx.destination);
+      o.start(t0+i*step);
+      o.stop(t0+i*step+dur);
+    });
+    const blockTime = t0 + notes.length*step + 2*step;
+    notes.forEach(m=>{
+      const o=ctx.createOscillator();
+      const g=ctx.createGain();
+      o.frequency.value=440*Math.pow(2,(m-69)/12);
+      g.gain.setValueAtTime(0, blockTime);
+      g.gain.linearRampToValueAtTime(0.25, blockTime+0.05);
+      g.gain.linearRampToValueAtTime(0, blockTime+dur);
+      o.connect(g).connect(ctx.destination);
+      o.start(blockTime);
+      o.stop(blockTime+dur);
+    });
+  }
 
-  c.notes.forEach((f,i)=>{
-    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
-    o.frequency.value=f; o.connect(g).connect(audioCtx.destination);
-    g.gain.setValueAtTime(0,t+i*step);
-    g.gain.linearRampToValueAtTime(0.25,t+i*step+0.05);
-    g.gain.linearRampToValueAtTime(0,t+i*step+1);
-    o.start(t+i*step); o.stop(t+i*step+1);
+  document.querySelectorAll("input[name=mode]").forEach(r=>{
+    r.addEventListener("change",()=>{
+      currentMode=r.value; stepIndex=0; currentChord=null;
+      chordEl.textContent="";
+      playBtn.disabled=true;
+      infoBox.style.display="none";
+    });
   });
-}
 
-/* ---------- EVENTS ---------- */
-nextBtn.addEventListener("click", nextChord);
-playBtn.addEventListener("click", ()=>{ if(hasChord) playChord(currentChord); });
-statsBtn.addEventListener("click", ()=>{
-  statsVisible=!statsVisible;
-  statsLine.style.display=statsVisible?"block":"none";
-  countEl.textContent=count;
-});
+  nextBtn.addEventListener("mousedown",()=>{animateButton(nextBtn); nextChord();});
+  playBtn.addEventListener("mousedown",()=>{animateButton(playBtn); playChord(currentChord);});
+  statsBtn.addEventListener("mousedown",()=>{animateButton(statsBtn); statsLine.style.display = (statsLine.offsetParent!==null)?"none":"block";});
 
-/* ---------- ANTICIPATION ON PRESS ---------- */
-[nextBtn, playBtn, statsBtn].forEach(btn=>{
-  btn.addEventListener("mousedown", ()=>anticipate(btn));
-});
-
-/* ---------- RADIO BUTTONS ---------- */
-radios.forEach(r=>r.onchange=()=>{
-  mode=r.value;
-  currentKey=null;
-  stepIndex=0;
-  currentChord=null;
-  display.innerHTML="🎵";
-  infoBox.style.display="none";
-  setPlayEnabled(false);
-});
-
-/* ---------- GLOBAL KEYS ---------- */
-document.addEventListener("keydown", e=>{
-  if(e.code==="Space"){
-    e.preventDefault();
-    anticipate(nextBtn);
-    nextChord();
-  }
-  if(e.key==="p"){
-    e.preventDefault();
-    anticipate(playBtn);
-    if(hasChord) playChord(currentChord);
-  }
-  if(e.key==="s"){
-    e.preventDefault();
-    anticipate(statsBtn);
-    statsVisible=!statsVisible;
-    statsLine.style.display=statsVisible?"block":"none";
-    countEl.textContent=count;
-  }
-});
+  document.addEventListener("keydown",e=>{
+    if(e.code==="Space"){ e.preventDefault(); animateButton(nextBtn); nextChord(); }
+    if(e.key==="p" && !playBtn.disabled){ animateButton(playBtn); playChord(currentChord); }
+    if(e.key==="s"){ animateButton(statsBtn); statsLine.style.display = (statsLine.offsetParent!==null)?"none":"block"; }
+  });
+})();
 </script>
-
 </body>
 </html>
 
