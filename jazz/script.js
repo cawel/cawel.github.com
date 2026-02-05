@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // --- DATA ---
+  // --- DATA / BUSINESS LOGIC LAYER ---
   const KEYS = {
     C:  ["C","D","E","F","G","A","B"],
     Db: ["Db","Eb","F","Gb","Ab","Bb","C"],
@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const SEMI = ["C","C#","D","Eb","E","F","F#","G","Ab","A","Bb","B"];
   const MIN_MIDI = 60; // C4
 
-  // --- STATE ---
+  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+
+  const formatAccidentals = s => s.replace(/#/g,"<sup>♯</sup>").replace(/b/g,"<sup>♭</sup>");
+
+  // --- APPLICATION STATE ---
   const state = {
     currentMode: "random",
     stepIndex: 0,
@@ -63,32 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
     modeRadios: [...document.querySelectorAll("input[name='mode']")]
   };
 
-  // --- AUDIO CONTEXT ---
-  const ctx = new (window.AudioContext||window.webkitAudioContext)();
-
-  // --- HELPERS ---
-  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
-
-  const animateButton = btn => {
-    if(!btn) return;
-    btn.classList.add("anticipate");
-    setTimeout(()=>btn.classList.remove("anticipate"),150);
-  };
-
-  const formatAccidentals = s => s.replace(/#/g,"<sup>♯</sup>").replace(/b/g,"<sup>♭</sup>");
-
-  const renderChord = chord => formatAccidentals(chord.root) +
-    (chord.quality==="maj7" ? "<span class='qual'>maj</span><sup>7</sup>" :
-     chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
-     chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
-     chord.quality==="o7"   ? "<sup>o</sup><sup>7</sup>" :
-                               "<sup>7</sup>");
+  // --- AUDIO LAYER ---
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
   const playChordAudio = chord => {
     if(!chord) return;
     const base = MIN_MIDI + SEMI.indexOf(chord.root);
     const notes = INTERVALS[chord.quality].map(i=>base+i).sort((a,b)=>a-b);
-    if(chord.harmonic && chord.quality==="7") notes[1] += 1;
+    if(chord.harmonic && chord.quality==="7") notes[1]+=1;
+
     const step = 0.3, dur = 0.5;
     const t0 = ctx.currentTime;
 
@@ -120,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // --- BUSINESS LOGIC LAYER ---
   const getRandomQualities = () => {
     const qualities = ["maj7","m7","7"];
     if(DOM.randomHalfDim?.checked) qualities.push("ø7");
@@ -127,56 +115,96 @@ document.addEventListener("DOMContentLoaded", () => {
     return qualities;
   };
 
-  const updateRandomOptionsVisibility = () => {
-    if(DOM.randomOptions)
-      DOM.randomOptions.style.display = state.currentMode==="random" ? "flex" : "none";
-  };
-
-  // --- CHORD GENERATION ---
-  const nextChord = () => {
-    let chord;
-    switch(state.currentMode){
+  const generateChord = () => {
+    switch(state.currentMode) {
       case "random": {
         const k = pick(Object.keys(KEYS));
-        chord = { root: pick(KEYS[k]), quality: pick(getRandomQualities()) };
-        DOM.infoBox.style.display="none";
-        break;
+        return { root: pick(KEYS[k]), quality: pick(getRandomQualities()) };
       }
       case "cycle": {
-        state.cycleIndex = (state.cycleIndex+1)%CYCLE_FIFTHS.length;
+        state.cycleIndex = (state.cycleIndex+1) % CYCLE_FIFTHS.length;
         const k = CYCLE_FIFTHS[state.cycleIndex];
-        chord = { root: KEYS[k][0], quality: "7" };
-        DOM.infoBox.style.display="none";
-        break;
+        return { root: KEYS[k][0], quality: "7" };
       }
       case "maj251":
       case "min251": {
         if(state.stepIndex===0) state.currentKey = pick(Object.keys(KEYS));
         const prog = PROGS[state.currentMode][state.stepIndex];
-        chord = { root: KEYS[state.currentKey][prog.deg], quality: prog.quality };
-        if(prog.harmonic && state.currentMode==="min251") chord.harmonic=true;
-        DOM.keyLabel.innerHTML = formatAccidentals(state.currentKey) + (state.currentMode==="maj251"?"":"m");
-        DOM.stepLabel.textContent = prog.step;
-        DOM.infoBox.style.display="flex";
-        state.stepIndex = (state.stepIndex+1)%3;
-        break;
+        const chord = { root: KEYS[state.currentKey][prog.deg], quality: prog.quality };
+        if(prog.harmonic && state.currentMode==="min251") chord.harmonic = true;
+        state.stepIndex = (state.stepIndex + 1) % 3;
+        return { chord, prog };
       }
     }
-    state.currentChord = chord;
-    DOM.chordEl.innerHTML = renderChord(chord);
-    DOM.playBtn.disabled = false;
+  };
+
+  // --- UI / RENDERING LAYER ---
+  const renderChord = chord => {
+    const html = chord ? formatAccidentals(chord.root) +
+      (chord.quality==="maj7" ? "<span class='qual'>maj</span><sup>7</sup>" :
+       chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
+       chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
+       chord.quality==="o7"   ? "<sup>o</sup><sup>7</sup>" :
+                                 "<sup>7</sup>") : "";
+    DOM.chordEl.innerHTML = html;
+  };
+
+  const updateInfoBox = (prog) => {
+    if(!prog) {
+      DOM.infoBox.style.display = "none";
+      return;
+    }
+    DOM.keyLabel.innerHTML = formatAccidentals(state.currentKey) + (state.currentMode==="maj251"?"":"m");
+    DOM.stepLabel.textContent = prog.step;
+    DOM.infoBox.style.display = "flex";
+  };
+
+  const updateRandomOptionsVisibility = () => {
+    if(DOM.randomOptions)
+      DOM.randomOptions.style.display = state.currentMode==="random" ? "flex" : "none";
+  };
+
+  const incrementCounter = () => {
     state.chordCount++;
     DOM.statsCount.textContent = state.chordCount;
   };
 
-  // --- EVENT HANDLERS ---
-  const handleKeydown = e => {
+  // --- CONTROLLER / EVENT LAYER ---
+  const nextChordHandler = () => {
+    const result = generateChord();
+    let chord, prog;
+    if(result.chord) { // 251 progression
+      chord = result.chord;
+      prog = result.prog;
+    } else {
+      chord = result;
+    }
+    state.currentChord = chord;
+    renderChord(chord);
+    updateInfoBox(prog);
+    DOM.playBtn.disabled = false;
+    incrementCounter();
+  };
+
+  const animateButton = btn => {
+    if(!btn) return;
+    btn.classList.add("anticipate");
+    setTimeout(()=>btn.classList.remove("anticipate"),150);
+  };
+
+  // Button events
+  DOM.nextBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.nextBtn); nextChordHandler(); });
+  DOM.playBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.playBtn); playChordAudio(state.currentChord); });
+  DOM.statsBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.statsBtn); DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block"; });
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", e => {
     if(e.repeat) return;
-    switch(e.code){
+    switch(e.code) {
       case "Space":
         e.preventDefault();
         animateButton(DOM.nextBtn);
-        nextChord();
+        nextChordHandler();
         break;
       case "KeyP":
         animateButton(DOM.playBtn);
@@ -187,14 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
         DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block";
         break;
     }
-  };
+  });
 
-  DOM.nextBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.nextBtn); nextChord(); });
-  DOM.playBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.playBtn); playChordAudio(state.currentChord); });
-  DOM.statsBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.statsBtn); DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block"; });
-
+  // Mode change
   DOM.modeRadios.forEach(radio => {
-    radio.addEventListener("change", ()=>{
+    radio.addEventListener("change", () => {
       state.currentMode = radio.value;
       state.stepIndex = 0;
       state.currentChord = null;
@@ -204,8 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
       DOM.infoBox.style.display = "none";
     });
   });
-
-  document.addEventListener("keydown", handleKeydown);
 
   // --- INIT ---
   updateRandomOptionsVisibility();
