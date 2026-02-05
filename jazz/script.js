@@ -203,16 +203,22 @@ document.addEventListener("DOMContentLoaded", () => {
     switch(e.code) {
       case "Space":
         e.preventDefault();
-        animateButton(DOM.nextBtn);
-        nextChordHandler();
+	if(!DOM.nextBtn.disabled) {
+          animateButton(DOM.nextBtn);
+          nextChordHandler();
+	}
         break;
       case "KeyP":
-        animateButton(DOM.playBtn);
-        playChordAudio(state.currentChord);
+	if(!DOM.playBtn.disabled) {
+          animateButton(DOM.playBtn);
+          playChordAudio(state.currentChord);
+	}
         break;
       case "KeyS":
-        animateButton(DOM.statsBtn);
-        DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block";
+	if(!DOM.statsBtn.disabled) {
+          animateButton(DOM.statsBtn);
+          DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block";
+	}
         break;
     }
   });
