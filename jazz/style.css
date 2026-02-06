@@ -1,240 +1,298 @@
+/* 7th Chords Gen — style.css (clean, minimal media queries) */
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
+:root{
+  --bg0:#1c1c1e;
+  --bg1:#2a2a45;
+
+  --panel0:#2d2d35;
+  --panel1:#3a3a45;
+
+  --title:#c77dff;
+
+  --accent:#ffd166;
+  --play:#2ecc71;
+  --listen:#ffd166;
+  --stats:#e0e0e0;
+  --next:#ff6f61;
+
+  --shadow: 0 14px 36px rgba(0,0,0,0.6);
+  --inset: inset 0 0 0 1px rgba(255,255,255,0.05);
+
+  /* Button sizing: keep Play/Listen/Stats/Next visually consistent */
+  --btn-font: clamp(1.05rem, 2.2vw, 1.3rem);
+  --btn-py: clamp(0.55rem, 1.3vw, 0.6rem);
+  --btn-px: clamp(1.0rem, 2.6vw, 1.6rem);
+  --btn-radius: 14px;
+
+  /* Keep the 3 control buttons identical width */
+  --control-btn-w: clamp(10.5rem, 26vw, 12rem);
+}
+
+body{
   font-family: system-ui, sans-serif;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #1c1c1e, #2a2a45);
-  color: #fff;
+  display:flex;
+  flex-direction:column;
+  background: linear-gradient(180deg, var(--bg0), var(--bg1));
+  color:#fff;
 }
 
-header h1 {
-  text-align: center;
-  margin: 3rem 0 2rem;
-  font-size: 3.2rem;
+header h1{
+  text-align:center;
+  margin: clamp(1.1rem, 4vw, 3rem) 0 clamp(0.8rem, 3vw, 2rem);
+  font-size: clamp(2rem, 6vw, 3.2rem);
   font-weight: 900;
-  color: #c77dff;
+  color: var(--title);
   letter-spacing: 0.05em;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.7rem;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: clamp(0.35rem, 1.5vw, 0.7rem);
 }
 
-.control-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.control-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: clamp(0.6rem, 2.5vw, 1rem);
 }
-.control-panel {
-  display: flex;
-  gap: 8rem;
-  padding: 1.7rem 2.4rem;
+
+/* Panel: left = mode selector, right = button column.
+   Wrap naturally on small screens without huge dead space. */
+.control-panel{
+  display: grid;
+  grid-template-columns: max-content var(--control-btn-w);
+  column-gap: clamp(3.25rem, 8vw, 6rem);
+  row-gap: 1rem;
+
+  align-items: start;
+  justify-content: center;
+
+  padding: clamp(1rem, 3vw, 1.7rem) clamp(1rem, 4vw, 2.4rem);
   border-radius: 24px;
-  background: linear-gradient(135deg, #2d2d35, #3a3a45);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-              0 14px 36px rgba(0, 0, 0, 0.6);
-  flex-wrap: wrap;
+  background: linear-gradient(135deg, var(--panel0), var(--panel1));
+  box-shadow: var(--inset), var(--shadow);
+  width: max-content;
+  max-width: min(96vw, 1100px);
 }
-.mode-selector {
-  display: flex;
-  flex-direction: column;
+
+/* Left side (modes) */
+.mode-selector{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  text-align:left;
+
   gap: 0.8rem;
   font-size: 1.15rem;
   font-weight: 700;
+
+  width: max-content;
+  max-width: 100%;
 }
 
-.mode-selector label {
-  display: flex;
-  align-items: center;
+.mode-selector label{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
   gap: 0.6rem;
-  cursor: pointer;
+  cursor:pointer;
+  width: max-content;       /* avoids full-width stretching */
 }
 
-.mode-selector input {
-  accent-color: #ffd166;
+.mode-selector input{
+  accent-color: var(--accent);
   transform: scale(1.2);
 }
 
 /* Random mode "Include" options */
-.random-options {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1.4rem;   /* indent under Random */
-  margin-top: 0.1rem;    /* less vertical space under Random */
+.random-options{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;   /* requirement: left-justified */
+  margin-left: 1.4rem;      /* indent under Random (lead-sheet style) */
+  margin-top: 0.15rem;
   gap: 0.15rem;
   font-weight: 500;
 }
 
-.random-options label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem; /* space between checkbox and text */
-  cursor: pointer;
+.random-options label{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap: 0.3rem;
+  cursor:pointer;
+  width: max-content;
 }
 
-.random-options .chord-symbol {
-  display: inline-flex;
-  gap: 0; /* no extra space between symbol and 7 */
-}
+.random-options .chord-symbol{ display:inline-flex; gap:0; }
 
-.random-options sup {
+.random-options sup{
   font-size: 0.6em;
   vertical-align: super;
-  margin: 0;
+  margin:0;
 }
 
-.button-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 12rem;
-  flex: 0 0 auto;   /* don't stretch to fill extra space */
+/* Right side (Play / Listen / Stats) */
+.button-column{
+  display:flex;
+  flex-direction:column;
+  gap: clamp(0.75rem, 3vw, 1.2rem);
+  align-items:flex-end;
 }
 
-
-/* Buttons */
-button {
+/* Base button style */
+button{
   font-weight: 800;
-  cursor: pointer;
-  border: none;
-  outline: none;
+  cursor:pointer;
+  border:none;
+  outline:none; /* intentional: no visible focus outline requirement */
   transition: transform 0.12s ease;
-  color: #1c1c1e;
+  color:#1c1c1e;
   box-shadow: 0 6px 0 #333;
 }
 
-button:active {
-  transform: scale(0.96);
-}
+button:active{ transform: scale(0.96); }
 
-button:disabled {
+button:disabled{
   opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: 0 6px 0 #555; /* shadow remains visible even when disabled */
-}
-
-.listen-btn {
-  background: #ffd166;
-  padding: 0.6rem 1.6rem;
-  font-size: 1.3rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 0 #caa54f;
-}
-
-.listen-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+  cursor:not-allowed;
   box-shadow: 0 6px 0 #555;
 }
 
-.play {
-  background: #2ecc71;
-  padding: 0.6rem 1.6rem;
-  font-size: 1.3rem;
-  border-radius: 14px;
+/* Make the 3 control buttons equal width always */
+.play, .listen-btn, .stats-btn{
+  width: var(--control-btn-w);
+  font-size: var(--btn-font);
+  padding: var(--btn-py) var(--btn-px);
+  border-radius: var(--btn-radius);
+}
+
+/* Individual button colors */
+.play{
+  background: var(--play);
   box-shadow: 0 6px 0 #1e8449;
 }
 
-.stats-btn {
-  background: #e0e0e0;
-  padding: 0.6rem 1.6rem;
-  font-size: 1.3rem;
-  border-radius: 14px;
+.listen-btn{
+  background: var(--listen);
+  box-shadow: 0 6px 0 #caa54f;
+}
+
+.listen-btn:disabled{
+  opacity: 0.55;
+  cursor:not-allowed;
+  box-shadow: 0 6px 0 #555;
+}
+
+.stats-btn{
+  background: var(--stats);
   box-shadow: 0 6px 0 #bcbcbc;
 }
 
-.next-btn {
-  background: #ff6f61;
+/* Next button: keep height consistent with others, but wider + playful */
+.next-btn{
+  background: var(--next);
   box-shadow: 0 6px 0 #cc5547;
-  font-size: 1.8rem;
-  padding: 0.9rem 3rem;
-  border-radius: 14px; /* match other buttons */
+
+  font-size: var(--btn-font);
+  padding: var(--btn-py) clamp(1.6rem, 6vw, 3.0rem);
+  border-radius: var(--btn-radius);
   letter-spacing: 0.05em;
-  margin-top: 0.5rem;
+
+  width: min(26rem, 92vw);
+  margin-top: 0; /* keep level with others (container gap handles spacing) */
 }
 
-.stats-line {
+/* Status / stats lines */
+.stats-line{
   font-size: 1.05rem;
   font-weight: 700;
-  color: #ffd166;
-  display: none;
+  color: var(--accent);
+  display:none;
   margin-top: 1rem;
 }
 
-.status-line {
+.status-line{
   margin-top: 0.75rem;
   padding: 0.65rem 1rem;
   border-radius: 14px;
   max-width: min(720px, 92vw);
   background: rgba(255, 209, 102, 0.12);
-  color: #ffd166;
+  color: var(--accent);
   font-weight: 700;
   box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.22);
 }
 
-.anticipate {
+.anticipate{
   transform: scale(0.96);
   transition: transform 0.12s ease-in-out;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Main layout */
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   padding: 1rem;
 }
 
-.pills-spacer { height: 4rem; }
+.pills-spacer{ height: clamp(0.75rem, 4vw, 4rem); }
 
-.chord {
-  font-size: clamp(6rem, 13vw, 20rem);
-  font-weight: 900;
-  white-space: nowrap;
-  line-height: 1;
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  margin-top: 2rem;
-}
-
-.info-box {
-  display: none;
+.info-box{
+  display:none;
   gap: 1rem;
   font-size: 1.2rem;
   margin-top: 2rem;
 }
 
-.pill {
+.pill{
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
 }
+.pill.key{ background:#9d4edd; }
+.pill.step{ background:#4361ee; }
 
-.pill.key {
-  background: #9d4edd;
+.pill-label{ font-weight: 400; margin-right: 0.25rem; }
+.pill-value{ font-weight: 800; }
+
+.chord{
+  font-size: clamp(9rem, 22vw, 20rem);
+  font-weight: 900;
+  white-space: nowrap;
+  line-height: 1;
+  color:#fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin-top: clamp(0.8rem, 4vw, 2rem);
 }
 
-.pill.step {
-  background: #4361ee;
-}
+/* Jazz formatting */
+sup{ font-size: 0.5em; }
+.qual{ font-size: 0.6em; }
 
-.pill-label {
-  font-weight: 400;
-  margin-right: 0.25rem;
-}
+/* --- Minimal media queries --- */
 
-.pill-value {
-  font-weight: 800;
-}
+/* Small screens: allow a clean centered stack and remove rounded panel corners */
+@media (max-width: 520px){
+  .control-panel{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    border-radius: 0;
 
-sup {
-  font-size: 0.5em;
-}
+    padding: clamp(1.1rem, 4vw, 1.5rem)
+         clamp(0.9rem, 5vw, 1.4rem);
+  }
 
-.qual {
-  font-size: 0.6em;
-}
+  .mode-selector{
+    width: 100%;
+    max-width: 22rem;
+  }
 
+  .button-column{
+    align-items: center;
+  }
+}
