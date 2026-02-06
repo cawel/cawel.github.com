@@ -13,30 +13,37 @@
 
 <div class="control-container">
   <div class="control-panel">
-<div class="mode-selector">
-  <label><input type="radio" name="mode" value="random" checked> Random</label>
+    <div class="mode-selector">
+      <label><input type="radio" name="mode" value="random" checked> Random</label>
 
-  <div class="random-options" id="randomOptions">
-    <label>
-      <input type="checkbox" id="randomHalfDim">
-      Include <span class="chord-symbol">ø7</span>
-    </label>
-    <label>
-      <input type="checkbox" id="randomDim">
-      Include <span class="chord-symbol">o7</span>
-    </label>
-  </div>
+      <div class="random-options" id="randomOptions">
+        <label>
+          <input type="checkbox" id="randomHalfDim">
+          Include <span class="chord-symbol">ø7</span>
+        </label>
+        <label>
+          <input type="checkbox" id="randomDim">
+          Include <span class="chord-symbol">o7</span>
+        </label>
+      </div>
 
-  <label><input type="radio" name="mode" value="maj251"> ii–V–I (major)</label>
-  <label><input type="radio" name="mode" value="min251"> iiø–V–i (minor)</label>
-  <label><input type="radio" name="mode" value="cycle"> Cycle-of-Fifths</label>
-</div>
+      <label><input type="radio" name="mode" value="maj251"> ii–V–I (major)</label>
+      <label><input type="radio" name="mode" value="min251"> iiø–V–i (minor)</label>
+      <label><input type="radio" name="mode" value="cycle"> Cycle-of-Fifths</label>
+    </div>
 
     <div class="button-column">
       <button class="play" id="playBtn" disabled>▶ Play</button>
+
+      <button class="listen-btn" id="listenBtn" aria-pressed="false" type="button">
+        🎤 Listen
+      </button>
+
       <button class="stats-btn" id="statsBtn">📊 Stats</button>
     </div>
   </div>
+
+  <div class="status-line" id="statusLine" role="status" aria-live="polite" hidden></div>
 
   <button class="next-btn" id="nextBtn">🎵 Next</button>
 </div>
@@ -56,6 +63,8 @@
   </div>
 </main>
 
+<!-- NEW: speech logic file (business logic only) -->
+<script src="speech.js" defer></script>
 <script src="script.js" defer></script>
 
 </body>

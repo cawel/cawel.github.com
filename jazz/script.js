@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const DOM = {
     chordEl: document.getElementById("chordDisplay"),
     playBtn: document.getElementById("playBtn"),
+    statusLine: document.getElementById("statusLine"),
+    listenBtn: document.getElementById("listenBtn"),
     nextBtn: document.getElementById("nextBtn"),
     statsBtn: document.getElementById("statsBtn"),
     statsLine: document.getElementById("statsLine"),
@@ -142,10 +144,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderChord = chord => {
     const html = chord ? formatAccidentals(chord.root) +
       (chord.quality==="maj7" ? "<span class='qual'>maj</span><sup>7</sup>" :
-       chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
-       chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
-       chord.quality==="o7"   ? "<sup>o</sup><sup>7</sup>" :
-                                 "<sup>7</sup>") : "";
+        chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
+        chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
+        chord.quality==="o7"   ? "<sup>o</sup><sup>7</sup>" :
+        "<sup>7</sup>") : "";
     DOM.chordEl.innerHTML = html;
   };
 
@@ -169,7 +171,34 @@ document.addEventListener("DOMContentLoaded", () => {
     DOM.statsCount.textContent = state.chordCount;
   };
 
+  const prettySpeechError = (code) => ({
+    "no-speech": "no speech detected",
+    "audio-capture": "microphone unavailable",
+    "not-allowed": "microphone permission denied",
+    "network": "network error"
+  }[code] || code);
+
+
+  const showError = (err) => {
+    if (!DOM.statusLine) return;
+    DOM.statusLine.hidden = false;
+    DOM.statusLine.textContent = `Error: ${err}`;
+  };
+
+  const clearStatus = () => {
+    if (!DOM.statusLine) return;
+    DOM.statusLine.hidden = true;
+    DOM.statusLine.textContent = "";
+  };
+
   // --- CONTROLLER / EVENT LAYER ---
+  const triggerNext = () => {
+    if (DOM.nextBtn.disabled) return;
+    animateButton(DOM.nextBtn);
+    nextChordHandler();
+    DOM.nextBtn.focus();
+  };
+
   const nextChordHandler = () => {
     const result = generateChord();
     let chord, prog;
@@ -193,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Button events
-  DOM.nextBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.nextBtn); nextChordHandler(); });
+  DOM.nextBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.nextBtn); triggerNext(); });
   DOM.playBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.playBtn); playChordAudio(state.currentChord); });
   DOM.statsBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.statsBtn); DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block"; });
 
@@ -203,22 +232,19 @@ document.addEventListener("DOMContentLoaded", () => {
     switch(e.code) {
       case "Space":
         e.preventDefault();
-	if(!DOM.nextBtn.disabled) {
-          animateButton(DOM.nextBtn);
-          nextChordHandler();
-	}
+        triggerNext();
         break;
       case "KeyP":
-	if(!DOM.playBtn.disabled) {
+        if(!DOM.playBtn.disabled) {
           animateButton(DOM.playBtn);
           playChordAudio(state.currentChord);
-	}
+        }
         break;
       case "KeyS":
-	if(!DOM.statsBtn.disabled) {
+        if(!DOM.statsBtn.disabled) {
           animateButton(DOM.statsBtn);
           DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block";
-	}
+        }
         break;
     }
   });
@@ -236,9 +262,77 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- SPEECH INTEGRATION (UI stays here, business logic in speech.js) ---
+  let speech = null;
+
+  const setListeningUI = (isListening) => {
+    if (!DOM.listenBtn) return;
+    DOM.listenBtn.setAttribute("aria-pressed", String(isListening));
+    DOM.listenBtn.textContent = isListening ? "🎤 Listening…" : "🎤 Listen";
+  };
+
+
+  const setListenAvailable = () => {
+    const ok = window.SpeechController && window.SpeechController.isSupported && window.SpeechController.isSupported();
+    if (!DOM.listenBtn) return;
+    DOM.listenBtn.disabled = !ok;
+    if (!ok) DOM.listenBtn.textContent = "🎤 Unavailable";
+  };
+
+  // --- SPEECH hookup
+  setListenAvailable();
+
+  if (window.SpeechController && window.SpeechController.isSupported && window.SpeechController.isSupported()) {
+    speech = window.SpeechController.create({
+      lang: "en-US",
+      debug: true,
+      onCommand: (cmd) => {
+        if (cmd === "next") {
+          triggerNext();
+          return;
+        }
+
+        if (cmd === "stop-listening") {
+          console.log("[speech] user said 'stop listening'");
+          speech.stop();     // disables listening + updates button
+          clearStatus();     // optional: clear error/status line
+          return;
+        }
+      },
+      onState: (isListening) => {
+        setListeningUI(isListening);
+        if (isListening) clearStatus();
+      },
+      onSession: (status, detail) => {
+        if (status !== "error") return;
+
+        // Don't stop listening on benign silence.
+        if (detail === "no-speech") return;
+
+        console.warn("Speech session:", detail);
+
+        // revert button to Listen
+        speech.stop();     
+
+        // status line "Error: ..."
+        showError(prettySpeechError(detail)); 
+      },
+      onError: (err) => {
+        // Keep this for raw logging if you want
+        console.warn("Speech:", err);
+      }
+    });
+
+    DOM.listenBtn.addEventListener("mousedown", () => {
+      animateButton(DOM.listenBtn);
+      speech.toggle();
+    });
+  }
+
+
+
   // --- INIT ---
   updateRandomOptionsVisibility();
   DOM.playBtn.disabled = true;
-
 });
 
