@@ -73,6 +73,6 @@ export function createAudioEngine({
     }
   };
 
-  return { playNote, ensureRunning };
+  return { playNote, ensureRunning, ctx };
 }
 

@@ -32,9 +32,9 @@ const animateButton = (btn) => {
   setTimeout(() => btn.classList.remove("anticipate"), 150);
 };
 
-const audio = createAudioEngine();        // envelope + staggering stays here
+const audio = createAudioEngine();
 const seq = createSequencer();
-const transport = createTransport({ sequencer: seq });
+const transport = createTransport({ sequencer: seq, audioCtx: audio.ctx });
 
 // ----- Rendering -----
 const renderGrid = ({ grid, notes, cols }) => {
@@ -122,7 +122,7 @@ dom.tempoSlider.addEventListener("input", (e) => {
   const v = Number(e.target.value);
   dom.tempoLabel.textContent = v;
   seq.setTempo(v);
-  transport.resync(); // keeps timing identical to before
+  transport.onTempoChange(); // optional, safe, future-proof
 });
 
 dom.colSelect.addEventListener("change", (e) => {
