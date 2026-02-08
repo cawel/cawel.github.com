@@ -1,6 +1,7 @@
 "use strict";
 
 import { createSequencer } from "./sequencer.js";
+import { createTransport } from "./transport.js";
 import { createAudioEngine } from "./audio.js";
 
 const SOUND_COLORS = {
@@ -31,9 +32,11 @@ const animateButton = (btn) => {
   setTimeout(() => btn.classList.remove("anticipate"), 150);
 };
 
-const audio = createAudioEngine();
+const audio = createAudioEngine();        // envelope + staggering stays here
 const seq = createSequencer();
+const transport = createTransport({ sequencer: seq });
 
+// ----- Rendering -----
 const renderGrid = ({ grid, notes, cols }) => {
   dom.grid.innerHTML = "";
 
@@ -57,13 +60,11 @@ const renderGrid = ({ grid, notes, cols }) => {
       }
 
       cell.addEventListener("click", async () => {
-        // ensure audio is allowed to play in browsers
         await audio.ensureRunning();
 
-        const newValue = seq.toggleCell({ row, col, soundType: selectedSound });
-
-        if (newValue) {
-          cell.style.background = SOUND_COLORS[newValue];
+        const newVal = seq.toggleCell({ row, col, soundType: selectedSound });
+        if (newVal) {
+          cell.style.background = SOUND_COLORS[newVal];
           cell.classList.add("active");
         } else {
           cell.style.background = "";
@@ -72,7 +73,7 @@ const renderGrid = ({ grid, notes, cols }) => {
       });
 
       cell.addEventListener("mouseenter", () => {
-        cell.style.cursor = grid[row][col] ? "crosshair" : "pointer";
+        cell.style.cursor = seq.getGrid()[row][col] ? "crosshair" : "pointer";
       });
 
       rowDiv.appendChild(cell);
@@ -82,46 +83,46 @@ const renderGrid = ({ grid, notes, cols }) => {
   }
 };
 
-const renderTransport = ({ playing, stepIndex }) => {
-  // playhead visible only when playing
-  dom.vBar.style.display = playing ? "block" : "none";
-  if (!playing) return;
-
-  // 30px label + 34px per cell (32 + 2 gap) matches existing layout
+const renderPlayhead = ({ stepIndex }) => {
+  if (!transport.isPlaying()) {
+    dom.vBar.style.display = "none";
+    return;
+  }
+  dom.vBar.style.display = "block";
   dom.vBar.style.left = `${30 + stepIndex * 34}px`;
 };
 
-// Sequencer events
+// ----- Sequencer events -----
 seq.on("grid", renderGrid);
-seq.on("state", renderTransport);
+seq.on("state", renderPlayhead);
 
 seq.on("step", ({ stepIndex, hits }) => {
-  // cell flash effect + audio playback
   for (const hit of hits) {
+    // IMPORTANT: your click-reduction envelope/stagger is still applied here
     audio.playNote({ note: hit.note, type: hit.soundType, rowIndex: hit.row });
 
-    // flash the cell at (row, stepIndex)
     const rowEl = dom.grid.children[hit.row];
-    const cellEl = rowEl?.children[stepIndex + 1]; // +1 for label
+    const cellEl = rowEl?.children[stepIndex + 1]; // +1 label
     if (cellEl) {
       cellEl.style.filter = "brightness(1.3)";
-      setTimeout(() => { cellEl.style.filter = ""; }, 100);
+      setTimeout(() => (cellEl.style.filter = ""), 100);
     }
   }
 });
 
-// --- Initial render ---
+// ----- Initial render (now required) -----
 {
-  const state = seq.getState();
-  renderGrid({ grid: seq.getGrid(), notes: state.notes, cols: state.cols });
-  renderTransport({ playing: state.playing, stepIndex: state.stepIndex });
+  const s = seq.getState();
+  renderGrid({ grid: seq.getGrid(), notes: s.notes, cols: s.cols });
+  renderPlayhead({ stepIndex: s.stepIndex });
 }
 
-// Controls
+// ----- Controls -----
 dom.tempoSlider.addEventListener("input", (e) => {
   const v = Number(e.target.value);
   dom.tempoLabel.textContent = v;
   seq.setTempo(v);
+  transport.resync(); // keeps timing identical to before
 });
 
 dom.colSelect.addEventListener("change", (e) => {
@@ -136,34 +137,34 @@ dom.soundSelect.addEventListener("change", (e) => {
   selectedSound = e.target.value;
 });
 
-// Buttons
+// ----- Buttons -----
 dom.playBtn.addEventListener("click", async () => {
   await audio.ensureRunning();
   animateButton(dom.playBtn);
-  seq.start();
+  transport.start();
 });
 
 dom.stopBtn.addEventListener("click", () => {
   animateButton(dom.stopBtn);
-  seq.stop();
+  transport.stop();
 });
 
-// Keyboard shortcuts
+// ----- Keyboard -----
 document.addEventListener("keydown", async (e) => {
   if (e.code === "Space") {
     e.preventDefault();
     await audio.ensureRunning();
-    animateButton(seq.getState().playing ? dom.stopBtn : dom.playBtn);
-    seq.togglePlay();
+    animateButton(transport.isPlaying() ? dom.stopBtn : dom.playBtn);
+    transport.toggle();
   }
   if (e.code === "KeyP") {
     await audio.ensureRunning();
     animateButton(dom.playBtn);
-    seq.start();
+    transport.start();
   }
   if (e.code === "KeyS") {
     animateButton(dom.stopBtn);
-    seq.stop();
+    transport.stop();
   }
 });
 
