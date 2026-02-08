@@ -9,14 +9,12 @@ A simple app to generate and explore 7th chords.
 
 👉 [Open 7th Chords Generator](jazz/7th-chords-gen.html)
 
----
 
 ### 🥁 Beat Sequencer
 A lightweight beat sequencer for experimenting with rhythms and patterns.
 
 👉 [Open Beat Sequencer](jazz/beat-sequencer.html)
 
----
 
 ## Requirements
 
