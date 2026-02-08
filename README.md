@@ -7,13 +7,13 @@ This repository contains small music-oriented web apps written in JavaScript wit
 ### 🎵 7th Chords Generator
 A simple app to generate and explore 7th chords.
 
-👉 [Open 7th Chords Generator](jazz/7th-chords-gen.html)
+👉 [Open 7th Chords Generator](https://cawel.github.io/music/jazz/7th-chords-gen.html)
 
 
 ### 🥁 Beat Sequencer
 A lightweight beat sequencer for experimenting with rhythms and patterns.
 
-👉 [Open Beat Sequencer](jazz/beat-sequencer.html)
+👉 [Open Beat Sequencer](https://cawel.github.io/music/beat-sequencer.html)
 
 
 ## Requirements
