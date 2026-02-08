@@ -95,29 +95,47 @@
 
       // Key reliability choice
       recognition.continuous = false;
-      recognition.interimResults = false;
+      recognition.interimResults = true;
       recognition.maxAlternatives = 1;
+
+      let firedThisSession = false;
 
       recognition.onresult = (event) => {
         setSession("listening");
 
-        const transcript = normalize(
-          event.results?.[0]?.[0]?.transcript ?? ""
-        );
+        // Build the latest transcript from the current result batch
+        // Use resultIndex so we don't reprocess old results.
+        let transcript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += " " + (event.results[i][0]?.transcript ?? "");
+        }
+        transcript = normalize(transcript);
 
-        dbg(debug, "final:", JSON.stringify(transcript));
+        const isFinalBatch = Boolean(event.results[event.results.length - 1]?.isFinal);
 
-        // Explicit shutdown command (highest priority)
+        dbg(debug, (isFinalBatch ? "final:" : "interim:"), JSON.stringify(transcript));
+
+        // Hard guard: once fired, ignore further interim spam until onend
+        if (firedThisSession) return;
+
         if (STOP_LISTENING_RE.test(transcript)) {
+          firedThisSession = true;
           dbg(debug, "FIRE: stop listening");
-          onCommand("stop-listening", transcript, { isFinal: true });
+          onCommand("stop-listening", transcript, { isFinal: isFinalBatch });
+
+          // Force the session to end now so restart can happen sooner.
+          try { recognition.stop(); } catch {}
           return;
         }
 
-        // Normal command
         if (NEXT_RE.test(transcript)) {
+          firedThisSession = true;
           dbg(debug, "FIRE: next");
-          onCommand("next", transcript, { isFinal: true });
+          onCommand("next", transcript, { isFinal: isFinalBatch });
+
+          // Force the session to end now so restart can happen sooner.
+          try { recognition.stop(); } catch {}
+          return;
         }
       };
 
@@ -137,36 +155,28 @@
       };
 
       recognition.onend = () => {
+        dbg(debug, "onend");
+        firedThisSession = false; // reset latch for next session
+
+        if (!enabled) {
+          dbg(debug, "listening disabled → idle");
+          setSession("idle");
+          return;
+        }
+
         dbg(debug, "auto-restart scheduled");
-
         clearRestart();
+
         restartTimer = setTimeout(() => {
-          if (!enabled) {
-            dbg(debug, "restart canceled (listening disabled)");
-            setSession("idle");
-            return;
+          if (!enabled) return;
+          try {
+            dbg(debug, "restart start()");
+            recognition.start();
+            setSession("listening");
+          } catch {
+            onError("restart_failed");
+            setSession("error", "restart_failed");
           }
-
-          const tryStart = (label) => {
-            try {
-              dbg(debug, label);
-              recognition.start();
-              setSession("listening");
-              return true;
-            } catch (e) {
-              dbg(debug, `${label} FAILED`);
-              return false;
-            }
-          };
-
-          // First attempt
-          if (tryStart("restart start()")) return;
-
-          // Safety nudge: try again shortly after
-          setTimeout(() => {
-            if (!enabled) return;
-            tryStart("restart retry start()");
-          }, 250);
         }, restartDelayMs);
 
       };
