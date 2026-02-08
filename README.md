@@ -13,7 +13,7 @@ A simple app to generate and explore 7th chords.
 ### 🥁 Beat Sequencer
 A lightweight beat sequencer for experimenting with rhythms and patterns.
 
-👉 [Open Beat Sequencer](https://cawel.github.io/music/beat-sequencer.html)
+👉 [Open Beat Sequencer](https://cawel.github.io/music/beat-sequencer/index.html)
 
 
 ## Requirements
