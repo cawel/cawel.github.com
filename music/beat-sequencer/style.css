@@ -1,0 +1,201 @@
+/* =========================
+   Base
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #1c1c1e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* =========================
+   Controls
+========================= */
+
+#controlsContainer {
+  display: flex;
+  gap: 3rem;
+  padding: 1rem;
+  max-width: 520px;
+  width: 100%;
+  background: linear-gradient(135deg, #3a3a5a, #50508f);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.control-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 0.2rem;
+}
+
+input[type="range"],
+select {
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* =========================
+   Sound Legend
+========================= */
+
+#soundLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.legend-color.sine   { background: #ff8c42; }
+.legend-color.square { background: #ff4c42; }
+.legend-color.saw    { background: #ffe066; }
+.legend-color.tri    { background: #4361ee; }
+.legend-color.bell   { background: #c77dff; }
+
+/* =========================
+   Buttons
+========================= */
+
+#buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: transform 0.12s ease;
+}
+
+button.play {
+  background: #2ecc71;
+  color: #1c1c1e;
+}
+
+button.stop {
+  background: #ddd;
+  position: relative;
+}
+
+button.stop::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button.anticipate {
+  transform: scale(0.95);
+}
+
+/* =========================
+   Grid
+========================= */
+
+#gridWrapper {
+  margin-top: 2rem;
+  max-width: 100%;
+  overflow-x: auto;
+  position: relative;
+}
+
+#grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.noteLabel {
+  width: 30px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #aaa;
+}
+
+.noteLabel.tonic {
+  color: #ffd166;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  background: #333;
+  border-radius: 4px;
+  transition: background 0.1s, filter 0.1s;
+}
+
+.cell:nth-child(n+2):nth-child(4n+2) {
+  border-left: 2px solid #555;
+}
+
+/* =========================
+   Playhead
+========================= */
+
+.vertical-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  background: rgba(255,255,255,0.15);
+  display: none;
+  pointer-events: none;
+}
+

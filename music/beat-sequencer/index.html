@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎵 Music Box Sequencer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>🎵 Music Box Sequencer</h1>
+
+<div id="controlsContainer">
+  <div class="control-column">
+    <label>
+      Tempo: <span id="tempoLabel">120</span> BPM
+      <input id="tempoSlider" type="range" min="60" max="180" step="10" value="120" />
+    </label>
+
+    <label>
+      Columns:
+      <select id="colSelect">
+        <option value="16">16</option>
+        <option value="32">32</option>
+        <option value="64">64</option>
+      </select>
+    </label>
+
+    <label>
+      Octaves:
+      <select id="octSelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4" selected>4</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="control-column">
+    <label>
+      Sound:
+      <select id="soundSelect">
+        <option value="sine">Sine</option>
+        <option value="square">Square</option>
+        <option value="sawtooth">Sawtooth</option>
+        <option value="triangle">Triangle</option>
+        <option value="bell">Bell</option>
+      </select>
+    </label>
+
+    <div id="soundLegend">
+      <div class="legend-item"><span class="legend-color sine"></span>Sine</div>
+      <div class="legend-item"><span class="legend-color square"></span>Square</div>
+      <div class="legend-item"><span class="legend-color saw"></span>Sawtooth</div>
+      <div class="legend-item"><span class="legend-color tri"></span>Triangle</div>
+      <div class="legend-item"><span class="legend-color bell"></span>Bell</div>
+    </div>
+  </div>
+</div>
+
+<div id="buttons">
+  <button id="playBtn" class="play">▶</button>
+  <button id="stopBtn" class="stop"></button>
+</div>
+
+<div id="gridWrapper">
+  <div id="grid"></div>
+  <div class="vertical-bar" id="vBar"></div>
+</div>
+
+<script type="module" src="./ui.js"></script>
+</body>
+</html>
+
