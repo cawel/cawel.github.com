@@ -3,6 +3,7 @@
 A lightweight, framework-free web app for practicing jazz harmony and 7th chords.  
 Designed for piano jazz players, educators, and improvisers who want fast, focused chord prompts — with optional voice control.
 
+👉 [Open Beat Sequencer](https://cawel.github.io/music/7th-chords-gen/index.html)
 
 ## Features
 
