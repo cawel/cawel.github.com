@@ -2,9 +2,10 @@
 
 A lightweight, dependency-free, browser-based step sequencer inspired by classic music-box and grid-based sequencers.
 
+👉 [Open Beat Sequencer](https://cawel.github.io/music/beat-sequencer/index.html)
+
 The project emphasizes **clarity of architecture**, **deterministic musical logic**, and **clean separation of concerns** between sequencing, timing, audio synthesis, and UI.
 
----
 
 ## ✨ Features
 
@@ -16,7 +17,6 @@ The project emphasizes **clarity of architecture**, **deterministic musical logi
 - Deterministic sequencer core (export-friendly)
 - No external dependencies
 
----
 
 ## 🧠 Architecture Overview
 
@@ -37,7 +37,6 @@ Each module has **one responsibility** and no unnecessary coupling.
 > Time is injected.  
 > Audio is a side effect.
 
----
 
 ## 📦 Module Responsibilities
 
@@ -74,7 +73,6 @@ Does **not**:
 
 This makes the sequencer **fully deterministic**, predictable, and suitable for export or offline rendering.
 
----
 
 ### `transport.js` — Timing & Scheduling
 
@@ -91,7 +89,6 @@ Why this exists:
 - Separating timing preserves sequencer determinism
 - The transport can be swapped or improved independently
 
----
 
 ### `audio.js` — Sound Engine
 
@@ -110,8 +107,6 @@ Exposes:
 
 All click-reduction logic lives here, isolated from sequencing and UI.
 
----
-
 ### `ui.js` — Rendering & Interaction
 
 Responsible for:
@@ -128,8 +123,6 @@ Acts as the bridge between:
 
 Contains **no musical logic** and **no audio synthesis**.
 
----
-
 ## ⏱️ Timing Model
 
 - **Sequencer**: step-based, timeless
@@ -140,8 +133,6 @@ Tempo changes:
 - Take effect immediately
 - Do not restart playback
 - Do not reset the playhead
-
----
 
 ## 🎼 Why This Architecture?
 
