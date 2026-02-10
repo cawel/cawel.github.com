@@ -1,4 +1,4 @@
-# 🎵 Music Box Sequencer
+# 🎵 Beat Sequencer
 
 A lightweight, dependency-free, browser-based step sequencer inspired by classic music-box and grid-based sequencers.
 
