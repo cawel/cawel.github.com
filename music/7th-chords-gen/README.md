@@ -1,4 +1,4 @@
-# 🎷 7th Chord Generator
+# 🎷 7th Chords Generator
 
 A lightweight, framework-free web app for practicing jazz harmony and 7th chords.  
 Designed for piano jazz players, educators, and improvisers who want fast, focused chord prompts — with optional voice control.
