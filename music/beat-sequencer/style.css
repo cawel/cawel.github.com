@@ -197,5 +197,6 @@ button.anticipate {
   background: rgba(255,255,255,0.15);
   display: none;
   pointer-events: none;
+  transition: left 0.05s linear, width 0.05s linear;
 }
 

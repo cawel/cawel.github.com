@@ -83,13 +83,27 @@ const renderGrid = ({ grid, notes, cols }) => {
   }
 };
 
+const positionPlayhead = (stepIndex) => {
+  // Use the first row as reference.
+  const firstRow = dom.grid.children[0];
+  if (!firstRow) return;
+
+  // children[0] is the note label, so step cells start at index 1
+  const cell = firstRow.children[stepIndex + 1];
+  if (!cell) return;
+
+  dom.vBar.style.left = `${cell.offsetLeft}px`;
+  dom.vBar.style.width = `${cell.offsetWidth}px`;
+};
+
 const renderPlayhead = ({ stepIndex }) => {
   if (!transport.isPlaying()) {
     dom.vBar.style.display = "none";
     return;
   }
+
   dom.vBar.style.display = "block";
-  dom.vBar.style.left = `${30 + stepIndex * 34}px`;
+  positionPlayhead(stepIndex);
 };
 
 // ----- Sequencer events -----
@@ -167,4 +181,10 @@ document.addEventListener("keydown", async (e) => {
     transport.stop();
   }
 });
+
+window.addEventListener("resize", () => {
+  if (!transport.isPlaying()) return;
+  positionPlayhead(seq.getState().stepIndex);
+});
+
 
