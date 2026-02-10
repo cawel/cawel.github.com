@@ -115,8 +115,25 @@ button {
 
 button.play {
   background: #2ecc71;
-  color: #1c1c1e;
+  position: relative;
 }
+
+/* Play triangle */
+button.play::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-45%, -50%); /* slight right bias like real play icons */
+
+  width: 0;
+  height: 0;
+
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid #000; /* BLACK triangle */
+}
+
 
 button.stop {
   background: #ddd;
