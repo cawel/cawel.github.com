@@ -18,13 +18,6 @@ Designed for piano jazz players, educators, and improvisers who want fast, focus
 - **Cycle of Fifths**  
   Moves **down a fifth** (jazz-standard direction)
 
-### 🎹 Chord Display
-- Large, centered, non-wrapping chord symbol
-- Jazz lead-sheet formatting:
-  - `maj`, `m` inline (not superscript)
-  - superscript `7`, `ø`, `o`
-- Responsive scaling with window size
-
 ### 🔊 Audio Playback
 - Uses the **Web Audio API**
 - Arpeggiated playback (bass → top)
