@@ -7,13 +7,13 @@ This repository contains small music-oriented web apps written in JavaScript wit
 ### 🎵 7th Chords Generator
 A simple app to generate and explore 7th chords.
 
-👉 [See repo](music/7th-chords-gen/index.html)
+👉 [See repo](music/7th-chords-gen/README.md)
 
 
 ### 🥁 Beat Sequencer
 A lightweight beat sequencer for experimenting with rhythms and patterns.
 
-👉 [See repo](music/beat-sequencer/index.html)
+👉 [See repo](music/beat-sequencer/README.md)
 
 
 ## Requirements
