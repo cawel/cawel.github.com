@@ -31,15 +31,22 @@ body{
 
 .app-title{
   margin: 0;
-  font-size: 28px;
-  letter-spacing: 0.2px;
+
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em; /* tighter, more Apple */
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  color: rgba(255,255,255,0.92);
 }
 
 .title-emoji{
-  margin-right: 0.8em;
+  margin-right: 0.4em;
+  font-size: 1.05em; /* aligns visually with text */
+  transform: translateY(-1px); /* optical alignment tweak */
 }
 
 .app-main{
@@ -50,18 +57,25 @@ body{
 
 .card{
   width: min(680px, 100%);
-  background: color-mix(in srgb, var(--card), #000 18%);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 18px;
+
+  /* Frosted surface */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.16);
+
+  border-radius: 22px;
 
   padding: clamp(18px, 4vw, 28px) clamp(16px, 4vw, 28px);
   display: grid;
-
-  /* Increased vertical rhythm */
   gap: clamp(40px, 8vw, 90px);
 
-  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.45),
+    0 1px 0 rgba(255,255,255,0.10) inset;
 }
+
 
 /* -------------------------
    Line 1: dots
@@ -100,13 +114,6 @@ body{
    Line 2: BPM row
 ------------------------- */
 
-/*
-Key fix for vertical centering:
-- Previously, the row height was effectively dominated by the big BPM block (number + reserved space),
-  so the buttons were centered in a tall row and *looked* "south".
-- Solution: make the BPM number the row’s vertical reference and place "BPM" as an overlay that
-  does NOT affect the row’s alignment geometry.
-*/
 .bpm-row{
   display:grid;
 
@@ -149,36 +156,46 @@ Key fix for vertical centering:
   letter-spacing: 2px;
 }
 
-/* BPM buttons */
+/* -------------------------
+   BPM controls
+------------------------- */
+
 .text-btn{
-  height: 56px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
+  height: 40px;
+  width: 56px;          /* fixed uniform width */
 
-  color: rgba(231,238,247,0.55);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
 
-  cursor: pointer;
-  user-select: none;
+  border-radius: 10px;
+
+  color: rgba(255,255,255,0.65);
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  font-variant-numeric: tabular-nums;
-
-  /* Force the button to center itself in its grid area */
-  align-self: center;
   justify-self: center;
-  width: 100%;
-  max-width: 120px;
+
+  cursor:pointer;
+  transition:
+    background 120ms ease,
+    transform 100ms ease,
+    color 120ms ease;
+}
+
+.text-btn:hover{
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.85);
 }
 
 .text-btn:active{
-  transform: translateY(1px);
+  transform: scale(0.96);
+  background: rgba(255,255,255,0.14);
 }
 
 /* -------------------------
@@ -188,37 +205,53 @@ Key fix for vertical centering:
 .transport{
   display:flex;
   justify-content:center;
-  gap: 0px; /* very tight */
+  gap: 18px; /* subtle white space between buttons */
 }
 
 .transport-btn{
-  width: clamp(90px, 16vw, 130px);   /* narrower */
-  height: clamp(100px, 18vw, 140px);
+  appearance: none;
+  -webkit-appearance: none;
 
-  background: transparent;
-  border: none;
-  box-shadow: none;
-
-  font-size: clamp(56px, 9vw, 80px);
-  color: rgba(231,238,247,0.85);
+  width: clamp(88px, 14vw, 110px);
+  height: clamp(88px, 14vw, 110px);
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+
   cursor:pointer;
-  transition: transform 80ms ease, opacity 120ms ease;
+  transition:
+    background 140ms ease,
+    transform 120ms ease,
+    box-shadow 140ms ease,
+    opacity 140ms ease;
 }
 
 .transport-btn:hover{
-  opacity: 0.9;
+  background: rgba(255,255,255,0.08);
 }
 
 .transport-btn:active{
-  transform: scale(0.92);
+  transform: scale(0.94);
+  background: rgba(255,255,255,0.12);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.30);
 }
 
 .transport-btn[disabled]{
   opacity: 0.35;
   cursor: not-allowed;
+}
+
+/* SVG icons */
+.transport-btn svg{
+  width: clamp(48px, 7vw, 60px);
+  height: clamp(48px, 7vw, 60px);
+  fill: rgba(255,255,255,0.92);
+  display:block;
 }
