@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Metronome</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/svg+xml"
+      href='data:image/svg+xml,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <text y="0.9em" font-size="90">⏱️</text>
+      </svg>'>
+  </head>
+
+  <body>
+    <header class="app-header">
+      <h1 class="app-title">
+        <span class="title-emoji">⏱️</span>
+        <span class="title-text">Metronome</span>
+      </h1>
+    </header>
+
+    <main class="app-main">
+      <section class="card" aria-label="Metronome controls">
+        <!-- Line 1: dots -->
+        <div class="dots" role="group" aria-label="Beat indicator">
+          <span class="dot dot--red" data-dot="0" aria-hidden="true"></span>
+          <span class="dot dot--orange" data-dot="1" aria-hidden="true"></span>
+          <span class="dot dot--orange" data-dot="2" aria-hidden="true"></span>
+          <span class="dot dot--orange" data-dot="3" aria-hidden="true"></span>
+        </div>
+
+        <!-- Line 2: BPM with --, −, +, ++ (all text, consistent rendering) -->
+        <div class="bpm-row" role="group" aria-label="Tempo">
+          <button class="text-btn" id="bpmMinus10" type="button" aria-label="Decrease BPM by 10">−−</button>
+          <button class="text-btn" id="bpmMinus" type="button" aria-label="Decrease BPM">−</button>
+
+          <div class="bpm-value" aria-live="polite" aria-atomic="true">
+            <span id="bpmNumber">120</span>
+            <span class="bpm-unit">BPM</span>
+          </div>
+
+          <button class="text-btn" id="bpmPlus" type="button" aria-label="Increase BPM">+</button>
+          <button class="text-btn" id="bpmPlus10" type="button" aria-label="Increase BPM by 10">++</button>
+        </div>
+
+        <!-- Line 3: Play / Stop -->
+        <div class="transport" role="group" aria-label="Transport">
+          <button class="transport-btn" id="playBtn" type="button" aria-label="Start">▶️</button>
+          <button class="transport-btn" id="stopBtn" type="button" aria-label="Stop">⏹️</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

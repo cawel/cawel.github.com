@@ -1,0 +1,224 @@
+:root{
+  --bg: #0b0f14;
+  --card: #121a23;
+  --text: #e7eef7;
+  --muted: #9bb0c6;
+
+  --red: #ff3b30;
+  --orange: #ff9500;
+
+  --radius: 18px;
+
+  /* dots responsive */
+  --dot-size: clamp(26px, 7vw, 40px);
+}
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 50% 0%, #122033 0%, var(--bg) 60%);
+  color: var(--text);
+}
+
+.app-header{
+  padding: 26px 16px 42px;
+  display:flex;
+  justify-content:center;
+}
+
+.app-title{
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-emoji{
+  margin-right: 0.8em;
+}
+
+.app-main{
+  padding: 10px 16px 24px;
+  display:flex;
+  justify-content:center;
+}
+
+.card{
+  width: min(680px, 100%);
+  background: color-mix(in srgb, var(--card), #000 18%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+
+  padding: clamp(18px, 4vw, 28px) clamp(16px, 4vw, 28px);
+  display: grid;
+
+  /* Increased vertical rhythm */
+  gap: clamp(40px, 8vw, 90px);
+
+  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+   Line 1: dots
+------------------------- */
+.dots{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+
+  padding-inline: clamp(20px, 6vw, 44px);
+  padding-block: 10px;
+
+  min-width: 0;
+}
+
+.dot{
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 999px;
+  opacity: 0.85;
+  transform: scale(1);
+  transition: transform 110ms ease, filter 110ms ease, opacity 110ms ease;
+  flex: 0 0 auto;
+}
+
+.dot--red{ background: var(--red); }
+.dot--orange{ background: var(--orange); }
+
+.dot.is-active{
+  opacity: 1;
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 14px rgba(255,255,255,0.25));
+}
+
+/* -------------------------
+   Line 2: BPM row
+------------------------- */
+
+/*
+Key fix for vertical centering:
+- Previously, the row height was effectively dominated by the big BPM block (number + reserved space),
+  so the buttons were centered in a tall row and *looked* "south".
+- Solution: make the BPM number the row’s vertical reference and place "BPM" as an overlay that
+  does NOT affect the row’s alignment geometry.
+*/
+.bpm-row{
+  display:grid;
+
+  grid-template-columns:
+    minmax(56px, 86px)
+    minmax(56px, 86px)
+    1fr
+    minmax(56px, 86px)
+    minmax(56px, 86px);
+
+  /* Align items relative to the BPM number line box */
+  align-items: center;
+  gap: clamp(10px, 2.5vw, 16px);
+}
+
+/* The middle cell anchors the row’s perceived height */
+.bpm-value{
+  position: relative;
+  text-align:center;
+  font-weight: 800;
+  font-size: clamp(96px, 14vw, 120px);
+  line-height: 1;
+
+  /* REMOVE the huge reserved space that pulled perceived center down */
+  padding-bottom: 0;
+}
+
+/* Put BPM label close to the number without affecting layout */
+.bpm-unit{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Much closer to the number */
+  top: calc(100% + 4px);
+
+  display:block;
+  font-size: 28px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+/* BPM buttons */
+.text-btn{
+  height: 56px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+
+  color: rgba(231,238,247,0.55);
+
+  cursor: pointer;
+  user-select: none;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  font-variant-numeric: tabular-nums;
+
+  /* Force the button to center itself in its grid area */
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 120px;
+}
+
+.text-btn:active{
+  transform: translateY(1px);
+}
+
+/* -------------------------
+   Line 3: transport
+------------------------- */
+
+.transport{
+  display:flex;
+  justify-content:center;
+  gap: 0px; /* very tight */
+}
+
+.transport-btn{
+  width: clamp(90px, 16vw, 130px);   /* narrower */
+  height: clamp(100px, 18vw, 140px);
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  font-size: clamp(56px, 9vw, 80px);
+  color: rgba(231,238,247,0.85);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+  transition: transform 80ms ease, opacity 120ms ease;
+}
+
+.transport-btn:hover{
+  opacity: 0.9;
+}
+
+.transport-btn:active{
+  transform: scale(0.92);
+}
+
+.transport-btn[disabled]{
+  opacity: 0.35;
+  cursor: not-allowed;
+}
