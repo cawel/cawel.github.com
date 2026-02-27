@@ -9,12 +9,12 @@
 
   --radius: 18px;
 
-  /* dots responsive */
-  --dot-size: clamp(26px, 7vw, 40px);
+  /* Responsive dots */
+  --dot-size: clamp(14px, 5vw, 34px);
 }
 
 *{ box-sizing: border-box; }
-html, body { height: 100%; }
+html, body{ height: 100%; }
 
 body{
   margin: 0;
@@ -22,6 +22,10 @@ body{
   background: radial-gradient(1200px 700px at 50% 0%, #122033 0%, var(--bg) 60%);
   color: var(--text);
 }
+
+/* -------------------------
+   Header
+------------------------- */
 
 .app-header{
   padding: 26px 16px 42px;
@@ -31,23 +35,24 @@ body{
 
 .app-title{
   margin: 0;
-
   font-size: 30px;
   font-weight: 600;
-  letter-spacing: -0.01em; /* tighter, more Apple */
-
+  letter-spacing: -0.01em;
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: rgba(255,255,255,0.92);
 }
 
 .title-emoji{
   margin-right: 0.4em;
-  font-size: 1.05em; /* aligns visually with text */
-  transform: translateY(-1px); /* optical alignment tweak */
+  font-size: 1.05em;
+  transform: translateY(-1px);
 }
+
+/* -------------------------
+   Main / Card
+------------------------- */
 
 .app-main{
   padding: 10px 16px 24px;
@@ -58,47 +63,51 @@ body{
 .card{
   width: min(680px, 100%);
 
-  /* Frosted surface */
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   border: 1px solid rgba(255,255,255,0.16);
-
   border-radius: 22px;
 
-  padding: clamp(18px, 4vw, 28px) clamp(16px, 4vw, 28px);
+  padding: clamp(18px, 4vw, 28px) clamp(12px, 2.5vw, 20px);
   display: grid;
-  gap: clamp(40px, 8vw, 90px);
+  row-gap: clamp(28px, 6vw, 60px);
 
   box-shadow:
     0 30px 90px rgba(0,0,0,0.45),
     0 1px 0 rgba(255,255,255,0.10) inset;
 }
 
-
 /* -------------------------
-   Line 1: dots
+   Line 1: Dots
 ------------------------- */
+
 .dots{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  padding-inline: clamp(20px, 6vw, 44px);
-  padding-block: 10px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 
-  min-width: 0;
+  gap: clamp(18px, 8vw, 120px);
+  flex-wrap: wrap;
 }
 
 .dot{
   width: var(--dot-size);
-  height: var(--dot-size);
+  aspect-ratio: 1 / 1;
+  height: auto;
+
+  flex: 0 0 auto;
   border-radius: 999px;
+
   opacity: 0.85;
   transform: scale(1);
+
   transition: transform 110ms ease, filter 110ms ease, opacity 110ms ease;
-  flex: 0 0 auto;
 }
 
 .dot--red{ background: var(--red); }
@@ -106,7 +115,7 @@ body{
 
 .dot.is-active{
   opacity: 1;
-  transform: scale(1.18);
+  transform: scale(1.15);
   filter: drop-shadow(0 0 14px rgba(255,255,255,0.25));
 }
 
@@ -116,15 +125,16 @@ body{
 
 .bpm-row{
   display: grid;
-  grid-template-columns: auto max-content auto; /* center is tight to content */
-  justify-content: center;                      /* keep whole row centered */
+  grid-template-columns: auto max-content auto;
   align-items: center;
-  column-gap: 34px;                             /* controls side whitespace */
+  justify-content: center;
+
+  column-gap: clamp(16px, 5vw, 34px);
 }
 
 .bpm-group{
   display:flex;
-  gap: 6px; /* tight grouping */
+  gap: 6px;
 }
 
 .bpm-display{
@@ -136,24 +146,21 @@ body{
   position: relative;
   text-align: center;
   font-weight: 800;
-  font-size: clamp(96px, 14vw, 120px);
+  font-size: clamp(64px, 12vw, 120px);
   line-height: 1;
 }
 
-/* Put BPM label close to the number without affecting layout */
 .bpm-unit{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-
   top: calc(100% + 2px);
 
   display: block;
-
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0;
-  color: rgba(255,255,255,0.5); /* softer secondary tone */
+  color: rgba(255,255,255,0.5);
 }
 
 /* -------------------------
@@ -162,15 +169,13 @@ body{
 
 .text-btn{
   height: 40px;
-  width: 56px;          /* fixed uniform width */
+  width: 56px;
 
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
-
   border-radius: 10px;
 
   color: rgba(255,255,255,0.65);
-
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.4px;
@@ -178,14 +183,10 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-
   justify-self: center;
 
   cursor:pointer;
-  transition:
-    background 120ms ease,
-    transform 100ms ease,
-    color 120ms ease;
+  transition: background 120ms ease, transform 100ms ease, color 120ms ease;
 }
 
 .text-btn:hover{
@@ -198,14 +199,58 @@ body{
   background: rgba(255,255,255,0.14);
 }
 
+/* Responsive BPM row for small screens */
+@media (max-width: 520px){
+
+  .bpm-row{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "display display"
+      "minus plus";
+    justify-content: center;
+    align-items: center;
+
+    column-gap: 18px;
+    row-gap: 10px; /* much tighter under BPM */
+    text-align: center;
+  }
+
+  .bpm-display{
+    grid-area: display;
+    order: 0; /* no need for order hacks anymore */
+  }
+
+  /* Target the two groups by position */
+  .bpm-row .bpm-group:first-child{
+    grid-area: minus;
+    justify-content: center;
+    justify-self: start;
+  }
+
+  .bpm-row .bpm-group:last-child{
+    grid-area: plus;
+    justify-content: center;
+    justify-self: end;
+  }
+
+  .bpm-unit{
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    margin-top: 6px;  /* controls spacing under the number */
+  }
+}
+
 /* -------------------------
-   Line 3: transport
+   Line 3: Transport
 ------------------------- */
 
 .transport{
   display:flex;
   justify-content:center;
-  gap: 18px; /* subtle white space between buttons */
+  gap: 18px;
 }
 
 .transport-btn{
@@ -226,11 +271,7 @@ body{
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 
   cursor:pointer;
-  transition:
-    background 140ms ease,
-    transform 120ms ease,
-    box-shadow 140ms ease,
-    opacity 140ms ease;
+  transition: background 140ms ease, transform 120ms ease, box-shadow 140ms ease, opacity 140ms ease;
 }
 
 .transport-btn:hover{
@@ -248,7 +289,6 @@ body{
   cursor: not-allowed;
 }
 
-/* SVG icons */
 .transport-btn svg{
   width: clamp(48px, 7vw, 60px);
   height: clamp(48px, 7vw, 60px);
