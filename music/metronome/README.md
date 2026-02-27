@@ -2,6 +2,8 @@
 
 A high-precision, dependency-free web metronome built with modern JavaScript and the Web Audio API.
 
+👉 [Open Metronome](https://cawel.github.io/music/metronome/index.html)
+
 This project emphasizes:
 - Clean separation of concerns
 - Deterministic audio output
