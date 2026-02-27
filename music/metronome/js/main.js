@@ -47,9 +47,6 @@ const clampInt = (n, min, max) => Math.max(min, Math.min(max, n | 0));
 const BPM_MIN = 30;
 const BPM_MAX = 280;
 
-const STEP_1 = 1;
-const STEP_10 = 10;
-
 const audio = new MetronomeAudio();
 const ui = new MetronomeUI();
 const engine = new MetronomeEngine(audio);
@@ -57,58 +54,60 @@ const engine = new MetronomeEngine(audio);
 let bpm = 120;
 
 ui.setBpm(bpm);
-ui.setRunning(false);
 engine.setBpm(bpm);
 
 /* ---------------------------
-   Beat lighting
+   Beat -> DOTS ONLY
 --------------------------- */
-engine.onBeat((dotIdx, _accent, whenPerfMs) => {
-  const beatMs = 60000 / engine.bpm;
-  const delayOn = Math.max(0, whenPerfMs - performance.now());
+engine.onBeat((dotIdx, _isAccent, whenPerfMs) => {
+  // Schedule UI update close to the audio time (simple approach)
+  const delayMs = Math.max(0, whenPerfMs - performance.now());
 
   window.setTimeout(() => {
     ui.setActiveDot(dotIdx);
 
+    // turn off dot near the end of the beat
+    const beatMs = 60000 / engine.bpm;
     window.setTimeout(() => {
       if (engine.isRunning) ui.resetDots();
     }, Math.max(0, beatMs - 10));
-  }, delayOn);
+  }, delayMs);
 });
 
 /* ---------------------------
-   BPM Controls
+   BPM controls
 --------------------------- */
-const applyBpm = (nextBpm) => {
-  bpm = clampInt(nextBpm, BPM_MIN, BPM_MAX);
+const applyBpm = (next) => {
+  bpm = clampInt(next, BPM_MIN, BPM_MAX);
   ui.setBpm(bpm);
   engine.setBpm(bpm);
 };
 
-ui.onMinus10(() => applyBpm(bpm - STEP_10));
-ui.onMinus(() => applyBpm(bpm - STEP_1));
-ui.onPlus(() => applyBpm(bpm + STEP_1));
-ui.onPlus10(() => applyBpm(bpm + STEP_10));
+ui.onMinus10(() => applyBpm(bpm - 10));
+ui.onMinus(()   => applyBpm(bpm - 1));
+ui.onPlus(()    => applyBpm(bpm + 1));
+ui.onPlus10(()  => applyBpm(bpm + 10));
 
 /* ---------------------------
-   Start / Stop Logic
+   Start / Stop
 --------------------------- */
 const startFromClick = async () => {
   await audio.ensureStarted();
   engine.start();
-  ui.setRunning(true);
+  ui.setRunning(true);   // <-- ONLY here
 };
 
 const startFromKey = () => {
   // IMPORTANT: do not await; keeps this inside the key gesture in picky browsers
+  // Keep it synchronous for stricter browser gesture rules
   void audio.ensureStarted();
   engine.start();
-  ui.setRunning(true);
+  ui.setRunning(true);   // <-- ONLY here
 };
 
 const stop = () => {
   engine.stop();
-  ui.setRunning(false);
+  ui.setRunning(false);  // <-- ONLY here
   ui.resetDots();
 };
 
@@ -116,19 +115,13 @@ ui.onPlay(startFromClick);
 ui.onStop(stop);
 
 /* ---------------------------
-   Keyboard Shortcut (Space)
-   Toggle Play / Stop
+   Keyboard: Space toggles play/stop
 --------------------------- */
 const isEditableTarget = (target) => {
   if (!target) return false;
   const el = target;
   const tag = el.tagName?.toLowerCase?.() || "";
-  return (
-    tag === "input" ||
-    tag === "textarea" ||
-    tag === "select" ||
-    el.isContentEditable
-  );
+  return tag === "input" || tag === "textarea" || tag === "select" || el.isContentEditable;
 };
 
 document.addEventListener(
@@ -140,13 +133,9 @@ document.addEventListener(
     if (isEditableTarget(e.target)) return;
 
     e.preventDefault();
-    e.stopPropagation();
 
-    if (engine.isRunning) {
-      stop();
-    } else {
-      startFromKey();
-    }
+    if (engine.isRunning) stop();
+    else startFromKey();
   },
   { capture: true }
 );

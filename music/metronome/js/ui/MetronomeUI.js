@@ -54,15 +54,18 @@ export class MetronomeUI {
   #activeIdx = -1;
 
   constructor() {
+    // BPM controls (must match your HTML IDs)
     const bpmValue = document.getElementById("bpmValue");
     const minus10Btn = document.getElementById("minus10Btn");
     const minusBtn = document.getElementById("minusBtn");
     const plusBtn = document.getElementById("plusBtn");
     const plus10Btn = document.getElementById("plus10Btn");
 
+    // Transport (you confirmed these IDs are correct)
     const playBtn = document.getElementById("playBtn");
     const stopBtn = document.getElementById("stopBtn");
 
+    // Dots
     const dots = Array.from(document.querySelectorAll(".dot"));
 
     if (
@@ -85,8 +88,12 @@ export class MetronomeUI {
     };
 
     this.#dots = dots;
+
+    // IMPORTANT: Stop should be disabled by default (prevents first-load flash)
+    this.setRunning(false);
   }
 
+  // Wiring
   onMinus10(handler) { this.#dom.minus10Btn.addEventListener("click", handler); }
   onMinus(handler)   { this.#dom.minusBtn.addEventListener("click", handler); }
   onPlus(handler)    { this.#dom.plusBtn.addEventListener("click", handler); }
@@ -95,17 +102,21 @@ export class MetronomeUI {
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
 
+  // State rendering
   setBpm(bpm) {
     this.#dom.bpmValue.textContent = String(bpm);
   }
 
   setRunning(isRunning) {
+    // ONLY enable/disable here. No per-tick visuals.
     this.#dom.playBtn.disabled = isRunning;
     this.#dom.stopBtn.disabled = !isRunning;
   }
 
+  // Dots only
   setActiveDot(idx) {
     if (idx === this.#activeIdx) return;
+
     for (let i = 0; i < this.#dots.length; i++) {
       this.#dots[i].classList.toggle("is-active", i === idx);
     }
