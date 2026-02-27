@@ -35,9 +35,11 @@ Responsible for:
 
 Audio Graph (per tick):
 
-Noise (click) ─► Bandpass ─► Gain ┐
-                                  ├─► Per-Tick Gain ─► Master Gain ─► Soft Clip ─► Output
-Noise (body)  ─► Bandpass ─► Gain ┘
+```
+Noise (click) ──► Bandpass ──► Gain ┐
+                                    ├──► Per-Tick Gain ──► Master Gain ──► Soft Clip ──► Output
+Noise (body)  ──► Bandpass ──► Gain ┘
+```
 
 ### 2. `MetronomeEngine`
 Responsible for:
@@ -71,17 +73,6 @@ Coordinates:
 - Keyboard shortcut (Space toggles playback)
 - Gesture-safe AudioContext activation
 
-## Controls
-
-| Action | Method |
-|--------|--------|
-| Play | ▶️ button |
-| Stop | ⏹️ button |
-| Toggle | Space bar |
-| BPM -10 | `--` |
-| BPM -1  | `−` |
-| BPM +1  | `+` |
-| BPM +10 | `++` |
 
 ## Audio Design
 
@@ -90,7 +81,7 @@ Coordinates:
 - Soft clipping to increase perceived loudness
 - Absolute-time scheduling for sample accuracy
 
-All beats (2–4) are identical in waveform.
+Beats 2, 3, 4 are identical in waveform.
 
 ## Design Principles
 
