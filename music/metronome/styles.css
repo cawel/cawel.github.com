@@ -115,30 +115,29 @@ body{
 ------------------------- */
 
 .bpm-row{
-  display:grid;
-
-  grid-template-columns:
-    minmax(56px, 86px)
-    minmax(56px, 86px)
-    1fr
-    minmax(56px, 86px)
-    minmax(56px, 86px);
-
-  /* Align items relative to the BPM number line box */
+  display: grid;
+  grid-template-columns: auto max-content auto; /* center is tight to content */
+  justify-content: center;                      /* keep whole row centered */
   align-items: center;
-  gap: clamp(10px, 2.5vw, 16px);
+  column-gap: 34px;                             /* controls side whitespace */
 }
 
-/* The middle cell anchors the row’s perceived height */
+.bpm-group{
+  display:flex;
+  gap: 6px; /* tight grouping */
+}
+
+.bpm-display{
+  display: flex;
+  justify-content: center;
+}
+
 .bpm-value{
   position: relative;
-  text-align:center;
+  text-align: center;
   font-weight: 800;
   font-size: clamp(96px, 14vw, 120px);
   line-height: 1;
-
-  /* REMOVE the huge reserved space that pulled perceived center down */
-  padding-bottom: 0;
 }
 
 /* Put BPM label close to the number without affecting layout */
@@ -147,13 +146,14 @@ body{
   left: 50%;
   transform: translateX(-50%);
 
-  /* Much closer to the number */
-  top: calc(100% + 4px);
+  top: calc(100% + 2px);
 
-  display:block;
-  font-size: 28px;
-  color: var(--muted);
-  letter-spacing: 2px;
+  display: block;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.5); /* softer secondary tone */
 }
 
 /* -------------------------

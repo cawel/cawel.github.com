@@ -54,38 +54,49 @@ export class MetronomeUI {
   #activeIdx = -1;
 
   constructor() {
-    const bpmNumber = document.getElementById("bpmNumber");
-    const bpmMinus10 = document.getElementById("bpmMinus10");
-    const bpmMinus = document.getElementById("bpmMinus");
-    const bpmPlus = document.getElementById("bpmPlus");
-    const bpmPlus10 = document.getElementById("bpmPlus10");
+    const bpmValue = document.getElementById("bpmValue");
+    const minus10Btn = document.getElementById("minus10Btn");
+    const minusBtn = document.getElementById("minusBtn");
+    const plusBtn = document.getElementById("plusBtn");
+    const plus10Btn = document.getElementById("plus10Btn");
+
     const playBtn = document.getElementById("playBtn");
     const stopBtn = document.getElementById("stopBtn");
+
     const dots = Array.from(document.querySelectorAll(".dot"));
 
     if (
-      !bpmNumber ||
-      !bpmMinus10 || !bpmMinus || !bpmPlus || !bpmPlus10 ||
+      !bpmValue ||
+      !minus10Btn || !minusBtn || !plusBtn || !plus10Btn ||
       !playBtn || !stopBtn ||
       dots.length !== 4
     ) {
       throw new Error("UI: missing required DOM elements.");
     }
 
-    this.#dom = { bpmNumber, bpmMinus10, bpmMinus, bpmPlus, bpmPlus10, playBtn, stopBtn };
+    this.#dom = {
+      bpmValue,
+      minus10Btn,
+      minusBtn,
+      plusBtn,
+      plus10Btn,
+      playBtn,
+      stopBtn,
+    };
+
     this.#dots = dots;
   }
 
-  onMinus10(handler) { this.#dom.bpmMinus10.addEventListener("click", handler); }
-  onMinus(handler)   { this.#dom.bpmMinus.addEventListener("click", handler); }
-  onPlus(handler)    { this.#dom.bpmPlus.addEventListener("click", handler); }
-  onPlus10(handler)  { this.#dom.bpmPlus10.addEventListener("click", handler); }
+  onMinus10(handler) { this.#dom.minus10Btn.addEventListener("click", handler); }
+  onMinus(handler)   { this.#dom.minusBtn.addEventListener("click", handler); }
+  onPlus(handler)    { this.#dom.plusBtn.addEventListener("click", handler); }
+  onPlus10(handler)  { this.#dom.plus10Btn.addEventListener("click", handler); }
 
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
 
   setBpm(bpm) {
-    this.#dom.bpmNumber.textContent = String(bpm);
+    this.#dom.bpmValue.textContent = String(bpm);
   }
 
   setRunning(isRunning) {

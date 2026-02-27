@@ -31,17 +31,26 @@
         </div>
 
         <!-- Line 2: BPM with --, −, +, ++ (all text, consistent rendering) -->
-        <div class="bpm-row" role="group" aria-label="Tempo">
-          <button class="text-btn" id="bpmMinus10" type="button" aria-label="Decrease BPM by 10">−−</button>
-          <button class="text-btn" id="bpmMinus" type="button" aria-label="Decrease BPM">−</button>
-
-          <div class="bpm-value" aria-live="polite" aria-atomic="true">
-            <span id="bpmNumber">120</span>
-            <span class="bpm-unit">BPM</span>
+        <div class="bpm-row">
+          <!-- Left group (decrement) -->
+          <div class="bpm-group">
+            <button class="text-btn" id="minus10Btn" type="button" aria-label="Decrease BPM by 10">--</button>
+            <button class="text-btn" id="minusBtn" type="button" aria-label="Decrease BPM by 1">−</button>
           </div>
 
-          <button class="text-btn" id="bpmPlus" type="button" aria-label="Increase BPM">+</button>
-          <button class="text-btn" id="bpmPlus10" type="button" aria-label="Increase BPM by 10">++</button>
+          <!-- Center BPM display -->
+          <div class="bpm-display">
+            <div class="bpm-value" aria-live="polite">
+              <span id="bpmValue">120</span>
+              <span class="bpm-unit">BPM</span>
+            </div>
+          </div>
+
+          <!-- Right group (increment) -->
+          <div class="bpm-group">
+            <button class="text-btn" id="plusBtn" type="button" aria-label="Increase BPM by 1">+</button>
+            <button class="text-btn" id="plus10Btn" type="button" aria-label="Increase BPM by 10">++</button>
+          </div>
         </div>
 
         <!-- Line 3: Play / Stop -->
