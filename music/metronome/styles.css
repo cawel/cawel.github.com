@@ -88,12 +88,10 @@ body{
   justify-content: center;
   align-items: center;
 
-  width: 100%;
-  max-width: 100%;
+  width: min(80%, 480px);
   margin: 0 auto;
 
-  gap: clamp(18px, 8vw, 120px);
-  flex-wrap: wrap;
+  gap: clamp(18px, 6vw, 80px);
 }
 
 .dot{
