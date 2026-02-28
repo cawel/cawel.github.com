@@ -1,63 +1,88 @@
 /**
  * MetronomeEngine
- * ----------------
- * High-precision timing and scheduling engine for the Metronome App.
+ * ---------------
+ * Timing + scheduling core for the Metronome App.
  *
  * PURPOSE
  * -------
- * Responsible for beat timing, scheduling audio events ahead of time,
- * and notifying the UI layer when a beat occurs.
+ * Generates a steady beat stream at the configured BPM and beats-per-bar.
+ * Uses a lookahead scheduler to achieve stable timing in the browser, and
+ * delegates sound generation to MetronomeAudio.
  *
- * The engine does NOT generate sound and does NOT manipulate the DOM.
- * It coordinates timing only, preserving separation of concerns.
+ * RESPONSIBILITIES
+ * ----------------
+ * - Maintain tempo state (BPM)
+ * - Maintain musical cycle state (beats per bar, beat index)
+ * - Schedule beats in AudioContext time using a high-precision lookahead loop
+ * - Trigger audio ticks via MetronomeAudio.tickAt(timeSec, { accent })
+ * - Emit beat callbacks for UI synchronization:
+ *     onBeat(dotIndex, isAccent, whenPerfMs)
  *
- * ARCHITECTURE
- * ------------
- * main.js  ──►  MetronomeEngine  ──►  MetronomeAudio
- *                       │
- *                       └──► UI callback (beat notifications)
+ * It does NOT:
+ * - Touch the DOM
+ * - Handle user input
+ * - Format UI state
+ * - Own application-level state transitions (main.js does that)
  *
- * TIMING STRATEGY
- * ---------------
- * Uses a "lookahead scheduler" pattern:
- *
- * - A short interval timer (e.g. every 25ms) runs a scheduler loop.
- * - The scheduler checks AudioContext currentTime.
- * - It schedules upcoming beats slightly ahead in time
- *   (e.g. ~120ms into the future).
- *
- * This approach:
- * - Avoids jitter caused by the JS event loop
- * - Maintains stable tempo even under UI load
- * - Enables sample-accurate playback
- *
- * BEAT CYCLE
- * ----------
- * - 4-beat repeating cycle (0..3)
- * - Beat 0 is treated as the "accent" beat
- * - After beat 3, cycle resets to beat 0
- *
- * BPM HANDLING
- * ------------
- * - BPM can be changed while running.
- * - The next scheduled beats use the updated tempo.
- * - No reset of timing state is required.
- *
- * UI SYNCHRONIZATION
- * ------------------
- * When a beat is scheduled:
- * - Audio is scheduled at absolute audio time.
- * - A corresponding UI callback is emitted.
- * - The engine converts audio time to performance.now()
- *   so visual updates align closely with sound playback.
- *
- * DESIGN PRINCIPLES
+ * ARCHITECTURE ROLE
  * -----------------
- * - Deterministic scheduling
- * - No DOM dependencies
- * - No global state
- * - Minimal allocations during runtime
- * - Safe to start/stop repeatedly
+ * main.js  ──►  MetronomeEngine  ──►  MetronomeAudio
+ *
+ * - main.js owns the app state and calls Engine methods (start/stop/config).
+ * - Engine schedules future beats and triggers Audio ticks at precise times.
+ * - Engine optionally reports beat events for UI rendering.
+ *
+ * SCHEDULING MODEL
+ * ---------------
+ * The engine uses a standard "lookahead" strategy:
+ * - A short interval timer (lookaheadMs) wakes regularly.
+ * - Each wake schedules beats up to scheduleAheadSec into the future.
+ * - Scheduled beat timestamps are expressed in AudioContext time (seconds).
+ *
+ * This approach minimizes drift and avoids relying on a single long timer.
+ * 
+ * DETERMINISM
+ * -----------
+ * Beat times are computed as a mathematical progression in
+ * AudioContext time (t₀ + nΔ, where Δ = 60 / BPM).
+ * 
+ * Because scheduling occurs in the audio clock domain,
+ * beat timing is independent of JavaScript timer jitter,
+ * layout cost, or UI rendering delays.
+ *
+ * TIME DOMAINS
+ * ------------
+ * - Audio timing uses AudioContext time: audio.currentTime (seconds).
+ * - UI timing uses performance.now() (milliseconds).
+ * - When emitting onBeat callbacks, the engine converts the scheduled audio
+ *   time to an approximate performance timestamp (whenPerfMs) so main.js can
+ *   update the DOM close to the audio tick without blocking the scheduler.
+ *
+ * MUSICAL MODEL
+ * -------------
+ * - beatsPerBar is configurable (2–6 in the app UX).
+ * - beatIndex advances modulo beatsPerBar.
+ * - Accent is applied on the first beat of each bar:
+ *     isAccent = (dotIndex === 0)
+ *
+ * RUNTIME BEHAVIOR
+ * ----------------
+ * - start():
+ *     • resets phase to beat 1
+ *     • primes nextNoteTime slightly in the future
+ *     • begins the scheduler interval loop
+ * - stop():
+ *     • stops the interval loop
+ *     • leaves audio context management to MetronomeAudio
+ * - setBeatsPerBar(n):
+ *     • updates cycle length
+ *     • may reset phase and realign nextNoteTime for a coherent restart
+ *
+ * EXTENSIBILITY NOTES
+ * -------------------
+ * - Accent behavior can be extended (e.g., custom patterns) without touching UI.
+ * - Timing parameters (lookaheadMs / scheduleAheadSec) are isolated and can be
+ *   tuned for different devices.
  */
 
 export class MetronomeEngine {

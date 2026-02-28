@@ -5,47 +5,58 @@
  *
  * PURPOSE
  * -------
- * Encapsulates all DOM interaction and visual updates.
+ * Encapsulates all DOM interaction and visual rendering.
  * This module is strictly responsible for:
  *
  * - Rendering BPM values
- * - Managing button event bindings
- * - Updating beat indicator dots
+ * - Rendering Beats-per-bar values (2–6)
+ * - Managing button event bindings (BPM, Beats, Transport)
+ * - Dynamically creating and updating beat indicator dots
  * - Reflecting running/stopped state in the UI
  *
  * It does NOT:
  * - Generate audio
- * - Manage timing
+ * - Manage timing or scheduling
  * - Contain business logic
  *
  * ARCHITECTURE ROLE
  * -----------------
  * main.js  ──►  MetronomeUI
  *
- * - main.js wires event handlers to UI callbacks
- * - UI emits user intent via provided listeners
- * - Engine drives visual beat updates through setActiveDot()
+ * - main.js wires event handlers to UI callbacks.
+ * - UI emits user intent via registered listeners.
+ * - Engine drives visual beat updates via setActiveDot().
  *
  * DESIGN PRINCIPLES
  * -----------------
  * - No global variables
- * - No direct knowledge of AudioContext or timing logic
+ * - No direct knowledge of AudioContext or scheduler logic
  * - DOM elements resolved once in constructor
  * - Public methods expose controlled state updates
  * - Idempotent visual updates (safe repeated calls)
+ * - Rendering is deterministic and side-effect free
  *
  * BEAT INDICATOR MODEL
  * --------------------
- * - Four-dot visual representation (0..3)
- * - Only one dot active at a time
+ * - Beat count is dynamic (2–6)
+ * - Dots are re-rendered whenever beats change
+ * - First dot represents the accented beat
+ * - Only one dot may be active at a time
  * - setActiveDot(index) handles activation
- * - resetDots() clears state safely
+ * - resetDots() clears visual state safely
+ *
+ * STATE BOUNDARIES
+ * ----------------
+ * - UI does not track time progression.
+ * - UI does not schedule animations.
+ * - UI reacts only to explicit state updates from main.js.
  *
  * ACCESSIBILITY NOTES
  * -------------------
- * - BPM value uses aria-live for screen reader updates
+ * - BPM and Beats values use aria-live for screen reader updates
  * - Buttons use aria-label attributes
  * - Running state disables Play/Stop appropriately
+ *
  */
 
 export class MetronomeUI {
