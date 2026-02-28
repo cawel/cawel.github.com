@@ -10,7 +10,7 @@
   --radius: 18px;
 
   /* Responsive dots */
-  --dot-size: clamp(18px, 6vw, 40px);
+  --dot-size: clamp(28px, 8vw, 56px);
 }
 
 *{ box-sizing: border-box; }
@@ -91,7 +91,7 @@ body{
   width: min(80%, 480px);
   margin: 0 auto;
 
-  gap: clamp(18px, 6vw, 80px);
+  gap: clamp(28px, 7vw, 80px);
 }
 
 .dot{
@@ -102,7 +102,7 @@ body{
   flex: 0 0 auto;
   border-radius: 999px;
 
-  opacity: 0.85;
+  opacity: 0.55;
   transform: scale(1);
 
   transition: transform 110ms ease, filter 110ms ease, opacity 110ms ease;
@@ -113,7 +113,7 @@ body{
 
 .dot.is-active{
   opacity: 1;
-  transform: scale(1.15);
+  transform: scale(1.05);
   filter: drop-shadow(0 0 14px rgba(255,255,255,0.25));
 }
 
