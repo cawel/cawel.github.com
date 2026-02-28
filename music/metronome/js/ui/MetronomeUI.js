@@ -60,6 +60,9 @@ export class MetronomeUI {
     const minusBtn = document.getElementById("minusBtn");
     const plusBtn = document.getElementById("plusBtn");
     const plus10Btn = document.getElementById("plus10Btn");
+    const beatsValue = document.getElementById("beatsValue");
+    const beatsMinusBtn = document.getElementById("beatsMinusBtn");
+    const beatsPlusBtn = document.getElementById("beatsPlusBtn");
 
     // Transport (you confirmed these IDs are correct)
     const playBtn = document.getElementById("playBtn");
@@ -71,7 +74,8 @@ export class MetronomeUI {
     if (
       !bpmValue ||
       !minus10Btn || !minusBtn || !plusBtn || !plus10Btn ||
-      !playBtn || !stopBtn ||
+      !playBtn || !stopBtn || 
+      !beatsValue || !beatsMinusBtn || !beatsPlusBtn ||
       dots.length !== 4
     ) {
       throw new Error("UI: missing required DOM elements.");

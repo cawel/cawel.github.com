@@ -197,6 +197,52 @@ body{
   background: rgba(255,255,255,0.14);
 }
 
+/* -------------------------
+   Beats per bar (UI only)
+------------------------- */
+
+.beats-row{
+  display: grid;
+  grid-template-columns: auto max-content auto;
+  align-items: center;
+  justify-content: center;
+
+  column-gap: clamp(16px, 4vw, 28px);
+}
+
+.beats-display{
+  display: flex;
+  justify-content: center;
+}
+
+.beats-value{
+  position: relative;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1;
+}
+
+/* Label below number */
+.beats-unit{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 4px);
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Slightly smaller buttons for beats */
+.text-btn--small{
+  width: 48px;
+  height: 36px;
+  font-size: 18px;
+}
+
 /* Responsive BPM row for small screens */
 @media (max-width: 520px){
 
