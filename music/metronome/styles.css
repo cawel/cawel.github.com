@@ -202,6 +202,16 @@ body{
 /* Responsive BPM row for small screens */
 @media (max-width: 520px){
 
+  .app-main{
+    padding: 0 12px 16px;
+  }
+
+  .card{
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  }
+
   .bpm-row{
     display: grid;
     grid-template-columns: auto auto;
