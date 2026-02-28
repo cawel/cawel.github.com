@@ -50,33 +50,35 @@
 
 export class MetronomeUI {
   #dom;
-  #dots;
+  #dots = [];
   #activeIdx = -1;
 
   constructor() {
-    // BPM controls (must match your HTML IDs)
+    // BPM controls
     const bpmValue = document.getElementById("bpmValue");
     const minus10Btn = document.getElementById("minus10Btn");
     const minusBtn = document.getElementById("minusBtn");
     const plusBtn = document.getElementById("plusBtn");
     const plus10Btn = document.getElementById("plus10Btn");
+
+    // Beats controls
     const beatsValue = document.getElementById("beatsValue");
     const beatsMinusBtn = document.getElementById("beatsMinusBtn");
     const beatsPlusBtn = document.getElementById("beatsPlusBtn");
 
-    // Transport (you confirmed these IDs are correct)
+    // Transport
     const playBtn = document.getElementById("playBtn");
     const stopBtn = document.getElementById("stopBtn");
 
-    // Dots
-    const dots = Array.from(document.querySelectorAll(".dot"));
+    // Dots container (must exist)
+    const dotsEl = document.querySelector(".dots");
 
     if (
       !bpmValue ||
       !minus10Btn || !minusBtn || !plusBtn || !plus10Btn ||
-      !playBtn || !stopBtn || 
       !beatsValue || !beatsMinusBtn || !beatsPlusBtn ||
-      dots.length !== 4
+      !playBtn || !stopBtn ||
+      !dotsEl
     ) {
       throw new Error("UI: missing required DOM elements.");
     }
@@ -87,37 +89,52 @@ export class MetronomeUI {
       minusBtn,
       plusBtn,
       plus10Btn,
+
+      beatsValue,
+      beatsMinusBtn,
+      beatsPlusBtn,
+
       playBtn,
       stopBtn,
+
+      dotsEl,
     };
 
-    this.#dots = dots;
-
-    // IMPORTANT: Stop should be disabled by default (prevents first-load flash)
+    // Initial states
     this.setRunning(false);
   }
 
-  // Wiring
+  /* ---------------------------
+     Wiring
+  --------------------------- */
   onMinus10(handler) { this.#dom.minus10Btn.addEventListener("click", handler); }
   onMinus(handler)   { this.#dom.minusBtn.addEventListener("click", handler); }
   onPlus(handler)    { this.#dom.plusBtn.addEventListener("click", handler); }
   onPlus10(handler)  { this.#dom.plus10Btn.addEventListener("click", handler); }
 
+  onBeatsMinus(handler) { this.#dom.beatsMinusBtn.addEventListener("click", handler); }
+  onBeatsPlus(handler)  { this.#dom.beatsPlusBtn.addEventListener("click", handler); }
+
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
 
-  // State rendering
+  /* ---------------------------
+     Rendering
+  --------------------------- */
   setBpm(bpm) {
     this.#dom.bpmValue.textContent = String(bpm);
   }
 
+  setBeats(n) {
+    this.#dom.beatsValue.textContent = String(n);
+    this.#renderDots(n);
+  }
+
   setRunning(isRunning) {
-    // ONLY enable/disable here. No per-tick visuals.
     this.#dom.playBtn.disabled = isRunning;
     this.#dom.stopBtn.disabled = !isRunning;
   }
 
-  // Dots only
   setActiveDot(idx) {
     if (idx === this.#activeIdx) return;
 
@@ -130,5 +147,23 @@ export class MetronomeUI {
   resetDots() {
     for (const d of this.#dots) d.classList.remove("is-active");
     this.#activeIdx = -1;
+  }
+
+  /* ---------------------------
+     Private
+  --------------------------- */
+  #renderDots(count) {
+    // Clear
+    this.#dom.dotsEl.innerHTML = "";
+    this.#dots = [];
+    this.#activeIdx = -1;
+
+    // Create dots: beat 1 red, others orange
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement("div");
+      el.className = `dot ${i === 0 ? "dot--red" : "dot--orange"}`;
+      this.#dom.dotsEl.appendChild(el);
+      this.#dots.push(el);
+    }
   }
 }

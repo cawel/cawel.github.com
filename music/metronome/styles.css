@@ -62,6 +62,7 @@ body{
 
 .card{
   width: min(580px, 100%);
+  overflow: hidden;
 
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(18px);
@@ -84,14 +85,16 @@ body{
 ------------------------- */
 
 .dots{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: min(80%, 480px);
+  width: 100%;
+  padding-inline: 18px;
   margin: 0 auto;
 
-  gap: clamp(28px, 7vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(12px, 3vw, 36px);
+  flex-wrap: nowrap;
 }
 
 .dot{

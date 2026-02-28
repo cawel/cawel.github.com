@@ -47,26 +47,34 @@ const clampInt = (n, min, max) => Math.max(min, Math.min(max, n | 0));
 const BPM_MIN = 30;
 const BPM_MAX = 280;
 
+const BEATS_MIN = 2;
+const BEATS_MAX = 6;
+
 const audio = new MetronomeAudio();
 const ui = new MetronomeUI();
 const engine = new MetronomeEngine(audio);
 
 let bpm = 120;
+let beatsPerBar = 4;
 
+// Initial render
 ui.setBpm(bpm);
+ui.setBeats(beatsPerBar);
+ui.setRunning(false);
+
 engine.setBpm(bpm);
+engine.setBeatsPerBar(beatsPerBar);
 
 /* ---------------------------
    Beat -> DOTS ONLY
 --------------------------- */
 engine.onBeat((dotIdx, _isAccent, whenPerfMs) => {
-  // Schedule UI update close to the audio time (simple approach)
   const delayMs = Math.max(0, whenPerfMs - performance.now());
 
   window.setTimeout(() => {
     ui.setActiveDot(dotIdx);
 
-    // turn off dot near the end of the beat
+    // Clear near end of beat (BPM can change live)
     const beatMs = 60000 / engine.bpm;
     window.setTimeout(() => {
       if (engine.isRunning) ui.resetDots();
@@ -89,53 +97,38 @@ ui.onPlus(()    => applyBpm(bpm + 1));
 ui.onPlus10(()  => applyBpm(bpm + 10));
 
 /* ---------------------------
-   Start / Stop
+   Beats controls
 --------------------------- */
-const startFromClick = async () => {
-  await audio.ensureStarted();
-  engine.start();
-  ui.setRunning(true);   // <-- ONLY here
+const applyBeats = (next) => {
+  beatsPerBar = clampInt(next, BEATS_MIN, BEATS_MAX);
+
+  // UI: update value + re-render dots
+  ui.setBeats(beatsPerBar);
+
+  // Engine: update cycle length + reset to beat 1 for clarity
+  engine.setBeatsPerBar(beatsPerBar, { resetPhase: true });
+
+  // Also clear dots so it doesn't show an out-of-range active idx
+  ui.resetDots();
 };
 
-const startFromKey = () => {
-  // IMPORTANT: do not await; keeps this inside the key gesture in picky browsers
-  // Keep it synchronous for stricter browser gesture rules
-  void audio.ensureStarted();
+ui.onBeatsMinus(() => applyBeats(beatsPerBar - 1));
+ui.onBeatsPlus(()  => applyBeats(beatsPerBar + 1));
+
+/* ---------------------------
+   Start / Stop
+--------------------------- */
+const start = async () => {
+  await audio.ensureStarted();
   engine.start();
-  ui.setRunning(true);   // <-- ONLY here
+  ui.setRunning(true);
 };
 
 const stop = () => {
   engine.stop();
-  ui.setRunning(false);  // <-- ONLY here
+  ui.setRunning(false);
   ui.resetDots();
 };
 
-ui.onPlay(startFromClick);
+ui.onPlay(start);
 ui.onStop(stop);
-
-/* ---------------------------
-   Keyboard: Space toggles play/stop
---------------------------- */
-const isEditableTarget = (target) => {
-  if (!target) return false;
-  const el = target;
-  const tag = el.tagName?.toLowerCase?.() || "";
-  return tag === "input" || tag === "textarea" || tag === "select" || el.isContentEditable;
-};
-
-document.addEventListener(
-  "keydown",
-  (e) => {
-    const isSpace = e.code === "Space" || e.key === " " || e.key === "Spacebar";
-    if (!isSpace) return;
-    if (e.repeat) return;
-    if (isEditableTarget(e.target)) return;
-
-    e.preventDefault();
-
-    if (engine.isRunning) stop();
-    else startFromKey();
-  },
-  { capture: true }
-);

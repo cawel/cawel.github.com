@@ -63,30 +63,48 @@
 export class MetronomeEngine {
   #audio;
   #bpm = 120;
-  #isRunning = false;
 
+  #beatsPerBar = 4;
   #beatIndex = 0;
 
-  #nextNoteTime = 0;
-  #timerId = null;
+  #isRunning = false;
+
+  // Scheduling
+  #intervalId = null;
   #lookaheadMs = 25;
   #scheduleAheadSec = 0.12;
+  #nextNoteTime = 0;
 
-  #uiCallback = null;
+  #onBeat = null;
 
   constructor(audio) {
     this.#audio = audio;
   }
 
+  get bpm() { return this.#bpm; }
+  get isRunning() { return this.#isRunning; }
+  get beatsPerBar() { return this.#beatsPerBar; }
+
   setBpm(bpm) {
     this.#bpm = bpm;
   }
 
-  get bpm() { return this.#bpm; }
-  get isRunning() { return this.#isRunning; }
+  setBeatsPerBar(n, { resetPhase = true } = {}) {
+    this.#beatsPerBar = n;
 
-  onBeat(callback) {
-    this.#uiCallback = callback; // (dotIndex, accent, whenPerfMs) => void
+    if (resetPhase) {
+      this.#beatIndex = 0;
+
+      // If currently running, realign scheduling so UI/audio feels coherent.
+      if (this.#isRunning) {
+        const now = this.#audio.currentTime;
+        this.#nextNoteTime = now + 0.02;
+      }
+    }
+  }
+
+  onBeat(fn) {
+    this.#onBeat = fn;
   }
 
   start() {
@@ -96,47 +114,48 @@ export class MetronomeEngine {
     this.#beatIndex = 0;
 
     const now = this.#audio.currentTime;
-    this.#nextNoteTime = now + 0.03;
+    this.#nextNoteTime = now + 0.05;
 
-    this.#timerId = window.setInterval(() => this.#schedulerTick(), this.#lookaheadMs);
+    this.#intervalId = window.setInterval(() => this.#scheduler(), this.#lookaheadMs);
   }
 
   stop() {
     if (!this.#isRunning) return;
 
     this.#isRunning = false;
-    if (this.#timerId !== null) {
-      window.clearInterval(this.#timerId);
-      this.#timerId = null;
+
+    if (this.#intervalId !== null) {
+      window.clearInterval(this.#intervalId);
+      this.#intervalId = null;
     }
   }
 
-  #secondsPerBeat() {
-    return 60 / this.#bpm;
-  }
-
-  #schedulerTick() {
+  #scheduler() {
     if (!this.#isRunning) return;
 
     const now = this.#audio.currentTime;
+
     while (this.#nextNoteTime < now + this.#scheduleAheadSec) {
-      this.#scheduleBeatAt(this.#nextNoteTime, this.#beatIndex);
-      this.#nextNoteTime += this.#secondsPerBeat();
-      this.#beatIndex = (this.#beatIndex + 1) % 4;
+      this.#scheduleBeat(this.#nextNoteTime);
+
+      const secondsPerBeat = 60.0 / this.#bpm;
+      this.#nextNoteTime += secondsPerBeat;
     }
   }
 
-  #scheduleBeatAt(audioTimeSec, beatIdx) {
-    const dotIdx = beatIdx; // 0..3
-    const accent = beatIdx === 0; // only beat 1 brighter
+  #scheduleBeat(timeSec) {
+    const dotIdx = this.#beatIndex % this.#beatsPerBar;
+    const isAccent = dotIdx === 0;
 
-    this.#audio.tickAt(audioTimeSec, { accent });
+    // Schedule audio tick
+    this.#audio.tickAt(timeSec, { accent: isAccent });
 
-    const perfNow = performance.now();
-    const audioNow = this.#audio.currentTime;
-    const deltaMs = (audioTimeSec - audioNow) * 1000;
-    const whenPerfMs = perfNow + Math.max(0, deltaMs);
+    // Schedule UI callback time in performance.now() space
+    if (this.#onBeat) {
+      const whenPerfMs = performance.now() + (timeSec - this.#audio.currentTime) * 1000;
+      this.#onBeat(dotIdx, isAccent, whenPerfMs);
+    }
 
-    this.#uiCallback?.(dotIdx, accent, whenPerfMs);
+    this.#beatIndex = (this.#beatIndex + 1) % this.#beatsPerBar;
   }
 }
