@@ -10,7 +10,7 @@
   --radius: 18px;
 
   /* Responsive dots */
-  --dot-size: clamp(14px, 5vw, 34px);
+  --dot-size: clamp(18px, 6vw, 40px);
 }
 
 *{ box-sizing: border-box; }
@@ -61,7 +61,7 @@ body{
 }
 
 .card{
-  width: min(680px, 100%);
+  width: min(580px, 100%);
 
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(18px);
