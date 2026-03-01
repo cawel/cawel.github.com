@@ -85,16 +85,13 @@ body{
 ------------------------- */
 
 .dots{
-  width: 100%;
-  padding-inline: 18px;
-  margin: 0 auto;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
-
   gap: clamp(12px, 3vw, 36px);
-  flex-wrap: nowrap;
+
+  width: max-content;
+  max-width: 100%;
+
+  margin-inline: auto;
 }
 
 .dot{
