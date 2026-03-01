@@ -206,6 +206,7 @@ body{
   grid-template-columns: auto max-content auto;
   align-items: center;
   justify-content: center;
+  margin-top: -8px;
 
   column-gap: clamp(16px, 4vw, 28px);
 }
@@ -218,9 +219,10 @@ body{
 .beats-value{
   position: relative;
   text-align: center;
-  font-weight: 700;
-  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 600;
+  font-size: clamp(22px, 4vw, 32px);
   line-height: 1;
+  color: rgba(255,255,255,0.78);
 }
 
 /* Label below number */
@@ -230,17 +232,24 @@ body{
   transform: translateX(-50%);
   top: calc(100% + 4px);
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.38);
 }
 
 /* Slightly smaller buttons for beats */
 .text-btn--small{
-  width: 48px;
-  height: 36px;
-  font-size: 18px;
+  width: 44px;
+  height: 32px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.045);
+  border-color: rgba(255,255,255,0.06);
+}
+.text-btn--small:hover{
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.075);
 }
 
 /* Responsive BPM row for small screens */
@@ -346,6 +355,6 @@ body{
 .transport-btn svg{
   width: clamp(48px, 7vw, 60px);
   height: clamp(48px, 7vw, 60px);
-  fill: rgba(255,255,255,0.92);
+  fill: rgba(255,255,255,0.95);
   display:block;
 }
