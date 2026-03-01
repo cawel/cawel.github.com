@@ -170,5 +170,24 @@ const stop = () => {
   ui.resetDots();
 };
 
+const toggleTransport = () => {
+  if (engine.isRunning) stop();
+  else start();
+};
+
+document.addEventListener("keydown", (e) => {
+  if (e.code !== "Space") return;
+  if (e.repeat) return;
+
+  const t = e.target;
+  const isTypingTarget =
+    t instanceof HTMLElement &&
+    (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+  if (isTypingTarget) return;
+
+  e.preventDefault();
+  toggleTransport();
+});
+
 ui.onPlay(start);
 ui.onStop(stop);
