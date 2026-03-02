@@ -73,7 +73,7 @@ body{
 
   padding: clamp(18px, 4vw, 28px) clamp(12px, 2.5vw, 20px);
   display: grid;
-  row-gap: clamp(28px, 6vw, 60px);
+  row-gap: clamp(18px, 3.8vw, 34px);
 
   box-shadow:
     0 30px 90px rgba(0,0,0,0.45),
@@ -166,7 +166,7 @@ body{
   align-items: center;
   justify-content: center;
 
-  column-gap: clamp(16px, 5vw, 34px);
+  column-gap: clamp(12px, 3.4vw, 24px);
 }
 
 .bpm-group{
@@ -245,8 +245,8 @@ body{
   grid-template-columns: auto max-content auto;
   align-items: center;
   justify-content: center;
-  margin-top: -24px;
-  margin-bottom: 20px;
+  margin-top: -10px;
+  margin-bottom: 12px;
 
   column-gap: clamp(16px, 4vw, 28px);
 }
@@ -295,15 +295,15 @@ body{
 .tap-row{
   display: flex;
   justify-content: center;
-  margin-top: -2px;
+  margin-top: 2px;
 }
 
 .tap-btn{
-  width: clamp(120px, 24vw, 150px);
-  height: 38px;
-  letter-spacing: 0.06em;
+  width: clamp(112px, 20vw, 138px);
+  height: 36px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   touch-action: manipulation;
 }
 
@@ -362,11 +362,12 @@ body{
 
   /* Keep more vertical separation between Tap Tempo and Beats on small screens. */
   .beats-row{
-    margin-top: -8px;
+    margin-top: 0;
+    margin-bottom: 14px;
   }
 
   .tap-btn{
-    width: min(170px, 58vw);
+    width: min(156px, 54vw);
   }
 }
 
