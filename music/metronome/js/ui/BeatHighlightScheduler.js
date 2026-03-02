@@ -24,7 +24,7 @@
  *
  * INPUT MODEL
  * -----------
- * handleBeat(event) accepts Engine beat events in the audio time domain:
+ * onBeatEvent(event) accepts Engine beat events in the audio time domain:
  *   {
  *     dotIdx: number,
  *     isAccent: boolean,

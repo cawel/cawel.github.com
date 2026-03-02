@@ -10,7 +10,7 @@
  *
  * - Rendering BPM values
  * - Rendering Beats-per-bar values (2–6)
- * - Managing button event bindings (BPM, Beats, Transport)
+ * - Managing button event bindings (BPM, Beats, Tap Tempo, Transport)
  * - Dynamically creating and updating beat indicator dots
  * - Reflecting running/stopped state in the UI
  *

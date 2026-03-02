@@ -6,7 +6,7 @@
  * PURPOSE
  * -------
  * Centralizes all control bindings:
- * - UI button callbacks (BPM, Beats, Play/Stop)
+ * - UI button callbacks (BPM, Beats, Tap Tempo, Play/Stop)
  * - Keyboard shortcut (Space = toggle)
  *
  * This module does NOT:
@@ -21,6 +21,11 @@
  * bindControls({ ui, ...handlers }) returns an unbind() function
  * that removes the key listener. (UI callback unbinding is not exposed
  * by MetronomeUI, so those remain attached for the page lifetime.)
+ *
+ * Space-key behavior:
+ * - Uses onToggle() for transport state transition.
+ * - When toggling from stopped -> running, focus is moved to Play to keep
+ *   keyboard-visible focus aligned with the control the shortcut maps to.
  */
 
 export function bindControls({

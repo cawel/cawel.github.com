@@ -8,6 +8,7 @@
  * - Instantiates modules and wires dependencies:
  *     • MetronomeAudio           (sound synthesis)
  *     • MetronomeEngine          (timing + scheduling)
+ *     • TapTempoTracker          (tap timing -> BPM estimation)
  *     • MetronomeUI              (DOM interaction + rendering)
  *     • BeatHighlightScheduler   (UI highlight scheduling boundary)
  *
