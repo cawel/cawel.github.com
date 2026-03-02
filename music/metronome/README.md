@@ -18,14 +18,19 @@ This project emphasizes:
 - 🥁 Beat 1 slightly brighter (accent)
 - 🎯 Sample-accurate scheduling
 - ⌨️ Space bar toggles Play / Stop
+- 👆 Tap Tempo button (rolling average, idle reset, BPM clamped)
 - ➕ BPM ±1 and ±10 controls
+- 🧮 Beats-per-bar controls (2–6)
+- 📏 BPM range: 30–280
 - 📱 Responsive layout
+- 📱 Mobile-safe tap handling
 - ♻️ No global namespace pollution
 - 🚫 No external libraries
 
 ## Architecture
 
-The application is split into three core modules:
+The application is split into focused modules with `main.js` as the
+composition root:
 
 ### 1. `MetronomeAudio`
 
@@ -47,8 +52,8 @@ Noise (body)  ──► Bandpass ──► Gain ┘
 Responsible for:
 - Beat timing
 - Lookahead scheduling
-- Converting audio time to UI time
-- Managing 4-beat cycle logic
+- Emitting beat events in audio time
+- Managing configurable beat cycles (`beatsPerBar`)
 - Supporting live BPM changes
 
 Uses a lookahead scheduler pattern:
@@ -61,18 +66,44 @@ Responsible for:
 - DOM updates
 - Beat dot activation
 - BPM display
+- Beats-per-bar display
 - Button interaction
 - Accessibility attributes
 
 No audio or timing logic lives here.
 
+### 4. `BeatHighlightScheduler`
+Responsible for:
+- Translating Engine audio-time beats to UI-time highlights
+- Scheduling and clearing active beat dots
+- Invalidating stale timers after reconfiguration/transport changes
+
+### 5. `TapTempoTracker`
+Responsible for:
+- Converting tap timestamp sequences into BPM values
+- Smoothing with a rolling interval average
+- Resetting stale tap history after idle time
+- Clamping inferred BPM to valid bounds
+
+### 6. `metronomeState`
+Responsible for:
+- Pure state transitions (`bpm`, `beatsPerBar`, `running`)
+- Declaring side-effect intents (`ENGINE_CONFIG`, `SCHEDULER_CLEAR`, `RENDER`)
+- Keeping state logic deterministic and testable
+
+### 7. `bindControls`
+Responsible for:
+- Wiring UI controls to intention-level callbacks
+- Keyboard handling (`Space` toggles transport)
+- Keeping DOM event details out of orchestration code
+
 ### Entry Point: `main.js`
 
 Coordinates:
-- Wiring UI → Engine → Audio
-- Start / Stop state
-- BPM state
-- Keyboard shortcut (Space toggles playback)
+- Wiring UI ↔ state reducer ↔ engine/audio/scheduler
+- Effect execution declared by `metronomeState`
+- Transport side effects (start/stop + AudioContext start)
+- Tap Tempo integration
 - Gesture-safe AudioContext activation
 
 
