@@ -22,12 +22,15 @@
  * - Generate audio
  * - Decide transport behavior (start/stop)
  *
- * EXPECTED INPUT
- * --------------
- * scheduleBeat({ dotIdx, timeSec, beatMs })
- * - dotIdx: index of the dot to activate
- * - timeSec: AudioContext timestamp when the beat occurs
- * - beatMs: beat duration in milliseconds (used for auto-clear)
+ * INPUT MODEL
+ * -----------
+ * handleBeat(event) accepts Engine beat events in the audio time domain:
+ *   {
+ *     dotIdx: number,
+ *     isAccent: boolean,
+ *     timeSec: number,        // AudioContext time
+ *     secondsPerBeat: number  // beat duration in seconds
+ *   }
  *
  * INVALIDATION MODEL
  * ------------------
@@ -63,9 +66,17 @@ export class BeatHighlightScheduler {
     this.#ui.resetDots();
   }
 
-  scheduleBeat({ dotIdx, timeSec, beatMs }) {
-    const epoch = this.#epoch;
+  /**
+   * Intention-revealing API:
+   * consume an Engine "beat" event and schedule the corresponding UI highlight.
+   */
+  handleBeat({ dotIdx, timeSec, secondsPerBeat }) {
+    const beatMs = secondsPerBeat * 1000;
+    this.#schedule({ dotIdx, timeSec, beatMs });
+  }
 
+  #schedule({ dotIdx, timeSec, beatMs }) {
+    const epoch = this.#epoch;
     const delayMs = Math.max(0, (timeSec - this.#getAudioNowSec()) * 1000);
 
     const id1 = window.setTimeout(() => {

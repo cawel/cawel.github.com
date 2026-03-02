@@ -21,7 +21,7 @@
  *     • Play / Stop buttons
  *     • Keyboard shortcut (Space = toggle)
  *
- * - Bridges audio-time beat events to UI updates via BeatHighlightScheduler.
+ * - Delegates beat highlight scheduling to BeatHighlightScheduler.
  *
  * ARCHITECTURE OVERVIEW
  * ---------------------
@@ -96,12 +96,8 @@ syncEngine({ resetPhase: true });
    Beat -> DOTS ONLY
 --------------------------- */
 
-const unsubscribeBeat = engine.subscribeBeat(({ dotIdx, timeSec, secondsPerBeat }) => {
-  scheduler.scheduleBeat({
-    dotIdx,
-    timeSec,
-    beatMs: secondsPerBeat * 1000,
-  });
+const unsubscribeBeat = engine.subscribeBeat((event) => {
+  scheduler.handleBeat(event);
 });
 
 /* ---------------------------
@@ -115,24 +111,17 @@ const setBpm = (next) => {
 };
 
 const setBeatsPerBar = (next) => {
-  // Dot mapping changes; invalidate pending highlight callbacks.
-  scheduler.invalidate();
+  scheduler.stopAndClear();
 
   state.beatsPerBar = clampInt(next, BEATS_MIN, BEATS_MAX);
 
-  // Reset phase for coherence
   syncEngine({ resetPhase: true });
-
-  // Prevent stale visual state during/after re-render
-  ui.resetDots();
-
   render();
 };
 
 const start = async () => {
   if (state.running) return;
 
-  // Prevent any pending UI callbacks from a previous run.
   scheduler.invalidate();
 
   await audio.ensureStarted();
