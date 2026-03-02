@@ -245,7 +245,8 @@ body{
   grid-template-columns: auto max-content auto;
   align-items: center;
   justify-content: center;
-  margin-top: -8px;
+  margin-top: -24px;
+  margin-bottom: 20px;
 
   column-gap: clamp(16px, 4vw, 28px);
 }
@@ -298,7 +299,7 @@ body{
 }
 
 .tap-btn{
-  width: clamp(140px, 28vw, 180px);
+  width: clamp(120px, 24vw, 150px);
   height: 38px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -359,8 +360,13 @@ body{
     margin-top: 6px;  /* controls spacing under the number */
   }
 
+  /* Keep more vertical separation between Tap Tempo and Beats on small screens. */
+  .beats-row{
+    margin-top: -8px;
+  }
+
   .tap-btn{
-    width: min(220px, 72vw);
+    width: min(170px, 58vw);
   }
 }
 
