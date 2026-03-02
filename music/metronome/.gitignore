@@ -1,0 +1,19 @@
+# ---------------------------
+# macOS system files
+# ---------------------------
+
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+
+# ---------------------------
+# Editors
+# ---------------------------
+
+.vscode/
+
+# Vim swap / backup files
+*.swp
+*.swo
+*~
