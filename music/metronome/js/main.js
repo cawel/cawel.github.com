@@ -14,7 +14,6 @@
  *     • BPM (tempo)
  *     • Beats per bar (2–6)
  *     • Transport state (running / stopped)
- *     • UI synchronization epoch (internal)
  *
  * - Handles user interactions:
  *     • BPM step controls
@@ -22,28 +21,19 @@
  *     • Play / Stop buttons
  *     • Keyboard shortcut (Space = toggle)
  *
- * - Synchronizes UI highlights with scheduled audio beats.
+ * - Bridges audio-time beat events to UI updates via BeatHighlightScheduler.
  *
  * ARCHITECTURE OVERVIEW
  * ---------------------
  * UI  ──► main.js ──► Engine ──► Audio
+ *                 └─► BeatHighlightScheduler ──► UI highlights
  *
  * - UI emits user intent (button events).
  * - main.js mutates state (SSOT), renders UI, and configures the Engine.
  * - Engine schedules beats strictly in AudioContext time and emits beat events
  *   in that same time domain.
- * - main.js maps AudioContext time → UI timing (performance.now) for DOM updates.
- *
- * UI SYNCHRONIZATION MODEL
- * ------------------------
- * Engine emits beat events:
- *   { timeSec, secondsPerBeat, dotIdx, isAccent }
- *
- * main.js converts timeSec (AudioContext seconds) into a delay relative to
- * performance.now(), then schedules DOM updates.
- *
- * A UI "epoch" value invalidates stale scheduled callbacks whenever configuration
- * changes or transport stops/starts, preventing highlight drift and race bugs.
+ * - BeatHighlightScheduler maps AudioContext timestamps to DOM update timing
+ *   and handles invalidation of pending callbacks on reconfig/transport changes.
  *
  * AUDIO POLICY NOTE
  * -----------------
@@ -54,6 +44,7 @@
 import { MetronomeAudio } from "./audio/MetronomeAudio.js";
 import { MetronomeUI } from "./ui/MetronomeUI.js";
 import { MetronomeEngine } from "./core/MetronomeEngine.js";
+import { BeatHighlightScheduler } from "./ui/BeatHighlightScheduler.js";
 
 const clampInt = (n, min, max) => Math.max(min, Math.min(max, n | 0));
 
@@ -67,17 +58,18 @@ const audio = new MetronomeAudio();
 const ui = new MetronomeUI();
 const engine = new MetronomeEngine(audio);
 
-// Single Source of Truth (all mutable state lives here)
+// Single Source of Truth (SSOT)
 const state = {
   bpm: 120,
   beatsPerBar: 4,
   running: false,
-
-  // UI callback invalidation (internal synchronization state)
-  uiEpoch: 0,
 };
 
-const bumpUiEpoch = () => { state.uiEpoch += 1; };
+const scheduler = new BeatHighlightScheduler({
+  ui,
+  getAudioNowSec: () => audio.currentTime,
+  isRunning: () => state.running,
+});
 
 /* ---------------------------
    Rendering / engine sync
@@ -104,33 +96,12 @@ syncEngine({ resetPhase: true });
    Beat -> DOTS ONLY
 --------------------------- */
 
-/**
- * Convert an AudioContext time (seconds) to a UI delay (ms) relative to now.
- * This mapping belongs in main.js (time-domain boundary).
- */
-const audioTimeToDelayMs = (timeSec) => {
-  const dtSec = timeSec - audio.currentTime;
-  return Math.max(0, dtSec * 1000);
-};
-
-const unsubscribeBeat = engine.subscribeBeat(({ dotIdx, secondsPerBeat, timeSec }) => {
-  const scheduledEpoch = state.uiEpoch;
-
-  const delayMs = audioTimeToDelayMs(timeSec);
-
-  window.setTimeout(() => {
-    if (scheduledEpoch !== state.uiEpoch) return;
-
-    ui.setActiveDot(dotIdx);
-
-    // clear near the end of the beat (derived from engine event, not re-computed)
-    const beatMs = secondsPerBeat * 1000;
-
-    window.setTimeout(() => {
-      if (scheduledEpoch !== state.uiEpoch) return;
-      if (state.running) ui.resetDots();
-    }, Math.max(0, beatMs - 10));
-  }, delayMs);
+const unsubscribeBeat = engine.subscribeBeat(({ dotIdx, timeSec, secondsPerBeat }) => {
+  scheduler.scheduleBeat({
+    dotIdx,
+    timeSec,
+    beatMs: secondsPerBeat * 1000,
+  });
 });
 
 /* ---------------------------
@@ -139,19 +110,20 @@ const unsubscribeBeat = engine.subscribeBeat(({ dotIdx, secondsPerBeat, timeSec 
 
 const setBpm = (next) => {
   state.bpm = clampInt(next, BPM_MIN, BPM_MAX);
-  syncEngine();     // atomic config update
-  render();         // consistent state->UI rendering
+  syncEngine();
+  render();
 };
 
 const setBeatsPerBar = (next) => {
-  bumpUiEpoch(); // invalidate pending UI callbacks (dot mapping changes)
+  // Dot mapping changes; invalidate pending highlight callbacks.
+  scheduler.invalidate();
 
   state.beatsPerBar = clampInt(next, BEATS_MIN, BEATS_MAX);
 
-  // beats change should reset phase for coherence
+  // Reset phase for coherence
   syncEngine({ resetPhase: true });
 
-  // avoid showing stale active dot index after re-render
+  // Prevent stale visual state during/after re-render
   ui.resetDots();
 
   render();
@@ -160,7 +132,8 @@ const setBeatsPerBar = (next) => {
 const start = async () => {
   if (state.running) return;
 
-  bumpUiEpoch();
+  // Prevent any pending UI callbacks from a previous run.
+  scheduler.invalidate();
 
   await audio.ensureStarted();
 
@@ -173,12 +146,10 @@ const start = async () => {
 const stop = () => {
   if (!state.running) return;
 
-  bumpUiEpoch();
-
   engine.stop();
   state.running = false;
 
-  ui.resetDots();
+  scheduler.stopAndClear();
   render();
 };
 
@@ -237,7 +208,8 @@ export const teardown = () => {
   try { unsubscribeBeat(); } catch {}
   try { engine.clearBeatListeners(); } catch {}
 
-  stop(); // ensures engine stopped + UI cleared + epoch bumped
+  // Ensures engine stopped + scheduler invalidated + UI cleared
+  try { stop(); } catch {}
 
   try { document.removeEventListener("keydown", onKeyDown); } catch {}
   try { audio.close(); } catch {}
