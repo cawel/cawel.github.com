@@ -100,7 +100,8 @@ export class MetronomeEngine {
   #scheduleAheadSec = 0.12;
   #nextNoteTime = 0;
 
-  #onBeat = null;
+  // Beat listeners (multi-subscriber, unsubscribe supported)
+  #beatListeners = new Set();
 
   constructor(audio) {
     this.#audio = audio;
@@ -128,8 +129,26 @@ export class MetronomeEngine {
     }
   }
 
-  onBeat(fn) {
-    this.#onBeat = fn;
+  /**
+   * Subscribe to beat events.
+   * Returns an unsubscribe function.
+   *
+   * Callback signature:
+   *   (dotIdx: number, isAccent: boolean, whenPerfMs: number) => void
+   */
+  subscribeBeat(listener) {
+    if (typeof listener !== "function") {
+      throw new TypeError("MetronomeEngine.subscribeBeat(listener): listener must be a function");
+    }
+
+    this.#beatListeners.add(listener);
+
+    let isActive = true;
+    return () => {
+      if (!isActive) return;
+      isActive = false;
+      this.#beatListeners.delete(listener);
+    };
   }
 
   start() {
@@ -155,6 +174,10 @@ export class MetronomeEngine {
     }
   }
 
+  clearBeatListeners() {
+    this.#beatListeners.clear();
+  }
+
   #scheduler() {
     if (!this.#isRunning) return;
 
@@ -175,10 +198,17 @@ export class MetronomeEngine {
     // Schedule audio tick
     this.#audio.tickAt(timeSec, { accent: isAccent });
 
-    // Schedule UI callback time in performance.now() space
-    if (this.#onBeat) {
+    // Notify UI (or any other) listeners
+    if (this.#beatListeners.size > 0) {
       const whenPerfMs = performance.now() + (timeSec - this.#audio.currentTime) * 1000;
-      this.#onBeat(dotIdx, isAccent, whenPerfMs);
+
+      for (const fn of this.#beatListeners) {
+        try {
+          fn(dotIdx, isAccent, whenPerfMs);
+        } catch {
+          // Never let a listener break timing/scheduling.
+        }
+      }
     }
 
     this.#beatIndex = (this.#beatIndex + 1) % this.#beatsPerBar;

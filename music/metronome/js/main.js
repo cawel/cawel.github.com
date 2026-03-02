@@ -94,7 +94,7 @@ engine.setBeatsPerBar(beatsPerBar);
 /* ---------------------------
    Beat -> DOTS ONLY
 --------------------------- */
-engine.onBeat((dotIdx, _isAccent, whenPerfMs) => {
+const unsubscribeBeat = engine.subscribeBeat((dotIdx, _isAccent, whenPerfMs) => {
   const scheduledEpoch = uiEpoch;
 
   const delayMs = Math.max(0, whenPerfMs - performance.now());
