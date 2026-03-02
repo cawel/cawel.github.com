@@ -1,44 +1,31 @@
 /**
  * main.js
  * -------
- * Application entry point and orchestration layer for the Metronome App.
+ * Application entry point and composition root for the Metronome App.
  *
  * RESPONSIBILITIES
  * ----------------
- * - Wires together the three core modules:
- *     • MetronomeAudio   (sound synthesis)
- *     • MetronomeEngine  (timing + scheduling)
- *     • MetronomeUI      (DOM interaction + rendering)
+ * - Instantiates modules and wires dependencies:
+ *     • MetronomeAudio           (sound synthesis)
+ *     • MetronomeEngine          (timing + scheduling)
+ *     • MetronomeUI              (DOM interaction + rendering)
+ *     • BeatHighlightScheduler   (UI highlight scheduling boundary)
  *
- * - Owns the single source of truth for all mutable application state:
- *     • BPM (tempo)
- *     • Beats per bar (2–6)
- *     • Transport state (running / stopped)
- *
- * - Handles user interactions:
- *     • BPM step controls
- *     • Beats step controls
- *     • Play / Stop buttons
- *     • Keyboard shortcut (Space = toggle)
- *
- * - Delegates beat highlight scheduling to BeatHighlightScheduler.
+ * - Owns the Single Source of Truth (SSOT) state object.
+ * - Applies side-effects in response to state transitions:
+ *     • engine.configure(...)
+ *     • engine.start()/stop()
+ *     • audio.ensureStarted()
+ *     • scheduler.invalidate()/stopAndClear()
+ *     • ui rendering
  *
  * ARCHITECTURE OVERVIEW
  * ---------------------
- * UI  ──► main.js ──► Engine ──► Audio
- *                 └─► BeatHighlightScheduler ──► UI highlights
+ * UI  ──► bindControls ──► main.js ──► Engine ──► Audio
+ *                            └──────► BeatHighlightScheduler ──► UI dots
  *
- * - UI emits user intent (button events).
- * - main.js mutates state (SSOT), renders UI, and configures the Engine.
- * - Engine schedules beats strictly in AudioContext time and emits beat events
- *   in that same time domain.
- * - BeatHighlightScheduler maps AudioContext timestamps to DOM update timing
- *   and handles invalidation of pending callbacks on reconfig/transport changes.
- *
- * AUDIO POLICY NOTE
- * -----------------
- * Web Audio requires a user gesture to start.
- * ensureStarted() must be called from a user-triggered event.
+ * - MetronomeState.js is pure policy: reducer + clamping.
+ * - main.js is the effectful orchestrator: applies audio/engine/UI effects.
  */
 
 import { MetronomeAudio } from "./audio/MetronomeAudio.js";
@@ -46,24 +33,14 @@ import { MetronomeUI } from "./ui/MetronomeUI.js";
 import { MetronomeEngine } from "./core/MetronomeEngine.js";
 import { BeatHighlightScheduler } from "./ui/BeatHighlightScheduler.js";
 
-const clampInt = (n, min, max) => Math.max(min, Math.min(max, n | 0));
-
-const BPM_MIN = 30;
-const BPM_MAX = 280;
-
-const BEATS_MIN = 2;
-const BEATS_MAX = 6;
+import { bindControls } from "./ui/bindControls.js";
+import { initialState, reducer, actions } from "./core/metronomeState.js";
 
 const audio = new MetronomeAudio();
 const ui = new MetronomeUI();
 const engine = new MetronomeEngine(audio);
 
-// Single Source of Truth (SSOT)
-const state = {
-  bpm: 120,
-  beatsPerBar: 4,
-  running: false,
-};
+let state = { ...initialState };
 
 const scheduler = new BeatHighlightScheduler({
   ui,
@@ -72,7 +49,7 @@ const scheduler = new BeatHighlightScheduler({
 });
 
 /* ---------------------------
-   Rendering / engine sync
+   Render + Engine sync helpers
 --------------------------- */
 
 const render = () => {
@@ -88,12 +65,12 @@ const syncEngine = ({ resetPhase = false } = {}) => {
   );
 };
 
-// initial
+// Initial render/config
 render();
 syncEngine({ resetPhase: true });
 
 /* ---------------------------
-   Beat -> DOTS ONLY
+   Engine beat subscription
 --------------------------- */
 
 const unsubscribeBeat = engine.subscribeBeat((event) => {
@@ -101,45 +78,57 @@ const unsubscribeBeat = engine.subscribeBeat((event) => {
 });
 
 /* ---------------------------
-   State mutations (SSOT)
+   Dispatch (pure state -> side effects)
 --------------------------- */
 
-const setBpm = (next) => {
-  state.bpm = clampInt(next, BPM_MIN, BPM_MAX);
-  syncEngine();
+const dispatch = (action) => {
+  const prev = state;
+  const next = reducer(prev, action);
+  if (next === prev) return;
+
+  state = next;
+  onStateChanged(prev, next, action);
+};
+
+const onStateChanged = (prev, next, action) => {
+  // BPM affects scheduling math; no phase reset.
+  if (next.bpm !== prev.bpm) {
+    syncEngine();
+  }
+
+  // Beats-per-bar changes affect dot mapping; reset phase for coherence.
+  if (next.beatsPerBar !== prev.beatsPerBar) {
+    scheduler.stopAndClear();
+    syncEngine({ resetPhase: true });
+  }
+
+  // Running state changes are handled by transport commands (below),
+  // but we still render whenever state changes.
   render();
 };
 
-const setBeatsPerBar = (next) => {
-  scheduler.stopAndClear();
-
-  state.beatsPerBar = clampInt(next, BEATS_MIN, BEATS_MAX);
-
-  syncEngine({ resetPhase: true });
-  render();
-};
+/* ---------------------------
+   Transport commands (side-effects)
+--------------------------- */
 
 const start = async () => {
   if (state.running) return;
 
+  // Invalidate any pending UI highlights from a previous run.
   scheduler.invalidate();
 
   await audio.ensureStarted();
 
   engine.start();
-  state.running = true;
-
-  render();
+  dispatch(actions.transportStart());
 };
 
 const stop = () => {
   if (!state.running) return;
 
   engine.stop();
-  state.running = false;
-
   scheduler.stopAndClear();
-  render();
+  dispatch(actions.transportStop());
 };
 
 const toggleTransport = () => {
@@ -148,52 +137,28 @@ const toggleTransport = () => {
 };
 
 /* ---------------------------
-   UI bindings
+   Bind inputs
 --------------------------- */
 
-// BPM controls
-ui.onMinus10(() => setBpm(state.bpm - 10));
-ui.onMinus(() => setBpm(state.bpm - 1));
-ui.onPlus(() => setBpm(state.bpm + 1));
-ui.onPlus10(() => setBpm(state.bpm + 10));
+const unbind = bindControls({
+  ui,
 
-// Beats controls
-ui.onBeatsMinus(() => setBeatsPerBar(state.beatsPerBar - 1));
-ui.onBeatsPlus(() => setBeatsPerBar(state.beatsPerBar + 1));
+  onBpmDelta: (delta) => dispatch(actions.bpmDelta(delta)),
+  onBeatsDelta: (delta) => dispatch(actions.beatsDelta(delta)),
 
-// Transport buttons
-ui.onPlay(start);
-ui.onStop(stop);
-
-/* ---------------------------
-   Keyboard shortcut
---------------------------- */
-
-const onKeyDown = (e) => {
-  if (e.code !== "Space") return;
-  if (e.repeat) return;
-
-  const t = e.target;
-  const isTypingTarget =
-    t instanceof HTMLElement &&
-    (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
-  if (isTypingTarget) return;
-
-  e.preventDefault();
-  toggleTransport();
-};
-
-document.addEventListener("keydown", onKeyDown);
+  onStart: start,
+  onStop: stop,
+  onToggle: toggleTransport,
+});
 
 /* ---------------------------
    Teardown (explicit shutdown)
 --------------------------- */
 
-/**
- * Clean shutdown hook (useful for tests, hot reload, or embedding).
- * Not called automatically in normal static-page usage.
- */
 export const teardown = () => {
+  try {
+    unbind();
+  } catch {}
   try {
     unsubscribeBeat();
   } catch {}
@@ -201,13 +166,8 @@ export const teardown = () => {
     engine.clearBeatListeners();
   } catch {}
 
-  // Ensures engine stopped + scheduler invalidated + UI cleared
   try {
     stop();
-  } catch {}
-
-  try {
-    document.removeEventListener("keydown", onKeyDown);
   } catch {}
   try {
     audio.close();
