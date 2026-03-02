@@ -36,14 +36,25 @@
 import { MetronomeAudio } from "./audio/MetronomeAudio.js";
 import { MetronomeUI } from "./ui/MetronomeUI.js";
 import { MetronomeEngine } from "./core/MetronomeEngine.js";
+import { TapTempoTracker } from "./core/TapTempoTracker.js";
 import { BeatHighlightScheduler } from "./ui/BeatHighlightScheduler.js";
 import { bindControls } from "./ui/bindControls.js";
 
-import { initialState, reducer, actions } from "./core/metronomeState.js";
+import {
+  initialState,
+  reducer,
+  actions,
+  BPM_MIN,
+  BPM_MAX,
+} from "./core/metronomeState.js";
 
 const audio = new MetronomeAudio();
 const ui = new MetronomeUI();
 const engine = new MetronomeEngine(audio);
+const tapTempoTracker = new TapTempoTracker({
+  minBpm: BPM_MIN,
+  maxBpm: BPM_MAX,
+});
 
 let state = { ...initialState };
 
@@ -148,12 +159,21 @@ const toggleTransport = () => {
   else start();
 };
 
+const onTapTempo = () => {
+  const tappedBpm = tapTempoTracker.tap(performance.now());
+  if (tappedBpm === null) return;
+  if (tappedBpm === state.bpm) return;
+
+  dispatch(actions.bpmDelta(tappedBpm - state.bpm));
+};
+
 /* ---------------------------
    Bind inputs
 --------------------------- */
 
 const unbind = bindControls({
   ui,
+  isRunning: () => state.running,
 
   onBpmDelta: (delta) => dispatch(actions.bpmDelta(delta)),
   onBeatsDelta: (delta) => dispatch(actions.beatsDelta(delta)),
@@ -161,6 +181,7 @@ const unbind = bindControls({
   onStart: start,
   onStop: stop,
   onToggle: toggleTransport,
+  onTapTempo,
 });
 
 /* ---------------------------

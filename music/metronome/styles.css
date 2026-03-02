@@ -291,6 +291,20 @@ body{
   background: rgba(255,255,255,0.075);
 }
 
+.tap-row{
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+}
+
+.tap-btn{
+  width: clamp(140px, 28vw, 180px);
+  height: 38px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
 /* Responsive BPM row for small screens */
 @media (max-width: 520px){
 
@@ -342,6 +356,10 @@ body{
     left: auto;
     top: auto;
     margin-top: 6px;  /* controls spacing under the number */
+  }
+
+  .tap-btn{
+    width: min(220px, 72vw);
   }
 }
 

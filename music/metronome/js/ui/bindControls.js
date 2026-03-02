@@ -25,11 +25,13 @@
 
 export function bindControls({
   ui,
+  isRunning,
   onBpmDelta,
   onBeatsDelta,
   onStart,
   onStop,
   onToggle,
+  onTapTempo,
 }) {
   // BPM
   ui.onMinus10(() => onBpmDelta(-10));
@@ -44,6 +46,7 @@ export function bindControls({
   // Transport buttons
   ui.onPlay(onStart);
   ui.onStop(onStop);
+  ui.onTapTempo(onTapTempo);
 
   // Keyboard: Space toggles transport
   const onKeyDown = (e) => {
@@ -58,8 +61,10 @@ export function bindControls({
         t.isContentEditable);
     if (isTypingTarget) return;
 
+    const wasRunning = isRunning();
     e.preventDefault();
     onToggle();
+    if (!wasRunning) ui.focusPlay();
   };
 
   document.addEventListener("keydown", onKeyDown);

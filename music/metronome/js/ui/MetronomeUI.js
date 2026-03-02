@@ -80,6 +80,7 @@ export class MetronomeUI {
     // Transport
     const playBtn = document.getElementById("playBtn");
     const stopBtn = document.getElementById("stopBtn");
+    const tapTempoBtn = document.getElementById("tapTempoBtn");
 
     // Dots container (must exist)
     const dotsEl = document.querySelector(".dots");
@@ -88,7 +89,7 @@ export class MetronomeUI {
       !bpmValue ||
       !minus10Btn || !minusBtn || !plusBtn || !plus10Btn ||
       !beatsValue || !beatsMinusBtn || !beatsPlusBtn ||
-      !playBtn || !stopBtn ||
+      !playBtn || !stopBtn || !tapTempoBtn ||
       !dotsEl
     ) {
       throw new Error("UI: missing required DOM elements.");
@@ -107,6 +108,7 @@ export class MetronomeUI {
 
       playBtn,
       stopBtn,
+      tapTempoBtn,
 
       dotsEl,
     };
@@ -128,6 +130,8 @@ export class MetronomeUI {
 
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
+  onTapTempo(handler) { this.#dom.tapTempoBtn.addEventListener("click", handler); }
+  focusPlay() { this.#dom.playBtn.focus({ preventScroll: true }); }
 
   /* ---------------------------
      Rendering
@@ -142,6 +146,15 @@ export class MetronomeUI {
   }
 
   setRunning(isRunning) {
+    // Keep focus off controls that become disabled, otherwise focus outlines
+    // can reappear when they are enabled again.
+    if (isRunning && document.activeElement === this.#dom.playBtn) {
+      this.#dom.playBtn.blur();
+    }
+    if (!isRunning && document.activeElement === this.#dom.stopBtn) {
+      this.#dom.stopBtn.blur();
+    }
+
     this.#dom.playBtn.disabled = isRunning;
     this.#dom.stopBtn.disabled = !isRunning;
   }
