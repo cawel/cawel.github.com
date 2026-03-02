@@ -30,13 +30,17 @@
  *
  * - UI emits user intent (button events).
  * - main.js mutates state (SSOT), renders UI, and configures the Engine.
- * - Engine schedules beats in AudioContext time using lookahead timing.
- * - Audio synthesizes ticks at scheduled timestamps.
+ * - Engine schedules beats strictly in AudioContext time and emits beat events
+ *   in that same time domain.
+ * - main.js maps AudioContext time → UI timing (performance.now) for DOM updates.
  *
  * UI SYNCHRONIZATION MODEL
  * ------------------------
- * Engine emits beat events with an approximate performance.now() timestamp.
- * main.js schedules DOM updates accordingly.
+ * Engine emits beat events:
+ *   { timeSec, secondsPerBeat, dotIdx, isAccent }
+ *
+ * main.js converts timeSec (AudioContext seconds) into a delay relative to
+ * performance.now(), then schedules DOM updates.
  *
  * A UI "epoch" value invalidates stale scheduled callbacks whenever configuration
  * changes or transport stops/starts, preventing highlight drift and race bugs.
@@ -100,17 +104,27 @@ syncEngine({ resetPhase: true });
    Beat -> DOTS ONLY
 --------------------------- */
 
-const unsubscribeBeat = engine.subscribeBeat((dotIdx, _isAccent, whenPerfMs) => {
+/**
+ * Convert an AudioContext time (seconds) to a UI delay (ms) relative to now.
+ * This mapping belongs in main.js (time-domain boundary).
+ */
+const audioTimeToDelayMs = (timeSec) => {
+  const dtSec = timeSec - audio.currentTime;
+  return Math.max(0, dtSec * 1000);
+};
+
+const unsubscribeBeat = engine.subscribeBeat(({ dotIdx, secondsPerBeat, timeSec }) => {
   const scheduledEpoch = state.uiEpoch;
-  const delayMs = Math.max(0, whenPerfMs - performance.now());
+
+  const delayMs = audioTimeToDelayMs(timeSec);
 
   window.setTimeout(() => {
     if (scheduledEpoch !== state.uiEpoch) return;
 
     ui.setActiveDot(dotIdx);
 
-    // clear near the end of the beat (use SSOT bpm, not engine getter)
-    const beatMs = 60000 / state.bpm;
+    // clear near the end of the beat (derived from engine event, not re-computed)
+    const beatMs = secondsPerBeat * 1000;
 
     window.setTimeout(() => {
       if (scheduledEpoch !== state.uiEpoch) return;
@@ -221,6 +235,7 @@ document.addEventListener("keydown", onKeyDown);
  */
 export const teardown = () => {
   try { unsubscribeBeat(); } catch {}
+  try { engine.clearBeatListeners(); } catch {}
 
   stop(); // ensures engine stopped + UI cleared + epoch bumped
 

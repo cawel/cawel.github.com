@@ -11,78 +11,43 @@
  *
  * RESPONSIBILITIES
  * ----------------
- * - Maintain tempo state (BPM)
- * - Maintain musical cycle state (beats per bar, beat index)
+ * - Maintain internal timing configuration (BPM, beats per bar)
  * - Schedule beats in AudioContext time using a high-precision lookahead loop
  * - Trigger audio ticks via MetronomeAudio.tickAt(timeSec, { accent })
- * - Emit beat callbacks for UI synchronization:
- *     onBeat(dotIndex, isAccent, whenPerfMs)
+ * - Emit beat events in the *audio time domain* for subscribers
  *
  * It does NOT:
  * - Touch the DOM
  * - Handle user input
- * - Format UI state
- * - Own application-level state transitions (main.js does that)
+ * - Translate audio time to UI time (performance.now)
+ * - Perform UI scheduling/animations
  *
  * ARCHITECTURE ROLE
  * -----------------
  * main.js  ──►  MetronomeEngine  ──►  MetronomeAudio
  *
- * - main.js owns the app state and calls Engine methods (start/stop/config).
- * - Engine schedules future beats and triggers Audio ticks at precise times.
- * - Engine optionally reports beat events for UI rendering.
+ * - main.js owns app state and calls Engine methods (start/stop/configure).
+ * - Engine schedules beats in AudioContext time and triggers Audio ticks.
+ * - Engine emits beat events ({ timeSec, ... }) for main.js to map to UI.
  *
  * SCHEDULING MODEL
  * ---------------
- * The engine uses a standard "lookahead" strategy:
- * - A short interval timer (lookaheadMs) wakes regularly.
+ * Lookahead strategy:
+ * - A short interval (lookaheadMs) wakes regularly.
  * - Each wake schedules beats up to scheduleAheadSec into the future.
- * - Scheduled beat timestamps are expressed in AudioContext time (seconds).
+ * - Beat timestamps are expressed in AudioContext time (seconds).
  *
- * This approach minimizes drift and avoids relying on a single long timer.
- * 
- * DETERMINISM
+ * EVENT MODEL
  * -----------
- * Beat times are computed as a mathematical progression in
- * AudioContext time (t₀ + nΔ, where Δ = 60 / BPM).
- * 
- * Because scheduling occurs in the audio clock domain,
- * beat timing is independent of JavaScript timer jitter,
- * layout cost, or UI rendering delays.
+ * subscribeBeat(listener) emits an object in the audio time domain:
+ *   {
+ *     dotIdx: number,
+ *     isAccent: boolean,
+ *     timeSec: number,        // AudioContext time
+ *     secondsPerBeat: number  // derived from current BPM
+ *   }
  *
- * TIME DOMAINS
- * ------------
- * - Audio timing uses AudioContext time: audio.currentTime (seconds).
- * - UI timing uses performance.now() (milliseconds).
- * - When emitting onBeat callbacks, the engine converts the scheduled audio
- *   time to an approximate performance timestamp (whenPerfMs) so main.js can
- *   update the DOM close to the audio tick without blocking the scheduler.
- *
- * MUSICAL MODEL
- * -------------
- * - beatsPerBar is configurable (2–6 in the app UX).
- * - beatIndex advances modulo beatsPerBar.
- * - Accent is applied on the first beat of each bar:
- *     isAccent = (dotIndex === 0)
- *
- * RUNTIME BEHAVIOR
- * ----------------
- * - start():
- *     • resets phase to beat 1
- *     • primes nextNoteTime slightly in the future
- *     • begins the scheduler interval loop
- * - stop():
- *     • stops the interval loop
- *     • leaves audio context management to MetronomeAudio
- * - setBeatsPerBar(n):
- *     • updates cycle length
- *     • may reset phase and realign nextNoteTime for a coherent restart
- *
- * EXTENSIBILITY NOTES
- * -------------------
- * - Accent behavior can be extended (e.g., custom patterns) without touching UI.
- * - Timing parameters (lookaheadMs / scheduleAheadSec) are isolated and can be
- *   tuned for different devices.
+ * The orchestrator (main.js) is responsible for mapping timeSec to UI timing.
  */
 
 export class MetronomeEngine {
@@ -127,11 +92,16 @@ export class MetronomeEngine {
   }
 
   /**
-   * Subscribe to beat events.
+   * Subscribe to beat events (audio time domain).
    * Returns an unsubscribe function.
    *
    * Listener signature:
-   *   (dotIdx: number, isAccent: boolean, whenPerfMs: number) => void
+   *   (event: {
+   *     dotIdx: number,
+   *     isAccent: boolean,
+   *     timeSec: number,
+   *     secondsPerBeat: number
+   *   }) => void
    */
   subscribeBeat(listener) {
     if (typeof listener !== "function") {
@@ -215,25 +185,24 @@ export class MetronomeEngine {
     const dotIdx = this.#beatIndex % this.#beatsPerBar;
     const isAccent = dotIdx === 0;
 
-    // Schedule audio tick
+    const secondsPerBeat = 60.0 / this.#bpm;
+
+    // Schedule audio tick in AudioContext time
     this.#audio.tickAt(timeSec, { accent: isAccent });
 
-    // Notify listeners (never let a listener break scheduling)
+    // Emit beat event (audio time domain only)
     if (this.#beatListeners.size > 0) {
-      const whenPerfMs =
-        performance.now() +
-        (timeSec - this.#audio.currentTime) * 1000;
+      const evt = { dotIdx, isAccent, timeSec, secondsPerBeat };
 
       for (const fn of this.#beatListeners) {
         try {
-          fn(dotIdx, isAccent, whenPerfMs);
+          fn(evt);
         } catch {
           // Listener errors must never break scheduling.
         }
       }
     }
 
-    this.#beatIndex =
-      (this.#beatIndex + 1) % this.#beatsPerBar;
+    this.#beatIndex = (this.#beatIndex + 1) % this.#beatsPerBar;
   }
 }
