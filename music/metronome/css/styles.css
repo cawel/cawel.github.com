@@ -303,6 +303,7 @@ body{
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 13px;
+  touch-action: manipulation;
 }
 
 /* Responsive BPM row for small screens */

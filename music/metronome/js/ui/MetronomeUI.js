@@ -130,7 +130,27 @@ export class MetronomeUI {
 
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
-  onTapTempo(handler) { this.#dom.tapTempoBtn.addEventListener("click", handler); }
+  onTapTempo(handler) {
+    let suppressNextClick = false;
+
+    // On mobile, pointerdown is more reliable than click for rapid taps.
+    this.#dom.tapTempoBtn.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "touch") return;
+      suppressNextClick = true;
+      e.preventDefault();
+      handler();
+    });
+
+    // Keep mouse and keyboard activation working via click.
+    this.#dom.tapTempoBtn.addEventListener("click", (e) => {
+      if (suppressNextClick) {
+        suppressNextClick = false;
+        e.preventDefault();
+        return;
+      }
+      handler();
+    });
+  }
   focusPlay() { this.#dom.playBtn.focus({ preventScroll: true }); }
 
   /* ---------------------------
