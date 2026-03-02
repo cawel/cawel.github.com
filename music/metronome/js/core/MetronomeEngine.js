@@ -87,8 +87,9 @@
 
 export class MetronomeEngine {
   #audio;
-  #bpm = 120;
 
+  // Internal timing state
+  #bpm = 120;
   #beatsPerBar = 4;
   #beatIndex = 0;
 
@@ -100,22 +101,16 @@ export class MetronomeEngine {
   #scheduleAheadSec = 0.12;
   #nextNoteTime = 0;
 
-  // Beat listeners (multi-subscriber, unsubscribe supported)
+  // Beat listeners
   #beatListeners = new Set();
 
   constructor(audio) {
     this.#audio = audio;
   }
 
-  // Getters are for inspection/debugging only.
-  // main.js should treat its own state as the SSOT.
-  get bpm() { return this.#bpm; }
-  get isRunning() { return this.#isRunning; }
-  get beatsPerBar() { return this.#beatsPerBar; }
-
   /**
    * Atomic configuration update.
-   * This is the only configuration entrypoint main.js should use.
+   * This is the only configuration entrypoint the orchestrator should use.
    */
   configure({ bpm, beatsPerBar } = {}, { resetPhase = false } = {}) {
     if (typeof bpm === "number") this.#bpm = bpm;
@@ -124,18 +119,12 @@ export class MetronomeEngine {
     if (resetPhase) {
       this.#beatIndex = 0;
 
-      // If currently running, realign scheduling so the next tick feels coherent.
       if (this.#isRunning) {
         const now = this.#audio.currentTime;
         this.#nextNoteTime = now + 0.02;
       }
     }
   }
-
-  // Backwards-compatible setters (optional to keep).
-  // Prefer configure() from the orchestrator.
-  setBpm(bpm) { this.configure({ bpm }); }
-  setBeatsPerBar(beatsPerBar, opts) { this.configure({ beatsPerBar }, opts); }
 
   /**
    * Subscribe to beat events.
@@ -146,7 +135,9 @@ export class MetronomeEngine {
    */
   subscribeBeat(listener) {
     if (typeof listener !== "function") {
-      throw new TypeError("MetronomeEngine.subscribeBeat(listener): listener must be a function");
+      throw new TypeError(
+        "MetronomeEngine.subscribeBeat(listener): listener must be a function"
+      );
     }
 
     this.#beatListeners.add(listener);
@@ -172,7 +163,11 @@ export class MetronomeEngine {
     const now = this.#audio.currentTime;
     this.#nextNoteTime = now + 0.05;
 
-    this.#intervalId = window.setInterval(() => this.#scheduler(), this.#lookaheadMs);
+    this.#intervalId = window.setInterval(
+      () => this.#scheduler(),
+      this.#lookaheadMs
+    );
+
     return true;
   }
 
@@ -187,6 +182,20 @@ export class MetronomeEngine {
     }
 
     return true;
+  }
+
+  /**
+   * Optional debug inspection hook.
+   * Not intended for production logic.
+   */
+  getDebugState() {
+    return {
+      bpm: this.#bpm,
+      beatsPerBar: this.#beatsPerBar,
+      isRunning: this.#isRunning,
+      beatIndex: this.#beatIndex,
+      nextNoteTime: this.#nextNoteTime,
+    };
   }
 
   #scheduler() {
@@ -211,17 +220,20 @@ export class MetronomeEngine {
 
     // Notify listeners (never let a listener break scheduling)
     if (this.#beatListeners.size > 0) {
-      const whenPerfMs = performance.now() + (timeSec - this.#audio.currentTime) * 1000;
+      const whenPerfMs =
+        performance.now() +
+        (timeSec - this.#audio.currentTime) * 1000;
 
       for (const fn of this.#beatListeners) {
         try {
           fn(dotIdx, isAccent, whenPerfMs);
         } catch {
-          // Intentionally swallow listener errors.
+          // Listener errors must never break scheduling.
         }
       }
     }
 
-    this.#beatIndex = (this.#beatIndex + 1) % this.#beatsPerBar;
+    this.#beatIndex =
+      (this.#beatIndex + 1) % this.#beatsPerBar;
   }
 }
