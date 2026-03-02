@@ -81,6 +81,10 @@ export class MetronomeUI {
     const playBtn = document.getElementById("playBtn");
     const stopBtn = document.getElementById("stopBtn");
     const tapTempoBtn = document.getElementById("tapTempoBtn");
+    const shortcutsBtn = document.getElementById("shortcutsBtn");
+    const shortcutsOverlay = document.getElementById("shortcutsOverlay");
+    const shortcutsBackdrop = document.getElementById("shortcutsBackdrop");
+    const shortcutsCloseBtn = document.getElementById("shortcutsCloseBtn");
 
     // Dots container (must exist)
     const dotsEl = document.querySelector(".dots");
@@ -90,6 +94,7 @@ export class MetronomeUI {
       !minus10Btn || !minusBtn || !plusBtn || !plus10Btn ||
       !beatsValue || !beatsMinusBtn || !beatsPlusBtn ||
       !playBtn || !stopBtn || !tapTempoBtn ||
+      !shortcutsBtn || !shortcutsOverlay || !shortcutsBackdrop || !shortcutsCloseBtn ||
       !dotsEl
     ) {
       throw new Error("UI: missing required DOM elements.");
@@ -109,6 +114,10 @@ export class MetronomeUI {
       playBtn,
       stopBtn,
       tapTempoBtn,
+      shortcutsBtn,
+      shortcutsOverlay,
+      shortcutsBackdrop,
+      shortcutsCloseBtn,
 
       dotsEl,
     };
@@ -130,6 +139,11 @@ export class MetronomeUI {
 
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
+  onShortcutsToggle(handler) { this.#dom.shortcutsBtn.addEventListener("click", handler); }
+  onShortcutsClose(handler) {
+    this.#dom.shortcutsBackdrop.addEventListener("click", handler);
+    this.#dom.shortcutsCloseBtn.addEventListener("click", handler);
+  }
   onTapTempo(handler) {
     const MIN_TAP_GAP_MS = 80;
     let lastHandledAtMs = -Infinity;
@@ -164,6 +178,21 @@ export class MetronomeUI {
     });
   }
   focusPlay() { this.#dom.playBtn.focus({ preventScroll: true }); }
+  animateTapTempoPress() {
+    this.#dom.tapTempoBtn.classList.remove("is-key-pressed");
+    void this.#dom.tapTempoBtn.offsetWidth;
+    this.#dom.tapTempoBtn.classList.add("is-key-pressed");
+    window.setTimeout(() => {
+      this.#dom.tapTempoBtn.classList.remove("is-key-pressed");
+    }, 130);
+  }
+  isShortcutsAvailable() { return window.matchMedia("(min-width: 521px)").matches; }
+  isShortcutsOpen() { return this.isShortcutsAvailable() && !this.#dom.shortcutsOverlay.hidden; }
+  closeShortcuts() { this.setShortcutsOpen(false); }
+  toggleShortcuts() {
+    if (!this.isShortcutsAvailable()) return;
+    this.setShortcutsOpen(!this.isShortcutsOpen());
+  }
 
   /* ---------------------------
      Rendering
@@ -189,6 +218,16 @@ export class MetronomeUI {
 
     this.#dom.playBtn.disabled = isRunning;
     this.#dom.stopBtn.disabled = !isRunning;
+  }
+
+  setShortcutsOpen(isOpen) {
+    const open = !!isOpen && this.isShortcutsAvailable();
+    this.#dom.shortcutsOverlay.hidden = !open;
+    this.#dom.shortcutsBtn.setAttribute("aria-expanded", String(open));
+
+    if (open) {
+      this.#dom.shortcutsCloseBtn.focus({ preventScroll: true });
+    }
   }
 
   setActiveDot(idx) {

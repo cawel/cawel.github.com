@@ -99,8 +99,57 @@
           </button>
         </div>
 
+        <!-- Line 6: Shortcuts help -->
+        <div class="shortcuts-row">
+          <button
+            class="text-btn shortcuts-btn"
+            id="shortcutsBtn"
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="shortcutsOverlay"
+          >
+            Shortcuts
+          </button>
+        </div>
+
       </section>
     </main>
+
+    <div class="shortcuts-overlay" id="shortcutsOverlay" hidden>
+      <button
+        class="shortcuts-backdrop"
+        id="shortcutsBackdrop"
+        type="button"
+        aria-label="Close shortcuts panel"
+      ></button>
+
+      <section
+        class="shortcuts-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="shortcutsTitle"
+      >
+        <header class="shortcuts-header">
+          <h2 class="shortcuts-title" id="shortcutsTitle">Keyboard Shortcuts</h2>
+          <button
+            class="shortcuts-close"
+            id="shortcutsCloseBtn"
+            type="button"
+            aria-label="Close shortcuts panel"
+          >
+            ×
+          </button>
+        </header>
+
+        <ul class="shortcuts-list">
+          <li><kbd>Space</kbd><span>Play / Stop</span></li>
+          <li><kbd>T</kbd><span>Tap Tempo</span></li>
+          <li><kbd>?</kbd><span>Toggle this panel</span></li>
+          <li><kbd>Esc</kbd><span>Close this panel</span></li>
+        </ul>
+      </section>
+    </div>
 
     <script type="module" src="./js/main.js"></script>
   </body>

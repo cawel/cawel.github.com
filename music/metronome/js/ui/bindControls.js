@@ -7,7 +7,7 @@
  * -------
  * Centralizes all control bindings:
  * - UI button callbacks (BPM, Beats, Tap Tempo, Play/Stop)
- * - Keyboard shortcut (Space = toggle)
+ * - Keyboard shortcuts (Space/T/?/Esc)
  *
  * This module does NOT:
  * - Mutate application state directly
@@ -52,10 +52,11 @@ export function bindControls({
   ui.onPlay(onStart);
   ui.onStop(onStop);
   ui.onTapTempo(onTapTempo);
+  ui.onShortcutsToggle(() => ui.toggleShortcuts());
+  ui.onShortcutsClose(() => ui.closeShortcuts());
 
-  // Keyboard: Space toggles transport
+  // Keyboard shortcuts
   const onKeyDown = (e) => {
-    if (e.code !== "Space") return;
     if (e.repeat) return;
 
     const t = e.target;
@@ -64,7 +65,35 @@ export function bindControls({
       (t.tagName === "INPUT" ||
         t.tagName === "TEXTAREA" ||
         t.isContentEditable);
+
+    const isShortcutsToggleKey =
+      e.key === "?" || (e.code === "Slash" && e.shiftKey);
+    if (isShortcutsToggleKey && !isTypingTarget && ui.isShortcutsAvailable()) {
+      e.preventDefault();
+      ui.toggleShortcuts();
+      return;
+    }
+
+    if (e.code === "Escape" && ui.isShortcutsOpen()) {
+      e.preventDefault();
+      ui.closeShortcuts();
+      return;
+    }
+
+    if (ui.isShortcutsOpen()) {
+      if (e.code === "Space" || e.code === "KeyT") e.preventDefault();
+      return;
+    }
     if (isTypingTarget) return;
+
+    if (e.code === "KeyT") {
+      e.preventDefault();
+      ui.animateTapTempoPress();
+      onTapTempo();
+      return;
+    }
+
+    if (e.code !== "Space") return;
 
     const wasRunning = isRunning();
     e.preventDefault();

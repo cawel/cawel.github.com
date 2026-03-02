@@ -307,6 +307,11 @@ body{
   touch-action: manipulation;
 }
 
+.tap-btn.is-key-pressed{
+  transform: scale(0.96);
+  background: rgba(255,255,255,0.14);
+}
+
 /* Responsive BPM row for small screens */
 @media (max-width: 520px){
 
@@ -422,4 +427,119 @@ body{
   height: clamp(48px, 7vw, 60px);
   fill: rgba(255,255,255,0.95);
   display:block;
+}
+
+.shortcuts-row{
+  display: flex;
+  justify-content: center;
+  margin-top: -2px;
+}
+
+.shortcuts-btn{
+  width: auto;
+  min-width: 120px;
+  height: 32px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.shortcuts-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(78px, 10vh, 124px) 16px 24px;
+}
+
+.shortcuts-overlay[hidden]{
+  display: none;
+}
+
+.shortcuts-backdrop{
+  position: absolute;
+  inset: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(8, 12, 18, 0.68);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.shortcuts-panel{
+  position: relative;
+  width: min(420px, calc(100vw - 32px));
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(25,33,44,0.96);
+  box-shadow: 0 24px 68px rgba(0,0,0,0.52);
+  padding: 14px;
+}
+
+.shortcuts-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.shortcuts-title{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+}
+
+.shortcuts-close{
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.86);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.shortcuts-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.shortcuts-list li{
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.82);
+  font-size: 14px;
+}
+
+.shortcuts-list kbd{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.9);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 520px){
+  .shortcuts-row,
+  .shortcuts-overlay{
+    display: none;
+  }
 }
