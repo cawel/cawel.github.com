@@ -1,7 +1,16 @@
 /**
  * TapTempoTracker
  * ---------------
- * Stateless-from-the-outside helper for translating user taps into BPM.
+ * Converts a sequence of tap timestamps (ms) into a stable BPM estimate.
+ *
+ * Behavior summary:
+ * - Returns `null` until at least 2 taps exist (first interval).
+ * - Resets tap history after inactivity (`resetMs`) so old taps do not skew
+ *   a new tempo intent.
+ * - Uses a rolling average over recent intervals for smoother updates.
+ * - Clamps final BPM to configured min/max bounds.
+ *
+ * This class intentionally has no clock dependency; caller provides `nowMs`.
  */
 
 const DEFAULT_RESET_MS = 2000;
@@ -16,6 +25,17 @@ export class TapTempoTracker {
   #maxBpm;
   #tapTimesMs = [];
 
+  /**
+   * @param {object} options
+   * @param {number} [options.resetMs=2000]
+   *   Max time gap between taps before history resets.
+   * @param {number} [options.maxTaps=8]
+   *   Number of most recent taps retained in the rolling window.
+   * @param {number} options.minBpm
+   *   Lower BPM clamp bound.
+   * @param {number} options.maxBpm
+   *   Upper BPM clamp bound.
+   */
   constructor({
     resetMs = DEFAULT_RESET_MS,
     maxTaps = DEFAULT_MAX_TAPS,
@@ -34,9 +54,18 @@ export class TapTempoTracker {
     this.#maxBpm = maxBpm;
   }
 
+  /**
+   * Register a tap and return next BPM estimate.
+   *
+   * @param {number} nowMs
+   *   Monotonic timestamp in milliseconds (e.g. `performance.now()`).
+   * @returns {number | null}
+   *   Clamped BPM when enough data exists; otherwise `null`.
+   */
   tap(nowMs) {
     const lastTapMs = this.#tapTimesMs[this.#tapTimesMs.length - 1];
 
+    // A long gap means user likely starts a new tempo.
     if (lastTapMs !== undefined && nowMs - lastTapMs > this.#resetMs) {
       this.#tapTimesMs = [];
     }
@@ -54,6 +83,7 @@ export class TapTempoTracker {
       sumIntervalsMs += this.#tapTimesMs[i] - this.#tapTimesMs[i - 1];
     }
 
+    // Average interval produces a smoother BPM than using only the last tap gap.
     const avgIntervalMs = sumIntervalsMs / (this.#tapTimesMs.length - 1);
     if (avgIntervalMs <= 0) return null;
 
