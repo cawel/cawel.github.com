@@ -131,24 +131,36 @@ export class MetronomeUI {
   onPlay(handler) { this.#dom.playBtn.addEventListener("click", handler); }
   onStop(handler) { this.#dom.stopBtn.addEventListener("click", handler); }
   onTapTempo(handler) {
-    let suppressNextClick = false;
+    const MIN_TAP_GAP_MS = 80;
+    let lastHandledAtMs = -Infinity;
 
-    // On mobile, pointerdown is more reliable than click for rapid taps.
+    const emitTap = () => {
+      const nowMs = performance.now();
+      if (nowMs - lastHandledAtMs < MIN_TAP_GAP_MS) return;
+      lastHandledAtMs = nowMs;
+      handler();
+    };
+
+    // Touch-first path (covers mobile browsers without Pointer Events).
+    this.#dom.tapTempoBtn.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+        emitTap();
+      },
+      { passive: false },
+    );
+
+    // Pointer Events path for modern mobile browsers.
     this.#dom.tapTempoBtn.addEventListener("pointerdown", (e) => {
       if (e.pointerType !== "touch") return;
-      suppressNextClick = true;
       e.preventDefault();
-      handler();
+      emitTap();
     });
 
-    // Keep mouse and keyboard activation working via click.
-    this.#dom.tapTempoBtn.addEventListener("click", (e) => {
-      if (suppressNextClick) {
-        suppressNextClick = false;
-        e.preventDefault();
-        return;
-      }
-      handler();
+    // Mouse + keyboard activation, and fallback where touch maps to click.
+    this.#dom.tapTempoBtn.addEventListener("click", () => {
+      emitTap();
     });
   }
   focusPlay() { this.#dom.playBtn.focus({ preventScroll: true }); }
