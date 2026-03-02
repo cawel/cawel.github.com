@@ -12,28 +12,33 @@
  *     • BeatHighlightScheduler   (UI highlight scheduling boundary)
  *
  * - Owns the Single Source of Truth (SSOT) state object.
- * - Applies side-effects in response to state transitions:
+ *
+ * - Runs side-effects declared by the pure reducer (metronomeState.js):
  *     • engine.configure(...)
- *     • engine.start()/stop()
- *     • audio.ensureStarted()
- *     • scheduler.invalidate()/stopAndClear()
+ *     • scheduler.stopAndClear()
  *     • ui rendering
+ *
+ * - Implements transport commands (effectful):
+ *     • audio.ensureStarted()
+ *     • engine.start()/stop()
+ *     • scheduler.invalidate()/stopAndClear()
  *
  * ARCHITECTURE OVERVIEW
  * ---------------------
- * UI  ──► bindControls ──► main.js ──► Engine ──► Audio
- *                            └──────► BeatHighlightScheduler ──► UI dots
+ * UI  ──► bindControls ──► dispatch(action) ──► reducer ──► effects[]
+ *                                     │
+ *                                     └─► runEffects(effects)
  *
- * - MetronomeState.js is pure policy: reducer + clamping.
- * - main.js is the effectful orchestrator: applies audio/engine/UI effects.
+ * Engine beat events:
+ * Engine ──► BeatHighlightScheduler ──► UI dots
  */
 
 import { MetronomeAudio } from "./audio/MetronomeAudio.js";
 import { MetronomeUI } from "./ui/MetronomeUI.js";
 import { MetronomeEngine } from "./core/MetronomeEngine.js";
 import { BeatHighlightScheduler } from "./ui/BeatHighlightScheduler.js";
-
 import { bindControls } from "./ui/bindControls.js";
+
 import { initialState, reducer, actions } from "./core/metronomeState.js";
 
 const audio = new MetronomeAudio();
@@ -49,7 +54,7 @@ const scheduler = new BeatHighlightScheduler({
 });
 
 /* ---------------------------
-   Render + Engine sync helpers
+   Render + Engine sync
 --------------------------- */
 
 const render = () => {
@@ -78,33 +83,41 @@ const unsubscribeBeat = engine.subscribeBeat((event) => {
 });
 
 /* ---------------------------
-   Dispatch (pure state -> side effects)
+   Effects runner
+--------------------------- */
+
+const runEffects = (effects) => {
+  for (const effect of effects) {
+    switch (effect.type) {
+      case "ENGINE_CONFIG":
+        syncEngine({ resetPhase: effect.resetPhase });
+        break;
+
+      case "SCHEDULER_CLEAR":
+        scheduler.stopAndClear();
+        break;
+
+      case "RENDER":
+        render();
+        break;
+
+      default:
+        // Unknown effect types are ignored by design.
+        break;
+    }
+  }
+};
+
+/* ---------------------------
+   Dispatch (pure -> effects)
 --------------------------- */
 
 const dispatch = (action) => {
-  const prev = state;
-  const next = reducer(prev, action);
-  if (next === prev) return;
+  const result = reducer(state, action);
+  if (result.state === state && result.effects.length === 0) return;
 
-  state = next;
-  onStateChanged(prev, next, action);
-};
-
-const onStateChanged = (prev, next, action) => {
-  // BPM affects scheduling math; no phase reset.
-  if (next.bpm !== prev.bpm) {
-    syncEngine();
-  }
-
-  // Beats-per-bar changes affect dot mapping; reset phase for coherence.
-  if (next.beatsPerBar !== prev.beatsPerBar) {
-    scheduler.stopAndClear();
-    syncEngine({ resetPhase: true });
-  }
-
-  // Running state changes are handled by transport commands (below),
-  // but we still render whenever state changes.
-  render();
+  state = result.state;
+  runEffects(result.effects);
 };
 
 /* ---------------------------
@@ -114,7 +127,6 @@ const onStateChanged = (prev, next, action) => {
 const start = async () => {
   if (state.running) return;
 
-  // Invalidate any pending UI highlights from a previous run.
   scheduler.invalidate();
 
   await audio.ensureStarted();
@@ -152,7 +164,7 @@ const unbind = bindControls({
 });
 
 /* ---------------------------
-   Teardown (explicit shutdown)
+   Teardown
 --------------------------- */
 
 export const teardown = () => {
