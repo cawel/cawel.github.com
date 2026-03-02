@@ -84,7 +84,7 @@ const render = () => {
 const syncEngine = ({ resetPhase = false } = {}) => {
   engine.configure(
     { bpm: state.bpm, beatsPerBar: state.beatsPerBar },
-    { resetPhase }
+    { resetPhase },
   );
 };
 
@@ -97,7 +97,7 @@ syncEngine({ resetPhase: true });
 --------------------------- */
 
 const unsubscribeBeat = engine.subscribeBeat((event) => {
-  scheduler.handleBeat(event);
+  scheduler.onBeatEvent(event);
 });
 
 /* ---------------------------
@@ -153,13 +153,13 @@ const toggleTransport = () => {
 
 // BPM controls
 ui.onMinus10(() => setBpm(state.bpm - 10));
-ui.onMinus(()   => setBpm(state.bpm - 1));
-ui.onPlus(()    => setBpm(state.bpm + 1));
-ui.onPlus10(()  => setBpm(state.bpm + 10));
+ui.onMinus(() => setBpm(state.bpm - 1));
+ui.onPlus(() => setBpm(state.bpm + 1));
+ui.onPlus10(() => setBpm(state.bpm + 10));
 
 // Beats controls
 ui.onBeatsMinus(() => setBeatsPerBar(state.beatsPerBar - 1));
-ui.onBeatsPlus(()  => setBeatsPerBar(state.beatsPerBar + 1));
+ui.onBeatsPlus(() => setBeatsPerBar(state.beatsPerBar + 1));
 
 // Transport buttons
 ui.onPlay(start);
@@ -194,12 +194,22 @@ document.addEventListener("keydown", onKeyDown);
  * Not called automatically in normal static-page usage.
  */
 export const teardown = () => {
-  try { unsubscribeBeat(); } catch {}
-  try { engine.clearBeatListeners(); } catch {}
+  try {
+    unsubscribeBeat();
+  } catch {}
+  try {
+    engine.clearBeatListeners();
+  } catch {}
 
   // Ensures engine stopped + scheduler invalidated + UI cleared
-  try { stop(); } catch {}
+  try {
+    stop();
+  } catch {}
 
-  try { document.removeEventListener("keydown", onKeyDown); } catch {}
-  try { audio.close(); } catch {}
+  try {
+    document.removeEventListener("keydown", onKeyDown);
+  } catch {}
+  try {
+    audio.close();
+  } catch {}
 };

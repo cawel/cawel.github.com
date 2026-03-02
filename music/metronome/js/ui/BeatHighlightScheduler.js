@@ -49,7 +49,7 @@ export class BeatHighlightScheduler {
   constructor({ ui, getAudioNowSec, isRunning }) {
     this.#ui = ui;
     this.#getAudioNowSec = getAudioNowSec; // () => audio.currentTime
-    this.#isRunning = isRunning;           // () => boolean
+    this.#isRunning = isRunning; // () => boolean
   }
 
   invalidate() {
@@ -70,8 +70,10 @@ export class BeatHighlightScheduler {
    * Intention-revealing API:
    * consume an Engine "beat" event and schedule the corresponding UI highlight.
    */
-  handleBeat({ dotIdx, timeSec, secondsPerBeat }) {
+  onBeatEvent(event) {
+    const { dotIdx, timeSec, secondsPerBeat } = event;
     const beatMs = secondsPerBeat * 1000;
+
     this.#schedule({ dotIdx, timeSec, beatMs });
   }
 
@@ -85,11 +87,14 @@ export class BeatHighlightScheduler {
 
       this.#ui.setActiveDot(dotIdx);
 
-      const id2 = window.setTimeout(() => {
-        this.#timers.delete(id2);
-        if (epoch !== this.#epoch) return;
-        if (this.#isRunning()) this.#ui.resetDots();
-      }, Math.max(0, beatMs - 10));
+      const id2 = window.setTimeout(
+        () => {
+          this.#timers.delete(id2);
+          if (epoch !== this.#epoch) return;
+          if (this.#isRunning()) this.#ui.resetDots();
+        },
+        Math.max(0, beatMs - 10),
+      );
 
       this.#timers.add(id2);
     }, delayMs);
