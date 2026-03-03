@@ -24,7 +24,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       // list of filenames we know about; update if you add more later
       const candidates = [
         "music/nakaradaalexander-woods-of-imagination-139004.mp3", // actual file present
-        "music/bg-music.mp3",                                   // fallback
+        "music/bg-music.mp3", // fallback
       ];
 
       // check each url asynchronously and set the first one that works
@@ -91,11 +91,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   const updateAudioButton = () => {
     const btn = document.querySelector(".audio-control");
     if (btn) {
-      const cross = btn.querySelector('.mute-cross');
-      const speaker = btn.querySelector('.speaker-icon');
+      const cross = btn.querySelector(".mute-cross");
+      const speaker = btn.querySelector(".speaker-icon");
       // speaker always remains visible; the cross overlays when muted.
-      if (speaker) speaker.style.visibility = 'visible';
-      if (cross) cross.style.visibility = muted ? 'visible' : 'hidden';
+      if (speaker) speaker.style.visibility = "visible";
+      if (cross) cross.style.visibility = muted ? "visible" : "hidden";
     }
   };
 
