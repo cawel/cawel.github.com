@@ -162,12 +162,14 @@ function validateStory(chapters) {
 }
 
 export function getValidationExample() {
-  return `## Chapter 1
+  return `# Story Title
+
+## Chapter 1
 ### Title
 The Beginning
 
 ### Content
-You wake up in a mysterious forest. The air is thick with fog and you hear strange sounds all around you. What do you do?
+You wake up in a mysterious forest. The air is thick with fog and you hear strange sounds all around you.
 
 ### Choices
 1. Explore the forest -> 2
