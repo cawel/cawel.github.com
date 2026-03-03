@@ -4,6 +4,7 @@ export function createThemeController() {
     { key: "yellow", className: null },
     { key: "minimalist", className: "theme-minimalist" },
     { key: "blue", className: "theme-blue" },
+    { key: "ember", className: "theme-ember" },
   ];
 
   const THEME_KEYS = new Set(THEMES.map((theme) => theme.key));

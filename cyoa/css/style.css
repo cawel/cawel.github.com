@@ -50,6 +50,17 @@
   --story-choice-icon-color: #4da3ff;
 }
 
+/* Ember theme */
+:root.theme-ember {
+  --story-bg: #140e0d;
+  --story-border: #3a241d;
+  --story-title-color: #e79c77;
+  --story-text-color: #c2a79a;
+  --story-choice-text-color: #be947f;
+  --story-choice-text-hover: #d5ab96;
+  --story-choice-icon-color: #dd7952;
+}
+
 html, body {
   height: 100%;
 }
