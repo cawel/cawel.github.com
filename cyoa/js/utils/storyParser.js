@@ -65,6 +65,40 @@ function buildRuleError(ruleName, details) {
   return `[${ruleName}] ${base}${details ? `\n${details}` : ""}`;
 }
 
+function flushCurrentChapterSection(state) {
+  const {
+    chapters,
+    currentChapter,
+    currentChapterKey,
+    currentChapterSection,
+    currentChapterContent,
+  } = state;
+
+  if (
+    !currentChapter ||
+    !currentChapterSection ||
+    currentChapterContent.length === 0
+  ) {
+    return state;
+  }
+
+  const text = currentChapterContent.join("\n").trim();
+  const updatedChapter =
+    currentChapterSection === CHAPTER_SECTION_HEADING_NAMES.choices
+      ? { ...currentChapter, choices: parseChoices(text) }
+      : { ...currentChapter, [currentChapterSection]: text };
+
+  return {
+    ...state,
+    chapters: {
+      ...chapters,
+      [currentChapterKey]: updatedChapter,
+    },
+    currentChapter: updatedChapter,
+    currentChapterContent: [],
+  };
+}
+
 export function parseStory(markdown) {
   const lines = markdown.split("\n");
 
@@ -76,26 +110,19 @@ export function parseStory(markdown) {
     throw new Error(buildRuleError("STORY_TITLE_HEADING"));
   }
 
-  const chapters = {};
-  let currentChapter = null;
-  let currentSection = null;
-  let currentContent = [];
+  const initialState = {
+    chapters: {},
+    currentChapter: null,
+    currentChapterKey: null,
+    currentChapterSection: null,
+    currentChapterContent: [],
+  };
 
-  for (const [lineIndex, line] of lines.entries()) {
+  const finalState = lines.entries().reduce((state, [lineIndex, line]) => {
     const trimmed = line.trim();
 
-    // Detect chapter heading
     if (trimmed.startsWith("## ")) {
-      // Save previous content (including parsing choices if necessary)
-      if (currentChapter && currentSection && currentContent.length > 0) {
-        const text = currentContent.join("\n").trim();
-        if (currentSection === "choices") {
-          currentChapter.choices = parseChoices(text);
-        } else {
-          currentChapter[currentSection] = text;
-        }
-      }
-
+      const flushedState = flushCurrentChapterSection(state);
       const chapterMatch = trimmed.match(REGEX.chapterHeading);
       if (!chapterMatch) {
         throw new Error(
@@ -115,38 +142,38 @@ export function parseStory(markdown) {
         );
       }
 
-      const chapterNum = chapterMatch[1];
-      if (chapters[chapterNum]) {
+      const chapterKey = chapterMatch[1];
+      if (flushedState.chapters[chapterKey]) {
         throw new Error(
           buildRuleError(
             "UNIQUE_CHAPTER_NUMBERS",
-            `Duplicate chapter number found: Chapter ${chapterNum}.`,
+            `Duplicate chapter number found: Chapter ${chapterKey}.`,
           ),
         );
       }
 
-      currentChapter = {
-        number: parseInt(chapterNum),
+      const newChapter = {
+        number: parseInt(chapterKey),
         title: "",
         content: "",
         choices: [],
       };
-      chapters[chapterNum] = currentChapter;
-      currentSection = null;
-      currentContent = [];
-    }
-    // Detect section heading
-    else if (trimmed.startsWith("### ")) {
-      // Save previous section content
-      if (currentChapter && currentSection && currentContent.length > 0) {
-        const text = currentContent.join("\n").trim();
-        if (currentSection === "choices") {
-          currentChapter.choices = parseChoices(text);
-        } else {
-          currentChapter[currentSection] = text;
-        }
-      }
 
+      return {
+        ...flushedState,
+        chapters: {
+          ...flushedState.chapters,
+          [chapterKey]: newChapter,
+        },
+        currentChapter: newChapter,
+        currentChapterKey: chapterKey,
+        currentChapterSection: null,
+        currentChapterContent: [],
+      };
+    }
+
+    if (trimmed.startsWith("### ")) {
+      const flushedState = flushCurrentChapterSection(state);
       const sectionMatch = trimmed.match(REGEX.chapterSectionHeading);
       if (!sectionMatch) {
         throw new Error(
@@ -157,32 +184,34 @@ export function parseStory(markdown) {
         );
       }
 
-      currentSection = sectionMatch[1].toLowerCase();
-      if (!CHAPTER_SECTIONS.includes(currentSection)) {
+      const sectionName = sectionMatch[1].toLowerCase();
+      if (!CHAPTER_SECTIONS.includes(sectionName)) {
         throw new Error(
           buildRuleError(
             "VALID_SECTION_HEADINGS",
-            `Invalid section name: "${currentSection}".`,
+            `Invalid section name: "${sectionName}".`,
           ),
         );
       }
-      currentContent = [];
-    }
-    // Accumulate content
-    else if (currentChapter && currentSection && trimmed) {
-      currentContent.push(line);
-    }
-  }
 
-  // Save last section
-  if (currentChapter && currentSection && currentContent.length > 0) {
-    const text = currentContent.join("\n").trim();
-    if (currentSection === "choices") {
-      currentChapter.choices = parseChoices(text);
-    } else {
-      currentChapter[currentSection] = text;
+      return {
+        ...flushedState,
+        currentChapterSection: sectionName,
+        currentChapterContent: [],
+      };
     }
-  }
+
+    if (state.currentChapter && state.currentChapterSection && trimmed) {
+      return {
+        ...state,
+        currentChapterContent: [...state.currentChapterContent, line],
+      };
+    }
+
+    return state;
+  }, initialState);
+
+  const chapters = flushCurrentChapterSection(finalState).chapters;
 
   // Validate structure
   validateStory(chapters);
@@ -192,21 +221,21 @@ export function parseStory(markdown) {
 
 function parseChoices(choicesText) {
   const lines = choicesText.split("\n").filter((l) => l.trim());
-  const choices = [];
-  let expectedChoiceNumber = 1;
 
-  for (const line of lines) {
-    const match = line.trim().match(REGEX.choiceLine);
+  return lines.reduce((choices, line, index) => {
+    const trimmedLine = line.trim();
+    const match = trimmedLine.match(REGEX.choiceLine);
     if (!match) {
       throw new Error(
         buildRuleError(
           "CHOICE_LINE_FORMAT",
-          `Invalid choice format: "${line.trim()}".`,
+          `Invalid choice format: "${trimmedLine}".`,
         ),
       );
     }
 
     const choiceNumber = parseInt(match[1]);
+    const expectedChoiceNumber = index + 1;
     if (choiceNumber !== expectedChoiceNumber) {
       throw new Error(
         buildRuleError(
@@ -216,83 +245,86 @@ function parseChoices(choicesText) {
       );
     }
 
-    choices.push({
-      text: match[2],
-      chapterNumber: parseInt(match[3]),
-    });
-
-    expectedChoiceNumber += 1;
-  }
-
-  return choices;
+    return [
+      ...choices,
+      {
+        text: match[2],
+        chapterNumber: parseInt(match[3]),
+      },
+    ];
+  }, []);
 }
 
 function validateStory(chapters) {
-  const errors = [];
-
-  // Check if any chapters exist
-  if (Object.keys(chapters).length === 0) {
-    errors.push(buildRuleError("AT_LEAST_ONE_CHAPTER"));
-    throw new Error(errors.join("\n"));
+  const chapterEntries = Object.entries(chapters);
+  if (chapterEntries.length === 0) {
+    throw new Error(buildRuleError("AT_LEAST_ONE_CHAPTER"));
   }
 
-  // Validate each chapter
-  for (const [num, chapter] of Object.entries(chapters)) {
-    if (!chapter.title) {
-      errors.push(
-        buildRuleError(
-          "CHAPTER_REQUIRED_FIELDS",
-          `Chapter ${num} missing ### Title section.`,
-        ),
-      );
-    }
-    if (!chapter.content) {
-      errors.push(
-        buildRuleError(
-          "CHAPTER_REQUIRED_FIELDS",
-          `Chapter ${num} missing ### Content section.`,
-        ),
-      );
-    }
-    if (!chapter.choices || chapter.choices.length === 0) {
-      errors.push(
-        buildRuleError(
-          "CHAPTER_REQUIRED_FIELDS",
-          `Chapter ${num} missing ### Choices section or has no choices.`,
-        ),
-      );
-    }
-
-    // Validate choice references
-    for (const choice of chapter.choices) {
-      const refChapter = chapters[choice.chapterNumber.toString()];
-      if (!refChapter) {
-        errors.push(
+  const requiredFieldErrors = chapterEntries.flatMap(([num, chapter]) => [
+    ...(!chapter.title
+      ? [
           buildRuleError(
-            "CHOICE_TARGET_EXISTS",
-            `Chapter ${num}: Choice refers to non-existent Chapter ${choice.chapterNumber}.`,
+            "CHAPTER_REQUIRED_FIELDS",
+            `Chapter ${num} missing ### Title section.`,
           ),
-        );
-      }
-
-      if (choice.chapterNumber === parseInt(num)) {
-        errors.push(
+        ]
+      : []),
+    ...(!chapter.content
+      ? [
           buildRuleError(
-            "CHOICE_NOT_SELF_REFERENTIAL",
-            `Chapter ${num}: Choice cannot reference Chapter ${num}.`,
+            "CHAPTER_REQUIRED_FIELDS",
+            `Chapter ${num} missing ### Content section.`,
           ),
-        );
-      }
-    }
-  }
+        ]
+      : []),
+    ...(!chapter.choices || chapter.choices.length === 0
+      ? [
+          buildRuleError(
+            "CHAPTER_REQUIRED_FIELDS",
+            `Chapter ${num} missing ### Choices section or has no choices.`,
+          ),
+        ]
+      : []),
+  ]);
 
-  // Check that chapter numbers are sequential starting from 1
-  const chapterNums = Object.keys(chapters)
-    .map(Number)
+  const choiceReferenceErrors = chapterEntries.flatMap(([num, chapter]) =>
+    chapter.choices.flatMap((choice) => {
+      const missingTargetError = !chapters[choice.chapterNumber.toString()]
+        ? [
+            buildRuleError(
+              "CHOICE_TARGET_EXISTS",
+              `Chapter ${num}: Choice refers to non-existent Chapter ${choice.chapterNumber}.`,
+            ),
+          ]
+        : [];
+
+      const selfReferenceError =
+        choice.chapterNumber === parseInt(num)
+          ? [
+              buildRuleError(
+                "CHOICE_NOT_SELF_REFERENTIAL",
+                `Chapter ${num}: Choice cannot reference Chapter ${num}.`,
+              ),
+            ]
+          : [];
+
+      return [...missingTargetError, ...selfReferenceError];
+    }),
+  );
+
+  const chapterNums = chapterEntries
+    .map(([num]) => Number(num))
     .sort((a, b) => a - b);
-  if (chapterNums[0] !== 1) {
-    errors.push(buildRuleError("FIRST_CHAPTER_IS_ONE"));
-  }
+
+  const firstChapterError =
+    chapterNums[0] !== 1 ? [buildRuleError("FIRST_CHAPTER_IS_ONE")] : [];
+
+  const errors = [
+    ...requiredFieldErrors,
+    ...choiceReferenceErrors,
+    ...firstChapterError,
+  ];
 
   if (errors.length > 0) {
     throw new Error(errors.join("\n"));
