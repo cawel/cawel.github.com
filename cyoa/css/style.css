@@ -245,6 +245,12 @@ main {
   margin-left: 34px;
 }
 
+.story-card-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Story Page */
 .story-container {
   background-color: var(--bg-alt);
