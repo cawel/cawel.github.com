@@ -4,11 +4,10 @@
 
 import { parseStory } from "../utils/storyParser.js";
 
-let currentChapter = 1;
-let storyData = null;
-
 export async function renderStory(params) {
   const storyNum = params.storyId;
+  const chapterParam = params.chapterId;
+  let storyData = null;
 
   try {
     // Fetch story data from markdown file
@@ -18,9 +17,6 @@ export async function renderStory(params) {
     }
     const markdownText = await response.text();
     storyData = parseStory(markdownText);
-
-    // Reset to first chapter
-    currentChapter = 1;
   } catch (error) {
     return `
       <main class="story-main">
@@ -31,11 +27,10 @@ export async function renderStory(params) {
     `;
   }
 
-  return renderChapter(storyNum);
-}
+  const requestedChapter = Number.parseInt(chapterParam || "1", 10);
+  const chapterNumber = Number.isNaN(requestedChapter) ? 1 : requestedChapter;
 
-function renderChapter(storyNum) {
-  if (!storyData || !storyData[currentChapter]) {
+  if (!storyData || !storyData[chapterNumber]) {
     return `
       <main class="story-main">
         <div class="story-container">
@@ -45,16 +40,16 @@ function renderChapter(storyNum) {
     `;
   }
 
-  const chapter = storyData[currentChapter];
+  const chapter = storyData[chapterNumber];
 
   const choicesHtml = chapter.choices
     .map(
       (choice) => `
         <li class="choice-item">
           <span class="choice-emoji" aria-hidden="true">✨</span>
-          <button class="choice-link" data-chapter="${choice.chapterNumber}" data-story="${storyNum}">
+          <a class="choice-link" href="#/story/${storyNum}/${choice.chapterNumber}">
             <span class="choice-text">${choice.text}</span>
-          </button>
+          </a>
         </li>
       `,
     )
@@ -79,33 +74,5 @@ function renderChapter(storyNum) {
     </main>
   `;
 
-  // Setup event delegation after rendering
-  setTimeout(() => {
-    document.querySelectorAll(".choice-link").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const nextChapter = e.currentTarget.dataset.chapter;
-        const storyNum = e.currentTarget.dataset.story;
-        currentChapter = parseInt(nextChapter);
-        // Update the page content
-        updateStoryPage(storyNum);
-      });
-    });
-  }, 0);
-
   return html;
-}
-
-async function updateStoryPage(storyNum) {
-  const content = renderChapter(storyNum);
-  const main = document.querySelector("main");
-  if (main) {
-    // Extract just the story-container div from the HTML and update it
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = content;
-    const newContainer = tempDiv.querySelector(".story-container");
-    const oldContainer = main.querySelector(".story-container");
-    if (newContainer && oldContainer) {
-      oldContainer.replaceWith(newContainer);
-    }
-  }
 }

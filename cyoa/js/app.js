@@ -12,6 +12,7 @@ import { renderAdmin } from "./pages/admin.js";
 // Create router with all routes
 const router = createRouter({
   "/": renderHome,
+  "/story/:storyId/:chapterId": renderStory,
   "/story/:storyId": renderStory,
   "/admin": renderAdmin,
 });
