@@ -99,9 +99,7 @@ function flushCurrentChapterSection(state) {
   };
 }
 
-export function parseStory(markdown) {
-  const lines = markdown.split("\n");
-
+function assertStoryTitleHeading(lines) {
   const firstNonEmptyLine = lines.find((line) => line.trim());
   if (
     !firstNonEmptyLine ||
@@ -109,107 +107,148 @@ export function parseStory(markdown) {
   ) {
     throw new Error(buildRuleError("STORY_TITLE_HEADING"));
   }
+}
 
-  const initialState = {
+function createInitialParserState() {
+  return {
     chapters: {},
     currentChapter: null,
     currentChapterKey: null,
     currentChapterSection: null,
     currentChapterContent: [],
   };
+}
 
-  const finalState = lines.entries().reduce((state, [lineIndex, line]) => {
-    const trimmed = line.trim();
+function createEmptyChapter(chapterKey) {
+  return {
+    number: parseInt(chapterKey),
+    title: "",
+    content: "",
+    choices: [],
+  };
+}
 
-    if (trimmed.startsWith("## ")) {
-      const flushedState = flushCurrentChapterSection(state);
-      const chapterMatch = trimmed.match(REGEX.chapterHeading);
-      if (!chapterMatch) {
-        throw new Error(
-          buildRuleError(
-            "CHAPTER_HEADING_FORMAT",
-            `Invalid chapter format: "${trimmed}".`,
-          ),
-        );
-      }
+function extractChapterKey(trimmed) {
+  const chapterMatch = trimmed.match(REGEX.chapterHeading);
+  if (!chapterMatch) {
+    throw new Error(
+      buildRuleError(
+        "CHAPTER_HEADING_FORMAT",
+        `Invalid chapter format: "${trimmed}".`,
+      ),
+    );
+  }
 
-      if (lineIndex > 0 && lines[lineIndex - 1].trim() !== "") {
-        throw new Error(
-          buildRuleError(
-            "CHAPTER_HEADING_BLANK_LINE",
-            `Chapter heading must be preceded by an empty line: "${trimmed}".`,
-          ),
-        );
-      }
+  return chapterMatch[1];
+}
 
-      const chapterKey = chapterMatch[1];
-      if (flushedState.chapters[chapterKey]) {
-        throw new Error(
-          buildRuleError(
-            "UNIQUE_CHAPTER_NUMBERS",
-            `Duplicate chapter number found: Chapter ${chapterKey}.`,
-          ),
-        );
-      }
+function assertBlankLineBeforeChapterHeading(lines, lineIndex, trimmed) {
+  if (lineIndex > 0 && lines[lineIndex - 1].trim() !== "") {
+    throw new Error(
+      buildRuleError(
+        "CHAPTER_HEADING_BLANK_LINE",
+        `Chapter heading must be preceded by an empty line: "${trimmed}".`,
+      ),
+    );
+  }
+}
 
-      const newChapter = {
-        number: parseInt(chapterKey),
-        title: "",
-        content: "",
-        choices: [],
-      };
+function extractChapterSectionName(trimmed) {
+  const sectionMatch = trimmed.match(REGEX.chapterSectionHeading);
+  if (!sectionMatch) {
+    throw new Error(
+      buildRuleError(
+        "VALID_SECTION_HEADINGS",
+        `Invalid section format: "${trimmed}".`,
+      ),
+    );
+  }
 
-      return {
-        ...flushedState,
-        chapters: {
-          ...flushedState.chapters,
-          [chapterKey]: newChapter,
-        },
-        currentChapter: newChapter,
-        currentChapterKey: chapterKey,
-        currentChapterSection: null,
-        currentChapterContent: [],
-      };
-    }
+  const chapterSectionName = sectionMatch[1].toLowerCase();
+  if (!CHAPTER_SECTIONS.includes(chapterSectionName)) {
+    throw new Error(
+      buildRuleError(
+        "VALID_SECTION_HEADINGS",
+        `Invalid section name: "${chapterSectionName}".`,
+      ),
+    );
+  }
 
-    if (trimmed.startsWith("### ")) {
-      const flushedState = flushCurrentChapterSection(state);
-      const sectionMatch = trimmed.match(REGEX.chapterSectionHeading);
-      if (!sectionMatch) {
-        throw new Error(
-          buildRuleError(
-            "VALID_SECTION_HEADINGS",
-            `Invalid section format: "${trimmed}".`,
-          ),
-        );
-      }
+  return chapterSectionName;
+}
 
-      const sectionName = sectionMatch[1].toLowerCase();
-      if (!CHAPTER_SECTIONS.includes(sectionName)) {
-        throw new Error(
-          buildRuleError(
-            "VALID_SECTION_HEADINGS",
-            `Invalid section name: "${sectionName}".`,
-          ),
-        );
-      }
+function handleChapterHeading(state, trimmed, lineIndex, lines) {
+  const flushedState = flushCurrentChapterSection(state);
+  assertBlankLineBeforeChapterHeading(lines, lineIndex, trimmed);
 
-      return {
-        ...flushedState,
-        currentChapterSection: sectionName,
-        currentChapterContent: [],
-      };
-    }
+  const chapterKey = extractChapterKey(trimmed);
+  if (flushedState.chapters[chapterKey]) {
+    throw new Error(
+      buildRuleError(
+        "UNIQUE_CHAPTER_NUMBERS",
+        `Duplicate chapter number found: Chapter ${chapterKey}.`,
+      ),
+    );
+  }
 
-    if (state.currentChapter && state.currentChapterSection && trimmed) {
-      return {
-        ...state,
-        currentChapterContent: [...state.currentChapterContent, line],
-      };
-    }
+  const newChapter = createEmptyChapter(chapterKey);
+  return {
+    ...flushedState,
+    chapters: {
+      ...flushedState.chapters,
+      [chapterKey]: newChapter,
+    },
+    currentChapter: newChapter,
+    currentChapterKey: chapterKey,
+    currentChapterSection: null,
+    currentChapterContent: [],
+  };
+}
 
+function handleChapterSectionHeading(state, trimmed) {
+  const flushedState = flushCurrentChapterSection(state);
+  const chapterSectionName = extractChapterSectionName(trimmed);
+
+  return {
+    ...flushedState,
+    currentChapterSection: chapterSectionName,
+    currentChapterContent: [],
+  };
+}
+
+function appendChapterSectionContent(state, line, trimmed) {
+  if (!state.currentChapter || !state.currentChapterSection || !trimmed) {
     return state;
-  }, initialState);
+  }
+
+  return {
+    ...state,
+    currentChapterContent: [...state.currentChapterContent, line],
+  };
+}
+
+function reduceStoryLine(state, lineIndex, line, lines) {
+  const trimmed = line.trim();
+
+  if (trimmed.startsWith("## ")) {
+    return handleChapterHeading(state, trimmed, lineIndex, lines);
+  }
+
+  if (trimmed.startsWith("### ")) {
+    return handleChapterSectionHeading(state, trimmed);
+  }
+
+  return appendChapterSectionContent(state, line, trimmed);
+}
+
+export function parseStory(markdown) {
+  const lines = markdown.split("\n");
+  assertStoryTitleHeading(lines);
+
+  const finalState = lines.entries().reduce(
+    (state, [lineIndex, line]) => reduceStoryLine(state, lineIndex, line, lines),
+    createInitialParserState(),
+  );
 
   const chapters = flushCurrentChapterSection(finalState).chapters;
 
@@ -255,18 +294,13 @@ function parseChoices(choicesText) {
   }, []);
 }
 
-function validateStory(chapters) {
-  const chapterEntries = Object.entries(chapters);
-  if (chapterEntries.length === 0) {
-    throw new Error(buildRuleError("AT_LEAST_ONE_CHAPTER"));
-  }
-
-  const requiredFieldErrors = chapterEntries.flatMap(([num, chapter]) => [
+function collectChapterRequiredFieldErrors(chapterNumber, chapter) {
+  return [
     ...(!chapter.title
       ? [
           buildRuleError(
             "CHAPTER_REQUIRED_FIELDS",
-            `Chapter ${num} missing ### Title section.`,
+            `Chapter ${chapterNumber} missing ### Title section.`,
           ),
         ]
       : []),
@@ -274,7 +308,7 @@ function validateStory(chapters) {
       ? [
           buildRuleError(
             "CHAPTER_REQUIRED_FIELDS",
-            `Chapter ${num} missing ### Content section.`,
+            `Chapter ${chapterNumber} missing ### Content section.`,
           ),
         ]
       : []),
@@ -282,48 +316,70 @@ function validateStory(chapters) {
       ? [
           buildRuleError(
             "CHAPTER_REQUIRED_FIELDS",
-            `Chapter ${num} missing ### Choices section or has no choices.`,
+            `Chapter ${chapterNumber} missing ### Choices section or has no choices.`,
           ),
         ]
       : []),
-  ]);
+  ];
+}
 
-  const choiceReferenceErrors = chapterEntries.flatMap(([num, chapter]) =>
-    chapter.choices.flatMap((choice) => {
-      const missingTargetError = !chapters[choice.chapterNumber.toString()]
+function collectChapterChoiceReferenceErrors(chapterNumber, chapter, chapters) {
+  return chapter.choices.flatMap((choice) => {
+    const missingTargetError = !chapters[choice.chapterNumber.toString()]
+      ? [
+          buildRuleError(
+            "CHOICE_TARGET_EXISTS",
+            `Chapter ${chapterNumber}: Choice refers to non-existent Chapter ${choice.chapterNumber}.`,
+          ),
+        ]
+      : [];
+
+    const selfReferenceError =
+      choice.chapterNumber === parseInt(chapterNumber)
         ? [
             buildRuleError(
-              "CHOICE_TARGET_EXISTS",
-              `Chapter ${num}: Choice refers to non-existent Chapter ${choice.chapterNumber}.`,
+              "CHOICE_NOT_SELF_REFERENTIAL",
+              `Chapter ${chapterNumber}: Choice cannot reference Chapter ${chapterNumber}.`,
             ),
           ]
         : [];
 
-      const selfReferenceError =
-        choice.chapterNumber === parseInt(num)
-          ? [
-              buildRuleError(
-                "CHOICE_NOT_SELF_REFERENTIAL",
-                `Chapter ${num}: Choice cannot reference Chapter ${num}.`,
-              ),
-            ]
-          : [];
+    return [...missingTargetError, ...selfReferenceError];
+  });
+}
 
-      return [...missingTargetError, ...selfReferenceError];
-    }),
+function collectRequiredFieldErrors(chapterEntries) {
+  return chapterEntries.flatMap(([chapterNumber, chapter]) =>
+    collectChapterRequiredFieldErrors(chapterNumber, chapter),
   );
+}
 
-  const chapterNums = chapterEntries
-    .map(([num]) => Number(num))
+function collectChoiceReferenceErrors(chapterEntries, chapters) {
+  return chapterEntries.flatMap(([chapterNumber, chapter]) =>
+    collectChapterChoiceReferenceErrors(chapterNumber, chapter, chapters),
+  );
+}
+
+function collectFirstChapterError(chapterEntries) {
+  const chapterNumbers = chapterEntries
+    .map(([chapterNumber]) => Number(chapterNumber))
     .sort((a, b) => a - b);
 
-  const firstChapterError =
-    chapterNums[0] !== 1 ? [buildRuleError("FIRST_CHAPTER_IS_ONE")] : [];
+  return chapterNumbers[0] !== 1
+    ? [buildRuleError("FIRST_CHAPTER_IS_ONE")]
+    : [];
+}
+
+function validateStory(chapters) {
+  const chapterEntries = Object.entries(chapters);
+  if (chapterEntries.length === 0) {
+    throw new Error(buildRuleError("AT_LEAST_ONE_CHAPTER"));
+  }
 
   const errors = [
-    ...requiredFieldErrors,
-    ...choiceReferenceErrors,
-    ...firstChapterError,
+    ...collectRequiredFieldErrors(chapterEntries),
+    ...collectChoiceReferenceErrors(chapterEntries, chapters),
+    ...collectFirstChapterError(chapterEntries),
   ];
 
   if (errors.length > 0) {
