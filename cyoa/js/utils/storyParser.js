@@ -1,14 +1,22 @@
 /**
- * Story parser for markdown format
- * Expects format:
- * ## Chapter N
- * ### Title
- * Title text
- * ### Content
- * Chapter content text
- * ### Choices
- * 1. Choice text -> N
- * 2. Another choice -> M
+ * Story parser for markdown format.
+ *
+ * Validation rules:
+ * 1) Story must begin with a top-level heading: # Story Title
+ * 2) Chapter heading format: ## Chapter N
+ *    - Chapter numbers must be unique
+ *    - First chapter must be Chapter 1
+ *    - A blank line is required above each chapter heading
+ * 3) Chapter section headings must be exactly:
+ *    - ### Title
+ *    - ### Content
+ *    - ### Choices
+ * 4) Every chapter must include non-empty title, content, and choices
+ * 5) Choice line format: N. Choice text -> ChapterNumber
+ *    - Choice list must be ascending and start at 1 (1, 2, 3, ...)
+ * 6) Choice targets:
+ *    - Must reference an existing chapter
+ *    - Must not reference the same chapter
  */
 
 const REGEX = {
