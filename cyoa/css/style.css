@@ -16,6 +16,7 @@
   --border: #444;
   --button-bg: #334455;
   --button-bg-hover: #445566;
+  --chapter-content-font: 'Merriweather', Georgia, serif;
 }
 
 html, body {
@@ -336,6 +337,7 @@ main.story-main .story-container {
   font-size: 20px;
   line-height: 1.6;
   color: var(--text-alt);
+  font-family: var(--chapter-content-font);
   margin-bottom: 20px;
 }
 
