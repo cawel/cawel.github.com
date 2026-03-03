@@ -199,6 +199,28 @@ header.header-collapsed {
   line-height: 1;
 }
 
+.admin-control {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-control:hover {
+  background-color: var(--bg-muted);
+}
+
+.admin-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
 .header-toggle {
   background: none;
   border: none;

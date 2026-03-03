@@ -57,6 +57,9 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           <button class="theme-control" id="theme-btn" title="Change theme">
             <span class="theme-icon" aria-hidden="true">🎨</span>
           </button>
+          <button class="admin-control" id="admin-btn" title="Open admin">
+            <span class="admin-icon" aria-hidden="true">⚙️</span>
+          </button>
           <button class="header-toggle" id="header-toggle-btn" title="Hide header">
             <svg class="header-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M5 9l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -114,6 +117,15 @@ export function createHeader(onNavigateHome, onAudioToggle) {
         event.preventDefault();
         event.stopPropagation();
         themeController.cycleTheme();
+      });
+    }
+
+    const adminBtn = document.getElementById("admin-btn");
+    if (adminBtn) {
+      adminBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.hash = "#/admin";
       });
     }
 
