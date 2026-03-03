@@ -50,7 +50,7 @@ export async function renderHome() {
             <span>${story.title}</span>
           </div>
           <div class="story-card-meta">
-            <div>${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</div>
+            <div>📖 ${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</div>
             <div>⏱️ ${story.approxTime}</div>
           </div>
         </article>
