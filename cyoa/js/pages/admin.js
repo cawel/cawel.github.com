@@ -26,8 +26,10 @@ export async function renderAdmin() {
         </div>
 
         <div class="editor-section">
-          <label class="editor-label">Expected Format:</label>
-          <div class="example-block">${escapeHtml(example)}</div>
+          <details class="expected-format">
+            <summary class="editor-label"><span class="expected-format-emoji" aria-hidden="true">ℹ️</span><span>Expected Format</span></summary>
+            <div class="example-block">${escapeHtml(example)}</div>
+          </details>
         </div>
 
         <div class="editor-section">

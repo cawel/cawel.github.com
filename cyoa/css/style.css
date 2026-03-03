@@ -300,6 +300,30 @@ main {
   display: block;
 }
 
+.expected-format > summary {
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.expected-format > summary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: color-mix(in srgb, var(--bg-muted) 85%, var(--accent) 15%);
+}
+
+.expected-format[open] > summary {
+  margin-bottom: 10px;
+}
+
+.expected-format-emoji {
+  margin-right: 10px;
+}
+
 .example-block {
   background-color: var(--bg-muted);
   border: 1px solid var(--border);
