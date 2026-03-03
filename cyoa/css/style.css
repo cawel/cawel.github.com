@@ -32,11 +32,11 @@
 :root.theme-minimalist {
   --story-bg: #0d0d0d;
   --story-border: #222;
-  --story-title-color: #b3b3b3;
-  --story-text-color: #9a9a9a;
+  --story-title-color: #e3e3e3;
+  --story-text-color: #8d8d8d;
   --story-choice-text-color: #8e8e8e;
   --story-choice-text-hover: #a6a6a6;
-  --story-choice-icon-color: #b3b3b3;
+  --story-choice-icon-color: #cfcfcf;
 }
 
 /* Blue theme */
