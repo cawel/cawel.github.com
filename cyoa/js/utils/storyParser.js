@@ -15,7 +15,7 @@ const REGEX = {
   storyTitleHeading: /^#\s+.+$/,
   chapterHeading: /##\s+Chapter\s+(\d+)/i,
   sectionHeading: /###\s+(\w+)/i,
-  choiceLine: /^\d+\.\s+(.+?)\s*->\s*(\d+)$/,
+  choiceLine: /^(\d+)\.\s+(.+?)\s*->\s*(\d+)$/,
 };
 
 const CHAPTER_SECTION_NAMES = {
@@ -34,11 +34,14 @@ export const PARSER_RULES = Object.freeze({
   STORY_TITLE_HEADING:
     "Story must begin with a top-level title in format: # Story Title",
   CHAPTER_HEADING_FORMAT: "Each chapter heading must follow: ## Chapter N",
+  CHAPTER_HEADING_BLANK_LINE:
+    "Each chapter heading must have a blank line above it",
   UNIQUE_CHAPTER_NUMBERS: "Chapter numbers must be unique",
   VALID_SECTION_HEADINGS:
     "Section headings must be one of: Title, Content, Choices",
   CHOICE_LINE_FORMAT:
     "Each choice line must follow: 1. Choice text -> ChapterNumber",
+  CHOICE_LIST_ORDER: "Choices must be an ascending ordered list starting at 1",
   CHAPTER_REQUIRED_FIELDS:
     "Every chapter must include title, content, and choices",
   CHOICE_TARGET_EXISTS: "Choice targets must reference existing chapters",
@@ -70,7 +73,7 @@ export function parseStory(markdown) {
   let currentSection = null;
   let currentContent = [];
 
-  for (const line of lines) {
+  for (const [lineIndex, line] of lines.entries()) {
     const trimmed = line.trim();
 
     // Detect chapter heading
@@ -91,6 +94,15 @@ export function parseStory(markdown) {
           buildRuleError(
             "CHAPTER_HEADING_FORMAT",
             `Invalid chapter format: "${trimmed}".`,
+          ),
+        );
+      }
+
+      if (lineIndex > 0 && lines[lineIndex - 1].trim() !== "") {
+        throw new Error(
+          buildRuleError(
+            "CHAPTER_HEADING_BLANK_LINE",
+            `Chapter heading must be preceded by an empty line: "${trimmed}".`,
           ),
         );
       }
@@ -173,6 +185,7 @@ export function parseStory(markdown) {
 function parseChoices(choicesText) {
   const lines = choicesText.split("\n").filter((l) => l.trim());
   const choices = [];
+  let expectedChoiceNumber = 1;
 
   for (const line of lines) {
     const match = line.trim().match(REGEX.choiceLine);
@@ -185,10 +198,22 @@ function parseChoices(choicesText) {
       );
     }
 
+    const choiceNumber = parseInt(match[1]);
+    if (choiceNumber !== expectedChoiceNumber) {
+      throw new Error(
+        buildRuleError(
+          "CHOICE_LIST_ORDER",
+          `Expected choice number ${expectedChoiceNumber}, but found ${choiceNumber}.`,
+        ),
+      );
+    }
+
     choices.push({
-      text: match[1],
-      chapterNumber: parseInt(match[2]),
+      text: match[2],
+      chapterNumber: parseInt(match[3]),
     });
+
+    expectedChoiceNumber += 1;
   }
 
   return choices;
