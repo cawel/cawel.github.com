@@ -217,7 +217,14 @@ function handleChapterSectionHeading(state, trimmed) {
 }
 
 function appendChapterSectionContent(state, line, trimmed) {
-  if (!state.currentChapter || !state.currentChapterSection || !trimmed) {
+  if (!state.currentChapter || !state.currentChapterSection) {
+    return state;
+  }
+
+  const shouldPreserveLine =
+    state.currentChapterSection === CHAPTER_SECTION_HEADING_NAMES.content;
+
+  if (!trimmed && !shouldPreserveLine) {
     return state;
   }
 
