@@ -4,22 +4,23 @@
 
 export async function renderHome() {
   const stories = [
-    { number: 1, title: "Story 1" },
-    { number: 2, title: "Story 2" },
-    { number: 3, title: "Story 3" },
+    { number: 1, title: "Story 1", emoji: "🗺️" },
+    { number: 2, title: "Story 2", emoji: "🔍" },
+    { number: 3, title: "Story 3", emoji: "🕯️" },
   ];
 
   const storiesHtml = stories
     .map(
       (story) => `
-        <tr class="story-row">
-          <td class="story-cell">
-            <button class="launch-button" data-story="${story.number}">
-              Launch<span class="launch-emoji">🚀</span>
-            </button>
-          </td>
-          <td class="story-cell">${story.title}</td>
-        </tr>
+        <article class="story-card">
+          <div class="story-card-title">
+            <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
+            <span>${story.title}</span>
+          </div>
+          <button class="launch-button" data-story="${story.number}">
+            Start Adventure<span class="launch-emoji">✨</span>
+          </button>
+        </article>
       `,
     )
     .join("");
@@ -27,9 +28,9 @@ export async function renderHome() {
   const html = `
     <main>
       <div class="home-container">
-        <table class="stories-grid">
+        <div class="stories-grid" role="list">
           ${storiesHtml}
-        </table>
+        </div>
       </div>
     </main>
   `;
