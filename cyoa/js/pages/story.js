@@ -51,8 +51,9 @@ function renderChapter(storyNum) {
     .map(
       (choice) => `
         <li class="choice-item">
+          <span class="choice-emoji" aria-hidden="true">✨</span>
           <button class="choice-link" data-chapter="${choice.chapterNumber}" data-story="${storyNum}">
-            <span class="choice-emoji" aria-hidden="true">✨</span><span class="choice-text">${choice.text}</span>
+            <span class="choice-text">${choice.text}</span>
           </button>
         </li>
       `,
