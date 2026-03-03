@@ -11,11 +11,44 @@
  * 2. Another choice -> M
  */
 
+const REGEX = {
+  storyTitleHeading: /^#\s+.+$/,
+  chapterHeading: /##\s+Chapter\s+(\d+)/i,
+  sectionHeading: /###\s+(\w+)/i,
+  choiceLine: /^\d+\.\s+(.+?)\s*->\s*(\d+)$/,
+};
+
+const SECTION_NAMES = {
+  title: "title",
+  content: "content",
+  choices: "choices",
+};
+
+const ALLOWED_SECTIONS = Object.freeze([
+  SECTION_NAMES.title,
+  SECTION_NAMES.content,
+  SECTION_NAMES.choices,
+]);
+
+export const PARSER_RULES = Object.freeze([
+  "Story must begin with a top-level title in format: # Story Title",
+  "Each chapter heading must follow: ## Chapter N",
+  "Chapter numbers must be unique",
+  "Section headings must be one of: Title, Content, Choices",
+  "Each choice line must follow: 1. Choice text -> ChapterNumber",
+  "Every chapter must include title, content, and choices",
+  "Choice targets must reference existing chapters",
+  "First chapter must be Chapter 1",
+]);
+
 export function parseStory(markdown) {
   const lines = markdown.split("\n");
 
   const firstNonEmptyLine = lines.find((line) => line.trim());
-  if (!firstNonEmptyLine || !/^#\s+.+$/.test(firstNonEmptyLine.trim())) {
+  if (
+    !firstNonEmptyLine ||
+    !REGEX.storyTitleHeading.test(firstNonEmptyLine.trim())
+  ) {
     throw new Error(
       'Story must begin with a top-level title in format: "# Story Title"',
     );
@@ -41,7 +74,7 @@ export function parseStory(markdown) {
         }
       }
 
-      const chapterMatch = trimmed.match(/##\s+Chapter\s+(\d+)/i);
+      const chapterMatch = trimmed.match(REGEX.chapterHeading);
       if (!chapterMatch) {
         throw new Error(
           `Invalid chapter format: "${trimmed}". Expected "## Chapter N"`,
@@ -50,7 +83,9 @@ export function parseStory(markdown) {
 
       const chapterNum = chapterMatch[1];
       if (chapters[chapterNum]) {
-        throw new Error(`Duplicate chapter number found: Chapter ${chapterNum}`);
+        throw new Error(
+          `Duplicate chapter number found: Chapter ${chapterNum}`,
+        );
       }
 
       currentChapter = {
@@ -75,13 +110,13 @@ export function parseStory(markdown) {
         }
       }
 
-      const sectionMatch = trimmed.match(/###\s+(\w+)/i);
+      const sectionMatch = trimmed.match(REGEX.sectionHeading);
       if (!sectionMatch) {
         throw new Error(`Invalid section format: "${trimmed}"`);
       }
 
       currentSection = sectionMatch[1].toLowerCase();
-      if (!["title", "content", "choices"].includes(currentSection)) {
+      if (!ALLOWED_SECTIONS.includes(currentSection)) {
         throw new Error(
           `Invalid section name: "${currentSection}". Expected one of: Title, Content, Choices`,
         );
@@ -115,7 +150,7 @@ function parseChoices(choicesText) {
   const choices = [];
 
   for (const line of lines) {
-    const match = line.trim().match(/^\d+\.\s+(.+?)\s*->\s*(\d+)$/);
+    const match = line.trim().match(REGEX.choiceLine);
     if (!match) {
       throw new Error(
         `Invalid choice format: "${line.trim()}". Expected "1. Choice text -> ChapterNumber"`,
