@@ -1,6 +1,9 @@
 export function createThemeController() {
   const persistedTheme = localStorage.getItem("cyoaTheme");
-  let currentTheme = persistedTheme === "minimalistic" ? "minimalist" : (persistedTheme || "yellow");
+  const allowedThemes = new Set(["yellow", "minimalist"]);
+  let currentTheme = allowedThemes.has(persistedTheme)
+    ? persistedTheme
+    : "yellow";
 
   const applyTheme = (theme) => {
     const html = document.documentElement;
