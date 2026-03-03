@@ -14,14 +14,11 @@ export async function renderHome() {
   const storiesHtml = stories
     .map(
       (story) => `
-        <article class="story-card">
+        <article class="story-card" data-story="${story.number}" role="button" tabindex="0" aria-label="Open ${story.title}">
           <div class="story-card-title">
             <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
             <span>${story.title}</span>
           </div>
-          <button class="launch-button" data-story="${story.number}">
-            Start Adventure<span class="launch-emoji">🚀</span>
-          </button>
         </article>
       `,
     )
@@ -39,10 +36,18 @@ export async function renderHome() {
 
   // Add event delegation after rendering
   setTimeout(() => {
-    document.querySelectorAll(".launch-button").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+    document.querySelectorAll(".story-card").forEach((card) => {
+      card.addEventListener("click", (e) => {
         const storyNum = e.currentTarget.dataset.story;
         window.location.hash = `#/story/${storyNum}`;
+      });
+
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const storyNum = e.currentTarget.dataset.story;
+          window.location.hash = `#/story/${storyNum}`;
+        }
       });
     });
   }, 0);

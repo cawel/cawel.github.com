@@ -158,7 +158,7 @@ main {
   margin: 100px auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
+  gap: 40px;
 }
 
 .story-card {
@@ -169,6 +169,24 @@ main {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.story-card:hover,
+.story-card:focus-visible {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--bg-muted) 78%, var(--accent) 22%),
+    color-mix(in srgb, var(--bg-alt) 88%, var(--accent) 12%)
+  );
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.story-card:focus-visible {
+  outline: none;
 }
 
 .story-card-title {
@@ -182,31 +200,6 @@ main {
 .story-card-emoji {
   font-size: 24px;
   line-height: 1;
-}
-
-.launch-button {
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--text);
-  transition: color 0.2s, border-color 0.2s, transform 0.2s;
-  padding: 10px 14px;
-  width: 100%;
-  text-align: left;
-  margin-top: auto;
-}
-
-.launch-button:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
-.launch-emoji {
-  margin-left: 8px;
 }
 
 /* Story Page */
