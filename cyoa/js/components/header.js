@@ -2,8 +2,7 @@
  * Header component - shared across all pages
  */
 
-import { chooseAudioSource } from "../utils/audioResolver.js";
-import { findMp3FilesInFolder } from "../utils/audioResolver.js";
+import { createAudioController } from "./audioController.js";
 
 const CHAPTER_FONT_CANDIDATES = [
   { name: "Merriweather", stack: "'Merriweather', Georgia, serif" },
@@ -55,17 +54,12 @@ const CHAPTER_FONT_CANDIDATES = [
 
 export function createHeader(onNavigateHome, onAudioToggle) {
   let mounted = false;
-  let isPlaying = false;
-  let audioElement = null;
-  let muted = true; // start muted so red x shows; user must click to unmute
-  let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
   let headerHidden = false;
   let waitForRevealZoneExit = false;
   let keydownBound = false;
   let chapterFontIndex = 0;
   let currentTheme = localStorage.getItem("cyoaTheme") || "yellow";
-  let availableAudioSources = [];
-  let selectedAudioIndex = 0;
+  const audioController = createAudioController();
 
   const applyTheme = (theme) => {
     const html = document.documentElement;
@@ -112,184 +106,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     setHeaderHidden(true);
   };
 
-  const stopAllAudio = () => {
-    const mainAudio = document.getElementById("main-audio");
-    const storyAudio = document.getElementById("story-music");
-
-    if (mainAudio && !mainAudio.paused) mainAudio.pause();
-    if (storyAudio && !storyAudio.paused) storyAudio.pause();
-  };
-
-  const updateAudioTrackSelect = () => {
-    const select = document.getElementById("audio-track-select");
-    if (!select) return;
-
-    select.innerHTML = "";
-
-    if (!availableAudioSources.length) {
-      const option = document.createElement("option");
-      option.value = "";
-      option.textContent = "Music 1";
-      select.appendChild(option);
-      select.value = "";
-      return;
-    }
-
-    availableAudioSources.forEach((source, index) => {
-      const option = document.createElement("option");
-      option.value = source;
-      option.textContent = `Music ${index + 1}`;
-      option.title = source;
-      select.appendChild(option);
-    });
-
-    select.value = availableAudioSources[selectedAudioIndex] || "";
-  };
-
-  const applySelectedMainTrack = () => {
-    const mainAudio = document.getElementById("main-audio");
-    if (!mainAudio || !availableAudioSources.length) return;
-
-    const selectedSource = availableAudioSources[selectedAudioIndex];
-    if (!selectedSource) return;
-
-    const resolvedSelected = new URL(selectedSource, window.location.href).href;
-    if (mainAudio.src !== resolvedSelected) {
-      mainAudio.src = selectedSource;
-    }
-  };
-
-  const ensureMainAudioExists = () => {
-    // Always add a main audio element so the control has something to toggle.
-    // We first try to auto-discover whatever MP3 is present in `/music/`.
-    // If directory listing is unavailable, we fall back to known filenames.
-    const candidates = [
-      "music/bg-music.mp3", // fallback
-    ];
-
-    if (!document.getElementById("main-audio")) {
-      const a = document.createElement("audio");
-      a.id = "main-audio";
-      a.loop = true;
-      a.style.display = "none";
-      document.body.appendChild(a);
-
-      // Build track list from root music folder for dropdown; fallback if needed.
-      mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("music/");
-
-        if (discoveredFiles.length) {
-          availableAudioSources = discoveredFiles;
-        } else {
-          const chosen = await chooseAudioSource("music/", candidates);
-          availableAudioSources = [chosen || candidates[0]];
-        }
-
-        selectedAudioIndex = 0;
-        updateAudioTrackSelect();
-        applySelectedMainTrack();
-        return a;
-      })();
-    } else {
-      const existing = document.getElementById("main-audio");
-      mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("music/");
-
-        if (discoveredFiles.length) {
-          availableAudioSources = discoveredFiles;
-        } else {
-          const chosen = await chooseAudioSource("music/", candidates);
-          availableAudioSources = [chosen || candidates[0]];
-        }
-
-        const currentSrc = existing.src;
-        const matchedIndex = availableAudioSources.findIndex((source) => {
-          return new URL(source, window.location.href).href === currentSrc;
-        });
-
-        selectedAudioIndex = matchedIndex >= 0 ? matchedIndex : 0;
-        updateAudioTrackSelect();
-        return existing;
-      })();
-    }
-  };
-  const setupAudio = () => {
-    // Check if there's a story-specific music playing
-    const currentStoryMusic = document.getElementById("story-music");
-    if (currentStoryMusic) {
-      const mainAudio = document.getElementById("main-audio");
-      if (mainAudio && !mainAudio.paused) {
-        mainAudio.pause();
-      }
-      audioElement = currentStoryMusic;
-      isPlaying = currentStoryMusic.paused === false;
-    } else {
-      // Look for main audio
-      audioElement = document.getElementById("main-audio");
-      applySelectedMainTrack();
-      isPlaying = audioElement && audioElement.paused === false;
-    }
-
-    // if we're muted, make sure any active element is paused so audio
-    // doesn't start without an explicit click
-    if (muted && audioElement && !audioElement.paused) {
-      audioElement.pause();
-      isPlaying = false;
-    }
-  };
-
   const syncState = () => {
-    setupAudio();
-    updateAudioButton();
-  };
-
-  const muteAndStopAll = () => {
-    muted = true;
-    stopAllAudio();
-    isPlaying = false;
-    updateAudioButton();
-  };
-
-  const stopAudioWithoutMuting = () => {
-    stopAllAudio();
-    isPlaying = false;
-    updateAudioButton();
-  };
-
-  const toggleAudio = async () => {
-    // wait for main audio to have a valid src before trying to use it
-    await mainAudioReady;
-    setupAudio();
-    // flip mute request
-    muted = !muted;
-
-    if (audioElement) {
-      if (muted) {
-        audioElement.pause();
-      } else {
-        audioElement.play().catch((error) => {
-          console.warn(
-            "[audio] Unable to play music. Check that an MP3 exists in /music and the file is accessible.",
-            error,
-          );
-        });
-      }
-    }
-    // track play state if audio is present
-    isPlaying = audioElement ? !audioElement.paused : false;
-
-    updateAudioButton();
+    audioController.syncState();
   };
 
   const updateAudioButton = () => {
-    const btn = document.querySelector(".audio-control");
-    if (btn) {
-      const cross = btn.querySelector(".mute-cross");
-      const speaker = btn.querySelector(".speaker-icon");
-      // speaker always remains visible; the cross overlays when muted.
-      if (speaker) speaker.style.visibility = "visible";
-      if (cross) cross.style.visibility = muted ? "visible" : "hidden";
-    }
+    audioController.updateAudioButton();
   };
 
   const getHtml = () => {
@@ -344,44 +166,19 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     // expose a simple getter globally so other modules (e.g. story.js) can
     // respect the user’s mute preference before auto-playing audio
     window.cyoaAudioControl = {
-      isMuted: () => muted,
-      muteAndStopAll,
-      stopAudioWithoutMuting,
+      isMuted: audioController.isMuted,
+      muteAndStopAll: audioController.muteAndStopAll,
+      stopAudioWithoutMuting: audioController.stopAudioWithoutMuting,
     };
 
     // Setup event listeners
     document.getElementById("home-link").addEventListener("click", () => {
       onNavigateHome();
     });
+
     const audioBtn = document.getElementById("audio-btn");
-    if (audioBtn) {
-      audioBtn.addEventListener("click", () => {
-        toggleAudio();
-      });
-    }
-
     const audioTrackSelect = document.getElementById("audio-track-select");
-    if (audioTrackSelect) {
-      audioTrackSelect.addEventListener("change", (event) => {
-        const selectedSource = event.target.value;
-        const nextIndex = availableAudioSources.indexOf(selectedSource);
-        if (nextIndex < 0) return;
-
-        selectedAudioIndex = nextIndex;
-
-        applySelectedMainTrack();
-
-        const mainAudio = document.getElementById("main-audio");
-        if (mainAudio && !muted) {
-          mainAudio.play().catch((error) => {
-            console.warn(
-              "[audio] Unable to play selected track. Check that MP3 files are accessible.",
-              error,
-            );
-          });
-        }
-      });
-    }
+    audioController.setControls({ button: audioBtn, trackSelect: audioTrackSelect });
 
     const fontBtn = document.getElementById("font-btn");
     if (fontBtn) {
@@ -440,7 +237,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           return;
         }
 
-        toggleAudio();
+        audioController.toggleAudio();
       });
 
       keydownBound = true;
@@ -456,13 +253,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       }
     });
 
-    ensureMainAudioExists();
+    audioController.initialize();
 
     // Setup audio tracking once we have the correct main audio URL
-    mainAudioReady.then(() => {
+    audioController.whenReady().then(() => {
       applyChapterFont();
-      setupAudio();
-      updateAudioButton();
+      syncState();
     });
 
     mounted = true;
