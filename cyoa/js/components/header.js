@@ -311,7 +311,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     if (!keydownBound) {
       document.addEventListener("keydown", (event) => {
         const key = event.key.toLowerCase();
-        if (key !== "f" && key !== "m") return;
+        if (key !== "f" && key !== "m" && key !== "t") return;
         if (event.metaKey || event.ctrlKey || event.altKey) return;
 
         const target = event.target;
@@ -332,6 +332,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           } else {
             hideHeader();
           }
+          return;
+        }
+
+        if (key === "t") {
+          cycleTheme();
           return;
         }
 
