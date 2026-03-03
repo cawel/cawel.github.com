@@ -4,11 +4,16 @@
 
 export async function renderHome() {
   const stories = [
-    { number: 1, title: "The Mysterious Forest", emoji: "🌲" },
-    { number: 2, title: "Midnight at Hollow Moon Museum", emoji: "🏺" },
-    { number: 3, title: "The Last Broadcast", emoji: "🛰️" },
-    { number: 4, title: "The Clockwork Carnival", emoji: "🎠" },
-    { number: 5, title: "The Sunken Library", emoji: "📚" },
+    { number: 1, title: "The Mysterious Forest", emoji: "🌲", chapters: 30 },
+    {
+      number: 2,
+      title: "Midnight at Hollow Moon Museum",
+      emoji: "🏺",
+      chapters: 47,
+    },
+    { number: 3, title: "The Last Broadcast", emoji: "🛰️", chapters: 45 },
+    { number: 4, title: "The Clockwork Carnival", emoji: "🎠", chapters: 6 },
+    { number: 5, title: "The Sunken Library", emoji: "📚", chapters: 6 },
   ];
 
   const storiesHtml = stories
@@ -19,6 +24,7 @@ export async function renderHome() {
             <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
             <span>${story.title}</span>
           </div>
+          <div class="story-card-meta">${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</div>
         </article>
       `,
     )

@@ -202,6 +202,12 @@ main {
   line-height: 1;
 }
 
+.story-card-meta {
+  font-size: 14px;
+  color: var(--text-alt);
+  margin-left: 34px;
+}
+
 /* Story Page */
 .story-container {
   background-color: var(--bg-alt);
