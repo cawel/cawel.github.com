@@ -53,7 +53,7 @@ function renderChapter(storyNum) {
       (choice) => `
         <li class="choice-item">
           <button class="choice-link" data-chapter="${choice.chapterNumber}" data-story="${storyNum}">
-            ${choice.text}
+            <span class="choice-emoji" aria-hidden="true">✨</span><span class="choice-text">${choice.text}</span>
           </button>
         </li>
       `,

@@ -257,8 +257,15 @@ main {
   font-family: 'Crimson Text', serif; /* distinctive, legible book font */
 }
 
+.choice-emoji {
+  margin-right: 8px;
+}
+
 .choice-link:hover {
   color: var(--accent-dark);
+}
+
+.choice-link:hover .choice-text {
   text-decoration: underline;
 }
 
