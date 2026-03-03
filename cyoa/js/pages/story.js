@@ -7,9 +7,19 @@ import { chooseAudioSource } from "../utils/audioResolver.js";
 
 let currentChapter = 1;
 let storyData = null;
+let currentStoryNum = null;
 
 export async function renderStory(params) {
   const storyNum = params.storyId;
+  
+  // Stop audio only if switching to a different story
+  if (currentStoryNum !== null && currentStoryNum !== storyNum) {
+    if (window.cyoaAudioControl && window.cyoaAudioControl.stopAudioWithoutMuting) {
+      window.cyoaAudioControl.stopAudioWithoutMuting();
+    }
+  }
+  
+  currentStoryNum = storyNum;
 
   try {
     // Fetch story data from markdown file
@@ -82,10 +92,6 @@ function renderChapter(storyNum) {
 
   // Setup event delegation after rendering
   setTimeout(async () => {
-    if (window.cyoaAudioControl && window.cyoaAudioControl.muteAndStopAll) {
-      window.cyoaAudioControl.muteAndStopAll();
-    }
-
     document.querySelectorAll(".choice-link").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const nextChapter = e.currentTarget.dataset.chapter;

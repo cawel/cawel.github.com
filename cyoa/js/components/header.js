@@ -23,13 +23,28 @@ const CHAPTER_FONT_CANDIDATES = [
   { name: "Lucida Bright", stack: "'Lucida Bright', Georgia, serif" },
   { name: "Bookman", stack: "Bookman, Georgia, serif" },
   { name: "Constantia", stack: "Constantia, Georgia, serif" },
-  { name: "Cormorant Garamond", stack: "'Cormorant Garamond', Garamond, serif" },
+  {
+    name: "Cormorant Garamond",
+    stack: "'Cormorant Garamond', Garamond, serif",
+  },
   { name: "Cinzel", stack: "Cinzel, 'Times New Roman', serif" },
-  { name: "Iowan Old Style", stack: "'Iowan Old Style', 'Palatino Linotype', serif" },
-  { name: "American Typewriter", stack: "'American Typewriter', Georgia, serif" },
+  {
+    name: "Iowan Old Style",
+    stack: "'Iowan Old Style', 'Palatino Linotype', serif",
+  },
+  {
+    name: "American Typewriter",
+    stack: "'American Typewriter', Georgia, serif",
+  },
   { name: "Alegreya", stack: "Alegreya, 'Times New Roman', serif" },
-  { name: "Libre Baskerville", stack: "'Libre Baskerville', Baskerville, serif" },
-  { name: "Sorts Mill Goudy", stack: "'Sorts Mill Goudy', 'Goudy Old Style', serif" },
+  {
+    name: "Libre Baskerville",
+    stack: "'Libre Baskerville', Baskerville, serif",
+  },
+  {
+    name: "Sorts Mill Goudy",
+    stack: "'Sorts Mill Goudy', 'Goudy Old Style', serif",
+  },
   { name: "Cardo", stack: "Cardo, 'Times New Roman', serif" },
   { name: "EB Garamond", stack: "'EB Garamond', Garamond, serif" },
   { name: "Lora", stack: "Lora, Georgia, serif" },
@@ -49,7 +64,10 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
   const applyChapterFont = () => {
     const font = CHAPTER_FONT_CANDIDATES[chapterFontIndex];
-    document.documentElement.style.setProperty("--chapter-content-font", font.stack);
+    document.documentElement.style.setProperty(
+      "--chapter-content-font",
+      font.stack,
+    );
     console.log(
       `[font] Chapter content font: ${font.name} (${chapterFontIndex + 1}/${CHAPTER_FONT_CANDIDATES.length})`,
     );
@@ -143,6 +161,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     updateAudioButton();
   };
 
+  const stopAudioWithoutMuting = () => {
+    stopAllAudio();
+    isPlaying = false;
+    updateAudioButton();
+  };
+
   const toggleAudio = async () => {
     // wait for main audio to have a valid src before trying to use it
     await mainAudioReady;
@@ -223,6 +247,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     window.cyoaAudioControl = {
       isMuted: () => muted,
       muteAndStopAll,
+      stopAudioWithoutMuting,
     };
 
     // Setup event listeners
@@ -255,10 +280,13 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     if (!keydownBound) {
       document.addEventListener("keydown", (event) => {
-        if (event.key.toLowerCase() !== "f") return;
+        const key = event.key.toLowerCase();
+        if (key !== "f" && key !== "m") return;
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
 
         const target = event.target;
-        const tagName = target && target.tagName ? target.tagName.toLowerCase() : "";
+        const tagName =
+          target && target.tagName ? target.tagName.toLowerCase() : "";
         const isEditable =
           tagName === "input" ||
           tagName === "textarea" ||
@@ -267,12 +295,17 @@ export function createHeader(onNavigateHome, onAudioToggle) {
         if (isEditable) return;
 
         event.preventDefault();
-        if (headerHidden) {
-          waitForRevealZoneExit = false;
-          setHeaderHidden(false);
-        } else {
-          hideHeader();
+        if (key === "f") {
+          if (headerHidden) {
+            waitForRevealZoneExit = false;
+            setHeaderHidden(false);
+          } else {
+            hideHeader();
+          }
+          return;
         }
+
+        toggleAudio();
       });
 
       keydownBound = true;
