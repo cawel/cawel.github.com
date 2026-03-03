@@ -78,6 +78,7 @@ header.header-collapsed {
   background: none;
   border: none;
   font-size: 24px;
+  color: var(--text);
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 4px;
@@ -116,9 +117,38 @@ header.header-collapsed {
   font-size: 24px;
 }
 
+.audio-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.speaker-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.font-style-icon {
+  font-size: 22px;
+  line-height: 1;
+  color: currentColor;
+  font-family: 'Merriweather', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  pointer-events: auto;
+}
+
 /* prevent the emoji from intercepting clicks so the button always
    receives the event */
 .speaker-icon {
+  display: inline-block;
+  line-height: 1;
   pointer-events: none;
 }
 
@@ -128,8 +158,8 @@ header.header-collapsed {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 24px; /* larger container for longer bars */
-  height: 24px;
+  width: 1em;
+  height: 1em;
   pointer-events: none; /* clicks pass through to button */
 }
 

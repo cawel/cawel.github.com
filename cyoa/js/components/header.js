@@ -141,8 +141,13 @@ export function createHeader(onNavigateHome, onAudioToggle) {
             </svg>
           </button>
           <button class="audio-control" id="audio-btn" title="Toggle background music">
-            <span class="speaker-icon">🔊</span>
-            <span class="mute-cross" style="visibility:hidden"></span>
+            <span class="audio-icons">
+              <span class="speaker-wrap">
+                <span class="speaker-icon">🔊</span>
+                <span class="mute-cross" style="visibility:hidden"></span>
+              </span>
+              <span class="font-style-icon" aria-hidden="true">A</span>
+            </span>
           </button>
         </div>
       </header>
@@ -176,6 +181,14 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     if (audioBtn) {
       audioBtn.addEventListener("click", () => {
         toggleAudio();
+      });
+    }
+
+    const fontStyleIcon = document.querySelector(".font-style-icon");
+    if (fontStyleIcon) {
+      fontStyleIcon.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
       });
     }
 
