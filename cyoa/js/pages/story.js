@@ -3,23 +3,12 @@
  */
 
 import { parseStory } from "../utils/storyParser.js";
-import { chooseAudioSource } from "../utils/audioResolver.js";
 
 let currentChapter = 1;
 let storyData = null;
-let currentStoryNum = null;
 
 export async function renderStory(params) {
   const storyNum = params.storyId;
-  
-  // Stop audio only if switching to a different story
-  if (currentStoryNum !== null && currentStoryNum !== storyNum) {
-    if (window.cyoaAudioControl && window.cyoaAudioControl.stopAudioWithoutMuting) {
-      window.cyoaAudioControl.stopAudioWithoutMuting();
-    }
-  }
-  
-  currentStoryNum = storyNum;
 
   try {
     // Fetch story data from markdown file
@@ -34,7 +23,6 @@ export async function renderStory(params) {
     currentChapter = 1;
   } catch (error) {
     return `
-      <audio id="story-music" loop style="display: none;"></audio>
       <main class="story-main">
         <div class="story-container">
           <p style="color: red;">Error loading story: ${error.message}</p>
@@ -43,43 +31,7 @@ export async function renderStory(params) {
     `;
   }
 
-  // Setup audio for this story (only done once per story load)
-  setupStoryAudio(storyNum);
-
   return renderChapter(storyNum);
-}
-
-async function setupStoryAudio(storyNum) {
-  // Create persistent audio element if it doesn't exist
-  let audio = document.getElementById("story-music");
-  if (!audio) {
-    audio = document.createElement("audio");
-    audio.id = "story-music";
-    audio.loop = true;
-    audio.style.display = "none";
-    document.body.appendChild(audio);
-  }
-
-  // Resolve story music and set src
-  const storyMusicFolder = `stories/story${storyNum}/music/`;
-  const source = await chooseAudioSource(storyMusicFolder, [
-    `${storyMusicFolder}bg-music.mp3`,
-  ]);
-
-  if (source) {
-    audio.src = source;
-    
-    // Auto-play if unmuted
-    if (!(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())) {
-      audio.play().catch(() => {
-        // Autoplay may fail, user can click button to play
-      });
-    }
-  } else {
-    console.warn(
-      `[audio] No playable story music found in ${storyMusicFolder}`,
-    );
-  }
 }
 
 function renderChapter(storyNum) {
