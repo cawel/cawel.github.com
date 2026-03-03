@@ -4,9 +4,9 @@
 
 export async function renderHome() {
   const stories = [
-    { number: 1, title: "Story 1", emoji: "🗺️" },
-    { number: 2, title: "Story 2", emoji: "🔍" },
-    { number: 3, title: "Story 3", emoji: "🕯️" },
+    { number: 1, title: "The Mysterious Forest", emoji: "🗺️" },
+    { number: 2, title: "Midnight at Hollow Moon Museum", emoji: "🔍" },
+    { number: 3, title: "The Last Broadcast", emoji: "🕯️" },
   ];
 
   const storiesHtml = stories
