@@ -300,12 +300,21 @@ main {
 }
 
 /* Story Page */
-.story-container {
+main.story-main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 88px);
+  padding: 16px 40px 24px;
+  overflow-y: auto;
+}
+
+main.story-main .story-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
   background-color: var(--bg-alt);
   padding: 40px;
   border-radius: 8px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .chapter-title {

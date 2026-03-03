@@ -24,7 +24,7 @@ export async function renderStory(params) {
     currentChapter = 1;
   } catch (error) {
     return `
-      <main>
+      <main class="story-main">
         <div class="story-container">
           <p style="color: red;">Error loading story: ${error.message}</p>
         </div>
@@ -38,7 +38,7 @@ export async function renderStory(params) {
 function renderChapter(storyNum) {
   if (!storyData || !storyData[currentChapter]) {
     return `
-      <main>
+      <main class="story-main">
         <div class="story-container">
           <p>Chapter not found</p>
         </div>
@@ -62,7 +62,7 @@ function renderChapter(storyNum) {
 
   const html = `
     <audio id="story-music" loop style="display: none;"></audio>
-    <main>
+    <main class="story-main">
       <div class="story-container">
         <h2 class="chapter-title">${chapter.title}</h2>
         <div class="chapter-content">${chapter.content}</div>
@@ -126,7 +126,7 @@ async function updateStoryPage(storyNum) {
   const main = document.querySelector("main");
   if (main) {
     main.innerHTML = content
-      .replace(/^.*?<main>/, "")
+      .replace(/^.*?<main[^>]*>/, "")
       .replace(/<\/main>.*?$/, "");
   }
 }
