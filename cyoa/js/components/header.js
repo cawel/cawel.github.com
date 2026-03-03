@@ -35,11 +35,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       ];
 
       // prefer any MP3 found in the folder listing, then fallback candidates
-      mainAudioReady = chooseAudioSource("music/", candidates)
-        .then((chosen) => {
+      mainAudioReady = chooseAudioSource("music/", candidates).then(
+        (chosen) => {
           a.src = chosen || candidates[0];
           return a;
-        });
+        },
+      );
     } else {
       const existing = document.getElementById("main-audio");
       mainAudioReady = Promise.resolve(existing);
@@ -149,12 +150,10 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     };
 
     // Setup event listeners
-    document
-      .getElementById("home-link")
-      .addEventListener("click", () => {
-        muteAndStopAll();
-        onNavigateHome();
-      });
+    document.getElementById("home-link").addEventListener("click", () => {
+      muteAndStopAll();
+      onNavigateHome();
+    });
     const audioBtn = document.getElementById("audio-btn");
     if (audioBtn) {
       audioBtn.addEventListener("click", () => {
