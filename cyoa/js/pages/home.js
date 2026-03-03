@@ -7,6 +7,8 @@ export async function renderHome() {
     { number: 1, title: "The Mysterious Forest", emoji: "🌲" },
     { number: 2, title: "Midnight at Hollow Moon Museum", emoji: "🏺" },
     { number: 3, title: "The Last Broadcast", emoji: "🛰️" },
+    { number: 4, title: "The Clockwork Carnival", emoji: "🎠" },
+    { number: 5, title: "The Sunken Library", emoji: "📚" },
   ];
 
   const storiesHtml = stories
