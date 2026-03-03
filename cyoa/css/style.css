@@ -41,6 +41,16 @@ header {
   background-color: var(--bg-alt);
 }
 
+header.header-collapsed {
+  display: none;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .header-title {
   display: flex;
   align-items: center;
@@ -76,6 +86,28 @@ header {
   align-items: center;
   justify-content: center;
   position: relative; /* allow overlaying the cross */
+}
+
+.header-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-toggle:hover {
+  background-color: var(--bg-muted);
+}
+
+.header-toggle-icon {
+  width: 24px;
+  height: 24px;
 }
 
 /* make icons consistent in size */

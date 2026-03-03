@@ -9,6 +9,15 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let audioElement = null;
   let muted = true; // start muted so red x shows; user must click to unmute
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
+  let headerHidden = false;
+
+  const setHeaderHidden = (hidden) => {
+    const header = document.querySelector("header");
+    if (!header) return;
+
+    headerHidden = hidden;
+    header.classList.toggle("header-collapsed", hidden);
+  };
 
   const stopAllAudio = () => {
     const mainAudio = document.getElementById("main-audio");
@@ -123,10 +132,18 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           <span class="header-emoji">📖</span>
           <span>Choose Your Own Adventure</span>
         </button>
-        <button class="audio-control" id="audio-btn" title="Toggle background music">
-          <span class="speaker-icon">🔊</span>
-          <span class="mute-cross" style="visibility:hidden"></span>
-        </button>
+        <div class="header-controls">
+          <button class="header-toggle" id="header-toggle-btn" title="Hide header">
+            <svg class="header-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 9l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <rect x="4" y="14" width="16" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            </svg>
+          </button>
+          <button class="audio-control" id="audio-btn" title="Toggle background music">
+            <span class="speaker-icon">🔊</span>
+            <span class="mute-cross" style="visibility:hidden"></span>
+          </button>
+        </div>
       </header>
     `;
   };
@@ -160,6 +177,19 @@ export function createHeader(onNavigateHome, onAudioToggle) {
         toggleAudio();
       });
     }
+
+    const headerToggleBtn = document.getElementById("header-toggle-btn");
+    if (headerToggleBtn) {
+      headerToggleBtn.addEventListener("click", () => {
+        setHeaderHidden(true);
+      });
+    }
+
+    document.addEventListener("mousemove", (event) => {
+      if (headerHidden && event.clientY <= 75) {
+        setHeaderHidden(false);
+      }
+    });
 
     // Setup audio tracking once we have the correct main audio URL
     mainAudioReady.then(() => {
