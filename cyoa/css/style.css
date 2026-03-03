@@ -217,7 +217,7 @@ main {
   font-weight: 600;
   margin-top: 30px;
   margin-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 18px;
   border-top: 1px solid var(--border); /* horizontal line above question text */
 }
 
@@ -236,9 +236,9 @@ main {
 }
 
 .choice-item {
-  margin: 12px 0;
+  margin: 2px 0;
   background-color: var(--bg-alt);
-  padding: 8px 12px;
+  padding: 4px 12px;
   border-radius: 4px;
 }
 
@@ -246,7 +246,7 @@ main {
   color: var(--accent);
   text-decoration: none;
   font-size: 18px; /* match base paragraph size */
-  padding: 10px 0;
+  padding: 4px 0;
   cursor: pointer;
   transition: color 0.2s;
   display: block; /* allow link to fill item */
