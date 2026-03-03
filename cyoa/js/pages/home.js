@@ -27,7 +27,6 @@ export async function renderHome() {
   const html = `
     <main>
       <div class="home-container">
-        <h1 class="home-title">Welcome to Choose Your Own Adventure</h1>
         <table class="stories-grid">
           ${storiesHtml}
         </table>
