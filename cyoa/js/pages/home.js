@@ -33,6 +33,7 @@ export async function renderHome() {
   const html = `
     <main>
       <div class="home-container">
+        <h1 class="home-title">Where Will You Begin?</h1>
         <div class="stories-grid" role="list">
           ${storiesHtml}
         </div>

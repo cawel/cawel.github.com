@@ -150,12 +150,14 @@ main {
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 90px;
+  margin-bottom: 12px;
+  color: var(--accent);
 }
 
 .stories-grid {
   width: min(900px, 100%);
-  margin: 100px auto 0;
+  margin: 16px auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
