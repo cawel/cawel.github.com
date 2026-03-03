@@ -343,7 +343,6 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     // Setup event listeners
     document.getElementById("home-link").addEventListener("click", () => {
-      muteAndStopAll();
       onNavigateHome();
     });
     const audioBtn = document.getElementById("audio-btn");
