@@ -14,20 +14,20 @@
 const REGEX = {
   storyTitleHeading: /^#\s+.+$/,
   chapterHeading: /##\s+Chapter\s+(\d+)/i,
-  sectionHeading: /###\s+(\w+)/i,
+  chapterSectionHeading: /###\s+(\w+)/i,
   choiceLine: /^(\d+)\.\s+(.+?)\s*->\s*(\d+)$/,
 };
 
-const CHAPTER_SECTION_NAMES = {
+const CHAPTER_SECTION_HEADING_NAMES = {
   title: "title",
   content: "content",
   choices: "choices",
 };
 
-const ALLOWED_SECTIONS = Object.freeze([
-  CHAPTER_SECTION_NAMES.title,
-  CHAPTER_SECTION_NAMES.content,
-  CHAPTER_SECTION_NAMES.choices,
+const CHAPTER_SECTIONS = Object.freeze([
+  CHAPTER_SECTION_HEADING_NAMES.title,
+  CHAPTER_SECTION_HEADING_NAMES.content,
+  CHAPTER_SECTION_HEADING_NAMES.choices,
 ]);
 
 export const PARSER_RULES = Object.freeze({
@@ -139,7 +139,7 @@ export function parseStory(markdown) {
         }
       }
 
-      const sectionMatch = trimmed.match(REGEX.sectionHeading);
+      const sectionMatch = trimmed.match(REGEX.chapterSectionHeading);
       if (!sectionMatch) {
         throw new Error(
           buildRuleError(
@@ -150,7 +150,7 @@ export function parseStory(markdown) {
       }
 
       currentSection = sectionMatch[1].toLowerCase();
-      if (!ALLOWED_SECTIONS.includes(currentSection)) {
+      if (!CHAPTER_SECTIONS.includes(currentSection)) {
         throw new Error(
           buildRuleError(
             "VALID_SECTION_HEADINGS",
