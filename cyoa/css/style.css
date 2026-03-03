@@ -158,7 +158,7 @@ main {
   margin: 100px auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  gap: 28px;
 }
 
 .story-card {
@@ -173,7 +173,7 @@ main {
 
 .story-card-title {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 22px;
   font-weight: 700;
@@ -181,6 +181,7 @@ main {
 
 .story-card-emoji {
   font-size: 24px;
+  line-height: 1;
 }
 
 .launch-button {
