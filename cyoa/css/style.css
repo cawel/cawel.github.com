@@ -70,6 +70,8 @@ body {
   font-family: 'Merriweather', Georgia, serif;
   background-color: var(--bg);
   color: var(--text);
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
@@ -310,7 +312,8 @@ header.header-collapsed {
 
 /* App Container */
 #app {
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -425,8 +428,8 @@ main {
 main.story-main {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 88px);
-  padding: 16px 40px 24px;
+  min-height: 0;
+  padding: 20px 40px;
   overflow-y: auto;
 }
 
