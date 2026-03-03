@@ -92,7 +92,7 @@ async function loadStory() {
   }
 
   try {
-    const response = await fetch(`/stories/story${storyNum}/data.md`);
+    const response = await fetch(`/stories/story${storyNum}/chapters.md`);
     if (!response.ok) {
       throw new Error(`Failed to load story ${storyNum}`);
     }

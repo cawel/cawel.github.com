@@ -13,7 +13,7 @@ export async function renderStory(params) {
 
   try {
     // Fetch story data from markdown file
-    const response = await fetch(`/stories/story${storyNum}/data.md`);
+    const response = await fetch(`/stories/story${storyNum}/chapters.md`);
     if (!response.ok) {
       throw new Error(`Failed to load story ${storyNum}`);
     }

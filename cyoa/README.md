@@ -33,15 +33,15 @@ cyoa/
 │       └── storyParser.js    # Markdown parser and validator
 ├── stories/
 │   ├── story1/
-│   │   ├── data.md           # Story content in markdown
+│   │   ├── chapters.md       # Story content in markdown
 │   │   └── music/
 │   │       └── bg-music.mp3  # Story background music
 │   ├── story2/
-│   │   ├── data.md
+│   │   ├── chapters.md
 │   │   └── music/
 │   │       └── bg-music.mp3
 │   └── story3/
-│       ├── data.md
+│       ├── chapters.md
 │       └── music/
 │           └── bg-music.mp3
 ├── music/
