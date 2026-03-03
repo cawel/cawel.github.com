@@ -342,6 +342,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-height: 100%;
 }
 
 .home-title {
@@ -359,6 +360,16 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   gap: 40px;
+}
+
+.home-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  text-align: center;
+  color: var(--text-alt);
+  opacity: 0.65;
+  font-size: 14px;
+  border-top: 1px solid var(--border);
 }
 
 .story-card {

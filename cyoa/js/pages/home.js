@@ -39,6 +39,13 @@ export async function renderHome() {
       chapters: 6,
       approxTime: "5-10 min",
     },
+    {
+      number: 6,
+      title: "Echoes of the Perseid Gate",
+      emoji: "🚀",
+      chapters: 10,
+      approxTime: "25-35 min",
+    },
   ];
 
   const storiesHtml = stories
@@ -71,6 +78,7 @@ export async function renderHome() {
         <div class="stories-grid" role="list">
           ${storiesHtml}
         </div>
+        <footer class="home-footer">Choose Your Own Adventure</footer>
       </div>
     </main>
   `;
