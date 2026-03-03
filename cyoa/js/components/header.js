@@ -3,6 +3,7 @@
  */
 
 import { createAudioController } from "./audioController.js";
+import { createThemeController } from "./themeController.js";
 
 const CHAPTER_FONT_CANDIDATES = [
   { name: "Merriweather", stack: "'Merriweather', Georgia, serif" },
@@ -58,25 +59,8 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let waitForRevealZoneExit = false;
   let keydownBound = false;
   let chapterFontIndex = 0;
-  let currentTheme = localStorage.getItem("cyoaTheme") || "yellow";
   const audioController = createAudioController();
-
-  const applyTheme = (theme) => {
-    const html = document.documentElement;
-    if (theme === "minimalistic") {
-      html.classList.add("theme-minimalistic");
-    } else {
-      html.classList.remove("theme-minimalistic");
-    }
-    currentTheme = theme;
-    localStorage.setItem("cyoaTheme", theme);
-    console.log(`[theme] Switched to: ${theme}`);
-  };
-
-  const cycleTheme = () => {
-    const nextTheme = currentTheme === "yellow" ? "minimalistic" : "yellow";
-    applyTheme(nextTheme);
-  };
+  const themeController = createThemeController();
   const applyChapterFont = () => {
     const font = CHAPTER_FONT_CANDIDATES[chapterFontIndex];
     document.documentElement.style.setProperty(
@@ -162,7 +146,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     header.innerHTML = getHtml();
 
-    applyTheme(currentTheme);
+    themeController.initialize();
     // expose a simple getter globally so other modules (e.g. story.js) can
     // respect the user’s mute preference before auto-playing audio
     window.cyoaAudioControl = {
@@ -178,7 +162,10 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     const audioBtn = document.getElementById("audio-btn");
     const audioTrackSelect = document.getElementById("audio-track-select");
-    audioController.setControls({ button: audioBtn, trackSelect: audioTrackSelect });
+    audioController.setControls({
+      button: audioBtn,
+      trackSelect: audioTrackSelect,
+    });
 
     const fontBtn = document.getElementById("font-btn");
     if (fontBtn) {
@@ -194,7 +181,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       themeBtn.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        cycleTheme();
+        themeController.cycleTheme();
       });
     }
 
@@ -233,7 +220,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
         }
 
         if (key === "t") {
-          cycleTheme();
+          themeController.cycleTheme();
           return;
         }
 
