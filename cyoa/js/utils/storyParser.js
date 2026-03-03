@@ -13,6 +13,14 @@
 
 export function parseStory(markdown) {
   const lines = markdown.split("\n");
+
+  const firstNonEmptyLine = lines.find((line) => line.trim());
+  if (!firstNonEmptyLine || !/^#\s+.+$/.test(firstNonEmptyLine.trim())) {
+    throw new Error(
+      'Story must begin with a top-level title in format: "# Story Title"',
+    );
+  }
+
   const chapters = {};
   let currentChapter = null;
   let currentSection = null;
