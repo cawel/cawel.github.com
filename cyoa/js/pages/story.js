@@ -93,9 +93,12 @@ function renderChapter(storyNum) {
       });
     });
 
-    // Auto-play story music
+    // Auto-play story music only if header hasn't requested mute
     const audio = document.getElementById("story-music");
-    if (audio) {
+    if (
+      audio &&
+      !(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())
+    ) {
       audio.play().catch(() => {
         // Autoplay may fail, user can click button to play
       });

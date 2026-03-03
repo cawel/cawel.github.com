@@ -5,7 +5,7 @@
 export function createHeader(onNavigateHome, onAudioToggle) {
   let isPlaying = false;
   let audioElement = null;
-  let muted = false; // user-requested mute state (controls red x)
+  let muted = true; // start muted so red x shows; user must click to unmute
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
 
   const ensureMainAudioExists = () => {
@@ -56,6 +56,13 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       // Look for main audio
       audioElement = document.getElementById("main-audio");
       isPlaying = audioElement && audioElement.paused === false;
+    }
+
+    // if we're muted, make sure any active element is paused so audio
+    // doesn't start without an explicit click
+    if (muted && audioElement && !audioElement.paused) {
+      audioElement.pause();
+      isPlaying = false;
     }
   };
 
@@ -117,6 +124,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       })();
 
     header.innerHTML = getHtml();
+
+    // expose a simple getter globally so other modules (e.g. story.js) can
+    // respect the user’s mute preference before auto-playing audio
+    window.cyoaAudioControl = {
+      isMuted: () => muted,
+    };
 
     // Setup event listeners
     document
