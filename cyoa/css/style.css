@@ -428,6 +428,7 @@ main {
   margin-top: 10px;
   font-size: 13px;
   font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
 }
 
 .story-select {

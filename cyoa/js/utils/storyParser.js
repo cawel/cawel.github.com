@@ -18,28 +18,41 @@ const REGEX = {
   choiceLine: /^\d+\.\s+(.+?)\s*->\s*(\d+)$/,
 };
 
-const SECTION_NAMES = {
+const CHAPTER_SECTION_NAMES = {
   title: "title",
   content: "content",
   choices: "choices",
 };
 
 const ALLOWED_SECTIONS = Object.freeze([
-  SECTION_NAMES.title,
-  SECTION_NAMES.content,
-  SECTION_NAMES.choices,
+  CHAPTER_SECTION_NAMES.title,
+  CHAPTER_SECTION_NAMES.content,
+  CHAPTER_SECTION_NAMES.choices,
 ]);
 
-export const PARSER_RULES = Object.freeze([
-  "Story must begin with a top-level title in format: # Story Title",
-  "Each chapter heading must follow: ## Chapter N",
-  "Chapter numbers must be unique",
-  "Section headings must be one of: Title, Content, Choices",
-  "Each choice line must follow: 1. Choice text -> ChapterNumber",
-  "Every chapter must include title, content, and choices",
-  "Choice targets must reference existing chapters",
-  "First chapter must be Chapter 1",
-]);
+export const PARSER_RULES = Object.freeze({
+  STORY_TITLE_HEADING:
+    "Story must begin with a top-level title in format: # Story Title",
+  CHAPTER_HEADING_FORMAT: "Each chapter heading must follow: ## Chapter N",
+  UNIQUE_CHAPTER_NUMBERS: "Chapter numbers must be unique",
+  VALID_SECTION_HEADINGS:
+    "Section headings must be one of: Title, Content, Choices",
+  CHOICE_LINE_FORMAT:
+    "Each choice line must follow: 1. Choice text -> ChapterNumber",
+  CHAPTER_REQUIRED_FIELDS:
+    "Every chapter must include title, content, and choices",
+  CHOICE_TARGET_EXISTS: "Choice targets must reference existing chapters",
+  CHOICE_NOT_SELF_REFERENTIAL:
+    "Choice targets must not reference the same chapter they are in",
+  FIRST_CHAPTER_IS_ONE: "First chapter must be Chapter 1",
+  AT_LEAST_ONE_CHAPTER:
+    "No chapters found. Add at least one chapter in format: ## Chapter N",
+});
+
+function buildRuleError(ruleName, details) {
+  const base = PARSER_RULES[ruleName] || "Unknown parser rule";
+  return `[${ruleName}] ${base}${details ? `\n${details}` : ""}`;
+}
 
 export function parseStory(markdown) {
   const lines = markdown.split("\n");
@@ -49,9 +62,7 @@ export function parseStory(markdown) {
     !firstNonEmptyLine ||
     !REGEX.storyTitleHeading.test(firstNonEmptyLine.trim())
   ) {
-    throw new Error(
-      'Story must begin with a top-level title in format: "# Story Title"',
-    );
+    throw new Error(buildRuleError("STORY_TITLE_HEADING"));
   }
 
   const chapters = {};
@@ -77,14 +88,20 @@ export function parseStory(markdown) {
       const chapterMatch = trimmed.match(REGEX.chapterHeading);
       if (!chapterMatch) {
         throw new Error(
-          `Invalid chapter format: "${trimmed}". Expected "## Chapter N"`,
+          buildRuleError(
+            "CHAPTER_HEADING_FORMAT",
+            `Invalid chapter format: "${trimmed}".`,
+          ),
         );
       }
 
       const chapterNum = chapterMatch[1];
       if (chapters[chapterNum]) {
         throw new Error(
-          `Duplicate chapter number found: Chapter ${chapterNum}`,
+          buildRuleError(
+            "UNIQUE_CHAPTER_NUMBERS",
+            `Duplicate chapter number found: Chapter ${chapterNum}.`,
+          ),
         );
       }
 
@@ -112,13 +129,21 @@ export function parseStory(markdown) {
 
       const sectionMatch = trimmed.match(REGEX.sectionHeading);
       if (!sectionMatch) {
-        throw new Error(`Invalid section format: "${trimmed}"`);
+        throw new Error(
+          buildRuleError(
+            "VALID_SECTION_HEADINGS",
+            `Invalid section format: "${trimmed}".`,
+          ),
+        );
       }
 
       currentSection = sectionMatch[1].toLowerCase();
       if (!ALLOWED_SECTIONS.includes(currentSection)) {
         throw new Error(
-          `Invalid section name: "${currentSection}". Expected one of: Title, Content, Choices`,
+          buildRuleError(
+            "VALID_SECTION_HEADINGS",
+            `Invalid section name: "${currentSection}".`,
+          ),
         );
       }
       currentContent = [];
@@ -153,7 +178,10 @@ function parseChoices(choicesText) {
     const match = line.trim().match(REGEX.choiceLine);
     if (!match) {
       throw new Error(
-        `Invalid choice format: "${line.trim()}". Expected "1. Choice text -> ChapterNumber"`,
+        buildRuleError(
+          "CHOICE_LINE_FORMAT",
+          `Invalid choice format: "${line.trim()}".`,
+        ),
       );
     }
 
@@ -167,24 +195,38 @@ function parseChoices(choicesText) {
 }
 
 function validateStory(chapters) {
+  const errors = [];
+
   // Check if any chapters exist
   if (Object.keys(chapters).length === 0) {
-    throw new Error(
-      "No chapters found. Add at least one chapter in format: ## Chapter N",
-    );
+    errors.push(buildRuleError("AT_LEAST_ONE_CHAPTER"));
+    throw new Error(errors.join("\n"));
   }
 
   // Validate each chapter
   for (const [num, chapter] of Object.entries(chapters)) {
     if (!chapter.title) {
-      throw new Error(`Chapter ${num} missing ### Title section`);
+      errors.push(
+        buildRuleError(
+          "CHAPTER_REQUIRED_FIELDS",
+          `Chapter ${num} missing ### Title section.`,
+        ),
+      );
     }
     if (!chapter.content) {
-      throw new Error(`Chapter ${num} missing ### Content section`);
+      errors.push(
+        buildRuleError(
+          "CHAPTER_REQUIRED_FIELDS",
+          `Chapter ${num} missing ### Content section.`,
+        ),
+      );
     }
     if (!chapter.choices || chapter.choices.length === 0) {
-      throw new Error(
-        `Chapter ${num} missing ### Choices section or has no choices`,
+      errors.push(
+        buildRuleError(
+          "CHAPTER_REQUIRED_FIELDS",
+          `Chapter ${num} missing ### Choices section or has no choices.`,
+        ),
       );
     }
 
@@ -192,8 +234,20 @@ function validateStory(chapters) {
     for (const choice of chapter.choices) {
       const refChapter = chapters[choice.chapterNumber.toString()];
       if (!refChapter) {
-        throw new Error(
-          `Chapter ${num}: Choice refers to non-existent Chapter ${choice.chapterNumber}`,
+        errors.push(
+          buildRuleError(
+            "CHOICE_TARGET_EXISTS",
+            `Chapter ${num}: Choice refers to non-existent Chapter ${choice.chapterNumber}.`,
+          ),
+        );
+      }
+
+      if (choice.chapterNumber === parseInt(num)) {
+        errors.push(
+          buildRuleError(
+            "CHOICE_NOT_SELF_REFERENTIAL",
+            `Chapter ${num}: Choice cannot reference Chapter ${num}.`,
+          ),
         );
       }
     }
@@ -204,7 +258,11 @@ function validateStory(chapters) {
     .map(Number)
     .sort((a, b) => a - b);
   if (chapterNums[0] !== 1) {
-    throw new Error("First chapter must be Chapter 1");
+    errors.push(buildRuleError("FIRST_CHAPTER_IS_ONE"));
+  }
+
+  if (errors.length > 0) {
+    throw new Error(errors.join("\n"));
   }
 }
 
