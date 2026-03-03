@@ -488,10 +488,6 @@ main.story-main .story-container {
   text-shadow: none;
 }
 
-.choice-link:hover .choice-text {
-  text-decoration: underline;
-}
-
 /* Admin Page */
 .admin-container {
   background-color: var(--bg-alt);
