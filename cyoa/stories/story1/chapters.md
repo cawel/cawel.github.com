@@ -109,7 +109,7 @@ You search the plateau and discover ancient stone markers and ceremonial grounds
 
 ### Choices
 1. Head toward the temple now -> 9
-2. Read more of the journal to understand your role -> 10
+2. Read more of the journal to understand your role -> 1
 
 ## Chapter 11
 ### Title
@@ -208,7 +208,7 @@ You prove to be a just and wise ruler, using your authority to lift up the peopl
 
 ### Choices
 1. Reflect on your reign as an old ruler -> 25
-2. Train the next generation to continue your work -> 19
+2. Train the next generation to continue your work -> 1
 
 ## Chapter 20
 ### Title
@@ -219,7 +219,7 @@ With the staff in hand, you travel the lands, healing the sick, mending what was
 
 ### Choices
 1. Pass the staff to a worthy successor -> 26
-2. Continue your journey across the lands -> 20
+2. Continue your journey across the lands -> 1
 
 ## Chapter 21
 ### Title
@@ -240,7 +240,7 @@ Eternal Guardian
 You decide to stay in the chamber, becoming its guardian. Centuries pass, and travelers occasionally find their way to the archway, just as you did. You guide them through the passage, present them with the crystal, and watch as they make their choices. Through them, you experience countless alternate timelines and perspectives. In this role, you've become timeless—neither fully of the ancient world nor the modern one, but a bridge between ages, ensuring that the mystery endures and calls to those meant to find it.
 
 ### Choices
-1. Welcome the next traveler -> 22
+1. Welcome the next traveler -> 1
 2. Step through a portal to another time -> 28
 
 ## Chapter 23
@@ -251,7 +251,7 @@ A New Home
 You build a small cottage by the ocean and plant roots for the first time in your journey. The sea becomes your meditation, its endless motion a reminder that life is always in flux. You write down your experiences, not to claim heroism, but to help others understand that the greatest adventures often lead to the simplest truths. Your cottage becomes a refuge for other wanderers, a place where stories are shared and souls find rest.
 
 ### Choices
-1. Continue helping travelers -> 23
+1. Continue helping travelers -> 1
 2. Answer the call of another adventure -> 24
 
 ## Chapter 24
@@ -284,7 +284,7 @@ The Torch Passes
 You find a worthy successor, a young healer with a pure heart and deep compassion. You train them in the ways of the staff and pass on everything you've learned about channeling its power for good. As you hand over the staff, you feel a weight lift—not the burden of responsibility, but the knowledge that your work will continue through others. You decide to spend your remaining years reflecting, writing, and ensuring that future healers understand that the staff is only as powerful as the heart that wields it.
 
 ### Choices
-1. Mentor the next generation of healers -> 26
+1. Mentor the next generation of healers -> 1
 2. Rest and find peace in your legacy -> 25
 
 ## Chapter 27
@@ -295,7 +295,7 @@ The Spread of Truth
 You begin to share the prophecy with others, and word spreads like wildfire. Some believe, some doubt, but all are moved by the message of hope and change it contains. A movement begins, founded not on your word alone, but on the resonance of truth that speaks to people's hearts. You become a teacher and guide, helping others understand their role in the greater transformation. The prophecy becomes not a prediction of the future, but an inspiration for how people can shape it together.
 
 ### Choices
-1. Establish a council of leaders committed to change -> 27
+1. Establish a council of leaders committed to change -> 1
 2. Withdraw and let the movement grow on its own -> 17
 
 ## Chapter 28
@@ -307,7 +307,7 @@ You step through a shimmering portal and find yourself in a completely different
 
 ### Choices
 1. Return to your own time with newfound wisdom -> 17
-2. Continue exploring through the ages -> 28
+2. Continue exploring through the ages -> 1
 
 ## Chapter 29
 ### Title
@@ -318,7 +318,7 @@ Your boat arrives at the most magnificent island you've ever seen. A city rises 
 
 ### Choices
 1. Share your stories and learn from them -> 24
-2. Build a bridge between your world and theirs -> 29
+2. Build a bridge between your world and theirs -> 1
 
 ## Chapter 30
 ### Title

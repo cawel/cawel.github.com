@@ -245,10 +245,13 @@ export function parseStory(markdown) {
   const lines = markdown.split("\n");
   assertStoryTitleHeading(lines);
 
-  const finalState = lines.entries().reduce(
-    (state, [lineIndex, line]) => reduceStoryLine(state, lineIndex, line, lines),
-    createInitialParserState(),
-  );
+  const finalState = lines
+    .entries()
+    .reduce(
+      (state, [lineIndex, line]) =>
+        reduceStoryLine(state, lineIndex, line, lines),
+      createInitialParserState(),
+    );
 
   const chapters = flushCurrentChapterSection(finalState).chapters;
 

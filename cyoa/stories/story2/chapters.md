@@ -53,7 +53,7 @@ You rush to the security room and find that someone has already deleted most of 
 
 ### Choices
 1. Confront the museum director about what you've found -> 9
-2. Tell the police detective about the maintenance tunnel -> 5
+2. Tell the police detective about the maintenance tunnel -> 1
 
 ## Chapter 6
 ### Title
@@ -96,7 +96,7 @@ You march into the director's office the next morning, evidence in hand. The dir
 
 ### Choices
 1. Tell her you're going to the police -> 15
-2. Ask to learn more about what she's protecting -> 9
+2. Ask to learn more about what she's protecting -> 1
 
 ## Chapter 10
 ### Title
@@ -216,7 +216,7 @@ You break from hiding and run toward the sphere, trying to interrupt the ritual.
 
 ### Choices
 1. Awaken to your true nature -> 30
-2. Resist the awakening and cling to your humanity -> 20
+2. Resist the awakening and cling to your humanity -> 1
 
 ## Chapter 21
 ### Title

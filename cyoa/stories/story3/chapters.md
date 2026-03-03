@@ -118,7 +118,7 @@ Unknown Element
 The database has no record of this isotope. You cross-reference with your personal scientific knowledge and historical physics data you can access via the ISS library. Then you see it: research papers from 45 years ago, all classified, all redacted. But the abstracts remain: "Theoretical properties of elemental iteration" and "Adaptive atmospheric protocols." Someone, decades ago, theorized about this. Someone prepared for it. You dig deeper and find a name appearing in multiple redacted documents: Dr. Sarah Chen, a physicist who disappeared in 1987 after warning about "accelerated evolutionary pressure cascading through atmospheric vectors." Whatever is happening now, it was predicted and expected by someone.
 
 ### Choices
-1. Try to find more information about Dr. Sarah Chen -> 11
+1. Try to find more information about Dr. Sarah Chen -> 1
 2. Focus on current survival and prepare for landing -> 7
 
 ## Chapter 12
@@ -377,7 +377,7 @@ You directly challenge the being before you. "Humanity is defined by choice. If 
 
 ### Choices
 1. Return to organized resistance -> 40
-2. Work to unite both sides toward informed choice -> 46
+2. Work to unite both sides toward informed choice -> 45
 
 ## Chapter 36
 ### Title
@@ -397,7 +397,7 @@ The Network Integrated
 You venture into the crystalline network. Inside, you discover that the structures are not buildings but living ecosystem. They're conscious but not individual—a distributed intelligence spanning the planet. You travel through tunnels that exist simultaneously in multiple locations. You encounter other humans—some unchanged, some partially transformed—all investigating, all asking the same questions you are. The network doesn't hide anything. It shows you its history: attempts to contact humanity for centuries, careful observation, the recent revealed choice because humanity's evolution was becoming unstoppable whether guided or chaotic. You become a guide to others, helping them understand what the network truly is: not an invasion but a midwife for humanity's birth into something new.
 
 ### Choices
-1. Work to mediate between network and unchanged humans -> 46
+1. Work to mediate between network and unchanged humans -> 45
 2. Accept transformation and guide from within -> 41
 
 ## Chapter 38
@@ -418,8 +418,8 @@ The Final Defiance
 You initiate a protocol no astronaut was ever trained for: slow deorbiting. You deliberately damage the ISS's orientation propulsion, forcing a spiral toward Earth. It will take weeks, during which you document your actions and your reasoning. You broadcast manifesto messages explaining why humanity must not be forced, why even beneficial evolution must be chosen. As the ISS decays, the transformed people track your course. They show no anger, only interest in your statement. When you finally reach the ground in a remote area of Tibet, they wait for you, willing to negotiate. Your defiance hasn't stopped their evolution, but it's forced them to confront a new question: what does it mean to create a truly conscious species if you remove the right to refuse consciousness?
 
 ### Choices
-1. Use your final voice to bargain for choice -> 46
-2. Complete transformation as final act ->.41
+1. Use your final voice to bargain for choice -> 45
+2. Complete transformation as final act -> 41
 
 ## Chapter 40
 ### Title
@@ -479,4 +479,4 @@ The New Age
 Regardless of your choices—whether you transformed or resisted, accepted or fought, understood or remained confused—humanity has moved forward. Earth's new civilization is not utopian simplicity but complex beauty: the Convergence and the Free Communities, consciousness expressed in multiplicity, individual and collective in dynamic balance. On other worlds, your descendants (transformed, unchanged, or hybrid) begin new chapters of human existence. And somewhere, in orbit around a distant star, scientists and artists and philosophers continue asking the questions that define consciousness: Who are we? What are we becoming? What does it mean to choose? The answer given in Earth's transformation generates a thousand new questions. That endless questioning, that refusal to accept final answers, is what proves you were always human—evolving, changing, becoming, yet maintaining the core that makes you fundamentally, beautifully, frustratingly human.
 
 ### Choices
-1. Reflect on your journey -> 45
+1. Reflect on your journey -> 1
