@@ -4,6 +4,15 @@
 
 import { parseStory } from "../utils/storyParser.js";
 
+function formatChapterContent(content) {
+  return content
+    .split(/\n\s*\n/g)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+
 export async function renderStory(params) {
   const storyNum = params.storyId;
   const chapterParam = params.chapterId;
@@ -41,6 +50,7 @@ export async function renderStory(params) {
   }
 
   const chapter = storyData[chapterNumber];
+  const chapterContentHtml = formatChapterContent(chapter.content);
 
   const choicesHtml = chapter.choices
     .map(
@@ -59,7 +69,7 @@ export async function renderStory(params) {
     <main class="story-main">
       <div class="story-container">
         <h2 class="chapter-title">${chapter.title}</h2>
-        <div class="chapter-content">${chapter.content}</div>
+        <div class="chapter-content">${chapterContentHtml}</div>
         ${
           chapter.choices.length > 0
             ? `

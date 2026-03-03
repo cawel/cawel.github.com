@@ -1,4 +1,7 @@
-import { chooseAudioSource, findMp3FilesInFolder } from "../utils/audioResolver.js";
+import {
+  chooseAudioSource,
+  findMp3FilesInFolder,
+} from "../utils/audioResolver.js";
 
 export function createAudioController() {
   let isPlaying = false;

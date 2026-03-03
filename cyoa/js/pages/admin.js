@@ -22,6 +22,7 @@ export async function renderAdmin() {
               <option value="3">Story 3</option>
               <option value="4">Story 4</option>
               <option value="5">Story 5</option>
+              <option value="6">Story 6</option>
             </select>
           </div>
           <div class="editor-actions">
