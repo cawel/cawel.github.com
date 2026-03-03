@@ -23,8 +23,9 @@
   --story-border: #3d3730;
   --story-title-color: #c9a961;
   --story-text-color: #ccc;
-  --story-choice-color: #c9a961;
-  --story-choice-hover: #e8bc61;
+  --story-choice-text-color: #b9b2a5;
+  --story-choice-text-hover: #d2ccc1;
+  --story-choice-icon-color: #c9a961;
 }
 
 /* Minimalistic theme */
@@ -33,8 +34,9 @@
   --story-border: #222;
   --story-title-color: #b3b3b3;
   --story-text-color: #9a9a9a;
-  --story-choice-color: #8e8e8e;
-  --story-choice-hover: #a6a6a6;
+  --story-choice-text-color: #8e8e8e;
+  --story-choice-text-hover: #a6a6a6;
+  --story-choice-icon-color: #b3b3b3;
 }
 
 html, body {
@@ -428,7 +430,7 @@ main.story-main .story-container {
 }
 
 .choice-link {
-  color: var(--story-choice-color);
+  color: var(--story-choice-text-color);
   text-decoration: none;
   font-size: 24px;
   padding: 6px 8px;
@@ -446,10 +448,11 @@ main.story-main .story-container {
 .choice-emoji {
   margin-right: 12px;
   font-size: 1.2em;
+  color: var(--story-choice-icon-color);
 }
 
 .choice-link:hover {
-  color: var(--story-choice-hover);
+  color: var(--story-choice-text-hover);
   text-shadow: none;
 }
 
