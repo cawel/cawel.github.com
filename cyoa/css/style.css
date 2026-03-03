@@ -17,6 +17,24 @@
   --button-bg: #334455;
   --button-bg-hover: #445566;
   --chapter-content-font: 'Merriweather', Georgia, serif;
+  
+  /* Theme-specific variables - Yellow theme by default */
+  --story-bg: #1f1a15;
+  --story-border: #3d3730;
+  --story-title-color: #c9a961;
+  --story-text-color: #ccc;
+  --story-choice-color: #c9a961;
+  --story-choice-hover: #e8bc61;
+}
+
+/* Minimalistic theme */
+:root.theme-minimalistic {
+  --story-bg: #0d0d0d;
+  --story-border: #222;
+  --story-title-color: #e0e0e0;
+  --story-text-color: #d0d0d0;
+  --story-choice-color: #b0b0b0;
+  --story-choice-hover: #e0e0e0;
 }
 
 html, body {
@@ -112,6 +130,28 @@ header.header-collapsed {
 
 .font-control:hover {
   background-color: var(--bg-muted);
+}
+
+.theme-control {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-control:hover {
+  background-color: var(--bg-muted);
+}
+
+.theme-icon {
+  font-size: 24px;
+  line-height: 1;
 }
 
 .header-toggle {
@@ -327,69 +367,90 @@ main.story-main .story-container {
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  background-color: var(--bg-alt);
-  padding: 40px;
-  border-radius: 8px;
+  background-color: var(--story-bg);
+  padding: 50px 45px;
+  border-radius: 0;
+  position: relative;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--story-border);
 }
 
 .chapter-title {
   font-size: 56px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: var(--story-title-color);
+  text-shadow: none;
+  border-bottom: 1px solid var(--story-border);
+  padding-bottom: 12px;
+  font-style: normal;
 }
 
 .chapter-section-title {
   font-size: 32px;
   font-weight: 600;
   margin-top: 82px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-top: 18px;
-  border-top: 1px solid var(--border); /* horizontal line above question text */
+  border-top: 1px solid var(--story-border);
+  padding-bottom: 10px;
+  color: var(--story-title-color);
+  text-shadow: none;
 }
 
 .chapter-content {
   font-size: 28px;
-  line-height: 1.6;
-  color: var(--text-alt);
+  line-height: 1.8;
+  color: var(--story-text-color);
   font-family: var(--chapter-content-font);
   margin-bottom: 20px;
+  text-shadow: none;
 }
 
 .choices-list {
   list-style: none;
-  margin-top: 10px; /* reduced because heading has border now */
-  padding-top: 0;
-  /* border removed; moved above heading */
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-left: 0;
 }
 
 .choice-item {
-  margin: 2px 0;
-  background-color: var(--bg-alt);
-  padding: 4px 12px;
-  border-radius: 4px;
+  margin: 6px 0;
+  background-color: transparent;
+  padding: 8px 12px;
+  border-radius: 0;
+  border-left: none;
+  transition: all 0.2s;
+}
+
+.choice-item:hover {
+  background-color: rgba(201, 169, 97, 0.05);
 }
 
 .choice-link {
-  color: var(--accent);
+  color: var(--story-choice-color);
   text-decoration: none;
   font-size: 24px;
-  padding: 4px 0;
+  padding: 6px 8px;
   cursor: pointer;
-  transition: color 0.2s;
-  display: block; /* allow link to fill item */
-  background: transparent; /* show item background */
+  transition: all 0.2s;
+  display: block;
+  background: transparent;
   border: none;
   width: 100%;
   text-align: left;
-  font-family: 'Crimson Text', serif; /* distinctive, legible book font */
+  font-family: 'Crimson Text', serif;
+  text-shadow: none;
 }
 
 .choice-emoji {
-  margin-right: 8px;
+  margin-right: 12px;
+  font-size: 1.2em;
 }
 
 .choice-link:hover {
-  color: var(--accent-dark);
+  color: var(--story-choice-hover);
+  text-shadow: none;
 }
 
 .choice-link:hover .choice-text {

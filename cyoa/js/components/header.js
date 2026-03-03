@@ -61,7 +61,24 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let waitForRevealZoneExit = false;
   let keydownBound = false;
   let chapterFontIndex = 0;
+  let currentTheme = localStorage.getItem('cyoaTheme') || 'yellow';
 
+  const applyTheme = (theme) => {
+    const html = document.documentElement;
+    if (theme === 'minimalistic') {
+      html.classList.add('theme-minimalistic');
+    } else {
+      html.classList.remove('theme-minimalistic');
+    }
+    currentTheme = theme;
+    localStorage.setItem('cyoaTheme', theme);
+    console.log(`[theme] Switched to: ${theme}`);
+  };
+
+  const cycleTheme = () => {
+    const nextTheme = currentTheme === 'yellow' ? 'minimalistic' : 'yellow';
+    applyTheme(nextTheme);
+  };
   const applyChapterFont = () => {
     const font = CHAPTER_FONT_CANDIDATES[chapterFontIndex];
     document.documentElement.style.setProperty(
@@ -226,6 +243,9 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           <button class="font-control" id="font-btn" title="Change chapter font">
             <span class="font-style-icon" aria-hidden="true">A</span>
           </button>
+          <button class="theme-control" id="theme-btn" title="Change theme">
+            <span class="theme-icon" aria-hidden="true">🎨</span>
+          </button>
         </div>
       </header>
     `;
@@ -242,6 +262,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     header.innerHTML = getHtml();
 
+    applyTheme(currentTheme);
     // expose a simple getter globally so other modules (e.g. story.js) can
     // respect the user’s mute preference before auto-playing audio
     window.cyoaAudioControl = {
@@ -268,6 +289,15 @@ export function createHeader(onNavigateHome, onAudioToggle) {
         event.preventDefault();
         event.stopPropagation();
         cycleChapterFont();
+      });
+    }
+
+    const themeBtn = document.getElementById("theme-btn");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        cycleTheme();
       });
     }
 
