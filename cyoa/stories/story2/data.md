@@ -1,3 +1,5 @@
+# Midnight at Hollow Moon Museum
+
 ## Chapter 1
 ### Title
 The Museum at Midnight
