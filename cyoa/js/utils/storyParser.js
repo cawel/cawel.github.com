@@ -49,6 +49,10 @@ export function parseStory(markdown) {
       }
 
       const chapterNum = chapterMatch[1];
+      if (chapters[chapterNum]) {
+        throw new Error(`Duplicate chapter number found: Chapter ${chapterNum}`);
+      }
+
       currentChapter = {
         number: parseInt(chapterNum),
         title: "",
