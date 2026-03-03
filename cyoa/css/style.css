@@ -31,10 +31,10 @@
 :root.theme-minimalistic {
   --story-bg: #0d0d0d;
   --story-border: #222;
-  --story-title-color: #e0e0e0;
-  --story-text-color: #d0d0d0;
-  --story-choice-color: #b0b0b0;
-  --story-choice-hover: #e0e0e0;
+  --story-title-color: #b3b3b3;
+  --story-text-color: #9a9a9a;
+  --story-choice-color: #8e8e8e;
+  --story-choice-hover: #a6a6a6;
 }
 
 html, body {
