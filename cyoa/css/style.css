@@ -72,6 +72,27 @@ header.header-collapsed {
   gap: 16px;
 }
 
+.audio-track-select {
+  background-color: var(--bg-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.audio-track-select:hover {
+  background-color: var(--bg-muted);
+}
+
+.audio-track-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 .header-title {
   display: flex;
   align-items: center;

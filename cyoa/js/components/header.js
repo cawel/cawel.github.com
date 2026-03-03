@@ -3,6 +3,7 @@
  */
 
 import { chooseAudioSource } from "../utils/audioResolver.js";
+import { findMp3FilesInFolder } from "../utils/audioResolver.js";
 
 const CHAPTER_FONT_CANDIDATES = [
   { name: "Merriweather", stack: "'Merriweather', Georgia, serif" },
@@ -62,6 +63,8 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let keydownBound = false;
   let chapterFontIndex = 0;
   let currentTheme = localStorage.getItem("cyoaTheme") || "yellow";
+  let availableAudioSources = [];
+  let selectedAudioIndex = 0;
 
   const applyTheme = (theme) => {
     const html = document.documentElement;
@@ -116,10 +119,53 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     if (storyAudio && !storyAudio.paused) storyAudio.pause();
   };
 
+  const updateAudioTrackSelect = () => {
+    const select = document.getElementById("audio-track-select");
+    if (!select) return;
+
+    select.innerHTML = "";
+
+    if (!availableAudioSources.length) {
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "Music 1";
+      select.appendChild(option);
+      select.value = "";
+      return;
+    }
+
+    availableAudioSources.forEach((source, index) => {
+      const option = document.createElement("option");
+      option.value = source;
+      option.textContent = `Music ${index + 1}`;
+      option.title = source;
+      select.appendChild(option);
+    });
+
+    select.value = availableAudioSources[selectedAudioIndex] || "";
+  };
+
+  const applySelectedMainTrack = () => {
+    const mainAudio = document.getElementById("main-audio");
+    if (!mainAudio || !availableAudioSources.length) return;
+
+    const selectedSource = availableAudioSources[selectedAudioIndex];
+    if (!selectedSource) return;
+
+    const resolvedSelected = new URL(selectedSource, window.location.href).href;
+    if (mainAudio.src !== resolvedSelected) {
+      mainAudio.src = selectedSource;
+    }
+  };
+
   const ensureMainAudioExists = () => {
     // Always add a main audio element so the control has something to toggle.
     // We first try to auto-discover whatever MP3 is present in `/music/`.
     // If directory listing is unavailable, we fall back to known filenames.
+    const candidates = [
+      "music/bg-music.mp3", // fallback
+    ];
+
     if (!document.getElementById("main-audio")) {
       const a = document.createElement("audio");
       a.id = "main-audio";
@@ -127,21 +173,43 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       a.style.display = "none";
       document.body.appendChild(a);
 
-      // list of filenames we know about; update if you add more later
-      const candidates = [
-        "music/bg-music.mp3", // fallback
-      ];
+      // Build track list from root music folder for dropdown; fallback if needed.
+      mainAudioReady = (async () => {
+        const discoveredFiles = await findMp3FilesInFolder("music/");
 
-      // prefer any MP3 found in the folder listing, then fallback candidates
-      mainAudioReady = chooseAudioSource("music/", candidates).then(
-        (chosen) => {
-          a.src = chosen || candidates[0];
-          return a;
-        },
-      );
+        if (discoveredFiles.length) {
+          availableAudioSources = discoveredFiles;
+        } else {
+          const chosen = await chooseAudioSource("music/", candidates);
+          availableAudioSources = [chosen || candidates[0]];
+        }
+
+        selectedAudioIndex = 0;
+        updateAudioTrackSelect();
+        applySelectedMainTrack();
+        return a;
+      })();
     } else {
       const existing = document.getElementById("main-audio");
-      mainAudioReady = Promise.resolve(existing);
+      mainAudioReady = (async () => {
+        const discoveredFiles = await findMp3FilesInFolder("music/");
+
+        if (discoveredFiles.length) {
+          availableAudioSources = discoveredFiles;
+        } else {
+          const chosen = await chooseAudioSource("music/", candidates);
+          availableAudioSources = [chosen || candidates[0]];
+        }
+
+        const currentSrc = existing.src;
+        const matchedIndex = availableAudioSources.findIndex((source) => {
+          return new URL(source, window.location.href).href === currentSrc;
+        });
+
+        selectedAudioIndex = matchedIndex >= 0 ? matchedIndex : 0;
+        updateAudioTrackSelect();
+        return existing;
+      })();
     }
   };
   const setupAudio = () => {
@@ -160,6 +228,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     } else {
       // Look for main audio
       audioElement = document.getElementById("main-audio");
+      applySelectedMainTrack();
       isPlaying = audioElement && audioElement.paused === false;
     }
 
@@ -228,6 +297,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           <span>Choose Your Own Adventure</span>
         </button>
         <div class="header-controls">
+          <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
           <button class="audio-control" id="audio-btn" title="Toggle background music">
             <span class="speaker-wrap">
               <span class="speaker-icon">🔊</span>
@@ -280,6 +350,29 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     if (audioBtn) {
       audioBtn.addEventListener("click", () => {
         toggleAudio();
+      });
+    }
+
+    const audioTrackSelect = document.getElementById("audio-track-select");
+    if (audioTrackSelect) {
+      audioTrackSelect.addEventListener("change", (event) => {
+        const selectedSource = event.target.value;
+        const nextIndex = availableAudioSources.indexOf(selectedSource);
+        if (nextIndex < 0) return;
+
+        selectedAudioIndex = nextIndex;
+
+        applySelectedMainTrack();
+
+        const mainAudio = document.getElementById("main-audio");
+        if (mainAudio && !muted) {
+          mainAudio.play().catch((error) => {
+            console.warn(
+              "[audio] Unable to play selected track. Check that MP3 files are accessible.",
+              error,
+            );
+          });
+        }
       });
     }
 
