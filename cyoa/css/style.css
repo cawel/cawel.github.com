@@ -195,6 +195,7 @@ main {
   padding: 10px 14px;
   width: 100%;
   text-align: left;
+  margin-top: auto;
 }
 
 .launch-button:hover {
