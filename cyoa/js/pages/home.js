@@ -20,7 +20,7 @@ export async function renderHome() {
             <span>${story.title}</span>
           </div>
           <button class="launch-button" data-story="${story.number}">
-            Start Adventure<span class="launch-emoji">✨</span>
+            Start Adventure<span class="launch-emoji">🚀</span>
           </button>
         </article>
       `,
