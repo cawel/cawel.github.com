@@ -8,12 +8,31 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let muted = true; // start muted so red x shows; user must click to unmute
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
 
+  const findMusicFolderMp3 = async () => {
+    try {
+      const response = await fetch("music/");
+      if (!response.ok) return null;
+
+      const listingHtml = await response.text();
+      const parsed = new DOMParser().parseFromString(listingHtml, "text/html");
+      const links = Array.from(parsed.querySelectorAll("a[href]"));
+      const mp3Href = links
+        .map((link) => link.getAttribute("href"))
+        .find((href) => href && /\.mp3($|\?)/i.test(href));
+
+      if (!mp3Href) return null;
+      if (/^https?:\/\//i.test(mp3Href)) return mp3Href;
+      if (mp3Href.startsWith("/")) return mp3Href;
+      return `music/${mp3Href.replace(/^\.\/?/, "")}`;
+    } catch {
+      return null;
+    }
+  };
+
   const ensureMainAudioExists = () => {
     // Always add a main audio element so the control has something to toggle.
-    // We attempt to pick a sensible MP3 file from the `/music` directory.  By
-    // default the README mentions `bg-music.mp3`, but a custom filename like
-    // the one currently present should be handled as well.  We prefer the
-    // first candidate that actually responds with a successful HEAD request.
+    // We first try to auto-discover whatever MP3 is present in `/music/`.
+    // If directory listing is unavailable, we fall back to known filenames.
     if (!document.getElementById("main-audio")) {
       const a = document.createElement("audio");
       a.id = "main-audio";
@@ -23,24 +42,30 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
       // list of filenames we know about; update if you add more later
       const candidates = [
-        "music/nakaradaalexander-woods-of-imagination-139004.mp3", // actual file present
         "music/bg-music.mp3", // fallback
       ];
 
-      // check each url asynchronously and set the first one that works
-      mainAudioReady = candidates
-        .reduce((p, url) => {
-          return p.then((found) => {
-            if (found) return found;
-            return fetch(url, { method: "HEAD" })
-              .then((res) => (res.ok ? url : null))
-              .catch(() => null);
-          });
-        }, Promise.resolve(null))
+      // prefer any MP3 found in the folder listing, then fallback candidates
+      mainAudioReady = findMusicFolderMp3()
+        .then((foundFromFolder) => {
+          if (foundFromFolder) return foundFromFolder;
+
+          return candidates.reduce((p, url) => {
+            return p.then((found) => {
+              if (found) return found;
+              return fetch(url, { method: "HEAD" })
+                .then((res) => (res.ok ? url : null))
+                .catch(() => null);
+            });
+          }, Promise.resolve(null));
+        })
         .then((chosen) => {
           a.src = chosen || candidates[0];
           return a;
         });
+    } else {
+      const existing = document.getElementById("main-audio");
+      mainAudioReady = Promise.resolve(existing);
     }
   };
   const setupAudio = () => {
@@ -77,8 +102,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       if (muted) {
         audioElement.pause();
       } else {
-        audioElement.play().catch(() => {
-          /* ignore errors; UI still uncontrolled by actual playback */
+        audioElement.play().catch((error) => {
+          console.warn(
+            "[audio] Unable to play music. Check that an MP3 exists in /music and the file is accessible.",
+            error,
+          );
         });
       }
     }
