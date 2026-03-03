@@ -4,16 +4,41 @@
 
 export async function renderHome() {
   const stories = [
-    { number: 1, title: "The Mysterious Forest", emoji: "🌲", chapters: 30 },
+    {
+      number: 1,
+      title: "The Mysterious Forest",
+      emoji: "🌲",
+      chapters: 30,
+      approxTime: "20-30 min",
+    },
     {
       number: 2,
       title: "Midnight at Hollow Moon Museum",
       emoji: "🏺",
       chapters: 47,
+      approxTime: "30-45 min",
     },
-    { number: 3, title: "The Last Broadcast", emoji: "🛰️", chapters: 45 },
-    { number: 4, title: "The Clockwork Carnival", emoji: "🎠", chapters: 6 },
-    { number: 5, title: "The Sunken Library", emoji: "📚", chapters: 6 },
+    {
+      number: 3,
+      title: "The Last Broadcast",
+      emoji: "🛰️",
+      chapters: 45,
+      approxTime: "30-45 min",
+    },
+    {
+      number: 4,
+      title: "The Clockwork Carnival",
+      emoji: "🎠",
+      chapters: 6,
+      approxTime: "5-10 min",
+    },
+    {
+      number: 5,
+      title: "The Sunken Library",
+      emoji: "📚",
+      chapters: 6,
+      approxTime: "5-10 min",
+    },
   ];
 
   const storiesHtml = stories
@@ -24,7 +49,10 @@ export async function renderHome() {
             <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
             <span>${story.title}</span>
           </div>
-          <div class="story-card-meta">${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</div>
+          <div class="story-card-meta">
+            <div>${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</div>
+            <div>⏱️ ${story.approxTime}</div>
+          </div>
         </article>
       `,
     )

@@ -237,6 +237,9 @@ main {
 }
 
 .story-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-size: 14px;
   color: var(--text-alt);
   margin-left: 34px;
