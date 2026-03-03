@@ -20,6 +20,9 @@ export async function renderAdmin() {
             <option value="2">Story 2</option>
             <option value="3">Story 3</option>
           </select>
+          <div class="editor-actions">
+            <button class="btn btn-primary" id="load-btn">Load Story</button>
+          </div>
         </div>
 
         <div class="editor-section">
@@ -33,7 +36,6 @@ export async function renderAdmin() {
           
           <div class="editor-actions">
             <button class="btn btn-primary" id="validate-btn">Validate Syntax</button>
-            <button class="btn btn-secondary" id="load-btn">Load Story</button>
           </div>
 
           <div id="validation-result"></div>
