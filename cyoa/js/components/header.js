@@ -61,22 +61,22 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let waitForRevealZoneExit = false;
   let keydownBound = false;
   let chapterFontIndex = 0;
-  let currentTheme = localStorage.getItem('cyoaTheme') || 'yellow';
+  let currentTheme = localStorage.getItem("cyoaTheme") || "yellow";
 
   const applyTheme = (theme) => {
     const html = document.documentElement;
-    if (theme === 'minimalistic') {
-      html.classList.add('theme-minimalistic');
+    if (theme === "minimalistic") {
+      html.classList.add("theme-minimalistic");
     } else {
-      html.classList.remove('theme-minimalistic');
+      html.classList.remove("theme-minimalistic");
     }
     currentTheme = theme;
-    localStorage.setItem('cyoaTheme', theme);
+    localStorage.setItem("cyoaTheme", theme);
     console.log(`[theme] Switched to: ${theme}`);
   };
 
   const cycleTheme = () => {
-    const nextTheme = currentTheme === 'yellow' ? 'minimalistic' : 'yellow';
+    const nextTheme = currentTheme === "yellow" ? "minimalistic" : "yellow";
     applyTheme(nextTheme);
   };
   const applyChapterFont = () => {
@@ -228,12 +228,6 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           <span>Choose Your Own Adventure</span>
         </button>
         <div class="header-controls">
-          <button class="header-toggle" id="header-toggle-btn" title="Hide header">
-            <svg class="header-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M5 9l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <rect x="4" y="14" width="16" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
-            </svg>
-          </button>
           <button class="audio-control" id="audio-btn" title="Toggle background music">
             <span class="speaker-wrap">
               <span class="speaker-icon">🔊</span>
@@ -245,6 +239,12 @@ export function createHeader(onNavigateHome, onAudioToggle) {
           </button>
           <button class="theme-control" id="theme-btn" title="Change theme">
             <span class="theme-icon" aria-hidden="true">🎨</span>
+          </button>
+          <button class="header-toggle" id="header-toggle-btn" title="Hide header">
+            <svg class="header-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 9l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <rect x="4" y="14" width="16" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            </svg>
           </button>
         </div>
       </header>
