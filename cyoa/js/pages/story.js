@@ -34,6 +34,7 @@ export async function renderStory(params) {
     currentChapter = 1;
   } catch (error) {
     return `
+      <audio id="story-music" loop style="display: none;"></audio>
       <main class="story-main">
         <div class="story-container">
           <p style="color: red;">Error loading story: ${error.message}</p>
@@ -42,7 +43,43 @@ export async function renderStory(params) {
     `;
   }
 
+  // Setup audio for this story (only done once per story load)
+  setupStoryAudio(storyNum);
+
   return renderChapter(storyNum);
+}
+
+async function setupStoryAudio(storyNum) {
+  // Create persistent audio element if it doesn't exist
+  let audio = document.getElementById("story-music");
+  if (!audio) {
+    audio = document.createElement("audio");
+    audio.id = "story-music";
+    audio.loop = true;
+    audio.style.display = "none";
+    document.body.appendChild(audio);
+  }
+
+  // Resolve story music and set src
+  const storyMusicFolder = `stories/story${storyNum}/music/`;
+  const source = await chooseAudioSource(storyMusicFolder, [
+    `${storyMusicFolder}bg-music.mp3`,
+  ]);
+
+  if (source) {
+    audio.src = source;
+    
+    // Auto-play if unmuted
+    if (!(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())) {
+      audio.play().catch(() => {
+        // Autoplay may fail, user can click button to play
+      });
+    }
+  } else {
+    console.warn(
+      `[audio] No playable story music found in ${storyMusicFolder}`,
+    );
+  }
 }
 
 function renderChapter(storyNum) {
@@ -71,7 +108,6 @@ function renderChapter(storyNum) {
     .join("");
 
   const html = `
-    <audio id="story-music" loop style="display: none;"></audio>
     <main class="story-main">
       <div class="story-container">
         <h2 class="chapter-title">${chapter.title}</h2>
@@ -91,7 +127,7 @@ function renderChapter(storyNum) {
   `;
 
   // Setup event delegation after rendering
-  setTimeout(async () => {
+  setTimeout(() => {
     document.querySelectorAll(".choice-link").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const nextChapter = e.currentTarget.dataset.chapter;
@@ -101,27 +137,6 @@ function renderChapter(storyNum) {
         updateStoryPage(storyNum);
       });
     });
-
-    // Resolve story music from this story folder and auto-play if unmuted
-    const audio = document.getElementById("story-music");
-    const storyMusicFolder = `stories/story${storyNum}/music/`;
-    const source = await chooseAudioSource(storyMusicFolder, [
-      `${storyMusicFolder}bg-music.mp3`,
-    ]);
-
-    if (audio && source) {
-      audio.src = source;
-
-      if (!(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())) {
-        audio.play().catch(() => {
-          // Autoplay may fail, user can click button to play
-        });
-      }
-    } else if (audio && !source) {
-      console.warn(
-        `[audio] No playable story music found in ${storyMusicFolder}`,
-      );
-    }
   }, 0);
 
   return html;
@@ -131,8 +146,13 @@ async function updateStoryPage(storyNum) {
   const content = renderChapter(storyNum);
   const main = document.querySelector("main");
   if (main) {
-    main.innerHTML = content
-      .replace(/^.*?<main[^>]*>/, "")
-      .replace(/<\/main>.*?$/, "");
+    // Extract just the story-container div from the HTML and update it
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = content;
+    const newContainer = tempDiv.querySelector(".story-container");
+    const oldContainer = main.querySelector(".story-container");
+    if (newContainer && oldContainer) {
+      oldContainer.replaceWith(newContainer);
+    }
   }
 }
