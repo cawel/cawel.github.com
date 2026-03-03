@@ -39,6 +39,17 @@
   --story-choice-icon-color: #b3b3b3;
 }
 
+/* Blue theme */
+:root.theme-blue {
+  --story-bg: #0f1b2f;
+  --story-border: #1f3a5f;
+  --story-title-color: #79b8ff;
+  --story-text-color: #c8d8ee;
+  --story-choice-text-color: #9fc3f0;
+  --story-choice-text-hover: #bfdcff;
+  --story-choice-icon-color: #4da3ff;
+}
+
 html, body {
   height: 100%;
 }
