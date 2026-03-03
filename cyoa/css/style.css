@@ -61,6 +61,17 @@
   --story-choice-icon-color: #dd7952;
 }
 
+/* Neon theme */
+:root.theme-neon {
+  --story-bg: #120a1d;
+  --story-border: #3b2b57;
+  --story-title-color: #f368ff;
+  --story-text-color: #d8d0e8;
+  --story-choice-text-color: #b9afcf;
+  --story-choice-text-hover: #76f7ff;
+  --story-choice-icon-color: #00e8ff;
+}
+
 html, body {
   height: 100%;
 }
