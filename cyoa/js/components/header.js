@@ -44,6 +44,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
   let headerHidden = false;
   let waitForRevealZoneExit = false;
+  let keydownBound = false;
   let chapterFontIndex = 0;
 
   const applyChapterFont = () => {
@@ -65,6 +66,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
 
     headerHidden = hidden;
     header.classList.toggle("header-collapsed", hidden);
+  };
+
+  const hideHeader = () => {
+    waitForRevealZoneExit = true;
+    setHeaderHidden(true);
   };
 
   const stopAllAudio = () => {
@@ -243,9 +249,33 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     const headerToggleBtn = document.getElementById("header-toggle-btn");
     if (headerToggleBtn) {
       headerToggleBtn.addEventListener("click", () => {
-        waitForRevealZoneExit = true;
-        setHeaderHidden(true);
+        hideHeader();
       });
+    }
+
+    if (!keydownBound) {
+      document.addEventListener("keydown", (event) => {
+        if (event.key.toLowerCase() !== "f") return;
+
+        const target = event.target;
+        const tagName = target && target.tagName ? target.tagName.toLowerCase() : "";
+        const isEditable =
+          tagName === "input" ||
+          tagName === "textarea" ||
+          (target && target.isContentEditable);
+
+        if (isEditable) return;
+
+        event.preventDefault();
+        if (headerHidden) {
+          waitForRevealZoneExit = false;
+          setHeaderHidden(false);
+        } else {
+          hideHeader();
+        }
+      });
+
+      keydownBound = true;
     }
 
     document.addEventListener("mousemove", (event) => {
