@@ -10,6 +10,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let muted = true; // start muted so red x shows; user must click to unmute
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
   let headerHidden = false;
+  let waitForRevealZoneExit = false;
 
   const setHeaderHidden = (hidden) => {
     const header = document.querySelector("header");
@@ -181,12 +182,17 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     const headerToggleBtn = document.getElementById("header-toggle-btn");
     if (headerToggleBtn) {
       headerToggleBtn.addEventListener("click", () => {
+        waitForRevealZoneExit = true;
         setHeaderHidden(true);
       });
     }
 
     document.addEventListener("mousemove", (event) => {
-      if (headerHidden && event.clientY <= 75) {
+      if (waitForRevealZoneExit && event.clientY > 75) {
+        waitForRevealZoneExit = false;
+      }
+
+      if (headerHidden && !waitForRevealZoneExit && event.clientY <= 75) {
         setHeaderHidden(false);
       }
     });
