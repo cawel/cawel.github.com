@@ -25,10 +25,13 @@ const header = createHeader(
 // Main app container
 const appContainer = document.getElementById("app");
 
+// Mount header once at startup
+header.mount();
+
 // Initial render
 const renderPage = async () => {
   await router.render(appContainer);
-  header.mount();
+  header.syncState();
 };
 
 // Render on hash change

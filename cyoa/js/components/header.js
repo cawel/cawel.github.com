@@ -54,6 +54,7 @@ const CHAPTER_FONT_CANDIDATES = [
 ];
 
 export function createHeader(onNavigateHome, onAudioToggle) {
+  let mounted = false;
   let isPlaying = false;
   let audioElement = null;
   let muted = true; // start muted so red x shows; user must click to unmute
@@ -213,9 +214,6 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     }
   };
   const setupAudio = () => {
-    // make sure homepage music element is created ahead of time
-    ensureMainAudioExists();
-
     // Check if there's a story-specific music playing
     const currentStoryMusic = document.getElementById("story-music");
     if (currentStoryMusic) {
@@ -238,6 +236,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       audioElement.pause();
       isPlaying = false;
     }
+  };
+
+  const syncState = () => {
+    setupAudio();
+    updateAudioButton();
   };
 
   const muteAndStopAll = () => {
@@ -322,6 +325,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   };
 
   const mount = () => {
+    if (mounted) {
+      syncState();
+      return;
+    }
+
     const header =
       document.querySelector("header") ||
       (() => {
@@ -448,16 +456,21 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       }
     });
 
+    ensureMainAudioExists();
+
     // Setup audio tracking once we have the correct main audio URL
     mainAudioReady.then(() => {
       applyChapterFont();
       setupAudio();
       updateAudioButton();
     });
+
+    mounted = true;
   };
 
   return {
     mount,
+    syncState,
     updateAudioButton,
   };
 }
