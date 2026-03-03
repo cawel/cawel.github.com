@@ -41,7 +41,7 @@
 
 /* Blue theme */
 :root.theme-blue {
-  --story-bg: #0f1b2f;
+  --story-bg: #0a1424;
   --story-border: #1f3a5f;
   --story-title-color: #79b8ff;
   --story-text-color: #c8d8ee;
@@ -473,7 +473,7 @@ main.story-main .story-container {
   border: none;
   width: 100%;
   text-align: left;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
   text-shadow: none;
 }
 
