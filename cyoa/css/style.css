@@ -58,6 +58,49 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* allow overlaying the cross */
+}
+
+/* make icons consistent in size */
+.speaker-icon,
+.mute-cross {
+  font-size: 24px;
+}
+
+/* prevent the emoji from intercepting clicks so the button always
+   receives the event */
+.speaker-icon {
+  pointer-events: none;
+}
+
+/* cross overlays the speaker */
+.mute-cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; /* larger container for longer bars */
+  height: 24px;
+  pointer-events: none; /* clicks pass through to button */
+}
+
+/* draw two thin red bars crossing each other */
+.mute-cross::before,
+.mute-cross::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: red;
+  transform-origin: center;
+}
+.mute-cross::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.mute-cross::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .audio-control:hover {
