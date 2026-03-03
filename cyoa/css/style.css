@@ -28,8 +28,8 @@
   --story-choice-icon-color: #c9a961;
 }
 
-/* Minimalistic theme */
-:root.theme-minimalistic {
+/* Minimalist theme */
+:root.theme-minimalist {
   --story-bg: #0d0d0d;
   --story-border: #222;
   --story-title-color: #b3b3b3;

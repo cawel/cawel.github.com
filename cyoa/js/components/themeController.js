@@ -1,12 +1,13 @@
 export function createThemeController() {
-  let currentTheme = localStorage.getItem("cyoaTheme") || "yellow";
+  const persistedTheme = localStorage.getItem("cyoaTheme");
+  let currentTheme = persistedTheme === "minimalistic" ? "minimalist" : (persistedTheme || "yellow");
 
   const applyTheme = (theme) => {
     const html = document.documentElement;
-    if (theme === "minimalistic") {
-      html.classList.add("theme-minimalistic");
+    if (theme === "minimalist") {
+      html.classList.add("theme-minimalist");
     } else {
-      html.classList.remove("theme-minimalistic");
+      html.classList.remove("theme-minimalist");
     }
 
     currentTheme = theme;
@@ -15,7 +16,7 @@ export function createThemeController() {
   };
 
   const cycleTheme = () => {
-    const nextTheme = currentTheme === "yellow" ? "minimalistic" : "yellow";
+    const nextTheme = currentTheme === "yellow" ? "minimalist" : "yellow";
     applyTheme(nextTheme);
   };
 
