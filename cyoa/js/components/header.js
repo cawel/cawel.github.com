@@ -2,31 +2,20 @@
  * Header component - shared across all pages
  */
 
+import { chooseAudioSource } from "../utils/audioResolver.js";
+
 export function createHeader(onNavigateHome, onAudioToggle) {
   let isPlaying = false;
   let audioElement = null;
   let muted = true; // start muted so red x shows; user must click to unmute
   let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
 
-  const findMusicFolderMp3 = async () => {
-    try {
-      const response = await fetch("music/");
-      if (!response.ok) return null;
+  const stopAllAudio = () => {
+    const mainAudio = document.getElementById("main-audio");
+    const storyAudio = document.getElementById("story-music");
 
-      const listingHtml = await response.text();
-      const parsed = new DOMParser().parseFromString(listingHtml, "text/html");
-      const links = Array.from(parsed.querySelectorAll("a[href]"));
-      const mp3Href = links
-        .map((link) => link.getAttribute("href"))
-        .find((href) => href && /\.mp3($|\?)/i.test(href));
-
-      if (!mp3Href) return null;
-      if (/^https?:\/\//i.test(mp3Href)) return mp3Href;
-      if (mp3Href.startsWith("/")) return mp3Href;
-      return `music/${mp3Href.replace(/^\.\/?/, "")}`;
-    } catch {
-      return null;
-    }
+    if (mainAudio && !mainAudio.paused) mainAudio.pause();
+    if (storyAudio && !storyAudio.paused) storyAudio.pause();
   };
 
   const ensureMainAudioExists = () => {
@@ -46,19 +35,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       ];
 
       // prefer any MP3 found in the folder listing, then fallback candidates
-      mainAudioReady = findMusicFolderMp3()
-        .then((foundFromFolder) => {
-          if (foundFromFolder) return foundFromFolder;
-
-          return candidates.reduce((p, url) => {
-            return p.then((found) => {
-              if (found) return found;
-              return fetch(url, { method: "HEAD" })
-                .then((res) => (res.ok ? url : null))
-                .catch(() => null);
-            });
-          }, Promise.resolve(null));
-        })
+      mainAudioReady = chooseAudioSource("music/", candidates)
         .then((chosen) => {
           a.src = chosen || candidates[0];
           return a;
@@ -75,6 +52,10 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     // Check if there's a story-specific music playing
     const currentStoryMusic = document.getElementById("story-music");
     if (currentStoryMusic) {
+      const mainAudio = document.getElementById("main-audio");
+      if (mainAudio && !mainAudio.paused) {
+        mainAudio.pause();
+      }
       audioElement = currentStoryMusic;
       isPlaying = currentStoryMusic.paused === false;
     } else {
@@ -89,6 +70,13 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       audioElement.pause();
       isPlaying = false;
     }
+  };
+
+  const muteAndStopAll = () => {
+    muted = true;
+    stopAllAudio();
+    isPlaying = false;
+    updateAudioButton();
   };
 
   const toggleAudio = async () => {
@@ -157,6 +145,7 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     // respect the user’s mute preference before auto-playing audio
     window.cyoaAudioControl = {
       isMuted: () => muted,
+      muteAndStopAll,
     };
 
     // Setup event listeners

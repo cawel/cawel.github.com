@@ -3,6 +3,7 @@
  */
 
 import { parseStory } from "../utils/storyParser.js";
+import { chooseAudioSource } from "../utils/audioResolver.js";
 
 let currentChapter = 1;
 let storyData = null;
@@ -60,9 +61,7 @@ function renderChapter(storyNum) {
     .join("");
 
   const html = `
-    <audio id="story-music" loop style="display: none;">
-      <source src="/stories/story${storyNum}/music/bg-music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="story-music" loop style="display: none;"></audio>
     <main>
       <div class="story-container">
         <h2 class="chapter-title">${chapter.title}</h2>
@@ -82,7 +81,11 @@ function renderChapter(storyNum) {
   `;
 
   // Setup event delegation after rendering
-  setTimeout(() => {
+  setTimeout(async () => {
+    if (window.cyoaAudioControl && window.cyoaAudioControl.muteAndStopAll) {
+      window.cyoaAudioControl.muteAndStopAll();
+    }
+
     document.querySelectorAll(".choice-link").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const nextChapter = e.currentTarget.dataset.chapter;
@@ -93,15 +96,25 @@ function renderChapter(storyNum) {
       });
     });
 
-    // Auto-play story music only if header hasn't requested mute
+    // Resolve story music from this story folder and auto-play if unmuted
     const audio = document.getElementById("story-music");
-    if (
-      audio &&
-      !(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())
-    ) {
-      audio.play().catch(() => {
-        // Autoplay may fail, user can click button to play
-      });
+    const storyMusicFolder = `stories/story${storyNum}/music/`;
+    const source = await chooseAudioSource(storyMusicFolder, [
+      `${storyMusicFolder}bg-music.mp3`,
+    ]);
+
+    if (audio && source) {
+      audio.src = source;
+
+      if (!(window.cyoaAudioControl && window.cyoaAudioControl.isMuted())) {
+        audio.play().catch(() => {
+          // Autoplay may fail, user can click button to play
+        });
+      }
+    } else if (audio && !source) {
+      console.warn(
+        `[audio] No playable story music found in ${storyMusicFolder}`,
+      );
     }
   }, 0);
 
