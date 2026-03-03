@@ -13,13 +13,15 @@ export async function renderAdmin() {
         <h1 class="admin-title">Story Editor</h1>
         
         <div class="editor-section">
-          <label class="editor-label">Story to Edit:</label>
-          <select class="story-select" id="story-select">
-            <option value="">New Story</option>
-            <option value="1">Story 1</option>
-            <option value="2">Story 2</option>
-            <option value="3">Story 3</option>
-          </select>
+          <div class="story-select-row">
+            <label class="editor-label" for="story-select">Story to Edit:</label>
+            <select class="story-select" id="story-select">
+              <option value="">New Story</option>
+              <option value="1">Story 1</option>
+              <option value="2">Story 2</option>
+              <option value="3">Story 3</option>
+            </select>
+          </div>
           <div class="editor-actions">
             <button class="btn btn-primary" id="load-btn">Load Story</button>
           </div>

@@ -300,6 +300,26 @@ main {
   display: block;
 }
 
+.story-select-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.story-select-row .editor-label {
+  margin-bottom: 0;
+}
+
+.story-select-row .story-select {
+  margin-bottom: 0;
+}
+
+.expected-format {
+  margin-top: 52px;
+}
+
 .expected-format > summary {
   cursor: pointer;
   user-select: none;
