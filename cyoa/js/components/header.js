@@ -218,13 +218,13 @@ export function createHeader(onNavigateHome, onAudioToggle) {
             </svg>
           </button>
           <button class="audio-control" id="audio-btn" title="Toggle background music">
-            <span class="audio-icons">
-              <span class="speaker-wrap">
-                <span class="speaker-icon">🔊</span>
-                <span class="mute-cross" style="visibility:hidden"></span>
-              </span>
-              <span class="font-style-icon" aria-hidden="true">A</span>
+            <span class="speaker-wrap">
+              <span class="speaker-icon">🔊</span>
+              <span class="mute-cross" style="visibility:hidden"></span>
             </span>
+          </button>
+          <button class="font-control" id="font-btn" title="Change chapter font">
+            <span class="font-style-icon" aria-hidden="true">A</span>
           </button>
         </div>
       </header>
@@ -262,9 +262,9 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       });
     }
 
-    const fontStyleIcon = document.querySelector(".font-style-icon");
-    if (fontStyleIcon) {
-      fontStyleIcon.addEventListener("click", (event) => {
+    const fontBtn = document.getElementById("font-btn");
+    if (fontBtn) {
+      fontBtn.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
         cycleChapterFont();

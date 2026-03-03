@@ -49,7 +49,7 @@ header.header-collapsed {
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 }
 
 .header-title {
@@ -90,6 +90,30 @@ header.header-collapsed {
   position: relative; /* allow overlaying the cross */
 }
 
+.audio-control:hover {
+  background-color: var(--bg-muted);
+}
+
+.font-control {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Merriweather', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.font-control:hover {
+  background-color: var(--bg-muted);
+}
+
 .header-toggle {
   background: none;
   border: none;
@@ -116,12 +140,6 @@ header.header-collapsed {
 .speaker-icon,
 .mute-cross {
   font-size: 24px;
-}
-
-.audio-icons {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .speaker-wrap {
@@ -181,10 +199,6 @@ header.header-collapsed {
 }
 .mute-cross::after {
   transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.audio-control:hover {
-  background-color: var(--bg-muted);
 }
 
 /* App Container */
