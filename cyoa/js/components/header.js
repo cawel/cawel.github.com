@@ -6,22 +6,43 @@ export function createHeader(onNavigateHome, onAudioToggle) {
   let isPlaying = false;
   let audioElement = null;
   let muted = false; // user-requested mute state (controls red x)
+  let mainAudioReady = Promise.resolve(); // resolves when main audio src is chosen
 
   const ensureMainAudioExists = () => {
-    // Always add a main audio element so the control has something to toggle,
-    // even if there is no file in place yet.  The README instructs users to
-    // drop `music/bg-music.mp3` in the repo – if the file isn't present this
-    // element will still exist but playback will simply fail silently.
+    // Always add a main audio element so the control has something to toggle.
+    // We attempt to pick a sensible MP3 file from the `/music` directory.  By
+    // default the README mentions `bg-music.mp3`, but a custom filename like
+    // the one currently present should be handled as well.  We prefer the
+    // first candidate that actually responds with a successful HEAD request.
     if (!document.getElementById("main-audio")) {
       const a = document.createElement("audio");
       a.id = "main-audio";
       a.loop = true;
       a.style.display = "none";
-      a.src = "/music/bg-music.mp3";
       document.body.appendChild(a);
+
+      // list of filenames we know about; update if you add more later
+      const candidates = [
+        "music/nakaradaalexander-woods-of-imagination-139004.mp3", // actual file present
+        "music/bg-music.mp3",                                   // fallback
+      ];
+
+      // check each url asynchronously and set the first one that works
+      mainAudioReady = candidates
+        .reduce((p, url) => {
+          return p.then((found) => {
+            if (found) return found;
+            return fetch(url, { method: "HEAD" })
+              .then((res) => (res.ok ? url : null))
+              .catch(() => null);
+          });
+        }, Promise.resolve(null))
+        .then((chosen) => {
+          a.src = chosen || candidates[0];
+          return a;
+        });
     }
   };
-
   const setupAudio = () => {
     // make sure homepage music element is created ahead of time
     ensureMainAudioExists();
@@ -38,7 +59,9 @@ export function createHeader(onNavigateHome, onAudioToggle) {
     }
   };
 
-  const toggleAudio = () => {
+  const toggleAudio = async () => {
+    // wait for main audio to have a valid src before trying to use it
+    await mainAudioReady;
     setupAudio();
     // flip mute request
     muted = !muted;
@@ -106,11 +129,11 @@ export function createHeader(onNavigateHome, onAudioToggle) {
       });
     }
 
-    // Setup audio tracking
-    setTimeout(() => {
+    // Setup audio tracking once we have the correct main audio URL
+    mainAudioReady.then(() => {
       setupAudio();
       updateAudioButton();
-    }, 100);
+    });
   };
 
   return {
