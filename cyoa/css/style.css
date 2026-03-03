@@ -175,21 +175,21 @@ main {
 .home-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 }
 
 .home-title {
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  margin-top: 90px;
-  margin-bottom: 12px;
+  margin-top: 45px;
+  margin-bottom: 6px;
   color: var(--accent);
 }
 
 .stories-grid {
-  width: min(900px, 100%);
-  margin: 16px auto 0;
+  width: min(980px, 100%);
+  margin: 4px auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   gap: 40px;
