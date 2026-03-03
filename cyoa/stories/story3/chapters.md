@@ -118,7 +118,7 @@ Unknown Element
 The database has no record of this isotope. You cross-reference with your personal scientific knowledge and historical physics data you can access via the ISS library. Then you see it: research papers from 45 years ago, all classified, all redacted. But the abstracts remain: "Theoretical properties of elemental iteration" and "Adaptive atmospheric protocols." Someone, decades ago, theorized about this. Someone prepared for it. You dig deeper and find a name appearing in multiple redacted documents: Dr. Sarah Chen, a physicist who disappeared in 1987 after warning about "accelerated evolutionary pressure cascading through atmospheric vectors." Whatever is happening now, it was predicted and expected by someone.
 
 ### Choices
-1. Try to find more information about Dr. Sarah Chen -> 1
+1. Try to find more information about Dr. Sarah Chen -> 17
 2. Focus on current survival and prepare for landing -> 7
 
 ## Chapter 12
