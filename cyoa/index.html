@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose Your Own Adventure</title>
-  <!-- serif 'Merriweather' font for book-like titles -->
+  <!-- book-like serif fonts imported together to reduce swapping -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-  <!-- additional serif for choice links (distinct but still book‑like) -->
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Crimson+Text:wght@400;700&display=fallback" rel="stylesheet">
+  <!-- apply primary font early to avoid flash -->
+  <style>body{font-family:'Merriweather',Georgia,serif;}</style>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ctext%20y='14'%20font-size='16'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E">
 </head>
