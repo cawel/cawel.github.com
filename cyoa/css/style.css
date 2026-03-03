@@ -333,13 +333,13 @@ main.story-main .story-container {
 }
 
 .chapter-title {
-  font-size: 32px;
+  font-size: 56px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
 .chapter-section-title {
-  font-size: 22px;
+  font-size: 32px;
   font-weight: 600;
   margin-top: 82px;
   margin-bottom: 10px;
@@ -348,7 +348,7 @@ main.story-main .story-container {
 }
 
 .chapter-content {
-  font-size: 20px;
+  font-size: 28px;
   line-height: 1.6;
   color: var(--text-alt);
   font-family: var(--chapter-content-font);
@@ -372,7 +372,7 @@ main.story-main .story-container {
 .choice-link {
   color: var(--accent);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 24px;
   padding: 4px 0;
   cursor: pointer;
   transition: color 0.2s;
