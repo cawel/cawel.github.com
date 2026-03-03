@@ -3,7 +3,7 @@
 The Mysterious Forest
 
 ### Content
-You wake up in a dense forest. Tall trees surround you, their branches blocking most of the sunlight. A cool breeze rustles through the leaves, and the air smells of earth and pine. You notice a narrow path ahead, and to your left, you spot what looks like an old stone structure partially hidden by vines. What do you do?
+You wake up in a dense forest. Tall trees surround you, their branches blocking most of the sunlight. A cool breeze rustles through the leaves, and the air smells of earth and pine. You notice a narrow path ahead, and to your left, you spot what looks like an old stone structure partially hidden by vines.
 
 ### Choices
 1. Follow the narrow path -> 2

@@ -3,7 +3,7 @@
 The Museum at Midnight
 
 ### Content
-You work as a night security guard at the Hollow Moon Museum, a prestigious institution containing artifacts from around the world. Tonight, as you do your final rounds at midnight, you discover that the main doors have been mysteriously unlocked. In the Egyptian wing, an ancient sarcophagus sits open—empty. The museum director will want answers in the morning. What do you do?
+You work as a night security guard at the Hollow Moon Museum, a prestigious institution containing artifacts from around the world. Tonight, as you do your final rounds at midnight, you discover that the main doors have been mysteriously unlocked. In the Egyptian wing, an ancient sarcophagus sits open—empty. The museum director will want answers in the morning.
 
 ### Choices
 1. Search the museum for clues about who opened it -> 2
