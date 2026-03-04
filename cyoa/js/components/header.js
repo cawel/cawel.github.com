@@ -9,11 +9,26 @@ import { createThemeController } from "./themeController.js";
 export function createHeader(onNavigateHome) {
   let mounted = false;
   let headerHidden = false;
+  let mobileMenuOpen = false;
   let waitForRevealZoneExit = false;
   let keydownBound = false;
   const audioController = createAudioController();
   const fontController = createFontController();
   const themeController = createThemeController();
+
+  const setMobileMenuOpen = (open) => {
+    const header = document.querySelector("header");
+    const menuButton = document.getElementById("mobile-menu-btn");
+    if (!header || !menuButton) return;
+
+    mobileMenuOpen = open;
+    header.classList.toggle("mobile-menu-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   const setHeaderHidden = (hidden) => {
     const header = document.querySelector("header");
@@ -42,6 +57,9 @@ export function createHeader(onNavigateHome) {
         <button class="header-title" id="home-link">
           <span class="header-emoji">📖</span>
           <span>Choose Your Own Adventure</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" title="Open menu" aria-label="Open menu" aria-expanded="false">
+          <span class="mobile-menu-icon" aria-hidden="true">☰</span>
         </button>
         <div class="header-controls">
           <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
@@ -92,8 +110,16 @@ export function createHeader(onNavigateHome) {
 
   const bindHeaderControls = () => {
     document.getElementById("home-link").addEventListener("click", () => {
+      closeMobileMenu();
       onNavigateHome();
     });
+
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener("click", () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+      });
+    }
 
     const audioBtn = document.getElementById("audio-btn");
     const audioTrackSelect = document.getElementById("audio-track-select");
@@ -101,9 +127,15 @@ export function createHeader(onNavigateHome) {
       button: audioBtn,
       trackSelect: audioTrackSelect,
     });
+    if (audioTrackSelect) {
+      audioTrackSelect.addEventListener("change", closeMobileMenu);
+    }
 
     const fontBtn = document.getElementById("font-btn");
     fontController.setControl(fontBtn);
+    if (fontBtn) {
+      fontBtn.addEventListener("click", closeMobileMenu);
+    }
 
     const themeBtn = document.getElementById("theme-btn");
     if (themeBtn) {
@@ -111,6 +143,7 @@ export function createHeader(onNavigateHome) {
         event.preventDefault();
         event.stopPropagation();
         themeController.cycleTheme();
+        closeMobileMenu();
       });
     }
 
@@ -119,6 +152,7 @@ export function createHeader(onNavigateHome) {
       adminBtn.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
+        closeMobileMenu();
         window.location.hash = "#/admin";
       });
     }
@@ -126,9 +160,16 @@ export function createHeader(onNavigateHome) {
     const headerToggleBtn = document.getElementById("header-toggle-btn");
     if (headerToggleBtn) {
       headerToggleBtn.addEventListener("click", () => {
+        closeMobileMenu();
         hideHeader();
       });
     }
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768 && mobileMenuOpen) {
+        closeMobileMenu();
+      }
+    });
   };
 
   const bindKeyboardShortcuts = () => {
