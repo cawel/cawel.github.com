@@ -376,7 +376,7 @@ main {
   color: var(--text-alt);
   opacity: 0.65;
   font-size: 14px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid color-mix(in srgb, var(--story-title-color) 24%, transparent);
 }
 
 .story-card {
