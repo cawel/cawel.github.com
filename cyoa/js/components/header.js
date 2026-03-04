@@ -72,10 +72,7 @@ export function createHeader(onNavigateHome) {
   };
 
   const mount = () => {
-    if (mounted) {
-      refreshAudioState();
-      return;
-    }
+    if (mounted) return;
 
     const header =
       document.querySelector("header") ||
