@@ -173,3 +173,62 @@ main.story-main .story-container {
   background-color: rgba(255, 255, 255, 0.04);
   text-shadow: none;
 }
+
+@media (max-width: 768px) {
+  main.story-main {
+    padding: 12px;
+  }
+
+  main.story-main .story-container {
+    padding: 26px 16px;
+  }
+
+  .chapter-title {
+    font-size: 30px;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+  }
+
+  .chapter-section-title {
+    font-size: 20px;
+    margin-top: 44px;
+    margin-bottom: 14px;
+    padding-top: 12px;
+  }
+
+  .chapter-content {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .choices-list {
+    margin-top: 10px;
+    padding-top: 2px;
+  }
+
+  .choice-link {
+    font-size: 18px;
+    line-height: 1.48;
+  }
+
+  .choice-emoji {
+    margin-right: 8px;
+    font-size: 1.1em;
+  }
+
+  .choices-ending-text {
+    margin-top: 56px;
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+    font-size: clamp(38px, 11vw, 68px);
+  }
+
+  .choices-ending-text::before {
+    margin-bottom: 14px;
+  }
+
+  .choices-ending-text::after {
+    margin-top: 14px;
+  }
+}
