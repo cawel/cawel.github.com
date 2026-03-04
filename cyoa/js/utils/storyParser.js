@@ -77,6 +77,27 @@ function buildRuleError(ruleName, details) {
   return `[${ruleName}] ${base}${details ? `\n${details}` : ""}`;
 }
 
+function parseInteger(value) {
+  return Number.parseInt(value, 10);
+}
+
+function capitalizeFirstLetter(text) {
+  return `${text[0].toUpperCase()}${text.slice(1)}`;
+}
+
+function applyChapterSectionContent(chapter, sectionName, text) {
+  if (sectionName !== CHAPTER_SECTION_HEADING_NAMES.choices) {
+    return { ...chapter, [sectionName]: text };
+  }
+
+  const parsedChoices = parseChoicesSection(text);
+  return {
+    ...chapter,
+    choices: parsedChoices.choices,
+    choicesEndingText: parsedChoices.choicesEndingText,
+  };
+}
+
 function flushCurrentChapterSection(state) {
   const {
     chapters,
@@ -95,18 +116,11 @@ function flushCurrentChapterSection(state) {
   }
 
   const text = currentChapterContent.join("\n").trim();
-  const updatedChapter = (() => {
-    if (currentChapterSection !== CHAPTER_SECTION_HEADING_NAMES.choices) {
-      return { ...currentChapter, [currentChapterSection]: text };
-    }
-
-    const parsedChoices = parseChoicesSection(text);
-    return {
-      ...currentChapter,
-      choices: parsedChoices.choices,
-      choicesEndingText: parsedChoices.choicesEndingText,
-    };
-  })();
+  const updatedChapter = applyChapterSectionContent(
+    currentChapter,
+    currentChapterSection,
+    text,
+  );
 
   return {
     ...state,
@@ -120,18 +134,20 @@ function flushCurrentChapterSection(state) {
 }
 
 function assertStoryTitleHeading(lines) {
-  const firstNonEmptyLine = lines.find((line) => line.trim());
-  if (
-    !firstNonEmptyLine ||
-    !REGEX.storyTitleHeading.test(firstNonEmptyLine.trim())
-  ) {
+  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim());
+  if (firstNonEmptyLineIndex < 0) {
     throw new Error(buildRuleError("STORY_TITLE_HEADING"));
   }
 
-  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim());
+  const firstNonEmptyLine = lines[firstNonEmptyLineIndex].trim();
+  if (!REGEX.storyTitleHeading.test(firstNonEmptyLine)) {
+    throw new Error(buildRuleError("STORY_TITLE_HEADING"));
+  }
+
   const extraStoryTitleLineIndex = lines.findIndex(
     (line, index) =>
-      index > firstNonEmptyLineIndex && REGEX.storyTitleHeading.test(line.trim()),
+      index > firstNonEmptyLineIndex &&
+      REGEX.storyTitleHeading.test(line.trim()),
   );
 
   if (extraStoryTitleLineIndex >= 0) {
@@ -158,7 +174,7 @@ function createInitialParserState() {
 
 function createEmptyChapter(chapterKey) {
   return {
-    number: parseInt(chapterKey),
+    number: parseInteger(chapterKey),
     title: "",
     content: "",
     choices: [],
@@ -220,7 +236,7 @@ function handleChapterHeading(state, trimmed, lineIndex, lines) {
   assertBlankLineBeforeChapterHeading(lines, lineIndex, trimmed);
 
   const chapterKey = extractChapterKey(trimmed);
-  const chapterNumber = parseInt(chapterKey, 10);
+  const chapterNumber = parseInteger(chapterKey);
 
   if (
     typeof flushedState.lastChapterNumberSeen === "number" &&
@@ -283,7 +299,7 @@ function handleChapterSectionHeading(state, trimmed) {
     throw new Error(
       buildRuleError(
         "DUPLICATE_CHAPTER_SECTION",
-        `Chapter ${chapterKey} has duplicate ### ${chapterSectionName[0].toUpperCase()}${chapterSectionName.slice(1)} section.`,
+        `Chapter ${chapterKey} has duplicate ### ${capitalizeFirstLetter(chapterSectionName)} section.`,
       ),
     );
   }
@@ -383,7 +399,7 @@ function parseChoicesList(lines) {
       );
     }
 
-    const choiceNumber = parseInt(match[1]);
+    const choiceNumber = parseInteger(match[1]);
     const expectedChoiceNumber = index + 1;
     if (choiceNumber !== expectedChoiceNumber) {
       throw new Error(
@@ -398,7 +414,7 @@ function parseChoicesList(lines) {
       ...choices,
       {
         text: match[2],
-        chapterNumber: parseInt(match[3]),
+        chapterNumber: parseInteger(match[3]),
       },
     ];
   }, []);
@@ -441,6 +457,8 @@ function collectChapterRequiredFieldErrors(chapterNumber, chapter) {
 
 function collectChapterChoiceReferenceErrors(chapterNumber, chapter, chapters) {
   return chapter.choices.flatMap((choice) => {
+    const chapterNumberValue = parseInteger(chapterNumber);
+
     const missingTargetError = !chapters[choice.chapterNumber.toString()]
       ? [
           buildRuleError(
@@ -451,7 +469,7 @@ function collectChapterChoiceReferenceErrors(chapterNumber, chapter, chapters) {
       : [];
 
     const selfReferenceError =
-      choice.chapterNumber === parseInt(chapterNumber)
+      choice.chapterNumber === chapterNumberValue
         ? [
             buildRuleError(
               "CHOICE_NOT_SELF_REFERENTIAL",
