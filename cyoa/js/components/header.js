@@ -64,13 +64,13 @@ export function createHeader(onNavigateHome) {
         </button>
         <div class="header-controls">
           <div class="audio-controls-row">
-            <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
             <button class="audio-control" id="audio-btn" title="Toggle background music">
               <span class="speaker-wrap">
                 <span class="speaker-icon">🔊</span>
                 <span class="mute-cross" style="visibility:hidden"></span>
               </span>
             </button>
+            <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
           </div>
           <button class="theme-control" id="theme-btn" title="Change theme">
             <span class="theme-icon" aria-hidden="true">🎨</span>
