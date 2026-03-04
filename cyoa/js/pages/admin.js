@@ -195,15 +195,7 @@ function setupMarkdownHighlighting() {
   };
 
   const applyHighlightingState = () => {
-    const currentHeight = textarea.offsetHeight;
     textareaWrapper.classList.toggle("markdown-off", !highlightingEnabled);
-    if (highlightingEnabled) {
-      textarea.style.height = "";
-      textarea.style.width = "";
-      textareaWrapper.style.height = `${Math.max(currentHeight, 400)}px`;
-    } else {
-      textareaWrapper.style.height = "";
-    }
     toggleButton.textContent = highlightingEnabled
       ? "Disable syntax highlighting"
       : "Enable syntax highlighting";

@@ -129,17 +129,7 @@
   display: none;
 }
 
-.editor-textarea-wrapper.markdown-off {
-  height: auto;
-  resize: none;
-  overflow: visible;
-}
-
 .editor-textarea-wrapper.markdown-off .editor-textarea-overlay {
-  position: relative;
-  min-height: 400px;
-  height: 400px;
-  resize: vertical;
   border-color: var(--border);
   color: var(--text);
   background-color: var(--bg-muted);
