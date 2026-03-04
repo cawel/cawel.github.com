@@ -17,25 +17,25 @@ header.header-collapsed {
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
 }
 
 .audio-controls-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 
 .theme-controls-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 
 .font-controls-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 
 .theme-select {
@@ -73,9 +73,9 @@ header.header-collapsed {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 8px 34px 8px 10px;
+  padding: 6px 28px 6px 8px;
   font-family: "Merriweather", Georgia, serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1;
   cursor: pointer;
   appearance: none;
@@ -129,7 +129,7 @@ header.header-collapsed {
   font-size: 24px;
   color: var(--text);
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 5px 7px;
   border-radius: 4px;
   transition: background-color 0.2s;
   display: flex;
@@ -146,7 +146,7 @@ header.header-collapsed {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 5px 7px;
   border-radius: 4px;
   transition: background-color 0.2s;
   color: var(--text);
@@ -166,7 +166,7 @@ header.header-collapsed {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 5px 7px;
   border-radius: 4px;
   transition: background-color 0.2s;
   color: var(--text);
@@ -188,7 +188,7 @@ header.header-collapsed {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 5px 7px;
   border-radius: 4px;
   transition: background-color 0.2s;
   color: var(--text);
@@ -210,7 +210,7 @@ header.header-collapsed {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 5px 7px;
   border-radius: 4px;
   transition: background-color 0.2s;
   color: var(--text);
