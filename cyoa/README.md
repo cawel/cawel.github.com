@@ -2,6 +2,8 @@
 
 A modern, interactive choose-your-own-adventure web application built with vanilla JavaScript, HTML, and CSS. No build step required.
 
+👉 [Open 'Choose Your Own Adventure' App](https://cawel.github.io/cyoa/)
+
 ## Features
 
 - **Single Page Application (SPA)** with hash-based routing for GitHub Pages compatibility
