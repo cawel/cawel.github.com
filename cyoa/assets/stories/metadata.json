@@ -3,7 +3,6 @@
     "number": 1,
     "title": "The Mysterious Forest",
     "emoji": "🌲",
-    "chapters": 30,
     "approxTime": "20-30 min",
     "keywords": ["forest", "ruins", "mystery"]
   },
@@ -11,7 +10,6 @@
     "number": 2,
     "title": "Midnight at Hollow Moon Museum",
     "emoji": "🏺",
-    "chapters": 47,
     "approxTime": "30-45 min",
     "keywords": ["museum", "conspiracy", "paranormal"]
   },
@@ -19,7 +17,6 @@
     "number": 3,
     "title": "The Last Broadcast",
     "emoji": "🛰️",
-    "chapters": 45,
     "approxTime": "30-45 min",
     "keywords": ["space", "signal", "survival"]
   },
@@ -27,7 +24,6 @@
     "number": 4,
     "title": "The Clockwork Carnival",
     "emoji": "🎠",
-    "chapters": 6,
     "approxTime": "5-10 min",
     "keywords": ["carnival", "clockwork", "wish"]
   },
@@ -35,7 +31,6 @@
     "number": 5,
     "title": "The Sunken Library",
     "emoji": "📚",
-    "chapters": 6,
     "approxTime": "5-10 min",
     "keywords": ["library", "tides", "secrets"]
   },
@@ -43,7 +38,6 @@
     "number": 6,
     "title": "Echoes of the Perseid Gate",
     "emoji": "🚀",
-    "chapters": 10,
     "approxTime": "25-35 min",
     "keywords": ["spaceship", "anomaly", "gate"]
   },
@@ -51,7 +45,6 @@
     "number": 7,
     "title": "Whiskers and the Midnight Key",
     "emoji": "🐈",
-    "chapters": 4,
     "approxTime": "5-10 min",
     "keywords": ["cat", "attic", "magic"]
   }

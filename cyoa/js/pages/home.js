@@ -18,10 +18,6 @@ export async function renderHome(stories = []) {
           </div>
           <div class="story-card-meta">
             <div class="story-card-meta-line">
-              <span class="story-card-meta-icon" aria-hidden="true">📖</span>
-              <span>${story.chapters} ${story.chapters === 1 ? "chapter" : "chapters"}</span>
-            </div>
-            <div class="story-card-meta-line">
               <span class="story-card-meta-icon" aria-hidden="true">⏱️</span>
               <span>${story.approxTime}</span>
             </div>
