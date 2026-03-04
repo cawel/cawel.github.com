@@ -107,6 +107,14 @@
   color: var(--story-card-meta-color);
 }
 
+.story-card-meta-line-keywords {
+  align-items: flex-start;
+}
+
+.story-card-meta-line-keywords .story-card-meta-icon {
+  margin-top: 0.1em;
+}
+
 .story-card-meta-icon {
   color: var(--story-card-meta-icon-color);
   opacity: 0.82;

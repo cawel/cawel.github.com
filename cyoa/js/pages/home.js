@@ -5,7 +5,12 @@
 export async function renderHome(stories = []) {
   const storiesHtml = stories
     .map(
-      (story) => `
+      (story) => {
+        const keywords = Array.isArray(story.keywords)
+          ? story.keywords.filter(Boolean).join(", ")
+          : "";
+
+        return `
         <article class="story-card" data-story="${story.number}" role="button" tabindex="0" aria-label="Open ${story.title}">
           <div class="story-card-title">
             <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
@@ -20,9 +25,14 @@ export async function renderHome(stories = []) {
               <span class="story-card-meta-icon" aria-hidden="true">⏱️</span>
               <span>${story.approxTime}</span>
             </div>
+            <div class="story-card-meta-line story-card-meta-line-keywords">
+              <span class="story-card-meta-icon" aria-hidden="true">🔑</span>
+              <span>${keywords}</span>
+            </div>
           </div>
         </article>
-      `,
+      `;
+      },
     )
     .join("");
 
