@@ -1,10 +1,11 @@
-import { findMp3FilesInFolder } from "../utils/audioResolver.js";
+import { findMusicTracksInFolder } from "../utils/audioResolver.js";
 
 export function createAudioController() {
   let isPlaying = false;
   let audioElement = null;
   let muted = true;
   let mainAudioReady = Promise.resolve();
+  let availableTracks = [];
   let availableAudioSources = [];
   let selectedAudioIndex = 0;
   let audioButton = null;
@@ -24,17 +25,17 @@ export function createAudioController() {
     if (!availableAudioSources.length) {
       const option = document.createElement("option");
       option.value = "";
-      option.textContent = "Music 1";
+      option.textContent = "No tracks";
       audioTrackSelect.appendChild(option);
       audioTrackSelect.value = "";
       return;
     }
 
-    availableAudioSources.forEach((source, index) => {
+    availableTracks.forEach((track, index) => {
       const option = document.createElement("option");
-      option.value = source;
-      option.textContent = `Music ${index + 1}`;
-      option.title = source;
+      option.value = track.src;
+      option.textContent = track.title;
+      option.title = track.title;
       audioTrackSelect.appendChild(option);
     });
 
@@ -63,8 +64,9 @@ export function createAudioController() {
       document.body.appendChild(audio);
 
       mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("assets/music/");
-        availableAudioSources = discoveredFiles;
+        const discoveredTracks = await findMusicTracksInFolder("assets/music/");
+        availableTracks = discoveredTracks;
+        availableAudioSources = availableTracks.map((track) => track.src);
 
         selectedAudioIndex = 0;
         updateAudioTrackSelect();
@@ -74,8 +76,9 @@ export function createAudioController() {
     } else {
       const existing = document.getElementById("main-audio");
       mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("assets/music/");
-        availableAudioSources = discoveredFiles;
+        const discoveredTracks = await findMusicTracksInFolder("assets/music/");
+        availableTracks = discoveredTracks;
+        availableAudioSources = availableTracks.map((track) => track.src);
 
         const currentSrc = existing.src;
         const matchedIndex = availableAudioSources.findIndex((source) => {
