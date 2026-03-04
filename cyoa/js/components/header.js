@@ -86,9 +86,12 @@ export function createHeader(onNavigateHome) {
             </button>
             <select class="audio-track-select theme-select" id="theme-select" title="Select theme"></select>
           </div>
-          <button class="font-control" id="font-btn" title="Change chapter font">
-            <span class="font-style-icon" aria-hidden="true">A</span>
-          </button>
+          <div class="font-controls-row">
+            <button class="font-control" id="font-btn" title="Change chapter font">
+              <span class="font-style-icon" aria-hidden="true">A</span>
+            </button>
+            <select class="audio-track-select font-select" id="font-select" title="Select font"></select>
+          </div>
           <button class="admin-control" id="admin-btn" title="Open admin">
             <span class="admin-icon" aria-hidden="true">⚙️</span>
           </button>
@@ -143,7 +146,38 @@ export function createHeader(onNavigateHome) {
     });
 
     const fontBtn = document.getElementById("font-btn");
-    fontController.setControl(fontBtn);
+    const fontSelect = document.getElementById("font-select");
+    if (fontSelect) {
+      const fontOptions = fontController.getAvailableFonts();
+      fontSelect.innerHTML = fontOptions
+        .map(
+          ({ index, label }) =>
+            `<option value="${index}">${label}</option>`,
+        )
+        .join("");
+      fontSelect.value = String(fontController.getCurrentFontIndex());
+
+      fontSelect.addEventListener("change", (event) => {
+        fontController.applyFontByIndex(event.target.value);
+      });
+    }
+
+    if (fontBtn) {
+      fontBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (window.innerWidth <= 768 && fontSelect) {
+          fontController.applyFontByIndex(fontSelect.value);
+          return;
+        }
+
+        fontController.cycleChapterFont();
+        if (fontSelect) {
+          fontSelect.value = String(fontController.getCurrentFontIndex());
+        }
+      });
+    }
 
     const themeBtn = document.getElementById("theme-btn");
     const themeSelect = document.getElementById("theme-select");

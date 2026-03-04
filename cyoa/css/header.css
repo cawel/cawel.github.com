@@ -32,7 +32,17 @@ header.header-collapsed {
   gap: 12px;
 }
 
+.font-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .theme-select {
+  display: none;
+}
+
+.font-select {
   display: none;
 }
 
@@ -349,6 +359,11 @@ header.header-collapsed {
     gap: 6px;
   }
 
+  .font-controls-row {
+    width: 100%;
+    gap: 6px;
+  }
+
   .audio-controls-row .audio-track-select {
     flex: 1;
     width: auto;
@@ -380,7 +395,23 @@ header.header-collapsed {
     width: auto;
   }
 
-  .font-control {
+  .font-controls-row .font-control {
+    width: auto;
+    min-width: 44px;
+    min-height: 36px;
+    justify-content: center;
+    border: 1px solid var(--border);
+    background-color: var(--bg-muted);
+    padding: 6px 10px;
+  }
+
+  .font-controls-row .font-select {
+    display: block;
+    flex: 1;
+    width: auto;
+  }
+
+  .header-controls > .font-control {
     justify-content: flex-start;
     width: 100%;
     min-height: 36px;
