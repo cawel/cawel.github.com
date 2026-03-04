@@ -54,6 +54,10 @@ export async function renderStory(params) {
 
   const chapter = storyData[chapterNumber];
   const chapterContentHtml = formatChapterContent(chapter.content);
+  const hasChoicesList = Array.isArray(chapter.choices) && chapter.choices.length > 0;
+  const hasChoicesEndingText =
+    typeof chapter.choicesEndingText === "string" &&
+    chapter.choicesEndingText.trim().length > 0;
 
   const choicesHtml = chapter.choices
     .map(
@@ -74,14 +78,16 @@ export async function renderStory(params) {
         <h2 class="chapter-title">${chapter.title}</h2>
         <div class="chapter-content">${chapterContentHtml}</div>
         ${
-          chapter.choices.length > 0
+          hasChoicesList
             ? `
           <h3 class="chapter-section-title">What do you do?</h3>
           <ul class="choices-list">
             ${choicesHtml}
           </ul>
         `
-            : ""
+            : hasChoicesEndingText
+              ? `<p class="choices-ending-text">${chapter.choicesEndingText}</p>`
+              : ""
         }
       </div>
     </main>

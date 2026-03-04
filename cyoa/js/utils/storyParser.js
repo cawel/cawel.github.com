@@ -12,7 +12,9 @@
  *    - ### Content
  *    - ### Choices
  * 4) Every chapter must include non-empty title, content, and choices
- * 5) Choice line format: N. Choice text -> ChapterNumber
+ * 5) Choices section format:
+ *    - Either an ascending list: N. Choice text -> ChapterNumber
+ *    - Or a single line: The End (any case)
  *    - Choice list must be ascending and start at 1 (1, 2, 3, ...)
  * 6) Choice targets:
  *    - Must reference an existing chapter
@@ -24,6 +26,7 @@ const REGEX = {
   chapterHeading: /##\s+Chapter\s+(\d+)/i,
   chapterSectionHeading: /###\s+(\w+)/i,
   choiceLine: /^(\d+)\.\s+(.+?)\s*->\s*(\d+)$/,
+  theEndLine: /^the\s+end$/i,
 };
 
 const CHAPTER_SECTION_HEADING_NAMES = {
@@ -49,6 +52,8 @@ export const PARSER_RULES = Object.freeze({
     "Section headings must be one of: Title, Content, Choices",
   CHOICE_LINE_FORMAT:
     "Each choice line must follow: 1. Choice text -> ChapterNumber",
+  CHOICES_SECTION_FORMAT:
+    'Choices section must be either a numbered choice list or exactly "The End"',
   CHOICE_LIST_ORDER: "Choices must be an ascending ordered list starting at 1",
   CHAPTER_REQUIRED_FIELDS:
     "Every chapter must include title, content, and choices",
@@ -83,10 +88,18 @@ function flushCurrentChapterSection(state) {
   }
 
   const text = currentChapterContent.join("\n").trim();
-  const updatedChapter =
-    currentChapterSection === CHAPTER_SECTION_HEADING_NAMES.choices
-      ? { ...currentChapter, choices: parseChoices(text) }
-      : { ...currentChapter, [currentChapterSection]: text };
+  const updatedChapter = (() => {
+    if (currentChapterSection !== CHAPTER_SECTION_HEADING_NAMES.choices) {
+      return { ...currentChapter, [currentChapterSection]: text };
+    }
+
+    const parsedChoices = parseChoicesSection(text);
+    return {
+      ...currentChapter,
+      choices: parsedChoices.choices,
+      choicesEndingText: parsedChoices.choicesEndingText,
+    };
+  })();
 
   return {
     ...state,
@@ -125,6 +138,7 @@ function createEmptyChapter(chapterKey) {
     title: "",
     content: "",
     choices: [],
+    choicesEndingText: "",
   };
 }
 
@@ -268,8 +282,23 @@ export function parseStory(markdown) {
   return chapters;
 }
 
-function parseChoices(choicesText) {
+function parseChoicesSection(choicesText) {
   const lines = choicesText.split("\n").filter((l) => l.trim());
+
+  if (lines.length === 1 && REGEX.theEndLine.test(lines[0].trim())) {
+    return {
+      choices: [],
+      choicesEndingText: lines[0].trim(),
+    };
+  }
+
+  return {
+    choices: parseChoicesList(lines),
+    choicesEndingText: "",
+  };
+}
+
+function parseChoicesList(lines) {
 
   return lines.reduce((choices, line, index) => {
     const trimmedLine = line.trim();
@@ -277,8 +306,8 @@ function parseChoices(choicesText) {
     if (!match) {
       throw new Error(
         buildRuleError(
-          "CHOICE_LINE_FORMAT",
-          `Invalid choice format: "${trimmedLine}".`,
+          "CHOICES_SECTION_FORMAT",
+          `Invalid choices section content: "${trimmedLine}".`,
         ),
       );
     }
@@ -305,6 +334,12 @@ function parseChoices(choicesText) {
 }
 
 function collectChapterRequiredFieldErrors(chapterNumber, chapter) {
+  const hasChoicesList =
+    Array.isArray(chapter.choices) && chapter.choices.length > 0;
+  const hasChoicesEndingText =
+    typeof chapter.choicesEndingText === "string" &&
+    chapter.choicesEndingText.trim().length > 0;
+
   return [
     ...(!chapter.title
       ? [
@@ -322,11 +357,11 @@ function collectChapterRequiredFieldErrors(chapterNumber, chapter) {
           ),
         ]
       : []),
-    ...(!chapter.choices || chapter.choices.length === 0
+    ...(!hasChoicesList && !hasChoicesEndingText
       ? [
           buildRuleError(
             "CHAPTER_REQUIRED_FIELDS",
-            `Chapter ${chapterNumber} missing ### Choices section or has no choices.`,
+            `Chapter ${chapterNumber} missing ### Choices section or has invalid choices content.`,
           ),
         ]
       : []),
@@ -441,5 +476,5 @@ The End
 After many adventures, your journey ends here.
 
 ### Choices
-1. Start over -> 1`;
+The End`;
 }
