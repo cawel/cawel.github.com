@@ -342,6 +342,7 @@ header.header-collapsed {
   .audio-controls-row .audio-control {
     width: auto;
     min-width: 44px;
+    min-height: 36px;
     justify-content: center;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
@@ -352,6 +353,7 @@ header.header-collapsed {
   .font-control {
     justify-content: flex-start;
     width: 100%;
+    min-height: 36px;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
     font-size: 16px;
@@ -359,6 +361,7 @@ header.header-collapsed {
   }
 
   .audio-track-select {
+    min-height: 36px;
     padding: 6px 30px 6px 10px;
     font-size: 14px;
   }
