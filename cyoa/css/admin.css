@@ -1,0 +1,169 @@
+/* Admin Page */
+.admin-container {
+  background-color: var(--bg-alt);
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admin-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.editor-section {
+  margin-bottom: 40px;
+}
+
+.editor-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.story-select-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.story-select-row .editor-label {
+  margin-bottom: 0;
+}
+
+.story-select-row .story-select {
+  margin-bottom: 0;
+}
+
+.expected-format {
+  margin-top: 52px;
+}
+
+.expected-format > summary {
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.expected-format > summary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: color-mix(in srgb, var(--bg-muted) 85%, var(--accent) 15%);
+}
+
+.expected-format[open] > summary {
+  margin-bottom: 10px;
+}
+
+.expected-format-emoji {
+  margin-right: 10px;
+}
+
+.example-block {
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  /* keep code examples monospace despite body font change */
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+.editor-textarea {
+  width: 100%;
+  min-height: 400px;
+  padding: 15px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  background-color: var(--bg-muted);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+}
+
+.btn-secondary {
+  background-color: var(--bg-muted);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--border);
+}
+
+.validation-result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.validation-success {
+  background-color: #274e2e;
+  border: 1px solid #17401e;
+  color: #a4d3a2;
+}
+
+.validation-error {
+  background-color: #502020;
+  border: 1px solid #702020;
+  color: #e8b2b2;
+}
+
+.error-details {
+  margin-top: 10px;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+.story-select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  background-color: var(--bg-muted);
+  color: var(--text);
+}

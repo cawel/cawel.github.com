@@ -2,7 +2,7 @@
 
 .markdown-highlight {
   --md-heading-1: color-mix(in srgb, var(--accent) 78%, white 22%);
-  --md-heading-2: color-mix(in srgb, var(--story-title-color) 75%, white 25%);
+  --md-heading-2: color-mix(in srgb, #ff6ab8 78%, white 22%);
   --md-heading-3: color-mix(in srgb, var(--story-choice-icon-color) 68%, white 32%);
   --md-choice-number: color-mix(in srgb, var(--accent) 65%, white 35%);
   --md-choice-text: var(--text);

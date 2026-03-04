@@ -1,0 +1,113 @@
+/* Home Page */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100%;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 45px;
+  margin-bottom: 6px;
+  color: var(--story-title-color);
+}
+
+.stories-grid {
+  width: min(980px, 100%);
+  margin: 4px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
+  gap: 40px;
+}
+
+.home-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  text-align: center;
+  color: var(--text-alt);
+  opacity: 0.65;
+  font-size: 14px;
+  border-top: 1px solid
+    color-mix(in srgb, var(--story-title-color) 24%, transparent);
+}
+
+.story-card {
+  background: linear-gradient(145deg, var(--bg-alt), var(--bg-muted));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.story-card:hover,
+.story-card:focus-visible {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--bg-muted) 78%, var(--accent) 22%),
+    color-mix(in srgb, var(--bg-alt) 88%, var(--accent) 12%)
+  );
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.story-card-meta-label {
+  color: var(--text-alt);
+  opacity: 0.46;
+}
+
+.story-card-meta-value {
+  color: var(--text-alt);
+  opacity: 0.46;
+}
+
+.story-card:focus-visible {
+  outline: none;
+}
+
+.story-card-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.story-card-emoji {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.story-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text-alt);
+  margin-left: 34px;
+}
+
+.story-card-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-alt);
+}
+
+.story-card-meta-icon {
+  color: var(--text-alt);
+  opacity: 0.46;
+  line-height: 1;
+}

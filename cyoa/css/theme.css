@@ -1,0 +1,68 @@
+:root {
+  /* core palette for dark theme */
+  --bg: #111;
+  --bg-alt: #1e1e1e;
+  --bg-muted: #222;
+  --text: #ddd;
+  --text-alt: #aaa;
+  --accent: #66aaff;
+  --accent-dark: #5599cc;
+  --border: #444;
+  --button-bg: #334455;
+  --button-bg-hover: #445566;
+  --chapter-content-font: "Merriweather", Georgia, serif;
+  --story-ending-font: "Merriweather", Georgia, serif;
+
+  /* Theme-specific variables - Yellow theme by default */
+  --story-bg: #1f1a15;
+  --story-border: #3d3730;
+  --story-title-color: #c9a961;
+  --story-text-color: #ccc;
+  --story-choice-text-color: #b9b2a5;
+  --story-choice-text-hover: #d2ccc1;
+  --story-choice-icon-color: #c9a961;
+}
+
+/* Minimalist theme */
+:root.theme-minimalist {
+  --story-bg: #0d0d0d;
+  --story-border: #222;
+  --story-title-color: #e3e3e3;
+  --story-text-color: #8d8d8d;
+  --story-choice-text-color: #8e8e8e;
+  --story-choice-text-hover: #a6a6a6;
+  --story-choice-icon-color: #cfcfcf;
+}
+
+/* Blue theme */
+:root.theme-blue {
+  --story-bg: #0a1424;
+  --story-border: #1f3a5f;
+  --story-title-color: #79b8ff;
+  --story-text-color: #c8d8ee;
+  --story-choice-text-color: #9fc3f0;
+  --story-choice-text-hover: #bfdcff;
+  --story-choice-icon-color: #4da3ff;
+}
+
+/* Ember theme */
+:root.theme-ember {
+  --story-bg: #140e0d;
+  --story-border: #3a241d;
+  --story-title-color: #e79c77;
+  --story-text-color: #c2a79a;
+  --story-choice-text-color: #be947f;
+  --story-choice-text-hover: #d5ab96;
+  --story-choice-icon-color: #dd7952;
+}
+
+/* Neon theme */
+:root.theme-neon {
+  --story-bg: #120a1d;
+  --story-border: #3b2b57;
+  --story-title-color: #f368ff;
+  --story-text-color: #d8d0e8;
+  --story-choice-text-color: #b9afcf;
+  --story-choice-text-hover: #76f7ff;
+  --story-choice-icon-color: #00e8ff;
+}
