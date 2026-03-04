@@ -21,6 +21,16 @@
   --story-choice-text-color: #b9b2a5;
   --story-choice-text-hover: #d2ccc1;
   --story-choice-icon-color: #c9a961;
+  --story-card-meta-color: color-mix(
+    in srgb,
+    var(--story-choice-text-color) 78%,
+    var(--text) 22%
+  );
+  --story-card-meta-icon-color: color-mix(
+    in srgb,
+    var(--story-choice-icon-color) 68%,
+    var(--text) 32%
+  );
 }
 
 /* Minimalist theme */

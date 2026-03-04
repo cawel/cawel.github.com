@@ -64,13 +64,13 @@
 }
 
 .story-card-meta-label {
-  color: var(--text-alt);
-  opacity: 0.46;
+  color: var(--story-card-meta-color);
+  opacity: 0.78;
 }
 
 .story-card-meta-value {
-  color: var(--text-alt);
-  opacity: 0.46;
+  color: var(--story-card-meta-color);
+  opacity: 0.78;
 }
 
 .story-card:focus-visible {
@@ -96,7 +96,7 @@
   flex-direction: column;
   gap: 4px;
   font-size: 14px;
-  color: var(--text-alt);
+  color: var(--story-card-meta-color);
   margin-left: 34px;
 }
 
@@ -104,11 +104,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--text-alt);
+  color: var(--story-card-meta-color);
 }
 
 .story-card-meta-icon {
-  color: var(--text-alt);
-  opacity: 0.46;
+  color: var(--story-card-meta-icon-color);
+  opacity: 0.82;
   line-height: 1;
 }
