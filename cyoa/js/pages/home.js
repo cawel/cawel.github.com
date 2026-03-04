@@ -85,7 +85,7 @@ export async function renderHome() {
         <div class="stories-grid" role="list">
           ${storiesHtml}
         </div>
-        <footer class="home-footer">Choose Your Own Adventure</footer>
+        <footer class="home-footer">Choose Your Own Adventure | 2026</footer>
       </div>
     </main>
   `;
