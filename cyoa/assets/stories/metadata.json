@@ -47,5 +47,12 @@
     "emoji": "🐈",
     "approxTime": "5-10 min",
     "keywords": ["cat", "attic", "magic"]
+  },
+  {
+    "number": 8,
+    "title": "Crown of the Underforge",
+    "emoji": "🧙",
+    "approxTime": "10-15 min",
+    "keywords": ["wizards", "dwarves", "dungeons"]
   }
 ]
