@@ -197,7 +197,6 @@ export function createHeader(onNavigateHome) {
 
   return {
     mount,
-    syncState,
     updateAudioButton,
   };
 }

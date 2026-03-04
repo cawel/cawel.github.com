@@ -12,10 +12,8 @@ export function createAudioController() {
 
   const stopAllAudio = () => {
     const mainAudio = document.getElementById("main-audio");
-    const storyAudio = document.getElementById("story-music");
 
     if (mainAudio && !mainAudio.paused) mainAudio.pause();
-    if (storyAudio && !storyAudio.paused) storyAudio.pause();
   };
 
   const updateAudioTrackSelect = () => {
@@ -92,20 +90,9 @@ export function createAudioController() {
   };
 
   const setupAudio = () => {
-    const currentStoryMusic = document.getElementById("story-music");
-
-    if (currentStoryMusic) {
-      const mainAudio = document.getElementById("main-audio");
-      if (mainAudio && !mainAudio.paused) {
-        mainAudio.pause();
-      }
-      audioElement = currentStoryMusic;
-      isPlaying = currentStoryMusic.paused === false;
-    } else {
-      audioElement = document.getElementById("main-audio");
-      applySelectedMainTrack();
-      isPlaying = audioElement && audioElement.paused === false;
-    }
+    audioElement = document.getElementById("main-audio");
+    applySelectedMainTrack();
+    isPlaying = audioElement && audioElement.paused === false;
 
     if (muted && audioElement && !audioElement.paused) {
       audioElement.pause();

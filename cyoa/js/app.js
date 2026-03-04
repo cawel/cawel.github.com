@@ -13,7 +13,7 @@
  *
  * Render lifecycle:
  * - router.render() injects route HTML
- * - header.syncState() then aligns controls with current page state
+ * - header state is initialized on mount
  */
 
 import { createRouter } from "./router.js";
@@ -42,7 +42,6 @@ header.mount();
 // Initial render
 const renderPage = async () => {
   await router.render(appContainer);
-  header.syncState();
 };
 
 // Render on hash change
