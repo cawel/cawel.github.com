@@ -1,6 +1,6 @@
 # Choose Your Own Adventure (CYOA)
 
-A modern, interactive choose-your-own-adventure web application built with vanilla JavaScript, HTML, and CSS. No build step required. Hash-based routing for GitHub Pages deployment.
+A modern, interactive choose-your-own-adventure web application built with vanilla JavaScript, HTML, and CSS. No build step required.
 
 ## Features
 
@@ -19,7 +19,14 @@ A modern, interactive choose-your-own-adventure web application built with vanil
 cyoa/
 ├── index.html                 # Main entry point
 ├── css/
-│   └── style.css             # All styling
+│   ├── style.css              # CSS entrypoint (imports modules)
+│   ├── theme.css
+│   ├── base.css
+│   ├── header.css
+│   ├── home.css
+│   ├── story.css
+│   ├── admin.css
+│   └── admin-markdown.css
 ├── js/
 │   ├── app.js                # Main application entry point
 │   ├── router.js             # Hash-based routing system
@@ -32,11 +39,11 @@ cyoa/
 │   └── utils/
 │       └── storyParser.js    # Markdown parser and validator
 ├── assets/
-│   └── stories/              # Story chapter markdown files + metadata
-│       ├── metadata.json     # Story metadata for home/admin lists
-│       ├── story-1.md
-│       ├── story-2.md
-│       └── ...
+│   ├── stories/              # Story chapter markdown files + metadata
+│   │   ├── metadata.json     # Story metadata for home/admin lists
+│   │   ├── story-1.md
+│   │   ├── story-2.md
+│   │   └── ...
 │   └── music/
 │       ├── tracks.json       # Music track manifest
 │       └── *.mp3             # Main background music tracks
@@ -67,21 +74,24 @@ Next chapter title
 Next chapter content...
 
 ### Choices
-1. Choice text -> 4
-2. Another choice -> 5
+The End
 ```
 
 ### Format Rules
 
+- Story must begin with a single top-level heading: `# Story Title`
 - Each chapter starts with `## Chapter N` (where N is a number)
 - Each chapter must have exactly three subsections:
   - `### Title` - The chapter's title
   - `### Content` - The narrative text
-  - `### Choices` - Numbered list of reader choices
-- Choices follow the format: `1. Choice text -> ChapterNumber`
-- Chapter numbers must be sequential starting from 1
-- Each choice must reference an existing chapter
-- All sections must be present in every chapter (even the last chapter, which may loop back)
+  - `### Choices` - Numbered list of choices or `The End`
+- Choices can be either:
+  - Numbered list format: `1. Choice text -> ChapterNumber`
+  - A single line: `The End`
+- Chapter headings must be in ascending order; first chapter must be `## Chapter 1`
+- Choice numbers must be ascending starting from 1
+- Each choice target must reference an existing chapter and cannot reference itself
+- All sections must be present in every chapter
 
 ## Usage
 
@@ -91,9 +101,8 @@ Next chapter content...
 2. Open `index.html` in a web browser
 3. Navigate using hash routes:
    - `#/` - Homepage
-   - `#/story/1` - Story 1
-   - `#/story/2` - Story 2
-   - `#/story/3` - Story 3
+  - `#/story/1` - Story 1
+  - `#/story/1/1` - Story 1, Chapter 1
    - `#/admin` - Admin editor page
 
 ### Navigation
@@ -108,7 +117,7 @@ Next chapter content...
 The admin page allows you to:
 
 1. **View Expected Format**: See a complete example of proper story markdown
-2. **Load Stories**: Select an existing story (1-3) to edit
+2. **Load Stories**: Select an existing story to edit
 3. **Edit Content**: Modify story markdown in the textarea
 4. **Validate Syntax**: Click "Validate Syntax" to check for errors
 5. **Error Feedback**: Get detailed error messages if syntax is invalid
@@ -116,12 +125,15 @@ The admin page allows you to:
 #### Validation Checks
 
 The parser validates:
+- Story starts with one top-level title (`# Story Title`)
 - Proper chapter heading format (`## Chapter N`)
-- Sequential chapter numbers starting from 1
+- Chapter headings in ascending order (first chapter is 1)
 - Presence of all three subsections per chapter
-- Valid choice format (`1. text -> N`)
-- All referenced chapters exist
-- Non-empty content in all sections
+- No duplicate section headings within a chapter
+- Valid choices section: numbered list or `The End`
+- Valid choice format (`1. text -> N`) when list-based
+- All referenced chapters exist and are not self-referential
+- Non-empty content in required sections
 
 ## Technical Details
 
@@ -167,18 +179,6 @@ Page components that return HTML strings. Mounted via router.
 - **Accessible button styling** with hover states
 - **Semantic HTML** for proper accessibility
 
-## GitHub Pages Deployment
-
-To deploy on GitHub Pages:
-
-1. Push this repository to your GitHub account
-2. Navigate to repository **Settings** → **Pages**
-3. Set source to the branch containing this code
-4. Enable GitHub Pages
-5. Access your site at `https://yourusername.github.io/cyoa`
-
-**Note**: All asset paths use relative URLs (no leading `/`), so the app works from any subdirectory.
-
 ## Audio Assets
 
 To add background music:
@@ -195,18 +195,6 @@ Works in all modern browsers supporting:
 - Fetch API
 - CSS Grid and Flexbox
 - Audio API
-
-## Future Enhancements
-
-Potential additions without breaking the "no build step" principle:
-
-- Auto-save draft stories to localStorage
-- Export stories as JSON or plain text
-- Reader statistics and analytics
-- Custom color themes
-- Keyboard controls for navigation
-- Accessibility improvements (ARIA labels, focus management)
-- Responsive image support for stories
 
 ## License
 
