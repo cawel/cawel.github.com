@@ -5,6 +5,7 @@
  * 1) Story must begin with a top-level heading: # Story Title
  * 2) Chapter heading format: ## Chapter N
  *    - Chapter numbers must be unique
+ *    - Chapter headings must be listed in ascending numeric order
  *    - First chapter must be Chapter 1
  *    - A blank line is required above each chapter heading
  * 3) Chapter section headings must be exactly:
@@ -45,7 +46,10 @@ const CHAPTER_SECTIONS = Object.freeze([
 export const PARSER_RULES = Object.freeze({
   STORY_TITLE_HEADING:
     "Story must begin with a top-level title in format: # Story Title",
+  SINGLE_STORY_TITLE: "Story must contain only one top-level title heading",
   CHAPTER_HEADING_FORMAT: "Each chapter heading must follow: ## Chapter N",
+  CHAPTER_ASCENDING_ORDER:
+    "Chapter headings must be listed in ascending numeric order",
   CHAPTER_HEADING_BLANK_LINE:
     "Each chapter heading must have a blank line above it",
   UNIQUE_CHAPTER_NUMBERS: "Chapter numbers must be unique",
@@ -123,12 +127,28 @@ function assertStoryTitleHeading(lines) {
   ) {
     throw new Error(buildRuleError("STORY_TITLE_HEADING"));
   }
+
+  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim());
+  const extraStoryTitleLineIndex = lines.findIndex(
+    (line, index) =>
+      index > firstNonEmptyLineIndex && REGEX.storyTitleHeading.test(line.trim()),
+  );
+
+  if (extraStoryTitleLineIndex >= 0) {
+    throw new Error(
+      buildRuleError(
+        "SINGLE_STORY_TITLE",
+        `Duplicate top-level title found at line ${extraStoryTitleLineIndex + 1}.`,
+      ),
+    );
+  }
 }
 
 function createInitialParserState() {
   return {
     chapters: {},
     chapterSectionsSeen: {},
+    lastChapterNumberSeen: null,
     currentChapter: null,
     currentChapterKey: null,
     currentChapterSection: null,
@@ -200,6 +220,20 @@ function handleChapterHeading(state, trimmed, lineIndex, lines) {
   assertBlankLineBeforeChapterHeading(lines, lineIndex, trimmed);
 
   const chapterKey = extractChapterKey(trimmed);
+  const chapterNumber = parseInt(chapterKey, 10);
+
+  if (
+    typeof flushedState.lastChapterNumberSeen === "number" &&
+    chapterNumber <= flushedState.lastChapterNumberSeen
+  ) {
+    throw new Error(
+      buildRuleError(
+        "CHAPTER_ASCENDING_ORDER",
+        `Chapter ${chapterNumber} appears after Chapter ${flushedState.lastChapterNumberSeen}.`,
+      ),
+    );
+  }
+
   if (flushedState.chapters[chapterKey]) {
     throw new Error(
       buildRuleError(
@@ -220,6 +254,7 @@ function handleChapterHeading(state, trimmed, lineIndex, lines) {
       ...flushedState.chapterSectionsSeen,
       [chapterKey]: new Set(),
     },
+    lastChapterNumberSeen: chapterNumber,
     currentChapter: newChapter,
     currentChapterKey: chapterKey,
     currentChapterSection: null,
