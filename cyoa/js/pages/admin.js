@@ -114,7 +114,7 @@ async function loadStory() {
 
   try {
     const response = await fetch(
-      withBasePath(`/js/data/stories/story-${storyNum}.md`),
+      withBasePath(`/assets/stories/story-${storyNum}.md`),
     );
     if (!response.ok) {
       throw new Error(`Failed to load story ${storyNum}`);

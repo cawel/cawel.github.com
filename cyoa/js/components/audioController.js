@@ -63,7 +63,7 @@ export function createAudioController() {
       document.body.appendChild(audio);
 
       mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("music/");
+        const discoveredFiles = await findMp3FilesInFolder("assets/music/");
         availableAudioSources = discoveredFiles;
 
         selectedAudioIndex = 0;
@@ -74,7 +74,7 @@ export function createAudioController() {
     } else {
       const existing = document.getElementById("main-audio");
       mainAudioReady = (async () => {
-        const discoveredFiles = await findMp3FilesInFolder("music/");
+        const discoveredFiles = await findMp3FilesInFolder("assets/music/");
         availableAudioSources = discoveredFiles;
 
         const currentSrc = existing.src;
@@ -129,7 +129,7 @@ export function createAudioController() {
       } else {
         audioElement.play().catch((error) => {
           console.warn(
-            "[audio] Unable to play music. Check that an MP3 exists in /music and the file is accessible.",
+            "[audio] Unable to play music. Check that an MP3 exists in /assets/music and the file is accessible.",
             error,
           );
         });

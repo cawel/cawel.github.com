@@ -29,17 +29,17 @@ cyoa/
 │   │   ├── home.js           # Homepage component
 │   │   ├── story.js          # Story reader component
 │   │   └── admin.js          # Admin/editor component
-│   ├── data/
-│   │   ├── stories-metadata.json # Story metadata for home/admin lists
-│   │   └── stories/          # Story chapter markdown files
-│   │       ├── story-1.md
-│   │       ├── story-2.md
-│   │       └── ...
 │   └── utils/
 │       └── storyParser.js    # Markdown parser and validator
-├── music/
-│   ├── tracks.json           # Music track manifest
-│   └── *.mp3                 # Main background music tracks
+├── assets/
+│   └── stories/              # Story chapter markdown files + metadata
+│       ├── metadata.json     # Story metadata for home/admin lists
+│       ├── story-1.md
+│       ├── story-2.md
+│       └── ...
+│   └── music/
+│       ├── tracks.json       # Music track manifest
+│       └── *.mp3             # Main background music tracks
 └── README.md                 # This file
 ```
 
@@ -183,8 +183,8 @@ To deploy on GitHub Pages:
 
 To add background music:
 
-1. Place MP3 files in `music/`
-2. Add each filename to `music/tracks.json`
+1. Place MP3 files in `assets/music/`
+2. Add each filename to `assets/music/tracks.json`
 
 The audio control in the header manages the shared main audio player used across the app.
 
