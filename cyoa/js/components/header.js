@@ -63,13 +63,15 @@ export function createHeader(onNavigateHome) {
           <span class="mobile-menu-icon" aria-hidden="true">☰</span>
         </button>
         <div class="header-controls">
-          <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
-          <button class="audio-control" id="audio-btn" title="Toggle background music">
-            <span class="speaker-wrap">
-              <span class="speaker-icon">🔊</span>
-              <span class="mute-cross" style="visibility:hidden"></span>
-            </span>
-          </button>
+          <div class="audio-controls-row">
+            <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
+            <button class="audio-control" id="audio-btn" title="Toggle background music">
+              <span class="speaker-wrap">
+                <span class="speaker-icon">🔊</span>
+                <span class="mute-cross" style="visibility:hidden"></span>
+              </span>
+            </button>
+          </div>
           <button class="theme-control" id="theme-btn" title="Change theme">
             <span class="theme-icon" aria-hidden="true">🎨</span>
           </button>
@@ -128,9 +130,6 @@ export function createHeader(onNavigateHome) {
       button: audioBtn,
       trackSelect: audioTrackSelect,
     });
-    if (audioTrackSelect) {
-      audioTrackSelect.addEventListener("change", closeMobileMenu);
-    }
 
     const fontBtn = document.getElementById("font-btn");
     fontController.setControl(fontBtn);

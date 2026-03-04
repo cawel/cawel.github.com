@@ -20,6 +20,12 @@ header.header-collapsed {
   gap: 16px;
 }
 
+.audio-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -323,7 +329,25 @@ header.header-collapsed {
     width: 100%;
   }
 
-  .audio-control,
+  .audio-controls-row {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .audio-controls-row .audio-track-select {
+    flex: 1;
+    width: auto;
+  }
+
+  .audio-controls-row .audio-control {
+    width: auto;
+    min-width: 44px;
+    justify-content: center;
+    border: 1px solid var(--border);
+    background-color: var(--bg-muted);
+    padding: 6px 10px;
+  }
+
   .theme-control,
   .font-control {
     justify-content: flex-start;
