@@ -269,16 +269,16 @@ header.header-collapsed {
 
 @media (max-width: 768px) {
   header {
-    padding: 14px 16px;
+    padding: 7px 10px;
     max-width: none;
     position: relative;
     flex-wrap: wrap;
-    row-gap: 10px;
+    row-gap: 6px;
   }
 
   .header-title {
-    font-size: 19px;
-    gap: 8px;
+    font-size: 16px;
+    gap: 6px;
   }
 
   .header-title-full {
@@ -297,7 +297,7 @@ header.header-collapsed {
   }
 
   .header-emoji {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .mobile-menu-btn {
@@ -310,8 +310,8 @@ header.header-collapsed {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
-    padding-top: 8px;
+    gap: 6px;
+    padding-top: 6px;
     border-top: 1px solid var(--border);
   }
 
@@ -330,7 +330,21 @@ header.header-collapsed {
     width: 100%;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
-    font-size: 18px;
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  .audio-track-select {
+    padding: 6px 30px 6px 10px;
+    font-size: 14px;
+  }
+
+  .mobile-menu-btn {
+    padding: 6px 8px;
+  }
+
+  .mobile-menu-icon {
+    font-size: 20px;
   }
 
   .admin-control,
