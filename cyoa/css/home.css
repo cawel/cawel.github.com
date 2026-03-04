@@ -12,7 +12,7 @@
   text-align: center;
   margin-top: 45px;
   margin-bottom: 6px;
-  color: var(--story-title-color);
+  color: var(--story-choice-text-hover);
 }
 
 .stories-grid {
@@ -83,6 +83,7 @@
   gap: 10px;
   font-size: 22px;
   font-weight: 700;
+  color: var(--story-title-color);
 }
 
 .story-card-emoji {
