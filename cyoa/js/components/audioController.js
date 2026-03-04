@@ -100,7 +100,7 @@ export function createAudioController() {
     }
   };
 
-  const syncState = () => {
+  const refreshAudioState = () => {
     setupAudio();
     updateAudioButton();
   };
@@ -195,7 +195,7 @@ export function createAudioController() {
     setControls,
     whenReady: () => mainAudioReady,
     isMuted: () => muted,
-    syncState,
+    refreshAudioState,
     muteAndStopAll,
     stopAudioWithoutMuting,
     toggleAudio,

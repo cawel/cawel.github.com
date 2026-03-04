@@ -28,8 +28,8 @@ export function createHeader(onNavigateHome) {
     setHeaderHidden(true);
   };
 
-  const syncState = () => {
-    audioController.syncState();
+  const refreshAudioState = () => {
+    audioController.refreshAudioState();
   };
 
   const updateAudioButton = () => {
@@ -73,7 +73,7 @@ export function createHeader(onNavigateHome) {
 
   const mount = () => {
     if (mounted) {
-      syncState();
+      refreshAudioState();
       return;
     }
 
@@ -189,7 +189,7 @@ export function createHeader(onNavigateHome) {
     // Setup audio tracking once we have the correct main audio URL
     audioController.whenReady().then(() => {
       fontController.initialize();
-      syncState();
+      refreshAudioState();
     });
 
     mounted = true;
