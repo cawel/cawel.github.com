@@ -17,6 +17,7 @@
   --button-bg: #334455;
   --button-bg-hover: #445566;
   --chapter-content-font: 'Merriweather', Georgia, serif;
+  --story-ending-font: 'Merriweather', Georgia, serif;
   
   /* Theme-specific variables - Yellow theme by default */
   --story-bg: #1f1a15;
@@ -37,6 +38,7 @@
   --story-choice-text-color: #8e8e8e;
   --story-choice-text-hover: #a6a6a6;
   --story-choice-icon-color: #cfcfcf;
+  --story-ending-font: 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
 }
 
 /* Blue theme */
@@ -48,6 +50,7 @@
   --story-choice-text-color: #9fc3f0;
   --story-choice-text-hover: #bfdcff;
   --story-choice-icon-color: #4da3ff;
+  --story-ending-font: 'Baskerville', Georgia, serif;
 }
 
 /* Ember theme */
@@ -59,6 +62,7 @@
   --story-choice-text-color: #be947f;
   --story-choice-text-hover: #d5ab96;
   --story-choice-icon-color: #dd7952;
+  --story-ending-font: 'Goudy Old Style', Garamond, serif;
 }
 
 /* Neon theme */
@@ -70,6 +74,7 @@
   --story-choice-text-color: #b9afcf;
   --story-choice-text-hover: #76f7ff;
   --story-choice-icon-color: #00e8ff;
+  --story-ending-font: 'Didot', 'Times New Roman', serif;
 }
 
 html, body {
@@ -524,6 +529,51 @@ main.story-main .story-container {
   padding-top: 6px;
   padding-left: 0;
   max-width: 46em;
+}
+
+.choices-ending-text {
+  --ending-glow-sharp: color-mix(in srgb, var(--story-title-color) 50%, transparent);
+  --ending-glow-soft: color-mix(in srgb, var(--story-title-color) 20%, transparent);
+  --ending-divider-mid: color-mix(in srgb, var(--story-title-color) 42%, transparent);
+  --ending-divider-core: color-mix(in srgb, var(--story-title-color) 58%, transparent);
+  margin-top: 118px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: clamp(62px, 9.2vw, 124px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--story-title-color);
+  line-height: 0.92;
+  font-family: var(--story-ending-font);
+  text-shadow:
+    0 0 1px var(--ending-glow-sharp),
+    0 0 22px var(--ending-glow-soft);
+}
+
+.choices-ending-text::before,
+.choices-ending-text::after {
+  content: "";
+  display: block;
+  width: min(500px, 78%);
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--ending-divider-mid) 22%,
+    var(--ending-divider-core) 50%,
+    var(--ending-divider-mid) 78%,
+    transparent 100%
+  );
+}
+
+.choices-ending-text::before {
+  margin-bottom: 24px;
+}
+
+.choices-ending-text::after {
+  margin-top: 24px;
 }
 
 .choice-item {

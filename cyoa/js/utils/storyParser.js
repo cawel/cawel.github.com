@@ -288,7 +288,7 @@ function parseChoicesSection(choicesText) {
   if (lines.length === 1 && REGEX.theEndLine.test(lines[0].trim())) {
     return {
       choices: [],
-      choicesEndingText: lines[0].trim(),
+      choicesEndingText: "The End",
     };
   }
 
