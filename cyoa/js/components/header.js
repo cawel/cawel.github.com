@@ -51,11 +51,11 @@ export function createHeader(onNavigateHome) {
               <span class="mute-cross" style="visibility:hidden"></span>
             </span>
           </button>
-          <button class="font-control" id="font-btn" title="Change chapter font">
-            <span class="font-style-icon" aria-hidden="true">A</span>
-          </button>
           <button class="theme-control" id="theme-btn" title="Change theme">
             <span class="theme-icon" aria-hidden="true">🎨</span>
+          </button>
+          <button class="font-control" id="font-btn" title="Change chapter font">
+            <span class="font-style-icon" aria-hidden="true">A</span>
           </button>
           <button class="admin-control" id="admin-btn" title="Open admin">
             <span class="admin-icon" aria-hidden="true">⚙️</span>
