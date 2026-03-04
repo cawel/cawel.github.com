@@ -11,6 +11,7 @@
  *    - ### Title
  *    - ### Content
  *    - ### Choices
+ *    - Each section may appear at most once per chapter
  * 4) Every chapter must include non-empty title, content, and choices
  * 5) Choices section format:
  *    - Either an ascending list: N. Choice text -> ChapterNumber
@@ -50,6 +51,8 @@ export const PARSER_RULES = Object.freeze({
   UNIQUE_CHAPTER_NUMBERS: "Chapter numbers must be unique",
   VALID_SECTION_HEADINGS:
     "Section headings must be one of: Title, Content, Choices",
+  DUPLICATE_CHAPTER_SECTION:
+    "Each chapter section (Title, Content, Choices) may appear only once",
   CHOICE_LINE_FORMAT:
     "Each choice line must follow: 1. Choice text -> ChapterNumber",
   CHOICES_SECTION_FORMAT:
@@ -125,6 +128,7 @@ function assertStoryTitleHeading(lines) {
 function createInitialParserState() {
   return {
     chapters: {},
+    chapterSectionsSeen: {},
     currentChapter: null,
     currentChapterKey: null,
     currentChapterSection: null,
@@ -212,6 +216,10 @@ function handleChapterHeading(state, trimmed, lineIndex, lines) {
       ...flushedState.chapters,
       [chapterKey]: newChapter,
     },
+    chapterSectionsSeen: {
+      ...flushedState.chapterSectionsSeen,
+      [chapterKey]: new Set(),
+    },
     currentChapter: newChapter,
     currentChapterKey: chapterKey,
     currentChapterSection: null,
@@ -223,8 +231,37 @@ function handleChapterSectionHeading(state, trimmed) {
   const flushedState = flushCurrentChapterSection(state);
   const chapterSectionName = extractChapterSectionName(trimmed);
 
+  if (!flushedState.currentChapterKey) {
+    throw new Error(
+      buildRuleError(
+        "CHAPTER_HEADING_FORMAT",
+        `Section found before chapter heading: "${trimmed}".`,
+      ),
+    );
+  }
+
+  const chapterKey = flushedState.currentChapterKey;
+  const seenSections =
+    flushedState.chapterSectionsSeen[chapterKey] || new Set();
+
+  if (seenSections.has(chapterSectionName)) {
+    throw new Error(
+      buildRuleError(
+        "DUPLICATE_CHAPTER_SECTION",
+        `Chapter ${chapterKey} has duplicate ### ${chapterSectionName[0].toUpperCase()}${chapterSectionName.slice(1)} section.`,
+      ),
+    );
+  }
+
+  const updatedSeenSections = new Set(seenSections);
+  updatedSeenSections.add(chapterSectionName);
+
   return {
     ...flushedState,
+    chapterSectionsSeen: {
+      ...flushedState.chapterSectionsSeen,
+      [chapterKey]: updatedSeenSections,
+    },
     currentChapterSection: chapterSectionName,
     currentChapterContent: [],
   };
