@@ -46,6 +46,13 @@ export async function renderHome() {
       chapters: 10,
       approxTime: "25-35 min",
     },
+    {
+      number: 7,
+      title: "Whiskers and the Midnight Key",
+      emoji: "🐈",
+      chapters: 4,
+      approxTime: "5-10 min",
+    },
   ];
 
   const storiesHtml = stories
