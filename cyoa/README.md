@@ -100,10 +100,10 @@ The End
 1. Clone or download this repository
 2. Open `index.html` in a web browser
 3. Navigate using hash routes:
-   - `#/` - Homepage
-  - `#/story/1` - Story 1
-  - `#/story/1/1` - Story 1, Chapter 1
-   - `#/admin` - Admin editor page
+    - `#/` - Homepage
+    - `#/story/1` - Story 1
+    - `#/story/1/1` - Story 1, Chapter 1
+    - `#/admin` - Admin editor page
 
 ### Navigation
 
