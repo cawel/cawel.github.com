@@ -299,7 +299,6 @@ function parseChoicesSection(choicesText) {
 }
 
 function parseChoicesList(lines) {
-
   return lines.reduce((choices, line, index) => {
     const trimmedLine = line.trim();
     const match = trimmedLine.match(REGEX.choiceLine);

@@ -16,9 +16,9 @@
   --border: #444;
   --button-bg: #334455;
   --button-bg-hover: #445566;
-  --chapter-content-font: 'Merriweather', Georgia, serif;
-  --story-ending-font: 'Merriweather', Georgia, serif;
-  
+  --chapter-content-font: "Merriweather", Georgia, serif;
+  --story-ending-font: "Merriweather", Georgia, serif;
+
   /* Theme-specific variables - Yellow theme by default */
   --story-bg: #1f1a15;
   --story-border: #3d3730;
@@ -38,7 +38,6 @@
   --story-choice-text-color: #8e8e8e;
   --story-choice-text-hover: #a6a6a6;
   --story-choice-icon-color: #cfcfcf;
-  --story-ending-font: 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
 }
 
 /* Blue theme */
@@ -50,7 +49,6 @@
   --story-choice-text-color: #9fc3f0;
   --story-choice-text-hover: #bfdcff;
   --story-choice-icon-color: #4da3ff;
-  --story-ending-font: 'Baskerville', Georgia, serif;
 }
 
 /* Ember theme */
@@ -62,7 +60,6 @@
   --story-choice-text-color: #be947f;
   --story-choice-text-hover: #d5ab96;
   --story-choice-icon-color: #dd7952;
-  --story-ending-font: 'Goudy Old Style', Garamond, serif;
 }
 
 /* Neon theme */
@@ -74,16 +71,16 @@
   --story-choice-text-color: #b9afcf;
   --story-choice-text-hover: #76f7ff;
   --story-choice-icon-color: #00e8ff;
-  --story-ending-font: 'Didot', 'Times New Roman', serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   /* use the book-style serif for the main text to match the header title */
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
   background-color: var(--bg);
   color: var(--text);
   display: flex;
@@ -118,7 +115,7 @@ header.header-collapsed {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 8px 34px 8px 10px;
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
@@ -152,7 +149,7 @@ header.header-collapsed {
   transition: opacity 0.2s;
   background: none;
   border: none;
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
 }
 
 .header-title:hover {
@@ -193,7 +190,7 @@ header.header-collapsed {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
   font-style: italic;
   font-weight: 700;
 }
@@ -289,7 +286,7 @@ header.header-collapsed {
   font-size: 22px;
   line-height: 1;
   color: currentColor;
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
   font-style: italic;
   font-weight: 700;
   pointer-events: auto;
@@ -317,7 +314,7 @@ header.header-collapsed {
 /* draw two thin red bars crossing each other */
 .mute-cross::before,
 .mute-cross::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -381,7 +378,8 @@ main {
   color: var(--text-alt);
   opacity: 0.65;
   font-size: 14px;
-  border-top: 1px solid color-mix(in srgb, var(--story-title-color) 24%, transparent);
+  border-top: 1px solid
+    color-mix(in srgb, var(--story-title-color) 24%, transparent);
 }
 
 .story-card {
@@ -394,7 +392,11 @@ main {
   flex-direction: column;
   gap: 16px;
   cursor: pointer;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
 }
 
 .story-card:hover,
@@ -532,10 +534,26 @@ main.story-main .story-container {
 }
 
 .choices-ending-text {
-  --ending-glow-sharp: color-mix(in srgb, var(--story-title-color) 50%, transparent);
-  --ending-glow-soft: color-mix(in srgb, var(--story-title-color) 20%, transparent);
-  --ending-divider-mid: color-mix(in srgb, var(--story-title-color) 42%, transparent);
-  --ending-divider-core: color-mix(in srgb, var(--story-title-color) 58%, transparent);
+  --ending-glow-sharp: color-mix(
+    in srgb,
+    var(--story-title-color) 50%,
+    transparent
+  );
+  --ending-glow-soft: color-mix(
+    in srgb,
+    var(--story-title-color) 20%,
+    transparent
+  );
+  --ending-divider-mid: color-mix(
+    in srgb,
+    var(--story-title-color) 42%,
+    transparent
+  );
+  --ending-divider-core: color-mix(
+    in srgb,
+    var(--story-title-color) 58%,
+    transparent
+  );
   margin-top: 118px;
   margin-bottom: 24px;
   text-align: center;
@@ -593,13 +611,15 @@ main.story-main .story-container {
   line-height: 1.65;
   padding: 2px 4px;
   cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   display: inline;
   background: transparent;
   border: none;
   width: auto;
   text-align: left;
-  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   text-shadow: none;
 }
 
@@ -669,7 +689,10 @@ main.story-main .story-container {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 10px 12px;
-  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
 }
 
 .expected-format > summary:hover {
@@ -694,7 +717,7 @@ main.story-main .story-container {
   margin-bottom: 20px;
   font-size: 14px;
   /* keep code examples monospace despite body font change */
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-x: auto;
@@ -704,7 +727,7 @@ main.story-main .story-container {
   width: 100%;
   min-height: 400px;
   padding: 15px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 14px;
   background-color: var(--bg-muted);
   color: var(--text);
@@ -769,7 +792,7 @@ main.story-main .story-container {
 .error-details {
   margin-top: 10px;
   font-size: 13px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   white-space: pre-wrap;
 }
 

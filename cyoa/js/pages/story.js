@@ -54,7 +54,8 @@ export async function renderStory(params) {
 
   const chapter = storyData[chapterNumber];
   const chapterContentHtml = formatChapterContent(chapter.content);
-  const hasChoicesList = Array.isArray(chapter.choices) && chapter.choices.length > 0;
+  const hasChoicesList =
+    Array.isArray(chapter.choices) && chapter.choices.length > 0;
   const hasChoicesEndingText =
     typeof chapter.choicesEndingText === "string" &&
     chapter.choicesEndingText.trim().length > 0;
