@@ -51,10 +51,15 @@ export function createThemeController() {
     applyTheme(currentTheme);
   };
 
+  const getAvailableThemes = () => {
+    return THEMES.map((theme) => theme.key);
+  };
+
   return {
     initialize,
     cycleTheme,
     applyTheme,
     getCurrentTheme: () => currentTheme,
+    getAvailableThemes,
   };
 }

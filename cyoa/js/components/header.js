@@ -47,6 +47,14 @@ export function createHeader(onNavigateHome) {
     audioController.refreshAudioState();
   };
 
+  const formatThemeLabel = (themeKey) => {
+    return themeKey
+      .split(/[-_\s]+/)
+      .filter(Boolean)
+      .map((word) => `${word[0].toUpperCase()}${word.slice(1)}`)
+      .join(" ");
+  };
+
   const updateAudioButton = () => {
     audioController.updateAudioButton();
   };
@@ -72,9 +80,12 @@ export function createHeader(onNavigateHome) {
             </button>
             <select class="audio-track-select" id="audio-track-select" title="Select music track"></select>
           </div>
-          <button class="theme-control" id="theme-btn" title="Change theme">
-            <span class="theme-icon" aria-hidden="true">🎨</span>
-          </button>
+          <div class="theme-controls-row">
+            <button class="theme-control" id="theme-btn" title="Change theme">
+              <span class="theme-icon" aria-hidden="true">🎨</span>
+            </button>
+            <select class="audio-track-select theme-select" id="theme-select" title="Select theme"></select>
+          </div>
           <button class="font-control" id="font-btn" title="Change chapter font">
             <span class="font-style-icon" aria-hidden="true">A</span>
           </button>
@@ -135,11 +146,36 @@ export function createHeader(onNavigateHome) {
     fontController.setControl(fontBtn);
 
     const themeBtn = document.getElementById("theme-btn");
+    const themeSelect = document.getElementById("theme-select");
+    if (themeSelect) {
+      const themeOptions = themeController.getAvailableThemes();
+      themeSelect.innerHTML = themeOptions
+        .map(
+          (themeKey) =>
+            `<option value="${themeKey}">${formatThemeLabel(themeKey)}</option>`,
+        )
+        .join("");
+      themeSelect.value = themeController.getCurrentTheme();
+
+      themeSelect.addEventListener("change", (event) => {
+        themeController.applyTheme(event.target.value);
+      });
+    }
+
     if (themeBtn) {
       themeBtn.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
+
+        if (window.innerWidth <= 768 && themeSelect) {
+          themeController.applyTheme(themeSelect.value);
+          return;
+        }
+
         themeController.cycleTheme();
+        if (themeSelect) {
+          themeSelect.value = themeController.getCurrentTheme();
+        }
       });
     }
 

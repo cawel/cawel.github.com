@@ -26,6 +26,16 @@ header.header-collapsed {
   gap: 12px;
 }
 
+.theme-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-select {
+  display: none;
+}
+
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -334,6 +344,11 @@ header.header-collapsed {
     gap: 6px;
   }
 
+  .theme-controls-row {
+    width: 100%;
+    gap: 6px;
+  }
+
   .audio-controls-row .audio-track-select {
     flex: 1;
     width: auto;
@@ -349,7 +364,22 @@ header.header-collapsed {
     padding: 6px 10px;
   }
 
-  .theme-control,
+  .theme-controls-row .theme-control {
+    width: auto;
+    min-width: 44px;
+    min-height: 36px;
+    justify-content: center;
+    border: 1px solid var(--border);
+    background-color: var(--bg-muted);
+    padding: 6px 10px;
+  }
+
+  .theme-controls-row .theme-select {
+    display: block;
+    flex: 1;
+    width: auto;
+  }
+
   .font-control {
     justify-content: flex-start;
     width: 100%;
