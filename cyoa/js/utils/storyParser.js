@@ -3,30 +3,35 @@
  *
  * Validation rules:
  * 1) Story must begin with a top-level heading: # Story Title
- * 2) Chapter heading format: ## Chapter N
+ * 2) Story must include a keywords section before chapters:
+ *    - ## Keywords
+ *    - Exactly 3 bullet items in format: - keyword
+ * 3) Chapter heading format: ## Chapter N
  *    - Chapter numbers must be unique
  *    - Chapter headings must be listed in ascending numeric order
  *    - First chapter must be Chapter 1
  *    - A blank line is required above each chapter heading
- * 3) Chapter section headings must be exactly:
+ * 4) Chapter section headings must be exactly:
  *    - ### Title
  *    - ### Content
  *    - ### Choices
  *    - Each section may appear at most once per chapter
- * 4) Every chapter must include non-empty title, content, and choices
- * 5) Choices section format:
+ * 5) Every chapter must include non-empty title, content, and choices
+ * 6) Choices section format:
  *    - Either an ascending list: N. Choice text -> ChapterNumber
  *    - Or a single line: The End (any case)
  *    - Choice list must be ascending and start at 1 (1, 2, 3, ...)
- * 6) Choice targets:
+ * 7) Choice targets:
  *    - Must reference an existing chapter
  *    - Must not reference the same chapter
  */
 
 const REGEX = {
   storyTitleHeading: /^#\s+.+$/,
+  keywordsHeading: /^##\s+Keywords\s*$/i,
   chapterHeading: /##\s+Chapter\s+(\d+)/i,
   chapterSectionHeading: /###\s+(\w+)/i,
+  keywordBullet: /^-\s+.+$/,
   choiceLine: /^(\d+)\.\s+(.+?)\s*->\s*(\d+)$/,
   theEndLine: /^the\s+end$/i,
 };
@@ -47,6 +52,12 @@ export const PARSER_RULES = Object.freeze({
   STORY_TITLE_HEADING:
     "Story must begin with a top-level title in format: # Story Title",
   SINGLE_STORY_TITLE: "Story must contain only one top-level title heading",
+  KEYWORDS_SECTION_REQUIRED:
+    "Story must include a keywords section before chapters: ## Keywords",
+  KEYWORDS_SECTION_POSITION:
+    "Keywords section (## Keywords) must appear before the first chapter",
+  KEYWORDS_FORMAT:
+    "Keywords section must contain exactly 3 bullet items in format: - keyword",
   CHAPTER_HEADING_FORMAT: "Each chapter heading must follow: ## Chapter N",
   CHAPTER_ASCENDING_ORDER:
     "Chapter headings must be listed in ascending numeric order",
@@ -157,6 +168,43 @@ function assertStoryTitleHeading(lines) {
         `Duplicate top-level title found at line ${extraStoryTitleLineIndex + 1}.`,
       ),
     );
+  }
+}
+
+function assertKeywordsSection(lines) {
+  const keywordsHeadingIndex = lines.findIndex((line) =>
+    REGEX.keywordsHeading.test(line.trim()),
+  );
+
+  if (keywordsHeadingIndex < 0) {
+    throw new Error(buildRuleError("KEYWORDS_SECTION_REQUIRED"));
+  }
+
+  const firstChapterIndex = lines.findIndex((line) =>
+    /^##\s+Chapter\s+\d+/i.test(line.trim()),
+  );
+
+  if (firstChapterIndex >= 0 && keywordsHeadingIndex > firstChapterIndex) {
+    throw new Error(buildRuleError("KEYWORDS_SECTION_POSITION"));
+  }
+
+  const sectionLines = [];
+  for (let index = keywordsHeadingIndex + 1; index < lines.length; index += 1) {
+    const trimmed = lines[index].trim();
+    if (trimmed.startsWith("## ")) {
+      break;
+    }
+
+    if (trimmed) {
+      sectionLines.push(trimmed);
+    }
+  }
+
+  if (
+    sectionLines.length !== 3 ||
+    sectionLines.some((line) => !REGEX.keywordBullet.test(line))
+  ) {
+    throw new Error(buildRuleError("KEYWORDS_FORMAT"));
   }
 }
 
@@ -339,6 +387,10 @@ function appendChapterSectionContent(state, line, trimmed) {
 function reduceStoryLine(state, lineIndex, line, lines) {
   const trimmed = line.trim();
 
+  if (REGEX.keywordsHeading.test(trimmed)) {
+    return state;
+  }
+
   if (trimmed.startsWith("## ")) {
     return handleChapterHeading(state, trimmed, lineIndex, lines);
   }
@@ -353,6 +405,7 @@ function reduceStoryLine(state, lineIndex, line, lines) {
 export function parseStory(markdown) {
   const lines = markdown.split("\n");
   assertStoryTitleHeading(lines);
+  assertKeywordsSection(lines);
 
   const finalState = lines
     .entries()
@@ -523,6 +576,11 @@ function validateStory(chapters) {
 
 export function getValidationExample() {
   return `# Story Title
+
+## Keywords
+- mystery
+- adventure
+- discovery
 
 ## Chapter 1
 ### Title

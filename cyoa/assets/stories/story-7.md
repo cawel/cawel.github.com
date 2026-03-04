@@ -1,5 +1,10 @@
 # Whiskers and the Midnight Key
 
+## Keywords
+- cat
+- attic
+- magic
+
 ## Chapter 1
 ### Title
 The Attic Door

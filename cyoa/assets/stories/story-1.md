@@ -1,5 +1,10 @@
 # The Mysterious Forest
 
+## Keywords
+- forest
+- ruins
+- mystery
+
 ## Chapter 1
 ### Title
 The Mysterious Forest

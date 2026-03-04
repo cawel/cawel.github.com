@@ -1,5 +1,10 @@
 # Echoes of the Perseid Gate
 
+## Keywords
+- spaceship
+- anomaly
+- gate
+
 ## Chapter 1
 ### Title
 Signal in the Black

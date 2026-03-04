@@ -1,5 +1,10 @@
 # The Sunken Library
 
+## Keywords
+- library
+- tides
+- secrets
+
 ## Chapter 1
 ### Title
 The Flooded Archive

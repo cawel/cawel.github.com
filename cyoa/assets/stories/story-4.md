@@ -1,5 +1,10 @@
 # The Clockwork Carnival
 
+## Keywords
+- carnival
+- clockwork
+- wish
+
 ## Chapter 1
 ### Title
 Lanterns at Dusk

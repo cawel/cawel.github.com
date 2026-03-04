@@ -57,6 +57,13 @@ cyoa/
 Stories are written in Markdown with a specific structure:
 
 ```markdown
+# Story Title
+
+## Keywords
+- mystery
+- adventure
+- discovery
+
 ## Chapter 1
 ### Title
 The chapter title text
@@ -82,6 +89,8 @@ The End
 ### Format Rules
 
 - Story must begin with a single top-level heading: `# Story Title`
+- Story must include `## Keywords` before chapters
+- Keywords section must contain exactly 3 bullet keywords (`- keyword`)
 - Each chapter starts with `## Chapter N` (where N is a number)
 - Each chapter must have exactly three subsections:
   - `### Title` - The chapter's title
@@ -128,6 +137,8 @@ The admin page allows you to:
 
 The parser validates:
 - Story starts with one top-level title (`# Story Title`)
+- Required keywords section exists before chapters (`## Keywords`)
+- Keywords section contains exactly 3 bullet keywords
 - Proper chapter heading format (`## Chapter N`)
 - Chapter headings in ascending order (first chapter is 1)
 - Presence of all three subsections per chapter

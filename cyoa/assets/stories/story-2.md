@@ -1,5 +1,10 @@
 # Midnight at Hollow Moon Museum
 
+## Keywords
+- museum
+- conspiracy
+- paranormal
+
 ## Chapter 1
 ### Title
 The Museum at Midnight

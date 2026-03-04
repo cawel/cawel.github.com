@@ -1,5 +1,10 @@
 # The Last Broadcast
 
+## Keywords
+- space
+- signal
+- survival
+
 ## Chapter 1
 ### Title
 The Last Broadcast
