@@ -93,6 +93,10 @@ header.header-collapsed {
   font-size: 28px;
 }
 
+.header-title-short {
+  display: none;
+}
+
 .audio-control {
   background: none;
   border: none;
@@ -277,11 +281,19 @@ header.header-collapsed {
     gap: 8px;
   }
 
-  .header-title span:last-child {
+  .header-title-full {
     max-width: calc(100vw - 140px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .header-title-short {
+    display: inline;
+  }
+
+  .header-title-full {
+    display: none;
   }
 
   .header-emoji {

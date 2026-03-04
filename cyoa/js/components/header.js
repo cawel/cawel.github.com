@@ -56,7 +56,8 @@ export function createHeader(onNavigateHome) {
       <header>
         <button class="header-title" id="home-link">
           <span class="header-emoji">📖</span>
-          <span>Choose Your Own Adventure</span>
+          <span class="header-title-full">Choose Your Own Adventure</span>
+          <span class="header-title-short">CYOA</span>
         </button>
         <button class="mobile-menu-btn" id="mobile-menu-btn" title="Open menu" aria-label="Open menu" aria-expanded="false">
           <span class="mobile-menu-icon" aria-hidden="true">☰</span>
