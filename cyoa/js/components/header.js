@@ -150,10 +150,7 @@ export function createHeader(onNavigateHome) {
     if (fontSelect) {
       const fontOptions = fontController.getAvailableFonts();
       fontSelect.innerHTML = fontOptions
-        .map(
-          ({ index, label }) =>
-            `<option value="${index}">${label}</option>`,
-        )
+        .map(({ index, label }) => `<option value="${index}">${label}</option>`)
         .join("");
       fontSelect.value = String(fontController.getCurrentFontIndex());
 

@@ -15,8 +15,11 @@ function titleCase(text) {
 function deriveTitleFromFileName(fileName) {
   const baseName = stripMp3Extension(fileName || "");
   const hyphenTokens = baseName.split("-");
-  const numberTokenIndex = hyphenTokens.findIndex((token) => /^\d+$/.test(token));
-  const endIndex = numberTokenIndex >= 0 ? numberTokenIndex : hyphenTokens.length;
+  const numberTokenIndex = hyphenTokens.findIndex((token) =>
+    /^\d+$/.test(token),
+  );
+  const endIndex =
+    numberTokenIndex >= 0 ? numberTokenIndex : hyphenTokens.length;
   const scopedTokens = hyphenTokens.slice(1, endIndex);
   const titleSource = scopedTokens.length ? scopedTokens.join(" ") : baseName;
   const normalized = titleSource.replace(/[_-]+/g, " ").trim();
@@ -47,8 +50,12 @@ export async function findMusicTracksInFolder(folderPath) {
   try {
     const normalizedFolderPath = folderPath.replace(/^\/+|\/+$/g, "");
     const baseFolder = withBasePath(`/${normalizedFolderPath}/`);
-    const tracksManifestPath = withBasePath(`/${normalizedFolderPath}/tracks.json`);
-    const metadataManifestPath = withBasePath(`/${normalizedFolderPath}/metadata.json`);
+    const tracksManifestPath = withBasePath(
+      `/${normalizedFolderPath}/tracks.json`,
+    );
+    const metadataManifestPath = withBasePath(
+      `/${normalizedFolderPath}/metadata.json`,
+    );
 
     const response = await fetch(tracksManifestPath);
     if (!response.ok) return [];

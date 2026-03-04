@@ -99,9 +99,11 @@ header.header-collapsed {
 .header-title {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   font-size: 24px;
   font-weight: 600;
+  text-align: left;
   cursor: pointer;
   text-decoration: none;
   color: var(--text);
