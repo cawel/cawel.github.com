@@ -133,9 +133,6 @@ export function createHeader(onNavigateHome) {
 
     const fontBtn = document.getElementById("font-btn");
     fontController.setControl(fontBtn);
-    if (fontBtn) {
-      fontBtn.addEventListener("click", closeMobileMenu);
-    }
 
     const themeBtn = document.getElementById("theme-btn");
     if (themeBtn) {
@@ -143,7 +140,6 @@ export function createHeader(onNavigateHome) {
         event.preventDefault();
         event.stopPropagation();
         themeController.cycleTheme();
-        closeMobileMenu();
       });
     }
 
