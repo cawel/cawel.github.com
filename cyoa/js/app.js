@@ -31,10 +31,7 @@ const router = createRouter({
 });
 
 // Create header
-const header = createHeader(
-  () => router.navigate("/"),
-  () => {},
-);
+const header = createHeader(() => router.navigate("/"));
 
 // Main app container
 const appContainer = document.getElementById("app");

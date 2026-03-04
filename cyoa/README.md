@@ -152,7 +152,7 @@ createRouter(routes) // Returns navigate(), render(), getCurrentRoute()
 Shared header component with navigation and audio controls.
 
 ```javascript
-createHeader(onNavigateHome, onAudioToggle) // Returns mount(), updateAudioButton()
+createHeader(onNavigateHome) // Returns mount(), updateAudioButton()
 ```
 
 #### `storyParser.js`

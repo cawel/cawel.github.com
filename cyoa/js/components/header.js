@@ -6,7 +6,7 @@ import { createAudioController } from "./audioController.js";
 import { createFontController } from "./fontController.js";
 import { createThemeController } from "./themeController.js";
 
-export function createHeader(onNavigateHome, onAudioToggle) {
+export function createHeader(onNavigateHome) {
   let mounted = false;
   let headerHidden = false;
   let waitForRevealZoneExit = false;
