@@ -112,3 +112,35 @@
   opacity: 0.82;
   line-height: 1;
 }
+
+@media (max-width: 768px) {
+  main.home-main {
+    padding: 10px 8px;
+  }
+
+  .home-title {
+    margin-top: 18px;
+    font-size: 26px;
+  }
+
+  .stories-grid {
+    width: 100%;
+    margin-top: 0;
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .story-card {
+    padding: 14px;
+    margin-top: 0;
+  }
+
+  .story-card-title {
+    font-size: 20px;
+    gap: 8px;
+  }
+
+  .story-card-meta {
+    margin-left: 28px;
+  }
+}
