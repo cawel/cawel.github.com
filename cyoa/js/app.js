@@ -21,11 +21,31 @@ import { createHeader } from "./components/header.js";
 import { renderHome } from "./pages/home.js";
 import { renderStory } from "./pages/story.js";
 import { renderAdmin } from "./pages/admin.js";
-import { stories } from "./data/stories.js";
+import { withBasePath } from "./utils/pathResolver.js";
+
+let storiesMetadataPromise = null;
+
+const loadStoriesMetadata = async () => {
+  if (!storiesMetadataPromise) {
+    storiesMetadataPromise = fetch(withBasePath("/js/data/stories-metadata.json"))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load stories metadata");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("[home] Unable to load stories metadata:", error);
+        return [];
+      });
+  }
+
+  return storiesMetadataPromise;
+};
 
 // Create router with all routes
 const router = createRouter({
-  "/": () => renderHome(stories),
+  "/": async () => renderHome(await loadStoriesMetadata()),
   "/story/:storyId/:chapterId": renderStory,
   "/story/:storyId": renderStory,
   "/admin": renderAdmin,

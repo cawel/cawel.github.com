@@ -30,7 +30,7 @@ cyoa/
 │   │   ├── story.js          # Story reader component
 │   │   └── admin.js          # Admin/editor component
 │   ├── data/
-│   │   ├── stories.js        # Story metadata for home/admin lists
+│   │   ├── stories-metadata.json # Story metadata for home/admin lists
 │   │   └── stories/          # Story chapter markdown files
 │   │       ├── story1/
 │   │       │   └── chapters.md
