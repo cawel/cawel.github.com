@@ -1,6 +1,19 @@
 /**
  * Main application entry point
  * Single Page Application with hash-based routing
+ *
+ * Bootstrap responsibilities:
+ * - Register route handlers for home, story, and admin pages
+ * - Mount shared header once at startup
+ * - Render the current route into the #app container
+ *
+ * Routing behavior:
+ * - Uses hash-based navigation (e.g. #/story/2/4)
+ * - Re-renders whenever the hash changes
+ *
+ * Render lifecycle:
+ * - router.render() injects route HTML
+ * - header.syncState() then aligns controls with current page state
  */
 
 import { createRouter } from "./router.js";
@@ -20,7 +33,7 @@ const router = createRouter({
 // Create header
 const header = createHeader(
   () => router.navigate("/"),
-  () => {}, // Audio toggle is handled in header component
+  () => {},
 );
 
 // Main app container
