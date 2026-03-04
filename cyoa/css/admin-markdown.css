@@ -1,0 +1,146 @@
+/* Admin markdown syntax highlighting */
+
+.markdown-highlight {
+  --md-heading-1: color-mix(in srgb, var(--accent) 78%, white 22%);
+  --md-heading-2: color-mix(in srgb, var(--story-title-color) 75%, white 25%);
+  --md-heading-3: color-mix(in srgb, var(--story-choice-icon-color) 68%, white 32%);
+  --md-choice-number: color-mix(in srgb, var(--accent) 65%, white 35%);
+  --md-choice-text: var(--text);
+  --md-choice-target: color-mix(in srgb, var(--story-choice-text-hover) 85%, white 15%);
+  --md-end: color-mix(in srgb, var(--story-title-color) 82%, white 18%);
+}
+
+.markdown-highlight .md-token {
+  transition: color 0.15s;
+}
+
+.markdown-highlight .md-h1 {
+  color: var(--md-heading-1);
+  font-weight: 700;
+}
+
+.markdown-highlight .md-h2 {
+  color: var(--md-heading-2);
+  font-weight: 700;
+}
+
+.markdown-highlight .md-h3 {
+  color: var(--md-heading-3);
+  font-weight: 700;
+}
+
+.markdown-highlight .md-choice-number {
+  color: var(--md-choice-number);
+}
+
+.markdown-highlight .md-choice-text {
+  color: var(--md-choice-text);
+}
+
+.markdown-highlight .md-choice-target {
+  color: var(--md-choice-target);
+  font-weight: 600;
+}
+
+.markdown-highlight .md-end {
+  color: var(--md-choice-text);
+}
+
+.editor-textarea-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  height: 400px;
+  resize: vertical;
+  overflow: hidden;
+}
+
+.editor-textarea-highlight,
+.editor-textarea-overlay {
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.editor-textarea-highlight {
+  background-color: var(--bg-muted);
+  color: var(--text);
+  overflow: auto;
+}
+
+.editor-textarea-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  caret-color: var(--text);
+  resize: none;
+  overflow: auto;
+}
+
+.editor-textarea-overlay::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.editor-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.editor-label-row .editor-label {
+  margin-bottom: 0;
+}
+
+.markdown-toggle-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: color-mix(in srgb, var(--accent) 80%, white 20%);
+  font-size: 13px;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-toggle-link:hover {
+  color: color-mix(in srgb, var(--accent) 92%, white 8%);
+}
+
+.markdown-toggle-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 3px;
+}
+
+.editor-textarea-wrapper.markdown-off .editor-textarea-highlight {
+  display: none;
+}
+
+.editor-textarea-wrapper.markdown-off {
+  height: auto;
+  resize: none;
+  overflow: visible;
+}
+
+.editor-textarea-wrapper.markdown-off .editor-textarea-overlay {
+  position: relative;
+  min-height: 400px;
+  height: 400px;
+  resize: vertical;
+  border-color: var(--border);
+  color: var(--text);
+  background-color: var(--bg-muted);
+}

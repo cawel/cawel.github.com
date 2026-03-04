@@ -15,7 +15,7 @@ export async function renderAdmin() {
         
         <div class="editor-section">
           <div class="story-select-row">
-            <label class="editor-label" for="story-select">Story to Edit:</label>
+            <label class="editor-label" for="story-select">Story to Edit</label>
             <select class="story-select" id="story-select">
               <option value="">New Story</option>
               <option value="1">Story 1</option>
@@ -35,13 +35,19 @@ export async function renderAdmin() {
         <div class="editor-section">
           <details class="expected-format">
             <summary class="editor-label"><span class="expected-format-emoji" aria-hidden="true">ℹ️</span><span>Expected Format</span></summary>
-            <div class="example-block">${escapeHtml(example)}</div>
+            <div class="example-block markdown-highlight">${highlightMarkdown(example)}</div>
           </details>
         </div>
 
         <div class="editor-section">
-          <label class="editor-label">Story Content (Markdown):</label>
-          <textarea class="editor-textarea" id="story-editor" placeholder="Paste or write your story here..."></textarea>
+          <div class="editor-label-row">
+            <label class="editor-label" for="story-editor">Story Content (Markdown)</label>
+            <button type="button" class="markdown-toggle-link" id="markdown-toggle-btn" aria-pressed="true">Disable syntax highlighting</button>
+          </div>
+          <div class="editor-textarea-wrapper">
+            <pre class="editor-textarea-highlight markdown-highlight" id="story-editor-highlight" aria-hidden="true"></pre>
+            <textarea class="editor-textarea editor-textarea-overlay" id="story-editor" placeholder="Paste or write your story here..." spellcheck="false"></textarea>
+          </div>
           
           <div class="editor-actions">
             <button class="btn btn-primary" id="validate-btn">Validate Syntax</button>
@@ -62,6 +68,8 @@ export async function renderAdmin() {
     document
       .getElementById("story-select")
       .addEventListener("change", onStorySelectChange);
+
+    setupMarkdownHighlighting();
   }, 0);
 
   return html;
@@ -97,7 +105,9 @@ async function loadStory() {
   const storyNum = select.value;
 
   if (!storyNum) {
-    document.getElementById("story-editor").value = "";
+    const textarea = document.getElementById("story-editor");
+    textarea.value = "";
+    textarea.dispatchEvent(new Event("input"));
     document.getElementById("validation-result").innerHTML = "";
     return;
   }
@@ -110,7 +120,9 @@ async function loadStory() {
       throw new Error(`Failed to load story ${storyNum}`);
     }
     const content = await response.text();
-    document.getElementById("story-editor").value = content;
+    const textarea = document.getElementById("story-editor");
+    textarea.value = content;
+    textarea.dispatchEvent(new Event("input"));
     document.getElementById("validation-result").innerHTML = "";
   } catch (error) {
     document.getElementById("validation-result").innerHTML = `
@@ -129,4 +141,87 @@ function escapeHtml(text) {
   const div = document.createElement("div");
   div.textContent = text;
   return div.innerHTML;
+}
+
+function highlightMarkdown(text) {
+  const escaped = escapeHtml(text || "");
+  const lines = escaped.split("\n");
+
+  return lines
+    .map((line) => {
+      if (/^###\s+/.test(line)) {
+        return `<span class="md-token md-h3">${line}</span>`;
+      }
+
+      if (/^##\s+/.test(line)) {
+        return `<span class="md-token md-h2">${line}</span>`;
+      }
+
+      if (/^#\s+/.test(line)) {
+        return `<span class="md-token md-h1">${line}</span>`;
+      }
+
+      const choiceMatch = line.match(/^(\d+\.\s+)(.+?)(\s*-&gt;\s*\d+)$/);
+      if (choiceMatch) {
+        return `<span class="md-token md-choice-number">${choiceMatch[1]}</span><span class="md-token md-choice-text">${choiceMatch[2]}</span><span class="md-token md-choice-target">${choiceMatch[3]}</span>`;
+      }
+
+      if (/^the\s+end$/i.test(line.trim())) {
+        return `<span class="md-token md-end">${line}</span>`;
+      }
+
+      return line;
+    })
+    .join("\n");
+}
+
+function setupMarkdownHighlighting() {
+  const textarea = document.getElementById("story-editor");
+  const highlightLayer = document.getElementById("story-editor-highlight");
+  const toggleButton = document.getElementById("markdown-toggle-btn");
+  const textareaWrapper = document.querySelector(".editor-textarea-wrapper");
+  if (!textarea || !highlightLayer || !toggleButton || !textareaWrapper) return;
+
+  let highlightingEnabled = true;
+
+  const renderHighlight = () => {
+    const source = textarea.value || " ";
+    highlightLayer.innerHTML = `${highlightMarkdown(source)}\n`;
+  };
+
+  const syncScroll = () => {
+    highlightLayer.scrollTop = textarea.scrollTop;
+    highlightLayer.scrollLeft = textarea.scrollLeft;
+  };
+
+  const applyHighlightingState = () => {
+    const currentHeight = textarea.offsetHeight;
+    textareaWrapper.classList.toggle("markdown-off", !highlightingEnabled);
+    if (highlightingEnabled) {
+      textarea.style.height = "";
+      textarea.style.width = "";
+      textareaWrapper.style.height = `${Math.max(currentHeight, 400)}px`;
+    } else {
+      textareaWrapper.style.height = "";
+    }
+    toggleButton.textContent = highlightingEnabled
+      ? "Disable syntax highlighting"
+      : "Enable syntax highlighting";
+    toggleButton.setAttribute("aria-pressed", String(highlightingEnabled));
+  };
+
+  textarea.addEventListener("input", () => {
+    renderHighlight();
+    syncScroll();
+  });
+
+  textarea.addEventListener("scroll", syncScroll);
+
+  toggleButton.addEventListener("click", () => {
+    highlightingEnabled = !highlightingEnabled;
+    applyHighlightingState();
+  });
+
+  renderHighlight();
+  applyHighlightingState();
 }
