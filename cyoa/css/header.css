@@ -370,23 +370,23 @@ header.header-collapsed {
   }
 
   .audio-controls-row .audio-control {
-    width: auto;
+    width: 44px;
     min-width: 44px;
     min-height: 36px;
     justify-content: center;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
-    padding: 6px 10px;
+    padding: 6px 0;
   }
 
   .theme-controls-row .theme-control {
-    width: auto;
+    width: 44px;
     min-width: 44px;
     min-height: 36px;
     justify-content: center;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
-    padding: 6px 10px;
+    padding: 6px 0;
   }
 
   .theme-controls-row .theme-select {
@@ -396,13 +396,13 @@ header.header-collapsed {
   }
 
   .font-controls-row .font-control {
-    width: auto;
+    width: 44px;
     min-width: 44px;
     min-height: 36px;
     justify-content: center;
     border: 1px solid var(--border);
     background-color: var(--bg-muted);
-    padding: 6px 10px;
+    padding: 6px 0;
   }
 
   .font-controls-row .font-select {
