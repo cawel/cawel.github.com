@@ -6,6 +6,6 @@ This repo contains simple apps made in JavaScript which require no build step.
 
 - [Choose Your Own Adventure](https://cawel.github.io/cyoa/)
 - Music
-	- [7th Chord Gen](https://cawel.github.io/music/7th-chord-gen/)
+	- [7th Chords Gen](https://cawel.github.io/music/7th-chords-gen/)
 	- [Beat Sequencer](https://cawel.github.io/music/beat-sequencer/)
 	- [Metronome](https://cawel.github.io/music/metronome/)
