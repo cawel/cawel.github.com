@@ -1,7 +1,4 @@
-import {
-  chooseAudioSource,
-  findMp3FilesInFolder,
-} from "../utils/audioResolver.js";
+import { findMp3FilesInFolder } from "../utils/audioResolver.js";
 
 export function createAudioController() {
   let isPlaying = false;
@@ -60,8 +57,6 @@ export function createAudioController() {
   };
 
   const ensureMainAudioExists = () => {
-    const candidates = ["music/bg-music.mp3"];
-
     if (!document.getElementById("main-audio")) {
       const audio = document.createElement("audio");
       audio.id = "main-audio";
@@ -71,13 +66,7 @@ export function createAudioController() {
 
       mainAudioReady = (async () => {
         const discoveredFiles = await findMp3FilesInFolder("music/");
-
-        if (discoveredFiles.length) {
-          availableAudioSources = discoveredFiles;
-        } else {
-          const chosen = await chooseAudioSource("music/", candidates);
-          availableAudioSources = [chosen || candidates[0]];
-        }
+        availableAudioSources = discoveredFiles;
 
         selectedAudioIndex = 0;
         updateAudioTrackSelect();
@@ -88,13 +77,7 @@ export function createAudioController() {
       const existing = document.getElementById("main-audio");
       mainAudioReady = (async () => {
         const discoveredFiles = await findMp3FilesInFolder("music/");
-
-        if (discoveredFiles.length) {
-          availableAudioSources = discoveredFiles;
-        } else {
-          const chosen = await chooseAudioSource("music/", candidates);
-          availableAudioSources = [chosen || candidates[0]];
-        }
+        availableAudioSources = discoveredFiles;
 
         const currentSrc = existing.src;
         const matchedIndex = availableAudioSources.findIndex((source) => {

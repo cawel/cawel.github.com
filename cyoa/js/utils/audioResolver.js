@@ -34,19 +34,3 @@ export async function findFirstMp3InFolder(folderPath) {
   const files = await findMp3FilesInFolder(folderPath);
   return files[0] || null;
 }
-
-export async function chooseAudioSource(folderPath, candidates = []) {
-  const discovered = await findFirstMp3InFolder(folderPath);
-  if (discovered) return discovered;
-
-  const foundCandidate = await candidates.reduce((promise, url) => {
-    return promise.then((found) => {
-      if (found) return found;
-      return fetch(url, { method: "HEAD" })
-        .then((res) => (res.ok ? url : null))
-        .catch(() => null);
-    });
-  }, Promise.resolve(null));
-
-  return foundCandidate || candidates[0] || null;
-}
