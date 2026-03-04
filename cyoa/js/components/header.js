@@ -71,29 +71,26 @@ export function createHeader(onNavigateHome) {
     `;
   };
 
-  const mount = () => {
-    if (mounted) return;
-
-    const header =
+  const ensureHeaderElement = () => {
+    return (
       document.querySelector("header") ||
       (() => {
         const el = document.createElement("header");
         document.body.insertBefore(el, document.body.firstChild);
         return el;
-      })();
+      })()
+    );
+  };
 
-    header.innerHTML = getHtml();
-
-    themeController.initialize();
-    // expose a simple getter globally so other modules (e.g. story.js) can
-    // respect the user’s mute preference before auto-playing audio
+  const exposeAudioControl = () => {
     window.cyoaAudioControl = {
       isMuted: audioController.isMuted,
       muteAndStopAll: audioController.muteAndStopAll,
       stopAudioWithoutMuting: audioController.stopAudioWithoutMuting,
     };
+  };
 
-    // Setup event listeners
+  const bindHeaderControls = () => {
     document.getElementById("home-link").addEventListener("click", () => {
       onNavigateHome();
     });
@@ -132,45 +129,49 @@ export function createHeader(onNavigateHome) {
         hideHeader();
       });
     }
+  };
 
-    if (!keydownBound) {
-      document.addEventListener("keydown", (event) => {
-        const key = event.key.toLowerCase();
-        if (key !== "f" && key !== "m" && key !== "t") return;
-        if (event.metaKey || event.ctrlKey || event.altKey) return;
+  const bindKeyboardShortcuts = () => {
+    if (keydownBound) return;
 
-        const target = event.target;
-        const tagName =
-          target && target.tagName ? target.tagName.toLowerCase() : "";
-        const isEditable =
-          tagName === "input" ||
-          tagName === "textarea" ||
-          (target && target.isContentEditable);
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+      if (key !== "f" && key !== "m" && key !== "t") return;
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
 
-        if (isEditable) return;
+      const target = event.target;
+      const tagName =
+        target && target.tagName ? target.tagName.toLowerCase() : "";
+      const isEditable =
+        tagName === "input" ||
+        tagName === "textarea" ||
+        (target && target.isContentEditable);
 
-        event.preventDefault();
-        if (key === "f") {
-          if (headerHidden) {
-            waitForRevealZoneExit = false;
-            setHeaderHidden(false);
-          } else {
-            hideHeader();
-          }
-          return;
+      if (isEditable) return;
+
+      event.preventDefault();
+      if (key === "f") {
+        if (headerHidden) {
+          waitForRevealZoneExit = false;
+          setHeaderHidden(false);
+        } else {
+          hideHeader();
         }
+        return;
+      }
 
-        if (key === "t") {
-          themeController.cycleTheme();
-          return;
-        }
+      if (key === "t") {
+        themeController.cycleTheme();
+        return;
+      }
 
-        audioController.toggleAudio();
-      });
+      audioController.toggleAudio();
+    });
 
-      keydownBound = true;
-    }
+    keydownBound = true;
+  };
 
+  const bindHeaderRevealZone = () => {
     document.addEventListener("mousemove", (event) => {
       if (waitForRevealZoneExit && event.clientY > 75) {
         waitForRevealZoneExit = false;
@@ -180,6 +181,20 @@ export function createHeader(onNavigateHome) {
         setHeaderHidden(false);
       }
     });
+  };
+
+  const mount = () => {
+    if (mounted) return;
+
+    const header = ensureHeaderElement();
+
+    header.innerHTML = getHtml();
+
+    themeController.initialize();
+    exposeAudioControl();
+    bindHeaderControls();
+    bindKeyboardShortcuts();
+    bindHeaderRevealZone();
 
     audioController.initialize();
 
