@@ -32,10 +32,8 @@ cyoa/
 │   ├── data/
 │   │   ├── stories-metadata.json # Story metadata for home/admin lists
 │   │   └── stories/          # Story chapter markdown files
-│   │       ├── story1/
-│   │       │   └── chapters.md
-│   │       ├── story2/
-│   │       │   └── chapters.md
+│   │       ├── story-1.md
+│   │       ├── story-2.md
 │   │       └── ...
 │   └── utils/
 │       └── storyParser.js    # Markdown parser and validator

@@ -27,7 +27,9 @@ let storiesMetadataPromise = null;
 
 const loadStoriesMetadata = async () => {
   if (!storiesMetadataPromise) {
-    storiesMetadataPromise = fetch(withBasePath("/js/data/stories-metadata.json"))
+    storiesMetadataPromise = fetch(
+      withBasePath("/js/data/stories-metadata.json"),
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load stories metadata");
