@@ -21,10 +21,11 @@ import { createHeader } from "./components/header.js";
 import { renderHome } from "./pages/home.js";
 import { renderStory } from "./pages/story.js";
 import { renderAdmin } from "./pages/admin.js";
+import { stories } from "./data/stories.js";
 
 // Create router with all routes
 const router = createRouter({
-  "/": renderHome,
+  "/": () => renderHome(stories),
   "/story/:storyId/:chapterId": renderStory,
   "/story/:storyId": renderStory,
   "/admin": renderAdmin,
