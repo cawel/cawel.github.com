@@ -358,7 +358,7 @@ main {
   text-align: center;
   margin-top: 45px;
   margin-bottom: 6px;
-  color: var(--accent);
+  color: var(--story-title-color);
 }
 
 .stories-grid {
