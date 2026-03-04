@@ -5,6 +5,7 @@ main.story-main {
   min-height: 0;
   padding: 20px 40px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 main.story-main .story-container {
@@ -28,7 +29,8 @@ main.story-main .story-container {
   border-bottom: 1px solid var(--story-border);
   padding-bottom: 14px;
   font-style: normal;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .chapter-section-title {
@@ -53,6 +55,7 @@ main.story-main .story-container {
   margin-bottom: 22px;
   text-shadow: none;
   max-width: 46em;
+  overflow-wrap: anywhere;
 }
 
 .chapter-content p {
@@ -159,6 +162,7 @@ main.story-main .story-container {
   text-align: left;
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   text-shadow: none;
+  overflow-wrap: anywhere;
 }
 
 .choice-emoji {
