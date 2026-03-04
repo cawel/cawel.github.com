@@ -3,6 +3,7 @@
  */
 
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
+import { withBasePath } from "../utils/pathResolver.js";
 
 export async function renderAdmin() {
   const example = getValidationExample();
@@ -101,7 +102,9 @@ async function loadStory() {
   }
 
   try {
-    const response = await fetch(`/stories/story${storyNum}/chapters.md`);
+    const response = await fetch(
+      withBasePath(`/stories/story${storyNum}/chapters.md`),
+    );
     if (!response.ok) {
       throw new Error(`Failed to load story ${storyNum}`);
     }
