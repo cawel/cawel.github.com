@@ -60,4 +60,5 @@ Whiskers sits beside the map and flicks his tail toward an empty stool. You take
 By morning, the storm has passed. The house feels warmer. Whiskers naps in a sunbeam, moon tag glinting, as if nothing unusual happened at all.
 
 ### Choices
-1. Make tea and start your first watch as assistant keeper -> 1
+The End
+

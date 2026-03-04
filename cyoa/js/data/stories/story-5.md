@@ -52,8 +52,8 @@ The Restricted Vault
 You enter a circular vault where chains of silver script hang from the ceiling. At the center floats a black-bound book titled The Hollow Current. When you touch it, the water level surges and the library trembles. A choice forms in the air like engraved fog: restore order, or claim forbidden knowledge.
 
 ### Choices
-1. Return The Hollow Current to its shelf -> 6
-2. Open the book and read a single page -> 1
+The End
+
 
 ## Chapter 6
 ### Title
@@ -63,5 +63,5 @@ Dawn Above the Harbor
 The misplaced volume slides home with a soft click, and the water begins to recede. Bells ring from the lighthouse above as morning breaks. The Indexer bows once and hands you a waterproof library card stamped with your name and a new title: Apprentice Keeper.
 
 ### Choices
-1. Accept the role and guard the library -> 1
-2. Leave for now, promising to return at the next tide -> 2
+The End
+

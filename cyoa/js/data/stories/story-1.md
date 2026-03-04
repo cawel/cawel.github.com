@@ -328,4 +328,5 @@ The End of Your Beginning
 Your journey concludes, but in a way that suggests it was only the beginning of something greater. Everything you've experienced—every choice, every revelation, every encounter—has shaped not just who you are, but the very fabric of the world itself. You are no longer the person who entered the forest. You are someone transformed, someone who understands that adventure isn't about reaching a destination, but about becoming who you're meant to be. Your story will inspire others to begin their own journeys.
 
 ### Choices
-1. Begin the journey again from the start -> 1
+The End
+

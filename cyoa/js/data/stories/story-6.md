@@ -127,5 +127,5 @@ Whatever path brought you here, the station changes the moment you decide. If yo
 When dawn from the relay moon rises across the broken ring, your nav console receives a final packet from the station: updated coordinates for safe passage, complete survivor manifests where possible, and a message addressed to "next witness" in your handwriting. You can transmit the full truth to traffic control and invite an investigation that may reopen everything, or redact the dangerous parts and leave the Perseid Drift as a sealed warning that some doors should only open with two people watching.
 
 ### Choices
-1. Transmit the full station archive and survivor evidence -> 1
-2. Send a redacted report and mark Perseid Drift as restricted -> 1
+The End
+

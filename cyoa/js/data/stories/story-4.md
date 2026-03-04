@@ -52,8 +52,8 @@ The Clock’s True Heart
 In the engine chamber you find the heart of the carnival: a crystal pendulum suspended over a basin of liquid light. The ringmaster arrives and drops his smile. He admits the carnival can only exist by stealing one minute from every visitor who enters. Yours is next.
 
 ### Choices
-1. Shatter the pendulum and free everyone’s stolen time -> 6
-2. Bargain with the ringmaster for power over the carnival -> 1
+The End
+
 
 ## Chapter 6
 ### Title
@@ -63,5 +63,5 @@ One Minute Returned
 You release the Lost Minute. Clocks across the carnival fall silent, then chime in perfect unison. Tents fold like paper, lights fade, and dawn spills over an empty field. In your hand is the old ticket stub, now blank except for one line: "Time given back is never truly lost."
 
 ### Choices
-1. Keep the ticket and return home -> 1
-2. Search the empty field for traces of magic -> 3
+The End
+

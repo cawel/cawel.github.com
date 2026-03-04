@@ -479,4 +479,5 @@ The New Age
 Regardless of your choices—whether you transformed or resisted, accepted or fought, understood or remained confused—humanity has moved forward. Earth's new civilization is not utopian simplicity but complex beauty: the Convergence and the Free Communities, consciousness expressed in multiplicity, individual and collective in dynamic balance. On other worlds, your descendants (transformed, unchanged, or hybrid) begin new chapters of human existence. And somewhere, in orbit around a distant star, scientists and artists and philosophers continue asking the questions that define consciousness: Who are we? What are we becoming? What does it mean to choose? The answer given in Earth's transformation generates a thousand new questions. That endless questioning, that refusal to accept final answers, is what proves you were always human—evolving, changing, becoming, yet maintaining the core that makes you fundamentally, beautifully, frustratingly human.
 
 ### Choices
-1. Reflect on your journey -> 1
+The End
+
