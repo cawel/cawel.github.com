@@ -176,11 +176,17 @@ main.story-main .story-container {
 
 @media (max-width: 768px) {
   main.story-main {
-    padding: 12px;
+    padding: 0;
+    background-color: var(--story-bg);
   }
 
   main.story-main .story-container {
+    margin: 0;
+    width: 100%;
+    max-width: none;
     padding: 26px 16px;
+    border: none;
+    box-shadow: none;
   }
 
   .chapter-title {
