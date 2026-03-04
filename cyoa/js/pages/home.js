@@ -3,7 +3,6 @@
  */
 
 export async function renderHome(stories = []) {
-
   const storiesHtml = stories
     .map(
       (story) => `
