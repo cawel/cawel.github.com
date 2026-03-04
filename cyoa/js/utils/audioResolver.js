@@ -1,3 +1,5 @@
+import { withBasePath } from "./pathResolver.js";
+
 function normalizeMp3Href(folderPath, href) {
   if (!href) return null;
   if (/^https?:\/\//i.test(href)) return href;
@@ -11,16 +13,19 @@ function normalizeMp3Href(folderPath, href) {
 
 export async function findMp3FilesInFolder(folderPath) {
   try {
-    const response = await fetch(folderPath);
+    const normalizedFolderPath = folderPath.replace(/^\/+|\/+$/g, "");
+    const baseFolder = withBasePath(`/${normalizedFolderPath}/`);
+    const manifestPath = withBasePath(`/${normalizedFolderPath}/tracks.json`);
+
+    const response = await fetch(manifestPath);
     if (!response.ok) return [];
 
-    const listingHtml = await response.text();
-    const parsed = new DOMParser().parseFromString(listingHtml, "text/html");
-    const links = Array.from(parsed.querySelectorAll("a[href]"));
-    const mp3Files = links
-      .map((link) => link.getAttribute("href"))
+    const listedFiles = await response.json();
+    if (!Array.isArray(listedFiles)) return [];
+
+    const mp3Files = listedFiles
       .filter((href) => href && /\.mp3($|\?)/i.test(href))
-      .map((href) => normalizeMp3Href(folderPath, href))
+      .map((href) => normalizeMp3Href(baseFolder, href))
       .filter(Boolean)
       .sort((a, b) => a.localeCompare(b));
 
