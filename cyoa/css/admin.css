@@ -12,7 +12,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .admin-container > .admin-title {
@@ -81,6 +81,9 @@
 }
 
 .expected-format > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
   user-select: none;
   background-color: var(--bg-muted);
@@ -93,18 +96,36 @@
     background-color 0.2s;
 }
 
+.expected-format > summary::-webkit-details-marker {
+  display: none;
+}
+
+.expected-format > summary::before {
+  content: "▸";
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-alt);
+  transform-origin: center;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+
 .expected-format > summary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background-color: color-mix(in srgb, var(--bg-muted) 85%, var(--accent) 15%);
+  border-color: color-mix(in srgb, var(--text-alt) 55%, var(--border));
+  color: var(--text);
 }
 
 .expected-format[open] > summary {
+  border-color: color-mix(in srgb, var(--text-alt) 60%, var(--border));
+  color: var(--text);
+  background-color: var(--bg-muted);
   margin-bottom: 10px;
 }
 
-.expected-format-emoji {
-  margin-right: 10px;
+.expected-format[open] > summary::before {
+  transform: rotate(90deg);
+  color: var(--text);
 }
 
 .example-block {
@@ -199,7 +220,7 @@
 @media (max-width: 768px) {
   .admin-container {
     width: 100%;
-    gap: 12px;
+    gap: 18px;
   }
 
   .admin-title {

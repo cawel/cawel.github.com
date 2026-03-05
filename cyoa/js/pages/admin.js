@@ -72,10 +72,10 @@ function renderAdminTemplate(example) {
         </section>
 
         <section class="admin-section-group">
-          <h2 class="admin-section-title">Story Content (Markdown)</h2>
+          <h2 class="admin-section-title">Story Content</h2>
           <div class="editor-section">
             <details class="expected-format">
-              <summary class="editor-label"><span class="expected-format-emoji" aria-hidden="true">ℹ️</span><span>Expected Format</span></summary>
+              <summary class="editor-label"><span>Expected Markdown Format</span></summary>
               <div class="example-block markdown-highlight">${highlightMarkdown(example)}</div>
             </details>
 
