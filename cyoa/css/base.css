@@ -33,3 +33,32 @@ main {
   margin: 0 auto;
   padding: 40px;
 }
+
+.app-message {
+  margin: 0;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-muted);
+  color: var(--text);
+}
+
+.app-message-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.app-message-details {
+  margin-top: 8px;
+  margin-bottom: 0;
+  white-space: pre-wrap;
+}
+
+.app-message-error {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.app-message-not-found {
+  border-color: color-mix(in srgb, var(--text-alt) 45%, var(--border));
+}

@@ -133,19 +133,6 @@
   color: #a4d3a2;
 }
 
-.validation-error {
-  background-color: #502020;
-  border: 1px solid #702020;
-  color: #e8b2b2;
-}
-
-.error-details {
-  margin-top: 10px;
-  font-size: 13px;
-  font-family: "Courier New", monospace;
-  white-space: pre-wrap;
-}
-
 .story-select {
   padding: 8px 12px;
   font-size: 14px;

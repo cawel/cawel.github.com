@@ -5,6 +5,7 @@
 import { parseStory } from "../utils/storyParser.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
 import { getStoryMarkdownPath } from "../utils/storyPaths.js";
+import { renderLoadErrorPage, renderNotFoundPage } from "../utils/errorUI.js";
 
 function renderStoryLayout(content) {
   return renderPageContainer({
@@ -15,13 +16,19 @@ function renderStoryLayout(content) {
 }
 
 function renderErrorState(message) {
-  return renderStoryLayout(
-    `<p style="color: red;">Error loading story: ${message}</p>`,
-  );
+  return renderLoadErrorPage({
+    title: "Error loading story",
+    details: message,
+    mainClass: "story-main",
+    containerClass: "story-container",
+  });
 }
 
 function renderMissingChapterState() {
-  return renderStoryLayout("<p>Chapter not found</p>");
+  return renderNotFoundPage({
+    title: "Chapter not found",
+    details: "The requested chapter does not exist in this story.",
+  });
 }
 
 function parseChapterNumber(chapterParam) {

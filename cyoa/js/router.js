@@ -21,6 +21,8 @@
  * - Returned HTML is injected into the provided container
  */
 
+import { renderNotFoundPage } from "./utils/errorUI.js";
+
 export function createRouter(routes) {
   const getCurrentRoute = () => {
     const hash = window.location.hash ? window.location.hash.slice(1) : "/";
@@ -62,7 +64,7 @@ export function createRouter(routes) {
     const routeData = getRouteParams(path);
 
     if (!routeData) {
-      container.innerHTML = "<main><p>404 - Page not found</p></main>";
+      container.innerHTML = renderNotFoundPage();
       return;
     }
 

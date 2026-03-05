@@ -3,13 +3,10 @@
  */
 
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
-import {
-  deferAfterRender,
-  escapeHtml,
-  renderPageContainer,
-} from "../utils/viewHelpers.js";
+import { deferAfterRender, renderPageContainer } from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
 import { getStoryMarkdownPath } from "../utils/storyPaths.js";
+import { renderInlineError } from "../utils/errorUI.js";
 
 const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -30,16 +27,18 @@ function getAdminElements() {
 }
 
 function getValidationResultHtml(type, message) {
-  const typeClass =
-    type === "success" ? "validation-success" : "validation-error";
-  const content =
-    type === "success"
-      ? "✓ Story syntax is valid!"
-      : type === "empty"
-        ? "Please enter story content"
-        : message;
+  if (type === "success") {
+    return '<div class="validation-result validation-success">✓ Story syntax is valid!</div>';
+  }
 
-  return `<div class="validation-result ${typeClass}">${content}</div>`;
+  if (type === "empty") {
+    return renderInlineError({
+      title: "Missing content",
+      details: "Please enter story content.",
+    });
+  }
+
+  return message;
 }
 
 function setValidationResult(type, message = "") {
@@ -134,10 +133,10 @@ function validateContent() {
   } catch (error) {
     setValidationResult(
       "error",
-      `
-        ✗ Validation Error:
-        <div class="error-details">${escapeHtml(error.message)}</div>
-      `,
+      renderInlineError({
+        title: "Validation Error",
+        details: error.message,
+      }),
     );
   }
 }
@@ -178,7 +177,10 @@ async function loadStory() {
   } catch (error) {
     setValidationResult(
       "error",
-      `Error loading story: ${escapeHtml(error.message)}`,
+      renderInlineError({
+        title: "Error loading story",
+        details: error.message,
+      }),
     );
   }
 }
