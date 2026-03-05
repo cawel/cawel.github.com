@@ -1,7 +1,7 @@
 /**
  * Path resolver with a single configurable app base path.
  *
- * Set `APP_BASE_PATH` once (in `/appConfig.js`) and all
+ * Set `APP_BASE_PATH` once (in `/js/appConfig.js`) and all
  * `withBasePath(...)` calls in the app will use it.
  *
  * Example:
@@ -9,7 +9,7 @@
  * - withBasePath("/assets/stories/metadata.json")
  * - Result: /cyoa/assets/stories/metadata.json
  */
-import { APP_BASE_PATH } from "../../appConfig.js";
+import { APP_BASE_PATH } from "../appConfig.js";
 
 function normalizeBasePath(basePath) {
   if (!basePath || basePath === "/") return "";
