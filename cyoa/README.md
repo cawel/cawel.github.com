@@ -116,25 +116,25 @@ The End
     - `#/story/1/1` - Story 1, Chapter 1
     - `#/admin` - Admin editor page
 
-  ### Running Tests
+### Running Tests
 
-  From the project root, run the full test suite:
+From the project root, run the full test suite:
 
-  ```bash
-  npm test
-  ```
+```bash
+npm test
+```
 
-  Equivalent direct Node command:
+Equivalent direct Node command:
 
-  ```bash
-  node --test tests/*.test.mjs
-  ```
+```bash
+node --test tests/*.test.mjs
+```
 
-  To run a single test file:
+To run a single test file:
 
-  ```bash
-  node --test tests/pathResolver.test.mjs
-  ```
+```bash
+node --test tests/pathResolver.test.mjs
+```
 
 ### Navigation
 
@@ -228,6 +228,11 @@ Works in all modern browsers supporting:
 - Fetch API
 - CSS Grid and Flexbox
 - Audio API
+
+## Performance Hygiene
+
+- `index.html` includes `modulepreload` for critical startup modules (`js/router.js`, `js/components/header.js`).
+- Prefer longer cache lifetimes for static assets and shorter cache for manifests (`metadata.json`, `tracks.json`) so content updates are reflected quickly.
 
 ## License
 
