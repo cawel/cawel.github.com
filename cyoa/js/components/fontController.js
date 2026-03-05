@@ -1,3 +1,5 @@
+import { setAppState } from "../state/appStore.js";
+
 const CHAPTER_FONT_CANDIDATES = [
   { name: "Merriweather", stack: "'Merriweather', Georgia, serif" },
   { name: "Garamond", stack: "Garamond, 'Times New Roman', serif" },
@@ -30,6 +32,7 @@ export function createFontController() {
       "--chapter-content-font",
       font.stack,
     );
+    setAppState({ fontIndex: chapterFontIndex });
     console.log(
       `[font] Chapter content font: ${font.name} (${chapterFontIndex + 1}/${CHAPTER_FONT_CANDIDATES.length})`,
     );

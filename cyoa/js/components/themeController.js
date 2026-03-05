@@ -1,3 +1,5 @@
+import { setAppState } from "../state/appStore.js";
+
 export function createThemeController() {
   const STORAGE_KEY = "cyoaTheme";
   const THEMES = [
@@ -35,6 +37,7 @@ export function createThemeController() {
 
     currentTheme = nextTheme;
     saveThemeToStorage(nextTheme);
+    setAppState({ theme: nextTheme });
     console.log(`[theme] Switched to: ${nextTheme}`);
   };
 

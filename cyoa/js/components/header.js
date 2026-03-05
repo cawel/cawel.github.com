@@ -5,6 +5,7 @@
 import { createAudioController } from "./audioController.js";
 import { createFontController } from "./fontController.js";
 import { createThemeController } from "./themeController.js";
+import { setAppState } from "../state/appStore.js";
 
 export function createHeader(onNavigateHome) {
   let mounted = false;
@@ -36,6 +37,11 @@ export function createHeader(onNavigateHome) {
 
     headerHidden = hidden;
     header.classList.toggle("header-collapsed", hidden);
+    setAppState({
+      header: {
+        hidden,
+      },
+    });
   };
 
   const hideHeader = () => {

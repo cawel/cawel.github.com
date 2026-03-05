@@ -23,6 +23,8 @@ import { createHeader } from "./components/header.js";
 import { homePage } from "./pages/home.js";
 import { storyPage } from "./pages/story.js";
 import { adminPage } from "./pages/admin.js";
+import { ENABLE_APP_STATE_DEBUG } from "./appConfig.js";
+import { getAppState, subscribeToAppState } from "./state/appStore.js";
 
 function createAppRouter() {
   return createRouter({
@@ -37,11 +39,24 @@ function resolveAppContainer() {
   return document.getElementById("app");
 }
 
+function setupAppStateDebugging() {
+  if (!ENABLE_APP_STATE_DEBUG) {
+    return () => null;
+  }
+
+  console.log("[app-state] Initial:", getAppState());
+  return subscribeToAppState((state) => {
+    console.log("[app-state] Updated:", state);
+  });
+}
+
 function bootstrapApp() {
   const appContainer = resolveAppContainer();
   if (!appContainer) {
     throw new Error("App container '#app' was not found");
   }
+
+  setupAppStateDebugging();
 
   const router = createAppRouter();
   const header = createHeader(() => router.navigate("/"));

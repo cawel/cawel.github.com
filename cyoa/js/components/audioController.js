@@ -1,4 +1,5 @@
 import { findMusicTracksInFolder } from "../utils/audioResolver.js";
+import { setAppState } from "../state/appStore.js";
 
 export function createAudioController() {
   let isPlaying = false;
@@ -10,6 +11,17 @@ export function createAudioController() {
   let selectedAudioIndex = 0;
   let audioButton = null;
   let audioTrackSelect = null;
+
+  const syncAudioStore = () => {
+    setAppState({
+      audio: {
+        muted,
+        isPlaying,
+        selectedTrackIndex: selectedAudioIndex,
+        trackCount: availableAudioSources.length,
+      },
+    });
+  };
 
   const stopAllAudio = () => {
     const mainAudio = document.getElementById("main-audio");
@@ -28,6 +40,7 @@ export function createAudioController() {
       option.textContent = "No tracks";
       audioTrackSelect.appendChild(option);
       audioTrackSelect.value = "";
+      syncAudioStore();
       return;
     }
 
@@ -40,6 +53,7 @@ export function createAudioController() {
     });
 
     audioTrackSelect.value = availableAudioSources[selectedAudioIndex] || "";
+    syncAudioStore();
   };
 
   const applySelectedMainTrack = () => {
@@ -101,6 +115,8 @@ export function createAudioController() {
       audioElement.pause();
       isPlaying = false;
     }
+
+    syncAudioStore();
   };
 
   const refreshAudioState = () => {
@@ -112,12 +128,14 @@ export function createAudioController() {
     muted = true;
     stopAllAudio();
     isPlaying = false;
+    syncAudioStore();
     updateAudioButton();
   };
 
   const stopAudioWithoutMuting = () => {
     stopAllAudio();
     isPlaying = false;
+    syncAudioStore();
     updateAudioButton();
   };
 
@@ -140,6 +158,7 @@ export function createAudioController() {
     }
 
     isPlaying = audioElement ? !audioElement.paused : false;
+    syncAudioStore();
     updateAudioButton();
   };
 
@@ -159,6 +178,7 @@ export function createAudioController() {
 
     selectedAudioIndex = nextIndex;
     applySelectedMainTrack();
+    syncAudioStore();
 
     const mainAudio = document.getElementById("main-audio");
     if (mainAudio && !muted) {
@@ -191,6 +211,7 @@ export function createAudioController() {
 
   const initialize = () => {
     ensureMainAudioExists();
+    syncAudioStore();
   };
 
   return {
