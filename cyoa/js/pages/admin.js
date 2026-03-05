@@ -6,7 +6,13 @@ import { getValidationExample } from "../utils/storyParser.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
 import { getStoryMarkdown } from "../services/storiesRepository.js";
-import { setupAdminMarkdownHighlighting } from "../utils/adminEditorEnhancer.js";
+import {
+  bindAdminPageEvents,
+  clearValidationResultHtml,
+  getAdminElements,
+  setEditorTextareaContent,
+  setValidationResultHtml,
+} from "./adminViewAdapter.js";
 import {
   renderAdminStoryLoadError,
   renderAdminValidationResult,
@@ -24,16 +30,6 @@ function getStoryOptionsHtml() {
   ).join("");
 }
 
-function getAdminElements() {
-  return {
-    validateButton: document.getElementById("validate-btn"),
-    loadButton: document.getElementById("load-btn"),
-    storySelect: document.getElementById("story-select"),
-    textarea: document.getElementById("story-editor"),
-    validationResult: document.getElementById("validation-result"),
-  };
-}
-
 /**
  * @param {ValidationResult["status"]} type
  * @param {string} message
@@ -48,14 +44,12 @@ function getValidationResultHtml(type, message) {
 
 function setValidationResult(type, message = "") {
   const { validationResult } = getAdminElements();
-  if (!validationResult) return;
-  validationResult.innerHTML = getValidationResultHtml(type, message);
+  setValidationResultHtml(validationResult, getValidationResultHtml(type, message));
 }
 
 function clearValidationResult() {
   const { validationResult } = getAdminElements();
-  if (!validationResult) return;
-  validationResult.innerHTML = "";
+  clearValidationResultHtml(validationResult);
 }
 
 function renderAdminTemplate(example) {
@@ -107,12 +101,12 @@ function renderAdminTemplate(example) {
 }
 
 function bindAdminEvents() {
-  const { validateButton, loadButton, storySelect } = getAdminElements();
-  validateButton?.addEventListener("click", validateContent);
-  loadButton?.addEventListener("click", loadStory);
-  storySelect?.addEventListener("change", onStorySelectChange);
-
-  setupAdminMarkdownHighlighting();
+  const elements = getAdminElements();
+  bindAdminPageEvents(elements, {
+    onValidate: validateContent,
+    onLoad: loadStory,
+    onStorySelectChange,
+  });
 }
 
 export async function loadAdminPageData() {
@@ -144,10 +138,7 @@ function validateContent() {
 
 function setEditorContent(content) {
   const { textarea } = getAdminElements();
-  if (!textarea) return;
-
-  textarea.value = content;
-  textarea.dispatchEvent(new Event("input"));
+  setEditorTextareaContent(textarea, content);
 }
 
 async function loadStory() {

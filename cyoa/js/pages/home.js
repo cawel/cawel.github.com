@@ -7,6 +7,7 @@ import {
   escapeHtml,
   renderPageContainer,
 } from "../utils/viewHelpers.js";
+import { bindHomeStoryCardNavigation } from "./homeViewAdapter.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
 /** @typedef {import("../types.js").PageContract} PageContract */
@@ -66,25 +67,6 @@ function navigateToStory(storyNum) {
   window.location.hash = `#/story/${storyNum}`;
 }
 
-/**
- * @param {HTMLElement|Document|Element} rootElement
- */
-function bindStoryCardEvents(rootElement) {
-  rootElement.querySelectorAll(".story-card").forEach((card) => {
-    card.addEventListener("click", (event) => {
-      const storyNum = event.currentTarget.dataset.story;
-      navigateToStory(storyNum);
-    });
-
-    card.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      const storyNum = event.currentTarget.dataset.story;
-      navigateToStory(storyNum);
-    });
-  });
-}
-
 function renderHomeTemplate(storiesHtml) {
   return renderPageContainer({
     mainClass: "home-main",
@@ -124,7 +106,7 @@ export async function renderHomePage(model = { stories: [] }) {
  * @returns {Promise<null>}
  */
 export async function bindHomePage(container) {
-  bindStoryCardEvents(container);
+  bindHomeStoryCardNavigation(container, navigateToStory);
   return null;
 }
 
