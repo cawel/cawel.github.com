@@ -106,20 +106,41 @@ function renderChapter(storyId, chapter) {
   `);
 }
 
-export async function renderStory(params) {
+export async function loadStoryPageData(params) {
   const storyId = params.storyId;
   const chapterNumber = parseChapterNumber(params.chapterId);
-  let storyData;
 
   try {
-    storyData = await loadStoryData(storyId);
+    const storyData = await loadStoryData(storyId);
+    return {
+      storyId,
+      chapterNumber,
+      chapter: storyData ? storyData[chapterNumber] : null,
+      error: null,
+    };
   } catch (error) {
-    return renderErrorState(error.message);
+    return {
+      storyId,
+      chapterNumber,
+      chapter: null,
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+}
+
+export async function renderStoryPage(model) {
+  if (model.error) {
+    return renderErrorState(model.error);
   }
 
-  if (!storyData || !storyData[chapterNumber]) {
+  if (!model.chapter) {
     return renderMissingChapterState();
   }
 
-  return renderChapter(storyId, storyData[chapterNumber]);
+  return renderChapter(model.storyId, model.chapter);
 }
+
+export const storyPage = {
+  load: loadStoryPageData,
+  render: renderStoryPage,
+};

@@ -21,39 +21,16 @@
 
 import { createRouter } from "./router.js";
 import { createHeader } from "./components/header.js";
-import { renderHome } from "./pages/home.js";
-import { renderStory } from "./pages/story.js";
-import { renderAdmin } from "./pages/admin.js";
-import { withBasePath } from "./utils/pathResolver.js";
-
-let storiesMetadataPromise = null;
-
-async function loadStoriesMetadata() {
-  if (!storiesMetadataPromise) {
-    storiesMetadataPromise = fetch(
-      withBasePath("/assets/stories/metadata.json"),
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load stories metadata");
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        console.error("[home] Unable to load stories metadata:", error);
-        return [];
-      });
-  }
-
-  return storiesMetadataPromise;
-}
+import { homePage } from "./pages/home.js";
+import { storyPage } from "./pages/story.js";
+import { adminPage } from "./pages/admin.js";
 
 function createAppRouter() {
   return createRouter({
-    "/": async () => renderHome(await loadStoriesMetadata()),
-    "/story/:storyId/:chapterId": renderStory,
-    "/story/:storyId": renderStory,
-    "/admin": renderAdmin,
+    "/": homePage,
+    "/story/:storyId/:chapterId": storyPage,
+    "/story/:storyId": storyPage,
+    "/admin": adminPage,
   });
 }
 

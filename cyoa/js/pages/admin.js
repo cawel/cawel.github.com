@@ -3,7 +3,7 @@
  */
 
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
-import { deferAfterRender, renderPageContainer } from "../utils/viewHelpers.js";
+import { renderPageContainer } from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
 import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 import { renderInlineError } from "../utils/errorUI.js";
@@ -108,12 +108,19 @@ function bindAdminEvents() {
   setupMarkdownHighlighting();
 }
 
-export async function renderAdmin() {
-  const example = getValidationExample();
+export async function loadAdminPageData() {
+  return {
+    example: getValidationExample(),
+  };
+}
 
-  deferAfterRender(bindAdminEvents);
+export async function renderAdminPage(model) {
+  return renderAdminTemplate(model.example);
+}
 
-  return renderAdminTemplate(example);
+export async function bindAdminPage() {
+  bindAdminEvents();
+  return null;
 }
 
 function validateContent() {
@@ -238,3 +245,9 @@ function setupMarkdownHighlighting() {
   renderHighlight();
   applyHighlightingState();
 }
+
+export const adminPage = {
+  load: loadAdminPageData,
+  render: renderAdminPage,
+  bind: bindAdminPage,
+};

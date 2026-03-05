@@ -4,7 +4,9 @@
  * -------------------- Comments Section --------------------
  * Route map format:
  * - Keys are route patterns (e.g. "/", "/admin", "/story/:storyId/:chapterId")
- * - Values are async/sync handler functions that return HTML strings
+ * - Values can be either:
+ *   1) async/sync handler functions that return HTML strings (legacy)
+ *   2) lifecycle objects: { load, render, bind }
  *
  * Matching behavior:
  * - The router reads the current location hash and strips the leading '#'
@@ -17,13 +19,15 @@
  *
  * Rendering:
  * - If no route matches, a simple 404 page is rendered
- * - If matched, the route handler is called with extracted params
+ * - If matched, the lifecycle executes in order: load -> render -> bind
  * - Returned HTML is injected into the provided container
  */
 
-import { renderNotFoundPage } from "./utils/errorUI.js";
+import { renderLoadErrorPage, renderNotFoundPage } from "./utils/errorUI.js";
 
 export function createRouter(routes) {
+  let currentCleanup = null;
+
   const getCurrentRoute = () => {
     const hash = window.location.hash ? window.location.hash.slice(1) : "/";
     return hash || "/";
@@ -31,6 +35,33 @@ export function createRouter(routes) {
 
   const navigate = (path) => {
     window.location.hash = `#${path}`;
+  };
+
+  const clearCurrentRouteBindings = () => {
+    if (typeof currentCleanup === "function") {
+      currentCleanup();
+    }
+    currentCleanup = null;
+  };
+
+  const normalizeRouteHandler = (handler) => {
+    if (typeof handler === "function") {
+      return {
+        load: async (params) => params,
+        render: async (params) => handler(params),
+        bind: async () => null,
+      };
+    }
+
+    if (!handler || typeof handler.render !== "function") {
+      throw new Error("Route handler must be a function or lifecycle object");
+    }
+
+    return {
+      load: handler.load || (async (params) => params),
+      render: handler.render,
+      bind: handler.bind || (async () => null),
+    };
   };
 
   const getRouteParams = (pathname) => {
@@ -64,13 +95,28 @@ export function createRouter(routes) {
     const routeData = getRouteParams(path);
 
     if (!routeData) {
+      clearCurrentRouteBindings();
       container.innerHTML = renderNotFoundPage();
       return;
     }
 
-    const handler = routes[routeData.route];
-    const content = await handler(routeData.params);
-    container.innerHTML = content;
+    try {
+      const lifecycle = normalizeRouteHandler(routes[routeData.route]);
+      const model = await lifecycle.load(routeData.params);
+      const content = await lifecycle.render(model, routeData.params);
+
+      clearCurrentRouteBindings();
+      container.innerHTML = content;
+
+      const cleanup = await lifecycle.bind(container, model, routeData.params);
+      currentCleanup = typeof cleanup === "function" ? cleanup : null;
+    } catch (error) {
+      clearCurrentRouteBindings();
+      container.innerHTML = renderLoadErrorPage({
+        title: "Error rendering page",
+        details: error instanceof Error ? error.message : String(error),
+      });
+    }
   };
 
   return {

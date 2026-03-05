@@ -3,10 +3,30 @@
  */
 
 import {
-  deferAfterRender,
   escapeHtml,
   renderPageContainer,
 } from "../utils/viewHelpers.js";
+import { withBasePath } from "../utils/pathResolver.js";
+
+let storiesMetadataPromise = null;
+
+async function loadStoriesMetadata() {
+  if (!storiesMetadataPromise) {
+    storiesMetadataPromise = fetch(withBasePath("/assets/stories/metadata.json"))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load stories metadata");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("[home] Unable to load stories metadata:", error);
+        return [];
+      });
+  }
+
+  return storiesMetadataPromise;
+}
 
 function formatKeywords(keywords) {
   if (!Array.isArray(keywords)) return "";
@@ -48,8 +68,8 @@ function navigateToStory(storyNum) {
   window.location.hash = `#/story/${storyNum}`;
 }
 
-function bindStoryCardEvents() {
-  document.querySelectorAll(".story-card").forEach((card) => {
+function bindStoryCardEvents(rootElement) {
+  rootElement.querySelectorAll(".story-card").forEach((card) => {
     card.addEventListener("click", (event) => {
       const storyNum = event.currentTarget.dataset.story;
       navigateToStory(storyNum);
@@ -78,10 +98,25 @@ function renderHomeTemplate(storiesHtml) {
   });
 }
 
-export async function renderHome(stories = []) {
-  const storiesHtml = renderStoriesGrid(stories);
+export async function loadHomePageData() {
+  const stories = await loadStoriesMetadata();
+  return { stories };
+}
 
-  deferAfterRender(bindStoryCardEvents);
+export async function renderHomePage(model = { stories: [] }) {
+  const stories = Array.isArray(model.stories) ? model.stories : [];
+  const storiesHtml = renderStoriesGrid(stories);
 
   return renderHomeTemplate(storiesHtml);
 }
+
+export async function bindHomePage(container) {
+  bindStoryCardEvents(container);
+  return null;
+}
+
+export const homePage = {
+  load: loadHomePageData,
+  render: renderHomePage,
+  bind: bindHomePage,
+};
