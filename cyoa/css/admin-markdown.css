@@ -92,16 +92,11 @@
   background: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
-.editor-label-row {
+.editor-tools-row {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   flex-wrap: wrap;
-}
-
-.editor-label-row .editor-label {
-  margin-bottom: 0;
 }
 
 .markdown-toggle-link {

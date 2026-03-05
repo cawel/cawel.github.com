@@ -55,43 +55,45 @@ function renderAdminTemplate(example) {
     containerClass: "admin-container",
     content: `
         <h1 class="admin-title">Story Editor</h1>
-        
-        <div class="editor-section">
-          <div class="story-select-row">
-            <label class="editor-label" for="story-select">Story to Edit</label>
-            <select class="story-select" id="story-select">
-              <option value="">New Story</option>
-              ${getStoryOptionsHtml()}
-            </select>
-          </div>
-          <div class="editor-actions">
-            <button class="btn btn-primary" id="load-btn">Load Story</button>
-          </div>
-        </div>
 
-        <div class="editor-section">
-          <details class="expected-format">
-            <summary class="editor-label"><span class="expected-format-emoji" aria-hidden="true">ℹ️</span><span>Expected Format</span></summary>
-            <div class="example-block markdown-highlight">${highlightMarkdown(example)}</div>
-          </details>
-        </div>
+        <section class="admin-section-group">
+          <h2 class="admin-section-title">Story to Edit</h2>
+          <div class="editor-section">
+            <div class="story-select-row">
+              <select class="story-select" id="story-select" aria-label="Story to edit">
+                <option value="">New Story</option>
+                ${getStoryOptionsHtml()}
+              </select>
+            </div>
+            <div class="editor-actions">
+              <button class="btn btn-primary" id="load-btn">Load Story</button>
+            </div>
+          </div>
+        </section>
 
-        <div class="editor-section">
-          <div class="editor-label-row">
-            <label class="editor-label" for="story-editor">Story Content (Markdown)</label>
-            <button type="button" class="markdown-toggle-link" id="markdown-toggle-btn" aria-pressed="true">Disable syntax highlighting</button>
-          </div>
-          <div class="editor-textarea-wrapper">
-            <pre class="editor-textarea-highlight markdown-highlight" id="story-editor-highlight" aria-hidden="true"></pre>
-            <textarea class="editor-textarea editor-textarea-overlay" id="story-editor" placeholder="Paste or write your story here..." spellcheck="false"></textarea>
-          </div>
-          
-          <div class="editor-actions">
-            <button class="btn btn-primary" id="validate-btn">Validate Syntax</button>
-          </div>
+        <section class="admin-section-group">
+          <h2 class="admin-section-title">Story Content (Markdown)</h2>
+          <div class="editor-section">
+            <details class="expected-format">
+              <summary class="editor-label"><span class="expected-format-emoji" aria-hidden="true">ℹ️</span><span>Expected Format</span></summary>
+              <div class="example-block markdown-highlight">${highlightMarkdown(example)}</div>
+            </details>
 
-          <div id="validation-result"></div>
-        </div>
+            <div class="editor-tools-row">
+              <button type="button" class="markdown-toggle-link" id="markdown-toggle-btn" aria-pressed="true">Disable syntax highlighting</button>
+            </div>
+            <div class="editor-textarea-wrapper">
+              <pre class="editor-textarea-highlight markdown-highlight" id="story-editor-highlight" aria-hidden="true"></pre>
+              <textarea class="editor-textarea editor-textarea-overlay" id="story-editor" placeholder="Paste or write your story here..." spellcheck="false" aria-label="Story content in markdown"></textarea>
+            </div>
+
+            <div class="editor-actions">
+              <button class="btn btn-primary" id="validate-btn">Validate Syntax</button>
+            </div>
+
+            <div id="validation-result"></div>
+          </div>
+        </section>
     `,
   });
 }

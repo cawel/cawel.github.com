@@ -1,26 +1,60 @@
 /* Admin Page */
 .admin-container {
-  background-color: var(--bg-alt);
-  padding: 40px;
-  border-radius: 8px;
-  max-width: 900px;
+  --story-bg: #0d0d0d;
+  --story-border: #222;
+  --story-title-color: #e3e3e3;
+  --story-text-color: #8d8d8d;
+  --story-choice-text-color: #8e8e8e;
+  --story-choice-text-hover: #a6a6a6;
+  --story-choice-icon-color: #cfcfcf;
+
+  width: min(980px, 100%);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-container > .admin-title {
+  margin: 6px 0 2px;
+}
+
+.admin-section-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-section-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--story-title-color);
 }
 
 .admin-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 30px;
+  text-align: center;
+  color: var(--story-choice-text-hover);
 }
 
 .editor-section {
-  margin-bottom: 40px;
+  background: linear-gradient(145deg, var(--bg-alt), var(--bg-muted));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.editor-section > * + * {
+  margin-top: 14px;
 }
 
 .editor-label {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   display: block;
 }
 
@@ -29,7 +63,6 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
 }
 
 .story-select-row .editor-label,
@@ -37,8 +70,14 @@
   margin-bottom: 0;
 }
 
+.story-select-row .editor-label {
+  min-width: 124px;
+}
+
 .expected-format {
-  margin-top: 52px;
+  display: block;
+  width: 100%;
+  margin-top: 0;
 }
 
 .expected-format > summary {
@@ -71,9 +110,9 @@
 .example-block {
   background-color: var(--bg-muted);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 15px;
-  margin-bottom: 20px;
+  max-width: 100%;
   font-size: 14px;
   /* keep code examples monospace despite body font change */
   font-family: "Courier New", monospace;
@@ -98,10 +137,10 @@
 .editor-actions {
   display: flex;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 14px;
 }
 
-.btn {
+.admin-container .btn {
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 600;
@@ -121,9 +160,9 @@
 }
 
 .validation-result {
-  margin-top: 20px;
+  margin-top: 6px;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
 }
 
@@ -134,9 +173,9 @@
 }
 
 .validation-error {
-  background-color: #502020;
-  border: 1px solid #702020;
-  color: #e8b2b2;
+  background-color: color-mix(in srgb, #ab4e4e 26%, var(--bg-muted));
+  border: 1px solid color-mix(in srgb, #ab4e4e 52%, var(--border));
+  color: color-mix(in srgb, #efb5b5 78%, white 22%);
 }
 
 .error-details {
@@ -150,8 +189,43 @@
   padding: 8px 12px;
   font-size: 14px;
   border: 1px solid var(--border);
-  border-radius: 4px;
-  margin-bottom: 20px;
+  border-radius: 6px;
+  min-width: 220px;
+  flex: 0 0 auto;
   background-color: var(--bg-muted);
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .admin-title {
+    margin-top: 12px;
+    font-size: 26px;
+  }
+
+  .editor-section {
+    padding: 14px;
+  }
+
+  .admin-section-title {
+    font-size: 17px;
+  }
+
+  .story-select-row {
+    align-items: stretch;
+  }
+
+  .story-select-row .editor-label,
+  .story-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .admin-container .btn {
+    width: 100%;
+  }
 }
