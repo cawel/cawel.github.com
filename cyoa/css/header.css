@@ -296,6 +296,50 @@ header.header-collapsed {
 }
 
 @media (max-width: 1023px) {
+  header {
+    padding: 8px 14px;
+  }
+
+  .header-title {
+    font-size: 18px;
+    gap: 8px;
+  }
+
+  .header-emoji {
+    font-size: 22px;
+  }
+
+  .audio-control,
+  .font-control,
+  .theme-control,
+  .admin-control,
+  .header-toggle {
+    padding: 3px 5px;
+  }
+
+  .speaker-wrap,
+  .speaker-icon,
+  .mute-cross,
+  .theme-icon {
+    font-size: 20px;
+  }
+
+  .font-style-icon,
+  .admin-icon {
+    font-size: 18px;
+  }
+
+  .header-toggle-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .audio-track-select {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
+
   .header-title-short {
     display: inline;
   }
