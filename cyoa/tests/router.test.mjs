@@ -2,49 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { createRouter } from "../js/router.js";
+import { withDomEnvironment } from "./testHelpers.mjs";
 
-function escapeHtml(text) {
-  return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
-
-async function withDomEnvironment(run) {
-  const previousWindow = globalThis.window;
-  const previousDocument = globalThis.document;
-
-  globalThis.window = {
-    location: {
-      hash: "",
-    },
-  };
-
-  globalThis.document = {
-    createElement() {
-      let value = "";
-      return {
-        set textContent(next) {
-          value = next;
-        },
-        get innerHTML() {
-          return escapeHtml(value);
-        },
-      };
-    },
-  };
-
-  try {
-    await run();
-  } finally {
-    globalThis.window = previousWindow;
-    globalThis.document = previousDocument;
-  }
-}
-
-test("router executes load -> render -> bind and calls cleanup on route change", async () => {
+test("router: executes load -> render -> bind and calls cleanup on route change", async () => {
   await withDomEnvironment(async () => {
     const calls = [];
     let cleanupCount = 0;
@@ -91,10 +51,10 @@ test("router executes load -> render -> bind and calls cleanup on route change",
 
     assert.equal(container.innerHTML, "<main>home</main>");
     assert.equal(cleanupCount, 1);
-  });
+  }, { includeWindow: true });
 });
 
-test("router renders error page when route handler has no render function", async () => {
+test("router: renders error page when route handler has no render function", async () => {
   await withDomEnvironment(async () => {
     const container = { innerHTML: "" };
     const router = createRouter({
@@ -110,10 +70,10 @@ test("router renders error page when route handler has no render function", asyn
       container.innerHTML,
       /lifecycle object with a render function/,
     );
-  });
+  }, { includeWindow: true });
 });
 
-test("router renders 404 page for unmatched routes", async () => {
+test("router: renders 404 page for unmatched routes", async () => {
   await withDomEnvironment(async () => {
     const container = { innerHTML: "" };
     const router = createRouter({
@@ -126,10 +86,10 @@ test("router renders 404 page for unmatched routes", async () => {
     await router.render(container);
 
     assert.match(container.innerHTML, /Page not found/);
-  });
+  }, { includeWindow: true });
 });
 
-test("router renders load error page when lifecycle throws", async () => {
+test("router: renders load error page when lifecycle throws", async () => {
   await withDomEnvironment(async () => {
     const container = { innerHTML: "" };
     const router = createRouter({
@@ -146,5 +106,5 @@ test("router renders load error page when lifecycle throws", async () => {
 
     assert.match(container.innerHTML, /Error rendering page/);
     assert.match(container.innerHTML, /boom/);
-  });
+  }, { includeWindow: true });
 });

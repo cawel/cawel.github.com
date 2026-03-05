@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import { getValidationExample, parseStory } from "../js/utils/storyParser.js";
 
-test("parseStory parses the bundled validation example", () => {
+test("parser: parseStory parses the bundled validation example", () => {
   const parsed = parseStory(getValidationExample());
 
   assert.ok(parsed[1]);
@@ -11,7 +11,7 @@ test("parseStory parses the bundled validation example", () => {
   assert.equal(parsed[4].choicesEndingText, "The End");
 });
 
-test("parseStory fails when keywords section is missing", () => {
+test("parser: parseStory fails when keywords section is missing", () => {
   const markdown = `# Story Title
 
 ## Chapter 1
@@ -32,7 +32,7 @@ The End`;
   );
 });
 
-test("parseStory fails when choice numbering is not sequential", () => {
+test("parser: parseStory fails when choice numbering is not sequential", () => {
   const markdown = `# Story Title
 
 ## Keywords
@@ -67,7 +67,7 @@ The End`;
   );
 });
 
-test("parseStory fails when chapter choice references itself", () => {
+test("parser: parseStory fails when chapter choice references itself", () => {
   const markdown = `# Story Title
 
 ## Keywords

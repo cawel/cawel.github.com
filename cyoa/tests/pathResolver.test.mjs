@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import { createPathResolver, withBasePath } from "../js/utils/pathResolver.js";
 
-test("createPathResolver(basePath?) normalizes empty and root base paths", () => {
+test("path: createPathResolver(basePath?) normalizes empty and root base paths", () => {
   assert.equal(
     createPathResolver("").withBasePath("/assets/stories/metadata.json"),
     "/assets/stories/metadata.json",
@@ -14,7 +14,7 @@ test("createPathResolver(basePath?) normalizes empty and root base paths", () =>
   );
 });
 
-test("createPathResolver(basePath?) normalizes leading and trailing slashes", () => {
+test("path: createPathResolver(basePath?) normalizes leading and trailing slashes", () => {
   const resolver = createPathResolver("cyoa///");
   assert.equal(
     resolver.withBasePath("/assets/stories/metadata.json"),
@@ -22,7 +22,7 @@ test("createPathResolver(basePath?) normalizes leading and trailing slashes", ()
   );
 });
 
-test("createPathResolver(basePath?) withBasePath(path) treats relative and absolute paths consistently", () => {
+test("path: createPathResolver(basePath?) withBasePath(path) treats relative and absolute paths consistently", () => {
   const resolver = createPathResolver("/any-base");
   assert.equal(
     resolver.withBasePath("assets/music/tracks.json"),
@@ -30,7 +30,7 @@ test("createPathResolver(basePath?) withBasePath(path) treats relative and absol
   );
 });
 
-test("withBasePath(path) delegates to createPathResolver() with configured APP_BASE_PATH", () => {
+test("path: withBasePath(path) delegates to createPathResolver() with configured APP_BASE_PATH", () => {
   const resolver = createPathResolver();
   assert.equal(
     withBasePath("/assets/music/tracks.json"),
