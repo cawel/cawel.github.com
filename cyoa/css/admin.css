@@ -32,10 +32,7 @@
   margin-bottom: 16px;
 }
 
-.story-select-row .editor-label {
-  margin-bottom: 0;
-}
-
+.story-select-row .editor-label,
 .story-select-row .story-select {
   margin-bottom: 0;
 }
@@ -121,15 +118,6 @@
 
 .btn-primary:hover {
   background-color: var(--accent-dark);
-}
-
-.btn-secondary {
-  background-color: var(--bg-muted);
-  color: var(--text);
-}
-
-.btn-secondary:hover {
-  background-color: var(--border);
 }
 
 .validation-result {

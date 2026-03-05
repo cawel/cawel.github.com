@@ -54,7 +54,6 @@ main.story-main .story-container {
   font-family: var(--chapter-content-font);
   margin-bottom: 22px;
   text-shadow: none;
-  max-width: 46em;
   overflow-wrap: anywhere;
 }
 
@@ -71,6 +70,10 @@ main.story-main .story-container {
   margin-top: 16px;
   padding-top: 6px;
   padding-left: 0;
+}
+
+.chapter-content,
+.choices-list {
   max-width: 46em;
 }
 

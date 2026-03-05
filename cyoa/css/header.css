@@ -14,34 +14,16 @@ header.header-collapsed {
   display: none;
 }
 
-.header-controls {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.audio-controls-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.theme-controls-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
+.header-controls,
+.audio-controls-row,
+.theme-controls-row,
 .font-controls-row {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.theme-select {
-  display: none;
-}
-
+.theme-select,
 .font-select {
   display: none;
 }
@@ -125,89 +107,10 @@ header.header-collapsed {
   display: none;
 }
 
-.audio-control {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: var(--text);
-  cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative; /* allow overlaying the cross */
-}
-
-.audio-control:hover {
-  background-color: var(--bg-muted);
-}
-
-.font-control {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Merriweather", Georgia, serif;
-  font-style: italic;
-  font-weight: 700;
-}
-
-.font-control:hover {
-  background-color: var(--bg-muted);
-}
-
-.theme-control {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-control:hover {
-  background-color: var(--bg-muted);
-}
-
-.theme-icon {
-  font-size: 24px;
-  line-height: 1;
-}
-
-.admin-control {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.admin-control:hover {
-  background-color: var(--bg-muted);
-}
-
-.admin-icon {
-  font-size: 22px;
-  line-height: 1;
-}
-
+.audio-control,
+.font-control,
+.theme-control,
+.admin-control,
 .header-toggle {
   background: none;
   border: none;
@@ -221,6 +124,31 @@ header.header-collapsed {
   justify-content: center;
 }
 
+.audio-control {
+  font-size: 24px;
+  position: relative; /* allow overlaying the cross */
+}
+
+.font-control {
+  font-family: "Merriweather", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.theme-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.admin-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.audio-control:hover,
+.font-control:hover,
+.theme-control:hover,
+.admin-control:hover,
 .header-toggle:hover {
   background-color: var(--bg-muted);
 }
@@ -370,6 +298,7 @@ header.header-collapsed {
   .mobile-menu-btn {
     display: inline-flex;
     margin-left: auto;
+    padding: 6px 8px;
   }
 
   .header-controls {
@@ -390,16 +319,8 @@ header.header-collapsed {
     width: 100%;
   }
 
-  .audio-controls-row {
-    width: 100%;
-    gap: 6px;
-  }
-
-  .theme-controls-row {
-    width: 100%;
-    gap: 6px;
-  }
-
+  .audio-controls-row,
+  .theme-controls-row,
   .font-controls-row {
     width: 100%;
     gap: 6px;
@@ -410,32 +331,8 @@ header.header-collapsed {
     width: auto;
   }
 
-  .audio-controls-row .audio-control {
-    width: 44px;
-    min-width: 44px;
-    min-height: 36px;
-    justify-content: center;
-    border: 1px solid var(--border);
-    background-color: var(--bg-muted);
-    padding: 6px 0;
-  }
-
-  .theme-controls-row .theme-control {
-    width: 44px;
-    min-width: 44px;
-    min-height: 36px;
-    justify-content: center;
-    border: 1px solid var(--border);
-    background-color: var(--bg-muted);
-    padding: 6px 0;
-  }
-
-  .theme-controls-row .theme-select {
-    display: block;
-    flex: 1;
-    width: auto;
-  }
-
+  .audio-controls-row .audio-control,
+  .theme-controls-row .theme-control,
   .font-controls-row .font-control {
     width: 44px;
     min-width: 44px;
@@ -446,6 +343,7 @@ header.header-collapsed {
     padding: 6px 0;
   }
 
+  .theme-controls-row .theme-select,
   .font-controls-row .font-select {
     display: block;
     flex: 1;
@@ -466,10 +364,6 @@ header.header-collapsed {
     min-height: 36px;
     padding: 6px 30px 6px 10px;
     font-size: 14px;
-  }
-
-  .mobile-menu-btn {
-    padding: 6px 8px;
   }
 
   .mobile-menu-icon {

@@ -63,16 +63,6 @@
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
-.story-card-meta-label {
-  color: var(--story-card-meta-color);
-  opacity: 0.78;
-}
-
-.story-card-meta-value {
-  color: var(--story-card-meta-color);
-  opacity: 0.78;
-}
-
 .story-card:focus-visible {
   outline: none;
 }
