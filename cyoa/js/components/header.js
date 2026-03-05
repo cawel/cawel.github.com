@@ -276,15 +276,41 @@ export function createHeader(onNavigateHome) {
   };
 
   const bindHeaderRevealZone = () => {
-    document.addEventListener("mousemove", (event) => {
-      if (waitForRevealZoneExit && event.clientY > 75) {
+    const handleRevealZone = (clientY) => {
+      if (typeof clientY !== "number") return;
+
+      if (waitForRevealZoneExit && clientY > 75) {
         waitForRevealZoneExit = false;
       }
 
-      if (headerHidden && !waitForRevealZoneExit && event.clientY <= 75) {
+      if (headerHidden && !waitForRevealZoneExit && clientY <= 75) {
         setHeaderHidden(false);
       }
+    };
+
+    document.addEventListener("mousemove", (event) => {
+      handleRevealZone(event.clientY);
     });
+
+    document.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches && event.touches[0];
+        if (!touch) return;
+        handleRevealZone(touch.clientY);
+      },
+      { passive: true },
+    );
+
+    document.addEventListener(
+      "touchmove",
+      (event) => {
+        const touch = event.touches && event.touches[0];
+        if (!touch) return;
+        handleRevealZone(touch.clientY);
+      },
+      { passive: true },
+    );
   };
 
   const mount = () => {
