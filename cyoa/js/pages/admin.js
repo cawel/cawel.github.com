@@ -4,13 +4,56 @@
 
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
 import { withBasePath } from "../utils/pathResolver.js";
+import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
+import { highlightMarkdown } from "../utils/markdownHighlighter.js";
 
-export async function renderAdmin() {
-  const example = getValidationExample();
+const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  const html = `
-    <main>
-      <div class="admin-container">
+function getStoryOptionsHtml() {
+  return STORY_IDS.map(
+    (storyId) => `<option value="${storyId}">Story ${storyId}</option>`,
+  ).join("");
+}
+
+function getAdminElements() {
+  return {
+    validateButton: document.getElementById("validate-btn"),
+    loadButton: document.getElementById("load-btn"),
+    storySelect: document.getElementById("story-select"),
+    textarea: document.getElementById("story-editor"),
+    validationResult: document.getElementById("validation-result"),
+  };
+}
+
+function getValidationResultHtml(type, message) {
+  const typeClass =
+    type === "success" ? "validation-success" : "validation-error";
+  const content =
+    type === "success"
+      ? "✓ Story syntax is valid!"
+      : type === "empty"
+        ? "Please enter story content"
+        : message;
+
+  return `<div class="validation-result ${typeClass}">${content}</div>`;
+}
+
+function setValidationResult(type, message = "") {
+  const { validationResult } = getAdminElements();
+  if (!validationResult) return;
+  validationResult.innerHTML = getValidationResultHtml(type, message);
+}
+
+function clearValidationResult() {
+  const { validationResult } = getAdminElements();
+  if (!validationResult) return;
+  validationResult.innerHTML = "";
+}
+
+function renderAdminTemplate(example) {
+  return renderPageContainer({
+    containerClass: "admin-container",
+    content: `
         <h1 class="admin-title">Story Editor</h1>
         
         <div class="editor-section">
@@ -18,14 +61,7 @@ export async function renderAdmin() {
             <label class="editor-label" for="story-select">Story to Edit</label>
             <select class="story-select" id="story-select">
               <option value="">New Story</option>
-              <option value="1">Story 1</option>
-              <option value="2">Story 2</option>
-              <option value="3">Story 3</option>
-              <option value="4">Story 4</option>
-              <option value="5">Story 5</option>
-              <option value="6">Story 6</option>
-              <option value="7">Story 7</option>
-              <option value="8">Story 8</option>
+              ${getStoryOptionsHtml()}
             </select>
           </div>
           <div class="editor-actions">
@@ -56,131 +92,113 @@ export async function renderAdmin() {
 
           <div id="validation-result"></div>
         </div>
-      </div>
-    </main>
-  `;
+    `,
+  });
+}
+
+function bindAdminEvents() {
+  const { validateButton, loadButton, storySelect } = getAdminElements();
+  validateButton?.addEventListener("click", validateContent);
+  loadButton?.addEventListener("click", loadStory);
+  storySelect?.addEventListener("change", onStorySelectChange);
+
+  setupMarkdownHighlighting();
+}
+
+export async function renderAdmin() {
+  const example = getValidationExample();
 
   // Setup event listeners after rendering
   setTimeout(() => {
-    document
-      .getElementById("validate-btn")
-      .addEventListener("click", validateContent);
-    document.getElementById("load-btn").addEventListener("click", loadStory);
-    document
-      .getElementById("story-select")
-      .addEventListener("change", onStorySelectChange);
-
-    setupMarkdownHighlighting();
+    bindAdminEvents();
   }, 0);
 
-  return html;
+  return renderAdminTemplate(example);
 }
 
 function validateContent() {
-  const textarea = document.getElementById("story-editor");
-  const resultDiv = document.getElementById("validation-result");
+  const { textarea } = getAdminElements();
+  if (!textarea) return;
+
   const content = textarea.value.trim();
 
   if (!content) {
-    resultDiv.innerHTML =
-      '<div class="validation-result validation-error">Please enter story content</div>';
+    setValidationResult("empty");
     return;
   }
 
   try {
     parseStory(content);
-    resultDiv.innerHTML =
-      '<div class="validation-result validation-success">✓ Story syntax is valid!</div>';
+    setValidationResult("success");
   } catch (error) {
-    resultDiv.innerHTML = `
-      <div class="validation-result validation-error">
+    setValidationResult(
+      "error",
+      `
         ✗ Validation Error:
         <div class="error-details">${escapeHtml(error.message)}</div>
-      </div>
-    `;
+      `,
+    );
   }
 }
 
+function setEditorContent(content) {
+  const { textarea } = getAdminElements();
+  if (!textarea) return;
+
+  textarea.value = content;
+  textarea.dispatchEvent(new Event("input"));
+}
+
+function getStoryPath(storyId) {
+  return withBasePath(`/assets/stories/story-${storyId}.md`);
+}
+
 async function loadStory() {
-  const select = document.getElementById("story-select");
+  const { storySelect } = getAdminElements();
+  if (!storySelect) return;
+
+  const select = storySelect;
   const storyNum = select.value;
 
   if (!storyNum) {
-    const textarea = document.getElementById("story-editor");
-    textarea.value = "";
-    textarea.dispatchEvent(new Event("input"));
-    document.getElementById("validation-result").innerHTML = "";
+    setEditorContent("");
+    clearValidationResult();
     return;
   }
 
   try {
-    const response = await fetch(
-      withBasePath(`/assets/stories/story-${storyNum}.md`),
-    );
+    const response = await fetch(getStoryPath(storyNum));
     if (!response.ok) {
       throw new Error(`Failed to load story ${storyNum}`);
     }
+
     const content = await response.text();
-    const textarea = document.getElementById("story-editor");
-    textarea.value = content;
-    textarea.dispatchEvent(new Event("input"));
-    document.getElementById("validation-result").innerHTML = "";
+    setEditorContent(content);
+    clearValidationResult();
   } catch (error) {
-    document.getElementById("validation-result").innerHTML = `
-      <div class="validation-result validation-error">
-        Error loading story: ${escapeHtml(error.message)}
-      </div>
-    `;
+    setValidationResult(
+      "error",
+      `Error loading story: ${escapeHtml(error.message)}`,
+    );
   }
 }
 
 function onStorySelectChange() {
-  document.getElementById("validation-result").innerHTML = "";
+  clearValidationResult();
 }
 
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-function highlightMarkdown(text) {
-  const escaped = escapeHtml(text || "");
-  const lines = escaped.split("\n");
-
-  return lines
-    .map((line) => {
-      if (/^###\s+/.test(line)) {
-        return `<span class="md-token md-h3">${line}</span>`;
-      }
-
-      if (/^##\s+/.test(line)) {
-        return `<span class="md-token md-h2">${line}</span>`;
-      }
-
-      if (/^#\s+/.test(line)) {
-        return `<span class="md-token md-h1">${line}</span>`;
-      }
-
-      const choiceMatch = line.match(/^(\d+\.\s+)(.+?)(\s*-&gt;\s*\d+)$/);
-      if (choiceMatch) {
-        return `<span class="md-token md-choice-number">${choiceMatch[1]}</span><span class="md-token md-choice-text">${choiceMatch[2]}</span><span class="md-token md-choice-target">${choiceMatch[3]}</span>`;
-      }
-
-      if (/^the\s+end$/i.test(line.trim())) {
-        return `<span class="md-token md-end">${line}</span>`;
-      }
-
-      return line;
-    })
-    .join("\n");
+function getHighlightingElements() {
+  return {
+    textarea: document.getElementById("story-editor"),
+    highlightLayer: document.getElementById("story-editor-highlight"),
+    toggleButton: document.getElementById("markdown-toggle-btn"),
+    textareaWrapper: document.querySelector(".editor-textarea-wrapper"),
+  };
 }
 
 function setupMarkdownHighlighting() {
-  const textarea = document.getElementById("story-editor");
-  const highlightLayer = document.getElementById("story-editor-highlight");
-  const toggleButton = document.getElementById("markdown-toggle-btn");
-  const textareaWrapper = document.querySelector(".editor-textarea-wrapper");
+  const { textarea, highlightLayer, toggleButton, textareaWrapper } =
+    getHighlightingElements();
   if (!textarea || !highlightLayer || !toggleButton || !textareaWrapper) return;
 
   let highlightingEnabled = true;

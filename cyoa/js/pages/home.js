@@ -2,65 +2,85 @@
  * Home page - displays list of stories
  */
 
-export async function renderHome(stories = []) {
-  const storiesHtml = stories
-    .map(
-      (story) => {
-        const keywords = Array.isArray(story.keywords)
-          ? story.keywords.filter(Boolean).join(", ")
-          : "";
+import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
 
-        return `
-        <article class="story-card" data-story="${story.number}" role="button" tabindex="0" aria-label="Open ${story.title}">
-          <div class="story-card-title">
-            <span class="story-card-emoji" aria-hidden="true">${story.emoji}</span>
-            <span>${story.title}</span>
-          </div>
-          <div class="story-card-meta">
-            <div class="story-card-meta-line">
-              <span class="story-card-meta-icon" aria-hidden="true">⏱️</span>
-              <span>${story.approxTime}</span>
-            </div>
-            <div class="story-card-meta-line story-card-meta-line-keywords">
-              <span class="story-card-meta-icon" aria-hidden="true">🔑</span>
-              <span>${keywords}</span>
-            </div>
-          </div>
-        </article>
-      `;
-      },
-    )
-    .join("");
+function formatKeywords(keywords) {
+  if (!Array.isArray(keywords)) return "";
+  return keywords.filter(Boolean).join(", ");
+}
 
-  const html = `
-    <main class="home-main">
-      <div class="home-container">
-        <h1 class="home-title">Where Will You Begin?</h1>
-        <div class="stories-grid" role="list">
-          ${storiesHtml}
-        </div>
-        <footer class="home-footer">Choose Your Own Adventure | 2026</footer>
+function renderStoryCard(story) {
+  const storyNumber = escapeHtml(story.number);
+  const title = escapeHtml(story.title);
+  const emoji = escapeHtml(story.emoji);
+  const approxTime = escapeHtml(story.approxTime);
+  const keywords = escapeHtml(formatKeywords(story.keywords));
+
+  return `
+    <article class="story-card" data-story="${storyNumber}" role="button" tabindex="0" aria-label="Open ${title}">
+      <div class="story-card-title">
+        <span class="story-card-emoji" aria-hidden="true">${emoji}</span>
+        <span>${title}</span>
       </div>
-    </main>
+      <div class="story-card-meta">
+        <div class="story-card-meta-line">
+          <span class="story-card-meta-icon" aria-hidden="true">⏱️</span>
+          <span>${approxTime}</span>
+        </div>
+        <div class="story-card-meta-line story-card-meta-line-keywords">
+          <span class="story-card-meta-icon" aria-hidden="true">🔑</span>
+          <span>${keywords}</span>
+        </div>
+      </div>
+    </article>
   `;
+}
+
+function renderStoriesGrid(stories) {
+  return stories.map((story) => renderStoryCard(story)).join("");
+}
+
+function navigateToStory(storyNum) {
+  window.location.hash = `#/story/${storyNum}`;
+}
+
+function bindStoryCardEvents() {
+  document.querySelectorAll(".story-card").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const storyNum = event.currentTarget.dataset.story;
+      navigateToStory(storyNum);
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      const storyNum = event.currentTarget.dataset.story;
+      navigateToStory(storyNum);
+    });
+  });
+}
+
+function renderHomeTemplate(storiesHtml) {
+  return renderPageContainer({
+    mainClass: "home-main",
+    containerClass: "home-container",
+    content: `
+      <h1 class="home-title">Where Will You Begin?</h1>
+      <div class="stories-grid" role="list">
+        ${storiesHtml}
+      </div>
+      <footer class="home-footer">Choose Your Own Adventure | 2026</footer>
+    `,
+  });
+}
+
+export async function renderHome(stories = []) {
+  const storiesHtml = renderStoriesGrid(stories);
 
   // Add event delegation after rendering
   setTimeout(() => {
-    document.querySelectorAll(".story-card").forEach((card) => {
-      card.addEventListener("click", (e) => {
-        const storyNum = e.currentTarget.dataset.story;
-        window.location.hash = `#/story/${storyNum}`;
-      });
-
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const storyNum = e.currentTarget.dataset.story;
-          window.location.hash = `#/story/${storyNum}`;
-        }
-      });
-    });
+    bindStoryCardEvents();
   }, 0);
 
-  return html;
+  return renderHomeTemplate(storiesHtml);
 }

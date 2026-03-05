@@ -4,6 +4,44 @@
 
 import { parseStory } from "../utils/storyParser.js";
 import { withBasePath } from "../utils/pathResolver.js";
+import { renderPageContainer } from "../utils/viewHelpers.js";
+
+function renderStoryLayout(content) {
+  return renderPageContainer({
+    content,
+    mainClass: "story-main",
+    containerClass: "story-container",
+  });
+}
+
+function renderErrorState(message) {
+  return renderStoryLayout(
+    `<p style="color: red;">Error loading story: ${message}</p>`,
+  );
+}
+
+function renderMissingChapterState() {
+  return renderStoryLayout("<p>Chapter not found</p>");
+}
+
+function parseChapterNumber(chapterParam) {
+  const requestedChapter = Number.parseInt(chapterParam || "1", 10);
+  return Number.isNaN(requestedChapter) ? 1 : requestedChapter;
+}
+
+function getStoryPath(storyId) {
+  return withBasePath(`/assets/stories/story-${storyId}.md`);
+}
+
+async function loadStoryData(storyId) {
+  const response = await fetch(getStoryPath(storyId));
+  if (!response.ok) {
+    throw new Error(`Failed to load story ${storyId}`);
+  }
+
+  const markdownText = await response.text();
+  return parseStory(markdownText);
+}
 
 function formatChapterContent(content) {
   return content
@@ -14,85 +52,67 @@ function formatChapterContent(content) {
     .join("");
 }
 
-export async function renderStory(params) {
-  const storyNum = params.storyId;
-  const chapterParam = params.chapterId;
-  let storyData = null;
+function renderChoiceItem(storyId, choice) {
+  return `
+    <li class="choice-item">
+      <span class="choice-emoji" aria-hidden="true">✨</span>
+      <a class="choice-link" href="#/story/${storyId}/${choice.chapterNumber}">
+        <span class="choice-text">${choice.text}</span>
+      </a>
+    </li>
+  `;
+}
 
-  try {
-    // Fetch story data from markdown file
-    const response = await fetch(
-      withBasePath(`/assets/stories/story-${storyNum}.md`),
-    );
-    if (!response.ok) {
-      throw new Error(`Failed to load story ${storyNum}`);
-    }
-    const markdownText = await response.text();
-    storyData = parseStory(markdownText);
-  } catch (error) {
-    return `
-      <main class="story-main">
-        <div class="story-container">
-          <p style="color: red;">Error loading story: ${error.message}</p>
-        </div>
-      </main>
-    `;
-  }
-
-  const requestedChapter = Number.parseInt(chapterParam || "1", 10);
-  const chapterNumber = Number.isNaN(requestedChapter) ? 1 : requestedChapter;
-
-  if (!storyData || !storyData[chapterNumber]) {
-    return `
-      <main class="story-main">
-        <div class="story-container">
-          <p>Chapter not found</p>
-        </div>
-      </main>
-    `;
-  }
-
-  const chapter = storyData[chapterNumber];
-  const chapterContentHtml = formatChapterContent(chapter.content);
+function renderChoicesSection(storyId, chapter) {
   const hasChoicesList =
     Array.isArray(chapter.choices) && chapter.choices.length > 0;
+  if (hasChoicesList) {
+    const choicesHtml = chapter.choices
+      .map((choice) => renderChoiceItem(storyId, choice))
+      .join("");
+
+    return `
+      <h3 class="chapter-section-title">What do you do?</h3>
+      <ul class="choices-list">
+        ${choicesHtml}
+      </ul>
+    `;
+  }
+
   const hasChoicesEndingText =
     typeof chapter.choicesEndingText === "string" &&
     chapter.choicesEndingText.trim().length > 0;
 
-  const choicesHtml = chapter.choices
-    .map(
-      (choice) => `
-        <li class="choice-item">
-          <span class="choice-emoji" aria-hidden="true">✨</span>
-          <a class="choice-link" href="#/story/${storyNum}/${choice.chapterNumber}">
-            <span class="choice-text">${choice.text}</span>
-          </a>
-        </li>
-      `,
-    )
-    .join("");
+  return hasChoicesEndingText
+    ? `<p class="choices-ending-text">${chapter.choicesEndingText}</p>`
+    : "";
+}
 
-  const html = `
-    <main class="story-main">
-      <div class="story-container">
-        <h2 class="chapter-title">${chapter.title}</h2>
-        <div class="chapter-content">${chapterContentHtml}</div>
-        ${
-          hasChoicesList
-            ? `
-          <h3 class="chapter-section-title">What do you do?</h3>
-          <ul class="choices-list">
-            ${choicesHtml}
-          </ul>
-        `
-            : hasChoicesEndingText
-              ? `<p class="choices-ending-text">${chapter.choicesEndingText}</p>`
-              : ""
-        }
-      </div>
-    </main>
-  `;
+function renderChapter(storyId, chapter) {
+  const chapterContentHtml = formatChapterContent(chapter.content);
+  const choicesSectionHtml = renderChoicesSection(storyId, chapter);
 
-  return html;
+  return renderStoryLayout(`
+    <h2 class="chapter-title">${chapter.title}</h2>
+    <div class="chapter-content">${chapterContentHtml}</div>
+    ${choicesSectionHtml}
+  `);
+}
+
+export async function renderStory(params) {
+  const storyId = params.storyId;
+  const chapterNumber = parseChapterNumber(params.chapterId);
+  let storyData;
+
+  try {
+    storyData = await loadStoryData(storyId);
+  } catch (error) {
+    return renderErrorState(error.message);
+  }
+
+  if (!storyData || !storyData[chapterNumber]) {
+    return renderMissingChapterState();
+  }
+
+  return renderChapter(storyId, storyData[chapterNumber]);
 }
