@@ -1,13 +1,6 @@
-/**
- * Home page - displays list of stories
- */
-
-import { getStoriesMetadata } from "../services/storiesRepository.js";
 import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
-import { bindHomeStoryCardNavigation } from "./home.view.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
-/** @typedef {import("../types.js").PageContract} PageContract */
 
 /**
  * @param {string[]|unknown} keywords
@@ -58,13 +51,12 @@ function renderStoriesGrid(stories) {
 }
 
 /**
- * @param {string|number} storyNum
+ * @param {StoryMetadata[]} stories
+ * @returns {string}
  */
-function navigateToStory(storyNum) {
-  window.location.hash = `#/story/${storyNum}`;
-}
+export function renderHomePageTemplate(stories) {
+  const storiesHtml = renderStoriesGrid(stories);
 
-function renderHomeTemplate(storiesHtml) {
   return renderPageContainer({
     mainClass: "home-main",
     containerClass: "home-container",
@@ -77,39 +69,3 @@ function renderHomeTemplate(storiesHtml) {
     `,
   });
 }
-
-/**
- * @returns {Promise<{ stories: StoryMetadata[] }>}
- */
-export async function loadHomePageData() {
-  /** @type {StoryMetadata[]} */
-  const stories = await getStoriesMetadata();
-  return { stories };
-}
-
-/**
- * @param {{ stories?: StoryMetadata[] }} [model]
- * @returns {Promise<string>}
- */
-export async function renderHomePage(model = { stories: [] }) {
-  const stories = Array.isArray(model.stories) ? model.stories : [];
-  const storiesHtml = renderStoriesGrid(stories);
-
-  return renderHomeTemplate(storiesHtml);
-}
-
-/**
- * @param {HTMLElement|{ querySelectorAll: (selector: string) => NodeListOf<Element>|Element[] }} container
- * @returns {Promise<null>}
- */
-export async function bindHomePage(container) {
-  bindHomeStoryCardNavigation(container, navigateToStory);
-  return null;
-}
-
-/** @type {PageContract} */
-export const homePage = {
-  load: loadHomePageData,
-  render: renderHomePage,
-  bind: bindHomePage,
-};

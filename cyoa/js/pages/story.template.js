@@ -1,22 +1,7 @@
-/**
- * Story page - displays a story with chapters and choices
- */
-
-import { parseStory } from "../utils/storyParser.js";
-import { renderPageContainer } from "../utils/viewHelpers.js";
 import { renderLoadErrorPage, renderNotFoundPage } from "../utils/errorUI.js";
-import { getStoryMarkdown } from "../services/storiesRepository.js";
+import { renderPageContainer } from "../utils/viewHelpers.js";
 
 /** @typedef {import("../types.js").StoryChapter} StoryChapter */
-/** @typedef {import("../types.js").PageContract} PageContract */
-
-/**
- * @typedef {object} StoryPageModel
- * @property {string} storyId
- * @property {number} chapterNumber
- * @property {StoryChapter|null} chapter
- * @property {string|null} error
- */
 
 function renderStoryLayout(content) {
   return renderPageContainer({
@@ -26,7 +11,11 @@ function renderStoryLayout(content) {
   });
 }
 
-function renderErrorState(message) {
+/**
+ * @param {string} message
+ * @returns {string}
+ */
+export function renderStoryErrorState(message) {
   return renderLoadErrorPage({
     title: "Error loading story",
     details: message,
@@ -35,27 +24,20 @@ function renderErrorState(message) {
   });
 }
 
-function renderMissingChapterState() {
+/**
+ * @returns {string}
+ */
+export function renderStoryMissingChapterState() {
   return renderNotFoundPage({
     title: "Chapter not found",
     details: "The requested chapter does not exist in this story.",
   });
 }
 
-function parseChapterNumber(chapterParam) {
-  const requestedChapter = Number.parseInt(chapterParam || "1", 10);
-  return Number.isNaN(requestedChapter) ? 1 : requestedChapter;
-}
-
 /**
- * @param {string} storyId
- * @returns {Promise<Record<number, StoryChapter>>}
+ * @param {string} content
+ * @returns {string}
  */
-async function loadStoryData(storyId) {
-  const markdownText = await getStoryMarkdown(storyId);
-  return parseStory(markdownText);
-}
-
 function formatChapterContent(content) {
   return content
     .split(/\n\s*\n/g)
@@ -65,6 +47,11 @@ function formatChapterContent(content) {
     .join("");
 }
 
+/**
+ * @param {string} storyId
+ * @param {{ chapterNumber: number, text: string }} choice
+ * @returns {string}
+ */
 function renderChoiceItem(storyId, choice) {
   return `
     <li class="choice-item">
@@ -111,7 +98,7 @@ function renderChoicesSection(storyId, chapter) {
  * @param {StoryChapter} chapter
  * @returns {string}
  */
-function renderChapter(storyId, chapter) {
+export function renderStoryChapter(storyId, chapter) {
   const chapterContentHtml = formatChapterContent(chapter.content);
   const choicesSectionHtml = renderChoicesSection(storyId, chapter);
 
@@ -121,51 +108,3 @@ function renderChapter(storyId, chapter) {
     ${choicesSectionHtml}
   `);
 }
-
-/**
- * @param {{ storyId: string, chapterId?: string }} params
- * @returns {Promise<StoryPageModel>}
- */
-export async function loadStoryPageData(params) {
-  const storyId = params.storyId;
-  const chapterNumber = parseChapterNumber(params.chapterId);
-
-  try {
-    const storyData = await loadStoryData(storyId);
-    return {
-      storyId,
-      chapterNumber,
-      chapter: storyData ? storyData[chapterNumber] : null,
-      error: null,
-    };
-  } catch (error) {
-    return {
-      storyId,
-      chapterNumber,
-      chapter: null,
-      error: error instanceof Error ? error.message : String(error),
-    };
-  }
-}
-
-/**
- * @param {StoryPageModel} model
- * @returns {Promise<string>}
- */
-export async function renderStoryPage(model) {
-  if (model.error) {
-    return renderErrorState(model.error);
-  }
-
-  if (!model.chapter) {
-    return renderMissingChapterState();
-  }
-
-  return renderChapter(model.storyId, model.chapter);
-}
-
-/** @type {PageContract} */
-export const storyPage = {
-  load: loadStoryPageData,
-  render: renderStoryPage,
-};

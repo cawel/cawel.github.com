@@ -20,9 +20,9 @@
 
 import { createRouter } from "./router.js";
 import { createHeader } from "./components/header.js";
-import { homePage } from "./pages/home.js";
-import { storyPage } from "./pages/story.js";
-import { adminPage } from "./pages/admin.js";
+import { homePage } from "./pages/home.page.js";
+import { storyPage } from "./pages/story.page.js";
+import { adminPage } from "./pages/admin.page.js";
 import { ENABLE_APP_STATE_DEBUG } from "./appConfig.js";
 import { getAppState, subscribeToAppState } from "./state/appStore.js";
 

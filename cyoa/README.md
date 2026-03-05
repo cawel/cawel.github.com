@@ -35,9 +35,9 @@ cyoa/
 │   ├── components/
 │   │   └── header.js         # Shared header component
 │   ├── pages/
-│   │   ├── home.js           # Homepage component
-│   │   ├── story.js          # Story reader component
-│   │   └── admin.js          # Admin/editor component
+│   │   ├── home.page.js      # Homepage orchestrator
+│   │   ├── story.page.js     # Story reader orchestrator
+│   │   └── admin.page.js     # Admin/editor orchestrator
 │   └── utils/
 │       └── storyParser.js    # Markdown parser and validator
 ├── assets/
@@ -202,8 +202,8 @@ parseStory(markdown)           // Returns { [chapterNum]: chapter }
 getValidationExample()         // Returns example markdown
 ```
 
-#### `home.js`, `story.js`, `admin.js`
-Page components that return HTML strings. Mounted via router.
+#### `home.page.js`, `story.page.js`, `admin.page.js`
+Page orchestrators mounted via router.
 
 ### Styling
 
