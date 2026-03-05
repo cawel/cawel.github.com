@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { renderHomePage } from "../js/pages/home.page.js";
-import { renderStoryPage } from "../js/pages/story.page.js";
+import {
+  __storyPageTestHooks,
+  loadStoryPageData,
+  renderStoryPage,
+} from "../js/pages/story.page.js";
 import { renderAdminPage } from "../js/pages/admin.page.js";
 import { withDomEnvironment } from "./testHelpers.mjs";
 
@@ -74,4 +78,61 @@ test("page: admin.page renderAdminPage renders expected editor structure", async
     assert.match(html, /id="validate-btn"/);
     assert.match(html, /Expected Markdown Format/);
   });
+});
+
+test("page: story.page loadStoryPageData reuses parsed cache per story id", async () => {
+  const previousFetch = globalThis.fetch;
+  let fetchCount = 0;
+
+  const markdown = `# Cached Story
+
+## Keywords
+- one
+- two
+- three
+
+## Chapter 1
+### Title
+Start
+
+### Content
+Hello
+
+### Choices
+1. Continue -> 2
+
+## Chapter 2
+### Title
+End
+
+### Content
+Done
+
+### Choices
+The End`;
+
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    return {
+      ok: true,
+      async text() {
+        return markdown;
+      },
+    };
+  };
+
+  try {
+    __storyPageTestHooks.clearParsedStoryCache();
+
+    const first = await loadStoryPageData({ storyId: "901", chapterId: "1" });
+    const second = await loadStoryPageData({ storyId: "901", chapterId: "2" });
+
+    assert.equal(fetchCount, 1);
+    assert.equal(__storyPageTestHooks.getParsedStoryCacheSize(), 1);
+    assert.equal(first.chapter?.title, "Start");
+    assert.equal(second.chapter?.title, "End");
+  } finally {
+    __storyPageTestHooks.clearParsedStoryCache();
+    globalThis.fetch = previousFetch;
+  }
 });

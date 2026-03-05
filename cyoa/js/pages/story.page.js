@@ -13,6 +13,16 @@ import {
 /** @typedef {import("../types.js").StoryChapter} StoryChapter */
 /** @typedef {import("../types.js").PageContract} PageContract */
 
+const parsedStoryPromiseById = new Map();
+
+function clearParsedStoryCache() {
+  parsedStoryPromiseById.clear();
+}
+
+function getParsedStoryCacheSize() {
+  return parsedStoryPromiseById.size;
+}
+
 /**
  * @typedef {object} StoryPageModel
  * @property {string} storyId
@@ -31,8 +41,19 @@ function parseChapterNumber(chapterParam) {
  * @returns {Promise<Record<number, StoryChapter>>}
  */
 async function loadStoryData(storyId) {
-  const markdownText = await getStoryMarkdown(storyId);
-  return parseStory(markdownText);
+  const key = String(storyId);
+  if (!parsedStoryPromiseById.has(key)) {
+    const parsedPromise = getStoryMarkdown(storyId)
+      .then((markdownText) => parseStory(markdownText))
+      .catch((error) => {
+        parsedStoryPromiseById.delete(key);
+        throw error;
+      });
+
+    parsedStoryPromiseById.set(key, parsedPromise);
+  }
+
+  return parsedStoryPromiseById.get(key);
 }
 
 /**
@@ -81,4 +102,9 @@ export async function renderStoryPage(model) {
 export const storyPage = {
   load: loadStoryPageData,
   render: renderStoryPage,
+};
+
+export const __storyPageTestHooks = {
+  clearParsedStoryCache,
+  getParsedStoryCacheSize,
 };
