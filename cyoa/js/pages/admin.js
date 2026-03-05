@@ -2,11 +2,16 @@
  * Admin page - story editor with markdown validation
  */
 
-import { parseStory, getValidationExample } from "../utils/storyParser.js";
+import { getValidationExample } from "../utils/storyParser.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
-import { renderInlineError } from "../utils/errorUI.js";
 import { getStoryMarkdown } from "../services/storiesRepository.js";
+import { setupAdminMarkdownHighlighting } from "../utils/adminEditorEnhancer.js";
+import {
+  renderAdminStoryLoadError,
+  renderAdminValidationResult,
+  validateAdminStoryContent,
+} from "../utils/adminValidationUI.js";
 
 const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -27,18 +32,10 @@ function getAdminElements() {
 }
 
 function getValidationResultHtml(type, message) {
-  if (type === "success") {
-    return '<div class="validation-result validation-success">✓ Story syntax is valid!</div>';
-  }
-
-  if (type === "empty") {
-    return renderInlineError({
-      title: "Missing content",
-      details: "Please enter story content.",
-    });
-  }
-
-  return message;
+  return renderAdminValidationResult({
+    status: type,
+    message,
+  });
 }
 
 function setValidationResult(type, message = "") {
@@ -105,7 +102,7 @@ function bindAdminEvents() {
   loadButton?.addEventListener("click", loadStory);
   storySelect?.addEventListener("change", onStorySelectChange);
 
-  setupMarkdownHighlighting();
+  setupAdminMarkdownHighlighting();
 }
 
 export async function loadAdminPageData() {
@@ -127,25 +124,8 @@ function validateContent() {
   const { textarea } = getAdminElements();
   if (!textarea) return;
 
-  const content = textarea.value.trim();
-
-  if (!content) {
-    setValidationResult("empty");
-    return;
-  }
-
-  try {
-    parseStory(content);
-    setValidationResult("success");
-  } catch (error) {
-    setValidationResult(
-      "error",
-      renderInlineError({
-        title: "Validation Error",
-        details: error.message,
-      }),
-    );
-  }
+  const result = validateAdminStoryContent(textarea.value);
+  setValidationResult(result.status, result.message || "");
 }
 
 function setEditorContent(content) {
@@ -173,68 +153,12 @@ async function loadStory() {
     setEditorContent(content);
     clearValidationResult();
   } catch (error) {
-    setValidationResult(
-      "error",
-      renderInlineError({
-        title: "Error loading story",
-        details: error.message,
-      }),
-    );
+    setValidationResult("error", renderAdminStoryLoadError(error));
   }
 }
 
 function onStorySelectChange() {
   clearValidationResult();
-}
-
-function getHighlightingElements() {
-  return {
-    textarea: document.getElementById("story-editor"),
-    highlightLayer: document.getElementById("story-editor-highlight"),
-    toggleButton: document.getElementById("markdown-toggle-btn"),
-    textareaWrapper: document.querySelector(".editor-textarea-wrapper"),
-  };
-}
-
-function setupMarkdownHighlighting() {
-  const { textarea, highlightLayer, toggleButton, textareaWrapper } =
-    getHighlightingElements();
-  if (!textarea || !highlightLayer || !toggleButton || !textareaWrapper) return;
-
-  let highlightingEnabled = true;
-
-  const renderHighlight = () => {
-    const source = textarea.value || " ";
-    highlightLayer.innerHTML = `${highlightMarkdown(source)}\n`;
-  };
-
-  const syncScroll = () => {
-    highlightLayer.scrollTop = textarea.scrollTop;
-    highlightLayer.scrollLeft = textarea.scrollLeft;
-  };
-
-  const applyHighlightingState = () => {
-    textareaWrapper.classList.toggle("markdown-off", !highlightingEnabled);
-    toggleButton.textContent = highlightingEnabled
-      ? "Disable syntax highlighting"
-      : "Enable syntax highlighting";
-    toggleButton.setAttribute("aria-pressed", String(highlightingEnabled));
-  };
-
-  textarea.addEventListener("input", () => {
-    renderHighlight();
-    syncScroll();
-  });
-
-  textarea.addEventListener("scroll", syncScroll);
-
-  toggleButton.addEventListener("click", () => {
-    highlightingEnabled = !highlightingEnabled;
-    applyHighlightingState();
-  });
-
-  renderHighlight();
-  applyHighlightingState();
 }
 
 export const adminPage = {
