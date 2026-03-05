@@ -3,11 +3,8 @@
  */
 
 import { getStoriesMetadata } from "../services/storiesRepository.js";
-import {
-  escapeHtml,
-  renderPageContainer,
-} from "../utils/viewHelpers.js";
-import { bindHomeStoryCardNavigation } from "./homeViewAdapter.js";
+import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
+import { bindHomeStoryCardNavigation } from "./home.view.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
 /** @typedef {import("../types.js").PageContract} PageContract */

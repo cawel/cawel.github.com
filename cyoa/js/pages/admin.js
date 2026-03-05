@@ -12,7 +12,7 @@ import {
   getAdminElements,
   setEditorTextareaContent,
   setValidationResultHtml,
-} from "./adminViewAdapter.js";
+} from "./admin.view.js";
 import {
   renderAdminStoryLoadError,
   renderAdminValidationResult,

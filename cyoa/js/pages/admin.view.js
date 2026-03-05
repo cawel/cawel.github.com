@@ -65,7 +65,10 @@ export function setEditorTextareaContent(textareaElement, content) {
 export function bindAdminPageEvents(elements, handlers) {
   elements.validateButton?.addEventListener("click", handlers.onValidate);
   elements.loadButton?.addEventListener("click", handlers.onLoad);
-  elements.storySelect?.addEventListener("change", handlers.onStorySelectChange);
+  elements.storySelect?.addEventListener(
+    "change",
+    handlers.onStorySelectChange,
+  );
 
   setupAdminMarkdownHighlighting();
 }
