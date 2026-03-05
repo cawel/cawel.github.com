@@ -4,8 +4,8 @@
 
 import { parseStory } from "../utils/storyParser.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
-import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 import { renderLoadErrorPage, renderNotFoundPage } from "../utils/errorUI.js";
+import { getStoryMarkdown } from "../services/storiesRepository.js";
 
 function renderStoryLayout(content) {
   return renderPageContainer({
@@ -36,17 +36,8 @@ function parseChapterNumber(chapterParam) {
   return Number.isNaN(requestedChapter) ? 1 : requestedChapter;
 }
 
-function getStoryPath(storyId) {
-  return getStoryMarkdownPath(storyId);
-}
-
 async function loadStoryData(storyId) {
-  const response = await fetch(getStoryPath(storyId));
-  if (!response.ok) {
-    throw new Error(`Failed to load story ${storyId}`);
-  }
-
-  const markdownText = await response.text();
+  const markdownText = await getStoryMarkdown(storyId);
   return parseStory(markdownText);
 }
 

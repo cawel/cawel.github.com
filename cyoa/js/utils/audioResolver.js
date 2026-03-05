@@ -1,4 +1,8 @@
-import { withBasePath } from "./pathResolver.js";
+import {
+  getMusicBaseFolder,
+  getMusicMetadataList,
+  getMusicTracksList,
+} from "../services/musicRepository.js";
 
 function stripMp3Extension(fileName) {
   return fileName.replace(/\.mp3($|\?)/i, "");
@@ -48,42 +52,21 @@ export async function findMp3FilesInFolder(folderPath) {
 
 export async function findMusicTracksInFolder(folderPath) {
   try {
-    const normalizedFolderPath = folderPath.replace(/^\/+|\/+$/g, "");
-    const baseFolder = withBasePath(`/${normalizedFolderPath}/`);
-    const tracksManifestPath = withBasePath(
-      `/${normalizedFolderPath}/tracks.json`,
-    );
-    const metadataManifestPath = withBasePath(
-      `/${normalizedFolderPath}/metadata.json`,
-    );
-
-    const response = await fetch(tracksManifestPath);
-    if (!response.ok) return [];
-
-    const listedFiles = await response.json();
+    const baseFolder = getMusicBaseFolder(folderPath);
+    const listedFiles = await getMusicTracksList(folderPath);
     if (!Array.isArray(listedFiles)) return [];
 
-    let metadataByFile = new Map();
-    try {
-      const metadataResponse = await fetch(metadataManifestPath);
-      if (metadataResponse.ok) {
-        const metadata = await metadataResponse.json();
-        if (Array.isArray(metadata)) {
-          metadataByFile = new Map(
-            metadata
-              .filter((item) => item && typeof item.file === "string")
-              .map((item) => [
-                item.file,
-                typeof item.title === "string" && item.title.trim()
-                  ? item.title.trim()
-                  : deriveTitleFromFileName(item.file),
-              ]),
-          );
-        }
-      }
-    } catch {
-      metadataByFile = new Map();
-    }
+    const metadata = await getMusicMetadataList(folderPath);
+    const metadataByFile = new Map(
+      metadata
+        .filter((item) => item && typeof item.file === "string")
+        .map((item) => [
+          item.file,
+          typeof item.title === "string" && item.title.trim()
+            ? item.title.trim()
+            : deriveTitleFromFileName(item.file),
+        ]),
+    );
 
     const tracks = listedFiles
       .filter((href) => href && /\.mp3($|\?)/i.test(href))

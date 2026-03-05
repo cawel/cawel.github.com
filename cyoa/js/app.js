@@ -9,9 +9,8 @@
  * - Render the active route and re-render on hash changes
  *
  * Data-loading responsibilities:
- * - Load story metadata from `/assets/stories/metadata.json`
- * - Cache metadata fetch promise to prevent duplicate requests
- * - Return a safe empty list on load failures
+ * - Delegated to page-level `load` stages
+ * - Route wiring composes page contracts, not fetch logic
  *
  * Routing behavior:
  * - Uses hash-based navigation (e.g. `#/story/2/4`)

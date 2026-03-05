@@ -5,8 +5,8 @@
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
-import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 import { renderInlineError } from "../utils/errorUI.js";
+import { getStoryMarkdown } from "../services/storiesRepository.js";
 
 const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -156,10 +156,6 @@ function setEditorContent(content) {
   textarea.dispatchEvent(new Event("input"));
 }
 
-function getStoryPath(storyId) {
-  return getStoryMarkdownPath(storyId);
-}
-
 async function loadStory() {
   const { storySelect } = getAdminElements();
   if (!storySelect) return;
@@ -173,12 +169,7 @@ async function loadStory() {
   }
 
   try {
-    const response = await fetch(getStoryPath(storyNum));
-    if (!response.ok) {
-      throw new Error(`Failed to load story ${storyNum}`);
-    }
-
-    const content = await response.text();
+    const content = await getStoryMarkdown(storyNum);
     setEditorContent(content);
     clearValidationResult();
   } catch (error) {
