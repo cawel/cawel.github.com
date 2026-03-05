@@ -30,7 +30,9 @@ let storiesMetadataPromise = null;
 
 async function loadStoriesMetadata() {
   if (!storiesMetadataPromise) {
-    storiesMetadataPromise = fetch(withBasePath("/assets/stories/metadata.json"))
+    storiesMetadataPromise = fetch(
+      withBasePath("/assets/stories/metadata.json"),
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load stories metadata");
