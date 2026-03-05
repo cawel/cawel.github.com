@@ -116,6 +116,26 @@ The End
     - `#/story/1/1` - Story 1, Chapter 1
     - `#/admin` - Admin editor page
 
+  ### Running Tests
+
+  From the project root, run the full test suite:
+
+  ```bash
+  npm test
+  ```
+
+  Equivalent direct Node command:
+
+  ```bash
+  node --test tests/*.test.mjs
+  ```
+
+  To run a single test file:
+
+  ```bash
+  node --test tests/pathResolver.test.mjs
+  ```
+
 ### Navigation
 
 - **Header Title**: Click the title or epic emoji (📖) to return to the homepage
