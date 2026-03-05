@@ -1,5 +1,7 @@
 import { withBasePath } from "../utils/pathResolver.js";
 
+/** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
+
 let storiesMetadataPromise = null;
 const storyMarkdownPromiseById = new Map();
 
@@ -7,9 +9,14 @@ function getStoryMarkdownPath(storyId) {
   return withBasePath(`/assets/stories/story-${storyId}.md`);
 }
 
+/**
+ * @returns {Promise<StoryMetadata[]>}
+ */
 export async function getStoriesMetadata() {
   if (!storiesMetadataPromise) {
-    storiesMetadataPromise = fetch(withBasePath("/assets/stories/metadata.json"))
+    storiesMetadataPromise = fetch(
+      withBasePath("/assets/stories/metadata.json"),
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load stories metadata");
@@ -25,6 +32,10 @@ export async function getStoriesMetadata() {
   return storiesMetadataPromise;
 }
 
+/**
+ * @param {string|number} storyId
+ * @returns {Promise<string>}
+ */
 export async function getStoryMarkdown(storyId) {
   const key = String(storyId);
   if (!storyMarkdownPromiseById.has(key)) {

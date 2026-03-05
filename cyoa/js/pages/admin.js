@@ -13,6 +13,9 @@ import {
   validateAdminStoryContent,
 } from "../utils/adminValidationUI.js";
 
+/** @typedef {import("../types.js").PageContract} PageContract */
+/** @typedef {import("../types.js").ValidationResult} ValidationResult */
+
 const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function getStoryOptionsHtml() {
@@ -31,6 +34,11 @@ function getAdminElements() {
   };
 }
 
+/**
+ * @param {ValidationResult["status"]} type
+ * @param {string} message
+ * @returns {string}
+ */
 function getValidationResultHtml(type, message) {
   return renderAdminValidationResult({
     status: type,
@@ -113,6 +121,10 @@ export async function loadAdminPageData() {
   };
 }
 
+/**
+ * @param {{ example: string }} model
+ * @returns {Promise<string>}
+ */
 export async function renderAdminPage(model) {
   return renderAdminTemplate(model.example);
 }
@@ -163,6 +175,7 @@ function onStorySelectChange() {
   clearValidationResult();
 }
 
+/** @type {PageContract} */
 export const adminPage = {
   load: loadAdminPageData,
   render: renderAdminPage,

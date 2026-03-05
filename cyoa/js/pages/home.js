@@ -2,17 +2,28 @@
  * Home page - displays list of stories
  */
 
+import { getStoriesMetadata } from "../services/storiesRepository.js";
 import {
   escapeHtml,
   renderPageContainer,
 } from "../utils/viewHelpers.js";
-import { getStoriesMetadata } from "../services/storiesRepository.js";
 
+/** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
+/** @typedef {import("../types.js").PageContract} PageContract */
+
+/**
+ * @param {string[]|unknown} keywords
+ * @returns {string}
+ */
 function formatKeywords(keywords) {
   if (!Array.isArray(keywords)) return "";
   return keywords.filter(Boolean).join(", ");
 }
 
+/**
+ * @param {StoryMetadata} story
+ * @returns {string}
+ */
 function renderStoryCard(story) {
   const storyNumber = escapeHtml(story.number);
   const title = escapeHtml(story.title);
@@ -40,14 +51,24 @@ function renderStoryCard(story) {
   `;
 }
 
+/**
+ * @param {StoryMetadata[]} stories
+ * @returns {string}
+ */
 function renderStoriesGrid(stories) {
   return stories.map((story) => renderStoryCard(story)).join("");
 }
 
+/**
+ * @param {string|number} storyNum
+ */
 function navigateToStory(storyNum) {
   window.location.hash = `#/story/${storyNum}`;
 }
 
+/**
+ * @param {HTMLElement|Document|Element} rootElement
+ */
 function bindStoryCardEvents(rootElement) {
   rootElement.querySelectorAll(".story-card").forEach((card) => {
     card.addEventListener("click", (event) => {
@@ -78,11 +99,19 @@ function renderHomeTemplate(storiesHtml) {
   });
 }
 
+/**
+ * @returns {Promise<{ stories: StoryMetadata[] }>}
+ */
 export async function loadHomePageData() {
+  /** @type {StoryMetadata[]} */
   const stories = await getStoriesMetadata();
   return { stories };
 }
 
+/**
+ * @param {{ stories?: StoryMetadata[] }} [model]
+ * @returns {Promise<string>}
+ */
 export async function renderHomePage(model = { stories: [] }) {
   const stories = Array.isArray(model.stories) ? model.stories : [];
   const storiesHtml = renderStoriesGrid(stories);
@@ -90,11 +119,16 @@ export async function renderHomePage(model = { stories: [] }) {
   return renderHomeTemplate(storiesHtml);
 }
 
+/**
+ * @param {HTMLElement|{ querySelectorAll: (selector: string) => NodeListOf<Element>|Element[] }} container
+ * @returns {Promise<null>}
+ */
 export async function bindHomePage(container) {
   bindStoryCardEvents(container);
   return null;
 }
 
+/** @type {PageContract} */
 export const homePage = {
   load: loadHomePageData,
   render: renderHomePage,

@@ -94,16 +94,22 @@ test("router executes load -> render -> bind and calls cleanup on route change",
   });
 });
 
-test("router supports legacy function handlers", async () => {
+test("router renders error page when route handler has no render function", async () => {
   await withDomEnvironment(async () => {
     const container = { innerHTML: "" };
     const router = createRouter({
-      "/legacy/:id": async (params) => `<main>${params.id}</main>`,
+      "/broken": {
+        load: async () => ({ ok: true }),
+      },
     });
 
-    window.location.hash = "#/legacy/7";
+    window.location.hash = "#/broken";
     await router.render(container);
-    assert.equal(container.innerHTML, "<main>7</main>");
+    assert.match(container.innerHTML, /Error rendering page/);
+    assert.match(
+      container.innerHTML,
+      /lifecycle object with a render function/,
+    );
   });
 });
 
@@ -111,7 +117,9 @@ test("router renders 404 page for unmatched routes", async () => {
   await withDomEnvironment(async () => {
     const container = { innerHTML: "" };
     const router = createRouter({
-      "/": async () => "<main>ok</main>",
+      "/": {
+        render: async () => "<main>ok</main>",
+      },
     });
 
     window.location.hash = "#/missing";

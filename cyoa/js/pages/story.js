@@ -7,6 +7,17 @@ import { renderPageContainer } from "../utils/viewHelpers.js";
 import { renderLoadErrorPage, renderNotFoundPage } from "../utils/errorUI.js";
 import { getStoryMarkdown } from "../services/storiesRepository.js";
 
+/** @typedef {import("../types.js").StoryChapter} StoryChapter */
+/** @typedef {import("../types.js").PageContract} PageContract */
+
+/**
+ * @typedef {object} StoryPageModel
+ * @property {string} storyId
+ * @property {number} chapterNumber
+ * @property {StoryChapter|null} chapter
+ * @property {string|null} error
+ */
+
 function renderStoryLayout(content) {
   return renderPageContainer({
     content,
@@ -36,6 +47,10 @@ function parseChapterNumber(chapterParam) {
   return Number.isNaN(requestedChapter) ? 1 : requestedChapter;
 }
 
+/**
+ * @param {string} storyId
+ * @returns {Promise<Record<number, StoryChapter>>}
+ */
 async function loadStoryData(storyId) {
   const markdownText = await getStoryMarkdown(storyId);
   return parseStory(markdownText);
@@ -61,6 +76,11 @@ function renderChoiceItem(storyId, choice) {
   `;
 }
 
+/**
+ * @param {string} storyId
+ * @param {StoryChapter} chapter
+ * @returns {string}
+ */
 function renderChoicesSection(storyId, chapter) {
   const hasChoicesList =
     Array.isArray(chapter.choices) && chapter.choices.length > 0;
@@ -86,6 +106,11 @@ function renderChoicesSection(storyId, chapter) {
     : "";
 }
 
+/**
+ * @param {string} storyId
+ * @param {StoryChapter} chapter
+ * @returns {string}
+ */
 function renderChapter(storyId, chapter) {
   const chapterContentHtml = formatChapterContent(chapter.content);
   const choicesSectionHtml = renderChoicesSection(storyId, chapter);
@@ -97,6 +122,10 @@ function renderChapter(storyId, chapter) {
   `);
 }
 
+/**
+ * @param {{ storyId: string, chapterId?: string }} params
+ * @returns {Promise<StoryPageModel>}
+ */
 export async function loadStoryPageData(params) {
   const storyId = params.storyId;
   const chapterNumber = parseChapterNumber(params.chapterId);
@@ -119,6 +148,10 @@ export async function loadStoryPageData(params) {
   }
 }
 
+/**
+ * @param {StoryPageModel} model
+ * @returns {Promise<string>}
+ */
 export async function renderStoryPage(model) {
   if (model.error) {
     return renderErrorState(model.error);
@@ -131,6 +164,7 @@ export async function renderStoryPage(model) {
   return renderChapter(model.storyId, model.chapter);
 }
 
+/** @type {PageContract} */
 export const storyPage = {
   load: loadStoryPageData,
   render: renderStoryPage,

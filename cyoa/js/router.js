@@ -4,9 +4,7 @@
  * -------------------- Comments Section --------------------
  * Route map format:
  * - Keys are route patterns (e.g. "/", "/admin", "/story/:storyId/:chapterId")
- * - Values can be either:
- *   1) async/sync handler functions that return HTML strings (legacy)
- *   2) lifecycle objects: { load, render, bind }
+ * - Values are lifecycle objects: { load, render, bind }
  *
  * Matching behavior:
  * - The router reads the current location hash and strips the leading '#'
@@ -25,6 +23,15 @@
 
 import { renderLoadErrorPage, renderNotFoundPage } from "./utils/errorUI.js";
 
+/** @typedef {import("./types.js").RouteParams} RouteParams */
+/** @typedef {import("./types.js").PageContract} PageContract */
+/** @typedef {import("./types.js").MatchedRoute} MatchedRoute */
+/** @typedef {import("./types.js").RouterApi} RouterApi */
+
+/**
+ * @param {Record<string, PageContract>} routes
+ * @returns {RouterApi}
+ */
 export function createRouter(routes) {
   let currentCleanup = null;
 
@@ -44,17 +51,15 @@ export function createRouter(routes) {
     currentCleanup = null;
   };
 
+  /**
+   * @param {PageContract} handler
+   * @returns {PageContract}
+   */
   const normalizeRouteHandler = (handler) => {
-    if (typeof handler === "function") {
-      return {
-        load: async (params) => params,
-        render: async (params) => handler(params),
-        bind: async () => null,
-      };
-    }
-
     if (!handler || typeof handler.render !== "function") {
-      throw new Error("Route handler must be a function or lifecycle object");
+      throw new Error(
+        "Route handler must be a lifecycle object with a render function",
+      );
     }
 
     return {
@@ -64,6 +69,10 @@ export function createRouter(routes) {
     };
   };
 
+  /**
+   * @param {string} pathname
+   * @returns {MatchedRoute|null}
+   */
   const getRouteParams = (pathname) => {
     const matchedRoute = Object.keys(routes).find((route) => {
       const routePattern = route.replace(/:[^/]+/g, "[^/]+");
@@ -90,6 +99,10 @@ export function createRouter(routes) {
     return { params, route: matchedRoute };
   };
 
+  /**
+   * @param {HTMLElement|{ innerHTML: string }} container
+   * @returns {Promise<void>}
+   */
   const render = async (container) => {
     const path = getCurrentRoute();
     const routeData = getRouteParams(path);
