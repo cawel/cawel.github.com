@@ -2,7 +2,11 @@
  * Home page - displays list of stories
  */
 
-import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
+import {
+  deferAfterRender,
+  escapeHtml,
+  renderPageContainer,
+} from "../utils/viewHelpers.js";
 
 function formatKeywords(keywords) {
   if (!Array.isArray(keywords)) return "";
@@ -77,10 +81,7 @@ function renderHomeTemplate(storiesHtml) {
 export async function renderHome(stories = []) {
   const storiesHtml = renderStoriesGrid(stories);
 
-  // Add event delegation after rendering
-  setTimeout(() => {
-    bindStoryCardEvents();
-  }, 0);
+  deferAfterRender(bindStoryCardEvents);
 
   return renderHomeTemplate(storiesHtml);
 }

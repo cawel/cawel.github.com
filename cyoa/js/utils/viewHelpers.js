@@ -24,3 +24,12 @@ export function renderPageContainer({
     </main>
   `;
 }
+
+// Defers work until after HTML returned by a page renderer has been inserted
+// into the DOM. `setTimeout(..., 0)` queues a macrotask for the next event-loop
+// turn, so the current synchronous render/update work finishes first.
+export function deferAfterRender(callback) {
+  setTimeout(() => {
+    callback();
+  }, 0);
+}

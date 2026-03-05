@@ -3,9 +3,13 @@
  */
 
 import { parseStory, getValidationExample } from "../utils/storyParser.js";
-import { withBasePath } from "../utils/pathResolver.js";
-import { escapeHtml, renderPageContainer } from "../utils/viewHelpers.js";
+import {
+  deferAfterRender,
+  escapeHtml,
+  renderPageContainer,
+} from "../utils/viewHelpers.js";
 import { highlightMarkdown } from "../utils/markdownHighlighter.js";
+import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 
 const STORY_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -108,10 +112,7 @@ function bindAdminEvents() {
 export async function renderAdmin() {
   const example = getValidationExample();
 
-  // Setup event listeners after rendering
-  setTimeout(() => {
-    bindAdminEvents();
-  }, 0);
+  deferAfterRender(bindAdminEvents);
 
   return renderAdminTemplate(example);
 }
@@ -150,15 +151,14 @@ function setEditorContent(content) {
 }
 
 function getStoryPath(storyId) {
-  return withBasePath(`/assets/stories/story-${storyId}.md`);
+  return getStoryMarkdownPath(storyId);
 }
 
 async function loadStory() {
   const { storySelect } = getAdminElements();
   if (!storySelect) return;
 
-  const select = storySelect;
-  const storyNum = select.value;
+  const storyNum = storySelect.value;
 
   if (!storyNum) {
     setEditorContent("");

@@ -3,8 +3,8 @@
  */
 
 import { parseStory } from "../utils/storyParser.js";
-import { withBasePath } from "../utils/pathResolver.js";
 import { renderPageContainer } from "../utils/viewHelpers.js";
+import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 
 function renderStoryLayout(content) {
   return renderPageContainer({
@@ -30,7 +30,7 @@ function parseChapterNumber(chapterParam) {
 }
 
 function getStoryPath(storyId) {
-  return withBasePath(`/assets/stories/story-${storyId}.md`);
+  return getStoryMarkdownPath(storyId);
 }
 
 async function loadStoryData(storyId) {
