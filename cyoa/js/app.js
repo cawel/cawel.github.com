@@ -31,7 +31,9 @@ function createLazyPage(moduleLoader, exportName) {
       pagePromise = moduleLoader().then((module) => {
         const page = module?.[exportName];
         if (!page || typeof page.render !== "function") {
-          throw new Error(`Lazy page export '${exportName}' must provide a render function`);
+          throw new Error(
+            `Lazy page export '${exportName}' must provide a render function`,
+          );
         }
         return page;
       });
@@ -63,9 +65,18 @@ function createLazyPage(moduleLoader, exportName) {
 }
 
 function createAppRouter() {
-  const homePage = createLazyPage(() => import("./pages/home.page.js"), "homePage");
-  const storyPage = createLazyPage(() => import("./pages/story.page.js"), "storyPage");
-  const adminPage = createLazyPage(() => import("./pages/admin.page.js"), "adminPage");
+  const homePage = createLazyPage(
+    () => import("./pages/home.page.js"),
+    "homePage",
+  );
+  const storyPage = createLazyPage(
+    () => import("./pages/story.page.js"),
+    "storyPage",
+  );
+  const adminPage = createLazyPage(
+    () => import("./pages/admin.page.js"),
+    "adminPage",
+  );
 
   return createRouter({
     "/": homePage,
