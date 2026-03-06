@@ -38,22 +38,14 @@ width:100%;
 /* Laboratory */
 
 .laboratory-area{
-margin:40px 0;
+margin:40px 0 12px;
 }
 
 .laboratory{
 background:#171a22;
 border-radius:12px;
-padding:30px;
+padding:20px;
 box-shadow:0 8px 25px rgba(0,0,0,0.35);
-}
-
-.lab-title{
-font-size:18px;
-font-weight:700;
-margin-bottom:8px;
-color:#8ed9ff;
-text-shadow:0 0 10px rgba(142,217,255,0.25);
 }
 
 /* Element Grid */
@@ -95,16 +87,17 @@ pointer-events:none;
 /* Result */
 
 .reaction-area{
-margin-top:6px;
+margin-top:0;
 margin-bottom:88px;
 }
 
-.reaction-title{
-font-size:18px;
-font-weight:700;
-margin-bottom:8px;
+.panel-title{
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.06em;
 color:#8ed9ff;
-text-shadow:0 0 10px rgba(142,217,255,0.25);
+text-shadow:0 0 10px rgba(142,217,255,0.2);
+margin-bottom:10px;
 }
 
 .reaction-panel{
@@ -112,18 +105,28 @@ background:#171a22;
 padding:20px;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,0.3);
-height:110px;
+height:160px;
+display:flex;
+flex-direction:column;
+overflow:visible;
+}
+
+.reaction-body{
+flex:1;
+width:100%;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-overflow:hidden;
+overflow:visible;
 }
 
-.reaction-intro{
-font-size:15px;
-color:#c6cfde;
-margin-bottom:8px;
+.reaction-intro,
+.hint-line{
+display:block;
+margin-top:8px;
+color:#f2c879;
+font-weight:700;
 }
 
 .reaction-intro.hidden{
@@ -137,13 +140,6 @@ font-weight:600;
 line-height:1.4;
 white-space:pre-line;
 max-width:100%;
-}
-
-.hint-line{
-display:block;
-margin-top:8px;
-color:#f2c879;
-font-weight:700;
 }
 
 /* Discovery Animation */

@@ -23,7 +23,11 @@ export function createRenderer({
           el.classList.add("selected");
         }
 
-        if (hasSingleSelection && word !== selectedWord && exhaustedSet.has(word)) {
+        if (
+          hasSingleSelection &&
+          word !== selectedWord &&
+          exhaustedSet.has(word)
+        ) {
           el.classList.add("exhausted-partner");
         }
 
