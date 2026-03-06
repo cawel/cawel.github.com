@@ -1,0 +1,320 @@
+[
+  {
+    "storyNumber": 1,
+    "storyTitle": "The Mysterious Forest",
+    "keywords": ["forest", "ruins", "mystery"],
+    "imageSpec": {
+      "style": "cinematic fantasy digital painting, atmospheric fog, high detail",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Bell and the Token",
+      "chatgptPrompt": "Create a cinematic fantasy illustration in 16:9. Dawn in an ancient misty forest, viewer-perspective hero kneeling on wet moss, holding a warm copper token engraved with a crescent moon. Two routes visible: a narrow deer path toward faint river light and a vine-choked stone archway half-buried in ruins. Mood: mysterious, adventurous, no combat, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Thorns of Defiance",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a dramatic dark-fantasy scene, 16:9. Living briar walls closing in deep forest twilight, roots cracking the ground, a fallen explorer partly trapped beneath thick roots, dropped knife in mud, rain and panic in the air. Tragic tone, high contrast, no gore."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "Stillness Crown",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create a haunting fantasy tableau, 16:9. A lone distant guardian standing above an unnaturally calm valley and mirror-still river, village below orderly but lifeless, muted colors and sterile beauty. Emphasize control without joy."
+      },
+      {
+        "chapterNumber": 10,
+        "chapterTitle": "Spring Oath",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a hopeful fantasy image, 16:9. At dawn in a glowing forest chamber, villagers and a bark-and-starlight warden sealing peace, vines releasing a rescued ranger, birds rising in sunbeams. Warm greens and golds, restorative atmosphere."
+      }
+    ]
+  },
+  {
+    "storyNumber": 2,
+    "storyTitle": "Midnight at Hollow Moon Museum",
+    "keywords": ["museum", "conspiracy", "paranormal"],
+    "imageSpec": {
+      "style": "cinematic neo-noir thriller illustration, realistic lighting, detailed interiors",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Open Sarcophagus",
+      "chatgptPrompt": "Create a tense museum-noir scene in 16:9. Midnight gallery with an ancient sarcophagus mysteriously open, broken seals, motion sensor lights glowing red, lone night security protagonist with flashlight reflecting on polished marble. Include subtle crescent clay mark on floor. Suspenseful investigative tone, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Tunnel Collapse",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a high-tension thriller image, 16:9. Flooded concrete tunnel collapsing, debris and rushing water, radio sparking out, protagonist transmitting final data while water surges. Blue-gray palette, urgency, no gore."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "Recovered Dawn",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a victorious but grounded noir ending scene, 16:9. Early morning shipping yard operation concluded, evidence cases secured, arrested traffickers escorted away, protagonist standing relieved as museum skyline catches sunrise. Tone: justice and closure."
+      },
+      {
+        "chapterNumber": 10,
+        "chapterTitle": "Truth Without Guardrails",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create a dramatic moral-cost scene, 16:9. News screens and leaked dossiers spread across a dark office desk, city map pinned with endangered sites, protagonist alone by window in conflicted silence. Tone: truth revealed, consequences spiraling."
+      }
+    ]
+  },
+  {
+    "storyNumber": 3,
+    "storyTitle": "The Last Broadcast",
+    "keywords": ["space", "signal", "survival"],
+    "imageSpec": {
+      "style": "cinematic hard-sci-fi concept art, realistic orbital lighting, high detail",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "Silence Over Earth",
+      "chatgptPrompt": "Create a suspenseful sci-fi image in 16:9 from inside an orbital station cupola. Earth below with city lights fading in waves, dark control panels, a single anomalous signal trace glowing on a console. Protagonist silhouette at communications station. Tone: isolation, mystery, impending global crisis, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Survival Without Choice",
+        "endingType": "dark_success",
+        "chatgptPrompt": "Create a dystopian sci-fi council chamber scene, 16:9. Hybrid and human delegates under cold sterile lights, giant world map display showing stabilized biosphere but muted expressions. Protagonist centered, burdened by irreversible decision."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "The Last Burn",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create an intense sci-fi disaster scene, 16:9. Crystalline towers venting ionized haze, failing filters, protagonist kneeling while broadcasting a final warning beacon into a storm of particles. Stark orange and steel-blue atmosphere, tragic tone."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "Orbit of One",
+        "endingType": "tragic",
+        "chatgptPrompt": "Create a melancholic space image, 16:9. Quiet orbital station drifting above altered Earth, dim cabin lights, lone archive terminal still transmitting. Vast starfield and profound loneliness."
+      },
+      {
+        "chapterNumber": 10,
+        "chapterTitle": "The Human Clause",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a hopeful sci-fi diplomatic scene, 16:9. Multinational council ratifying a charter under holographic Earth, transparent data streams visible to all, protagonist watching as agreement is signed. Mood: hard-won hope and dignity."
+      }
+    ]
+  },
+  {
+    "storyNumber": 4,
+    "storyTitle": "The Clockwork Carnival",
+    "keywords": ["carnival", "clockwork", "wish"],
+    "imageSpec": {
+      "style": "surreal whimsical-dark fantasy illustration, rich brass textures, cinematic lighting",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Return of Thirteen",
+      "chatgptPrompt": "Create a surreal carnival-fantasy image in 16:9. Empty fairground at night as a forbidden brass carnival rises from the earth when a clock strikes thirteen. Protagonist at gate receiving two tokens (heart and hourglass) from a masked ringmaster. Tone: eerie wonder, personal mission, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 6,
+        "chapterTitle": "Shattered Minute",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a dramatic catastrophic carnival scene, 16:9. Giant clockwork engine exploding in red sparks, fractured mirrors, collapsing rides, dawn haze over scorched brass remains. Tragic, high-energy, no gore."
+      },
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Dawn Reset",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a heartwarming dawn fantasy scene, 16:9. Carnival gates sinking back into earth as morning light breaks, siblings reunited and holding hands in the quiet field, mechanical glow fading to peace."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "A Memory for a Life",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create an emotional bittersweet scene, 16:9. In front of a humming brass wishing engine, reunited siblings embrace while one protagonist looks uncertain, memory slipping away. Warm tears, soft dawn light, beautiful but melancholy."
+      }
+    ]
+  },
+  {
+    "storyNumber": 5,
+    "storyTitle": "The Sunken Library",
+    "keywords": ["library", "tides", "secrets"],
+    "imageSpec": {
+      "style": "mythic maritime fantasy illustration, bioluminescent ambience, intricate architecture",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "Steps Below the Harbor",
+      "chatgptPrompt": "Create a mysterious underwater-library fantasy scene in 16:9. Barnacled steps descending at extreme low tide into monumental bronze doors beneath a harbor, protagonist carrying a storm ledger and lantern. Sense of urgency, exploration, and ancient secrecy, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 6,
+        "chapterTitle": "Cataloged",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a haunting tragic fantasy image, 16:9. Flooding abyss wing of a submerged library, forbidden book open, swirling pages and extinguished lantern, protagonist overwhelmed by impossible currents and knowledge."
+      },
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Keeper in the Dark",
+        "endingType": "bad",
+        "chatgptPrompt": "Create a grim maritime scene, 16:9. Wealthy watchtower window overlooking a storm-wrecked harbor, protagonist safe but isolated, broken docks and dark waves below. Theme: power without trust."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Harbor of Lanterns",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a hopeful coastal-fantasy image, 16:9. Harbor at twilight filled with coordinated lantern signals, crews preparing safely under public storm charts, protagonist among townspeople sharing knowledge. Warm civic resilience tone."
+      }
+    ]
+  },
+  {
+    "storyNumber": 6,
+    "storyTitle": "Echoes of the Perseid Gate",
+    "keywords": ["spaceship", "anomaly", "gate"],
+    "imageSpec": {
+      "style": "epic hard-sci-fi cinematic concept art, crisp spacecraft detail, dramatic scale",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "Arrival at Perseid",
+      "chatgptPrompt": "Create an epic sci-fi scene in 16:9. Research vessel approaching a colossal ancient ring gate in deep space, unstable harmonic glow around the structure, command bridge silhouettes visible. Tone: awe, danger, high-stakes exploration, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "One Runner",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a heroic-tragic sci-fi image, 16:9. Single suited astronaut sprinting across exposed pylon scaffold during radiation bloom, final manual override activating as telemetry fades. Intense sacrifice moment, no gore."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "Sealed Horizon",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create a solemn space scene, 16:9. Ancient gate shattered into drifting silver fragments, calm starfield returning, spacecraft observing from distance. Theme: safety won at the cost of unreachable futures."
+      },
+      {
+        "chapterNumber": 10,
+        "chapterTitle": "Gatekeepers of Dawn",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a triumphant hard-sci-fi scene, 16:9. Stabilized luminous gate with crew returning to ship, mission data holograms confirming success, dawn-like stellar glow across hull. Tone: earned victory and responsibility."
+      }
+    ]
+  },
+  {
+    "storyNumber": 7,
+    "storyTitle": "Whiskers and the Midnight Key",
+    "keywords": ["cat", "attic", "magic"],
+    "imageSpec": {
+      "style": "storybook magical illustration, soft moonlight, whimsical but cinematic",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Key Under the Moonbeam",
+      "chatgptPrompt": "Create a whimsical magical-night scene in 16:9. Black cat protagonist in attic moonlight discovering a glowing brass key near an old cedar wardrobe, cozy house below sleeping peacefully. Tone: heartwarming mystery and protective courage, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 6,
+        "chapterTitle": "The Shadow Owl",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a dramatic spooky rooftop scene, 16:9. Massive shadow owl made of soot and grief overpowering a brave black cat at dawn, dim nursery windows behind. Emotional, tragic, no gore."
+      },
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Keeper Between Worlds",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create an ethereal moon-road fantasy image, 16:9. Cat guardian walking with a spectral tomcat across starlit rooftops above sleeping towns, distant warm home window behind. Theme: duty and separation."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Purr of Dawn",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a heartwarming magical victory scene, 16:9. Dreamlight lattice dissolving into dawn as a child smiles awake and the black cat rests at bedside, brass key cooling to ordinary metal. Gentle gold and blue palette."
+      }
+    ]
+  },
+  {
+    "storyNumber": 8,
+    "storyTitle": "Crown of the Underforge",
+    "keywords": ["wizards", "dwarves", "dungeons"],
+    "imageSpec": {
+      "style": "epic high-fantasy concept art, molten forge lighting, grand subterranean scale",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Briefing Before Descent",
+      "chatgptPrompt": "Create an epic subterranean fantasy scene in 16:9. Protagonist descending into vast Underforge with a sealed diplomatic writ, dwarven and wizard architecture colliding in one immense cavern, distant molten glow and signs of unrest. Tone: heroic mission, looming conflict, no ending spoilers."
+    },
+    "endings": [
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Fire Without Consent",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a catastrophic epic-fantasy scene, 16:9. Lone crown-bearer on collapsing iron bridge above magma flood, enraged wyrm rising as forge structures fail. Fiery palette, tragic hubris, no gore."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Stone Silence",
+        "endingType": "neutral_bad",
+        "chatgptPrompt": "Create a somber fantasy image, 16:9. Ancient vault sealed under heavy runes, dim forge halls rationed and quiet, survivors rebuilding under austere conditions. Theme: survival without renewal."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "The New Accord",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a hopeful epic-forge scene, 16:9. Dwarf, wizard, and protagonist united at oath pillars as harmonizing light calms the forge-heart; anvils ring in the background. Tone: hard-won unity and renewal."
+      }
+    ]
+  }
+]
