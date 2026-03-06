@@ -1,33 +1,42 @@
-export function splitRecipeKey(key) {
-  const parts = key.split("+");
+import {
+  buildRecipeIndex,
+  findRecipeResult,
+  splitRecipeKey,
+} from "./recipe-index.js";
 
-  if (parts.length !== 2 || !parts[0] || !parts[1]) {
-    throw new Error(
-      `Invalid recipe key format: ${key}. Expected 'first+second'.`,
-    );
+export { splitRecipeKey };
+
+function toRecipeIndex(recipesOrIndex) {
+  if (
+    recipesOrIndex &&
+    typeof recipesOrIndex === "object" &&
+    recipesOrIndex.byPair instanceof Map &&
+    Array.isArray(recipesOrIndex.entries)
+  ) {
+    return recipesOrIndex;
   }
 
-  return parts;
+  return buildRecipeIndex(recipesOrIndex);
 }
 
-export function getAllElements(starting, recipes) {
+export function getAllElements(starting, recipesOrIndex) {
+  const recipeIndex = toRecipeIndex(recipesOrIndex);
   const elements = new Set(starting);
 
-  Object.values(recipes).forEach((result) => elements.add(result));
+  recipeIndex.entries.forEach(({ result }) => elements.add(result));
 
   return elements;
 }
 
-export function getReachableElements(starting, recipes) {
+export function getReachableElements(starting, recipesOrIndex) {
+  const recipeIndex = toRecipeIndex(recipesOrIndex);
   const known = new Set(starting);
   let changed = true;
 
   while (changed) {
     changed = false;
 
-    Object.entries(recipes).forEach(([key, result]) => {
-      const [first, second] = splitRecipeKey(key);
-
+    recipeIndex.entries.forEach(({ first, second, result }) => {
       if (known.has(first) && known.has(second) && !known.has(result)) {
         known.add(result);
         changed = true;
@@ -38,11 +47,12 @@ export function getReachableElements(starting, recipes) {
   return known;
 }
 
-export function validateRecipes(starting, recipes) {
-  const invalidSelfCombos = Object.keys(recipes).filter((key) => {
-    const [first, second] = splitRecipeKey(key);
-    return first === second;
-  });
+export function validateRecipes(starting, recipesOrIndex) {
+  const recipeIndex = toRecipeIndex(recipesOrIndex);
+
+  const invalidSelfCombos = recipeIndex.entries
+    .filter(({ first, second }) => first === second)
+    .map(({ key }) => key);
 
   if (invalidSelfCombos.length > 0) {
     throw new Error(
@@ -50,8 +60,8 @@ export function validateRecipes(starting, recipes) {
     );
   }
 
-  const discoverableTargets = getAllElements(starting, recipes);
-  const reachable = getReachableElements(starting, recipes);
+  const discoverableTargets = getAllElements(starting, recipeIndex);
+  const reachable = getReachableElements(starting, recipeIndex);
   const unreachable = [...discoverableTargets].filter(
     (element) => !reachable.has(element),
   );
@@ -63,7 +73,8 @@ export function validateRecipes(starting, recipes) {
   }
 }
 
-export function getAvailableDiscoveries(discoveredSet, recipes) {
+export function getAvailableDiscoveries(discoveredSet, recipesOrIndex) {
+  const recipeIndex = toRecipeIndex(recipesOrIndex);
   const words = [...discoveredSet];
   const discoveries = [];
 
@@ -75,9 +86,7 @@ export function getAvailableDiscoveries(discoveredSet, recipes) {
     ) {
       const first = words[firstIndex];
       const second = words[secondIndex];
-      const key1 = `${first}+${second}`;
-      const key2 = `${second}+${first}`;
-      const result = recipes[key1] || recipes[key2];
+      const result = findRecipeResult(recipeIndex, first, second);
 
       if (result && !discoveredSet.has(result)) {
         discoveries.push({ first, second, result });
@@ -93,9 +102,10 @@ function serializeState(setValue) {
 }
 
 export function findStuckStates(starting, recipes) {
-  validateRecipes(starting, recipes);
+  const recipeIndex = buildRecipeIndex(recipes);
+  validateRecipes(starting, recipeIndex);
 
-  const allElements = getAllElements(starting, recipes);
+  const allElements = getAllElements(starting, recipeIndex);
   const startState = new Set(starting);
   const queue = [startState];
   const visited = new Set([serializeState(startState)]);
@@ -103,7 +113,7 @@ export function findStuckStates(starting, recipes) {
 
   while (queue.length > 0) {
     const current = queue.shift();
-    const discoveries = getAvailableDiscoveries(current, recipes);
+    const discoveries = getAvailableDiscoveries(current, recipeIndex);
 
     if (discoveries.length === 0 && current.size < allElements.size) {
       stuckStates.push([...current].sort());
@@ -126,16 +136,15 @@ export function findStuckStates(starting, recipes) {
 }
 
 export function createGameState(starting, recipes) {
-  validateRecipes(starting, recipes);
+  const recipeIndex = buildRecipeIndex(recipes);
+  validateRecipes(starting, recipeIndex);
 
   const discovered = new Set(starting);
   let selected = [];
   let discoveries = 0;
 
   function combine(first, second) {
-    const key1 = `${first}+${second}`;
-    const key2 = `${second}+${first}`;
-    const result = recipes[key1] || recipes[key2] || null;
+    const result = findRecipeResult(recipeIndex, first, second);
 
     if (!result) {
       return {
@@ -202,7 +211,10 @@ export function createGameState(starting, recipes) {
     },
 
     getHint() {
-      const discoveriesAvailable = getAvailableDiscoveries(discovered, recipes);
+      const discoveriesAvailable = getAvailableDiscoveries(
+        discovered,
+        recipeIndex,
+      );
       return discoveriesAvailable[0] || null;
     },
   };
