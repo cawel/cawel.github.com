@@ -29,6 +29,7 @@ footer { text-align:center; font-size:13px; padding:14px; background:#eee; margi
 
 <script type="module">
 // Configuration
+const githubPagesHost = "cawel.github.io";
 const username = "cawel";
 const repo = "cawel.github.com";
 const folderPath = "games"; // empty string for root, or e.g., "apps" for /apps
@@ -47,7 +48,7 @@ async function listFolders() {
       if(item.type === "dir") {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = item.path + "/"; // link to folder
+        a.href = `https://${githubPagesHost}/${item.path}/`; // link to folder
         a.textContent = item.name;
         li.appendChild(a);
         ul.appendChild(li);
