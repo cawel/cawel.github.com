@@ -46,6 +46,18 @@ test("template: story.template renders choices and ending states", async () => {
     assert.match(chapterHtml, /#\/story\/2\/3/);
     assert.match(chapterHtml, /#\/story\/2\/4/);
 
+    const chapterWithImageHtml = renderStoryChapter(
+      "2",
+      {
+        title: "Fork",
+        content: "Left\n\nRight",
+        choices: [{ text: "Go left", chapterNumber: 3 }],
+      },
+      "/assets/stories/2/1.webp",
+    );
+    assert.match(chapterWithImageHtml, /chapter-illustration/);
+    assert.match(chapterWithImageHtml, /assets\/stories\/2\/1\.webp/);
+
     const endingHtml = renderStoryChapter("2", {
       title: "End",
       content: "Done",

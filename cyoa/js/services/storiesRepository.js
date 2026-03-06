@@ -1,13 +1,10 @@
 import { withBasePath } from "../utils/pathResolver.js";
+import { getStoryMarkdownPath } from "../utils/storyPaths.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
 
 let storiesMetadataPromise = null;
 const storyMarkdownPromiseById = new Map();
-
-function getStoryMarkdownPath(storyId) {
-  return withBasePath(`/assets/stories/${storyId}/story.md`);
-}
 
 /**
  * @returns {Promise<StoryMetadata[]>}

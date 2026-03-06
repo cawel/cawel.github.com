@@ -65,6 +65,39 @@ main.story-main .story-container {
   margin-top: 1.15em;
 }
 
+.chapter-illustration {
+  margin: 0 0 1.4em;
+  max-width: 46em;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--story-border) 78%, #8a6a44 22%);
+  background: transparent;
+}
+
+.chapter-illustration[hidden] {
+  display: none;
+}
+
+.chapter-illustration-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.chapter-content p:first-of-type::first-letter {
+  display: inline-block;
+  font-family: var(--story-ending-font);
+  font-size: 2.35em;
+  line-height: 1;
+  vertical-align: baseline;
+  margin-right: 0.1em;
+  margin-top: 0;
+  transform: none;
+  color: color-mix(in srgb, var(--story-title-color) 78%, #f2d8a8 22%);
+}
+
 .choices-list {
   list-style: none;
   margin-top: 16px;
@@ -213,6 +246,15 @@ main.story-main .story-container {
     font-size: 18px;
     line-height: 1.65;
     margin-bottom: 16px;
+  }
+
+  .chapter-illustration {
+    margin-bottom: 1.1em;
+  }
+
+  .chapter-content p:first-of-type::first-letter {
+    font-size: 2.05em;
+    margin-right: 0.08em;
   }
 
   .choices-list {

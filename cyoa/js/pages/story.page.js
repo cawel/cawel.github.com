@@ -4,6 +4,7 @@
 
 import { parseStory } from "../utils/storyParser.js";
 import { getStoryMarkdown } from "../services/storiesRepository.js";
+import { getStoryChapterImagePaths } from "../utils/storyPaths.js";
 import {
   renderStoryChapter,
   renderStoryErrorState,
@@ -28,6 +29,7 @@ function getParsedStoryCacheSize() {
  * @property {string} storyId
  * @property {number} chapterNumber
  * @property {StoryChapter|null} chapter
+ * @property {string[]|null} chapterImagePaths
  * @property {string|null} error
  */
 
@@ -70,6 +72,9 @@ export async function loadStoryPageData(params) {
       storyId,
       chapterNumber,
       chapter: storyData ? storyData[chapterNumber] : null,
+      chapterImagePaths: storyData?.[chapterNumber]
+        ? getStoryChapterImagePaths(storyId, chapterNumber)
+        : null,
       error: null,
     };
   } catch (error) {
@@ -77,6 +82,7 @@ export async function loadStoryPageData(params) {
       storyId,
       chapterNumber,
       chapter: null,
+      chapterImagePaths: null,
       error: error instanceof Error ? error.message : String(error),
     };
   }
@@ -95,7 +101,7 @@ export async function renderStoryPage(model) {
     return renderStoryMissingChapterState();
   }
 
-  return renderStoryChapter(model.storyId, model.chapter);
+  return renderStoryChapter(model.storyId, model.chapter, model.chapterImagePaths);
 }
 
 /** @type {PageContract} */

@@ -47,6 +47,43 @@ function formatChapterContent(content) {
     .join("");
 }
 
+function escapeHtmlAttribute(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function renderChapterIllustration(chapterTitle, chapterImagePaths) {
+  const imagePaths = Array.isArray(chapterImagePaths)
+    ? chapterImagePaths.filter(Boolean)
+    : chapterImagePaths
+      ? [chapterImagePaths]
+      : [];
+
+  if (imagePaths.length === 0) {
+    return "";
+  }
+
+  const imageAlt = escapeHtmlAttribute(`Illustration for ${chapterTitle}`);
+  const imageSrc = escapeHtmlAttribute(imagePaths[0]);
+  const fallbackSources = escapeHtmlAttribute(imagePaths.slice(1).join("|"));
+
+  return `
+    <figure class="chapter-illustration" data-fallback-sources="${fallbackSources}">
+      <img
+        class="chapter-illustration-image"
+        src="${imageSrc}"
+        alt="${imageAlt}"
+        loading="lazy"
+        decoding="async"
+        onerror="const figure=this.closest('.chapter-illustration'); const remaining=(figure?.dataset.fallbackSources||'').split('|').filter(Boolean); if(remaining.length===0){figure?.setAttribute('hidden','hidden'); return;} const nextSource=remaining.shift(); if(figure){figure.dataset.fallbackSources=remaining.join('|');} this.src=nextSource;"
+      />
+    </figure>
+  `;
+}
+
 /**
  * @param {string} storyId
  * @param {{ chapterNumber: number, text: string }} choice
@@ -96,15 +133,20 @@ function renderChoicesSection(storyId, chapter) {
 /**
  * @param {string} storyId
  * @param {StoryChapter} chapter
+ * @param {string[]|string|null} [chapterImagePaths]
  * @returns {string}
  */
-export function renderStoryChapter(storyId, chapter) {
+export function renderStoryChapter(storyId, chapter, chapterImagePaths = null) {
+  const chapterImageHtml = renderChapterIllustration(
+    chapter.title,
+    chapterImagePaths,
+  );
   const chapterContentHtml = formatChapterContent(chapter.content);
   const choicesSectionHtml = renderChoicesSection(storyId, chapter);
 
   return renderStoryLayout(`
     <h2 class="chapter-title">${chapter.title}</h2>
-    <div class="chapter-content">${chapterContentHtml}</div>
+    <div class="chapter-content">${chapterImageHtml}${chapterContentHtml}</div>
     ${choicesSectionHtml}
   `);
 }
