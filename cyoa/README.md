@@ -20,6 +20,8 @@ A modern, interactive choose-your-own-adventure web application built with vanil
 ```
 cyoa/
 ├── index.html                 # Main entry point
+├── package.json               # Test scripts and project metadata
+├── README.md                  # This file
 ├── css/
 │   ├── style.css              # CSS entrypoint (imports modules)
 │   ├── theme.css
@@ -29,29 +31,69 @@ cyoa/
 │   ├── story.css
 │   ├── admin.css
 │   └── admin-markdown.css
-├── js/
-│   ├── app.js                # Main application entry point
-│   ├── router.js             # Hash-based routing system
-│   ├── components/
-│   │   └── header.js         # Shared header component
-│   ├── pages/
-│   │   ├── home.page.js      # Homepage orchestrator
-│   │   ├── story.page.js     # Story reader orchestrator
-│   │   └── admin.page.js     # Admin/editor orchestrator
-│   └── utils/
-│       └── storyParser.js    # Markdown parser and validator
 ├── assets/
-│   ├── stories/              # Story chapter markdown files + metadata
-│   │   ├── metadata-stories.json  # Story metadata for home/admin lists
+│   ├── stories/
+│   │   ├── metadata-stories.json   # Story metadata for home/admin lists
+│   │   ├── metadata-images.json    # Image-generation prompt metadata
+│   │   ├── storytelling.md         # Storywriting guide/rules
 │   │   ├── 1/
-│   │   │   └── story.md
+│   │   │   ├── story.md
+│   │   │   └── *.webp (optional chapter images)
 │   │   ├── 2/
-│   │   │   └── story.md
-│   │   └── ...
+│   │   │   ├── story.md
+│   │   │   └── *.webp (optional chapter images)
+│   │   └── 3..8/
+│   │       └── story.md
 │   └── music/
-│       ├── tracks.json       # Music track manifest
-│       └── *.mp3             # Main background music tracks
-└── README.md                 # This file
+│       ├── tracks.json        # Music track manifest
+│       ├── metadata.json      # Per-story music mapping
+│       └── *.mp3              # Background music tracks
+├── js/
+│   ├── app.js                 # Main application entry point
+│   ├── appConfig.js           # Runtime config (base path, env)
+│   ├── router.js              # Hash-based routing system
+│   ├── types.js               # Shared JSDoc typedefs
+│   ├── components/
+│   │   ├── header.js          # Shared header component shell
+│   │   ├── audioController.js
+│   │   ├── themeController.js
+│   │   └── fontController.js
+│   ├── pages/
+│   │   ├── home.page.js       # Homepage orchestrator
+│   │   ├── home.template.js
+│   │   ├── home.view.js
+│   │   ├── story.page.js      # Story reader orchestrator
+│   │   ├── story.template.js
+│   │   ├── admin.page.js      # Admin/editor orchestrator
+│   │   ├── admin.template.js
+│   │   └── admin.view.js
+│   ├── services/
+│   │   ├── storiesRepository.js
+│   │   └── musicRepository.js
+│   ├── state/
+│   │   └── appStore.js
+│   └── utils/
+│       ├── storyParser.js     # Markdown parser and validator
+│       ├── storyPaths.js
+│       ├── pathResolver.js
+│       ├── audioResolver.js
+│       ├── lazyPage.js
+│       ├── errorUI.js
+│       ├── viewHelpers.js
+│       ├── markdownHighlighter.js
+│       ├── adminValidationUI.js
+│       └── adminEditorEnhancer.js
+└── tests/
+  ├── lazyPage.test.mjs
+  ├── pageOrchestrators.test.mjs
+  ├── pageTemplates.test.mjs
+  ├── pathResolver.test.mjs
+  ├── router.test.mjs
+  ├── storiesRepository.test.mjs
+  ├── storyParser.test.mjs
+  ├── storytellingRules.test.mjs
+  ├── storyKeywordsMetadata.test.mjs
+  └── testHelpers.mjs
 ```
 
 ## Story File Format
