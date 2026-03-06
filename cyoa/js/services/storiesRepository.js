@@ -6,7 +6,7 @@ let storiesMetadataPromise = null;
 const storyMarkdownPromiseById = new Map();
 
 function getStoryMarkdownPath(storyId) {
-  return withBasePath(`/assets/stories/story-${storyId}.md`);
+  return withBasePath(`/assets/stories/${storyId}/story.md`);
 }
 
 /**

@@ -88,8 +88,8 @@ test("repo: getStoryMarkdown caches by story id and reuses promise per key", asy
 
     assert.equal(fetchCount, 2);
     assert.equal(firstStoryA, secondStoryA);
-    assert.match(firstStoryA, /story-1\.md/);
-    assert.match(storyB, /story-2\.md/);
+    assert.match(firstStoryA, /\/1\/story\.md/);
+    assert.match(storyB, /\/2\/story\.md/);
   } finally {
     globalThis.fetch = previousFetch;
   }

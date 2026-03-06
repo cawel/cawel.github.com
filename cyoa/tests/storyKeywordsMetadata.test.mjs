@@ -7,8 +7,7 @@ const STORIES_DIR = path.resolve("assets/stories");
 const METADATA_PATH = path.resolve("assets/stories/metadata.json");
 
 function getStoryNumber(fileName) {
-  const match = fileName.match(/^story-(\d+)\.md$/);
-  return match ? Number(match[1]) : null;
+  return /^\d+$/.test(fileName) ? Number(fileName) : null;
 }
 
 function extractStoryKeywords(markdown, storyFile) {
@@ -51,15 +50,16 @@ test("stories: metadata keywords match markdown keywords", () => {
   const metadata = JSON.parse(readFileSync(METADATA_PATH, "utf8"));
   const metadataByNumber = new Map(metadata.map((entry) => [entry.number, entry]));
 
-  const storyFiles = readdirSync(STORIES_DIR)
-    .filter((file) => /^story-\d+\.md$/.test(file))
+  const storyFolders = readdirSync(STORIES_DIR)
+    .filter((entry) => /^\d+$/.test(entry))
     .sort((left, right) => getStoryNumber(left) - getStoryNumber(right));
 
-  assert.ok(storyFiles.length > 0, "No story markdown files found");
+  assert.ok(storyFolders.length > 0, "No story markdown folders found");
 
-  for (const storyFile of storyFiles) {
-    const storyNumber = getStoryNumber(storyFile);
-    assert.ok(storyNumber !== null, `Invalid story file name: ${storyFile}`);
+  for (const storyFolder of storyFolders) {
+    const storyNumber = getStoryNumber(storyFolder);
+    assert.ok(storyNumber !== null, `Invalid story folder name: ${storyFolder}`);
+    const storyFile = `${storyFolder}/story.md`;
 
     const metadataEntry = metadataByNumber.get(storyNumber);
     assert.ok(
@@ -67,7 +67,10 @@ test("stories: metadata keywords match markdown keywords", () => {
       `${storyFile}: missing metadata entry for number ${storyNumber}`,
     );
 
-    const markdown = readFileSync(path.join(STORIES_DIR, storyFile), "utf8");
+    const markdown = readFileSync(
+      path.join(STORIES_DIR, storyFolder, "story.md"),
+      "utf8",
+    );
     const storyKeywords = extractStoryKeywords(markdown, storyFile);
     const metadataKeywords = (metadataEntry.keywords || []).map((keyword) =>
       String(keyword).trim().toLowerCase(),

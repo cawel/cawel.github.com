@@ -43,8 +43,10 @@ cyoa/
 ├── assets/
 │   ├── stories/              # Story chapter markdown files + metadata
 │   │   ├── metadata.json     # Story metadata for home/admin lists
-│   │   ├── story-1.md
-│   │   ├── story-2.md
+│   │   ├── 1/
+│   │   │   └── story.md
+│   │   ├── 2/
+│   │   │   └── story.md
 │   │   └── ...
 │   └── music/
 │       ├── tracks.json       # Music track manifest

@@ -102,10 +102,10 @@ function includesAny(text, terms) {
 
 function getStoryFiles() {
   return readdirSync(STORIES_DIR)
-    .filter((file) => /^story-\d+\.md$/.test(file))
+    .filter((entry) => /^\d+$/.test(entry))
     .sort(
       (left, right) =>
-        Number(left.match(/\d+/)?.[0]) - Number(right.match(/\d+/)?.[0]),
+        Number(left) - Number(right),
     );
 }
 
@@ -119,8 +119,12 @@ test("storytelling: stories follow structural storytelling guidelines", () => {
   const storyFiles = getStoryFiles();
   assert.ok(storyFiles.length > 0, "No story files found under assets/stories");
 
-  for (const storyFile of storyFiles) {
-    const markdown = readFileSync(path.join(STORIES_DIR, storyFile), "utf8");
+  for (const storyFolder of storyFiles) {
+    const storyFile = `${storyFolder}/story.md`;
+    const markdown = readFileSync(
+      path.join(STORIES_DIR, storyFolder, "story.md"),
+      "utf8",
+    );
     const parsed = parseStory(markdown);
     const chapters = asChapterList(parsed);
 
