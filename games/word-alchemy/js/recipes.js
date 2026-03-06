@@ -25,8 +25,3 @@ export const recipes = {
 
   "energy+metal": "machine",
 };
-
-export const timings = {
-  INFO_FADE_DURATION_MS: 1000,
-  DISCOVERY_ANIMATION_MS: 2000,
-};

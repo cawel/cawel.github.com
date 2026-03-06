@@ -1,6 +1,11 @@
-import { starting, recipes, timings } from "./recipes.js";
+import { starting, recipes } from "./recipes.js";
 import { createGameState } from "./state.js";
 import { createRenderer } from "./render.js";
+
+const timings = {
+  INFO_FADE_DURATION_MS: 1000,
+  DISCOVERY_ANIMATION_MS: 2000,
+};
 
 const grid = document.getElementById("elements");
 const resultDiv = document.getElementById("result");
