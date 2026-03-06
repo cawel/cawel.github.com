@@ -33,6 +33,10 @@ export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
       resultDiv.textContent = text;
     },
 
+    showMessageWithHint(text, hintText) {
+      resultDiv.innerHTML = `${text}<span class="hint-line">${hintText}</span>`;
+    },
+
     addLog(text) {
       const li = document.createElement("li");
       li.textContent = text;

@@ -113,8 +113,9 @@ function onSelectElement(word) {
     const noEffectMessage = getRandomNoEffectMessage();
 
     if (hint && failedCombines >= FAILED_COMBINES_BEFORE_HINT) {
-      renderer.showMessage(
-        `${noEffectMessage}\nHint: try ${hint.first} + ${hint.second}.`,
+      renderer.showMessageWithHint(
+        noEffectMessage,
+        `Hint: try ${hint.first} + ${hint.second}.`,
       );
     } else if (hint) {
       renderer.showMessage(noEffectMessage);
