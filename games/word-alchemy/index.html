@@ -15,8 +15,6 @@
 
     <main>
       <section class="laboratory-area">
-        <div id="infoBox" class="info">ℹ️ Click two words to combine them.</div>
-
         <div class="lab-title">Element Laboratory</div>
 
         <div class="laboratory">
@@ -28,14 +26,28 @@
         <div class="reaction-title">Latest Reaction</div>
 
         <div class="reaction-panel">
+          <div id="reactionIntro" class="reaction-intro">
+            Click two words to combine them.
+          </div>
           <div id="result" class="result" aria-live="polite"></div>
         </div>
       </section>
 
       <section class="discovery-area">
-        <div id="counter" class="discovery-count"></div>
+        <div class="progress-row">
+          <div class="stat-card">
+            <div class="stat-title">Elements Discovered</div>
+            <div id="counter" class="stat-value"></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-title">Alchemy Completion</div>
+            <div id="completionRate" class="completion-value"></div>
+          </div>
+        </div>
 
         <div class="log">
+          <div class="log-title">Discovery Log</div>
           <ul id="log"></ul>
         </div>
       </section>

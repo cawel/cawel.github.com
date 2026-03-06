@@ -138,6 +138,7 @@ export function findStuckStates(starting, recipes) {
 export function createGameState(starting, recipes) {
   const recipeIndex = buildRecipeIndex(recipes);
   validateRecipes(starting, recipeIndex);
+  const totalElementCount = getAllElements(starting, recipeIndex).size;
 
   const discovered = new Set(starting);
   let selected = [];
@@ -227,6 +228,10 @@ export function createGameState(starting, recipes) {
 
     getDiscoveredCount() {
       return discovered.size;
+    },
+
+    getTotalElementCount() {
+      return totalElementCount;
     },
 
     getDiscoveryEventsCount() {

@@ -3,7 +3,6 @@ import { createGameState } from "./state.js";
 import { createRenderer } from "./render.js";
 
 const timings = {
-  INFO_FADE_DURATION_MS: 1000,
   DISCOVERY_ANIMATION_MS: 2000,
 };
 
@@ -23,17 +22,19 @@ const NO_EFFECT_MESSAGES = [
 
 const grid = document.getElementById("elements");
 const resultDiv = document.getElementById("result");
+const reactionIntro = document.getElementById("reactionIntro");
 const log = document.getElementById("log");
 const counter = document.getElementById("counter");
-const info = document.getElementById("infoBox");
+const completionRate = document.getElementById("completionRate");
 const lab = document.querySelector(".laboratory");
 
 const requiredNodes = {
   elements: grid,
   result: resultDiv,
+  reactionIntro,
   log,
   counter,
-  infoBox: info,
+  completionRate,
   laboratory: lab,
 };
 
@@ -58,17 +59,32 @@ if (missingIds.length > 0) {
 }
 
 document.documentElement.style.setProperty(
-  "--info-fade-duration",
-  `${timings.INFO_FADE_DURATION_MS}ms`,
-);
-document.documentElement.style.setProperty(
   "--discovery-animation-duration",
   `${timings.DISCOVERY_ANIMATION_MS}ms`,
 );
 
 const state = createGameState(starting, recipes);
-const renderer = createRenderer({ grid, resultDiv, log, counter, info, lab });
+const renderer = createRenderer({
+  grid,
+  resultDiv,
+  reactionIntro,
+  log,
+  counter,
+  completionRate,
+  lab,
+});
 let failedCombines = 0;
+const totalElementCount = state.getTotalElementCount();
+
+function updateProgress() {
+  const discoveredCount = state.getDiscoveredCount();
+  const completionPercentage = Math.round(
+    (discoveredCount / totalElementCount) * 100,
+  );
+
+  renderer.updateCounter(discoveredCount, totalElementCount);
+  renderer.updateCompletion(completionPercentage);
+}
 
 function getRandomNoEffectMessage() {
   const randomIndex = Math.floor(Math.random() * NO_EFFECT_MESSAGES.length);
@@ -97,15 +113,12 @@ function onSelectElement(word) {
     renderer.showCombination(outcome.first, outcome.second, outcome.result);
 
     if (outcome.isNew) {
+      renderer.hideReactionIntro();
       renderer.animateDiscovery(timings.DISCOVERY_ANIMATION_MS);
       renderer.addLog(
         `${outcome.first} + ${outcome.second} → ${outcome.result}`,
       );
-      renderer.updateCounter(state.getDiscoveredCount());
-
-      if (state.getDiscoveryEventsCount() >= 2) {
-        renderer.hideInfo();
-      }
+      updateProgress();
     }
   } else {
     failedCombines += 1;
@@ -133,5 +146,5 @@ starting.forEach((word) => {
   renderer.addLog(`${word} (starting element)`);
 });
 
-renderer.updateCounter(state.getDiscoveredCount());
+updateProgress();
 refreshElements();

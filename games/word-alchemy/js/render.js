@@ -1,4 +1,12 @@
-export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
+export function createRenderer({
+  grid,
+  resultDiv,
+  reactionIntro,
+  log,
+  counter,
+  completionRate,
+  lab,
+}) {
   return {
     renderElements(words, selectedWords, exhaustedPartners, onSelect) {
       const hasSingleSelection = selectedWords.length === 1;
@@ -43,12 +51,18 @@ export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
       log.prepend(li);
     },
 
-    updateCounter(discoveredCount) {
-      counter.textContent = `Discovered ${discoveredCount} elements`;
+    updateCounter(discoveredCount, totalCount) {
+      counter.textContent = `${discoveredCount} / ${totalCount}`;
     },
 
-    hideInfo() {
-      info.classList.add("hidden");
+    updateCompletion(percentage) {
+      completionRate.textContent = `${percentage}%`;
+    },
+
+    hideReactionIntro() {
+      if (reactionIntro) {
+        reactionIntro.classList.add("hidden");
+      }
     },
 
     animateDiscovery(durationMs) {

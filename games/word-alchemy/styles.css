@@ -4,7 +4,6 @@ font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 }
 
 :root{
---info-fade-duration:1s;
 --discovery-animation-duration:2s;
 }
 
@@ -97,7 +96,7 @@ pointer-events:none;
 
 .reaction-area{
 margin-top:6px;
-margin-bottom:30px;
+margin-bottom:88px;
 }
 
 .reaction-title{
@@ -115,9 +114,20 @@ border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,0.3);
 height:110px;
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
 overflow:hidden;
+}
+
+.reaction-intro{
+font-size:15px;
+color:#c6cfde;
+margin-bottom:8px;
+}
+
+.reaction-intro.hidden{
+display:none;
 }
 
 .result{
@@ -134,25 +144,6 @@ display:block;
 margin-top:8px;
 color:#f2c879;
 font-weight:700;
-}
-
-/* Info */
-
-.info{
-background:linear-gradient(135deg,#1e355f,#1b2f52);
-border:1px solid #4a6da8;
-padding:12px 14px;
-border-radius:10px;
-margin-top:-12px;
-margin-bottom:10px;
-text-align:center;
-color:#eaf2ff;
-box-shadow:0 6px 16px rgba(10,18,34,0.45);
-transition:opacity var(--info-fade-duration);
-}
-
-.info.hidden{
-opacity:0;
 }
 
 /* Discovery Animation */
@@ -173,11 +164,42 @@ animation:glow var(--discovery-animation-duration) ease;
 margin-top:30px;
 }
 
-.discovery-count{
-font-weight:700;
-margin-bottom:8px;
+.progress-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-bottom:12px;
+}
+
+.stat-card{
+background:#171a22;
+padding:16px 18px;
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,0.3);
+border:1px solid #252d3b;
+}
+
+.stat-title{
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:.06em;
 color:#8ed9ff;
-text-shadow:0 0 10px rgba(142,217,255,0.25);
+text-shadow:0 0 10px rgba(142,217,255,0.2);
+margin-bottom:8px;
+}
+
+.stat-value{
+font-size:28px;
+font-weight:700;
+line-height:1;
+color:#e6e8ee;
+}
+
+.completion-value{
+font-size:46px;
+font-weight:800;
+line-height:1;
+color:#f2c879;
 }
 
 .log{
@@ -186,6 +208,15 @@ padding:20px;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,0.3);
 border:1px solid #252d3b;
+}
+
+.log-title{
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.06em;
+color:#8ed9ff;
+text-shadow:0 0 10px rgba(142,217,255,0.2);
+margin-bottom:10px;
 }
 
 .log ul{
@@ -220,6 +251,14 @@ font-size:22px;
 .element{
 font-size:17px;
 padding:16px;
+}
+
+.progress-row{
+grid-template-columns:1fr;
+}
+
+.completion-value{
+font-size:40px;
 }
 
 }
