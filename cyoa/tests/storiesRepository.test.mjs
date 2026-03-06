@@ -3,7 +3,10 @@ import assert from "node:assert/strict";
 import { getFreshModuleUrl } from "./testHelpers.mjs";
 
 function getFreshStoriesRepositoryModuleUrl() {
-  return getFreshModuleUrl("../js/services/storiesRepository.js", import.meta.url);
+  return getFreshModuleUrl(
+    "../js/services/storiesRepository.js",
+    import.meta.url,
+  );
 }
 
 test("repo: getStoriesMetadata caches successful metadata fetch", async () => {
@@ -21,7 +24,9 @@ test("repo: getStoriesMetadata caches successful metadata fetch", async () => {
   };
 
   try {
-    const { getStoriesMetadata } = await import(getFreshStoriesRepositoryModuleUrl());
+    const { getStoriesMetadata } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
 
     const first = await getStoriesMetadata();
     const second = await getStoriesMetadata();
@@ -51,7 +56,9 @@ test("repo: getStoriesMetadata returns empty array when metadata fetch fails", a
   console.error = () => {};
 
   try {
-    const { getStoriesMetadata } = await import(getFreshStoriesRepositoryModuleUrl());
+    const { getStoriesMetadata } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
 
     const first = await getStoriesMetadata();
     const second = await getStoriesMetadata();
@@ -80,7 +87,9 @@ test("repo: getStoryMarkdown caches by story id and reuses promise per key", asy
   };
 
   try {
-    const { getStoryMarkdown } = await import(getFreshStoriesRepositoryModuleUrl());
+    const { getStoryMarkdown } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
 
     const firstStoryA = await getStoryMarkdown(1);
     const secondStoryA = await getStoryMarkdown("1");
@@ -106,7 +115,9 @@ test("repo: getStoryMarkdown throws when story fetch is not ok", async () => {
   });
 
   try {
-    const { getStoryMarkdown } = await import(getFreshStoriesRepositoryModuleUrl());
+    const { getStoryMarkdown } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
 
     await assert.rejects(
       () => getStoryMarkdown(123),

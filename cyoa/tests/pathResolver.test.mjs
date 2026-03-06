@@ -5,11 +5,15 @@ import { createPathResolver, withBasePath } from "../js/utils/pathResolver.js";
 
 test("path: createPathResolver(basePath?) normalizes empty and root base paths", () => {
   assert.equal(
-    createPathResolver("").withBasePath("/assets/stories/metadata-stories.json"),
+    createPathResolver("").withBasePath(
+      "/assets/stories/metadata-stories.json",
+    ),
     "/assets/stories/metadata-stories.json",
   );
   assert.equal(
-    createPathResolver("/").withBasePath("/assets/stories/metadata-stories.json"),
+    createPathResolver("/").withBasePath(
+      "/assets/stories/metadata-stories.json",
+    ),
     "/assets/stories/metadata-stories.json",
   );
 });

@@ -101,7 +101,11 @@ export async function renderStoryPage(model) {
     return renderStoryMissingChapterState();
   }
 
-  return renderStoryChapter(model.storyId, model.chapter, model.chapterImagePaths);
+  return renderStoryChapter(
+    model.storyId,
+    model.chapter,
+    model.chapterImagePaths,
+  );
 }
 
 /** @type {PageContract} */

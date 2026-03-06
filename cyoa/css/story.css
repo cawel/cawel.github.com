@@ -69,15 +69,20 @@ main.story-main .story-container {
 }
 
 .chapter-illustration {
-  margin: 0 0 1.4em;
+  margin: 0;
   max-width: 46em;
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--story-border) 78%, #8a6a44 22%);
+  border: 0;
   background: transparent;
 }
 
 .chapter-illustration[hidden] {
   display: none;
+}
+
+.chapter-illustration.chapter-illustration-loaded {
+  margin: 0 0 1.4em;
+  border: 1px solid color-mix(in srgb, var(--story-border) 78%, #8a6a44 22%);
 }
 
 .chapter-illustration-image {
@@ -87,6 +92,12 @@ main.story-main .story-container {
   border: 0;
   background-color: transparent;
   box-shadow: none;
+  opacity: 0;
+  transition: opacity 0.18s ease-in;
+}
+
+.chapter-illustration.chapter-illustration-loaded .chapter-illustration-image {
+  opacity: 1;
 }
 
 .chapter-content p:first-of-type::first-letter {
@@ -251,7 +262,7 @@ main.story-main .story-container {
     margin-bottom: 16px;
   }
 
-  .chapter-illustration {
+  .chapter-illustration.chapter-illustration-loaded {
     margin-bottom: 1.1em;
   }
 

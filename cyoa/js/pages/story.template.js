@@ -78,6 +78,7 @@ function renderChapterIllustration(chapterTitle, chapterImagePaths) {
         alt="${imageAlt}"
         loading="lazy"
         decoding="async"
+        onload="this.closest('.chapter-illustration')?.classList.add('chapter-illustration-loaded')"
         onerror="const figure=this.closest('.chapter-illustration'); const remaining=(figure?.dataset.fallbackSources||'').split('|').filter(Boolean); if(remaining.length===0){figure?.setAttribute('hidden','hidden'); return;} const nextSource=remaining.shift(); if(figure){figure.dataset.fallbackSources=remaining.join('|');} this.src=nextSource;"
       />
     </figure>

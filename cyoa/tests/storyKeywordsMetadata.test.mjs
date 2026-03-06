@@ -48,7 +48,9 @@ function extractStoryKeywords(markdown, storyFile) {
 
 test("stories: metadata keywords match markdown keywords", () => {
   const metadata = JSON.parse(readFileSync(METADATA_PATH, "utf8"));
-  const metadataByNumber = new Map(metadata.map((entry) => [entry.number, entry]));
+  const metadataByNumber = new Map(
+    metadata.map((entry) => [entry.number, entry]),
+  );
 
   const storyFolders = readdirSync(STORIES_DIR)
     .filter((entry) => /^\d+$/.test(entry))
@@ -58,7 +60,10 @@ test("stories: metadata keywords match markdown keywords", () => {
 
   for (const storyFolder of storyFolders) {
     const storyNumber = getStoryNumber(storyFolder);
-    assert.ok(storyNumber !== null, `Invalid story folder name: ${storyFolder}`);
+    assert.ok(
+      storyNumber !== null,
+      `Invalid story folder name: ${storyFolder}`,
+    );
     const storyFile = `${storyFolder}/story.md`;
 
     const metadataEntry = metadataByNumber.get(storyNumber);

@@ -103,10 +103,7 @@ function includesAny(text, terms) {
 function getStoryFiles() {
   return readdirSync(STORIES_DIR)
     .filter((entry) => /^\d+$/.test(entry))
-    .sort(
-      (left, right) =>
-        Number(left) - Number(right),
-    );
+    .sort((left, right) => Number(left) - Number(right));
 }
 
 function asChapterList(parsedChapters) {
