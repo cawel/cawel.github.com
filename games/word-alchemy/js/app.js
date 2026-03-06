@@ -2,9 +2,15 @@ import { starting, recipes } from "./game/data/recipes.js";
 import { createGameState } from "./game/state/index.js";
 import { createRenderer } from "./ui/renderer.js";
 import { createGameController } from "./game/controller.js";
+import { withPerfHud } from "./ui/perf-hud.js";
+
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
+const isSmallScreen = window.matchMedia("(max-width: 600px)").matches;
 
 const timings = {
-  DISCOVERY_ANIMATION_MS: 2000,
+  DISCOVERY_ANIMATION_MS: prefersReducedMotion ? 0 : isSmallScreen ? 900 : 1400,
 };
 
 const grid = document.getElementById("elements");
@@ -57,7 +63,7 @@ document.documentElement.style.setProperty(
 );
 
 const state = createGameState(starting, recipes);
-const renderer = createRenderer({
+const baseRenderer = createRenderer({
   grid,
   resultDiv,
   reactionIntro,
@@ -69,6 +75,7 @@ const renderer = createRenderer({
   hintsUsed,
   laboratoryPanel,
 });
+const renderer = withPerfHud(baseRenderer);
 
 const controller = createGameController({
   state,

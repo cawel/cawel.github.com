@@ -24,12 +24,9 @@ export function createGameController({
   }
 
   function refreshElements() {
-    const elementViewModels = state.getElementViewState().map((element) => ({
-      ...element,
-      onSelect: () => onSelectElement(element.label),
-    }));
+    const elementViewModels = state.getElementViewState();
 
-    renderer.renderElements(elementViewModels);
+    renderer.renderElements(elementViewModels, onSelectElement);
   }
 
   function onSelectElement(word) {

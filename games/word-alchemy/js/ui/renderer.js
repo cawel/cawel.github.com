@@ -10,26 +10,66 @@ export function createRenderer({
   hintsUsed,
   laboratoryPanel,
 }) {
+  const elementNodesByLabel = new Map();
+  let hasBoundGridClick = false;
+  let discoveryTimeoutId = null;
+
+  function bindGridClick(onSelectElement) {
+    if (hasBoundGridClick) {
+      return;
+    }
+
+    grid.addEventListener("click", (event) => {
+      const elementNode = event.target.closest(".element");
+      if (!elementNode || !grid.contains(elementNode)) {
+        return;
+      }
+
+      if (elementNode.classList.contains("exhausted-partner")) {
+        return;
+      }
+
+      const label = elementNode.dataset.label;
+      if (label) {
+        onSelectElement(label);
+      }
+    });
+
+    hasBoundGridClick = true;
+  }
+
   return {
-    renderElements(elements) {
-      grid.innerHTML = "";
+    renderElements(elements, onSelectElement) {
+      bindGridClick(onSelectElement);
+      const fragment = document.createDocumentFragment();
+      const activeLabels = new Set();
 
       elements.forEach((element) => {
-        const el = document.createElement("div");
-        el.className = "element";
+        const label = element.label;
+        activeLabels.add(label);
 
-        if (element.isSelected) {
-          el.classList.add("selected");
+        let el = elementNodesByLabel.get(label);
+        if (!el) {
+          el = document.createElement("div");
+          el.className = "element";
+          el.dataset.label = label;
+          el.textContent = label;
+          elementNodesByLabel.set(label, el);
         }
 
-        if (element.isExhausted) {
-          el.classList.add("exhausted-partner");
-        }
-
-        el.textContent = element.label;
-        el.onclick = element.onSelect;
-        grid.appendChild(el);
+        el.classList.toggle("selected", Boolean(element.isSelected));
+        el.classList.toggle("exhausted-partner", Boolean(element.isExhausted));
+        fragment.appendChild(el);
       });
+
+      elementNodesByLabel.forEach((node, label) => {
+        if (!activeLabels.has(label)) {
+          elementNodesByLabel.delete(label);
+          node.remove();
+        }
+      });
+
+      grid.replaceChildren(fragment);
     },
 
     showCombination(first, second, result) {
@@ -48,6 +88,11 @@ export function createRenderer({
       const li = document.createElement("li");
       li.textContent = text;
       log.prepend(li);
+
+      const maxEntries = 120;
+      while (log.children.length > maxEntries) {
+        log.removeChild(log.lastElementChild);
+      }
     },
 
     renderStats(stats) {
@@ -65,10 +110,22 @@ export function createRenderer({
     },
 
     animateDiscovery(durationMs) {
+      if (durationMs <= 0) {
+        return;
+      }
+
+      if (discoveryTimeoutId !== null) {
+        clearTimeout(discoveryTimeoutId);
+      }
+
+      laboratoryPanel.classList.remove("discovery");
+      // Force reflow so rapid discoveries replay the highlight animation.
+      void laboratoryPanel.offsetWidth;
       laboratoryPanel.classList.add("discovery");
 
-      setTimeout(() => {
+      discoveryTimeoutId = setTimeout(() => {
         laboratoryPanel.classList.remove("discovery");
+        discoveryTimeoutId = null;
       }, durationMs);
     },
   };
