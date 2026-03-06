@@ -202,6 +202,29 @@ export function createGameState(starting, recipes) {
       return [...selected];
     },
 
+    getExhaustedPartnersForSelection() {
+      if (selected.length !== 1) {
+        return [];
+      }
+
+      const selectedWord = selected[0];
+      const exhaustedPartners = [];
+
+      discovered.forEach((candidate) => {
+        if (candidate === selectedWord) {
+          return;
+        }
+
+        const result = findRecipeResult(recipeIndex, selectedWord, candidate);
+
+        if (result && discovered.has(result)) {
+          exhaustedPartners.push(candidate);
+        }
+      });
+
+      return exhaustedPartners;
+    },
+
     getDiscoveredCount() {
       return discovered.size;
     },

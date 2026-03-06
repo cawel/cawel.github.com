@@ -1,6 +1,10 @@
 export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
   return {
-    renderElements(words, selectedWords, onSelect) {
+    renderElements(words, selectedWords, exhaustedPartners, onSelect) {
+      const hasSingleSelection = selectedWords.length === 1;
+      const selectedWord = selectedWords[0];
+      const exhaustedSet = new Set(exhaustedPartners);
+
       grid.innerHTML = "";
 
       words.forEach((word) => {
@@ -9,6 +13,10 @@ export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
 
         if (selectedWords.includes(word)) {
           el.classList.add("selected");
+        }
+
+        if (hasSingleSelection && word !== selectedWord && exhaustedSet.has(word)) {
+          el.classList.add("exhausted-partner");
         }
 
         el.textContent = word;

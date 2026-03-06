@@ -59,6 +59,7 @@ function refreshElements() {
   renderer.renderElements(
     state.getDiscoveredWords(),
     state.getSelectedWords(),
+    state.getExhaustedPartnersForSelection(),
     onSelectElement,
   );
 }
