@@ -42,7 +42,7 @@ cyoa/
 │       └── storyParser.js    # Markdown parser and validator
 ├── assets/
 │   ├── stories/              # Story chapter markdown files + metadata
-│   │   ├── metadata.json     # Story metadata for home/admin lists
+│   │   ├── metadata-stories.json  # Story metadata for home/admin lists
 │   │   ├── 1/
 │   │   │   └── story.md
 │   │   ├── 2/
@@ -234,7 +234,7 @@ Works in all modern browsers supporting:
 ## Performance Hygiene
 
 - `index.html` includes `modulepreload` for critical startup modules (`js/router.js`, `js/components/header.js`).
-- Prefer longer cache lifetimes for static assets and shorter cache for manifests (`metadata.json`, `tracks.json`) so content updates are reflected quickly.
+- Prefer longer cache lifetimes for static assets and shorter cache for manifests (`metadata-stories.json`, `tracks.json`) so content updates are reflected quickly.
 
 ## License
 

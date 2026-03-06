@@ -12,7 +12,7 @@ const storyMarkdownPromiseById = new Map();
 export async function getStoriesMetadata() {
   if (!storiesMetadataPromise) {
     storiesMetadataPromise = fetch(
-      withBasePath("/assets/stories/metadata.json"),
+      withBasePath("/assets/stories/metadata-stories.json"),
     )
       .then((response) => {
         if (!response.ok) {

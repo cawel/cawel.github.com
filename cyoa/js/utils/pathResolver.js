@@ -10,8 +10,8 @@
  *
  * Example:
  * - APP_BASE_PATH = "/cyoa"
- * - withBasePath("/assets/stories/metadata.json")
- * - Result: /cyoa/assets/stories/metadata.json
+ * - withBasePath("/assets/stories/metadata-stories.json")
+ * - Result: /cyoa/assets/stories/metadata-stories.json
  */
 import { APP_BASE_PATH } from "../appConfig.js";
 

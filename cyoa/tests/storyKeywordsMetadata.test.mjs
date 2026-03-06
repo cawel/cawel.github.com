@@ -4,7 +4,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const STORIES_DIR = path.resolve("assets/stories");
-const METADATA_PATH = path.resolve("assets/stories/metadata.json");
+const METADATA_PATH = path.resolve("assets/stories/metadata-stories.json");
 
 function getStoryNumber(fileName) {
   return /^\d+$/.test(fileName) ? Number(fileName) : null;

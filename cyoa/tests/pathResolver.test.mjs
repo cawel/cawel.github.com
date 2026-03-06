@@ -5,20 +5,20 @@ import { createPathResolver, withBasePath } from "../js/utils/pathResolver.js";
 
 test("path: createPathResolver(basePath?) normalizes empty and root base paths", () => {
   assert.equal(
-    createPathResolver("").withBasePath("/assets/stories/metadata.json"),
-    "/assets/stories/metadata.json",
+    createPathResolver("").withBasePath("/assets/stories/metadata-stories.json"),
+    "/assets/stories/metadata-stories.json",
   );
   assert.equal(
-    createPathResolver("/").withBasePath("/assets/stories/metadata.json"),
-    "/assets/stories/metadata.json",
+    createPathResolver("/").withBasePath("/assets/stories/metadata-stories.json"),
+    "/assets/stories/metadata-stories.json",
   );
 });
 
 test("path: createPathResolver(basePath?) normalizes leading and trailing slashes", () => {
   const resolver = createPathResolver("cyoa///");
   assert.equal(
-    resolver.withBasePath("/assets/stories/metadata.json"),
-    "/cyoa/assets/stories/metadata.json",
+    resolver.withBasePath("/assets/stories/metadata-stories.json"),
+    "/cyoa/assets/stories/metadata-stories.json",
   );
 });
 
