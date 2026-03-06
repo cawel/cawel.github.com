@@ -24,13 +24,7 @@ cyoa/
 ├── README.md                  # This file
 ├── css/
 │   ├── style.css              # CSS entrypoint (imports modules)
-│   ├── theme.css
-│   ├── base.css
-│   ├── header.css
-│   ├── home.css
-│   ├── story.css
-│   ├── admin.css
-│   └── admin-markdown.css
+│   └── *.css                  # Feature/theme stylesheets
 ├── assets/
 │   ├── stories/
 │   │   ├── metadata-stories.json   # Story metadata for home/admin lists
@@ -74,26 +68,10 @@ cyoa/
 │   │   └── appStore.js
 │   └── utils/
 │       ├── storyParser.js     # Markdown parser and validator
-│       ├── storyPaths.js
-│       ├── pathResolver.js
-│       ├── audioResolver.js
-│       ├── lazyPage.js
-│       ├── errorUI.js
-│       ├── viewHelpers.js
-│       ├── markdownHighlighter.js
-│       ├── adminValidationUI.js
-│       └── adminEditorEnhancer.js
+│       └── *.js               # Helper utilities
 └── tests/
-  ├── lazyPage.test.mjs
-  ├── pageOrchestrators.test.mjs
-  ├── pageTemplates.test.mjs
-  ├── pathResolver.test.mjs
-  ├── router.test.mjs
-  ├── storiesRepository.test.mjs
-  ├── storyParser.test.mjs
-  ├── storytellingRules.test.mjs
-  ├── storyKeywordsMetadata.test.mjs
-  └── testHelpers.mjs
+    ├── *.test.mjs             # Automated tests (naming convention)
+    └── testHelpers.mjs        # Shared test helpers
 ```
 
 ## Story File Format
