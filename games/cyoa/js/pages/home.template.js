@@ -66,7 +66,10 @@ export function renderHomePageTemplate(stories) {
       <div class="stories-grid" role="list">
         ${storiesHtml}
       </div>
-      <footer class="home-footer">Choose Your Own Adventure | ${currentYear}</footer>
+      <footer class="home-footer">
+        <span class="home-footer-brand">Choose Your Own Adventure</span>
+        <span class="home-footer-year">${currentYear}</span>
+      </footer>
     `,
   });
 }

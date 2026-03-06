@@ -3,7 +3,7 @@ header {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,11 @@ header::before {
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
-  background-color: var(--bg-alt);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-alt) 88%, var(--story-bg) 12%),
+    color-mix(in srgb, var(--bg-alt) 70%, var(--bg-muted) 30%)
+  );
   z-index: -1;
 }
 
@@ -34,7 +38,7 @@ header.header-collapsed {
 .font-controls-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .theme-select,
@@ -44,19 +48,22 @@ header.header-collapsed {
 
 .mobile-menu-btn {
   display: none;
-  background: none;
-  border: none;
+  background: color-mix(in srgb, var(--bg-muted) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--story-border) 50%, var(--border));
   color: var(--text);
   cursor: pointer;
   padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
   align-items: center;
   justify-content: center;
 }
 
 .mobile-menu-btn:hover {
-  background-color: var(--bg-muted);
+  background-color: color-mix(in srgb, var(--bg-muted) 50%, var(--story-bg) 50%);
+  border-color: color-mix(in srgb, var(--story-title-color) 30%, var(--border));
 }
 
 .mobile-menu-icon {
@@ -65,10 +72,10 @@ header.header-collapsed {
 }
 
 .audio-track-select {
-  background-color: var(--bg-alt);
+  background-color: color-mix(in srgb, var(--bg-alt) 76%, var(--bg-muted) 24%);
   color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--story-border) 45%, var(--border));
+  border-radius: 6px;
   padding: 6px 28px 6px 8px;
   font-family: "Merriweather", Georgia, serif;
   font-size: 15px;
@@ -84,12 +91,14 @@ header.header-collapsed {
 }
 
 .audio-track-select:hover {
-  background-color: var(--bg-muted);
+  background-color: color-mix(in srgb, var(--bg-muted) 70%, var(--story-bg) 30%);
+  border-color: color-mix(in srgb, var(--story-title-color) 28%, var(--border));
 }
 
 .audio-track-select:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .header-title {
@@ -99,11 +108,14 @@ header.header-collapsed {
   gap: 12px;
   font-size: 24px;
   font-weight: 600;
+  letter-spacing: 0.01em;
   text-align: left;
   cursor: pointer;
   text-decoration: none;
-  color: var(--text);
-  transition: opacity 0.2s;
+  color: color-mix(in srgb, var(--text) 86%, var(--story-choice-text-color) 14%);
+  transition:
+    opacity 0.2s,
+    color 0.2s;
   background: none;
   border: none;
   font-family: "Merriweather", Georgia, serif;
@@ -111,6 +123,7 @@ header.header-collapsed {
 
 .header-title:hover {
   opacity: 0.7;
+  color: color-mix(in srgb, var(--text) 75%, var(--story-title-color) 25%);
 }
 
 .header-emoji {
@@ -126,12 +139,15 @@ header.header-collapsed {
 .theme-control,
 .admin-control,
 .header-toggle {
-  background: none;
-  border: none;
+  background: color-mix(in srgb, var(--bg-muted) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--story-border) 44%, var(--border));
   cursor: pointer;
   padding: 5px 7px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
   color: var(--text);
   display: flex;
   align-items: center;
@@ -164,7 +180,9 @@ header.header-collapsed {
 .theme-control:hover,
 .admin-control:hover,
 .header-toggle:hover {
-  background-color: var(--bg-muted);
+  background-color: color-mix(in srgb, var(--bg-muted) 54%, var(--story-bg) 46%);
+  border-color: color-mix(in srgb, var(--story-title-color) 30%, var(--border));
+  transform: translateY(-1px);
 }
 
 .header-toggle-icon {
@@ -239,7 +257,7 @@ header.header-collapsed {
 
 @media (max-width: 1023px) {
   header {
-    padding: 8px 14px;
+    padding: 10px 14px;
   }
 
   .header-title {
@@ -322,7 +340,7 @@ header.header-collapsed {
     align-items: stretch;
     gap: 6px;
     padding-top: 6px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid color-mix(in srgb, var(--story-border) 50%, var(--border));
   }
 
   header.mobile-menu-open .header-controls {
@@ -352,8 +370,8 @@ header.header-collapsed {
     min-width: 44px;
     min-height: 36px;
     justify-content: center;
-    border: 1px solid var(--border);
-    background-color: var(--bg-muted);
+    border: 1px solid color-mix(in srgb, var(--story-border) 45%, var(--border));
+    background-color: color-mix(in srgb, var(--bg-muted) 72%, var(--story-bg) 28%);
     padding: 6px 0;
   }
 
@@ -368,8 +386,8 @@ header.header-collapsed {
     justify-content: flex-start;
     width: 100%;
     min-height: 36px;
-    border: 1px solid var(--border);
-    background-color: var(--bg-muted);
+    border: 1px solid color-mix(in srgb, var(--story-border) 45%, var(--border));
+    background-color: color-mix(in srgb, var(--bg-muted) 72%, var(--story-bg) 28%);
     font-size: 16px;
     padding: 6px 10px;
   }

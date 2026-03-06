@@ -25,20 +25,33 @@
 
 .home-footer {
   margin-top: auto;
-  padding: 14px 18px;
-  border-radius: 8px;
+  padding-top: 18px;
   text-align: center;
-  color: var(--story-choice-text-color);
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: color-mix(in srgb, var(--story-choice-text-color) 82%, var(--text-alt));
+  opacity: 0.75;
+  letter-spacing: 0.015em;
   font-size: 14px;
-  border: 1px solid color-mix(in srgb, var(--story-border) 72%, var(--border));
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--story-bg) 88%, var(--bg-alt) 12%),
-    color-mix(in srgb, var(--story-bg) 78%, var(--bg-muted) 22%)
-  );
-  box-shadow: inset 0 1px 0
-    color-mix(in srgb, var(--story-title-color) 14%, transparent);
+  border-top: 1px solid
+    color-mix(in srgb, var(--story-title-color) 24%, transparent);
+}
+
+.home-footer-brand,
+.home-footer-year {
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-footer-year::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: color-mix(in srgb, var(--story-title-color) 45%, transparent);
 }
 
 .story-card {
@@ -150,7 +163,14 @@
   }
 
   .home-footer {
-    padding: 12px 14px;
+    padding-top: 14px;
     font-size: 13px;
+    gap: 8px;
+  }
+
+  .home-footer-year::before {
+    width: 3px;
+    height: 3px;
+    margin-right: 8px;
   }
 }
