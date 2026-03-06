@@ -18,13 +18,15 @@ color:#e6e8ee;
 
 header{
 text-align:center;
-padding:22px;
+padding:20px 22px;
 font-size:28px;
 font-weight:700;
+letter-spacing:.02em;
 color:#8ed9ff;
-text-shadow:0 0 10px rgba(142,217,255,0.25);
-background:#171a22;
-border-bottom:1px solid #2a2f3b;
+text-shadow:0 0 8px rgba(142,217,255,0.2);
+background:linear-gradient(180deg,#1a2231,#141a26);
+border-bottom:1px solid #2f3a4e;
+box-shadow:0 6px 16px rgba(4,10,20,0.35);
 }
 
 main{
@@ -236,10 +238,13 @@ font-size:15px;
 
 footer{
 text-align:center;
-padding:14px;
-background:#171a22;
-border-top:1px solid #2a2f3b;
+padding:16px;
 font-size:13px;
+letter-spacing:.04em;
+color:#8f99ad;
+background:linear-gradient(180deg,#141a26,#111723);
+border-top:1px solid #2f3a4e;
+box-shadow:inset 0 1px 0 rgba(142,217,255,0.08);
 }
 
 /* Responsive */
