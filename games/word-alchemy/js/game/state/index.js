@@ -143,11 +143,18 @@ export function createGameState(starting, recipes) {
   const discovered = new Set(starting);
   let selected = [];
   let discoveries = 0;
+  let failedCombines = 0;
+  let currentDiscoveryStreak = 0;
+  let bestDiscoveryStreak = 0;
+  let hintsUsed = 0;
 
   function combine(first, second) {
     const result = findRecipeResult(recipeIndex, first, second);
 
     if (!result) {
+      failedCombines += 1;
+      currentDiscoveryStreak = 0;
+
       return {
         kind: "combine",
         first,
@@ -158,10 +165,18 @@ export function createGameState(starting, recipes) {
     }
 
     const isNew = !discovered.has(result);
+    failedCombines = 0;
 
     if (isNew) {
       discovered.add(result);
       discoveries += 1;
+      currentDiscoveryStreak += 1;
+      bestDiscoveryStreak = Math.max(
+        bestDiscoveryStreak,
+        currentDiscoveryStreak,
+      );
+    } else {
+      currentDiscoveryStreak = 0;
     }
 
     return {
@@ -236,6 +251,29 @@ export function createGameState(starting, recipes) {
 
     getDiscoveryEventsCount() {
       return discoveries;
+    },
+
+    getCurrentDiscoveryStreak() {
+      return currentDiscoveryStreak;
+    },
+
+    getBestDiscoveryStreak() {
+      return bestDiscoveryStreak;
+    },
+
+    getHintsUsedCount() {
+      return hintsUsed;
+    },
+
+    getHintForFailure(minFailedCombinesBeforeHint) {
+      const hint = this.getHint();
+
+      if (!hint || failedCombines < minFailedCombinesBeforeHint) {
+        return null;
+      }
+
+      hintsUsed += 1;
+      return hint;
     },
 
     getHint() {

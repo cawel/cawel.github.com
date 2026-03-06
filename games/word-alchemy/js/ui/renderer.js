@@ -8,34 +8,26 @@ export function createRenderer({
   discoveryStreak,
   bestDiscoveryStreak,
   hintsUsed,
-  lab,
+  laboratoryPanel,
 }) {
   return {
-    renderElements(words, selectedWords, exhaustedPartners, onSelect) {
-      const hasSingleSelection = selectedWords.length === 1;
-      const selectedWord = selectedWords[0];
-      const exhaustedSet = new Set(exhaustedPartners);
-
+    renderElements(elements) {
       grid.innerHTML = "";
 
-      words.forEach((word) => {
+      elements.forEach((element) => {
         const el = document.createElement("div");
         el.className = "element";
 
-        if (selectedWords.includes(word)) {
+        if (element.isSelected) {
           el.classList.add("selected");
         }
 
-        if (
-          hasSingleSelection &&
-          word !== selectedWord &&
-          exhaustedSet.has(word)
-        ) {
+        if (element.isExhausted) {
           el.classList.add("exhausted-partner");
         }
 
-        el.textContent = word;
-        el.onclick = () => onSelect(word);
+        el.textContent = element.label;
+        el.onclick = element.onSelect;
         grid.appendChild(el);
       });
     },
@@ -58,24 +50,12 @@ export function createRenderer({
       log.prepend(li);
     },
 
-    updateCounter(discoveredCount, totalCount) {
-      counter.textContent = `${discoveredCount} / ${totalCount}`;
-    },
-
-    updateCompletion(percentage) {
-      completionRate.textContent = `${percentage}%`;
-    },
-
-    updateDiscoveryStreak(streakCount) {
-      discoveryStreak.textContent = `${streakCount}`;
-    },
-
-    updateBestDiscoveryStreak(bestStreakCount) {
-      bestDiscoveryStreak.textContent = `Best: ${bestStreakCount}`;
-    },
-
-    updateHintsUsed(hintsUsedCount) {
-      hintsUsed.textContent = `${hintsUsedCount}`;
+    renderStats(stats) {
+      counter.textContent = `${stats.discoveredCount} / ${stats.totalCount}`;
+      completionRate.textContent = `${stats.completionPercentage}%`;
+      discoveryStreak.textContent = `${stats.currentStreak}`;
+      bestDiscoveryStreak.textContent = `Best: ${stats.bestStreak}`;
+      hintsUsed.textContent = `${stats.hintsUsedCount}`;
     },
 
     hideReactionIntro() {
@@ -85,10 +65,10 @@ export function createRenderer({
     },
 
     animateDiscovery(durationMs) {
-      lab.classList.add("discovery");
+      laboratoryPanel.classList.add("discovery");
 
       setTimeout(() => {
-        lab.classList.remove("discovery");
+        laboratoryPanel.classList.remove("discovery");
       }, durationMs);
     },
   };

@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { recipes, starting } from "../js/recipes.js";
-import { findStuckStates, validateRecipes } from "../js/state.js";
+import { recipes, starting } from "../js/game/data/recipes.js";
+import { findStuckStates, validateRecipes } from "../js/game/state/index.js";
 
 test("recipes are valid for gameplay", () => {
   assert.doesNotThrow(() => validateRecipes(starting, recipes));
