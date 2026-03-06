@@ -148,6 +148,29 @@ export function createGameState(starting, recipes) {
   let bestDiscoveryStreak = 0;
   let hintsUsed = 0;
 
+  function getExhaustedPartnersForCurrentSelection() {
+    if (selected.length !== 1) {
+      return [];
+    }
+
+    const selectedWord = selected[0];
+    const exhaustedPartners = [];
+
+    discovered.forEach((candidate) => {
+      if (candidate === selectedWord) {
+        return;
+      }
+
+      const result = findRecipeResult(recipeIndex, selectedWord, candidate);
+
+      if (result && discovered.has(result)) {
+        exhaustedPartners.push(candidate);
+      }
+    });
+
+    return exhaustedPartners;
+  }
+
   function combine(first, second) {
     const result = findRecipeResult(recipeIndex, first, second);
 
@@ -219,26 +242,22 @@ export function createGameState(starting, recipes) {
     },
 
     getExhaustedPartnersForSelection() {
-      if (selected.length !== 1) {
-        return [];
-      }
+      return getExhaustedPartnersForCurrentSelection();
+    },
 
-      const selectedWord = selected[0];
-      const exhaustedPartners = [];
+    getElementViewState() {
+      const selectedWords = [...selected];
+      const selectedSet = new Set(selectedWords);
+      const exhaustedSet = new Set(getExhaustedPartnersForCurrentSelection());
+      const hasSingleSelection = selectedWords.length === 1;
+      const selectedWord = selectedWords[0] || null;
 
-      discovered.forEach((candidate) => {
-        if (candidate === selectedWord) {
-          return;
-        }
-
-        const result = findRecipeResult(recipeIndex, selectedWord, candidate);
-
-        if (result && discovered.has(result)) {
-          exhaustedPartners.push(candidate);
-        }
-      });
-
-      return exhaustedPartners;
+      return [...discovered].map((word) => ({
+        label: word,
+        isSelected: selectedSet.has(word),
+        isExhausted:
+          hasSingleSelection && word !== selectedWord && exhaustedSet.has(word),
+      }));
     },
 
     getDiscoveredCount() {
@@ -263,6 +282,22 @@ export function createGameState(starting, recipes) {
 
     getHintsUsedCount() {
       return hintsUsed;
+    },
+
+    getStats() {
+      const discoveredCount = discovered.size;
+      const completionPercentage = Math.round(
+        (discoveredCount / totalElementCount) * 100,
+      );
+
+      return {
+        discoveredCount,
+        totalCount: totalElementCount,
+        completionPercentage,
+        currentStreak: currentDiscoveryStreak,
+        bestStreak: bestDiscoveryStreak,
+        hintsUsedCount: hintsUsed,
+      };
     },
 
     getHintForFailure(minFailedCombinesBeforeHint) {

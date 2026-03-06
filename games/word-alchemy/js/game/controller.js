@@ -12,22 +12,8 @@ export function createGameController({
   failedCombinesBeforeHint = 3,
   noEffectMessages = NO_EFFECT_MESSAGES,
 }) {
-  const totalElementCount = state.getTotalElementCount();
-
   function updateProgress() {
-    const discoveredCount = state.getDiscoveredCount();
-    const completionPercentage = Math.round(
-      (discoveredCount / totalElementCount) * 100,
-    );
-
-    renderer.renderStats({
-      discoveredCount,
-      totalCount: totalElementCount,
-      completionPercentage,
-      currentStreak: state.getCurrentDiscoveryStreak(),
-      bestStreak: state.getBestDiscoveryStreak(),
-      hintsUsedCount: state.getHintsUsedCount(),
-    });
+    renderer.renderStats(state.getStats());
   }
 
   function getRandomNoEffectMessage() {
@@ -38,19 +24,9 @@ export function createGameController({
   }
 
   function refreshElements() {
-    const words = state.getDiscoveredWords();
-    const selectedWords = state.getSelectedWords();
-    const selectedSet = new Set(selectedWords);
-    const exhaustedSet = new Set(state.getExhaustedPartnersForSelection());
-    const hasSingleSelection = selectedWords.length === 1;
-    const selectedWord = selectedWords[0] || null;
-
-    const elementViewModels = words.map((word) => ({
-      label: word,
-      isSelected: selectedSet.has(word),
-      isExhausted:
-        hasSingleSelection && word !== selectedWord && exhaustedSet.has(word),
-      onSelect: () => onSelectElement(word),
+    const elementViewModels = state.getElementViewState().map((element) => ({
+      ...element,
+      onSelect: () => onSelectElement(element.label),
     }));
 
     renderer.renderElements(elementViewModels);
