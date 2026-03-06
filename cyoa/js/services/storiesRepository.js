@@ -1,10 +1,14 @@
 import { withBasePath } from "../utils/pathResolver.js";
-import { getStoryMarkdownPath } from "../utils/storyPaths.js";
+import {
+  getStoryContentPath,
+  getStoriesImageMetadataPath,
+} from "../utils/storyPaths.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
 
 let storiesMetadataPromise = null;
-const storyMarkdownPromiseById = new Map();
+let storiesImageMetadataPromise = null;
+const storyContentPromiseById = new Map();
 
 /**
  * @returns {Promise<StoryMetadata[]>}
@@ -33,18 +37,39 @@ export async function getStoriesMetadata() {
  * @param {string|number} storyId
  * @returns {Promise<string>}
  */
-export async function getStoryMarkdown(storyId) {
+export async function getStoryContent(storyId) {
   const key = String(storyId);
-  if (!storyMarkdownPromiseById.has(key)) {
-    const request = fetch(getStoryMarkdownPath(storyId)).then((response) => {
+  if (!storyContentPromiseById.has(key)) {
+    const request = fetch(getStoryContentPath(storyId)).then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to load story ${storyId}`);
       }
       return response.text();
     });
 
-    storyMarkdownPromiseById.set(key, request);
+    storyContentPromiseById.set(key, request);
   }
 
-  return storyMarkdownPromiseById.get(key);
+  return storyContentPromiseById.get(key);
+}
+
+/**
+ * @returns {Promise<any[]>}
+ */
+export async function getStoriesImageMetadata() {
+  if (!storiesImageMetadataPromise) {
+    storiesImageMetadataPromise = fetch(getStoriesImageMetadataPath())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load stories image metadata");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("[story] Unable to load stories image metadata:", error);
+        return [];
+      });
+  }
+
+  return storiesImageMetadataPromise;
 }

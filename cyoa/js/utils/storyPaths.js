@@ -6,8 +6,12 @@ import { withBasePath } from "./pathResolver.js";
 
 const CHAPTER_IMAGE_EXTENSIONS = ["webp"];
 
-export function getStoryMarkdownPath(storyId) {
+export function getStoryContentPath(storyId) {
   return withBasePath(`/assets/stories/${storyId}/story.md`);
+}
+
+export function getStoriesImageMetadataPath() {
+  return withBasePath("/assets/stories/images/metadata-images.json");
 }
 
 export function getStoryChapterImagePaths(storyId, chapterNumber) {

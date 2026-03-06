@@ -72,7 +72,7 @@ test("repo: getStoriesMetadata returns empty array when metadata fetch fails", a
   }
 });
 
-test("repo: getStoryMarkdown caches by story id and reuses promise per key", async () => {
+test("repo: getStoryContent caches by story id and reuses promise per key", async () => {
   const previousFetch = globalThis.fetch;
   let fetchCount = 0;
 
@@ -87,13 +87,13 @@ test("repo: getStoryMarkdown caches by story id and reuses promise per key", asy
   };
 
   try {
-    const { getStoryMarkdown } = await import(
+    const { getStoryContent } = await import(
       getFreshStoriesRepositoryModuleUrl()
     );
 
-    const firstStoryA = await getStoryMarkdown(1);
-    const secondStoryA = await getStoryMarkdown("1");
-    const storyB = await getStoryMarkdown(2);
+    const firstStoryA = await getStoryContent(1);
+    const secondStoryA = await getStoryContent("1");
+    const storyB = await getStoryContent(2);
 
     assert.equal(fetchCount, 2);
     assert.equal(firstStoryA, secondStoryA);
@@ -104,7 +104,7 @@ test("repo: getStoryMarkdown caches by story id and reuses promise per key", asy
   }
 });
 
-test("repo: getStoryMarkdown throws when story fetch is not ok", async () => {
+test("repo: getStoryContent throws when story fetch is not ok", async () => {
   const previousFetch = globalThis.fetch;
 
   globalThis.fetch = async () => ({
@@ -115,15 +115,79 @@ test("repo: getStoryMarkdown throws when story fetch is not ok", async () => {
   });
 
   try {
-    const { getStoryMarkdown } = await import(
+    const { getStoryContent } = await import(
       getFreshStoriesRepositoryModuleUrl()
     );
 
     await assert.rejects(
-      () => getStoryMarkdown(123),
+      () => getStoryContent(123),
       /Failed to load story 123/,
     );
   } finally {
     globalThis.fetch = previousFetch;
+  }
+});
+
+test("repo: getStoriesImageMetadata caches successful image metadata fetch", async () => {
+  const previousFetch = globalThis.fetch;
+  let fetchCount = 0;
+
+  globalThis.fetch = async (url) => {
+    fetchCount += 1;
+    return {
+      ok: true,
+      async json() {
+        return [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }];
+      },
+      url,
+    };
+  };
+
+  try {
+    const { getStoriesImageMetadata } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
+
+    const first = await getStoriesImageMetadata();
+    const second = await getStoriesImageMetadata();
+
+    assert.equal(fetchCount, 1);
+    assert.deepEqual(first, [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }]);
+    assert.deepEqual(second, [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }]);
+  } finally {
+    globalThis.fetch = previousFetch;
+  }
+});
+
+test("repo: getStoriesImageMetadata returns empty array when image metadata fetch fails", async () => {
+  const previousFetch = globalThis.fetch;
+  const previousConsoleError = console.error;
+  let fetchCount = 0;
+
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    return {
+      ok: false,
+      async json() {
+        return [];
+      },
+    };
+  };
+  console.error = () => {};
+
+  try {
+    const { getStoriesImageMetadata } = await import(
+      getFreshStoriesRepositoryModuleUrl()
+    );
+
+    const first = await getStoriesImageMetadata();
+    const second = await getStoriesImageMetadata();
+
+    assert.equal(fetchCount, 1);
+    assert.deepEqual(first, []);
+    assert.deepEqual(second, []);
+  } finally {
+    globalThis.fetch = previousFetch;
+    console.error = previousConsoleError;
   }
 });

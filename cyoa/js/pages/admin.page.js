@@ -1,9 +1,9 @@
 /**
- * Admin page - story editor with markdown validation
+ * Admin page - story editor with story-content validation
  */
 
 import { getValidationExample } from "../utils/storyParser.js";
-import { getStoryMarkdown } from "../services/storiesRepository.js";
+import { getStoryContent } from "../services/storiesRepository.js";
 import {
   bindAdminPageEvents,
   clearValidationResultHtml,
@@ -100,7 +100,7 @@ async function loadStory() {
   }
 
   try {
-    const content = await getStoryMarkdown(storyNum);
+    const content = await getStoryContent(storyNum);
     setEditorContent(content);
     clearValidationResult();
   } catch (error) {

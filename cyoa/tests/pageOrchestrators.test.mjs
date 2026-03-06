@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { renderHomePage } from "../js/pages/home.page.js";
+import { withBasePath } from "../js/utils/pathResolver.js";
 import {
   __storyPageTestHooks,
   loadStoryPageData,
@@ -84,7 +85,7 @@ test("page: story.page loadStoryPageData reuses parsed cache per story id", asyn
   const previousFetch = globalThis.fetch;
   let fetchCount = 0;
 
-  const markdown = `# Cached Story
+  const storyContent = `# Cached Story
 
 ## Keywords
 - one
@@ -109,14 +110,40 @@ End
 Done
 
 ### Choices
+1. Continue -> 3
+
+## Chapter 3
+### Title
+No Image Chapter
+
+### Content
+Still part of the story.
+
+### Choices
 The End`;
 
-  globalThis.fetch = async () => {
+  globalThis.fetch = async (url) => {
     fetchCount += 1;
+
+    if (String(url).includes("/assets/stories/images/metadata-images.json")) {
+      return {
+        ok: true,
+        async json() {
+          return [
+            {
+              storyNumber: 901,
+              firstChapter: { chapterNumber: 1 },
+              endings: [{ chapterNumber: 2 }],
+            },
+          ];
+        },
+      };
+    }
+
     return {
       ok: true,
       async text() {
-        return markdown;
+        return storyContent;
       },
     };
   };
@@ -126,11 +153,16 @@ The End`;
 
     const first = await loadStoryPageData({ storyId: "901", chapterId: "1" });
     const second = await loadStoryPageData({ storyId: "901", chapterId: "2" });
+    const third = await loadStoryPageData({ storyId: "901", chapterId: "3" });
 
-    assert.equal(fetchCount, 1);
+    assert.equal(fetchCount, 2);
     assert.equal(__storyPageTestHooks.getParsedStoryCacheSize(), 1);
     assert.equal(first.chapter?.title, "Start");
     assert.equal(second.chapter?.title, "End");
+    assert.equal(third.chapter?.title, "No Image Chapter");
+    assert.deepEqual(first.chapterImagePaths, [withBasePath("/assets/stories/901/1.webp")]);
+    assert.deepEqual(second.chapterImagePaths, [withBasePath("/assets/stories/901/2.webp")]);
+    assert.equal(third.chapterImagePaths, null);
   } finally {
     __storyPageTestHooks.clearParsedStoryCache();
     globalThis.fetch = previousFetch;
