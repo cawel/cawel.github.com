@@ -93,9 +93,28 @@ pointer-events:none;
 
 /* Result */
 
+.reaction-area{
+margin-top:6px;
+margin-bottom:30px;
+}
+
+.reaction-title{
+font-size:18px;
+font-weight:700;
+margin-bottom:8px;
+color:#8ed9ff;
+text-shadow:0 0 10px rgba(142,217,255,0.25);
+}
+
+.reaction-panel{
+background:#171a22;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,0.3);
+}
+
 .result{
 text-align:center;
-margin-top:18px;
 font-size:18px;
 font-weight:600;
 min-height:24px;
