@@ -111,13 +111,20 @@ background:#171a22;
 padding:20px;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,0.3);
+height:110px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
 }
 
 .result{
 text-align:center;
 font-size:18px;
 font-weight:600;
-min-height:24px;
+line-height:1.4;
+white-space:pre-line;
+max-width:100%;
 }
 
 /* Info */
@@ -127,6 +134,7 @@ background:linear-gradient(135deg,#1e355f,#1b2f52);
 border:1px solid #4a6da8;
 padding:12px 14px;
 border-radius:10px;
+margin-top:-12px;
 margin-bottom:10px;
 text-align:center;
 color:#eaf2ff;
@@ -164,10 +172,11 @@ text-shadow:0 0 10px rgba(142,217,255,0.25);
 }
 
 .log{
-background:#171a22;
+background:#131822;
 padding:20px;
 border-radius:10px;
 box-shadow:0 4px 14px rgba(0,0,0,0.3);
+border:1px solid #252d3b;
 }
 
 .log ul{
@@ -177,6 +186,8 @@ padding-left:18px;
 
 .log li{
 margin-bottom:4px;
+color:#a4adbf;
+font-size:15px;
 }
 
 /* Footer */

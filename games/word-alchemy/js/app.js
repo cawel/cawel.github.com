@@ -7,6 +7,20 @@ const timings = {
   DISCOVERY_ANIMATION_MS: 2000,
 };
 
+const FAILED_COMBINES_BEFORE_HINT = 3;
+const NO_EFFECT_MESSAGES = [
+  "The potion yawns and goes back to sleep.",
+  "The lab politely declines this experiment.",
+  "Science looked at that and took a coffee break.",
+  "Your beakers made eye contact and did nothing.",
+  "A dramatic fizz was scheduled, then canceled.",
+  "The universe says: nice try, alchemist.",
+  "The ingredients filed a motion to remain separate.",
+  "A tiny goblin shook its head and vanished.",
+  "That combo has the charisma of wet cardboard.",
+  "Your reaction produced premium-grade disappointment.",
+];
+
 const grid = document.getElementById("elements");
 const resultDiv = document.getElementById("result");
 const log = document.getElementById("log");
@@ -54,6 +68,12 @@ document.documentElement.style.setProperty(
 
 const state = createGameState(starting, recipes);
 const renderer = createRenderer({ grid, resultDiv, log, counter, info, lab });
+let failedCombines = 0;
+
+function getRandomNoEffectMessage() {
+  const randomIndex = Math.floor(Math.random() * NO_EFFECT_MESSAGES.length);
+  return NO_EFFECT_MESSAGES[randomIndex];
+}
 
 function refreshElements() {
   renderer.renderElements(
@@ -73,6 +93,7 @@ function onSelectElement(word) {
   }
 
   if (outcome.result) {
+    failedCombines = 0;
     renderer.showCombination(outcome.first, outcome.second, outcome.result);
 
     if (outcome.isNew) {
@@ -87,15 +108,19 @@ function onSelectElement(word) {
       }
     }
   } else {
+    failedCombines += 1;
     const hint = state.getHint();
+    const noEffectMessage = getRandomNoEffectMessage();
 
-    if (hint) {
+    if (hint && failedCombines >= FAILED_COMBINES_BEFORE_HINT) {
       renderer.showMessage(
-        `Nothing happens. Hint: try ${hint.first} + ${hint.second}.`,
+        `${noEffectMessage}\nHint: try ${hint.first} + ${hint.second}.`,
       );
+    } else if (hint) {
+      renderer.showMessage(noEffectMessage);
     } else {
       renderer.showMessage(
-        "Nothing happens. No new combinations are currently possible with discovered elements.",
+        `${noEffectMessage} No new combinations are currently possible with discovered elements.`,
       );
     }
   }

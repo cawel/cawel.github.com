@@ -26,7 +26,7 @@ export function createRenderer({ grid, resultDiv, log, counter, info, lab }) {
     },
 
     showCombination(first, second, result) {
-      resultDiv.innerHTML = `${first} + ${second} → <b>${result}</b>`;
+      resultDiv.innerHTML = `${first} + ${second}&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;<b>${result}</b>`;
     },
 
     showMessage(text) {
