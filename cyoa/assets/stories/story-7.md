@@ -7,63 +7,85 @@
 
 ## Chapter 1
 ### Title
-The Attic Door
+The Key Under the Moonbeam
 
 ### Content
-Rain rattles the old townhouse windows while your cat, Whiskers, sits in the hallway staring at a door you’ve never seen open. It’s the narrow attic door at the top of the stairs, painted the same color as the wall, easy to miss in daylight and impossible to ignore tonight.
-
-Whiskers lets out a short chirp, then paws at a tiny brass key on the floorboards. The key wasn’t there this morning. A draft carries the smell of cedar and something sweet, like warm milk and dust.
-
-You can follow Whiskers up and unlock the attic, or ignore the strange invitation and carry Whiskers back downstairs.
+At exactly midnight, you—Whiskers, guardian of this old house—bat a brass key out of a crack beneath the attic window. The runes on it glow whenever you face the cedar wardrobe. Downstairs, your family sleeps. The youngest child had nightmares again, and you promised yourself no shadow would touch this home tonight.
 
 ### Choices
-1. Unlock the attic door and follow Whiskers inside -> 2
-2. Carry Whiskers downstairs and wait out the storm -> 3
+1. Slide the key into the wardrobe lock -> 2
+2. Carry the key to Grandma’s trunk of old letters -> 3
 
 ## Chapter 2
 ### Title
-The Star Map Room
+The Hidden Hall
 
 ### Content
-The attic is nothing like storage. Lanterns glow without flames, books are stacked in perfect circles, and a giant map of the night sky is pinned across the floorboards. Each constellation is embroidered in silver thread that shifts when you blink.
-
-Whiskers trots to the center and taps one star with a paw. The thread lights up, then a small hidden drawer slides open from an old trunk. Inside is a velvet collar with a moon-shaped tag engraved with a single word: *Keeper*.
-
-The room hums softly, waiting. You can place the collar on Whiskers and trust this strange place, or close the trunk and leave before anything else changes.
+The wardrobe opens into a moonlit hallway lined with portraits of past guardian cats. A silver moth lands on your nose and says, "You are the keybearer now. The dream-thief comes before dawn." At the corridor’s end wait two doors: one with a bell sigil, one with a pawprint sigil.
 
 ### Choices
-1. Place the moon collar on Whiskers -> 4
-2. Close everything and leave the attic immediately -> 3
+1. Enter the bell-marked door -> 4
+2. Enter the pawprint door -> 5
 
 ## Chapter 3
 ### Title
-The Ordinary Night
+Grandma’s Letters
 
 ### Content
-You head downstairs, telling yourself it’s just thunder and shadows. Whiskers settles on the couch, but keeps one eye on the stairwell as if listening for footsteps from above.
-
-At midnight, the house goes quiet—too quiet. The clock stops. The storm fades. Then, from the attic, three soft chimes ring out and stop.
-
-In the morning, the brass key is gone. So is Whiskers.
-
-You race back to the attic door and find it unlocked.
+You pry open Grandma’s trunk and find letters describing your role directly: each generation chooses one house cat to guard children from dream predators. The latest letter names tonight’s threat—the Shadow Owl—and marks a roof path to intercept it. You tuck the map under your paw and sprint back to the wardrobe.
 
 ### Choices
-1. Open the attic and search for Whiskers -> 2
+1. Race to the nursery roof and attack immediately -> 6
+2. Return to the hidden hall and prepare properly -> 2
 
 ## Chapter 4
 ### Title
-Keeper of the House
+Bell Tower Chamber
 
 ### Content
-The moon collar clicks into place, and the star map brightens until the attic glows like dawn. Whiskers arches, then bumps your hand with absolute confidence.
+In a miniature tower above the house, enchanted bells hang over a map of every sleeping room. Ringing the right sequence wraps bedrooms in dreamlight; ringing the wrong one amplifies fear. The silver moth teaches you the sequence once, then says, "Trust memory, not panic."
 
-A line of silver light travels from the map to the walls of the house below. You suddenly understand: this room keeps the house safe, and Whiskers has been its quiet guardian all along. The key chose you tonight because guardians need witnesses.
+### Choices
+1. Ring the sequence exactly to shield the family -> 8
+2. Rush the bells by instinct and charge the owl -> 6
 
-Whiskers sits beside the map and flicks his tail toward an empty stool. You take the seat, and the silver threads settle into a calm, steady shine.
+## Chapter 5
+### Title
+Pawprint Garden
 
-By morning, the storm has passed. The house feels warmer. Whiskers naps in a sunbeam, moon tag glinting, as if nothing unusual happened at all.
+### Content
+The pawprint door opens onto a floating rooftop garden. A spectral tomcat appears and offers you a choice: moonmint for speed in combat, or starlace dew for patience and precision. The Shadow Owl’s cry cuts across the chimneys, closer now.
+
+### Choices
+1. Take moonmint and leap straight into the fight -> 6
+2. Take starlace dew and follow the tomcat’s moon-road calling -> 7
+
+## Chapter 6
+### Title
+The Shadow Owl
+
+### Content
+You launch first and fast, but the Shadow Owl is bigger than rumor, stitched from soot and old grief. It catches you midair, hurls you across slate, and knocks the key from your mouth. The nursery windows dim. You crawl toward the sill as dawn breaks, hear the child whisper your name once, and then your watch ends forever.
 
 ### Choices
 The End
 
+## Chapter 7
+### Title
+Keeper Between Worlds
+
+### Content
+You follow the tomcat through moon roads that run above sleeping towns. He tells you only long-road guardians can hunt dream-thieves at their source. If you stay, you can protect many homes, including your own—but you may never again sleep by your family’s fire. You choose duty on the wider road, and every midnight after, you patrol the rooftops with stars in your eyes.
+
+### Choices
+The End
+
+## Chapter 8
+### Title
+Purr of Dawn
+
+### Content
+You ring the true bell sequence and cast a lattice of dreamlight over the house. When the Shadow Owl dives, you meet it inside the glowing net and tear its shadow-weave apart. It unravels into harmless soot on the wind. At sunrise, the brass key cools to ordinary metal, and the youngest child wakes smiling with your name on their lips. You curl at the foot of the bed, victorious, pretending you were never worried.
+
+### Choices
+The End

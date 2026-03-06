@@ -7,66 +7,85 @@
 
 ## Chapter 1
 ### Title
-Lanterns at Dusk
+The Return of Thirteen
 
 ### Content
-At the edge of your village, a carnival appears overnight where no road exists. Brass lanterns swing in silence, painted horses blink with glass eyes, and a ticket booth waits with your name already written on a stub. The air smells like sugar, rain, and machine oil.
+You come back to the empty fairground with one purpose: find your sibling, Lena, who vanished here last winter at exactly 2:17 AM. The townsfolk called it an accident. You called it a lie. Tonight, the forbidden carnival returns as the church clock strikes thirteen, and brass gates rise from bare soil like teeth. A masked ringmaster hands you two tokens—one stamped with a heart, one with an hourglass—and says, "Choose what you want more: the person you lost, or the truth about the minute you lost them."
 
 ### Choices
-1. Enter through the grand gate -> 2
-2. Circle around the tents and look for another way in -> 3
+1. Take the heart token and enter the Mirror Maze -> 2
+2. Take the hourglass token and board the Ferris wheel -> 3
 
 ## Chapter 2
 ### Title
-The Midnight Ringmaster
+The Mirror Maze of Echoes
 
 ### Content
-Inside the main tent, a ringmaster in a stitched velvet coat welcomes you as if you are a guest of honor. A massive clock hangs above the stage, but its hands spin backward. "Tonight," he says, "you may win one wish—if you can find the Lost Minute."
+Inside the maze, every reflection shows a different memory of Lena: laughing at summer fireworks, arguing with you at the dock, turning back over her shoulder on the night she disappeared. At the center, a locked glass cabinet holds a silver key tagged "2:17." A whisper follows you through the mirrors: "You can recover her, but never for free."
 
 ### Choices
-1. Ask where the Lost Minute was last seen -> 4
-2. Ignore the ringmaster and investigate the spinning clock -> 5
+1. Take the silver key and head for the Wishing Engine -> 4
+2. Leave the key and seek a safer path through the carnival -> 5
 
 ## Chapter 3
 ### Title
-Behind the Painted Tents
+The Wheel Above Time
 
 ### Content
-You slip between striped tents and discover the carnival’s hidden machinery: belts, gears, and pistons humming like a mechanical heartbeat. In the shadows sits a tiny fortune wagon with its door cracked open and a warm candle flickering inside.
+From the Ferris wheel summit, the whole carnival reveals its machinery—gears the size of houses, belts turning beneath the earth, and a central engine pulsing with pale fire. The conductor takes your hourglass token and points to a glowing dial: 2:17 AM, the exact minute Lena disappeared. "She entered the Wishing Engine," he says. "She traded herself to reverse someone else’s loss. If you want her back, start there."
 
 ### Choices
-1. Enter the fortune wagon -> 4
-2. Follow the sound of gears into the engine shed -> 5
+1. Pay one year of your future to learn the full ritual -> 4
+2. Keep your years and seek another way to free trapped wishers -> 5
 
 ## Chapter 4
 ### Title
-The Fortune Keeper
+The Wishing Engine
 
 ### Content
-A masked fortune keeper deals three cards onto a velvet table: Moon, Key, and Flame. "The Lost Minute is not lost," she whispers. "It is locked." She points to a narrow stairway descending beneath the carnival floor, where a faint ticking rises like distant footsteps.
+You reach a cathedral-sized machine of brass ribs and humming springs. The silver key unlocks a panel engraved with Lena’s initials and the same timestamp: 2:17. The ringmaster confirms what you feared: Lena is not dead, but suspended inside the engine’s debt ledger, bound to a wish she made for someone else. You can pull her free by paying a personal cost now, or refuse and try to break the cycle entirely.
 
 ### Choices
-1. Take the Key card and go below -> 6
-2. Take the Flame card and confront the ringmaster first -> 5
+1. Pay with your happiest memory to release Lena immediately -> 8
+2. Refuse the direct bargain and find the clockmaker’s reset method -> 5
 
 ## Chapter 5
 ### Title
-The Clock’s True Heart
+The Clockmaker’s Terms
 
 ### Content
-In the engine chamber you find the heart of the carnival: a crystal pendulum suspended over a basin of liquid light. The ringmaster arrives and drops his smile. He admits the carnival can only exist by stealing one minute from every visitor who enters. Yours is next.
+In a dim striped tent, the old clockmaker listens while you explain Lena, the minute, and the debt ledger. He nods once and sets a winding rod in your hand. "The master spring can reset every unpaid wish before dawn," he says. "That includes your sibling. But if you force the engine or rush the sequence, everyone bound inside it fractures with the mechanism." The sky outside is already paling.
 
 ### Choices
-The End
-
+1. Follow the reset sequence exactly at the carousel axle -> 7
+2. Ignore the sequence and force the engine to obey you -> 6
 
 ## Chapter 6
 ### Title
-One Minute Returned
+Shattered Minute
 
 ### Content
-You release the Lost Minute. Clocks across the carnival fall silent, then chime in perfect unison. Tents fold like paper, lights fade, and dawn spills over an empty field. In your hand is the old ticket stub, now blank except for one line: "Time given back is never truly lost."
+You jam the winding rod into the wrong gear and command the engine to release Lena now. The machine screams. Mirrors crack across the grounds, the calliope pitch drops into a funeral note, and trapped wishers flicker like torn film. You see Lena for one heartbeat—reaching for you—before the mechanism detonates in red sparks. At dawn, rescuers find only scorched brass and your pendant in the ash. The minute 2:17 survives you.
 
 ### Choices
 The End
 
+## Chapter 7
+### Title
+Dawn Reset
+
+### Content
+You repeat the clockmaker’s sequence without improvising: quarter-turn, pause, full turn, lock. At sunrise, the master spring settles and the carnival exhales. Debt ledgers burn to ash. Gates sink into the earth. Lena stumbles out of thinning mist, cold and shaken but alive, and grabs your hand like she never intends to let go again. You walk home through ordinary morning light, carrying grief that finally has somewhere to rest.
+
+### Choices
+The End
+
+## Chapter 8
+### Title
+A Memory for a Life
+
+### Content
+You place your hand on the brass plate and pay with your happiest memory. The engine accepts. Lena steps free, breathing, crying, real. She tells you about a lake day from your childhood—the day you swore you would always protect each other—and you smile even as you realize the memory is gone from you forever. You saved her. You kept your promise. You just can’t remember making it.
+
+### Choices
+The End
