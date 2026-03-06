@@ -125,7 +125,7 @@ The End`;
   globalThis.fetch = async (url) => {
     fetchCount += 1;
 
-    if (String(url).includes("/assets/stories/images/metadata-images.json")) {
+    if (String(url).includes("/assets/stories/metadata-images.json")) {
       return {
         ok: true,
         async json() {

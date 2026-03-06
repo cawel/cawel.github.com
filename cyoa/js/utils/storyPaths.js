@@ -11,7 +11,7 @@ export function getStoryContentPath(storyId) {
 }
 
 export function getStoriesImageMetadataPath() {
-  return withBasePath("/assets/stories/images/metadata-images.json");
+  return withBasePath("/assets/stories/metadata-images.json");
 }
 
 export function getStoryChapterImagePaths(storyId, chapterNumber) {
