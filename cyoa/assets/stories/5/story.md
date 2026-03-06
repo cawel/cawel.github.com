@@ -10,7 +10,7 @@
 Steps Below the Harbor
 
 ### Content
-You descend the barnacled steps that appear only at extreme low tide, carrying a storm ledger for your harbor council. The council sent you because hurricanes have grown deadlier each season, and rumor says the Sunken Library preserves a weather codex that can predict impossible tides. At the bronze doors, a carved warning reads: "When the third bell tolls, leave or be cataloged."
+You descend the barnacled steps that appear only at extreme low tide, salt wind stinging your face and the harbor bells groaning behind you. You carry a storm ledger for your council, because each hurricane season has grown deadlier and this one may break the city. Rumor says the Sunken Library keeps a weather codex that predicts impossible tides. At the bronze doors, a carved warning catches your lantern light: "When the third bell tolls, leave or be cataloged."
 
 ### Choices
 1. Search the mapped halls for the weather codex -> 2

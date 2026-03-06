@@ -10,7 +10,7 @@
 The Return of Thirteen
 
 ### Content
-You come back to the empty fairground with one purpose: find your sibling, Lena, who vanished here last winter at exactly 2:17 AM. The townsfolk called it an accident. You called it a lie. Tonight, the forbidden carnival returns as the church clock strikes thirteen, and brass gates rise from bare soil like teeth. A masked ringmaster hands you two tokens—one stamped with a heart, one with an hourglass—and says, "Choose what you want more: the person you lost, or the truth about the minute you lost them."
+You come back to the empty fairground with one purpose: find your sibling, Lena, who vanished here last winter at exactly 2:17 AM. The townsfolk called it an accident. You called it a lie. Tonight, when the church clock strikes thirteen, brass gates surge from bare soil like teeth and calliope music shivers through the fog. A masked ringmaster steps from the steam, offers two tokens—one stamped with a heart, one with an hourglass—and says, "Choose what you want more: the person you lost, or the truth about the minute you lost them."
 
 ### Choices
 1. Take the heart token and enter the Mirror Maze -> 2

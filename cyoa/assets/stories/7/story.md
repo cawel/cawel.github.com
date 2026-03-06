@@ -10,7 +10,7 @@
 The Key Under the Moonbeam
 
 ### Content
-At exactly midnight, you—Whiskers, guardian of this old house—bat a brass key out of a crack beneath the attic window. The runes on it glow whenever you face the cedar wardrobe. Downstairs, your family sleeps. The youngest child had nightmares again, and you promised yourself no shadow would touch this home tonight.
+At exactly midnight, you—Whiskers, guardian of this old house—hook a brass key from a crack beneath the attic window and pin it under your paw. Its runes glow whenever you face the cedar wardrobe. Downstairs, your family sleeps in a row of slow breaths. The youngest child had nightmares again, and you swore no shadow would touch this home tonight.
 
 ### Choices
 1. Slide the key into the wardrobe lock -> 2

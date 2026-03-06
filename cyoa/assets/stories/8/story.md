@@ -10,7 +10,7 @@
 The Briefing Before Descent
 
 ### Content
-You descend toward the Underforge carrying a joint writ from the surface council and the dwarven clans. Your mission is explicit: prevent civil war, stabilize the forge-heart, and keep the Crown of the Underforge from becoming a weapon. Clan-Mother Brynja is your primary ally below—if you can reach her before rebel cells and rogue mages seize the vault.
+You descend toward the Underforge carrying a joint writ from the surface council and the dwarven clans, heat already rising through your boots. Your mission is explicit: prevent civil war, stabilize the forge-heart, and keep the Crown of the Underforge from becoming a weapon. Clan-Mother Brynja is your primary ally below—if you can reach her before rebel cells and rogue mages seize the vault.
 
 ### Choices
 1. Seek Brynja in the Oathhall and enter with lawful support -> 2
@@ -36,7 +36,7 @@ You move fast through collapsed wizard routes, stepping over old wards and fresh
 
 ### Choices
 1. Push onward and seize the crown before anyone else -> 6
-2. Change course and seek Brynja’s alliance after all -> 2
+2. Follow sabotage traces to the archive chamber first -> 4
 
 ## Chapter 4
 ### Title

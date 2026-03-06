@@ -10,7 +10,7 @@
 Arrival at Perseid
 
 ### Content
-You command the research vessel Asterion on a high-risk mission: assess the Perseid Gate before the flare window closes. The gate is older than any human record and recently started emitting unstable harmonics near inhabited routes. Command’s order is clear—determine whether it can be stabilized or must be destroyed.
+You command the research vessel Asterion on a high-risk mission: assess the Perseid Gate before the flare window closes. Outside the bridge glass, the ring hangs like a broken star and hums in your teeth. It is older than any human record, and its unstable harmonics now ripple near inhabited routes. Command’s order is clear—determine whether it can be stabilized or must be destroyed before civilian traffic wakes.
 
 ### Choices
 1. Begin close-range harmonic mapping immediately -> 2
