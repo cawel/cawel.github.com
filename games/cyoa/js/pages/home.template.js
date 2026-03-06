@@ -56,6 +56,7 @@ function renderStoriesGrid(stories) {
  */
 export function renderHomePageTemplate(stories) {
   const storiesHtml = renderStoriesGrid(stories);
+  const currentYear = new Date().getFullYear();
 
   return renderPageContainer({
     mainClass: "home-main",
@@ -65,7 +66,7 @@ export function renderHomePageTemplate(stories) {
       <div class="stories-grid" role="list">
         ${storiesHtml}
       </div>
-      <footer class="home-footer">Choose Your Own Adventure | 2026</footer>
+      <footer class="home-footer">Choose Your Own Adventure | ${currentYear}</footer>
     `,
   });
 }

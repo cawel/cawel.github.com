@@ -25,13 +25,20 @@
 
 .home-footer {
   margin-top: auto;
-  padding-top: 18px;
+  padding: 14px 18px;
+  border-radius: 8px;
   text-align: center;
-  color: var(--text-alt);
-  opacity: 0.65;
+  color: var(--story-choice-text-color);
+  letter-spacing: 0.02em;
   font-size: 14px;
-  border-top: 1px solid
-    color-mix(in srgb, var(--story-title-color) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--story-border) 72%, var(--border));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--story-bg) 88%, var(--bg-alt) 12%),
+    color-mix(in srgb, var(--story-bg) 78%, var(--bg-muted) 22%)
+  );
+  box-shadow: inset 0 1px 0
+    color-mix(in srgb, var(--story-title-color) 14%, transparent);
 }
 
 .story-card {
@@ -140,5 +147,10 @@
 
   .story-card-meta {
     margin-left: 28px;
+  }
+
+  .home-footer {
+    padding: 12px 14px;
+    font-size: 13px;
   }
 }
