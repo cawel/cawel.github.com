@@ -4,13 +4,14 @@
 
 import { withBasePath } from "./pathResolver.js";
 
+const CHAPTER_IMAGE_EXTENSIONS = ["webp"];
+
 export function getStoryMarkdownPath(storyId) {
   return withBasePath(`/assets/stories/${storyId}/story.md`);
 }
 
 export function getStoryChapterImagePaths(storyId, chapterNumber) {
-  const fileExtensions = ["webp", "png", "jpg", "jpeg", "avif"];
-  return fileExtensions.map((extension) =>
+  return CHAPTER_IMAGE_EXTENSIONS.map((extension) =>
     withBasePath(`/assets/stories/${storyId}/${chapterNumber}.${extension}`),
   );
 }
