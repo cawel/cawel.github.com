@@ -5,6 +5,8 @@ export function createRenderer({
   log,
   counter,
   completionRate,
+  discoveryStreak,
+  hintsUsed,
   lab,
 }) {
   return {
@@ -61,6 +63,14 @@ export function createRenderer({
 
     updateCompletion(percentage) {
       completionRate.textContent = `${percentage}%`;
+    },
+
+    updateDiscoveryStreak(streakCount) {
+      discoveryStreak.textContent = `${streakCount}`;
+    },
+
+    updateHintsUsed(hintsUsedCount) {
+      hintsUsed.textContent = `${hintsUsedCount}`;
     },
 
     hideReactionIntro() {

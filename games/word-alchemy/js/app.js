@@ -26,6 +26,8 @@ const reactionIntro = document.getElementById("reactionIntro");
 const log = document.getElementById("log");
 const counter = document.getElementById("counter");
 const completionRate = document.getElementById("completionRate");
+const discoveryStreak = document.getElementById("discoveryStreak");
+const hintsUsed = document.getElementById("hintsUsed");
 const lab = document.querySelector(".laboratory");
 
 const requiredNodes = {
@@ -35,6 +37,8 @@ const requiredNodes = {
   log,
   counter,
   completionRate,
+  discoveryStreak,
+  hintsUsed,
   laboratory: lab,
 };
 
@@ -71,9 +75,13 @@ const renderer = createRenderer({
   log,
   counter,
   completionRate,
+  discoveryStreak,
+  hintsUsed,
   lab,
 });
 let failedCombines = 0;
+let currentDiscoveryStreak = 0;
+let usedHintsCount = 0;
 const totalElementCount = state.getTotalElementCount();
 
 function updateProgress() {
@@ -84,6 +92,8 @@ function updateProgress() {
 
   renderer.updateCounter(discoveredCount, totalElementCount);
   renderer.updateCompletion(completionPercentage);
+  renderer.updateDiscoveryStreak(currentDiscoveryStreak);
+  renderer.updateHintsUsed(usedHintsCount);
 }
 
 function getRandomNoEffectMessage() {
@@ -113,29 +123,38 @@ function onSelectElement(word) {
     renderer.showCombination(outcome.first, outcome.second, outcome.result);
 
     if (outcome.isNew) {
+      currentDiscoveryStreak += 1;
       renderer.hideReactionIntro();
       renderer.animateDiscovery(timings.DISCOVERY_ANIMATION_MS);
       renderer.addLog(
         `${outcome.first} + ${outcome.second} → ${outcome.result}`,
       );
       updateProgress();
+    } else {
+      currentDiscoveryStreak = 0;
+      updateProgress();
     }
   } else {
     failedCombines += 1;
+    currentDiscoveryStreak = 0;
     const hint = state.getHint();
     const noEffectMessage = getRandomNoEffectMessage();
 
     if (hint && failedCombines >= FAILED_COMBINES_BEFORE_HINT) {
+      usedHintsCount += 1;
       renderer.showMessageWithHint(
         noEffectMessage,
         `Hint: try ${hint.first} + ${hint.second}.`,
       );
+      updateProgress();
     } else if (hint) {
       renderer.showMessage(noEffectMessage);
+      updateProgress();
     } else {
       renderer.showMessage(
         `${noEffectMessage} No new combinations are currently possible with discovered elements.`,
       );
+      updateProgress();
     }
   }
 

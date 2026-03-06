@@ -162,7 +162,7 @@ margin-top:30px;
 
 .progress-row{
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:repeat(4,minmax(0,1fr));
 gap:14px;
 margin-bottom:12px;
 }
@@ -255,6 +255,14 @@ grid-template-columns:1fr;
 
 .completion-value{
 font-size:40px;
+}
+
+}
+
+@media (max-width:900px){
+
+.progress-row{
+grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
 }
