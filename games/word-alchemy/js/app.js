@@ -27,6 +27,7 @@ const log = document.getElementById("log");
 const counter = document.getElementById("counter");
 const completionRate = document.getElementById("completionRate");
 const discoveryStreak = document.getElementById("discoveryStreak");
+const bestDiscoveryStreak = document.getElementById("bestDiscoveryStreak");
 const hintsUsed = document.getElementById("hintsUsed");
 const lab = document.querySelector(".laboratory");
 
@@ -38,6 +39,7 @@ const requiredNodes = {
   counter,
   completionRate,
   discoveryStreak,
+  bestDiscoveryStreak,
   hintsUsed,
   laboratory: lab,
 };
@@ -76,11 +78,13 @@ const renderer = createRenderer({
   counter,
   completionRate,
   discoveryStreak,
+  bestDiscoveryStreak,
   hintsUsed,
   lab,
 });
 let failedCombines = 0;
 let currentDiscoveryStreak = 0;
+let bestStreakReached = 0;
 let usedHintsCount = 0;
 const totalElementCount = state.getTotalElementCount();
 
@@ -93,6 +97,7 @@ function updateProgress() {
   renderer.updateCounter(discoveredCount, totalElementCount);
   renderer.updateCompletion(completionPercentage);
   renderer.updateDiscoveryStreak(currentDiscoveryStreak);
+  renderer.updateBestDiscoveryStreak(bestStreakReached);
   renderer.updateHintsUsed(usedHintsCount);
 }
 
@@ -124,6 +129,7 @@ function onSelectElement(word) {
 
     if (outcome.isNew) {
       currentDiscoveryStreak += 1;
+      bestStreakReached = Math.max(bestStreakReached, currentDiscoveryStreak);
       renderer.hideReactionIntro();
       renderer.animateDiscovery(timings.DISCOVERY_ANIMATION_MS);
       renderer.addLog(

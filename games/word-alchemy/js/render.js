@@ -6,6 +6,7 @@ export function createRenderer({
   counter,
   completionRate,
   discoveryStreak,
+  bestDiscoveryStreak,
   hintsUsed,
   lab,
 }) {
@@ -67,6 +68,10 @@ export function createRenderer({
 
     updateDiscoveryStreak(streakCount) {
       discoveryStreak.textContent = `${streakCount}`;
+    },
+
+    updateBestDiscoveryStreak(bestStreakCount) {
+      bestDiscoveryStreak.textContent = `Best: ${bestStreakCount}`;
     },
 
     updateHintsUsed(hintsUsedCount) {

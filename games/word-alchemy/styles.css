@@ -191,6 +191,12 @@ line-height:1;
 color:#e6e8ee;
 }
 
+.stat-subtle{
+margin-top:8px;
+font-size:13px;
+color:#8f99ad;
+}
+
 .completion-value{
 font-size:46px;
 font-weight:800;
