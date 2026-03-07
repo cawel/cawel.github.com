@@ -4,7 +4,11 @@ import test from "node:test";
 import { recipes, starting } from "../js/game/data/recipes.js";
 import { findStuckStates } from "../js/game/state/index.js";
 import {
+  MAX_FAN_IN_PER_RESULT,
+  MAX_FAN_OUT_PER_INGREDIENT,
   MAX_DISCOVERY_STEPS,
+  MAX_REDUNDANT_RECIPE_RATIO,
+  MAX_SAME_TIER_FAN_IN_PER_RESULT,
   MIN_REUSABLE_RESULT_RATIO,
   RECIPE_TEST_RULES,
 } from "../js/game/data/recipe-rules.js";
@@ -74,7 +78,19 @@ function canonicalPairKey(first, second) {
 test("recipe rule catalog is explicit and complete", () => {
   assert.deepEqual(
     RECIPE_TEST_RULES.map((rule) => rule.id),
-    ["R01", "R02", "R03", "R04", "R05", "R06"],
+    [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R11",
+      "R12",
+      "R16",
+    ],
   );
 });
 
@@ -91,11 +107,21 @@ test("all listed recipe rules pass", () => {
   const invalidSelfCombos = entries
     .filter((entry) => entry.first === entry.second)
     .map((entry) => entry.key);
-  assert.deepEqual(invalidSelfCombos, [], "R01 failed: self-combo recipes found");
+  assert.deepEqual(
+    invalidSelfCombos,
+    [],
+    "R01 failed: self-combo recipes found",
+  );
 
   // R02: All Results Reachable
-  const unreachable = [...produced].filter((element) => !reachable.has(element));
-  assert.deepEqual(unreachable, [], "R02 failed: unreachable elements detected");
+  const unreachable = [...produced].filter(
+    (element) => !reachable.has(element),
+  );
+  assert.deepEqual(
+    unreachable,
+    [],
+    "R02 failed: unreachable elements detected",
+  );
 
   // R03: Canonical Pair Uniqueness
   const byPair = new Map();
@@ -119,7 +145,11 @@ test("all listed recipe rules pass", () => {
     }
   });
 
-  assert.deepEqual(pairConflicts, [], "R03 failed: canonical pair conflicts found");
+  assert.deepEqual(
+    pairConflicts,
+    [],
+    "R03 failed: canonical pair conflicts found",
+  );
 
   // R04: Reusable Results Ratio
   const reusableCount = [...produced].filter((element) =>
@@ -147,5 +177,105 @@ test("all listed recipe rules pass", () => {
 
   // R06: No Stuck Discovery States
   const stuckStates = findStuckStates(starting, recipes);
-  assert.deepEqual(stuckStates, [], "R06 failed: stuck discovery states detected");
+  assert.deepEqual(
+    stuckStates,
+    [],
+    "R06 failed: stuck discovery states detected",
+  );
+
+  // R07: Canonical Pair Key Order
+  const nonCanonicalKeys = entries
+    .filter((entry) => !(entry.first < entry.second))
+    .map((entry) => entry.key);
+  assert.deepEqual(
+    nonCanonicalKeys,
+    [],
+    "R07 failed: non-canonical pair keys found",
+  );
+
+  // R08: Same-Tier Fan-In Cap
+  const sameTierFanIn = new Map();
+  entries.forEach((entry) => {
+    const firstSteps = minSteps.get(entry.first);
+    const secondSteps = minSteps.get(entry.second);
+
+    if (firstSteps == null || secondSteps == null) {
+      return;
+    }
+
+    const tier = Math.max(firstSteps, secondSteps) + 1;
+    const key = `${entry.result}|${tier}`;
+    sameTierFanIn.set(key, (sameTierFanIn.get(key) || 0) + 1);
+  });
+
+  const sameTierFanInViolations = [...sameTierFanIn.entries()]
+    .filter(([, count]) => count > MAX_SAME_TIER_FAN_IN_PER_RESULT)
+    .map(([key, count]) => ({ key, count }));
+
+  assert.deepEqual(
+    sameTierFanInViolations,
+    [],
+    `R08 failed: result-tier fan-in exceeds ${MAX_SAME_TIER_FAN_IN_PER_RESULT}`,
+  );
+
+  // R11: Global Fan-In Cap
+  const fanInByResult = new Map();
+  entries.forEach((entry) => {
+    fanInByResult.set(entry.result, (fanInByResult.get(entry.result) || 0) + 1);
+  });
+
+  const fanInViolations = [...fanInByResult.entries()]
+    .filter(([, count]) => count > MAX_FAN_IN_PER_RESULT)
+    .map(([result, count]) => ({ result, count }));
+
+  assert.deepEqual(
+    fanInViolations,
+    [],
+    `R11 failed: fan-in exceeds ${MAX_FAN_IN_PER_RESULT}`,
+  );
+
+  // R12: Ingredient Fan-Out Cap
+  const fanOutByIngredient = new Map();
+  entries.forEach((entry) => {
+    fanOutByIngredient.set(
+      entry.first,
+      (fanOutByIngredient.get(entry.first) || 0) + 1,
+    );
+    fanOutByIngredient.set(
+      entry.second,
+      (fanOutByIngredient.get(entry.second) || 0) + 1,
+    );
+  });
+
+  const fanOutViolations = [...fanOutByIngredient.entries()]
+    .filter(([, count]) => count > MAX_FAN_OUT_PER_INGREDIENT)
+    .map(([ingredient, count]) => ({ ingredient, count }));
+
+  assert.deepEqual(
+    fanOutViolations,
+    [],
+    `R12 failed: ingredient fan-out exceeds ${MAX_FAN_OUT_PER_INGREDIENT}`,
+  );
+
+  // R16: Redundancy Ratio Cap
+  const essentialCount = entries.filter((entry) => {
+    const firstSteps = minSteps.get(entry.first);
+    const secondSteps = minSteps.get(entry.second);
+    const resultSteps = minSteps.get(entry.result);
+
+    if (firstSteps == null || secondSteps == null || resultSteps == null) {
+      return false;
+    }
+
+    return resultSteps === Math.max(firstSteps, secondSteps) + 1;
+  }).length;
+
+  const redundantCount = entries.length - essentialCount;
+  const redundancyRatio =
+    entries.length === 0 ? 0 : redundantCount / entries.length;
+
+  assert.ok(
+    redundancyRatio <= MAX_REDUNDANT_RECIPE_RATIO,
+    `R16 failed: redundancy ratio ${redundancyRatio.toFixed(2)} exceeds ${MAX_REDUNDANT_RECIPE_RATIO}`,
+  );
 });
