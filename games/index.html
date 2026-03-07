@@ -32,7 +32,12 @@ footer { text-align:center; font-size:13px; padding:14px; background:#eee; margi
 const githubPagesHost = "cawel.github.io";
 const username = "cawel";
 const repo = "cawel.github.com";
-const folderPath = "games"; // empty string for root, or e.g., "apps" for /apps
+
+// Use URL path after hostname, normalize by removing leading slash and index.html.
+const folderPath = window.location.pathname
+  .replace(/^\//, "")
+  .replace(/(?:^|\/)index\.html$/, "")
+  .replace(/\/$/, "");
 
 async function listFolders() {
   const ul = document.getElementById("appsList");
