@@ -316,5 +316,50 @@
         "chatgptPrompt": "Create a hopeful epic-forge finale image, 16:9, ceremonial composition with cinematic lighting. At three oath pillars around the forge-heart, a dwarf leader, wizard envoy, and viewer-protagonist place hands in unison as harmonizing light spirals through runes and stabilizes the molten core. In the background, smiths return to anvils and bridges glow steady again. Emphasize hard-won unity, lawful power-sharing, and renewal after near-collapse. Warm gold-and-iron palette, triumphant but grounded, no text, no watermark."
       }
     ]
+  },
+  {
+    "storyNumber": 9,
+    "storyTitle": "The Fracture Hour",
+    "keywords": ["belt", "loop", "contact"],
+    "imageSpec": {
+      "style": "cinematic hard-sci-fi concept art, industrial asteroid belt lighting, tense atmosphere",
+      "format": "webp",
+      "aspectRatio": "16:9",
+      "targetResolution": "1536x864",
+      "quality": 85,
+      "colorProfile": "sRGB",
+      "firstChapterNoSpoilers": true
+    },
+    "firstChapter": {
+      "chapterNumber": 1,
+      "chapterTitle": "The Alarm You've Heard Before",
+      "chatgptPrompt": "Create a cinematic hard-sci-fi image, 16:9, claustrophobic interior shot aboard an industrial asteroid belt station. A suited protagonist sits upright in a narrow bunk as red alarm lights cycle across corrugated metal walls. The bunk, chair, and half-eaten ration bar are lit in eerie familiarity. Through a porthole, a dense asteroid field is barely visible in cold void. Mood: exhausted dread, déjà vu, urgent tension, no ending spoilers, no text, no watermark."
+    },
+    "endings": [
+      {
+        "chapterNumber": 7,
+        "chapterTitle": "Contact",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a breathtaking hard-sci-fi first-contact ending image, 16:9, wide exterior-interior composition. Through the station's curved observation deck glass, a cluster of luminous alien Fracture entities hold formation in the dark of the asteroid belt, their geometry complex and still. Inside, a lone crew member in a pressure suit stands facing them with one hand raised to the glass, comm open. Artifact is dark. Mood: awe, fragile peace, and the weight of being first. No text, no watermark."
+      },
+      {
+        "chapterNumber": 8,
+        "chapterTitle": "Controlled Burn",
+        "endingType": "bittersweet",
+        "chatgptPrompt": "Create a somber bittersweet sci-fi ending image, 16:9, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one figure silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark."
+      },
+      {
+        "chapterNumber": 9,
+        "chapterTitle": "The Last Loop",
+        "endingType": "very_bad",
+        "chatgptPrompt": "Create a tragic sci-fi disaster ending scene, 16:9, dynamic structural-collapse composition. A belt station breaks apart from within—ring sections separate, support pylons snap, emergency pod bays are sealed and dark, and debris spirals into the void. No explosion, only slow structural failure in silence. Emphasize scale, finality, and isolation with cold black space and fading station lights. No explicit gore, no text, no watermark."
+      },
+      {
+        "chapterNumber": 10,
+        "chapterTitle": "Severance",
+        "endingType": "successful",
+        "chatgptPrompt": "Create a hopeful hard-sci-fi resolution image, 16:9, intimate interior composition. In a dim artifact lab, two crew members stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark."
+      }
+    ]
   }
 ]

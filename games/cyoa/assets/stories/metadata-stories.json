@@ -54,5 +54,12 @@
     "emoji": "🧙",
     "approxTime": "10-15 min",
     "keywords": ["wizards", "dwarves", "dungeons"]
+  },
+  {
+    "number": 9,
+    "title": "The Fracture Hour",
+    "emoji": "⚡",
+    "approxTime": "25-35 min",
+    "keywords": ["belt", "loop", "contact"]
   }
 ]
