@@ -10,7 +10,7 @@
 The Key Under the Moonbeam
 
 ### Content
-At exactly midnight, you—Whiskers, guardian of this old house—hook a brass key from a crack beneath the attic window and pin it under your paw. Its runes glow whenever you face the cedar wardrobe. Downstairs, your family sleeps in a row of slow breaths. The youngest child had nightmares again, and you swore no shadow would touch this home tonight.
+At exactly midnight, you—Whiskers, guardian of this old house—hook a brass key from a crack beneath the attic window and pin it under your paw. The metal is cold and faintly humming, its runes tracing silver-blue light against your fur whenever you face the cedar wardrobe across the attic. Downstairs, your family sleeps in a row of slow, trusting breaths. The youngest child had nightmares again; you heard her cry out twice before settling. Something in tonight's air tastes of ash and old fear. You swore no shadow would touch this home tonight.
 
 ### Choices
 1. Slide the key into the wardrobe lock -> 2
@@ -21,7 +21,7 @@ At exactly midnight, you—Whiskers, guardian of this old house—hook a brass k
 The Hidden Hall
 
 ### Content
-The wardrobe opens into a moonlit hallway lined with portraits of past guardian cats. A silver moth lands on your nose and says, "You are the keybearer now. The dream-thief comes before dawn." At the corridor’s end wait two doors: one with a bell sigil, one with a pawprint sigil.
+The wardrobe opens into a moonlit hallway lined with portraits of past guardian cats, their glass eyes catching starlight. A silver moth lands on your nose; its wings pulse with cold light. "You are the keybearer now," it says. "The dream-thief—a creature that feeds on sleeping children's fears—comes before dawn." At the corridor's end wait two doors: one glowing with a bell sigil, one marked with a pawprint.
 
 ### Choices
 1. Enter the bell-marked door -> 4
@@ -32,18 +32,18 @@ The wardrobe opens into a moonlit hallway lined with portraits of past guardian 
 Grandma’s Letters
 
 ### Content
-You pry open Grandma’s trunk and find letters describing your role directly: each generation chooses one house cat to guard children from dream predators. The latest letter names tonight’s threat—the Shadow Owl—and marks a roof path to intercept it. You tuck the map under your paw and sprint back to the wardrobe.
+You pry open Grandma's trunk and find letters describing your role directly: each generation chooses one house cat to guard children from dream predators. The latest letter names tonight's threat—the Shadow Owl, sketched in the margin as a hunched shape with feathers black as chimney smoke—and marks a roof path to intercept it. A second letter describes a guardian's hall hidden behind the cedar wardrobe, where tools and allies await. You tuck the map under your paw.
 
 ### Choices
 1. Race to the nursery roof and attack immediately -> 6
-2. Return to the hidden hall and prepare properly -> 2
+2. Use the key on the cedar wardrobe to reach the guardian's hall -> 2
 
 ## Chapter 4
 ### Title
 Bell Tower Chamber
 
 ### Content
-In a miniature tower above the house, enchanted bells hang over a map of every sleeping room. Ringing the right sequence wraps bedrooms in dreamlight; ringing the wrong one amplifies fear. The silver moth teaches you the sequence once, then says, "Trust memory, not panic."
+In a miniature tower above the house, enchanted bells hang over a map of every sleeping room. Ringing the right sequence wraps bedrooms in dreamlight; ringing the wrong one amplifies fear. The silver moth teaches you the sequence once, then says, "Trust memory, not panic." Through the tower's tiny window, a vast shadow crosses the moonlit roof—the Shadow Owl is already circling.
 
 ### Choices
 1. Ring the sequence exactly to shield the family -> 8
@@ -54,7 +54,7 @@ In a miniature tower above the house, enchanted bells hang over a map of every s
 Pawprint Garden
 
 ### Content
-The pawprint door opens onto a floating rooftop garden. A spectral tomcat appears and offers you a choice: moonmint for speed in combat, or starlace dew for patience and precision. The Shadow Owl’s cry cuts across the chimneys, closer now.
+The pawprint door opens onto a floating rooftop garden. A spectral tomcat—translucent, amber-eyed—steps from the shadows and offers a choice: moonmint, a sharp-scented leaf for speed in combat, or starlace dew for patience and precision. He speaks of moon-roads, guardian paths that arc above sleeping towns. The Shadow Owl's cry cuts across the chimneys, closer now.
 
 ### Choices
 1. Take moonmint and leap straight into the fight -> 6
@@ -65,7 +65,7 @@ The pawprint door opens onto a floating rooftop garden. A spectral tomcat appear
 The Shadow Owl
 
 ### Content
-You launch first and fast, but the Shadow Owl is bigger than rumor, stitched from soot and old grief. It catches you midair, hurls you across slate, and knocks the key from your mouth. The nursery windows dim. You crawl toward the sill as dawn breaks, hear the child whisper your name once, and then your watch ends forever.
+You launch first and fast, but the Shadow Owl is bigger than rumor: each feather stitched from soot and old grief, its wingspan swallowing the rooftop in shadow. It catches you midair in a grip like cold iron and hurls you across the slate. The key spins from your mouth; without it, the dreamlight dies. The nursery windows go dark. You crawl toward the sill at gray dawn, hear the child whisper your name once, and press your paw against the cold glass. Then your watch ends forever.
 
 ### Choices
 The End
@@ -75,7 +75,7 @@ The End
 Keeper Between Worlds
 
 ### Content
-You follow the tomcat through moon roads that run above sleeping towns. He tells you only long-road guardians can hunt dream-thieves at their source. If you stay, you can protect many homes, including your own—but you may never again sleep by your family’s fire. You choose duty on the wider road, and every midnight after, you patrol the rooftops with stars in your eyes.
+You follow the tomcat through moon-roads—silver-blue arcs above sleeping towns, invisible to all but guardians. He tells you only long-road guardians can hunt dream-thieves at their source, before they ever reach a nursery window. If you stay on the wider road, you can protect many homes, including your own—but you will never again sleep by your family's fire, never feel the youngest child's hand stroke your ears at morning. You choose duty. Every midnight after, you patrol the rooftops with stars in your eyes.
 
 ### Choices
 The End
