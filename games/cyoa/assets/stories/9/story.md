@@ -14,9 +14,9 @@ You jolt awake with the same copper taste in your mouth and the same station ala
 
 You have been here before. Many times.
 
-In two hours and forty minutes, a Fracture cluster will punch through the observation deck, kill seventeen people, and scatter station debris across cargo ring C. The first time you died in the initial breach, screaming into a suit that wouldn't seal. After that, you started waking up here—always this same second, always with the memories of every previous loop intact.
+In two hours and forty minutes, a Fracture cluster—an alien swarm the survey logs can't classify—will punch through the observation deck, kill seventeen people, and scatter station debris across cargo ring C. The first time you died in the initial breach, screaming into a suit that wouldn't seal. After that, you started waking up here—always this same second, always with the memories of every previous loop intact.
 
-Whatever is causing the reset, it lives on Varda. And you are running out of patience.
+Whatever is causing the reset, it lives on Varda—most likely the alien artifact sealed in the station's lower vault. Dara in engineering is closest to reading it. You are running out of patience.
 
 ### Choices
 1. Go straight to Commander Voss in ops and force him to listen -> 2
@@ -42,7 +42,7 @@ You have two options left.
 Dara's Eureka
 
 ### Content
-Dara is bent over artifact sensor feeds when you find her, surrounded by empty ration packs and cold coffee. This loop she looks up at you differently—as if she almost expected someone to burst in with wild eyes.
+Dara is bent over artifact sensor feeds when you find her, surrounded by empty ration packs and cold coffee. The readings pipe up live from the sealed vault three decks below. This loop she looks up at you differently—as if she almost expected someone to burst in with wild eyes.
 
 She turns the screen toward you. A waveform pulses in a clean ascending pattern, tighter and tighter. The artifact isn't just alien, she says. It's counting down to something. Each loop the oscillation peaks a fraction higher. Whatever it is converging toward, it will arrive soon.
 
@@ -76,7 +76,7 @@ The Cascade
 ### Content
 Good intentions collide in the cargo corridors. Armed construction workers, an engineering team rerouting power to the artifact array, and station security responding to an unauthorized weapons alert—three factions moving fast and blind, each certain they are the only ones acting rationally.
 
-The artifact pulses three times in rapid succession. A frequency you have never recorded in any previous loop. The walls vibrate and your vision smears at the edges. Somewhere in the engineering bay, a pressure coupling blows.
+The artifact pulses three times in rapid succession—each burst shuddering through the deck plates like a physical blow. A frequency you have never recorded in any previous loop. The walls vibrate and your vision smears at the edges. Somewhere in the engineering bay, a pressure coupling blows.
 
 The Fracture hasn't even arrived yet. You are already losing the station from the inside.
 
@@ -93,7 +93,7 @@ The artifact floats in its magnetic cradle: a latticed sphere of a material that
 
 Dara's readings confirm what you have suspected but never had proof of until now. The artifact is the anchor point of the loop. Every time the Fracture reaches it, it rewinds time—not as an attack, but as a fail-safe. The loop's logic is preservation: if the artifact changes hands, reality resets until it doesn't.
 
-The Fracture isn't invading Varda Station. It is trying to retrieve something it lost a very long time ago.
+The Fracture entities—alien, but not conquerors—aren't invading Varda Station. They are trying to retrieve something they lost a very long time ago.
 
 Now you have to decide how you want this to end.
 
@@ -108,7 +108,7 @@ Contact
 ### Content
 Your intercept team meets the Fracture at the observation deck seconds before the outer pane cracks. Suits sealed, magnetic anchors set, weapons charged—and then you do something no previous loop allowed time for: you play back the artifact's recorded resonance signature over the hull's external emitter array.
 
-The Fracture entities halt their advance.
+The Fracture entities halt their advance. Through the glass you see them clearly for the first time: dozens of angular silhouettes, dark and hovering against the star field—each one distinct, each one deliberate.
 
 Eleven slow minutes pass. No words, no shared language, no protocol for this. But on the hull sensors, their formation changes from assault spread to something else—something closer to waiting.
 
@@ -134,7 +134,7 @@ The artifact detonates in a contained implosion, venting exotic radiation down t
 
 Varda Station survives intact. Seventeen people who died in every previous loop walk out of the observation deck unaware of how many times they almost didn't.
 
-But the detonation costs Dara her life. She stays at the containment console to hold the magnetic fields in alignment and refuses your order to run. The explosion is clean and fast. You are told that is something.
+But the detonation costs Dara her life. She is locked at the containment console—the magnetic alignment will collapse if she releases the controls before the detonation completes—and she shoves you toward the vault hatch when you hesitate. You seal it from outside. The explosion is contained within the vault, clean and fast. You are told that is something.
 
 Six weeks later, the station files its incident report. The artifact, the loop, the Fracture—all classified under a corporate extraction charter. You give testimony that no one will declassify for thirty years. The people whose lives you saved will never know. Dara's name does not appear in any public record.
 

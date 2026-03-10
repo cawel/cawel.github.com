@@ -50,6 +50,12 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Avoid repetition and filler.
   - Favor specific details over generic descriptions.
 
+9. **Reader clarity and internal consistency**
+  - Every element named in a choice must already appear in that chapter's content. Never introduce a key term for the first time in a choice line.
+  - Any invented entity, phenomenon, or faction central to the story must be described with at least one concrete sensory or visual detail the first time it appears.
+  - When the protagonist survives a threat that kills another character, the narrative must make the physical reason explicit and plausible (different positions, barriers, sealed compartments, etc.).
+  - State the location of key objects explicitly when those locations are pivotal to the plot.
+
 
 ## Tone
 
