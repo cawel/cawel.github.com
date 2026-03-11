@@ -3,7 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const AudioEngine = require("../audio-engine.js");
+const SynthEngine = require("../js/synth-engine.js");
 
 class MockOscillator {
   constructor() {
@@ -65,23 +65,23 @@ class MockAudioContext {
   }
 }
 
-test("AudioEngine creates with a valid AudioContext", () => {
+test("SynthEngine creates with a valid AudioContext", () => {
   const mockCtx = new MockAudioContext();
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
   assert.ok(engine);
   assert.ok(engine.playChord);
   assert.ok(engine.playNote);
 });
 
-test("AudioEngine throws when created without AudioContext", () => {
+test("SynthEngine throws when created without AudioContext", () => {
   assert.throws(() => {
-    AudioEngine.create(null);
+    SynthEngine.create(null);
   }, /AudioContext is required/);
 });
 
 test("playChord ignores empty note arrays", () => {
   const mockCtx = new MockAudioContext();
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
 
   engine.playChord([]);
   assert.equal(mockCtx.oscillators.length, 0);
@@ -89,7 +89,7 @@ test("playChord ignores empty note arrays", () => {
 
 test("playChord creates oscillators for arpeggio and block voicing", () => {
   const mockCtx = new MockAudioContext();
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
   const midiNotes = [60, 64, 67]; // C, E, G
 
   engine.playChord(midiNotes);
@@ -101,7 +101,7 @@ test("playChord creates oscillators for arpeggio and block voicing", () => {
 
 test("playChord sets correct MIDI frequencies", () => {
   const mockCtx = new MockAudioContext();
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
 
   engine.playChord([60]); // C4 = 261.63 Hz
 
@@ -120,7 +120,7 @@ test("playChord sets correct MIDI frequencies", () => {
 
 test("playNote starts and stops oscillators at correct times", () => {
   const mockCtx = new MockAudioContext();
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
   const startTime = 0.5;
   const duration = 0.5;
 
@@ -135,7 +135,7 @@ test("playNote starts and stops oscillators at correct times", () => {
 test("playChord respects custom arpeggio step timing", () => {
   const mockCtx = new MockAudioContext();
   mockCtx.currentTime = 0;
-  const engine = AudioEngine.create(mockCtx);
+  const engine = SynthEngine.create(mockCtx);
   const midiNotes = [60, 64, 67]; // 3 notes
 
   engine.playChord(midiNotes, { arpeggioStep: 0.1 });

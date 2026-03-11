@@ -2,12 +2,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const Engine = window.HarmonyEngine;
-  const AudioEngine = window.AudioEngine;
+  const SynthEngine = window.SynthEngine;
   const Controller = window.ChordController;
   const Cfg = window.Config;
 
   if (!Engine) throw new Error(Cfg.errors.engineNotLoaded);
-  if (!AudioEngine) throw new Error(Cfg.errors.audioEngineNotLoaded);
+  if (!SynthEngine) throw new Error(Cfg.errors.synthEngineNotLoaded);
   if (!Controller) throw new Error("ChordController failed to load.");
   if (!Cfg) throw new Error("Config failed to load.");
 
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- AUDIO LAYER ---
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const audio = AudioEngine.create(ctx);
+  const synth = SynthEngine.create(ctx);
 
   const playChordAudio = (chord) => {
     if (!chord) return;
     const notes = Engine.getChordMidiNotes(chord);
-    audio.playChord(notes, {
+    synth.playChord(notes, {
       arpeggioStep: Cfg.audio.arpeggioStep,
       noteDuration: Cfg.audio.noteDuration,
     });
@@ -135,7 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const animateButton = (btn) => {
     if (!btn) return;
     btn.classList.add("anticipate");
-    setTimeout(() => btn.classList.remove("anticipate"), Cfg.ui.buttonAnimationDuration);
+    setTimeout(
+      () => btn.classList.remove("anticipate"),
+      Cfg.ui.buttonAnimationDuration,
+    );
   };
 
   // --- EVENT LISTENERS ---

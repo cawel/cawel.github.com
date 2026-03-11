@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * speech.js (Option 3: enabled state + session state)
+ * speech-controller.js (Option 3: enabled state + session state)
  *
  * Strategy (reliable on localhost/Chrome):
  * - continuous = false (one utterance per session)
@@ -26,13 +26,15 @@
  */
 
 (() => {
-  const getCtor = () => window.SpeechRecognition ?? window.webkitSpeechRecognition ?? null;
+  const getCtor = () =>
+    window.SpeechRecognition ?? window.webkitSpeechRecognition ?? null;
   const isSupported = () => Boolean(getCtor());
   const NEXT_RE = /\bnext\b/i;
   const STOP_LISTENING_RE = /\bstop\s+listening\b/i;
 
   const timeTag = () => new Date().toISOString().slice(11, 23);
-  const dbg = (enabled, ...args) => enabled && console.log("[speech]", timeTag(), ...args);
+  const dbg = (enabled, ...args) =>
+    enabled && console.log("[speech]", timeTag(), ...args);
 
   const normalize = (s) =>
     String(s ?? "")
@@ -45,9 +47,9 @@
     restartDelayMs = 200,
     onCommand = () => {},
     onState = () => {},
-    onSession = () => {},   // NEW
+    onSession = () => {}, // NEW
     onError = () => {},
-    debug = false
+    debug = false,
   } = {}) => {
     const SR = getCtor();
 
@@ -60,7 +62,7 @@
         stop: () => {},
         toggle: () => onError("not_supported"),
         isListening: () => false,
-        getSessionStatus: () => "error"
+        getSessionStatus: () => "error",
       });
     }
 
@@ -111,9 +113,15 @@
         }
         transcript = normalize(transcript);
 
-        const isFinalBatch = Boolean(event.results[event.results.length - 1]?.isFinal);
+        const isFinalBatch = Boolean(
+          event.results[event.results.length - 1]?.isFinal,
+        );
 
-        dbg(debug, (isFinalBatch ? "final:" : "interim:"), JSON.stringify(transcript));
+        dbg(
+          debug,
+          isFinalBatch ? "final:" : "interim:",
+          JSON.stringify(transcript),
+        );
 
         // Hard guard: once fired, ignore further interim spam until onend
         if (firedThisSession) return;
@@ -124,7 +132,9 @@
           onCommand("stop-listening", transcript, { isFinal: isFinalBatch });
 
           // Force the session to end now so restart can happen sooner.
-          try { recognition.stop(); } catch {}
+          try {
+            recognition.stop();
+          } catch {}
           return;
         }
 
@@ -134,7 +144,9 @@
           onCommand("next", transcript, { isFinal: isFinalBatch });
 
           // Force the session to end now so restart can happen sooner.
-          try { recognition.stop(); } catch {}
+          try {
+            recognition.stop();
+          } catch {}
           return;
         }
       };
@@ -178,7 +190,6 @@
             setSession("error", "restart_failed");
           }
         }, restartDelayMs);
-
       };
     };
 
@@ -225,10 +236,9 @@
       stop,
       toggle,
       isListening: () => enabled,
-      getSessionStatus: () => sessionStatus
+      getSessionStatus: () => sessionStatus,
     });
   };
 
   window.SpeechController = Object.freeze({ create, isSupported });
 })();
-

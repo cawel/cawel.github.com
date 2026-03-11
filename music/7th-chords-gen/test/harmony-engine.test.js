@@ -3,7 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const HarmonyEngine = require("../harmony-engine.js");
+const HarmonyEngine = require("../js/harmony-engine.js");
 
 const sequenceRandom = (...values) => {
   let index = 0;

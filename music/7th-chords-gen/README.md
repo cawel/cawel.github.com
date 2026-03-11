@@ -88,18 +88,19 @@ Speech recognition is handled **by the browser**, not by this app.
 │  ├─ layout.css # Page structure and layout
 │  └─ components.css # UI components (buttons, pills, etc.)
 │
-├─ harmony-engine.js # Music theory (app-agnostic)
-├─ controller.js # State & orchestration (app-agnostic)
-├─ audio-engine.js # Web Audio API synthesis
-├─ config.js # Application constants
-├─ script.js # UI controller (DOM, events, rendering)
-├─ speech.js # Speech recognition
+├─ js/ # Application modules
+│  ├─ harmony-engine.js # Music theory (app-agnostic)
+│  ├─ chord-controller.js # State & orchestration (app-agnostic)
+│  ├─ synth-engine.js # Web Audio API synthesis
+│  ├─ speech-controller.js # Speech recognition
+│  ├─ config.js # Application constants
+│  └─ ui.js # UI controller (DOM, events, rendering)
 │
 ├─ package.json
 ├─ test/ # Regression tests (Node)
 │  ├─ harmony-engine.test.js
-│  ├─ audio-engine.test.js
-│  └─ controller.test.js
+│  ├─ synth-engine.test.js
+│  └─ chord-controller.test.js
 └─ README.md
 ```
 
@@ -114,7 +115,7 @@ The app follows a **three-layer architecture** that keeps concerns separate and 
   - Can be used in other applications (CLI, Electron, etc.)
 
 ### Layer 2: Orchestration (App-agnostic)
-- **controller.js** — Progression state management and chord generation choreography
+- **chord-controller.js** — Progression state management and chord generation choreography
   - Manages mode switching, progression lifecycle, chord counting
   - No DOM, no audio, no UI concerns
   - Calls harmony-engine to generate chords
@@ -122,7 +123,7 @@ The app follows a **three-layer architecture** that keeps concerns separate and 
   - Completely testable
 
 ### Layer 3: Presentation & Integration (App-specific)
-- **script.js** — UI layer that listens to events, updates DOM, manages audio context
+- **ui.js** — UI layer that listens to events, updates DOM, manages audio context
   - Calls controller to orchestrate chord generation
   - Renders chord display and info boxes
   - Handles speech recognition callbacks
@@ -130,8 +131,8 @@ The app follows a **three-layer architecture** that keeps concerns separate and 
 
 ### Supporting Modules
 - **config.js** — Application constants (DOM selectors, audio timings, error messages)
-- **audio-engine.js** — Web Audio API synthesis (arpeggio + block voicing)
-- **speech.js** — Speech recognition (voice commands)
+- **synth-engine.js** — Web Audio API synthesis (arpeggio + block voicing)
+- **speech-controller.js** — Speech recognition (voice commands)
 - **css/** — Modular stylesheets (variables, base, layout, components)
 
 ## Separation of Concerns
@@ -139,9 +140,9 @@ The app follows a **three-layer architecture** that keeps concerns separate and 
 | Module | Responsibility | Testable | Reusable |
 |--------|---|---|---|
 | harmony-engine.js | Music theory | ✅ Yes | ✅ Yes (any context) |
-| controller.js | State & orchestration | ✅ Yes | ✅ Yes (any context) |
-| audio-engine.js | Web Audio synthesis | ✅ Yes | ✅ Yes (any browser app) |
-| script.js | UI events & rendering | Partial | No (DOM-specific) |
+| chord-controller.js | State & orchestration | ✅ Yes | ✅ Yes (any context) |
+| synth-engine.js | Web Audio synthesis | ✅ Yes | ✅ Yes (any browser app) |
+| ui.js | UI events & rendering | Partial | No (DOM-specific) |
 | config.js | Constants | ✅ Yes | ✅ Yes |
 
 

@@ -41,7 +41,7 @@
     // Error messages
     errors: {
       engineNotLoaded: "HarmonyEngine failed to load.",
-      audioEngineNotLoaded: "AudioEngine failed to load.",
+      synthEngineNotLoaded: "SynthEngine failed to load.",
       "no-speech": "no speech detected",
       "audio-capture": "microphone unavailable",
       "not-allowed": "microphone permission denied",

@@ -5,7 +5,7 @@
     module.exports = api;
   }
 
-  root.AudioEngine = api;
+  root.SynthEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 

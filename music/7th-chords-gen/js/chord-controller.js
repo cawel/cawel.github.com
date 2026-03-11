@@ -10,7 +10,9 @@
   "use strict";
 
   const HarmonyEngine =
-    typeof window !== "undefined" ? window.HarmonyEngine : require("./harmony-engine.js");
+    typeof window !== "undefined"
+      ? window.HarmonyEngine
+      : require("./harmony-engine.js");
 
   /**
    * ChordController — orchestrates the harmony engine and manages progression state.

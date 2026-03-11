@@ -3,7 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const ChordController = require("../controller.js");
+const ChordController = require("../js/chord-controller.js");
 
 test("ChordController creates successfully", () => {
   const controller = ChordController.create();
@@ -25,7 +25,10 @@ test("initial state has random mode and no chord", () => {
 
 test("nextChord generates a random chord in random mode", () => {
   const controller = ChordController.create();
-  const result = controller.nextChord({ includeHalfDim: false, includeDim: false });
+  const result = controller.nextChord({
+    includeHalfDim: false,
+    includeDim: false,
+  });
 
   assert.ok(result.chord);
   assert.ok(result.chord.root);
