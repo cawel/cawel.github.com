@@ -61,6 +61,11 @@ Designed for piano jazz players, educators, and improvisers who want fast, focus
 
 No frameworks. No build step. No bundler.
 
+## Development
+
+- Run tests: `npm test`
+- Tests use Node's built-in test runner, so no extra packages are required.
+
 ## Privacy Notes (Speech Recognition)
 
 Speech recognition is handled **by the browser**, not by this app.
@@ -77,8 +82,14 @@ Speech recognition is handled **by the browser**, not by this app.
 /
 ├─ index.html # App structure
 ├─ style.css # Styling & layout
-├─ script.js # App logic (chords, UI, audio)
-├─ speech.js # Speech recognition logic (isolated, reusable)
+├─ harmony-engine.js # Music theory logic (keys, chords, progressions)
+├─ audio-engine.js # Web Audio API synthesis (arpeggio + block chords)
+├─ script.js # UI controller (state, events, rendering)
+├─ speech.js # Speech recognition (isolated, reusable)
+├─ package.json
+├─ test/ # Regression tests
+│  ├─ harmony-engine.test.js
+│  └─ audio-engine.test.js
 └─ README.md
 ```
 

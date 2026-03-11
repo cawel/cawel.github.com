@@ -1,85 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>7th Chords Gen</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header>
-  <h1><span class="title-icon" aria-hidden="true">🎷</span><span>7th Chords Gen</span></h1>
-</header>
+  <head>
+    <meta charset="UTF-8" />
+    <title>7th Chords Gen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="title-icon" aria-hidden="true">🎷</span
+        ><span>7th Chords Gen</span>
+      </h1>
+    </header>
 
-<div class="control-container">
-  <div class="control-panel">
-    <div class="mode-selector">
-      <label><input type="radio" name="mode" value="random" checked> Random</label>
+    <div class="control-container">
+      <div class="control-panel">
+        <div class="mode-selector">
+          <label
+            ><input type="radio" name="mode" value="random" checked />
+            Random</label
+          >
 
-      <div class="random-options" id="randomOptions">
-        <label>
-          <input type="checkbox" id="randomHalfDim">
-          Include <span class="chord-symbol">ø7</span>
-        </label>
-        <label>
-          <input type="checkbox" id="randomDim">
-          Include <span class="chord-symbol">o7</span>
-        </label>
+          <div class="random-options" id="randomOptions">
+            <label>
+              <input type="checkbox" id="randomHalfDim" />
+              Include <span class="chord-symbol">ø7</span>
+            </label>
+            <label>
+              <input type="checkbox" id="randomDim" />
+              Include <span class="chord-symbol">o7</span>
+            </label>
+          </div>
+
+          <label
+            ><input type="radio" name="mode" value="maj251" /> ii–V–I
+            (major)</label
+          >
+          <label
+            ><input type="radio" name="mode" value="min251" /> iiø–V–i
+            (minor)</label
+          >
+          <label
+            ><input type="radio" name="mode" value="cycle" />
+            Cycle-of-Fifths</label
+          >
+        </div>
+
+        <div class="button-column">
+          <button class="play" id="playBtn" disabled>
+            <span class="btn-icon" aria-hidden="true">▶</span>
+            <span class="btn-label">Play</span>
+          </button>
+
+          <button
+            class="listen-btn"
+            id="listenBtn"
+            aria-pressed="false"
+            type="button"
+          >
+            <span class="btn-icon" aria-hidden="true">🎤</span>
+            <span class="btn-label">Listen</span>
+          </button>
+
+          <button class="stats-btn" id="statsBtn">
+            <span class="btn-icon" aria-hidden="true">📊</span>
+            <span class="btn-label">Stats</span>
+          </button>
+        </div>
       </div>
 
-      <label><input type="radio" name="mode" value="maj251"> ii–V–I (major)</label>
-      <label><input type="radio" name="mode" value="min251"> iiø–V–i (minor)</label>
-      <label><input type="radio" name="mode" value="cycle"> Cycle-of-Fifths</label>
-    </div>
+      <div
+        class="status-line"
+        id="statusLine"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></div>
 
-    <div class="button-column">
-      <button class="play" id="playBtn" disabled>
-        <span class="btn-icon" aria-hidden="true">▶</span>
-        <span class="btn-label">Play</span>
-      </button>
-
-      <button class="listen-btn" id="listenBtn" aria-pressed="false" type="button">
-        <span class="btn-icon" aria-hidden="true">🎤</span>
-        <span class="btn-label">Listen</span>
-      </button>
-
-      <button class="stats-btn" id="statsBtn">
-        <span class="btn-icon" aria-hidden="true">📊</span>
-        <span class="btn-label">Stats</span>
+      <button class="next-btn" id="nextBtn">
+        <span class="btn-icon" aria-hidden="true">🎵</span>
+        <span class="btn-label">Next</span>
       </button>
     </div>
-  </div>
 
-  <div class="status-line" id="statusLine" role="status" aria-live="polite" hidden></div>
+    <main>
+      <div class="pills-spacer"></div>
 
-  <button class="next-btn" id="nextBtn">
-    <span class="btn-icon" aria-hidden="true">🎵</span>
-    <span class="btn-label">Next</span>
-  </button>
-</div>
+      <div class="info-box" id="infoBox">
+        <div class="pill key">
+          <span class="pill-label">Key:</span>
+          <span class="pill-value" id="keyLabel"></span>
+        </div>
+        <div class="pill step">
+          <span class="pill-label">Step:</span>
+          <span class="pill-value" id="stepLabel"></span>
+        </div>
+      </div>
 
-<main>
-  <div class="pills-spacer"></div>
+      <div class="chord" id="chordDisplay"></div>
 
-  <div class="info-box" id="infoBox">
-    <div class="pill key"><span class="pill-label">Key:</span> <span class="pill-value" id="keyLabel"></span></div>
-    <div class="pill step"><span class="pill-label">Step:</span> <span class="pill-value" id="stepLabel"></span></div>
-  </div>
+      <div class="stats-line" id="statsLine">
+        Chords generated: <span id="statsCount">0</span>
+      </div>
+    </main>
 
-  <div class="chord" id="chordDisplay"></div>
-
-  <div class="stats-line" id="statsLine">
-    Chords generated: <span id="statsCount">0</span>
-  </div>
-</main>
-
-<!-- NEW: speech logic file (business logic only) -->
-<script src="speech.js" defer></script>
-<script src="script.js" defer></script>
-
-</body>
+    <!-- Modules: harmony engine, audio synthesis, speech recognition -->
+    <script src="harmony-engine.js" defer></script>
+    <script src="audio-engine.js" defer></script>
+    <script src="speech.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
 </html>
-

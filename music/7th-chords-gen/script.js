@@ -1,54 +1,13 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // --- DATA / BUSINESS LOGIC LAYER ---
-  const KEYS = {
-    C:  ["C","D","E","F","G","A","B"],
-    Db: ["Db","Eb","F","Gb","Ab","Bb","C"],
-    D:  ["D","E","F#","G","A","B","C#"],
-    Eb: ["Eb","F","G","Ab","Bb","C","D"],
-    E:  ["E","F#","G#","A","B","C#","D#"],
-    F:  ["F","G","A","Bb","C","D","E"],
-    Gb: ["Gb","Ab","Bb","Cb","Db","Eb","F"],
-    G:  ["G","A","B","C","D","E","F#"],
-    Ab: ["Ab","Bb","C","Db","Eb","F","G"],
-    A:  ["A","B","C#","D","E","F#","G#"],
-    Bb: ["Bb","C","D","Eb","F","G","A"],
-    B:  ["B","C#","D#","E","F#","G#","A#"]
-  };
-
-  const CYCLE_FIFTHS = ["C","F","Bb","Eb","Ab","Db","Gb","B","E","A","D","G"];
-  const PROGS = {
-    maj251:[
-      {step:"ii", quality:"m7", deg:1},
-      {step:"V",  quality:"7",  deg:4},
-      {step:"I",  quality:"maj7",deg:0}
-    ],
-    min251:[
-      {step:"iiø", quality:"ø7", deg:1},
-      {step:"V",  quality:"7",  deg:4, harmonic:true},
-      {step:"i",  quality:"m7", deg:0}
-    ]
-  };
-
-  const INTERVALS = { maj7:[0,4,7,11], m7:[0,3,7,10], 7:[0,4,7,10], ø7:[0,3,6,10], o7:[0,3,6,9] };
-  const SEMI = ["C","C#","D","Eb","E","F","F#","G","Ab","A","Bb","B"];
-  const MIN_MIDI = 60; // C4
-
-  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
-
-  const formatAccidentals = s => s.replace(/#/g,"<sup>♯</sup>").replace(/b/g,"<sup>♭</sup>");
+  const Engine = window.HarmonyEngine;
+  const AudioEngine = window.AudioEngine;
+  if (!Engine) throw new Error("HarmonyEngine failed to load.");
+  if (!AudioEngine) throw new Error("AudioEngine failed to load.");
 
   // --- APPLICATION STATE ---
-  const state = {
-    currentMode: "random",
-    stepIndex: 0,
-    currentKey: null,
-    currentChord: null,
-    chordCount: 0,
-    cycleIndex: Math.floor(Math.random()*CYCLE_FIFTHS.length)
-  };
+  const state = Engine.createState();
 
   // --- DOM ELEMENTS ---
   const DOM = {
@@ -66,104 +25,45 @@ document.addEventListener("DOMContentLoaded", () => {
     randomHalfDim: document.getElementById("randomHalfDim"),
     randomDim: document.getElementById("randomDim"),
     randomOptions: document.querySelector(".random-options"),
-    modeRadios: [...document.querySelectorAll("input[name='mode']")]
+    modeRadios: [...document.querySelectorAll("input[name='mode']")],
   };
 
   // --- AUDIO LAYER ---
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const audio = AudioEngine.create(ctx);
 
-  const playChordAudio = chord => {
-    if(!chord) return;
-    const base = MIN_MIDI + SEMI.indexOf(chord.root);
-    const notes = INTERVALS[chord.quality].map(i=>base+i).sort((a,b)=>a-b);
-    if(chord.harmonic && chord.quality==="7") notes[1]+=1;
-
-    const step = 0.3, dur = 0.5;
-    const t0 = ctx.currentTime;
-
-    // Arpeggio
-    notes.forEach((m,i)=>{
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.frequency.value = 440*Math.pow(2,(m-69)/12);
-      g.gain.setValueAtTime(0, t0+i*step);
-      g.gain.linearRampToValueAtTime(0.25, t0+i*step+0.05);
-      g.gain.linearRampToValueAtTime(0, t0+i*step+dur);
-      o.connect(g).connect(ctx.destination);
-      o.start(t0+i*step);
-      o.stop(t0+i*step+dur);
-    });
-
-    // Block chord
-    const blockTime = t0 + notes.length*step + 2*step;
-    notes.forEach(m=>{
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.frequency.value = 440*Math.pow(2,(m-69)/12);
-      g.gain.setValueAtTime(0, blockTime);
-      g.gain.linearRampToValueAtTime(0.25, blockTime+0.05);
-      g.gain.linearRampToValueAtTime(0, blockTime+dur);
-      o.connect(g).connect(ctx.destination);
-      o.start(blockTime);
-      o.stop(blockTime+dur);
-    });
+  const playChordAudio = (chord) => {
+    if (!chord) return;
+    const notes = Engine.getChordMidiNotes(chord);
+    audio.playChord(notes);
   };
 
-  // --- BUSINESS LOGIC LAYER ---
-  const getRandomQualities = () => {
-    const qualities = ["maj7","m7","7"];
-    if(DOM.randomHalfDim?.checked) qualities.push("ø7");
-    if(DOM.randomDim?.checked) qualities.push("o7");
-    return qualities;
-  };
-
-  const generateChord = () => {
-    switch(state.currentMode) {
-      case "random": {
-        const k = pick(Object.keys(KEYS));
-        return { root: pick(KEYS[k]), quality: pick(getRandomQualities()) };
-      }
-      case "cycle": {
-        state.cycleIndex = (state.cycleIndex+1) % CYCLE_FIFTHS.length;
-        const k = CYCLE_FIFTHS[state.cycleIndex];
-        return { root: KEYS[k][0], quality: "7" };
-      }
-      case "maj251":
-      case "min251": {
-        if(state.stepIndex===0) state.currentKey = pick(Object.keys(KEYS));
-        const prog = PROGS[state.currentMode][state.stepIndex];
-        const chord = { root: KEYS[state.currentKey][prog.deg], quality: prog.quality };
-        if(prog.harmonic && state.currentMode==="min251") chord.harmonic = true;
-        state.stepIndex = (state.stepIndex + 1) % 3;
-        return { chord, prog };
-      }
-    }
-  };
+  const getGenerationOptions = () => ({
+    includeHalfDim: Boolean(DOM.randomHalfDim?.checked),
+    includeDim: Boolean(DOM.randomDim?.checked),
+  });
 
   // --- UI / RENDERING LAYER ---
-  const renderChord = chord => {
-    const html = chord ? formatAccidentals(chord.root) +
-      (chord.quality==="maj7" ? "<span class='qual'>maj</span><sup>7</sup>" :
-        chord.quality==="m7"   ? "<span class='qual'>m</span><sup>7</sup>" :
-        chord.quality==="ø7"   ? "<sup>ø</sup><sup>7</sup>" :
-        chord.quality==="o7"   ? "<sup>o</sup><sup>7</sup>" :
-        "<sup>7</sup>") : "";
-    DOM.chordEl.innerHTML = html;
+  const renderChord = (chord) => {
+    DOM.chordEl.innerHTML = Engine.renderChordHTML(chord);
   };
 
   const updateInfoBox = (prog) => {
-    if(!prog) {
+    if (!prog) {
       DOM.infoBox.style.display = "none";
       return;
     }
-    DOM.keyLabel.innerHTML = formatAccidentals(state.currentKey) + (state.currentMode==="maj251"?"":"m");
+    DOM.keyLabel.innerHTML =
+      Engine.formatAccidentals(state.currentKey) +
+      (state.currentMode === "maj251" ? "" : "m");
     DOM.stepLabel.textContent = prog.step;
     DOM.infoBox.style.display = "flex";
   };
 
   const updateRandomOptionsVisibility = () => {
-    if(DOM.randomOptions)
-      DOM.randomOptions.style.display = state.currentMode==="random" ? "flex" : "none";
+    if (DOM.randomOptions)
+      DOM.randomOptions.style.display =
+        state.currentMode === "random" ? "flex" : "none";
   };
 
   const incrementCounter = () => {
@@ -171,13 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
     DOM.statsCount.textContent = state.chordCount;
   };
 
-  const prettySpeechError = (code) => ({
-    "no-speech": "no speech detected",
-    "audio-capture": "microphone unavailable",
-    "not-allowed": "microphone permission denied",
-    "network": "network error"
-  }[code] || code);
-
+  const prettySpeechError = (code) =>
+    ({
+      "no-speech": "no speech detected",
+      "audio-capture": "microphone unavailable",
+      "not-allowed": "microphone permission denied",
+      network: "network error",
+    })[code] || code;
 
   const showError = (err) => {
     if (!DOM.statusLine) return;
@@ -200,9 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const nextChordHandler = () => {
-    const result = generateChord();
+    const result = Engine.generateChord(state, getGenerationOptions());
     let chord, prog;
-    if(result.chord) { // 251 progression
+    if (result.chord) {
+      // 251 progression
       chord = result.chord;
       prog = result.prog;
     } else {
@@ -215,42 +116,53 @@ document.addEventListener("DOMContentLoaded", () => {
     incrementCounter();
   };
 
-  const animateButton = btn => {
-    if(!btn) return;
+  const animateButton = (btn) => {
+    if (!btn) return;
     btn.classList.add("anticipate");
-    setTimeout(()=>btn.classList.remove("anticipate"),150);
+    setTimeout(() => btn.classList.remove("anticipate"), 150);
   };
 
   // Button events
-  DOM.nextBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.nextBtn); triggerNext(); });
-  DOM.playBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.playBtn); playChordAudio(state.currentChord); });
-  DOM.statsBtn.addEventListener("mousedown", ()=>{ animateButton(DOM.statsBtn); DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block"; });
+  DOM.nextBtn.addEventListener("mousedown", () => {
+    animateButton(DOM.nextBtn);
+    triggerNext();
+  });
+  DOM.playBtn.addEventListener("mousedown", () => {
+    animateButton(DOM.playBtn);
+    playChordAudio(state.currentChord);
+  });
+  DOM.statsBtn.addEventListener("mousedown", () => {
+    animateButton(DOM.statsBtn);
+    DOM.statsLine.style.display =
+      DOM.statsLine.offsetParent !== null ? "none" : "block";
+  });
 
   // Keyboard shortcuts
-  document.addEventListener("keydown", e => {
-    if(e.repeat) return;
-    switch(e.code) {
+  document.addEventListener("keydown", (e) => {
+    if (e.repeat) return;
+    switch (e.code) {
       case "Space":
         e.preventDefault();
         triggerNext();
         break;
       case "KeyP":
-        if(!DOM.playBtn.disabled) {
+        if (!DOM.playBtn.disabled) {
           animateButton(DOM.playBtn);
           playChordAudio(state.currentChord);
         }
         break;
       case "KeyS":
-        if(!DOM.statsBtn.disabled) {
+        if (!DOM.statsBtn.disabled) {
           animateButton(DOM.statsBtn);
-          DOM.statsLine.style.display = (DOM.statsLine.offsetParent!==null)?"none":"block";
+          DOM.statsLine.style.display =
+            DOM.statsLine.offsetParent !== null ? "none" : "block";
         }
         break;
     }
   });
 
   // Mode change
-  DOM.modeRadios.forEach(radio => {
+  DOM.modeRadios.forEach((radio) => {
     radio.addEventListener("change", () => {
       state.currentMode = radio.value;
       state.stepIndex = 0;
@@ -265,24 +177,42 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- SPEECH INTEGRATION (UI stays here, business logic in speech.js) ---
   let speech = null;
 
+  const setButtonContent = (button, icon, label) => {
+    if (!button) return;
+    const iconEl = button.querySelector(".btn-icon");
+    const labelEl = button.querySelector(".btn-label");
+    if (iconEl) iconEl.textContent = icon;
+    if (labelEl) labelEl.textContent = label;
+  };
+
   const setListeningUI = (isListening) => {
     if (!DOM.listenBtn) return;
     DOM.listenBtn.setAttribute("aria-pressed", String(isListening));
-    DOM.listenBtn.textContent = isListening ? "🎤 Listening…" : "🎤 Listen";
+    setButtonContent(
+      DOM.listenBtn,
+      "🎤",
+      isListening ? "Listening…" : "Listen",
+    );
   };
 
-
   const setListenAvailable = () => {
-    const ok = window.SpeechController && window.SpeechController.isSupported && window.SpeechController.isSupported();
+    const ok =
+      window.SpeechController &&
+      window.SpeechController.isSupported &&
+      window.SpeechController.isSupported();
     if (!DOM.listenBtn) return;
     DOM.listenBtn.disabled = !ok;
-    if (!ok) DOM.listenBtn.textContent = "🎤 Unavailable";
+    if (!ok) setButtonContent(DOM.listenBtn, "🎤", "Unavailable");
   };
 
   // --- SPEECH hookup
   setListenAvailable();
 
-  if (window.SpeechController && window.SpeechController.isSupported && window.SpeechController.isSupported()) {
+  if (
+    window.SpeechController &&
+    window.SpeechController.isSupported &&
+    window.SpeechController.isSupported()
+  ) {
     speech = window.SpeechController.create({
       lang: "en-US",
       debug: true,
@@ -294,8 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (cmd === "stop-listening") {
           console.log("[speech] user said 'stop listening'");
-          speech.stop();     // disables listening + updates button
-          clearStatus();     // optional: clear error/status line
+          speech.stop(); // disables listening + updates button
+          clearStatus(); // optional: clear error/status line
           return;
         }
       },
@@ -312,15 +242,15 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("Speech session:", detail);
 
         // revert button to Listen
-        speech.stop();     
+        speech.stop();
 
         // status line "Error: ..."
-        showError(prettySpeechError(detail)); 
+        showError(prettySpeechError(detail));
       },
       onError: (err) => {
         // Keep this for raw logging if you want
         console.warn("Speech:", err);
-      }
+      },
     });
 
     DOM.listenBtn.addEventListener("mousedown", () => {
@@ -329,10 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-
   // --- INIT ---
   updateRandomOptionsVisibility();
   DOM.playBtn.disabled = true;
 });
-

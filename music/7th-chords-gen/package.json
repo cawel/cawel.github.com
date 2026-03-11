@@ -1,0 +1,9 @@
+{
+  "name": "7th-chords-gen",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal jazz chord trainer with browser UI",
+  "scripts": {
+    "test": "node --test"
+  }
+}
