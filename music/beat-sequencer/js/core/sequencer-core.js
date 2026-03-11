@@ -1,9 +1,11 @@
 "use strict";
 
 /**
- * Deterministic sequencer core:
- * - owns musical state (grid, notes, playhead, tempo as data)
- * - NO timers, NO Date.now, NO Audio, NO DOM
+ * Module: Sequencer Core
+ *
+ * Deterministic musical state machine.
+ * Owns grid, notes, playhead, and tempo-as-data.
+ * No timers, no AudioContext calls, no DOM dependencies.
  *
  * External code drives time by calling `stepOnce()`.
  */
@@ -136,15 +138,6 @@ export function createSequencer({
     return grid[row][col];
   };
 
-  // Compatibility API: same-sound clears, different-sound sets.
-  const toggleCell = ({ row, col, soundType }) => {
-    const prev = getCell({ row, col });
-    const next = prev === soundType ? null : soundType;
-
-    if (next == null) return clearCell({ row, col });
-    return setCell({ row, col, soundType: next });
-  };
-
   /**
    * Deterministic tick: advances exactly one step.
    * Emits hits for the current column, then advances playhead.
@@ -178,7 +171,6 @@ export function createSequencer({
     setOctaves,
     setCell,
     clearCell,
-    toggleCell,
     stepOnce,
     reset,
   };

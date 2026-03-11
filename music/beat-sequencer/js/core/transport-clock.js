@@ -1,7 +1,9 @@
 "use strict";
 
 /**
- * Drift-corrected transport.
+ * Module: Transport Clock
+ *
+ * Drift-corrected playback scheduler driven by AudioContext time.
  *
  * Strategy:
  * - Use AudioContext time as the master clock (stable, high-resolution).
@@ -19,7 +21,7 @@ export function createTransport({ sequencer, audioCtx }) {
   const tickMs = 25;
 
   // How far ahead we try to stay scheduled (seconds)
-  const lookaheadSec = 0.10;
+  const lookaheadSec = 0.1;
 
   let timeoutId = null;
 
@@ -28,7 +30,7 @@ export function createTransport({ sequencer, audioCtx }) {
 
   const stepSec = () => {
     const { tempo } = sequencer.getState();
-    return (60 / tempo) / 4; // 16th notes
+    return 60 / tempo / 4; // 16th notes
   };
 
   const pump = () => {
@@ -84,4 +86,3 @@ export function createTransport({ sequencer, audioCtx }) {
 
   return { start, stop, toggle, isPlaying, onTempoChange };
 }
-

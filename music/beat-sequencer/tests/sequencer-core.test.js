@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createSequencer } from "../js/sequencer-core.js";
+import { createSequencer } from "../js/core/sequencer-core.js";
 
 test("stepOnce emits deterministic step sequence with wrap-around", () => {
   const seq = createSequencer({ columns: 4 });
@@ -21,8 +21,8 @@ test("stepOnce emits deterministic step sequence with wrap-around", () => {
 test("setColumns preserves existing cells and resets playhead", () => {
   const seq = createSequencer({ columns: 4 });
 
-  seq.toggleCell({ row: 0, col: 0, soundType: "sine" });
-  seq.toggleCell({ row: 0, col: 3, soundType: "square" });
+  seq.setCell({ row: 0, col: 0, soundType: "sine" });
+  seq.setCell({ row: 0, col: 3, soundType: "square" });
   seq.stepOnce();
 
   seq.setColumns(6);
@@ -41,7 +41,7 @@ test("setColumns preserves existing cells and resets playhead", () => {
 test("setOctaves rebuilds note rows and clears grid", () => {
   const seq = createSequencer({ octaves: 4, columns: 8 });
 
-  seq.toggleCell({ row: 2, col: 5, soundType: "triangle" });
+  seq.setCell({ row: 2, col: 5, soundType: "triangle" });
   seq.setOctaves(2);
 
   const grid = seq.getGrid();
@@ -54,4 +54,50 @@ test("setOctaves rebuilds note rows and clears grid", () => {
 
   const anyActive = grid.some((row) => row.some((cell) => cell !== null));
   assert.equal(anyActive, false);
+});
+
+test("setCell overrides and clearCell removes", () => {
+  const seq = createSequencer({ columns: 8 });
+
+  let next = seq.setCell({ row: 0, col: 0, soundType: "sine" });
+  assert.equal(next, "sine");
+
+  next = seq.setCell({ row: 0, col: 0, soundType: "square" });
+  assert.equal(next, "square");
+  assert.equal(seq.getGrid()[0][0], "square");
+
+  next = seq.clearCell({ row: 0, col: 0 });
+  assert.equal(next, null);
+  assert.equal(seq.getGrid()[0][0], null);
+});
+
+test("step emits overridden sound type at playback time", () => {
+  const seq = createSequencer({ columns: 4 });
+  const hitTypes = [];
+
+  // Place a sound, then override it before stepping.
+  seq.setCell({ row: 0, col: 0, soundType: "sine" });
+  seq.setCell({ row: 0, col: 0, soundType: "triangle" });
+
+  seq.on("step", ({ hits }) => {
+    hitTypes.push(...hits.map((h) => h.soundType));
+  });
+
+  seq.stepOnce();
+
+  assert.deepEqual(hitTypes, ["triangle"]);
+});
+
+test("setCell/getCell/clearCell explicit APIs work as expected", () => {
+  const seq = createSequencer({ columns: 4 });
+
+  assert.equal(seq.getCell({ row: 0, col: 1 }), null);
+
+  const setVal = seq.setCell({ row: 0, col: 1, soundType: "bell" });
+  assert.equal(setVal, "bell");
+  assert.equal(seq.getCell({ row: 0, col: 1 }), "bell");
+
+  const cleared = seq.clearCell({ row: 0, col: 1 });
+  assert.equal(cleared, null);
+  assert.equal(seq.getCell({ row: 0, col: 1 }), null);
 });

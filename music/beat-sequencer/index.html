@@ -28,24 +28,6 @@
     <section id="controlsContainer" aria-label="Sequencer Controls">
       <div class="control-column">
         <label>
-          <span class="control-title">
-            <span>Tempo:</span>
-            <span class="tempo-readout"
-              ><span id="tempoLabel">120</span>
-              <span class="tempo-unit">BPM</span></span
-            >
-          </span>
-          <input
-            id="tempoSlider"
-            type="range"
-            min="60"
-            max="180"
-            step="10"
-            value="120"
-          />
-        </label>
-
-        <label>
           Columns:
           <select id="colSelect">
             <option value="16">16</option>
@@ -67,33 +49,27 @@
 
       <div class="control-column">
         <label>
-          Sound:
-          <select id="soundSelect">
-            <option value="sine">Sine</option>
-            <option value="square">Square</option>
-            <option value="sawtooth">Sawtooth</option>
-            <option value="triangle">Triangle</option>
-            <option value="bell">Bell</option>
-          </select>
+          <span class="control-title">
+            <span>Tempo:</span>
+            <span class="tempo-readout"
+              ><span id="tempoLabel">120</span>
+              <span class="tempo-unit">BPM</span></span
+            >
+          </span>
+          <input
+            id="tempoSlider"
+            type="range"
+            min="60"
+            max="200"
+            step="10"
+            value="120"
+          />
         </label>
 
-        <div id="soundLegend">
-          <div class="legend-item">
-            <span class="legend-color sine"></span>Sine
-          </div>
-          <div class="legend-item">
-            <span class="legend-color square"></span>Square
-          </div>
-          <div class="legend-item">
-            <span class="legend-color saw"></span>Sawtooth
-          </div>
-          <div class="legend-item">
-            <span class="legend-color tri"></span>Triangle
-          </div>
-          <div class="legend-item">
-            <span class="legend-color bell"></span>Bell
-          </div>
-        </div>
+        <label>
+          Sound:
+          <select id="soundSelect"></select>
+        </label>
       </div>
     </section>
 
@@ -117,6 +93,7 @@
 
     <div id="gridWrapper">
       <div id="grid"></div>
+      <div id="beatGuides"></div>
       <div class="vertical-bar" id="vBar"></div>
     </div>
 

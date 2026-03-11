@@ -1,8 +1,10 @@
 "use strict";
 
 /**
- * Audio engine: owns AudioContext + note playback.
- * No DOM, no knowledge of grid, no scheduling except per-note.
+ * Module: Audio Engine
+ *
+ * Owns AudioContext lifecycle and note synthesis.
+ * Exposes per-note playback with click-safe envelopes.
  */
 export function createAudioEngine({
   attackSec = 0.01,
@@ -45,13 +47,13 @@ export function createAudioEngine({
 
     if (type === "bell") {
       osc.type = "sine";
-      const peak = 0.30 * velocity;
+      const peak = 0.3 * velocity;
       gain.gain.linearRampToValueAtTime(peak, startAt + attackSec);
       // exponential feels more "bell-like", but must never hit 0 exactly
       gain.gain.exponentialRampToValueAtTime(0.001, stopAt);
     } else {
       osc.type = type;
-      const peak = 0.20 * velocity;
+      const peak = 0.2 * velocity;
       gain.gain.linearRampToValueAtTime(peak, startAt + attackSec);
       gain.gain.linearRampToValueAtTime(0, stopAt);
     }
@@ -75,4 +77,3 @@ export function createAudioEngine({
 
   return { playNote, ensureRunning, ctx };
 }
-

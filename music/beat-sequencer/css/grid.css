@@ -12,22 +12,21 @@
   position: relative;
 }
 
-#grid::after {
-  content: "";
+#beatGuides {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 32px;
+  left: 0;
   right: 0;
   pointer-events: none;
-  background-image: repeating-linear-gradient(
-    to right,
-    transparent 0,
-    transparent 134px,
-    rgba(255, 209, 102, 0.55) 134px,
-    rgba(255, 209, 102, 0.55) 136px
-  );
   z-index: 0;
+}
+
+.beat-guide-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 209, 102, 0.55);
 }
 
 .row {
@@ -37,6 +36,7 @@
 }
 
 .noteLabel {
+  flex: 0 0 30px;
   width: 30px;
   font-size: 0.8rem;
   font-weight: bold;
@@ -53,11 +53,32 @@
   height: 32px;
   background: #2b353b;
   border-radius: 4px;
+  cursor: pointer;
   transition:
     background 0.1s,
     filter 0.1s;
   position: relative;
   z-index: 1;
+}
+
+.cell.removable:hover:not(.suppress-remove-cue)::after {
+  content: "x";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: "Rajdhani", "Barlow", sans-serif;
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: #f7f9fa;
+  background: rgba(18, 24, 28, 0.68);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.36);
+  pointer-events: none;
 }
 
 .vertical-bar {

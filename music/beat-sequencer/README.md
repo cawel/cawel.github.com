@@ -24,11 +24,13 @@ The codebase is intentionally split into small, focused modules.
 Each module has **one responsibility** and no unnecessary coupling.
 
 - index.html → application wiring & markup
-- style.css → visuals only
-- js/app-ui.js → DOM rendering & user interaction
-- js/sequencer-core.js → deterministic musical logic
-- js/transport-clock.js → real-time scheduling (clock)
-- js/audio-engine.js → sound synthesis (Web Audio)
+- css/main.css → visuals entrypoint
+- js/app-ui.js → UI orchestration
+- js/core/sequencer-core.js → deterministic musical logic
+- js/core/transport-clock.js → real-time scheduling (clock)
+- js/core/audio-engine.js → sound synthesis (Web Audio)
+- js/core/sound-metadata.js → sound labels, order, markers, and colors
+- js/ui/* → view and control modules
 
 
 **Design principle**
@@ -40,7 +42,7 @@ Each module has **one responsibility** and no unnecessary coupling.
 
 ## 📦 Module Responsibilities
 
-### `js/sequencer-core.js` — Deterministic Sequencer Core
+### `js/core/sequencer-core.js` — Deterministic Sequencer Core
 
 Responsible for all **musical state**:
 
@@ -52,7 +54,9 @@ Responsible for all **musical state**:
 Exposes:
 
 - `stepOnce()` — advance exactly one step
-- `toggleCell()`
+- `getCell()`
+- `setCell()`
+- `clearCell()`
 - `setTempo()`
 - `setColumns()`
 - `setOctaves()`
@@ -74,7 +78,7 @@ Does **not**:
 This makes the sequencer **fully deterministic**, predictable, and suitable for export or offline rendering.
 
 
-### `js/transport-clock.js` — Timing & Scheduling
+### `js/core/transport-clock.js` — Timing & Scheduling
 
 Responsible for **when** steps happen.
 
@@ -90,7 +94,7 @@ Why this exists:
 - The transport can be swapped or improved independently
 
 
-### `js/audio-engine.js` — Sound Engine
+### `js/core/audio-engine.js` — Sound Engine
 
 Responsible for **sound synthesis only**:
 
@@ -148,7 +152,7 @@ Each concern is isolated and replaceable.
 
 ## Tests
 
-Regression tests are included for the deterministic core and transport scheduler.
+Regression tests are included for core logic, scheduler behavior, and UI contracts.
 
 - Run all tests: `npm test`
 - Watch mode: `npm run test:watch`
@@ -158,3 +162,5 @@ Current test coverage focuses on:
 - Sequencer step wrap behavior and deterministic stepping
 - Grid/state invariants when columns/octaves change
 - Transport start/stop lifecycle and scheduler interaction
+- Sound metadata and dropdown contract
+- Hover suppression behavior via JSDOM integration test

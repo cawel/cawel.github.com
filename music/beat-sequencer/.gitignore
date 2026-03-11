@@ -1,0 +1,5 @@
+# Dependencies
+node_modules/
+
+# VS Code workspace settings
+.vscode/

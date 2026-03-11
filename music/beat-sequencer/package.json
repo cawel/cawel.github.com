@@ -6,5 +6,8 @@
   "scripts": {
     "test": "node --test",
     "test:watch": "node --test --watch"
+  },
+  "devDependencies": {
+    "jsdom": "^28.1.0"
   }
 }

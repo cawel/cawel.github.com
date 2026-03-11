@@ -1,19 +1,23 @@
 "use strict";
 
-import { createSequencer } from "./sequencer-core.js";
-import { createTransport } from "./transport-clock.js";
-import { createAudioEngine } from "./audio-engine.js";
+/**
+ * Module: App UI Orchestrator
+ *
+ * Wires core engine modules to UI modules and DOM controls.
+ * Owns startup sequencing, event subscriptions, and cross-module coordination.
+ */
 
-const SOUND_COLORS = {
-  sine: "#ff8c42",
-  square: "#ff4c42",
-  sawtooth: "#ffe066",
-  triangle: "#4361ee",
-  bell: "#c77dff",
-};
+import { createSequencer } from "./core/sequencer-core.js";
+import { createTransport } from "./core/transport-clock.js";
+import { createAudioEngine } from "./core/audio-engine.js";
+import { DEFAULT_SOUND, SOUNDS, SOUND_COLORS } from "./core/sound-metadata.js";
+import { createGridView } from "./ui/grid-view.js";
+import { createPlayheadView } from "./ui/playhead-view.js";
+import { bindTransportControls } from "./ui/transport-controls.js";
 
 const dom = {
   grid: document.getElementById("grid"),
+  beatGuides: document.getElementById("beatGuides"),
   vBar: document.getElementById("vBar"),
   playBtn: document.getElementById("playBtn"),
   stopBtn: document.getElementById("stopBtn"),
@@ -24,212 +28,102 @@ const dom = {
   soundSelect: document.getElementById("soundSelect"),
 };
 
-let selectedSound = dom.soundSelect.value;
-let lastPlayheadStep = null;
-const PLAYHEAD_TRANSITION = "left 0.05s linear, width 0.05s linear";
-
-const setTransportState = (playing) => {
-  dom.playBtn.disabled = playing;
-  dom.stopBtn.disabled = !playing;
+const initializeSoundSelect = () => {
+  dom.soundSelect.innerHTML = "";
+  for (const sound of SOUNDS) {
+    const option = document.createElement("option");
+    option.value = sound.value;
+    option.textContent = `${sound.marker}  ${sound.label}`;
+    option.selected = sound.value === DEFAULT_SOUND;
+    dom.soundSelect.appendChild(option);
+  }
 };
 
-// Initial state: stopped
-setTransportState(false);
+initializeSoundSelect();
 
-const animateButton = (btn) => {
-  if (btn.disabled) return;
-  btn.classList.add("anticipate");
-  setTimeout(() => btn.classList.remove("anticipate"), 150);
-};
+let selectedSound = dom.soundSelect.value || DEFAULT_SOUND;
 
 const audio = createAudioEngine();
-const seq = createSequencer();
-const transport = createTransport({ sequencer: seq, audioCtx: audio.ctx });
+const sequencer = createSequencer();
+const transport = createTransport({ sequencer, audioCtx: audio.ctx });
 
-// ----- Rendering -----
-const renderGrid = ({ grid, notes, cols }) => {
-  dom.grid.innerHTML = "";
+const gridView = createGridView({
+  gridEl: dom.grid,
+  beatGuidesEl: dom.beatGuides,
+  sequencer,
+  audio,
+  getSelectedSound: () => selectedSound,
+  soundColors: SOUND_COLORS,
+});
 
-  for (let row = 0; row < notes.length; row++) {
-    const rowDiv = document.createElement("div");
-    rowDiv.className = "row";
+const playheadView = createPlayheadView({
+  vBarEl: dom.vBar,
+  getReferenceCell: gridView.getReferenceCell,
+  isPlaying: transport.isPlaying,
+});
 
-    const label = document.createElement("div");
-    label.className =
-      "noteLabel" + (notes[row].startsWith("C") ? " tonic" : "");
-    label.textContent = notes[row];
-    rowDiv.appendChild(label);
-
-    for (let col = 0; col < cols; col++) {
-      const cell = document.createElement("div");
-      cell.className = "cell";
-
-      const sound = grid[row][col];
-      if (sound) {
-        cell.style.background = SOUND_COLORS[sound];
-        cell.classList.add("active");
-      }
-
-      cell.addEventListener("click", async () => {
-        await audio.ensureRunning();
-
-        const newVal = seq.toggleCell({ row, col, soundType: selectedSound });
-        if (newVal) {
-          cell.style.background = SOUND_COLORS[newVal];
-          cell.classList.add("active");
-        } else {
-          cell.style.background = "";
-          cell.classList.remove("active");
-        }
-      });
-
-      cell.addEventListener("mouseenter", () => {
-        cell.style.cursor = seq.getGrid()[row][col] ? "crosshair" : "pointer";
-      });
-
-      rowDiv.appendChild(cell);
-    }
-
-    dom.grid.appendChild(rowDiv);
-  }
-};
-
-const positionPlayhead = (stepIndex) => {
-  // Use the first row as reference.
-  const firstRow = dom.grid.children[0];
-  if (!firstRow) return;
-
-  // children[0] is the note label, so step cells start at index 1
-  const cell = firstRow.children[stepIndex + 1];
-  if (!cell) return;
-
-  // Prevent full-grid sweep on wrap, but keep movement duration consistent.
-  const wrappedToStart =
-    lastPlayheadStep != null && stepIndex < lastPlayheadStep;
-  if (wrappedToStart) {
-    dom.vBar.style.transition = "none";
-    const rowStyles = window.getComputedStyle(firstRow);
-    const rowGap =
-      Number.parseFloat(rowStyles.columnGap || rowStyles.gap || "0") || 0;
-    const fromLeft = cell.offsetLeft - (cell.offsetWidth + rowGap);
-
-    dom.vBar.style.left = `${fromLeft}px`;
-    dom.vBar.style.width = `${cell.offsetWidth}px`;
-
-    // Force style flush so the next write transitions.
-    void dom.vBar.offsetWidth;
-
-    dom.vBar.style.transition = PLAYHEAD_TRANSITION;
-  } else {
-    dom.vBar.style.transition = PLAYHEAD_TRANSITION;
-  }
-
-  dom.vBar.style.left = `${cell.offsetLeft}px`;
-  dom.vBar.style.width = `${cell.offsetWidth}px`;
-
-  lastPlayheadStep = stepIndex;
-};
-
-const renderPlayhead = ({ stepIndex }) => {
-  if (!transport.isPlaying()) {
-    dom.vBar.style.display = "none";
-    lastPlayheadStep = null;
-    return;
-  }
-
-  dom.vBar.style.display = "block";
-  positionPlayhead(stepIndex);
-};
+bindTransportControls({
+  playBtn: dom.playBtn,
+  stopBtn: dom.stopBtn,
+  audio,
+  transport,
+});
 
 // ----- Sequencer events -----
-seq.on("grid", renderGrid);
-seq.on("state", ({ stepIndex }) => {
+sequencer.on("grid", gridView.renderGrid);
+sequencer.on("state", ({ stepIndex }) => {
   // State emits the *next* step index after tick. Use it only for stopped state.
-  if (!transport.isPlaying()) renderPlayhead({ stepIndex });
+  if (!transport.isPlaying()) playheadView.renderPlayhead({ stepIndex });
 });
 
-seq.on("step", ({ stepIndex, hits }) => {
+sequencer.on("step", ({ stepIndex, hits }) => {
   // Follow the currently sounding step for stable visual timing.
   dom.vBar.style.display = "block";
-  positionPlayhead(stepIndex);
+  playheadView.positionPlayhead(stepIndex);
 
   for (const hit of hits) {
-    // IMPORTANT: your click-reduction envelope/stagger is still applied here
     audio.playNote({ note: hit.note, type: hit.soundType, rowIndex: hit.row });
-
-    const rowEl = dom.grid.children[hit.row];
-    const cellEl = rowEl?.children[stepIndex + 1]; // +1 label
-    if (cellEl) {
-      cellEl.style.filter = "brightness(1.3)";
-      setTimeout(() => (cellEl.style.filter = ""), 100);
-    }
+    gridView.flashStepHit(hit.row, stepIndex);
   }
 });
 
-// ----- Initial render (now required) -----
+// ----- Initial render -----
 {
-  const s = seq.getState();
-  renderGrid({ grid: seq.getGrid(), notes: s.notes, cols: s.cols });
-  renderPlayhead({ stepIndex: s.stepIndex });
+  const s = sequencer.getState();
+  gridView.renderGrid({
+    grid: sequencer.getGrid(),
+    notes: s.notes,
+    cols: s.cols,
+  });
+  playheadView.renderPlayhead({ stepIndex: s.stepIndex });
 }
 
 // ----- Controls -----
 dom.tempoSlider.addEventListener("input", (e) => {
   const v = Number(e.target.value);
   dom.tempoLabel.textContent = v;
-  seq.setTempo(v);
-  transport.onTempoChange(); // optional, safe, future-proof
+  sequencer.setTempo(v);
+  transport.onTempoChange();
 });
 
 dom.colSelect.addEventListener("change", (e) => {
-  seq.setColumns(Number(e.target.value));
+  sequencer.setColumns(Number(e.target.value));
 });
 
 dom.octSelect.addEventListener("change", (e) => {
-  seq.setOctaves(Number(e.target.value));
+  sequencer.setOctaves(Number(e.target.value));
 });
 
 dom.soundSelect.addEventListener("change", (e) => {
   selectedSound = e.target.value;
-});
-
-// ----- Buttons -----
-dom.playBtn.addEventListener("click", async () => {
-  await audio.ensureRunning();
-  animateButton(dom.playBtn);
-  transport.start();
-  setTransportState(true);
-});
-
-dom.stopBtn.addEventListener("click", () => {
-  animateButton(dom.stopBtn);
-  transport.stop();
-  setTransportState(false);
-});
-
-// ----- Keyboard -----
-document.addEventListener("keydown", async (e) => {
-  if (e.code === "Space") {
-    e.preventDefault();
-    await audio.ensureRunning();
-    animateButton(transport.isPlaying() ? dom.stopBtn : dom.playBtn);
-    transport.toggle();
-    setTransportState(transport.isPlaying());
-  }
-  if (e.code === "KeyP") {
-    await audio.ensureRunning();
-    animateButton(dom.playBtn);
-    transport.start();
-    setTransportState(true);
-  }
-  if (e.code === "KeyS") {
-    animateButton(dom.stopBtn);
-    transport.stop();
-    setTransportState(false);
-  }
+  gridView.syncCellIntents();
 });
 
 window.addEventListener("resize", () => {
+  const { cols, stepIndex } = sequencer.getState();
+  gridView.renderBeatGuides(cols);
   if (!transport.isPlaying()) return;
-  positionPlayhead(lastPlayheadStep ?? seq.getState().stepIndex);
+  playheadView.positionPlayhead(
+    playheadView.getLastPlayheadStep() ?? stepIndex,
+  );
 });

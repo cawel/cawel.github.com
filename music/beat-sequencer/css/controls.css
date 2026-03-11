@@ -52,7 +52,6 @@ label {
 
 input[type="range"],
 select {
-  padding: 0.45rem 0.55rem;
   border-radius: 8px;
   border: 1px solid var(--line-soft);
   background: rgba(15, 20, 23, 0.62);
@@ -61,7 +60,14 @@ select {
   font-family: inherit;
 }
 
+select {
+  padding: 0.45rem 0.55rem;
+}
+
 input[type="range"] {
+  width: 100%;
+  padding: 0;
+  height: 1.6rem;
   accent-color: var(--accent);
 }
 
@@ -74,45 +80,4 @@ input[type="range"]:focus {
 select option {
   background: #1a2226;
   color: var(--text-main);
-}
-
-#soundLegend {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 0.65rem;
-  row-gap: 0.45rem;
-  margin-top: 0.1rem;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-width: 96px;
-  font-size: 0.86rem;
-  color: #bdd0d8;
-}
-
-.legend-color {
-  width: 13px;
-  height: 13px;
-  border-radius: 2px;
-  border: 1px solid rgba(240, 245, 248, 0.35);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
-}
-
-.legend-color.sine {
-  background: #ff8c42;
-}
-.legend-color.square {
-  background: #ff4c42;
-}
-.legend-color.saw {
-  background: #ffe066;
-}
-.legend-color.tri {
-  background: #4361ee;
-}
-.legend-color.bell {
-  background: #c77dff;
 }
