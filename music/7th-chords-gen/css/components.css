@@ -14,6 +14,21 @@ button {
   letter-spacing: 0.04em;
 }
 
+button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.play:focus-visible {
+  outline: 2px solid rgba(168, 216, 188, 0.55);
+  outline-offset: 2px;
+}
+
+.next-btn:focus-visible {
+  outline: 1px solid rgba(184, 149, 106, 0.45);
+  outline-offset: 3px;
+}
+
 button .btn-icon,
 button .btn-label {
   display: inline-flex;
@@ -70,6 +85,12 @@ button:disabled {
 
 .listen-btn:hover:not(:disabled) {
   border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
+
+.listen-btn[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.25);
   color: var(--text);
 }
 
