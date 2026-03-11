@@ -3,29 +3,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   const Engine = window.HarmonyEngine;
   const AudioEngine = window.AudioEngine;
-  if (!Engine) throw new Error("HarmonyEngine failed to load.");
-  if (!AudioEngine) throw new Error("AudioEngine failed to load.");
+  const Controller = window.ChordController;
+  const Cfg = window.Config;
 
-  // --- APPLICATION STATE ---
-  const state = Engine.createState();
+  if (!Engine) throw new Error(Cfg.errors.engineNotLoaded);
+  if (!AudioEngine) throw new Error(Cfg.errors.audioEngineNotLoaded);
+  if (!Controller) throw new Error("ChordController failed to load.");
+  if (!Cfg) throw new Error("Config failed to load.");
 
-  // --- DOM ELEMENTS ---
+  // --- CONTROLLER ---
+  const controller = Controller.create();
+
+  // --- DOM ELEMENTS (using config selectors) ---
   const DOM = {
-    chordEl: document.getElementById("chordDisplay"),
-    playBtn: document.getElementById("playBtn"),
-    statusLine: document.getElementById("statusLine"),
-    listenBtn: document.getElementById("listenBtn"),
-    nextBtn: document.getElementById("nextBtn"),
-    statsBtn: document.getElementById("statsBtn"),
-    statsLine: document.getElementById("statsLine"),
-    statsCount: document.getElementById("statsCount"),
-    infoBox: document.getElementById("infoBox"),
-    keyLabel: document.getElementById("keyLabel"),
-    stepLabel: document.getElementById("stepLabel"),
-    randomHalfDim: document.getElementById("randomHalfDim"),
-    randomDim: document.getElementById("randomDim"),
-    randomOptions: document.querySelector(".random-options"),
-    modeRadios: [...document.querySelectorAll("input[name='mode']")],
+    chordEl: document.querySelector(Cfg.selectors.chord),
+    playBtn: document.querySelector(Cfg.selectors.playBtn),
+    statusLine: document.querySelector(Cfg.selectors.statusLine),
+    listenBtn: document.querySelector(Cfg.selectors.listenBtn),
+    nextBtn: document.querySelector(Cfg.selectors.nextBtn),
+    statsBtn: document.querySelector(Cfg.selectors.statsBtn),
+    statsLine: document.querySelector(Cfg.selectors.statsLine),
+    statsCount: document.querySelector(Cfg.selectors.statsCount),
+    infoBox: document.querySelector(Cfg.selectors.infoBox),
+    keyLabel: document.querySelector(Cfg.selectors.keyLabel),
+    stepLabel: document.querySelector(Cfg.selectors.stepLabel),
+    randomHalfDim: document.querySelector(Cfg.selectors.randomHalfDim),
+    randomDim: document.querySelector(Cfg.selectors.randomDim),
+    randomOptions: document.querySelector(Cfg.selectors.randomOptions),
+    modeRadios: [...document.querySelectorAll(Cfg.selectors.modeRadios)],
   };
 
   // --- AUDIO LAYER ---
@@ -35,7 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const playChordAudio = (chord) => {
     if (!chord) return;
     const notes = Engine.getChordMidiNotes(chord);
-    audio.playChord(notes);
+    audio.playChord(notes, {
+      arpeggioStep: Cfg.audio.arpeggioStep,
+      noteDuration: Cfg.audio.noteDuration,
+    });
   };
 
   const getGenerationOptions = () => ({
@@ -45,39 +53,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- UI / RENDERING LAYER ---
   const renderChord = (chord) => {
-    DOM.chordEl.innerHTML = Engine.renderChordHTML(chord);
+    if (DOM.chordEl) {
+      DOM.chordEl.innerHTML = Engine.renderChordHTML(chord);
+    }
   };
 
   const updateInfoBox = (prog) => {
+    if (!DOM.infoBox) return;
+
     if (!prog) {
       DOM.infoBox.style.display = "none";
       return;
     }
-    DOM.keyLabel.innerHTML =
-      Engine.formatAccidentals(state.currentKey) +
-      (state.currentMode === "maj251" ? "" : "m");
-    DOM.stepLabel.textContent = prog.step;
+
+    const state = controller.getState();
+    if (DOM.keyLabel) {
+      DOM.keyLabel.innerHTML =
+        Engine.formatAccidentals(state.currentKey) +
+        (state.currentMode === "maj251" ? "" : "m");
+    }
+    if (DOM.stepLabel) {
+      DOM.stepLabel.textContent = prog.step;
+    }
     DOM.infoBox.style.display = "flex";
   };
 
   const updateRandomOptionsVisibility = () => {
-    if (DOM.randomOptions)
+    if (DOM.randomOptions) {
+      const state = controller.getState();
       DOM.randomOptions.style.display =
         state.currentMode === "random" ? "flex" : "none";
+    }
   };
 
-  const incrementCounter = () => {
-    state.chordCount++;
-    DOM.statsCount.textContent = state.chordCount;
+  const updateStatsDisplay = () => {
+    const state = controller.getState();
+    if (DOM.statsCount) {
+      DOM.statsCount.textContent = state.chordCount;
+    }
   };
-
-  const prettySpeechError = (code) =>
-    ({
-      "no-speech": "no speech detected",
-      "audio-capture": "microphone unavailable",
-      "not-allowed": "microphone permission denied",
-      network: "network error",
-    })[code] || code;
 
   const showError = (err) => {
     if (!DOM.statusLine) return;
@@ -91,51 +105,64 @@ document.addEventListener("DOMContentLoaded", () => {
     DOM.statusLine.textContent = "";
   };
 
-  // --- CONTROLLER / EVENT LAYER ---
+  // --- UI STATE & RENDERING ---
   const triggerNext = () => {
-    if (DOM.nextBtn.disabled) return;
-    animateButton(DOM.nextBtn);
-    nextChordHandler();
-    DOM.nextBtn.focus();
-  };
+    if (DOM.nextBtn?.disabled) return;
 
-  const nextChordHandler = () => {
-    const result = Engine.generateChord(state, getGenerationOptions());
-    let chord, prog;
-    if (result.chord) {
-      // 251 progression
-      chord = result.chord;
-      prog = result.prog;
-    } else {
-      chord = result;
-    }
-    state.currentChord = chord;
+    animateButton(DOM.nextBtn);
+
+    // Controller handles progression logic
+    const result = controller.nextChord(getGenerationOptions());
+    controller.incrementChordCount();
+
+    // Extract chord and prog from result
+    const chord = result.chord || result;
+    const prog = result.prog || null;
+
+    // Update UI
     renderChord(chord);
     updateInfoBox(prog);
-    DOM.playBtn.disabled = false;
-    incrementCounter();
+    updateStatsDisplay();
+    if (DOM.playBtn) {
+      DOM.playBtn.disabled = false;
+    }
+
+    if (DOM.nextBtn) {
+      DOM.nextBtn.focus();
+    }
   };
 
   const animateButton = (btn) => {
     if (!btn) return;
     btn.classList.add("anticipate");
-    setTimeout(() => btn.classList.remove("anticipate"), 150);
+    setTimeout(() => btn.classList.remove("anticipate"), Cfg.ui.buttonAnimationDuration);
   };
 
-  // Button events
-  DOM.nextBtn.addEventListener("mousedown", () => {
-    animateButton(DOM.nextBtn);
-    triggerNext();
-  });
-  DOM.playBtn.addEventListener("mousedown", () => {
-    animateButton(DOM.playBtn);
-    playChordAudio(state.currentChord);
-  });
-  DOM.statsBtn.addEventListener("mousedown", () => {
-    animateButton(DOM.statsBtn);
-    DOM.statsLine.style.display =
-      DOM.statsLine.offsetParent !== null ? "none" : "block";
-  });
+  // --- EVENT LISTENERS ---
+  if (DOM.nextBtn) {
+    DOM.nextBtn.addEventListener("mousedown", () => {
+      animateButton(DOM.nextBtn);
+      triggerNext();
+    });
+  }
+
+  if (DOM.playBtn) {
+    DOM.playBtn.addEventListener("mousedown", () => {
+      animateButton(DOM.playBtn);
+      const state = controller.getState();
+      playChordAudio(state.currentChord);
+    });
+  }
+
+  if (DOM.statsBtn) {
+    DOM.statsBtn.addEventListener("mousedown", () => {
+      animateButton(DOM.statsBtn);
+      if (DOM.statsLine) {
+        DOM.statsLine.style.display =
+          DOM.statsLine.offsetParent !== null ? "none" : "block";
+      }
+    });
+  }
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
@@ -146,16 +173,19 @@ document.addEventListener("DOMContentLoaded", () => {
         triggerNext();
         break;
       case "KeyP":
-        if (!DOM.playBtn.disabled) {
+        if (!DOM.playBtn?.disabled) {
           animateButton(DOM.playBtn);
+          const state = controller.getState();
           playChordAudio(state.currentChord);
         }
         break;
       case "KeyS":
-        if (!DOM.statsBtn.disabled) {
+        if (!DOM.statsBtn?.disabled) {
           animateButton(DOM.statsBtn);
-          DOM.statsLine.style.display =
-            DOM.statsLine.offsetParent !== null ? "none" : "block";
+          if (DOM.statsLine) {
+            DOM.statsLine.style.display =
+              DOM.statsLine.offsetParent !== null ? "none" : "block";
+          }
         }
         break;
     }
@@ -164,17 +194,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mode change
   DOM.modeRadios.forEach((radio) => {
     radio.addEventListener("change", () => {
-      state.currentMode = radio.value;
-      state.stepIndex = 0;
-      state.currentChord = null;
+      controller.setMode(radio.value);
+
+      // Update UI
       DOM.chordEl.textContent = "";
-      DOM.playBtn.disabled = true;
+      if (DOM.playBtn) {
+        DOM.playBtn.disabled = true;
+      }
       updateRandomOptionsVisibility();
-      DOM.infoBox.style.display = "none";
+      if (DOM.infoBox) {
+        DOM.infoBox.style.display = "none";
+      }
     });
   });
 
-  // --- SPEECH INTEGRATION (UI stays here, business logic in speech.js) ---
+  // --- SPEECH INTEGRATION ---
   let speech = null;
 
   const setButtonContent = (button, icon, label) => {
@@ -205,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!ok) setButtonContent(DOM.listenBtn, "🎤", "Unavailable");
   };
 
-  // --- SPEECH hookup
   setListenAvailable();
 
   if (
@@ -214,8 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.SpeechController.isSupported()
   ) {
     speech = window.SpeechController.create({
-      lang: "en-US",
-      debug: true,
+      lang: Cfg.speech.language,
+      debug: Cfg.speech.debug,
       onCommand: (cmd) => {
         if (cmd === "next") {
           triggerNext();
@@ -224,8 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (cmd === "stop-listening") {
           console.log("[speech] user said 'stop listening'");
-          speech.stop(); // disables listening + updates button
-          clearStatus(); // optional: clear error/status line
+          speech.stop();
+          clearStatus();
           return;
         }
       },
@@ -236,30 +269,28 @@ document.addEventListener("DOMContentLoaded", () => {
       onSession: (status, detail) => {
         if (status !== "error") return;
 
-        // Don't stop listening on benign silence.
         if (detail === "no-speech") return;
 
         console.warn("Speech session:", detail);
-
-        // revert button to Listen
         speech.stop();
-
-        // status line "Error: ..."
-        showError(prettySpeechError(detail));
+        showError(Cfg.getErrorMessage(detail));
       },
       onError: (err) => {
-        // Keep this for raw logging if you want
         console.warn("Speech:", err);
       },
     });
 
-    DOM.listenBtn.addEventListener("mousedown", () => {
-      animateButton(DOM.listenBtn);
-      speech.toggle();
-    });
+    if (DOM.listenBtn) {
+      DOM.listenBtn.addEventListener("mousedown", () => {
+        animateButton(DOM.listenBtn);
+        speech.toggle();
+      });
+    }
   }
 
   // --- INIT ---
   updateRandomOptionsVisibility();
-  DOM.playBtn.disabled = true;
+  if (DOM.playBtn) {
+    DOM.playBtn.disabled = true;
+  }
 });

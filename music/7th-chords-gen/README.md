@@ -87,26 +87,62 @@ Speech recognition is handled **by the browser**, not by this app.
 │  ├─ base.css # Reset, body, typography
 │  ├─ layout.css # Page structure and layout
 │  └─ components.css # UI components (buttons, pills, etc.)
-├─ harmony-engine.js # Music theory logic
+│
+├─ harmony-engine.js # Music theory (app-agnostic)
+├─ controller.js # State & orchestration (app-agnostic)
 ├─ audio-engine.js # Web Audio API synthesis
-├─ script.js # UI controller
+├─ config.js # Application constants
+├─ script.js # UI controller (DOM, events, rendering)
 ├─ speech.js # Speech recognition
+│
 ├─ package.json
-├─ test/ # Regression tests
+├─ test/ # Regression tests (Node)
 │  ├─ harmony-engine.test.js
-│  └─ audio-engine.test.js
+│  ├─ audio-engine.test.js
+│  └─ controller.test.js
 └─ README.md
 ```
 
-## Design Principles
+## Architecture
 
-- **Deterministic musical logic**
-- **True diatonic spelling**
-- **Fast interaction** (minimal latency)
-- **Modular architecture**
-  - Separated concerns: harmony theory, audio synthesis, UI, speech recognition
-  - Modular CSS: variables, base, layout, components
-  - Testable business logic (Node tests via npm)
+The app follows a **three-layer architecture** that keeps concerns separate and makes the harmony engine completely app-agnostic:
+
+### Layer 1: Core Music Logic (App-agnostic)
+- **harmony-engine.js** — Pure music theory (keys, scales, chord construction, MIDI note mapping)
+  - No DOM, no audio context, no state management
+  - Deterministic and testable
+  - Can be used in other applications (CLI, Electron, etc.)
+
+### Layer 2: Orchestration (App-agnostic)
+- **controller.js** — Progression state management and chord generation choreography
+  - Manages mode switching, progression lifecycle, chord counting
+  - No DOM, no audio, no UI concerns
+  - Calls harmony-engine to generate chords
+  - Provides frozen state snapshots for the UI
+  - Completely testable
+
+### Layer 3: Presentation & Integration (App-specific)
+- **script.js** — UI layer that listens to events, updates DOM, manages audio context
+  - Calls controller to orchestrate chord generation
+  - Renders chord display and info boxes
+  - Handles speech recognition callbacks
+  - Pure event-driven architecture
+
+### Supporting Modules
+- **config.js** — Application constants (DOM selectors, audio timings, error messages)
+- **audio-engine.js** — Web Audio API synthesis (arpeggio + block voicing)
+- **speech.js** — Speech recognition (voice commands)
+- **css/** — Modular stylesheets (variables, base, layout, components)
+
+## Separation of Concerns
+
+| Module | Responsibility | Testable | Reusable |
+|--------|---|---|---|
+| harmony-engine.js | Music theory | ✅ Yes | ✅ Yes (any context) |
+| controller.js | State & orchestration | ✅ Yes | ✅ Yes (any context) |
+| audio-engine.js | Web Audio synthesis | ✅ Yes | ✅ Yes (any browser app) |
+| script.js | UI events & rendering | Partial | No (DOM-specific) |
+| config.js | Constants | ✅ Yes | ✅ Yes |
 
 
 ## Browser Support
