@@ -1,76 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>My Apps Directory</title>
-<style>
-body { font-family: sans-serif; background:#f5f5f5; margin:0; padding:0; }
-header { background:#222; color:white; padding:16px; text-align:center; font-size:24px; }
-main { max-width:800px; margin:auto; padding:20px; }
-ul { list-style-type: disc; padding-left:20px; }
-li { margin-bottom:8px; }
-a { text-decoration:none; color:#0066cc; }
-a:hover { text-decoration:underline; }
-footer { text-align:center; font-size:13px; padding:14px; background:#eee; margin-top:40px; }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Apps Directory</title>
+    <style>
+      body {
+        font-family:
+          "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial,
+          sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: #222;
+        color: white;
+        padding: 16px;
+        text-align: center;
+        font-size: 24px;
+      }
+      main {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+      }
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      footer {
+        text-align: center;
+        font-size: 13px;
+        padding: 14px;
+        background: #eee;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>📂 Available Apps</header>
 
-<header>📂 Available Apps</header>
+    <main>
+      <h2>Apps available in the folder:</h2>
+      <ul id="appsList">
+        <li>Loading...</li>
+      </ul>
+    </main>
 
-<main>
-<p>The following apps are available in the folder:</p>
-<ul id="appsList">
-  <li>Loading...</li>
-</ul>
-</main>
+    <footer>© 2026 cawel.github.io</footer>
 
-<footer>© 2026 cawel.github.io</footer>
+    <script type="module">
+      "use strict";
 
-<script type="module">
-// Configuration
-const githubPagesHost = "cawel.github.io";
-const username = "cawel";
-const repo = "cawel.github.com";
+      // Configuration
+      const config = Object.freeze({
+        username: "cawel",
+        repo: "cawel.github.com",
+        fileVersion: "1.1",
+      });
 
-// Use URL path after hostname, normalize by removing leading slash and index.html.
-const folderPath = window.location.pathname
-  .replace(/^\//, "")
-  .replace(/(?:^|\/)index\.html$/, "")
-  .replace(/\/$/, "");
+      // Use URL path after hostname, normalize by removing leading slash and index.html.
+      const folderPath = window.location.pathname
+        .replace(/^\//, "")
+        .replace(/(?:^|\/)index\.html$/, "")
+        .replace(/\/$/, "");
 
-async function listFolders() {
-  const ul = document.getElementById("appsList");
-  ul.innerHTML = "<li>Loading...</li>";
-
-  try {
-    const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folderPath}`);
-    const data = await res.json();
-
-    ul.innerHTML = ""; // clear loading
-
-    data.forEach(item => {
-      if(item.type === "dir") {
+      const renderFolderItem = (folderName) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = `https://${githubPagesHost}/${item.path}/`; // link to folder
-        a.textContent = item.name;
+        a.href = `./${folderName}/`;
+        a.textContent = folderName;
         li.appendChild(a);
-        ul.appendChild(li);
-      }
-    });
+        return li;
+      };
 
-    if(ul.children.length === 0){
-      ul.innerHTML = "<li>No folders found.</li>";
-    }
+      const renderFolders = (ul, folders) => {
+        ul.innerHTML = "";
 
-  } catch(e){
-    ul.innerHTML = `<li>Error loading folders: ${e.message}</li>`;
-  }
-}
+        folders.forEach((folderName) => {
+          const li = renderFolderItem(folderName);
+          ul.appendChild(li);
+        });
 
-listFolders();
-</script>
+        if (folders.length === 0) {
+          ul.innerHTML = "<li>No folders found.</li>";
+        }
+      };
 
-</body>
+      const getLocalFolders = async () => {
+        const res = await fetch("./", { cache: "no-store" });
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const links = Array.from(doc.querySelectorAll("a"));
+
+        const folders = links
+          .map((a) => a.getAttribute("href") || "")
+          .filter((href) => href.endsWith("/"))
+          .map((href) => href.replace(/\/+$/, ""))
+          .filter((href) => href && href !== "." && href !== "..")
+          .filter((href) => !href.startsWith("/") && !href.startsWith("?"))
+          .filter((href) => !href.includes("#"))
+          .map((href) => href.split("/").pop())
+          .filter((name) => name && name !== "." && name !== "..")
+          .filter((name) => !name.startsWith("."));
+
+        return [...new Set(folders)].sort((a, b) => a.localeCompare(b));
+      };
+
+      const listFolders = async () => {
+        const ul = document.getElementById("appsList");
+        ul.innerHTML = "<li>Loading...</li>";
+
+        try {
+          // Local: discover directories from server-generated listing.
+          const isLocal =
+            window.location.hostname === "localhost" ||
+            window.location.hostname === "127.0.0.1";
+
+          if (isLocal) {
+            const folders = await getLocalFolders();
+
+            if (folders.length === 0) {
+              ul.innerHTML =
+                "<li>No folders found locally. Your server may not expose directory listings.</li>";
+              return;
+            }
+
+            renderFolders(ul, folders);
+          } else {
+            // Production: list directories from GitHub API.
+            const res = await fetch(
+              `https://api.github.com/repos/${config.username}/${config.repo}/contents/${folderPath}`,
+            );
+            const data = await res.json();
+
+            const folders = Array.isArray(data)
+              ? data
+                  .filter((item) => item.type === "dir")
+                  .map((item) => item.name)
+                  .sort((a, b) => a.localeCompare(b))
+              : [];
+
+            renderFolders(ul, folders);
+          }
+        } catch (e) {
+          ul.innerHTML = `<li>Error loading folders: ${e.message}</li>`;
+        }
+      };
+
+      listFolders();
+    </script>
+  </body>
 </html>
