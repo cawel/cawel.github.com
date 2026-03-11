@@ -52,10 +52,13 @@ button:disabled {
 .play {
   background: var(--play-bg);
   color: var(--play-text);
+  border: 1px solid rgba(168, 216, 188, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .play:hover:not(:disabled) {
-  opacity: 0.82;
+  opacity: 0.9;
+  border-color: rgba(168, 216, 188, 0.72);
 }
 
 /* Listen button: outlined in brass accent */
