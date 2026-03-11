@@ -68,9 +68,9 @@ test("maj251 mode maintains the same key for all three chords", () => {
 
   // All three should share the same key
   assert.ok(state.currentKey);
-  assert.equal(ii.prog.step, "ii");
-  assert.equal(v.prog.step, "V");
-  assert.equal(i.prog.step, "I");
+  assert.equal(ii.progression.step, "ii");
+  assert.equal(v.progression.step, "V");
+  assert.equal(i.progression.step, "I");
 
   // After the third chord, stepIndex should be 0 for next cycle
   assert.equal(state.stepIndex, 0);
@@ -83,22 +83,22 @@ test("min251 mode marks the dominant as harmonic", () => {
   const iiø = controller.nextChord();
   const v = controller.nextChord();
 
-  assert.equal(iiø.prog.step, "iiø");
+  assert.equal(iiø.progression.step, "iiø");
   assert.ok(v.chord.harmonic);
-  assert.equal(v.prog.harmonic, true);
+  assert.equal(v.progression.harmonic, true);
 });
 
-test("incrementChordCount increments the counter", () => {
+test("nextChord auto-increments the chord count", () => {
   const controller = ChordController.create();
 
   let state = controller.getState();
   assert.equal(state.chordCount, 0);
 
-  controller.incrementChordCount();
+  controller.nextChord();
   state = controller.getState();
   assert.equal(state.chordCount, 1);
 
-  controller.incrementChordCount();
+  controller.nextChord();
   state = controller.getState();
   assert.equal(state.chordCount, 2);
 });
@@ -162,8 +162,7 @@ test("reset clears all state to initial defaults", () => {
   // Modify state
   controller.setMode("maj251");
   controller.nextChord();
-  controller.incrementChordCount();
-  controller.incrementChordCount();
+  controller.nextChord();
 
   let state = controller.getState();
   assert.equal(state.currentMode, "maj251");

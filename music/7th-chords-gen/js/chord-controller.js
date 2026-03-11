@@ -1,3 +1,12 @@
+/**
+ * chord-controller.js — Chord progression orchestration layer.
+ *
+ * App-agnostic: no DOM, no audio.
+ * Manages mode, progression state, and chord sequencing by
+ * delegating to harmony-engine. Exposes immutable state snapshots.
+ */
+"use strict";
+
 (function (root, factory) {
   const api = factory();
 
@@ -7,7 +16,6 @@
 
   root.ChordController = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  "use strict";
 
   const HarmonyEngine =
     typeof window !== "undefined"
@@ -49,17 +57,17 @@
        */
       nextChord(options = {}) {
         const result = HarmonyEngine.generateChord(state, options);
+        state.chordCount++;
 
-        // Handle progression result
+        // Progression mode: result is { chord, progression }
         if (result.chord) {
           state.currentChord = result.chord;
-          state.currentKey = state.currentKey; // Already set by generateChord
           return result;
         }
 
-        // Handle random / cycle result
+        // Random / cycle mode: result is a bare chord object
         state.currentChord = result;
-        return { chord: result, prog: null };
+        return { chord: result, progression: null };
       },
 
       /**
@@ -73,13 +81,6 @@
         state.stepIndex = 0;
         state.currentKey = null;
         state.currentChord = null;
-      },
-
-      /**
-       * Increment the chord counter.
-       */
-      incrementChordCount() {
-        state.chordCount++;
       },
 
       /**

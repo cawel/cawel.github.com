@@ -1,3 +1,11 @@
+/**
+ * ui.js — Presentation and event layer.
+ *
+ * Wires DOM events to the chord-controller and synth-engine.
+ * Owns all DOM queries, rendering, button animation,
+ * keyboard shortcuts, and speech integration.
+ * No music logic or audio synthesis lives here.
+ */
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,10 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const updateInfoBox = (prog) => {
+  const updateInfoBox = (progression) => {
     if (!DOM.infoBox) return;
 
-    if (!prog) {
+    if (!progression) {
       DOM.infoBox.style.display = "none";
       return;
     }
@@ -73,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (state.currentMode === "maj251" ? "" : "m");
     }
     if (DOM.stepLabel) {
-      DOM.stepLabel.textContent = prog.step;
+      DOM.stepLabel.textContent = progression.step;
     }
     DOM.infoBox.style.display = "flex";
   };
@@ -111,17 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animateButton(DOM.nextBtn);
 
-    // Controller handles progression logic
-    const result = controller.nextChord(getGenerationOptions());
-    controller.incrementChordCount();
-
-    // Extract chord and prog from result
-    const chord = result.chord || result;
-    const prog = result.prog || null;
+    // Controller handles progression logic and auto-increments the chord count
+    const { chord, progression } = controller.nextChord(getGenerationOptions());
 
     // Update UI
     renderChord(chord);
-    updateInfoBox(prog);
+    updateInfoBox(progression);
     updateStatsDisplay();
     if (DOM.playBtn) {
       DOM.playBtn.disabled = false;
@@ -144,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- EVENT LISTENERS ---
   if (DOM.nextBtn) {
     DOM.nextBtn.addEventListener("mousedown", () => {
-      animateButton(DOM.nextBtn);
       triggerNext();
     });
   }
@@ -157,13 +159,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const toggleStats = () => {
+    if (DOM.statsLine) {
+      DOM.statsLine.style.display =
+        DOM.statsLine.offsetParent !== null ? "none" : "block";
+    }
+  };
+
   if (DOM.statsBtn) {
     DOM.statsBtn.addEventListener("mousedown", () => {
       animateButton(DOM.statsBtn);
-      if (DOM.statsLine) {
-        DOM.statsLine.style.display =
-          DOM.statsLine.offsetParent !== null ? "none" : "block";
-      }
+      toggleStats();
     });
   }
 
@@ -185,10 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
       case "KeyS":
         if (!DOM.statsBtn?.disabled) {
           animateButton(DOM.statsBtn);
-          if (DOM.statsLine) {
-            DOM.statsLine.style.display =
-              DOM.statsLine.offsetParent !== null ? "none" : "block";
-          }
+          toggleStats();
         }
         break;
     }

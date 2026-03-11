@@ -1,3 +1,12 @@
+/**
+ * harmony-engine.js — Pure music theory engine.
+ *
+ * App-agnostic: no DOM, no audio context, no state.
+ * Exports constants and pure functions for chord generation,
+ * MIDI note mapping, and HTML rendering.
+ */
+"use strict";
+
 (function (root, factory) {
   const api = factory();
 
@@ -7,7 +16,6 @@
 
   root.HarmonyEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  "use strict";
 
   const KEYS = {
     C: ["C", "D", "E", "F", "G", "A", "B"],
@@ -139,18 +147,18 @@
       case "min251": {
         if (state.stepIndex === 0)
           state.currentKey = pick(Object.keys(KEYS), random);
-        const prog = PROGS[state.currentMode][state.stepIndex];
+        const progression = PROGS[state.currentMode][state.stepIndex];
         const chord = {
-          root: KEYS[state.currentKey][prog.deg],
-          quality: prog.quality,
+          root: KEYS[state.currentKey][progression.deg],
+          quality: progression.quality,
         };
 
-        if (prog.harmonic && state.currentMode === "min251") {
+        if (progression.harmonic && state.currentMode === "min251") {
           chord.harmonic = true;
         }
 
         state.stepIndex = (state.stepIndex + 1) % 3;
-        return { chord, prog };
+        return { chord, progression };
       }
       default:
         throw new Error("Unsupported mode: " + state.currentMode);

@@ -64,15 +64,15 @@ test("major ii-V-I keeps one key for the full three-chord cycle and resets step 
   assert.equal(state.currentKey, "C");
   assert.deepEqual(ii, {
     chord: { root: "D", quality: "m7" },
-    prog: { step: "ii", quality: "m7", deg: 1 },
+    progression: { step: "ii", quality: "m7", deg: 1 },
   });
   assert.deepEqual(v, {
     chord: { root: "G", quality: "7" },
-    prog: { step: "V", quality: "7", deg: 4 },
+    progression: { step: "V", quality: "7", deg: 4 },
   });
   assert.deepEqual(i, {
     chord: { root: "C", quality: "maj7" },
-    prog: { step: "I", quality: "maj7", deg: 0 },
+    progression: { step: "I", quality: "maj7", deg: 0 },
   });
   assert.equal(state.stepIndex, 0);
 });
@@ -86,7 +86,7 @@ test("minor iiø-V-i marks the dominant chord as harmonic", () => {
 
   assert.deepEqual(dominant, {
     chord: { root: "G", quality: "7", harmonic: true },
-    prog: { step: "V", quality: "7", deg: 4, harmonic: true },
+    progression: { step: "V", quality: "7", deg: 4, harmonic: true },
   });
 });
 

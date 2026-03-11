@@ -1,6 +1,12 @@
-(function (root) {
-  "use strict";
+/**
+ * config.js — Application-wide constants.
+ *
+ * Centralises DOM selectors, audio timings, UI settings,
+ * speech config, and user-facing error messages.
+ */
+"use strict";
 
+(function (root) {
   const Config = {
     // DOM selectors
     selectors: {

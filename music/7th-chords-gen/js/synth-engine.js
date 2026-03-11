@@ -1,3 +1,12 @@
+/**
+ * synth-engine.js — Web Audio API synthesis engine.
+ *
+ * Provides arpeggio + block chord playback via the Web Audio API.
+ * Created via SynthEngine.create(audioContext).
+ * No DOM, no music theory — audio rendering only.
+ */
+"use strict";
+
 (function (root, factory) {
   const api = factory();
 
@@ -7,7 +16,6 @@
 
   root.SynthEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  "use strict";
 
   const create = (audioContext) => {
     if (!audioContext) {
