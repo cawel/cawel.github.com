@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * speech-controller.js (Option 3: enabled state + session state)
+ * speech-controller.js — Browser SpeechRecognition wrapper.
  *
  * Strategy (reliable on localhost/Chrome):
  * - continuous = false (one utterance per session)
@@ -11,10 +11,9 @@
  * Callbacks:
  * - onState(enabled:boolean): user-intent state (button pressed/unpressed)
  * - onSession(status:string, detail?:string): engine lifecycle
- *     status ∈ "idle" | "listening" | "restarting" | "error"
+ *     status ∈ "idle" | "listening" | "error"
  *
  * No DOM.
- *
  */
 
 /**
