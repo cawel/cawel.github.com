@@ -15,6 +15,11 @@
   --accent:      #b8956a;   /* warm brass */
   --play-bg:     #2e6b4f;   /* deep muted green */
   --play-text:   #a8d8bc;
+  --accent-strong:#d2ae81;
+  --accent-shadow: rgba(184,149,106,0.2);
+
+  --font-ui:      "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
 
   --btn-font:   clamp(0.95rem, 2.2vw, 1.1rem);
   --btn-py:     clamp(0.55rem, 1.3vw, 0.65rem);
@@ -25,7 +30,7 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-ui);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,20 +41,22 @@ body {
 header h1 {
   text-align: center;
   margin: clamp(1.1rem, 4vw, 2.5rem) 0 clamp(0.8rem, 3vw, 1.8rem);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 4vw, 2.05rem);
+  font-weight: 500;
   color: var(--title);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: clamp(0.35rem, 1.5vw, 0.6rem);
+  text-transform: uppercase;
 }
 
 .title-icon {
-  font-size: 0.95em;
+  font-size: 0.88em;
   filter: grayscale(0.3) saturate(0.65);
-  opacity: 0.85;
+  opacity: 0.78;
 }
 
 .control-container {
@@ -153,14 +160,14 @@ header h1 {
 
 /* Base button style */
 button {
+  font-family: var(--font-display);
   font-weight: 600;
   cursor: pointer;
   border: none;
   outline: none;
   transition: opacity 0.15s ease, transform 0.1s ease;
   border-radius: var(--btn-radius);
-  font-family: inherit;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 button .btn-icon,
@@ -224,8 +231,8 @@ button:disabled {
 
 /* Next button */
 .next-btn {
-  background: var(--accent);
-  color: #0e0e0e;
+  background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+  color: #0b0b0b;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -233,22 +240,23 @@ button:disabled {
   gap: 0.65rem;
 
   font-size: var(--btn-font);
-  padding: clamp(0.75rem, 1.8vw, 0.9rem) clamp(1.8rem, 6vw, 3.25rem);
-  letter-spacing: 0.04em;
+  padding: clamp(0.85rem, 1.9vw, 1rem) clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 
   width: min(26rem, 92vw);
   margin-top: 0.35rem;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 0 1px rgba(184,149,106,0.22), 0 10px 24px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 1px var(--accent-shadow), 0 14px 30px rgba(0,0,0,0.34);
 }
 
 .next-btn .btn-icon {
-  opacity: 0.95;
-  filter: grayscale(0.05) saturate(0.8);
+  opacity: 0.92;
+  filter: grayscale(0.1) saturate(0.85);
 }
 
 .next-btn:hover:not(:disabled) {
-  opacity: 0.94;
+  opacity: 0.97;
   transform: translateY(-1px);
 }
 
