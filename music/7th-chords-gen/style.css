@@ -1,68 +1,67 @@
-/* 7th Chords Gen — style.css (clean, minimal media queries) */
+/* 7th Chords Gen — style.css */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root{
-  --bg0:#1c1c1e;
-  --bg1:#2a2a45;
+:root {
+  --bg:          #0e0e0e;
+  --surface:     #171717;
+  --surface-hi:  #1e1e1e;
+  --border:      rgba(255,255,255,0.08);
 
-  --panel0:#2d2d35;
-  --panel1:#3a3a45;
+  --text:        #e8e8e8;
+  --text-muted:  #888;
+  --title:       #e8e8e8;
 
-  --title:#c77dff;
+  --accent:      #b8956a;   /* warm brass */
+  --play-bg:     #2e6b4f;   /* deep muted green */
+  --play-text:   #a8d8bc;
 
-  --accent:#ffd166;
-  --play:#2ecc71;
-  --listen:#ffd166;
-  --stats:#e0e0e0;
-  --next:#ff6f61;
+  --btn-font:   clamp(0.95rem, 2.2vw, 1.1rem);
+  --btn-py:     clamp(0.55rem, 1.3vw, 0.65rem);
+  --btn-px:     clamp(1.0rem, 2.6vw, 1.6rem);
+  --btn-radius: 6px;
 
-  --shadow: 0 14px 36px rgba(0,0,0,0.6);
-  --inset: inset 0 0 0 1px rgba(255,255,255,0.05);
-
-  /* Button sizing: keep Play/Listen/Stats/Next visually consistent */
-  --btn-font: clamp(1.05rem, 2.2vw, 1.3rem);
-  --btn-py: clamp(0.55rem, 1.3vw, 0.6rem);
-  --btn-px: clamp(1.0rem, 2.6vw, 1.6rem);
-  --btn-radius: 14px;
-
-  /* Keep the 3 control buttons identical width */
   --control-btn-w: clamp(10.5rem, 26vw, 12rem);
 }
 
-body{
-  font-family: system-ui, sans-serif;
+body {
+  font-family: system-ui, -apple-system, sans-serif;
   min-height: 100vh;
-  display:flex;
-  flex-direction:column;
-  background: linear-gradient(180deg, var(--bg0), var(--bg1));
-  color:#fff;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
 }
 
-header h1{
-  text-align:center;
-  margin: clamp(1.1rem, 4vw, 3rem) 0 clamp(0.8rem, 3vw, 2rem);
-  font-size: clamp(2rem, 6vw, 3.2rem);
-  font-weight: 900;
+header h1 {
+  text-align: center;
+  margin: clamp(1.1rem, 4vw, 2.5rem) 0 clamp(0.8rem, 3vw, 1.8rem);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 600;
   color: var(--title);
-  letter-spacing: 0.05em;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap: clamp(0.35rem, 1.5vw, 0.7rem);
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.35rem, 1.5vw, 0.6rem);
 }
 
-.control-container{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.title-icon {
+  font-size: 0.95em;
+  filter: grayscale(0.3) saturate(0.65);
+  opacity: 0.85;
+}
+
+.control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: clamp(0.6rem, 2.5vw, 1rem);
 }
 
 /* Panel: left = mode selector, right = button column.
    Wrap naturally on small screens without huge dead space. */
-.control-panel{
+.control-panel {
   display: grid;
   grid-template-columns: max-content var(--control-btn-w);
   column-gap: clamp(3.25rem, 8vw, 6rem);
@@ -72,59 +71,67 @@ header h1{
   justify-content: center;
 
   padding: clamp(1rem, 3vw, 1.7rem) clamp(1rem, 4vw, 2.4rem);
-  border-radius: 24px;
-  background: linear-gradient(135deg, var(--panel0), var(--panel1));
-  box-shadow: var(--inset), var(--shadow);
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   width: max-content;
   max-width: min(96vw, 1100px);
 }
 
 /* Left side (modes) */
-.mode-selector{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  text-align:left;
+.mode-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 
-  gap: 0.8rem;
-  font-size: 1.15rem;
-  font-weight: 700;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
 
   width: max-content;
   max-width: 100%;
 }
 
-.mode-selector label{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap: 0.6rem;
-  cursor:pointer;
-  width: max-content;       /* avoids full-width stretching */
+.mode-selector label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  cursor: pointer;
+  width: max-content;
+  color: var(--text-muted);
+  transition: color 0.15s;
 }
 
-.mode-selector input{
+.mode-selector label:has(input:checked) {
+  color: var(--text);
+}
+
+.mode-selector input {
   accent-color: var(--accent);
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 /* Random mode "Include" options */
-.random-options{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;   /* requirement: left-justified */
-  margin-left: 1.4rem;      /* indent under Random (lead-sheet style) */
-  margin-top: 0.15rem;
+.random-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1.4rem;
+  margin-top: 0.1rem;
   gap: 0.15rem;
-  font-weight: 500;
+  font-weight: 400;
+  color: var(--text-muted);
 }
 
-.random-options label{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
+.random-options label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: 0.3rem;
-  cursor:pointer;
+  cursor: pointer;
   width: max-content;
 }
 
@@ -137,94 +144,132 @@ header h1{
 }
 
 /* Right side (Play / Listen / Stats) */
-.button-column{
-  display:flex;
-  flex-direction:column;
-  gap: clamp(0.75rem, 3vw, 1.2rem);
-  align-items:flex-end;
+.button-column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 3vw, 1rem);
+  align-items: flex-end;
 }
 
 /* Base button style */
-button{
-  font-weight: 800;
-  cursor:pointer;
-  border:none;
-  outline:none; /* intentional: no visible focus outline requirement */
-  transition: transform 0.12s ease;
-  color:#1c1c1e;
-  box-shadow: 0 6px 0 #333;
+button {
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  border-radius: var(--btn-radius);
+  font-family: inherit;
+  letter-spacing: 0.02em;
 }
 
-button:active{ transform: scale(0.96); }
+button .btn-icon,
+button .btn-label {
+  display: inline-flex;
+  align-items: center;
+}
 
-button:disabled{
-  opacity: 0.4;
-  cursor:not-allowed;
-  box-shadow: 0 6px 0 #555;
+button .btn-icon {
+  font-size: 0.95em;
+  opacity: 0.8;
+  filter: grayscale(0.15) saturate(0.75);
+}
+
+button:active { transform: scale(0.97); }
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* Make the 3 control buttons equal width always */
-.play, .listen-btn, .stats-btn{
+.play, .listen-btn, .stats-btn {
   width: var(--control-btn-w);
   font-size: var(--btn-font);
   padding: var(--btn-py) var(--btn-px);
-  border-radius: var(--btn-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
 }
 
 /* Individual button colors */
-.play{
-  background: var(--play);
-  box-shadow: 0 6px 0 #1e8449;
+.play {
+  background: var(--play-bg);
+  color: var(--play-text);
 }
 
-.listen-btn{
-  background: var(--listen);
-  box-shadow: 0 6px 0 #caa54f;
+.play:hover:not(:disabled) { opacity: 0.82; }
+
+.listen-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
 }
 
-.listen-btn:disabled{
-  opacity: 0.55;
-  cursor:not-allowed;
-  box-shadow: 0 6px 0 #555;
+.listen-btn:hover:not(:disabled) { background: rgba(184,149,106,0.1); }
+
+.listen-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
-.stats-btn{
-  background: var(--stats);
-  box-shadow: 0 6px 0 #bcbcbc;
+.stats-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
 }
 
-/* Next button: keep height consistent with others, but wider + playful */
-.next-btn{
-  background: var(--next);
-  box-shadow: 0 6px 0 #cc5547;
+.stats-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+/* Next button */
+.next-btn {
+  background: var(--accent);
+  color: #0e0e0e;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
 
   font-size: var(--btn-font);
-  padding: var(--btn-py) clamp(1.6rem, 6vw, 3.0rem);
-  border-radius: var(--btn-radius);
-  letter-spacing: 0.05em;
+  padding: clamp(0.75rem, 1.8vw, 0.9rem) clamp(1.8rem, 6vw, 3.25rem);
+  letter-spacing: 0.04em;
 
   width: min(26rem, 92vw);
-  margin-top: 0; /* keep level with others (container gap handles spacing) */
+  margin-top: 0.35rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 1px rgba(184,149,106,0.22), 0 10px 24px rgba(0,0,0,0.35);
+}
+
+.next-btn .btn-icon {
+  opacity: 0.95;
+  filter: grayscale(0.05) saturate(0.8);
+}
+
+.next-btn:hover:not(:disabled) {
+  opacity: 0.94;
+  transform: translateY(-1px);
 }
 
 /* Status / stats lines */
-.stats-line{
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--accent);
-  display:none;
+.stats-line {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: none;
   margin-top: 1rem;
 }
 
-.status-line{
+.status-line {
   margin-top: 0.75rem;
-  padding: 0.65rem 1rem;
-  border-radius: 14px;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
   max-width: min(720px, 92vw);
-  background: rgba(255, 209, 102, 0.12);
+  background: rgba(184,149,106,0.08);
   color: var(--accent);
-  font-weight: 700;
-  box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.22);
+  font-weight: 500;
+  border: 1px solid rgba(184,149,106,0.18);
 }
 
 .anticipate{
@@ -243,30 +288,32 @@ main{
 
 .pills-spacer{ height: clamp(0.75rem, 4vw, 4rem); }
 
-.info-box{
-  display:none;
+.info-box {
+  display: none;
   gap: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 2rem;
 }
 
-.pill{
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+.pill {
+  padding: 0.3rem 0.85rem;
+  border-radius: 4px;
+  background: var(--surface-hi);
+  border: 1px solid var(--border);
 }
-.pill.key{ background:#9d4edd; }
-.pill.step{ background:#4361ee; }
 
-.pill-label{ font-weight: 400; margin-right: 0.25rem; }
-.pill-value{ font-weight: 800; }
+.pill.key  { border-color: rgba(184,149,106,0.4); color: var(--accent); }
+.pill.step { border-color: rgba(255,255,255,0.12); color: var(--text-muted); }
 
-.chord{
+.pill-label { font-weight: 400; margin-right: 0.2rem; color: var(--text-muted); font-size: 0.88em; }
+.pill-value { font-weight: 600; }
+
+.chord {
   font-size: clamp(9rem, 22vw, 20rem);
   font-weight: 900;
   white-space: nowrap;
   line-height: 1;
-  color:#fff;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  color: #fff;
   margin-top: clamp(0.8rem, 4vw, 2rem);
 }
 
@@ -277,22 +324,24 @@ sup{ font-size: 0.5em; }
 /* --- Minimal media queries --- */
 
 /* Small screens: allow a clean centered stack and remove rounded panel corners */
-@media (max-width: 520px){
-  .control-panel{
+@media (max-width: 520px) {
+  .control-panel {
     grid-template-columns: 1fr;
     justify-items: center;
     border-radius: 0;
+    border-left: none;
+    border-right: none;
 
     padding: clamp(1.1rem, 4vw, 1.5rem)
-         clamp(0.9rem, 5vw, 1.4rem);
+             clamp(0.9rem, 5vw, 1.4rem);
   }
 
-  .mode-selector{
+  .mode-selector {
     width: 100%;
     max-width: 22rem;
   }
 
-  .button-column{
+  .button-column {
     align-items: center;
   }
 }

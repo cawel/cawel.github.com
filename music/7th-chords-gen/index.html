@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-  <h1>🎷 7th Chords Gen</h1>
+  <h1><span class="title-icon" aria-hidden="true">🎷</span><span>7th Chords Gen</span></h1>
 </header>
 
 <div class="control-container">
@@ -33,19 +33,29 @@
     </div>
 
     <div class="button-column">
-      <button class="play" id="playBtn" disabled>▶ Play</button>
-
-      <button class="listen-btn" id="listenBtn" aria-pressed="false" type="button">
-        🎤 Listen
+      <button class="play" id="playBtn" disabled>
+        <span class="btn-icon" aria-hidden="true">▶</span>
+        <span class="btn-label">Play</span>
       </button>
 
-      <button class="stats-btn" id="statsBtn">📊 Stats</button>
+      <button class="listen-btn" id="listenBtn" aria-pressed="false" type="button">
+        <span class="btn-icon" aria-hidden="true">🎤</span>
+        <span class="btn-label">Listen</span>
+      </button>
+
+      <button class="stats-btn" id="statsBtn">
+        <span class="btn-icon" aria-hidden="true">📊</span>
+        <span class="btn-label">Stats</span>
+      </button>
     </div>
   </div>
 
   <div class="status-line" id="statusLine" role="status" aria-live="polite" hidden></div>
 
-  <button class="next-btn" id="nextBtn">🎵 Next</button>
+  <button class="next-btn" id="nextBtn">
+    <span class="btn-icon" aria-hidden="true">🎵</span>
+    <span class="btn-label">Next</span>
+  </button>
 </div>
 
 <main>
