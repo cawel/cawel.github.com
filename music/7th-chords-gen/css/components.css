@@ -126,7 +126,7 @@ button:disabled {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 
-  width: min(26rem, 92vw);
+  width: min(17rem, 84vw);
   margin-top: 0.35rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
