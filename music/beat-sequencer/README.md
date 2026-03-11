@@ -25,10 +25,10 @@ Each module has **one responsibility** and no unnecessary coupling.
 
 - index.html → application wiring & markup
 - style.css → visuals only
-- ui.js → DOM rendering & user interaction
-- sequencer.js → deterministic musical logic
-- transport.js → real-time scheduling (clock)
-- audio.js → sound synthesis (Web Audio)
+- js/app-ui.js → DOM rendering & user interaction
+- js/sequencer-core.js → deterministic musical logic
+- js/transport-clock.js → real-time scheduling (clock)
+- js/audio-engine.js → sound synthesis (Web Audio)
 
 
 **Design principle**
@@ -40,7 +40,7 @@ Each module has **one responsibility** and no unnecessary coupling.
 
 ## 📦 Module Responsibilities
 
-### `sequencer.js` — Deterministic Sequencer Core
+### `js/sequencer-core.js` — Deterministic Sequencer Core
 
 Responsible for all **musical state**:
 
@@ -74,7 +74,7 @@ Does **not**:
 This makes the sequencer **fully deterministic**, predictable, and suitable for export or offline rendering.
 
 
-### `transport.js` — Timing & Scheduling
+### `js/transport-clock.js` — Timing & Scheduling
 
 Responsible for **when** steps happen.
 
@@ -90,7 +90,7 @@ Why this exists:
 - The transport can be swapped or improved independently
 
 
-### `audio.js` — Sound Engine
+### `js/audio-engine.js` — Sound Engine
 
 Responsible for **sound synthesis only**:
 
@@ -107,7 +107,7 @@ Exposes:
 
 All click-reduction logic lives here, isolated from sequencing and UI.
 
-### `ui.js` — Rendering & Interaction
+### `js/app-ui.js` — Rendering & Interaction
 
 Responsible for:
 
@@ -145,3 +145,16 @@ This structure enables:
 - Clean extensibility (patterns, tracks, instruments)
 
 Each concern is isolated and replaceable.
+
+## Tests
+
+Regression tests are included for the deterministic core and transport scheduler.
+
+- Run all tests: `npm test`
+- Watch mode: `npm run test:watch`
+
+Current test coverage focuses on:
+
+- Sequencer step wrap behavior and deterministic stepping
+- Grid/state invariants when columns/octaves change
+- Transport start/stop lifecycle and scheduler interaction

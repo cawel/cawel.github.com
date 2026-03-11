@@ -1,0 +1,92 @@
+.app-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  margin: 0.35rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-family: "Rajdhani", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+.title-mark {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  animation: title-mark-glow 10s ease-in-out infinite;
+}
+
+.title-mark::before,
+.title-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.title-mark::before {
+  background: radial-gradient(
+    circle at 28% 30%,
+    #f5fff8,
+    var(--accent) 58%,
+    #228270 100%
+  );
+  animation: title-mark-teal 10s ease-in-out infinite;
+}
+
+.title-mark::after {
+  background: radial-gradient(
+    circle at 28% 30%,
+    #ffe5e3,
+    #e67f78 60%,
+    #a74039 100%
+  );
+  animation: title-mark-red 10s ease-in-out infinite;
+}
+
+@keyframes title-mark-teal {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes title-mark-red {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes title-mark-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(91, 212, 190, 0.18),
+      0 0 18px rgba(91, 212, 190, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(242, 95, 92, 0.22),
+      0 0 18px rgba(242, 95, 92, 0.52);
+  }
+}
+
+.header-subtitle {
+  margin: 0.55rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}

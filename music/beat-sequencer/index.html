@@ -1,79 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>🎵 Beat Sequencer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,
+  <head>
+    <meta charset="UTF-8" />
+    <title>Beat Sequencer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Rajdhani:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
   <text y='0.9em' font-size='90'>🥁</text>
-</svg>">
+</svg>"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1><span class="title-mark" aria-hidden="true"></span>Beat Sequencer</h1>
+      <p class="header-subtitle">Program patterns with precision timing.</p>
+    </header>
 
-</head>
-<body>
+    <section id="controlsContainer" aria-label="Sequencer Controls">
+      <div class="control-column">
+        <label>
+          <span class="control-title">
+            <span>Tempo:</span>
+            <span class="tempo-readout"
+              ><span id="tempoLabel">120</span>
+              <span class="tempo-unit">BPM</span></span
+            >
+          </span>
+          <input
+            id="tempoSlider"
+            type="range"
+            min="60"
+            max="180"
+            step="10"
+            value="120"
+          />
+        </label>
 
-<h1>🥁 Beat Sequencer</h1>
- 
-<div id="controlsContainer">
-  <div class="control-column">
-    <label>
-      Tempo: <span id="tempoLabel">120</span> BPM
-      <input id="tempoSlider" type="range" min="60" max="180" step="10" value="120" />
-    </label>
+        <label>
+          Columns:
+          <select id="colSelect">
+            <option value="16">16</option>
+            <option value="32">32</option>
+            <option value="64">64</option>
+          </select>
+        </label>
 
-    <label>
-      Columns:
-      <select id="colSelect">
-        <option value="16">16</option>
-        <option value="32">32</option>
-        <option value="64">64</option>
-      </select>
-    </label>
+        <label>
+          Octaves:
+          <select id="octSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+          </select>
+        </label>
+      </div>
 
-    <label>
-      Octaves:
-      <select id="octSelect">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4" selected>4</option>
-      </select>
-    </label>
-  </div>
+      <div class="control-column">
+        <label>
+          Sound:
+          <select id="soundSelect">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+            <option value="bell">Bell</option>
+          </select>
+        </label>
 
-  <div class="control-column">
-    <label>
-      Sound:
-      <select id="soundSelect">
-        <option value="sine">Sine</option>
-        <option value="square">Square</option>
-        <option value="sawtooth">Sawtooth</option>
-        <option value="triangle">Triangle</option>
-        <option value="bell">Bell</option>
-      </select>
-    </label>
+        <div id="soundLegend">
+          <div class="legend-item">
+            <span class="legend-color sine"></span>Sine
+          </div>
+          <div class="legend-item">
+            <span class="legend-color square"></span>Square
+          </div>
+          <div class="legend-item">
+            <span class="legend-color saw"></span>Sawtooth
+          </div>
+          <div class="legend-item">
+            <span class="legend-color tri"></span>Triangle
+          </div>
+          <div class="legend-item">
+            <span class="legend-color bell"></span>Bell
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div id="soundLegend">
-      <div class="legend-item"><span class="legend-color sine"></span>Sine</div>
-      <div class="legend-item"><span class="legend-color square"></span>Square</div>
-      <div class="legend-item"><span class="legend-color saw"></span>Sawtooth</div>
-      <div class="legend-item"><span class="legend-color tri"></span>Triangle</div>
-      <div class="legend-item"><span class="legend-color bell"></span>Bell</div>
+    <fieldset id="transportPanel" aria-label="Transport Section">
+      <div id="buttons" role="group" aria-label="Transport Controls">
+        <button
+          id="playBtn"
+          class="play"
+          aria-label="Play"
+          title="Play"
+        ></button>
+        <button
+          id="stopBtn"
+          class="stop"
+          aria-label="Stop"
+          title="Stop"
+          disabled
+        ></button>
+      </div>
+    </fieldset>
+
+    <div id="gridWrapper">
+      <div id="grid"></div>
+      <div class="vertical-bar" id="vBar"></div>
     </div>
-  </div>
-</div>
 
-<div id="buttons">
-  <button id="playBtn" class="play">▶</button>
-  <button id="stopBtn" class="stop"></button>
-</div>
-
-<div id="gridWrapper">
-  <div id="grid"></div>
-  <div class="vertical-bar" id="vBar"></div>
-</div>
-
-<script type="module" src="./ui.js"></script>
-</body>
+    <script type="module" src="./js/app-ui.js"></script>
+  </body>
 </html>
-

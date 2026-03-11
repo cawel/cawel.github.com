@@ -1,8 +1,8 @@
 "use strict";
 
-import { createSequencer } from "./sequencer.js";
-import { createTransport } from "./transport.js";
-import { createAudioEngine } from "./audio.js";
+import { createSequencer } from "./sequencer-core.js";
+import { createTransport } from "./transport-clock.js";
+import { createAudioEngine } from "./audio-engine.js";
 
 const SOUND_COLORS = {
   sine: "#ff8c42",
@@ -25,6 +25,16 @@ const dom = {
 };
 
 let selectedSound = dom.soundSelect.value;
+let lastPlayheadStep = null;
+const PLAYHEAD_TRANSITION = "left 0.05s linear, width 0.05s linear";
+
+const setTransportState = (playing) => {
+  dom.playBtn.disabled = playing;
+  dom.stopBtn.disabled = !playing;
+};
+
+// Initial state: stopped
+setTransportState(false);
 
 const animateButton = (btn) => {
   if (btn.disabled) return;
@@ -45,7 +55,8 @@ const renderGrid = ({ grid, notes, cols }) => {
     rowDiv.className = "row";
 
     const label = document.createElement("div");
-    label.className = "noteLabel" + (notes[row].startsWith("C") ? " tonic" : "");
+    label.className =
+      "noteLabel" + (notes[row].startsWith("C") ? " tonic" : "");
     label.textContent = notes[row];
     rowDiv.appendChild(label);
 
@@ -92,13 +103,37 @@ const positionPlayhead = (stepIndex) => {
   const cell = firstRow.children[stepIndex + 1];
   if (!cell) return;
 
+  // Prevent full-grid sweep on wrap, but keep movement duration consistent.
+  const wrappedToStart =
+    lastPlayheadStep != null && stepIndex < lastPlayheadStep;
+  if (wrappedToStart) {
+    dom.vBar.style.transition = "none";
+    const rowStyles = window.getComputedStyle(firstRow);
+    const rowGap =
+      Number.parseFloat(rowStyles.columnGap || rowStyles.gap || "0") || 0;
+    const fromLeft = cell.offsetLeft - (cell.offsetWidth + rowGap);
+
+    dom.vBar.style.left = `${fromLeft}px`;
+    dom.vBar.style.width = `${cell.offsetWidth}px`;
+
+    // Force style flush so the next write transitions.
+    void dom.vBar.offsetWidth;
+
+    dom.vBar.style.transition = PLAYHEAD_TRANSITION;
+  } else {
+    dom.vBar.style.transition = PLAYHEAD_TRANSITION;
+  }
+
   dom.vBar.style.left = `${cell.offsetLeft}px`;
   dom.vBar.style.width = `${cell.offsetWidth}px`;
+
+  lastPlayheadStep = stepIndex;
 };
 
 const renderPlayhead = ({ stepIndex }) => {
   if (!transport.isPlaying()) {
     dom.vBar.style.display = "none";
+    lastPlayheadStep = null;
     return;
   }
 
@@ -108,9 +143,16 @@ const renderPlayhead = ({ stepIndex }) => {
 
 // ----- Sequencer events -----
 seq.on("grid", renderGrid);
-seq.on("state", renderPlayhead);
+seq.on("state", ({ stepIndex }) => {
+  // State emits the *next* step index after tick. Use it only for stopped state.
+  if (!transport.isPlaying()) renderPlayhead({ stepIndex });
+});
 
 seq.on("step", ({ stepIndex, hits }) => {
+  // Follow the currently sounding step for stable visual timing.
+  dom.vBar.style.display = "block";
+  positionPlayhead(stepIndex);
+
   for (const hit of hits) {
     // IMPORTANT: your click-reduction envelope/stagger is still applied here
     audio.playNote({ note: hit.note, type: hit.soundType, rowIndex: hit.row });
@@ -156,11 +198,13 @@ dom.playBtn.addEventListener("click", async () => {
   await audio.ensureRunning();
   animateButton(dom.playBtn);
   transport.start();
+  setTransportState(true);
 });
 
 dom.stopBtn.addEventListener("click", () => {
   animateButton(dom.stopBtn);
   transport.stop();
+  setTransportState(false);
 });
 
 // ----- Keyboard -----
@@ -170,21 +214,22 @@ document.addEventListener("keydown", async (e) => {
     await audio.ensureRunning();
     animateButton(transport.isPlaying() ? dom.stopBtn : dom.playBtn);
     transport.toggle();
+    setTransportState(transport.isPlaying());
   }
   if (e.code === "KeyP") {
     await audio.ensureRunning();
     animateButton(dom.playBtn);
     transport.start();
+    setTransportState(true);
   }
   if (e.code === "KeyS") {
     animateButton(dom.stopBtn);
     transport.stop();
+    setTransportState(false);
   }
 });
 
 window.addEventListener("resize", () => {
   if (!transport.isPlaying()) return;
-  positionPlayhead(seq.getState().stepIndex);
+  positionPlayhead(lastPlayheadStep ?? seq.getState().stepIndex);
 });
-
-

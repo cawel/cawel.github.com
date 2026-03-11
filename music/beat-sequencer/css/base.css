@@ -1,0 +1,32 @@
+:root {
+  --bg-deep: #101416;
+  --bg-mid: #171d21;
+  --panel: #212a2f;
+  --panel-hi: #29343a;
+  --line-soft: rgba(173, 197, 208, 0.24);
+  --line-strong: rgba(196, 225, 238, 0.42);
+  --text-main: #eaf1f4;
+  --text-muted: #9bb0b8;
+  --accent: #5bd4be;
+  --accent-hot: #ffd166;
+  --danger: #f25f5c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Barlow", "Avenir Next", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #30454b 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg-mid), var(--bg-deep));
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.4rem 1rem 2rem;
+  overflow-x: hidden;
+}

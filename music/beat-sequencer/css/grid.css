@@ -1,0 +1,75 @@
+#gridWrapper {
+  margin-top: 2rem;
+  max-width: 100%;
+  overflow-x: auto;
+  position: relative;
+}
+
+#grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+#grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 32px;
+  right: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent 134px,
+    rgba(255, 209, 102, 0.55) 134px,
+    rgba(255, 209, 102, 0.55) 136px
+  );
+  z-index: 0;
+}
+
+.row {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.noteLabel {
+  width: 30px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #9cb0b8;
+}
+
+.noteLabel.tonic {
+  color: #ffd166;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  background: #2b353b;
+  border-radius: 4px;
+  transition:
+    background 0.1s,
+    filter 0.1s;
+  position: relative;
+  z-index: 1;
+}
+
+.vertical-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  display: none;
+  pointer-events: none;
+  z-index: 2;
+  transition:
+    left 0.05s linear,
+    width 0.05s linear;
+}

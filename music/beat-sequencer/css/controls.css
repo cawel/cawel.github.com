@@ -1,0 +1,118 @@
+#controlsContainer {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 2.1rem;
+  padding: 1.15rem;
+  max-width: 560px;
+  width: 100%;
+  background:
+    linear-gradient(160deg, rgba(64, 88, 96, 0.35), transparent 40%),
+    linear-gradient(165deg, var(--panel-hi), var(--panel));
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(240, 250, 255, 0.09),
+    0 14px 26px rgba(5, 7, 9, 0.35);
+}
+
+.control-column {
+  flex: 0 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  gap: 0.3rem;
+  color: #cfdee4;
+}
+
+.control-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tempo-readout {
+  min-width: 5.2ch;
+  text-align: right;
+  font-family: "Rajdhani", "Barlow", sans-serif;
+  letter-spacing: 0.04em;
+  color: var(--accent-hot);
+}
+
+.tempo-unit {
+  color: #c3d4db;
+}
+
+input[type="range"],
+select {
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  background: rgba(15, 20, 23, 0.62);
+  color: var(--text-main);
+  font-weight: 600;
+  font-family: inherit;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+select:focus,
+input[type="range"]:focus {
+  outline: 2px solid rgba(91, 212, 190, 0.5);
+  outline-offset: 1px;
+}
+
+select option {
+  background: #1a2226;
+  color: var(--text-main);
+}
+
+#soundLegend {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.65rem;
+  row-gap: 0.45rem;
+  margin-top: 0.1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 96px;
+  font-size: 0.86rem;
+  color: #bdd0d8;
+}
+
+.legend-color {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  border: 1px solid rgba(240, 245, 248, 0.35);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.legend-color.sine {
+  background: #ff8c42;
+}
+.legend-color.square {
+  background: #ff4c42;
+}
+.legend-color.saw {
+  background: #ffe066;
+}
+.legend-color.tri {
+  background: #4361ee;
+}
+.legend-color.bell {
+  background: #c77dff;
+}

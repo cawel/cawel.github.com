@@ -1,0 +1,20 @@
+@media (max-width: 760px) {
+  #controlsContainer {
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 460px;
+  }
+
+  .control-column {
+    flex: 1 1 auto;
+  }
+
+  #transportPanel {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  #buttons {
+    justify-content: center;
+  }
+}
