@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Apps Directory</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: #222;
+        color: white;
+        padding: 16px;
+        text-align: center;
+        font-size: 24px;
+      }
+      main {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+      }
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      footer {
+        text-align: center;
+        font-size: 13px;
+        padding: 14px;
+        background: #eee;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>📂 Available Apps</header>
+
+    <main>
+      <p>The following apps are available in the folder:</p>
+      <ul id="appsList">
+        <li>Loading...</li>
+      </ul>
+    </main>
+
+    <footer>© 2026 cawel.github.io</footer>
+
+    <script type="module">
+      // Configuration
+      const githubPagesHost = "cawel.github.io";
+      const username = "cawel";
+      const repo = "cawel.github.com";
+      const fileVersion = "1.0.0";
+
+      // Use URL path after hostname, normalize by removing leading slash and index.html.
+      const folderPath = window.location.pathname
+        .replace(/^\//, "")
+        .replace(/(?:^|\/)index\.html$/, "")
+        .replace(/\/$/, "");
+
+      async function listFolders() {
+        const ul = document.getElementById("appsList");
+        ul.innerHTML = "<li>Loading...</li>";
+
+        try {
+          const res = await fetch(
+            `https://api.github.com/repos/${username}/${repo}/contents/${folderPath}`,
+          );
+          const data = await res.json();
+
+          ul.innerHTML = ""; // clear loading
+
+          data.forEach((item) => {
+            if (item.type === "dir") {
+              const li = document.createElement("li");
+              const a = document.createElement("a");
+              a.href = `https://${githubPagesHost}/${item.path}/`; // link to folder
+              a.textContent = item.name;
+              li.appendChild(a);
+              ul.appendChild(li);
+            }
+          });
+
+          if (ul.children.length === 0) {
+            ul.innerHTML = "<li>No folders found.</li>";
+          }
+        } catch (e) {
+          ul.innerHTML = `<li>Error loading folders: ${e.message}</li>`;
+        }
+      }
+
+      listFolders();
+    </script>
+  </body>
+</html>
