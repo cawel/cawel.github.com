@@ -74,18 +74,21 @@
         <div class="button-column">
           <button class="play" id="playBtn" disabled>
             <span class="btn-icon" aria-hidden="true">▶</span>
-            <span class="btn-label">Play</span>
+            <span class="btn-label">Play Chord</span>
           </button>
 
-          <button
-            class="listen-btn"
-            id="listenBtn"
-            aria-pressed="false"
-            type="button"
-          >
-            <span class="btn-icon" aria-hidden="true">🎤</span>
-            <span class="btn-label">Listen</span>
-          </button>
+          <div class="listen-row">
+            <button
+              class="listen-btn"
+              id="listenBtn"
+              aria-pressed="false"
+              type="button"
+            >
+              <span class="btn-icon" aria-hidden="true">🎤</span>
+              <span class="btn-label">Voice Mode</span>
+            </button>
+            <button class="voice-help-btn" id="voiceHelpBtn" aria-label="Voice commands help" type="button">ⓘ</button>
+          </div>
 
           <button class="stats-btn" id="statsBtn">
             <span class="btn-icon" aria-hidden="true">📊</span>
@@ -101,6 +104,10 @@
         aria-live="polite"
         hidden
       ></div>
+
+      <div class="voice-help-popup" id="voiceHelpPopup" role="note" hidden>
+        In Voice Mode 🎤, say <kbd>next</kbd> to generate a chord
+      </div>
 
       <button class="next-btn" id="nextBtn">
         <span class="btn-label">Next Chord</span>

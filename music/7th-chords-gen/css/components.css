@@ -99,6 +99,68 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Listen-row: Voice Mode button + help icon */
+.listen-row {
+  position: relative;
+  width: var(--control-btn-w);
+}
+
+.listen-row .listen-btn {
+  width: 100%;
+}
+
+.voice-help-btn {
+  position: absolute;
+  right: -1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+
+.voice-help-btn:hover {
+  opacity: 1;
+}
+
+.voice-help-btn:active {
+  transform: translateY(-50%);
+  opacity: 0.35;
+}
+
+.voice-help-popup {
+  display: block;
+  max-width: min(28rem, 92vw);
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  background: var(--surface-hi);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  text-align: center;
+}
+
+.voice-help-popup[hidden] {
+  display: none;
+}
+
+.voice-help-popup kbd {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 /* Stats button: outlined neutral */
 .stats-btn {
   background: transparent;

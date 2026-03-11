@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     randomDim: document.querySelector(Cfg.selectors.randomDim),
     randomOptions: document.querySelector(Cfg.selectors.randomOptions),
     modeRadios: [...document.querySelectorAll(Cfg.selectors.modeRadios)],
+    voiceHelpBtn: document.querySelector("#voiceHelpBtn"),
+    voiceHelpPopup: document.querySelector("#voiceHelpPopup"),
   };
 
   // --- AUDIO LAYER ---
@@ -198,6 +200,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (DOM.voiceHelpBtn && DOM.voiceHelpPopup) {
+    DOM.voiceHelpBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      DOM.voiceHelpPopup.hidden = !DOM.voiceHelpPopup.hidden;
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !DOM.voiceHelpPopup.hidden &&
+        !DOM.voiceHelpPopup.contains(e.target) &&
+        e.target !== DOM.voiceHelpBtn
+      ) {
+        DOM.voiceHelpPopup.hidden = true;
+      }
+    });
+  }
+
   // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
     if (e.repeat) return;
@@ -219,7 +238,10 @@ document.addEventListener("DOMContentLoaded", () => {
           toggleStats();
         }
         break;
+      default:
+        return;
     }
+    if (DOM.voiceHelpPopup) DOM.voiceHelpPopup.hidden = true;
   });
 
   // Mode change
@@ -258,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setButtonContent(
       DOM.listenBtn,
       "🎤",
-      isListening ? "Listening…" : "Listen",
+      isListening ? "Listening…" : "Voice Mode",
     );
   };
 
@@ -269,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.SpeechController.isSupported();
     if (!DOM.listenBtn) return;
     DOM.listenBtn.disabled = !ok;
-    if (!ok) setButtonContent(DOM.listenBtn, "🎤", "Unavailable");
+    if (!ok) setButtonContent(DOM.listenBtn, "🎤", "Voice Mode");
   };
 
   setListenAvailable();

@@ -41,7 +41,7 @@
     // Speech recognition
     speech: {
       language: "en-US",
-      debug: true,
+      debug: false,
     },
 
     // Error messages
