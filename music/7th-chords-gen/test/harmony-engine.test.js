@@ -77,17 +77,28 @@ test("major ii-V-I keeps one key for the full three-chord cycle and resets step 
   assert.equal(state.stepIndex, 0);
 });
 
-test("minor iiø-V-i marks the dominant chord as harmonic", () => {
+test("minor iiø-V-i produces the correct three-chord cycle and resets step index", () => {
   const state = HarmonyEngine.createState({ random: () => 0 });
   state.currentMode = "min251";
 
-  HarmonyEngine.generateChord(state, { random: () => 0 });
-  const dominant = HarmonyEngine.generateChord(state, { random: () => 0.9 });
+  const ii = HarmonyEngine.generateChord(state, { random: () => 0 });
+  const v = HarmonyEngine.generateChord(state, { random: () => 0 });
+  const i = HarmonyEngine.generateChord(state, { random: () => 0 });
 
-  assert.deepEqual(dominant, {
+  assert.equal(state.currentKey, "C");
+  assert.deepEqual(ii, {
+    chord: { root: "D", quality: "ø7" },
+    progression: { step: "iiø", quality: "ø7", deg: 1 },
+  });
+  assert.deepEqual(v, {
     chord: { root: "G", quality: "7", harmonic: true },
     progression: { step: "V", quality: "7", deg: 4, harmonic: true },
   });
+  assert.deepEqual(i, {
+    chord: { root: "C", quality: "m7" },
+    progression: { step: "i", quality: "m7", deg: 0 },
+  });
+  assert.equal(state.stepIndex, 0);
 });
 
 test("renderChordHTML formats accidentals and quality markup for display", () => {
@@ -97,14 +108,17 @@ test("renderChordHTML formats accidentals and quality markup for display", () =>
   );
 });
 
-test("getChordMidiNotes sharpens the third on harmonic minor dominants", () => {
+test("getChordMidiNotes plays a plain G7 voicing for harmonic minor dominants", () => {
+  // G7 (G–B–D–F) is already the correct harmonic minor V chord.
+  // The raised 7th of the harmonic minor scale (Bb→B) is what gives
+  // the dominant quality; no additional note modification is needed.
   assert.deepEqual(
     HarmonyEngine.getChordMidiNotes({
       root: "G",
       quality: "7",
       harmonic: true,
     }),
-    [67, 72, 74, 77],
+    [67, 71, 74, 77],
   );
 });
 

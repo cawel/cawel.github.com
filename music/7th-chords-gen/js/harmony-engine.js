@@ -45,7 +45,7 @@
     "D",
     "G",
   ];
-  const PROGS = {
+  const PROGRESSIONS = {
     maj251: [
       { step: "ii", quality: "m7", deg: 1 },
       { step: "V", quality: "7", deg: 4 },
@@ -146,13 +146,15 @@
       case "min251": {
         if (state.stepIndex === 0)
           state.currentKey = pick(Object.keys(KEYS), random);
-        const progression = PROGS[state.currentMode][state.stepIndex];
+        const progression = {
+          ...PROGRESSIONS[state.currentMode][state.stepIndex],
+        };
         const chord = {
           root: KEYS[state.currentKey][progression.deg],
           quality: progression.quality,
         };
 
-        if (progression.harmonic && state.currentMode === "min251") {
+        if (progression.harmonic) {
           chord.harmonic = true;
         }
 
@@ -193,14 +195,13 @@
     const notes = INTERVALS[chord.quality]
       .map((interval) => minMidi + index + interval)
       .sort((a, b) => a - b);
-    if (chord.harmonic && chord.quality === "7") notes[1] += 1;
     return notes;
   };
 
   return Object.freeze({
     KEYS,
     CYCLE_FIFTHS,
-    PROGS,
+    PROGRESSIONS,
     INTERVALS,
     SEMI,
     MIN_MIDI,
