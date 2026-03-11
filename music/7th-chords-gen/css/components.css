@@ -61,15 +61,16 @@ button:disabled {
   border-color: rgba(168, 216, 188, 0.72);
 }
 
-/* Listen button: outlined in brass accent */
+/* Listen button: outlined neutral (same tier as Stats) */
 .listen-btn {
   background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
 }
 
 .listen-btn:hover:not(:disabled) {
-  background: rgba(184, 149, 106, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
 }
 
 .listen-btn:disabled {

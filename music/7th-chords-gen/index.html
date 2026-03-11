@@ -13,15 +13,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>
-        <span class="title-icon" aria-hidden="true">🎷</span
-        ><span>7th Chords Gen</span>
-      </h1>
-    </header>
-
     <div class="control-container">
-      <div class="control-panel">
+      <fieldset class="control-panel">
+        <legend class="panel-legend">
+          <span class="title-icon" aria-hidden="true">🎷</span
+          ><span>7th Chords Gen</span>
+        </legend>
         <div class="mode-selector">
           <label
             ><input type="radio" name="mode" value="random" checked />
@@ -74,7 +71,7 @@
             <span class="btn-label">Stats</span>
           </button>
         </div>
-      </div>
+      </fieldset>
 
       <div
         class="status-line"
