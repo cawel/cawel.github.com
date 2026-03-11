@@ -407,19 +407,22 @@ body{
   transition: background 140ms ease, transform 120ms ease, box-shadow 140ms ease, opacity 140ms ease;
 }
 
-.transport-btn:hover{
+.transport-btn:not([disabled]):hover{
   background: rgba(255,255,255,0.08);
 }
 
-.transport-btn:active{
+.transport-btn:not([disabled]):active{
   transform: scale(0.94);
   background: rgba(255,255,255,0.12);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.30);
 }
 
 .transport-btn[disabled]{
-  opacity: 0.35;
+  opacity: 1;
   cursor: not-allowed;
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .transport-btn svg{
@@ -427,6 +430,10 @@ body{
   height: clamp(48px, 7vw, 60px);
   fill: rgba(255,255,255,0.95);
   display:block;
+}
+
+.transport-btn[disabled] svg{
+  fill: rgba(255,255,255,0.45);
 }
 
 .shortcuts-row{
