@@ -10,18 +10,26 @@
 The Key Under the Moonbeam
 
 ### Content
-At exactly midnight, you—Whiskers, guardian of this old house—hook a brass key from a crack beneath the attic window and pin it under your paw. The metal is cold and faintly humming, its runes tracing silver-blue light against your fur whenever you face the cedar wardrobe across the attic. Downstairs, your family sleeps in a row of slow, trusting breaths. The youngest child had nightmares again; you heard her cry out twice before settling. Something in tonight's air tastes of ash and old fear. You swore no shadow would touch this home tonight.
+At exactly midnight, you—Whiskers, guardian of this old house—hook a brass key from a crack beneath the attic window and pin it under your paw. It is cold in a way that goes beyond temperature, as if it has been waiting in that crack for a night exactly like this one, and the faint runes cut into its bow trace silver-blue light across your fur whenever you angle yourself toward the cedar wardrobe on the far wall.
+
+Downstairs, your family sleeps. You can feel them the way you feel weather: the slow, trusting rhythm of their breathing, the small warmth of the youngest child two floors below you, still settling after the nightmares that woke her twice before you found the key. She called out the second time—not a scream, just a single sharp note of fear—and you had crossed two rooms in the dark before her breathing evened again.
+
+Tonight's air tastes of ash and old fear. Something that feeds on sleeping children is moving toward this house, and the key is humming louder now, its light brightening against the cedar wardrobe's keyhole. You made a promise to this family the first night they brought you home inside the warmth of a coat pocket. You have no intention of breaking it.
 
 ### Choices
 1. Slide the key into the wardrobe lock -> 2
-2. Carry the key to Grandma’s trunk of old letters -> 3
+2. Carry the key to Grandma's trunk of old letters -> 3
 
 ## Chapter 2
 ### Title
 The Hidden Hall
 
 ### Content
-The wardrobe opens into a moonlit hallway lined with portraits of past guardian cats, their glass eyes catching starlight. A silver moth lands on your nose; its wings pulse with cold light. "You are the keybearer now," it says. "The dream-thief—a creature that feeds on sleeping children's fears—comes before dawn." At the corridor's end wait two doors: one glowing with a bell sigil, one marked with a pawprint.
+The wardrobe opens not onto hanging coats but onto a moonlit hallway that has no business existing inside this house. It stretches further than it should, lined on both sides with framed portraits of cats—all sizes, all colours, all postures of watchful authority—each pair of painted eyes catching the starlight that filters through small, high windows. You have lived here three years and never known this hall existed. Whatever held the door shut before tonight, the key dissolved it.
+
+A silver moth descends from the ceiling and lands on your nose. Its wings are the pale blue of a February moon, pulsing cold light with each slow beat. "You are the keybearer now," it says, in a voice like a finger drawn around the rim of a glass. "The dream-thief—a creature that feeds on sleeping children's fears—comes before dawn. It has been circling the house since midnight." It lifts off your nose and hovers, waiting. At the corridor's end, two doors stand side by side: one glowing with a bell sigil in copper-warm light, one marked with a carved pawprint in the dark wood.
+
+The portraits watch you pass. You recognise no faces, but you recognise the posture: the specific held attention of an animal that takes its responsibilities seriously.
 
 ### Choices
 1. Enter the bell-marked door -> 4
@@ -29,13 +37,19 @@ The wardrobe opens into a moonlit hallway lined with portraits of past guardian 
 
 ## Chapter 3
 ### Title
-Grandma’s Letters
+Grandma's Letters
 
 ### Content
-You pry open Grandma's trunk and find letters describing your role directly: each generation chooses one house cat to guard children from dream predators. The latest letter names tonight's threat—the Shadow Owl, sketched in the margin as a hunched shape with feathers black as chimney smoke—and marks a roof path to intercept it. A second letter describes a guardian's hall hidden behind the cedar wardrobe, where tools and allies await. You tuck the map under your paw.
+The trunk smells of lavender and old paper, packed tight with letters bound in faded ribbon. You pry the lid and work the top bundle free with careful claws. The letters are addressed to the cats of this house by name—cats who lived here long before you—in the same neat hand that belongs to the grandmother whose photograph sits on the shelf downstairs, the one the youngest child kisses before bed.
+
+The latest letter, dated the autumn before Grandma died, is addressed to you by name.
+
+You read it twice. It describes the guardian lineage clearly: each generation, one house cat is chosen to protect the children from dream predators—creatures that slip through the dark and feed on the fears sleeping minds cannot defend. Tonight's threat is called the Shadow Owl, sketched in careful pencil in the letter's margin: a hunched silhouette with feathers black as chimney smoke, wingspan wide as the roof. The letter marks a route across the rooftiles to intercept it before it reaches the nursery window. A second letter, older and more formal, describes a guardian's hall hidden behind the cedar wardrobe—tools there, and allies—and notes that the brass key will open it.
+
+You sit with the letters for a moment longer than the urgency strictly allows. The grandmother knew about you. She wrote your name. The youngest child's nightmares, the ash in tonight's air, the key in the crack beneath the window—none of it is coincidence. You have been prepared for this. Now you have two paths toward it.
 
 ### Choices
-1. Race to the nursery roof and attack immediately -> 6
+1. Race to the nursery roof and attack the Shadow Owl immediately -> 6
 2. Use the key on the cedar wardrobe to reach the guardian's hall -> 2
 
 ## Chapter 4
@@ -43,7 +57,11 @@ You pry open Grandma's trunk and find letters describing your role directly: eac
 Bell Tower Chamber
 
 ### Content
-In a miniature tower above the house, enchanted bells hang over a map of every sleeping room. Ringing the right sequence wraps bedrooms in dreamlight; ringing the wrong one amplifies fear. The silver moth teaches you the sequence once, then says, "Trust memory, not panic." Through the tower's tiny window, a vast shadow crosses the moonlit roof—the Shadow Owl is already circling.
+The bell-marked door opens onto a miniature tower built inside the house's architecture—a hollow space above the attic you never knew existed, its curved walls hung with dozens of bells in ascending sizes, each one a different alloy, each one inscribed with the name of a sleeping room. A parchment map on the floor marks the house's bedrooms in ink that glows faintly, room by room, as if tracking the breathing of the people inside them.
+
+The silver moth is already here, hovering before the largest bell. It teaches you the sequence once: a pattern of seven rings, specific bells in a specific order, which will cast a lattice of dreamlight through the entire house and shut every dream-predator out until sunrise. The wrong sequence will do the opposite—amplify fear, open rather than seal. "Trust memory, not panic," the moth says, and the weight in its voice suggests it has watched guardians panic before and knows how it ends. Through the tower's small round window, a vast shadow crosses the moonlit roof. The Shadow Owl is already circling, each slow wingbeat pushing cold air down the chimney in pulses you can feel on your whiskers.
+
+You have seen the sequence once. It is already settling in your memory the way a hunting route settles, the way the creak of a specific stair settles—the way your body remembers things that matter. But there is something else you could do: charge directly, drive it back before it finds a window to test.
 
 ### Choices
 1. Ring the sequence exactly to shield the family -> 8
@@ -54,18 +72,26 @@ In a miniature tower above the house, enchanted bells hang over a map of every s
 Pawprint Garden
 
 ### Content
-The pawprint door opens onto a floating rooftop garden. A spectral tomcat—translucent, amber-eyed—steps from the shadows and offers a choice: moonmint, a sharp-scented leaf for speed in combat, or starlace dew for patience and precision. He speaks of moon-roads, guardian paths that arc above sleeping towns. The Shadow Owl's cry cuts across the chimneys, closer now.
+The pawprint door opens onto air—and then onto a garden that floats, impossibly, above the rooftop, its grass silver-damp under a sky thick with stars. Flowers glow in quiet colours. The house below is visible through the garden's transparent floor, the sleeping rooms lit faint amber from within, the family's warmth visible even from here as a gentle pulse.
+
+A tomcat steps from the shadows at the garden's edge: translucent, his form made of light more than fur, amber eyes steady and unhurried. He moves like a cat who has been exactly where he is for a very long time. On the flat stone before him sit two small offerings. The first is a sprig of moonmint—sharp-scented, its leaves sending a thin silver smoke into the air—which sharpens the body for combat, gives speed and nerve. The second is a hollow acorn filled with starlace dew, cold and faintly luminous, which stills the mind and opens sight beyond ordinary sight: the moon-roads, guardian paths arcing above sleeping towns, invisible to everyone else.
+
+"One gift, one direction," the tomcat says. His voice carries the particular quality of someone who has offered this choice before and has no preference which you take—only that you choose well. The Shadow Owl's cry cuts across the chimneys below, closer than it was a minute ago. The youngest child's warmth flickers through the garden floor: still steady, but the night is not getting younger.
 
 ### Choices
-1. Take moonmint and leap straight into the fight -> 6
-2. Take starlace dew and follow the tomcat’s moon-road calling -> 7
+1. Take the moonmint and leap straight into the fight -> 6
+2. Take the starlace dew and follow the tomcat's moon-road -> 7
 
 ## Chapter 6
 ### Title
 The Shadow Owl
 
 ### Content
-You launch first and fast, but the Shadow Owl is bigger than rumor: each feather stitched from soot and old grief, its wingspan swallowing the rooftop in shadow. It catches you midair in a grip like cold iron and hurls you across the slate. The key spins from your mouth; without it, the dreamlight dies. The nursery windows go dark. You crawl toward the sill at gray dawn, hear the child whisper your name once, and press your paw against the cold glass. Then your watch ends forever.
+You launch from the ridge of the roof with everything you have: claws out, key between your teeth, the kind of commitment that leaves no room for retreat. For one second you are fast enough, high enough, certain enough—and then the Shadow Owl turns its head and sees you, and you understand that you have no real idea how large it is.
+
+Each feather is stitched from soot and old grief, dense and cold as packed ash. Its wingspan swallows the rooftop's shadow twice over. It catches you midair with a grip like cold iron around your ribs, effortless, and hurls you across the slates. You strike the chimney stack and the key spins from your mouth, sliding to the gutter's edge. Without it, the guardian's hall goes dark. Without it, the dreamlight it might have called cannot reach the nursery windows.
+
+You crawl across the wet tiles toward the key. The roof is very cold. Below you, the youngest child makes a small sound in her sleep—not a scream, not yet, just the first edge of something she cannot wake from. You reach the gutter and press your paw against the cold key, and at that moment you understand that pressing your paw against things is all you have left to offer. Then even that ends. The gray dawn comes without you in it.
 
 ### Choices
 The End
@@ -75,7 +101,13 @@ The End
 Keeper Between Worlds
 
 ### Content
-You follow the tomcat through moon-roads—silver-blue arcs above sleeping towns, invisible to all but guardians. He tells you only long-road guardians can hunt dream-thieves at their source, before they ever reach a nursery window. If you stay on the wider road, you can protect many homes, including your own—but you will never again sleep by your family's fire, never feel the youngest child's hand stroke your ears at morning. You choose duty. Every midnight after, you patrol the rooftops with stars in your eyes.
+The starlace dew settles into you cold and clear, and the moon-roads open like cracks of light appearing in a dark wall—silver-blue arcs curving above the town and further, above every sleeping neighbourhood, every house with a child in it who is afraid of the dark tonight. You can see all of it. You can see where the threats are moving. You can see that the Shadow Owl circling this house is one of many, and that the guardian paths that could stop them at their source, before they ever reach a window, require someone with long sight to walk them.
+
+The tomcat stands beside you without moving or speaking. He does not need to speak. You already understand what the choice costs.
+
+If you stay on the wider moon-roads, you can protect many homes, including this one—more than you could ever defend from a single rooftop. But the roads take you with them. You will not see the morning from the youngest child's window. You will not feel her hand on your ears when she wakes. The warmth of the sleeping house below recedes as the moon-road lifts, and you do not look back, because you know if you look back, the choice will break.
+
+Every midnight after, you walk the silver arcs above the sleeping world, the stars your only company. Your family is safe—safer than they know, guarded by someone who loves them from further away than they can see. You chose duty over belonging, again and again, in every moment that follows. It is the right choice. It costs exactly what it costs.
 
 ### Choices
 The End
@@ -85,7 +117,11 @@ The End
 Purr of Dawn
 
 ### Content
-You ring the true bell sequence and cast a lattice of dreamlight over the house. When the Shadow Owl dives, you meet it inside the glowing net and tear its shadow-weave apart. It unravels into harmless soot on the wind. At sunrise, the brass key cools to ordinary metal, and the youngest child wakes smiling with your name on their lips. You curl at the foot of the bed, victorious, pretending you were never worried.
+You ring the sequence in the order the moth taught you—seven bells, seven notes, each strike precise and deliberate—and the house responds from the ground up. Dreamlight spreads from room to room like warmth spreading from a hearth, a golden lattice that seals every window, every threshold, every place a nightmare might slip through. Below you, the youngest child's breathing deepens and steadies and her warmth becomes something you can feel all the way up in the bell tower.
+
+The Shadow Owl dives. It hits the lattice and cannot find a way through. You meet it at the observation window where the dreamlight is brightest, key in your mouth, and what happens next is less a battle than a dissolution: the Shadow Owl's shadow-weave, denied the fear it needed to hold itself together, simply comes apart. Feather by feather, soot by soot, it unravels on the cold air above the rooftiles and becomes nothing more alarming than a smear of gray on the wind.
+
+The brass key cools to ordinary metal between your paws and the runes go dark, their work finished. By the time the sun tips over the chimney stacks, you are where you belong: curled at the foot of the youngest child's bed, listening to her breathe the steady rhythm of a child who slept well and will not remember why. She wakes slowly, finds you with her hand before she opens her eyes, and says your name once in the particular tone that means she is glad you are there. You purr. You were never worried. You were never worried at all.
 
 ### Choices
 The End
