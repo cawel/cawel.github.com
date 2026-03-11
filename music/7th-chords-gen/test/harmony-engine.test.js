@@ -28,6 +28,14 @@ test("getRandomQualities includes optional diminished colors when enabled", () =
   );
 });
 
+test("exported theory constants are immutable", () => {
+  assert.throws(() => {
+    HarmonyEngine.PROGRESSIONS.min251[1].step = "X";
+  }, TypeError);
+
+  assert.equal(HarmonyEngine.PROGRESSIONS.min251[1].step, "V");
+});
+
 test("random mode selects from the configured keys and enabled qualities", () => {
   const state = HarmonyEngine.createState({ random: () => 0 });
   state.currentMode = "random";

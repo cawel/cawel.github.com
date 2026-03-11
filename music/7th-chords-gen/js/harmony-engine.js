@@ -16,7 +16,20 @@
 
   root.HarmonyEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  const KEYS = {
+  const deepFreeze = (value) => {
+    if (!value || typeof value !== "object" || Object.isFrozen(value)) {
+      return value;
+    }
+
+    Object.freeze(value);
+    Object.getOwnPropertyNames(value).forEach((key) => {
+      deepFreeze(value[key]);
+    });
+
+    return value;
+  };
+
+  const KEYS = deepFreeze({
     C: ["C", "D", "E", "F", "G", "A", "B"],
     Db: ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
     D: ["D", "E", "F#", "G", "A", "B", "C#"],
@@ -29,9 +42,9 @@
     A: ["A", "B", "C#", "D", "E", "F#", "G#"],
     Bb: ["Bb", "C", "D", "Eb", "F", "G", "A"],
     B: ["B", "C#", "D#", "E", "F#", "G#", "A#"],
-  };
+  });
 
-  const CYCLE_FIFTHS = [
+  const CYCLE_FIFTHS = deepFreeze([
     "C",
     "F",
     "Bb",
@@ -44,8 +57,8 @@
     "A",
     "D",
     "G",
-  ];
-  const PROGRESSIONS = {
+  ]);
+  const PROGRESSIONS = deepFreeze({
     maj251: [
       { step: "ii", quality: "m7", deg: 1 },
       { step: "V", quality: "7", deg: 4 },
@@ -56,16 +69,16 @@
       { step: "V", quality: "7", deg: 4, harmonic: true },
       { step: "i", quality: "m7", deg: 0 },
     ],
-  };
+  });
 
-  const INTERVALS = {
+  const INTERVALS = deepFreeze({
     maj7: [0, 4, 7, 11],
     m7: [0, 3, 7, 10],
     7: [0, 4, 7, 10],
     ø7: [0, 3, 6, 10],
     o7: [0, 3, 6, 9],
-  };
-  const SEMI = [
+  });
+  const SEMI = deepFreeze([
     "C",
     "C#",
     "D",
@@ -78,11 +91,11 @@
     "A",
     "Bb",
     "B",
-  ];
+  ]);
   const MIN_MIDI = 60;
 
   // Map enharmonic equivalents to SEMI chromatic scale
-  const ENHARMONIC_MAP = {
+  const ENHARMONIC_MAP = deepFreeze({
     Db: "C#",
     "D#": "Eb",
     Gb: "F#",
@@ -91,7 +104,7 @@
     Cb: "B",
     "E#": "F",
     "B#": "C",
-  };
+  });
 
   const normalizeRoot = (root) => {
     return ENHARMONIC_MAP[root] || root;

@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const Controller = window.ChordController;
   const Cfg = window.Config;
 
+  if (!Cfg) throw new Error("Config failed to load.");
   if (!Engine) throw new Error(Cfg.errors.engineNotLoaded);
   if (!SynthEngine) throw new Error(Cfg.errors.synthEngineNotLoaded);
   if (!Controller) throw new Error("ChordController failed to load.");
-  if (!Cfg) throw new Error("Config failed to load.");
 
   // --- CONTROLLER ---
   const controller = Controller.create();
@@ -42,16 +42,41 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // --- AUDIO LAYER ---
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const synth = SynthEngine.create(ctx);
+  let ctx = null;
+  let synth = null;
+
+  const ensureSynth = () => {
+    if (!ctx) {
+      const AudioCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtor) {
+        throw new Error("AudioContext is not supported in this browser.");
+      }
+      ctx = new AudioCtor();
+      synth = SynthEngine.create(ctx);
+    }
+
+    // Browsers can suspend contexts until user gesture; resume before playback.
+    if (ctx.state === "suspended") {
+      ctx.resume().catch(() => {
+        // Ignore resume errors; playback call may still surface useful errors.
+      });
+    }
+
+    return synth;
+  };
 
   const playChordAudio = (chord) => {
     if (!chord) return;
-    const notes = Engine.getChordMidiNotes(chord);
-    synth.playChord(notes, {
-      arpeggioStep: Cfg.audio.arpeggioStep,
-      noteDuration: Cfg.audio.noteDuration,
-    });
+    try {
+      const activeSynth = ensureSynth();
+      const notes = Engine.getChordMidiNotes(chord);
+      activeSynth.playChord(notes, {
+        arpeggioStep: Cfg.audio.arpeggioStep,
+        noteDuration: Cfg.audio.noteDuration,
+      });
+    } catch (err) {
+      showError(err?.message || String(err));
+    }
   };
 
   const getGenerationOptions = () => ({
@@ -203,7 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
       controller.setMode(radio.value);
 
       // Update UI
-      DOM.chordEl.textContent = "";
+      if (DOM.chordEl) {
+        DOM.chordEl.textContent = "";
+      }
       if (DOM.playBtn) {
         DOM.playBtn.disabled = true;
       }
