@@ -80,12 +80,17 @@ Speech recognition is handled **by the browser**, not by this app.
 
 ```
 /
-├─ index.html # App structure
-├─ style.css # Styling & layout
-├─ harmony-engine.js # Music theory logic (keys, chords, progressions)
-├─ audio-engine.js # Web Audio API synthesis (arpeggio + block chords)
-├─ script.js # UI controller (state, events, rendering)
-├─ speech.js # Speech recognition (isolated, reusable)
+├─ index.html # App markup
+├─ style.css # Main stylesheet (imports CSS modules)
+├─ css/ # Modular stylesheets
+│  ├─ variables.css # Theme colors, fonts, sizing
+│  ├─ base.css # Reset, body, typography
+│  ├─ layout.css # Page structure and layout
+│  └─ components.css # UI components (buttons, pills, etc.)
+├─ harmony-engine.js # Music theory logic
+├─ audio-engine.js # Web Audio API synthesis
+├─ script.js # UI controller
+├─ speech.js # Speech recognition
 ├─ package.json
 ├─ test/ # Regression tests
 │  ├─ harmony-engine.test.js
@@ -98,11 +103,10 @@ Speech recognition is handled **by the browser**, not by this app.
 - **Deterministic musical logic**
 - **True diatonic spelling**
 - **Fast interaction** (minimal latency)
-- **Separation of concerns**
-  - UI rendering
-  - musical logic
-  - audio
-  - speech recognition
+- **Modular architecture**
+  - Separated concerns: harmony theory, audio synthesis, UI, speech recognition
+  - Modular CSS: variables, base, layout, components
+  - Testable business logic (Node tests via npm)
 
 
 ## Browser Support

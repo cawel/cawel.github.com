@@ -1,0 +1,165 @@
+/* layout.css — page structure, header, main content, control panel grid */
+
+header h1 {
+  text-align: center;
+  margin: clamp(1.1rem, 4vw, 2.5rem) 0 clamp(0.8rem, 3vw, 1.8rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 4vw, 2.05rem);
+  font-weight: 500;
+  color: var(--title);
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.35rem, 1.5vw, 0.6rem);
+  text-transform: uppercase;
+}
+
+.title-icon {
+  font-size: 0.88em;
+  filter: grayscale(0.3) saturate(0.65);
+  opacity: 0.78;
+}
+
+.control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.6rem, 2.5vw, 1rem);
+}
+
+/* Panel: left = mode selector, right = button column.
+   Wrap naturally on small screens without huge dead space. */
+.control-panel {
+  display: grid;
+  grid-template-columns: max-content var(--control-btn-w);
+  column-gap: clamp(3.25rem, 8vw, 6rem);
+  row-gap: 1rem;
+
+  align-items: start;
+  justify-content: center;
+
+  padding: clamp(1rem, 3vw, 1.7rem) clamp(1rem, 4vw, 2.4rem);
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: max-content;
+  max-width: min(96vw, 1100px);
+}
+
+/* Left side (modes) */
+.mode-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+
+  width: max-content;
+  max-width: 100%;
+}
+
+.mode-selector label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  cursor: pointer;
+  width: max-content;
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+
+.mode-selector label:has(input:checked) {
+  color: var(--text);
+}
+
+.mode-selector input {
+  accent-color: var(--accent);
+  transform: scale(1.15);
+}
+
+/* Random mode "Include" options */
+.random-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1.4rem;
+  margin-top: 0.1rem;
+  gap: 0.15rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.random-options label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  cursor: pointer;
+  width: max-content;
+}
+
+.random-options .chord-symbol {
+  display: inline-flex;
+  gap: 0;
+}
+
+.random-options sup {
+  font-size: 0.6em;
+  vertical-align: super;
+  margin: 0;
+}
+
+/* Right side (Play / Listen / Stats) */
+.button-column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 3vw, 1rem);
+  align-items: flex-end;
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.pills-spacer {
+  height: clamp(0.75rem, 4vw, 4rem);
+}
+
+/* Animations */
+.anticipate {
+  transform: scale(0.96);
+  transition: transform 0.12s ease-in-out;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 520px) {
+  .control-panel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+
+    padding: clamp(1.1rem, 4vw, 1.5rem) clamp(0.9rem, 5vw, 1.4rem);
+  }
+
+  .mode-selector {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .button-column {
+    align-items: center;
+  }
+}

@@ -1,0 +1,187 @@
+/* components.css — UI components: buttons, pills, status, chord display */
+
+/* Base button style */
+button {
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
+  border-radius: var(--btn-radius);
+  letter-spacing: 0.04em;
+}
+
+button .btn-icon,
+button .btn-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+button .btn-icon {
+  font-size: 0.95em;
+  opacity: 0.8;
+  filter: grayscale(0.15) saturate(0.75);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Control buttons: Play, Listen, Stats */
+.play,
+.listen-btn,
+.stats-btn {
+  width: var(--control-btn-w);
+  font-size: var(--btn-font);
+  padding: var(--btn-py) var(--btn-px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+/* Play button: filled, muted green */
+.play {
+  background: var(--play-bg);
+  color: var(--play-text);
+}
+
+.play:hover:not(:disabled) {
+  opacity: 0.82;
+}
+
+/* Listen button: outlined in brass accent */
+.listen-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.listen-btn:hover:not(:disabled) {
+  background: rgba(184, 149, 106, 0.1);
+}
+
+.listen-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Stats button: outlined neutral */
+.stats-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.stats-btn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
+
+/* Primary action: Next button */
+.next-btn {
+  background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+  color: #0b0b0b;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  font-size: var(--btn-font);
+  padding: clamp(0.85rem, 1.9vw, 1rem) clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  width: min(26rem, 92vw);
+  margin-top: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px var(--accent-shadow),
+    0 14px 30px rgba(0, 0, 0, 0.34);
+}
+
+.next-btn .btn-icon {
+  opacity: 0.92;
+  filter: grayscale(0.1) saturate(0.85);
+}
+
+.next-btn:hover:not(:disabled) {
+  opacity: 0.97;
+  transform: translateY(-1px);
+}
+
+/* Status and stats lines */
+.status-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  max-width: min(720px, 92vw);
+  background: rgba(184, 149, 106, 0.08);
+  color: var(--accent);
+  font-weight: 500;
+  border: 1px solid rgba(184, 149, 106, 0.18);
+}
+
+.stats-line {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: none;
+  margin-top: 1rem;
+}
+
+/* Info box and pills */
+.info-box {
+  display: none;
+  gap: 1rem;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+.pill {
+  padding: 0.3rem 0.85rem;
+  border-radius: 4px;
+  background: var(--surface-hi);
+  border: 1px solid var(--border);
+}
+
+.pill.key {
+  border-color: rgba(184, 149, 106, 0.4);
+  color: var(--accent);
+}
+
+.pill.step {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+}
+
+.pill-label {
+  font-weight: 400;
+  margin-right: 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.88em;
+}
+
+.pill-value {
+  font-weight: 600;
+}
+
+/* Chord display */
+.chord {
+  font-size: clamp(9rem, 22vw, 20rem);
+  font-weight: 900;
+  white-space: nowrap;
+  line-height: 1;
+  color: #fff;
+  margin-top: clamp(0.8rem, 4vw, 2rem);
+}

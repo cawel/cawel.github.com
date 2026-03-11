@@ -1,0 +1,25 @@
+/* base.css — reset, body, and global typography */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Jazz chord formatting */
+sup {
+  font-size: 0.5em;
+}
+
+.qual {
+  font-size: 0.6em;
+}
