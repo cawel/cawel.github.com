@@ -10,7 +10,9 @@
 The Open Sarcophagus
 
 ### Content
-You are the head of night security at Hollow Moon Museum, and tonight should have been routine. Instead, at 12:07 AM, you find the royal sarcophagus open from the inside and motion alerts firing in three wings. Two months ago, you were blamed for a theft you didn’t commit. If you fail tonight, your career is over for good.
+You are the head of night security at Hollow Moon Museum, and tonight should have been routine. At 12:07 AM, the royal sarcophagus is open from the inside and motion alerts are firing in three wings simultaneously.
+
+Two months ago you were blamed for a theft you didn't commit. The evidence was thin; the consequences were not. If you fail tonight, your career ends—and whoever framed you last time will have won. Detective Sarah Chen covers overnight incidents at the museum and can trigger a full lockdown. The question is whether you move alone or call her first.
 
 ### Choices
 1. Sweep the galleries alone to track intruders -> 2
@@ -21,21 +23,25 @@ You are the head of night security at Hollow Moon Museum, and tonight should hav
 Split Trail
 
 ### Content
-Muddy prints lead through a staff corridor and split near a freight elevator. One trail descends to the archive basement. The other heads toward Director Hartwell’s office. Through a cracked door, you hear voices arguing over "the moon tablet" and "phase two before dawn."
+Muddy prints track through the staff corridor and split at a freight elevator. One trail descends toward the archive basement. The other leads to Director Hartwell's office. Through a cracked door, two voices argue about "the moon tablet" and "phase two before dawn."
+
+You stay still and listen. Someone inside Hartwell's office knows the schedule, the layout, and the name of the artifact. That is not a coincidence you can afford to ignore—but the basement trail is going cold.
 
 ### Choices
 1. Follow the basement trail and secure physical evidence -> 4
-2. Listen at Hartwell’s office and identify voices first -> 5
+2. Listen at Hartwell's office and identify the voices first -> 5
 
 ## Chapter 3
 ### Title
 Chen on Scene
 
 ### Content
-Detective Chen arrives unusually fast and immediately identifies the crescent sigil as the Midnight Collective. She asks you to wear a wire and help expose an internal accomplice. Her confidence is useful, but it also feels rehearsed, as if she already knows what happened before hearing your report.
+Detective Chen arrives in under seven minutes, which is fast for a call that went out four minutes ago. She identifies the crescent sigil painted on the sarcophagus lid immediately—the Midnight Collective, a trafficking ring that moves anomalous artifacts to private buyers. She asks you to wear a wire and help her expose an internal accomplice.
+
+Her confidence is useful. It also feels rehearsed, as if she already knows what happened before hearing your report. You decide how much of that to trust.
 
 ### Choices
-1. Cooperate with Chen and feed her your findings -> 6
+1. Cooperate fully with Chen and feed her your findings -> 6
 2. Keep her informed but verify everything independently -> 5
 
 ## Chapter 4
@@ -43,10 +49,12 @@ Detective Chen arrives unusually fast and immediately identifies the crescent si
 The Hidden Vault
 
 ### Content
-In the basement, you find an unlisted vault packed with off-ledger artifacts and a transfer log signed under Hartwell’s credentials. One slot in the vault is empty: the moon tablet slot. Security timestamps confirm the removal happened only minutes before the sarcophagus alarm.
+The basement holds an unlisted vault behind a false shelving unit. Inside: off-ledger artifacts in foam-cut cases, and a transfer log signed under Director Hartwell's credentials. One slot is empty—labelled moon tablet—and the security timestamp on the removal is minutes before the sarcophagus alarm.
+
+The log is signed. The slot is empty. The timing is exact. You have what you came for—now the question is who you hand it to.
 
 ### Choices
-1. Confront Hartwell with the vault records -> 7
+1. Confront Hartwell directly with the vault records -> 7
 2. Bring your evidence straight to Chen for rapid action -> 6
 
 ## Chapter 5
@@ -54,18 +62,22 @@ In the basement, you find an unlisted vault packed with off-ledger artifacts and
 Ledger of Contradictions
 
 ### Content
-You recover a red-marked emergency ledger from Hartwell’s office. Every entry warns the same thing: "Do not unseal the moon tablet without full council." You also catch a call fragment suggesting someone in law enforcement has repeatedly leaked convoy routes. The conspiracy is larger than museum staff alone.
+Hartwell's office is unlocked. Inside, a red-marked emergency ledger sits open on the desk, every entry flagged with the same warning: "Do not unseal the moon tablet without full council." Someone wanted that instruction visible tonight.
+
+A call fragment still running on the desk phone catches your attention—muffled, but clear enough: someone in law enforcement has leaked convoy routes repeatedly. The conspiracy runs deeper than museum staff. You now hold evidence that implicates people on both sides of the investigation.
 
 ### Choices
 1. Trust Hartwell enough to compare records and plan quietly -> 7
-2. Trust Chen’s authority and hand over all evidence now -> 6
+2. Hand everything to Chen and trust her authority -> 6
 
 ## Chapter 6
 ### Title
 Operation Nightglass
 
 ### Content
-Chen launches an immediate interception of Hartwell’s convoy. In the confusion, masked Collective agents strike both teams, seize the tablet, and disappear into river tunnels. You realize the operation was either compromised from inside Chen’s unit or designed to fail from the start.
+Chen launches an immediate intercept of Hartwell's convoy before your evidence is fully catalogued. In the confusion at the river bridge, masked Collective agents hit both teams at once, seize the tablet, and drop into the flood tunnels below. The operation collapses in under three minutes.
+
+You stand at the tunnel entrance with Chen beside you, the tablet gone. Either her unit was compromised from inside, or this operation was designed from the start to flush it into those tunnels.
 
 ### Choices
 1. Pursue the Collective van into the tunnels right now -> 8
@@ -73,21 +85,25 @@ Chen launches an immediate interception of Hartwell’s convoy. In the confusion
 
 ## Chapter 7
 ### Title
-Hartwell’s Disclosure
+Hartwell's Disclosure
 
 ### Content
-Hartwell admits the museum is part of a preservation network that tracks anomalous artifacts before traffickers weaponize them. The moon tablet is a locator key: with safeguards, it prevents black-market recoveries; without safeguards, it exposes hidden sites globally. She asks you to choose between accountable containment and reckless exposure.
+Hartwell doesn't wait for you to accuse her. She shows you the network herself: a quiet, cross-institutional operation that tracks anomalous artifacts before traffickers can reach them. The moon tablet is a locator key—with its safeguards intact it blocks black-market recoveries; without them it exposes hidden cache sites globally.
+
+She holds your evidence log, reads it, and sets it down. "You've done the hard part already," she says. "Now choose what happens next." She is asking you to trust a system that operated in secret—but she is also the first person tonight who has not asked you to act before thinking.
 
 ### Choices
-1. Join Hartwell’s controlled recovery operation -> 9
-2. Leak all records immediately and force public daylight -> 10
+1. Join Hartwell's controlled recovery operation -> 9
+2. Leak all records to the press and force public accountability -> 10
 
 ## Chapter 8
 ### Title
 Tunnel Collapse
 
 ### Content
-You chase the Collective into flood channels rigged with charges. The tunnel collapses behind you. Water rises. Your radio dies. The last voice you hear thanks "the guard who rushed exactly where we needed." You spend your final breath transmitting your evidence cache upstream before the flood takes you. By dawn, the tablet is gone and your investigation is over.
+The flood channels are rigged. You hear the first charge go at the second junction, then the tunnel folds behind you in a roar of concrete and water. Your radio dies on impact. The water rises fast in the dark, cold and indifferent.
+
+The last voice you hear over anything is calm, almost satisfied: "The guard rushed exactly where we needed." You spend your final two minutes transmitting your evidence cache upstream before the flood reaches the equipment. By dawn, the tablet is gone and your investigation is over—though the evidence you sent will outlast you.
 
 ### Choices
 The End
@@ -97,7 +113,9 @@ The End
 Recovered Dawn
 
 ### Content
-You coordinate with Hartwell’s vetted team and stage a quiet intercept at the shipping yard where the tablet is headed for auction. The operation succeeds. Key brokers are arrested. Chen’s compromised contacts are exposed through your evidence chain. The museum reopens under transparent oversight, and your name is finally cleared in full.
+Hartwell's vetted team stages the intercept at the shipping yard quietly, without advance noise. The tablet is recovered. Key Collective brokers are arrested at the dock before they reach the auction. Chen's compromised contacts are identified through the evidence chain you built—not fast, but clean.
+
+The museum reopens under transparent oversight three weeks later. Your name is cleared in full, in writing, with an apology. You read it twice. It does not undo the two months, but it is real, and it is enough.
 
 ### Choices
 The End
@@ -107,7 +125,9 @@ The End
 Truth Without Guardrails
 
 ### Content
-You release every secret file to the press overnight. For a week, you are celebrated. Then copycat theft rings and private militias exploit the published site data before institutions can protect those locations. You told the truth, but without containment strategy it became a map for predators. You keep your conscience, but lose certainty that you helped more than you harmed.
+You release every file to three journalists before dawn. For a week you are celebrated—the whistleblower, the honest guard, the person who refused to let institutions bury the truth. The coverage is accurate. The response is not controlled.
+
+Copycat rings and private militias move on the published site data within ten days, faster than any institution can respond. You told the truth. You meant to help. The map you drew was read by people you did not account for, and some of those locations will not recover from the attention. You keep your conscience intact and carry the uncertainty of the outcome for a long time after.
 
 ### Choices
 The End
