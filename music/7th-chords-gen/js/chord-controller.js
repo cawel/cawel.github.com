@@ -16,7 +16,6 @@
 
   root.ChordController = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-
   const HarmonyEngine =
     typeof window !== "undefined"
       ? window.HarmonyEngine

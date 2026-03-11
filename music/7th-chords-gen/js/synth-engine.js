@@ -16,7 +16,6 @@
 
   root.SynthEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-
   const create = (audioContext) => {
     if (!audioContext) {
       throw new Error("AudioContext is required");

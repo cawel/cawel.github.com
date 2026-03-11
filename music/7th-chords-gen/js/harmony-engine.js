@@ -16,7 +16,6 @@
 
   root.HarmonyEngine = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-
   const KEYS = {
     C: ["C", "D", "E", "F", "G", "A", "B"],
     Db: ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
