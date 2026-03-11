@@ -15,42 +15,65 @@ The reader is always the protagonist and is addressed directly as **"you"**.
 1. **Every choice matters**
   - Each decision must change direction, stakes, information, relationships, or survival odds.
   - Avoid fake choices that lead to almost identical outcomes.
+  - Root choices in conflict—external (obstacles, opposing forces, hostile environment) or internal (the protagonist's competing values, fears, or loyalties). The best crossroads pit both against each other at once.
 
-2. **Clear intention, uncertain consequence**
+2. **Engaging characters**
+  - Every named character must have a clear, visible motivation—shown through action or dialogue, not stated in narration.
+  - Supporting characters should feel like they have their own lives, goals, and constraints, not merely plot functions that serve the protagonist.
+  - Reveal the protagonist's values, fears, and capacity for growth through the choices they face, not through backstory summaries.
+
+3. **Strong theme**
+  - Commit to one central theme (e.g., trust vs. control, sacrifice vs. survival, duty vs. freedom) before writing. Every branch should illuminate a different facet of it.
+  - Keep the theme implicit—visible in character motivations and the weight of consequences, never announced outright.
+  - Each ending should feel like the theme's final verdict on the path the reader chose.
+
+4. **Compelling conflict**
+  - Establish one overarching conflict that drives the whole story, and at least one branch-level complication per major path that raises the personal stakes.
+  - Let conflict reveal character: how a character responds under pressure tells the reader who they really are.
+  - Even resolved conflicts should cost something—genuine victories come with loss, sacrifice, or irreversible change.
+
+5. **Clear intention, uncertain consequence**
   - The reader should understand what each option means to do.
   - The result should be uncertain enough to create suspense.
 
-3. **Strong cause and effect**
+6. **Strong cause and effect**
   - Outcomes must feel earned by previous decisions.
   - No random twists that ignore established logic.
 
-4. **Distinct branches with variety**
+7. **Distinct branches with variety**
   - Paths should differ in setting, tone, obstacles, and revelations.
   - Include at least one discovery-focused path and one danger-focused path.
 
-5. **Consistent world rules**
+8. **Consistent world rules**
   - Keep character behavior, lore, and mechanics consistent across branches.
   - If a rule is introduced, later chapters must respect it.
 
-6. **Compelling endings**
+9. **Compelling endings**
   - Include **2 to 5 endings** total.
   - Include at least **1 genuinely good/successful ending**.
   - Include at least **1 very bad ending** (failure, tragedy, or death).
-  - Endings must feel like natural consequences of the reader's choices.
+  - Endings must feel like natural consequences of the reader's choices and a direct expression of the story's theme.
 
-7. **Reader pleasure and pacing**
-  - Start with a hook in the first paragraphs.
-  - Keep scenes concrete and sensory, not abstract.
-  - Alternate tension and relief so the story does not feel flat.
-  - Keep chapter endings punchy and decision-ready.
+10. **Emotional resonance**
+  - Before writing each chapter, identify the specific feeling it should produce—dread, wonder, hope, grief, relief, or moral tension—and build toward it deliberately.
+  - Earn emotional peaks through setup: characters and stakes must be established before they can be endangered, lost, or redeemed.
+  - Avoid generic sentiment ("you feel afraid"). Show the physical and sensory experience of emotion—cold in the chest, the weight of silence, a name you can't bring yourself to say.
+  - Let emotional tone shift across the story arc: early wonder, mounting dread, and hard-won resolution land harder when they contrast with each other.
 
-8. **Book-like prose style**
+11. **Pacing and structure**
+  - Shape the whole story as a rising arc: an opening hook that establishes immediate danger or mystery, escalating complications through mid-chapters, a climax where the stakes are at their highest, and endings that resolve both plot and theme.
+  - Vary chapter intensity deliberately: place a brief, sharp chapter after a dense one to give the reader room to breathe before the next escalation.
+  - Start with a hook in the first paragraph. Keep chapter endings punchy and decision-ready.
+  - Do not rush toward choices; give each chapter enough grounding that the decision feels weighty. Do not linger so long that momentum stalls.
+
+12. **Book-like prose style**
   - Use cinematic but concise prose.
   - Prioritize active voice and strong verbs.
   - Avoid repetition and filler.
   - Favor specific details over generic descriptions.
+  - Write each chapter as multiple paragraphs, not a single block. Break naturally at shifts in focus: scene-setting, action, interiority, and revelation each warrant their own paragraph.
 
-9. **Reader clarity and internal consistency**
+13. **Reader clarity and internal consistency**
   - Every element named in a choice must already appear in that chapter's content. Never introduce a key term for the first time in a choice line.
   - Any invented entity, phenomenon, or faction central to the story must be described with at least one concrete sensory or visual detail the first time it appears.
   - When the protagonist survives a threat that kills another character, the narrative must make the physical reason explicit and plausible (different positions, barriers, sealed compartments, etc.).
