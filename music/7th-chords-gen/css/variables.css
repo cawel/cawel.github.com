@@ -18,8 +18,8 @@
   --play-text: #a8d8bc;
 
   /* Typography */
-  --font-ui: "IBM Plex Sans", system-ui, sans-serif;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Component sizing */
   --btn-font: clamp(0.95rem, 2.2vw, 1.1rem);
