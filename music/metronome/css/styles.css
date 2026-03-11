@@ -397,32 +397,35 @@ body{
   align-items:center;
   justify-content:center;
 
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: 16px;
 
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 6px 18px rgba(0,0,0,0.2);
 
   cursor:pointer;
   transition: background 140ms ease, transform 120ms ease, box-shadow 140ms ease, opacity 140ms ease;
 }
 
 .transport-btn:not([disabled]):hover{
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.24);
 }
 
 .transport-btn:not([disabled]):active{
   transform: scale(0.94);
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.18);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.30);
 }
 
 .transport-btn[disabled]{
   opacity: 1;
   cursor: not-allowed;
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.06);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.01);
+  border-color: rgba(255,255,255,0.035);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
 }
 
 .transport-btn svg{
@@ -433,7 +436,7 @@ body{
 }
 
 .transport-btn[disabled] svg{
-  fill: rgba(255,255,255,0.45);
+  fill: rgba(255,255,255,0.2);
 }
 
 .shortcuts-row{
