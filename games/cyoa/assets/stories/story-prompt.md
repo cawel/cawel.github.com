@@ -87,6 +87,7 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - **Show before reference**: If the protagonist responds to dialogue, a question, or an event, that dialogue, question, or event must appear on the page first. Do not imply interactions that were never shown.
   - **Action must follow from context**: Any action the protagonist takes must make logical sense given what the reader already knows at that point in the story. If the action requires knowledge the reader doesn't yet have, provide that knowledge first. This rule takes priority over creating surprise — consequences can still be unexpected while the protagonist's actions remain grounded in what has been established.
   - **Choice-outcome coherence**: The narrative following a choice must honor the intent the reader expressed by selecting it. If the reader chose to share information openly, the next chapter must not assume the opposite. A new temptation may appear, but it must be framed as a distinct decision, not a silent reversal.
+  - **Choice-actor consistency**: If a choice says the protagonist will perform an action, the following chapter must show the protagonist performing it—not another character. Conversely, if the plan is for another character to act, the choice text must name that character and describe the protagonist's supporting role. The actor in the choice and the actor in the outcome must always match.
 
 
 ## Tone and Voice

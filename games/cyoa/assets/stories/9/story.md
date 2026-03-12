@@ -108,7 +108,7 @@ The artifact is the loop's anchor. Each time the Fracture reaches Varda, it rewi
 That understanding hits you like a door opening in a room you'd forgotten had walls.
 
 ### Choices
-1. Sever the artifact's power coupling—collapse the loop without destroying the artifact -> 10
+1. Have Dara sever the power coupling while you stabilize the cradle—collapse the loop without destroying the artifact -> 10
 2. Overload the artifact in a controlled detonation—end the loop and the Fracture threat permanently -> 8
 
 ## Chapter 7
