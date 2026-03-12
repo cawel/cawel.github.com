@@ -88,7 +88,7 @@ Good intentions collide in the cargo corridors. Armed construction workers from 
 
 The artifact pulses three times in rapid succession. Each burst travels through the deck plates like a physical blow—you feel it in your back teeth more than your ears. A frequency you've never registered in any previous loop. The walls groan and your vision smears at the edges for one nauseating second. In engineering, a pressure coupling detonates with a crack like a gunshot.
 
-The Fracture cluster is still eleven minutes out. You're already losing the station from the inside. Every previous loop, you kept these factions separate by choosing one ally. This loop they're all in motion at once, and you're standing in a corridor with debris drifting past your boots and no clear play remaining. The artifact vault is three sections below. The emergency pods are two sections aft.
+The Fracture cluster is still eleven minutes out. You're already losing the station from the inside. Every previous loop, you kept these factions separate by choosing one ally. This loop they're all in motion at once, and you're standing in a corridor with debris drifting past your boots and no clear play remaining. The artifact vault is three sections below. The emergency pods are one section aft.
 
 ### Choices
 1. Sprint to the artifact vault and contain the pulse before it cascades further -> 6
@@ -101,7 +101,7 @@ The Artifact Room
 ### Content
 The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle on the central platform: a latticed sphere the size of your palm, its surface a mesh of interlocking curves in a material that scatters the utility lights wrong—giving back a faint iridescence no spectral register in the station's database can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own.
 
-Dara Osei—the station's lead signal analyst, the person who first identified the artifact's countdown pattern—is at the vault console. Whether she arrived from engineering through the maintenance shaft or came down alongside you, she's bent over the readings with the composure of someone who has decided the crisis will wait until she finishes her analysis. Her data confirms what you've circled toward across dozens of loops but never proved.
+Dara Osei—the station's lead signal analyst, the person who first identified the artifact's countdown pattern—is already at the vault console, bent over the readings with the composure of someone who has decided the crisis will wait until she finishes her analysis. Her data confirms what you've circled toward across dozens of loops but never proved.
 
 The artifact is the loop's anchor. Each time the Fracture reaches Varda, it rewinds this morning—not as an attack, but as a fail-safe. Its logic is preservation: reality resets until conditions encoded in its waveform are met. The Fracture entities aren't invading. They're following a distress beacon—this artifact—sent across space for longer than humanity has occupied this sector. They're trying to recover something they lost. Seventeen people have died every loop not because the Fracture wanted them dead, but because neither side understood quickly enough what was happening.
 
