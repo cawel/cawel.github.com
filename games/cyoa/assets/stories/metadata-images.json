@@ -1,401 +1,293 @@
-[
-  {
-    "storyNumber": 1,
-    "storyTitle": "The Mysterious Forest",
-    "keywords": [
-      "forest",
-      "ruins",
-      "mystery"
-    ],
-    "imageSpec": {
-      "style": "cinematic fantasy digital painting, atmospheric fog, high detail",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
-    },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Bell and the Token",
-      "llmPrompt": "Create a cinematic fantasy digital painting, 16:9, atmospheric dawn wide shot. Viewer-protagonist kneeling on wet moss in an ancient fog-heavy forest, holding a warm copper token engraved with a crescent moon. Show two clearly diverging routes: a narrow deer trail toward pale river light and a vine-choked stone archway half-buried in ruined masonry. Add drifting mist layers, dew on ferns, distant bell silhouette, and subtle tension in the lighting. Mood: mysterious adventure with quiet dread, no ending spoilers, no text, no watermark."
-    },
-    "endings": [
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Thorns of Defiance",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a dramatic dark-fantasy ending scene, 16:9, dynamic low-angle composition. Living briar walls surge inward at twilight, roots split stone and wet soil, and a fallen explorer is trapped as a dropped knife sinks in mud. Rain streaks and thorn silhouettes frame the collapse. Palette: bruised greens, black bark, cold silver rain. Emotion: panic and irreversible loss. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "Stillness Crown",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create a haunting bittersweet fantasy tableau, 16:9, wide contemplative framing. A lone guardian stands on a ridge above a mirror-still valley where river and village are orderly but eerily lifeless. Use muted desaturated tones, immaculate symmetry, and windless atmosphere to suggest peace without joy. Emotion: control won at emotional cost. No text, no watermark."
-      },
-      {
-        "chapterNumber": 10,
-        "chapterTitle": "Spring Oath",
-        "endingType": "successful",
-        "llmPrompt": "Create a hopeful fantasy finale image, 16:9, cinematic dawn composition. In a radiant forest chamber, villagers and a bark-and-starlight warden complete a peace oath as vines release a rescued ranger. Birds rise through sunbeams, spores glow in warm air, and old ruins look newly alive. Palette: warm greens, gold light, soft amber highlights. Tone: restorative victory and renewal. No text, no watermark."
-      }
-    ]
+{
+  "imageSpec": {
+    "format": "webp",
+    "aspectRatio": "16:9",
+    "targetResolution": "1536x864",
+    "quality": 90,
+    "colorProfile": "sRGB"
   },
-  {
-    "storyNumber": 2,
-    "storyTitle": "Midnight at Hollow Moon Museum",
-    "keywords": [
-      "museum",
-      "conspiracy",
-      "paranormal"
-    ],
-    "imageSpec": {
-      "style": "cinematic neo-noir thriller illustration, realistic lighting, detailed interiors",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
+  "stories": [
+    {
+      "number": 1,
+      "storyTitle": "The Mysterious Forest",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Bell and the Token",
+          "llmPrompt": "Create a cinematic fantasy digital painting, atmospheric dawn wide shot. Viewer-protagonist kneeling on wet moss in an ancient fog-heavy forest, holding a warm copper token engraved with a crescent moon. Show two clearly diverging routes: a narrow deer trail toward pale river light and a vine-choked stone archway half-buried in ruined masonry. Add drifting mist layers, dew on ferns, distant bell silhouette, and subtle tension in the lighting. Mood: mysterious adventure with quiet dread, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 8,
+          "title": "Thorns of Defiance",
+          "llmPrompt": "Create a dramatic dark-fantasy ending scene, dynamic low-angle composition. Living briar walls surge inward at twilight, roots split stone and wet soil, and a fallen explorer is trapped as a dropped knife sinks in mud. Rain streaks and thorn silhouettes frame the collapse. Palette: bruised greens, black bark, cold silver rain. Emotion: panic and irreversible loss. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 9,
+          "title": "Stillness Crown",
+          "llmPrompt": "Create a haunting bittersweet fantasy tableau, wide contemplative framing. A lone guardian stands on a ridge above a mirror-still valley where river and village are orderly but eerily lifeless. Use muted desaturated tones, immaculate symmetry, and windless atmosphere to suggest peace without joy. Emotion: control won at emotional cost. No text, no watermark.",
+          "endingType": "bittersweet"
+        },
+        {
+          "number": 10,
+          "title": "Spring Oath",
+          "llmPrompt": "Create a hopeful fantasy finale image, cinematic dawn composition. In a radiant forest chamber, villagers and a bark-and-starlight warden complete a peace oath as vines release a rescued ranger. Birds rise through sunbeams, spores glow in warm air, and old ruins look newly alive. Palette: warm greens, gold light, soft amber highlights. Tone: restorative victory and renewal. No text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Open Sarcophagus",
-      "llmPrompt": "Create a cinematic neo-noir museum thriller image, 16:9, interior wide shot at midnight. An ancient sarcophagus stands open with broken seals, red motion sensors pulse across polished marble, and a lone security protagonist sweeps a flashlight beam through dust and display shadows. Include a crescent sigil painted on the inner surface of the open sarcophagus lid, tense reflections in glass, and deep contrast lighting. Mood: investigative suspense and conspiracy, no ending spoilers, no text, no watermark."
+    {
+      "number": 2,
+      "storyTitle": "Midnight at Hollow Moon Museum",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Open Sarcophagus",
+          "llmPrompt": "Create a cinematic neo-noir museum thriller image, interior wide shot at midnight. An ancient sarcophagus stands open with broken seals, red motion sensors pulse across polished marble, and a lone security protagonist sweeps a flashlight beam through dust and display shadows. Include a crescent sigil painted on the inner surface of the open sarcophagus lid, tense reflections in glass, and deep contrast lighting. Mood: investigative suspense and conspiracy, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 8,
+          "title": "Tunnel Collapse",
+          "llmPrompt": "Create a high-tension noir-disaster ending scene, action-focused perspective in a collapsing flood tunnel. Concrete fractures overhead, debris crashes through rushing water, and a failing radio sparks as the protagonist transmits final evidence. Use harsh emergency light, spray, and motion blur to emphasize urgency. Palette: steel blue, gray concrete, red warning accents. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 9,
+          "title": "Recovered Dawn",
+          "llmPrompt": "Create a victorious yet grounded noir finale image, early morning shipping yard. Evidence crates are sealed, arrested traffickers are escorted under floodlights, and the protagonist stands in relieved stillness as dawn touches the museum skyline. Keep realism, restrained triumph, and procedural closure. Tone: justice hard-won. No text, no watermark.",
+          "endingType": "successful"
+        },
+        {
+          "number": 10,
+          "title": "Truth Without Guardrails",
+          "llmPrompt": "Create a dramatic bittersweet noir tableau, moody office-at-night composition. News screens glow with leaked dossiers while a city map marked with endangered sites covers the wall. The protagonist stands alone by rain-streaked glass, conflicted and exhausted as consequences spread beyond control. Tone: truth revealed at heavy social cost. No text, no watermark.",
+          "endingType": "bittersweet"
+        }
+      ]
     },
-    "endings": [
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Tunnel Collapse",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a high-tension noir-disaster ending scene, 16:9, action-focused perspective in a collapsing flood tunnel. Concrete fractures overhead, debris crashes through rushing water, and a failing radio sparks as the protagonist transmits final evidence. Use harsh emergency light, spray, and motion blur to emphasize urgency. Palette: steel blue, gray concrete, red warning accents. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "Recovered Dawn",
-        "endingType": "successful",
-        "llmPrompt": "Create a victorious yet grounded noir finale image, 16:9, early morning shipping yard. Evidence crates are sealed, arrested traffickers are escorted under floodlights, and the protagonist stands in relieved stillness as dawn touches the museum skyline. Keep realism, restrained triumph, and procedural closure. Tone: justice hard-won. No text, no watermark."
-      },
-      {
-        "chapterNumber": 10,
-        "chapterTitle": "Truth Without Guardrails",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create a dramatic bittersweet noir tableau, 16:9, moody office-at-night composition. News screens glow with leaked dossiers while a city map marked with endangered sites covers the wall. The protagonist stands alone by rain-streaked glass, conflicted and exhausted as consequences spread beyond control. Tone: truth revealed at heavy social cost. No text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 3,
-    "storyTitle": "The Last Broadcast",
-    "keywords": [
-      "space",
-      "signal",
-      "survival"
-    ],
-    "imageSpec": {
-      "style": "cinematic hard-sci-fi concept art, realistic orbital lighting, high detail",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
+    {
+      "number": 3,
+      "storyTitle": "The Last Broadcast",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Silence Over Earth",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, from inside an orbital station cupola. Earth fills the lower frame with city lights fading in synchronized waves, while dark control panels and a single anomalous signal trace glow on the comms console. The protagonist appears as a tense silhouette facing the signal. Use realistic orbital lighting and clean instrument detail. Mood: isolation, mystery, imminent global crisis, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Survival Without Choice",
+          "llmPrompt": "Create a dystopian dark-success sci-fi ending image, underground repurposed research station composition. Human and hybrid delegates crowd a low-ceilinged bunker chamber lit by generator banks, faces exhausted and morally hollow. A holo-map confirms biosphere stabilization, but the air feels heavy with what was sacrificed. Place the protagonist centered, carrying the weight of an irreversible decision. No text, no watermark.",
+          "endingType": "dark_success"
+        },
+        {
+          "number": 8,
+          "title": "The Last Burn",
+          "llmPrompt": "Create an intense tragic sci-fi disaster ending scene, high-energy composition. Crystalline towers vent ionized haze, filtration systems fail, and the protagonist kneels beside a final warning beacon in a storm of glowing particles. Use stark orange vs steel-blue contrast, hard atmospheric bloom, and collapsing infrastructure detail. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 9,
+          "title": "Orbit of One",
+          "llmPrompt": "Create a melancholic tragic space tableau, quiet long-shot framing. A near-empty orbital station drifts above an altered Earth, dim interior lights flicker, and a lone archive terminal still transmits into the void. Emphasize scale, silence, and profound loneliness. No text, no watermark.",
+          "endingType": "tragic"
+        },
+        {
+          "number": 10,
+          "title": "The Human Clause",
+          "llmPrompt": "Create a hopeful hard-sci-fi diplomatic finale image, ceremonial council composition. A multinational assembly ratifies a charter beneath a holographic Earth, with transparent data streams visible to all delegates. The protagonist watches the signing with restrained relief. Mood: dignity, accountability, and hard-won hope. No text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "Silence Over Earth",
-      "llmPrompt": "Create a cinematic hard-sci-fi image, 16:9, from inside an orbital station cupola. Earth fills the lower frame with city lights fading in synchronized waves, while dark control panels and a single anomalous signal trace glow on the comms console. The protagonist appears as a tense silhouette facing the signal. Use realistic orbital lighting and clean instrument detail. Mood: isolation, mystery, imminent global crisis, no ending spoilers, no text, no watermark."
+    {
+      "number": 4,
+      "storyTitle": "The Clockwork Carnival",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Return of Thirteen",
+          "llmPrompt": "Create a surreal whimsical-dark fantasy image, cinematic night wide shot. An abandoned fairground erupts into a forbidden brass carnival as a clock strikes thirteen. At the gate, the viewer-protagonist receives two tokens (heart and hourglass) from a masked ringmaster. Show steam, gears, calliope glow, and fog-lit silhouettes to imply wonder and danger. Tone: eerie magic and personal mission, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "Shattered Minute",
+          "llmPrompt": "Create a catastrophic carnival-fantasy ending scene, dynamic chaos composition. A colossal clockwork engine bursts in red sparks, mirror walls fracture, rides collapse, and dawn haze settles over scorched brass debris. Capture frantic motion, broken time motifs, and tragic inevitability. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 7,
+          "title": "Dawn Reset",
+          "llmPrompt": "Create a heartwarming dawn fantasy ending image, calm cinematic framing. Brass carnival gates sink into the earth as morning light spreads across a quiet field. Reunited siblings hold hands in the foreground while mechanical glow fades into natural daylight. Emotion: relief, reunion, and closure. No text, no watermark.",
+          "endingType": "successful"
+        },
+        {
+          "number": 8,
+          "title": "A Memory for a Life",
+          "llmPrompt": "Create an emotional bittersweet fantasy tableau, intimate mid-wide composition. In front of a humming brass wishing engine, reunited siblings embrace while the protagonist’s expression shows disorientation from a lost memory. Use soft dawn light, warm tears, and melancholy beauty. Theme: love preserved at personal cost. No text, no watermark.",
+          "endingType": "bittersweet"
+        }
+      ]
     },
-    "endings": [
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Survival Without Choice",
-        "endingType": "dark_success",
-        "llmPrompt": "Create a dystopian dark-success sci-fi ending image, 16:9, underground repurposed research station composition. Human and hybrid delegates crowd a low-ceilinged bunker chamber lit by generator banks, faces exhausted and morally hollow. A holo-map confirms biosphere stabilization, but the air feels heavy with what was sacrificed. Place the protagonist centered, carrying the weight of an irreversible decision. No text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "The Last Burn",
-        "endingType": "very_bad",
-        "llmPrompt": "Create an intense tragic sci-fi disaster ending scene, 16:9, high-energy composition. Crystalline towers vent ionized haze, filtration systems fail, and the protagonist kneels beside a final warning beacon in a storm of glowing particles. Use stark orange vs steel-blue contrast, hard atmospheric bloom, and collapsing infrastructure detail. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "Orbit of One",
-        "endingType": "tragic",
-        "llmPrompt": "Create a melancholic tragic space tableau, 16:9, quiet long-shot framing. A near-empty orbital station drifts above an altered Earth, dim interior lights flicker, and a lone archive terminal still transmits into the void. Emphasize scale, silence, and profound loneliness. No text, no watermark."
-      },
-      {
-        "chapterNumber": 10,
-        "chapterTitle": "The Human Clause",
-        "endingType": "successful",
-        "llmPrompt": "Create a hopeful hard-sci-fi diplomatic finale image, 16:9, ceremonial council composition. A multinational assembly ratifies a charter beneath a holographic Earth, with transparent data streams visible to all delegates. The protagonist watches the signing with restrained relief. Mood: dignity, accountability, and hard-won hope. No text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 4,
-    "storyTitle": "The Clockwork Carnival",
-    "keywords": [
-      "carnival",
-      "clockwork",
-      "wish"
-    ],
-    "imageSpec": {
-      "style": "surreal whimsical-dark fantasy illustration, rich brass textures, cinematic lighting",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
+    {
+      "number": 5,
+      "storyTitle": "The Sunken Library",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Steps Below the Harbor",
+          "llmPrompt": "Create a mythic maritime fantasy image, atmospheric low-tide wide shot. Barnacled steps descend below the harbor toward monumental bronze doors of a sunken library. The viewer-protagonist carries a storm ledger and lantern as wind and spray lash the stone. Add bioluminescent hints in cracks, carved warnings, and looming architecture. Mood: urgent exploration and ancient secrecy, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "Cataloged",
+          "llmPrompt": "Create a haunting tragic maritime-fantasy ending scene, dramatic interior composition. The abyss wing floods as a forbidden volume lies open, pages spiral in violent currents, and a lantern dies in the dark. Show the protagonist overwhelmed by both water pressure and impossible knowledge. Palette: deep teal, black water, pale glyph light. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 7,
+          "title": "Keeper in the Dark",
+          "llmPrompt": "Create a grim bad-ending maritime tableau, interior-to-exterior composition. From a wealthy watchtower window, the protagonist remains physically safe while a storm-wrecked harbor and broken docks stretch below in darkness. Emphasize isolation, guarded wealth, and social collapse. Theme: power without trust. No text, no watermark.",
+          "endingType": "bad"
+        },
+        {
+          "number": 8,
+          "title": "Harbor of Lanterns",
+          "llmPrompt": "Create a hopeful coastal-fantasy finale image, twilight harbor panorama. Coordinated lantern signals arc across docks while crews prepare safely using public storm charts. Place the protagonist among townspeople teaching and coordinating rather than commanding alone. Tone: civic resilience, shared knowledge, and collective survival. Warm amber-and-sea-blue palette, no text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Return of Thirteen",
-      "llmPrompt": "Create a surreal whimsical-dark fantasy image, 16:9, cinematic night wide shot. An abandoned fairground erupts into a forbidden brass carnival as a clock strikes thirteen. At the gate, the viewer-protagonist receives two tokens (heart and hourglass) from a masked ringmaster. Show steam, gears, calliope glow, and fog-lit silhouettes to imply wonder and danger. Tone: eerie magic and personal mission, no ending spoilers, no text, no watermark."
+    {
+      "number": 6,
+      "storyTitle": "Echoes of the Perseid Gate",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Arrival at Perseid",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, grand scale wide shot. A research vessel approaches a colossal ancient ring gate in deep space while unstable harmonic light ripples across the structure. Keep spacecraft detailing crisp, with bridge silhouettes visible and sensor overlays reflected on hull glass. Mood: awe, danger, high-stakes exploration, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 8,
+          "title": "One Runner",
+          "llmPrompt": "Create a heroic-tragic sci-fi ending scene, kinetic perspective along an exposed pylon scaffold. A single suited astronaut sprints through a radiation bloom toward a final manual override as telemetry warning lights fade. Emphasize sacrifice, scale, and imminent loss with stark lighting and particle haze. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 9,
+          "title": "Sealed Horizon",
+          "llmPrompt": "Create a solemn bittersweet space tableau, quiet wide composition. The ancient gate is shattered into drifting silver fragments while stable space returns around it. A small observing spacecraft watches from distance, emphasizing how safety was won by closing unknown futures. Tone: calm, costly resolution. No text, no watermark.",
+          "endingType": "bittersweet"
+        },
+        {
+          "number": 10,
+          "title": "Gatekeepers of Dawn",
+          "llmPrompt": "Create a triumphant hard-sci-fi finale image, balanced heroic composition. A stabilized luminous gate stands intact as the crew returns to their ship, with mission holograms confirming successful calibration. Add a dawn-like stellar glow along the hull; one crew member cradles an injured hand, another moves with the careful posture of a cracked rib—injuries visible but not incapacitating. Tone: earned victory at real cost. No text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "endings": [
-      {
-        "chapterNumber": 6,
-        "chapterTitle": "Shattered Minute",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a catastrophic carnival-fantasy ending scene, 16:9, dynamic chaos composition. A colossal clockwork engine bursts in red sparks, mirror walls fracture, rides collapse, and dawn haze settles over scorched brass debris. Capture frantic motion, broken time motifs, and tragic inevitability. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Dawn Reset",
-        "endingType": "successful",
-        "llmPrompt": "Create a heartwarming dawn fantasy ending image, 16:9, calm cinematic framing. Brass carnival gates sink into the earth as morning light spreads across a quiet field. Reunited siblings hold hands in the foreground while mechanical glow fades into natural daylight. Emotion: relief, reunion, and closure. No text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "A Memory for a Life",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create an emotional bittersweet fantasy tableau, 16:9, intimate mid-wide composition. In front of a humming brass wishing engine, reunited siblings embrace while the protagonist’s expression shows disorientation from a lost memory. Use soft dawn light, warm tears, and melancholy beauty. Theme: love preserved at personal cost. No text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 5,
-    "storyTitle": "The Sunken Library",
-    "keywords": [
-      "library",
-      "tides",
-      "secrets"
-    ],
-    "imageSpec": {
-      "style": "mythic maritime fantasy illustration, bioluminescent ambience, intricate architecture",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
+    {
+      "number": 7,
+      "storyTitle": "Whiskers and the Midnight Key",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Key Under the Moonbeam",
+          "llmPrompt": "Create a storybook magical-night illustration, cozy cinematic attic composition. A black cat protagonist discovers a glowing brass key in moonlight beside an old cedar wardrobe. Below, the sleeping house feels warm and safe, contrasting with faint supernatural tension above. Include soft dust motes, rune glow, and moonbeams across floorboards. Tone: heartwarming mystery and protective courage, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "The Shadow Owl",
+          "llmPrompt": "Create a dramatic spooky bad-ending scene, rooftop action framing at first light. A massive shadow owl of soot and grief overpowers a brave black cat while dim nursery windows glow behind them. Use wind-torn cloud shapes, slanted chimneys, and tragic motion lines. Emotion: courage against overwhelming darkness. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 7,
+          "title": "Keeper Between Worlds",
+          "llmPrompt": "Create an ethereal bittersweet moon-road fantasy tableau, lyrical wide shot. A cat guardian walks beside a spectral tomcat across starlit rooftops above sleeping towns, while one distant home window glows warmly behind. Emphasize duty, distance, and tender separation. Cool moon palette with subtle gold accents. No text, no watermark.",
+          "endingType": "bittersweet"
+        },
+        {
+          "number": 8,
+          "title": "Purr of Dawn",
+          "llmPrompt": "Create a heartwarming magical victory finale image, intimate bedroom composition at dawn. A fading dreamlight lattice dissolves into morning rays as a child wakes smiling and the black cat rests at bedside. The brass key cools to ordinary metal on the blanket. Palette: gentle gold and soft blue, comforting and triumphant. No text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "Steps Below the Harbor",
-      "llmPrompt": "Create a mythic maritime fantasy image, 16:9, atmospheric low-tide wide shot. Barnacled steps descend below the harbor toward monumental bronze doors of a sunken library. The viewer-protagonist carries a storm ledger and lantern as wind and spray lash the stone. Add bioluminescent hints in cracks, carved warnings, and looming architecture. Mood: urgent exploration and ancient secrecy, no ending spoilers, no text, no watermark."
+    {
+      "number": 8,
+      "storyTitle": "Crown of the Underforge",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Briefing Before Descent",
+          "llmPrompt": "Create an epic high-fantasy concept art image, cinematic wide shot. Viewer-protagonist descending a massive chain-and-stone stair into the Underforge, holding a sealed diplomatic writ with wax sigil. Show colliding architectural styles in one colossal cavern: angular dwarven ironworks fused with arcane wizard buttresses and rune-lit bridges. Add molten light plumes, drifting forge sparks, distant guard silhouettes, and subtle signs of unrest (barricades, scorched banners, watchfires). Mood: heroic duty under pressure, looming civil conflict, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Fire Without Consent",
+          "llmPrompt": "Create a catastrophic epic-fantasy ending scene, dynamic perspective from a collapsing iron bridge. A lone crown-bearer stands unstable above a surging magma flood while a colossal enraged wyrm rises through smoke and falling chains. Surround with failing forge towers, snapping pylon lattice, molten debris, and emergency rune-lights flickering out. Palette: infernal orange, black iron, ember red. Emotion: tragic hubris and irreversible downfall. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 8,
+          "title": "Stone Silence",
+          "llmPrompt": "Create a somber post-crisis fantasy tableau, medium-wide composition. The ancient crown vault is sealed by massive rune-locked stone doors and cooling iron clamps. In the foreground, exhausted survivors ration supplies in dim forge halls while weak furnace light barely warms the space. Show repaired scaffolds, patched banners, and orderly but joyless rebuilding. Tone: survival without renewal, austere endurance, muted palette, no text, no watermark.",
+          "endingType": "neutral_bad"
+        },
+        {
+          "number": 9,
+          "title": "The New Accord",
+          "llmPrompt": "Create a hopeful epic-forge finale image, ceremonial composition with cinematic lighting. At three oath pillars around the forge-heart, a dwarf leader, wizard envoy, and viewer-protagonist place hands in unison as harmonizing light spirals through runes and stabilizes the molten core. In the background, smiths return to anvils and bridges glow steady again. Emphasize hard-won unity, lawful power-sharing, and renewal after near-collapse. Warm gold-and-iron palette, triumphant but grounded, no text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
     },
-    "endings": [
-      {
-        "chapterNumber": 6,
-        "chapterTitle": "Cataloged",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a haunting tragic maritime-fantasy ending scene, 16:9, dramatic interior composition. The abyss wing floods as a forbidden volume lies open, pages spiral in violent currents, and a lantern dies in the dark. Show the protagonist overwhelmed by both water pressure and impossible knowledge. Palette: deep teal, black water, pale glyph light. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Keeper in the Dark",
-        "endingType": "bad",
-        "llmPrompt": "Create a grim bad-ending maritime tableau, 16:9, interior-to-exterior composition. From a wealthy watchtower window, the protagonist remains physically safe while a storm-wrecked harbor and broken docks stretch below in darkness. Emphasize isolation, guarded wealth, and social collapse. Theme: power without trust. No text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Harbor of Lanterns",
-        "endingType": "successful",
-        "llmPrompt": "Create a hopeful coastal-fantasy finale image, 16:9, twilight harbor panorama. Coordinated lantern signals arc across docks while crews prepare safely using public storm charts. Place the protagonist among townspeople teaching and coordinating rather than commanding alone. Tone: civic resilience, shared knowledge, and collective survival. Warm amber-and-sea-blue palette, no text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 6,
-    "storyTitle": "Echoes of the Perseid Gate",
-    "keywords": [
-      "spaceship",
-      "anomaly",
-      "gate"
-    ],
-    "imageSpec": {
-      "style": "epic hard-sci-fi cinematic concept art, crisp spacecraft detail, dramatic scale",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
-    },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "Arrival at Perseid",
-      "llmPrompt": "Create an epic hard-sci-fi concept art image, 16:9, grand scale wide shot. A research vessel approaches a colossal ancient ring gate in deep space while unstable harmonic light ripples across the structure. Keep spacecraft detailing crisp, with bridge silhouettes visible and sensor overlays reflected on hull glass. Mood: awe, danger, high-stakes exploration, no ending spoilers, no text, no watermark."
-    },
-    "endings": [
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "One Runner",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a heroic-tragic sci-fi ending scene, 16:9, kinetic perspective along an exposed pylon scaffold. A single suited astronaut sprints through a radiation bloom toward a final manual override as telemetry warning lights fade. Emphasize sacrifice, scale, and imminent loss with stark lighting and particle haze. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "Sealed Horizon",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create a solemn bittersweet space tableau, 16:9, quiet wide composition. The ancient gate is shattered into drifting silver fragments while stable space returns around it. A small observing spacecraft watches from distance, emphasizing how safety was won by closing unknown futures. Tone: calm, costly resolution. No text, no watermark."
-      },
-      {
-        "chapterNumber": 10,
-        "chapterTitle": "Gatekeepers of Dawn",
-        "endingType": "successful",
-        "llmPrompt": "Create a triumphant hard-sci-fi finale image, 16:9, balanced heroic composition. A stabilized luminous gate stands intact as the crew returns to their ship, with mission holograms confirming successful calibration. Add a dawn-like stellar glow along the hull; one crew member cradles an injured hand, another moves with the careful posture of a cracked rib—injuries visible but not incapacitating. Tone: earned victory at real cost. No text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 7,
-    "storyTitle": "Whiskers and the Midnight Key",
-    "keywords": [
-      "cat",
-      "attic",
-      "magic"
-    ],
-    "imageSpec": {
-      "style": "storybook magical illustration, soft moonlight, whimsical but cinematic",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
-    },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Key Under the Moonbeam",
-      "llmPrompt": "Create a storybook magical-night illustration, 16:9, cozy cinematic attic composition. A black cat protagonist discovers a glowing brass key in moonlight beside an old cedar wardrobe. Below, the sleeping house feels warm and safe, contrasting with faint supernatural tension above. Include soft dust motes, rune glow, and moonbeams across floorboards. Tone: heartwarming mystery and protective courage, no ending spoilers, no text, no watermark."
-    },
-    "endings": [
-      {
-        "chapterNumber": 6,
-        "chapterTitle": "The Shadow Owl",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a dramatic spooky bad-ending scene, 16:9, rooftop action framing at first light. A massive shadow owl of soot and grief overpowers a brave black cat while dim nursery windows glow behind them. Use wind-torn cloud shapes, slanted chimneys, and tragic motion lines. Emotion: courage against overwhelming darkness. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Keeper Between Worlds",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create an ethereal bittersweet moon-road fantasy tableau, 16:9, lyrical wide shot. A cat guardian walks beside a spectral tomcat across starlit rooftops above sleeping towns, while one distant home window glows warmly behind. Emphasize duty, distance, and tender separation. Cool moon palette with subtle gold accents. No text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Purr of Dawn",
-        "endingType": "successful",
-        "llmPrompt": "Create a heartwarming magical victory finale image, 16:9, intimate bedroom composition at dawn. A fading dreamlight lattice dissolves into morning rays as a child wakes smiling and the black cat rests at bedside. The brass key cools to ordinary metal on the blanket. Palette: gentle gold and soft blue, comforting and triumphant. No text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 8,
-    "storyTitle": "Crown of the Underforge",
-    "keywords": [
-      "wizards",
-      "dwarves",
-      "dungeons"
-    ],
-    "imageSpec": {
-      "style": "epic high-fantasy concept art, molten forge lighting, grand subterranean scale",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
-    },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Briefing Before Descent",
-      "llmPrompt": "Create an epic high-fantasy concept art image, 16:9, cinematic wide shot. Viewer-protagonist descending a massive chain-and-stone stair into the Underforge, holding a sealed diplomatic writ with wax sigil. Show colliding architectural styles in one colossal cavern: angular dwarven ironworks fused with arcane wizard buttresses and rune-lit bridges. Add molten light plumes, drifting forge sparks, distant guard silhouettes, and subtle signs of unrest (barricades, scorched banners, watchfires). Mood: heroic duty under pressure, looming civil conflict, no ending spoilers, no text, no watermark."
-    },
-    "endings": [
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Fire Without Consent",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a catastrophic epic-fantasy ending scene, 16:9, dynamic perspective from a collapsing iron bridge. A lone crown-bearer stands unstable above a surging magma flood while a colossal enraged wyrm rises through smoke and falling chains. Surround with failing forge towers, snapping pylon lattice, molten debris, and emergency rune-lights flickering out. Palette: infernal orange, black iron, ember red. Emotion: tragic hubris and irreversible downfall. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Stone Silence",
-        "endingType": "neutral_bad",
-        "llmPrompt": "Create a somber post-crisis fantasy tableau, 16:9, medium-wide composition. The ancient crown vault is sealed by massive rune-locked stone doors and cooling iron clamps. In the foreground, exhausted survivors ration supplies in dim forge halls while weak furnace light barely warms the space. Show repaired scaffolds, patched banners, and orderly but joyless rebuilding. Tone: survival without renewal, austere endurance, muted palette, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "The New Accord",
-        "endingType": "successful",
-        "llmPrompt": "Create a hopeful epic-forge finale image, 16:9, ceremonial composition with cinematic lighting. At three oath pillars around the forge-heart, a dwarf leader, wizard envoy, and viewer-protagonist place hands in unison as harmonizing light spirals through runes and stabilizes the molten core. In the background, smiths return to anvils and bridges glow steady again. Emphasize hard-won unity, lawful power-sharing, and renewal after near-collapse. Warm gold-and-iron palette, triumphant but grounded, no text, no watermark."
-      }
-    ]
-  },
-  {
-    "storyNumber": 9,
-    "storyTitle": "The Fracture Hour",
-    "keywords": [
-      "belt",
-      "loop",
-      "contact"
-    ],
-    "imageSpec": {
-      "style": "cinematic hard-sci-fi concept art, industrial asteroid belt lighting, tense atmosphere",
-      "format": "webp",
-      "aspectRatio": "16:9",
-      "targetResolution": "1536x864",
-      "quality": 85,
-      "colorProfile": "sRGB",
-      "firstChapterNoSpoilers": true
-    },
-    "firstChapter": {
-      "chapterNumber": 1,
-      "chapterTitle": "The Alarm You've Heard Before",
-      "llmPrompt": "Create a cinematic hard-sci-fi image, 16:9, claustrophobic interior shot aboard an industrial asteroid belt station. A suited protagonist sits upright in a narrow bunk as red alarm lights cycle across corrugated metal walls. The bunk, chair, and half-eaten ration bar are lit in eerie familiarity. Through a porthole, a dense asteroid field is barely visible in cold void. Mood: exhausted dread, déjà vu, urgent tension, no ending spoilers, no text, no watermark."
-    },
-    "endings": [
-      {
-        "chapterNumber": 7,
-        "chapterTitle": "Contact",
-        "endingType": "successful",
-        "llmPrompt": "Create a breathtaking hard-sci-fi first-contact ending image, 16:9, wide exterior-interior composition. Through the station's curved observation deck glass, a cluster of luminous alien Fracture entities hold formation in the dark of the asteroid belt, their geometry complex and still. Inside, a lone crew member in a pressure suit stands facing them with one hand raised to the glass, comm open. Artifact is dark. Mood: awe, fragile peace, and the weight of being first. No text, no watermark."
-      },
-      {
-        "chapterNumber": 8,
-        "chapterTitle": "Controlled Burn",
-        "endingType": "bittersweet",
-        "llmPrompt": "Create a somber bittersweet sci-fi ending image, 16:9, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one figure silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 9,
-        "chapterTitle": "The Last Loop",
-        "endingType": "very_bad",
-        "llmPrompt": "Create a tragic sci-fi disaster ending scene, 16:9, dynamic structural-collapse composition. A belt station breaks apart from within—ring sections separate, support pylons snap, emergency pod bays are sealed and dark, and debris spirals into the void. No explosion, only slow structural failure in silence. Emphasize scale, finality, and isolation with cold black space and fading station lights. No explicit gore, no text, no watermark."
-      },
-      {
-        "chapterNumber": 10,
-        "chapterTitle": "Severance",
-        "endingType": "successful",
-        "llmPrompt": "Create a hopeful hard-sci-fi resolution image, 16:9, intimate interior composition. In a dim artifact lab, two crew members stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark."
-      }
-    ]
-  }
-]
+    {
+      "number": 9,
+      "storyTitle": "The Fracture Hour",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "The Alarm You've Heard Before",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, claustrophobic interior shot aboard an industrial asteroid belt station. A suited protagonist sits upright in a narrow bunk as red alarm lights cycle across corrugated metal walls. The bunk, chair, and half-eaten ration bar are lit in eerie familiarity. Through a porthole, a dense asteroid field is barely visible in cold void. Mood: exhausted dread, déjà vu, urgent tension, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Contact",
+          "llmPrompt": "Create a breathtaking hard-sci-fi first-contact ending image, wide exterior-interior composition. Through the station's curved observation deck glass, a cluster of luminous alien Fracture entities hold formation in the dark of the asteroid belt, their geometry complex and still. Inside, a lone crew member in a pressure suit stands facing them with one hand raised to the glass, comm open. Artifact is dark. Mood: awe, fragile peace, and the weight of being first. No text, no watermark.",
+          "endingType": "successful"
+        },
+        {
+          "number": 8,
+          "title": "Controlled Burn",
+          "llmPrompt": "Create a somber bittersweet sci-fi ending image, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one figure silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark.",
+          "endingType": "bittersweet"
+        },
+        {
+          "number": 9,
+          "title": "The Last Loop",
+          "llmPrompt": "Create a tragic sci-fi disaster ending scene, dynamic structural-collapse composition. A belt station breaks apart from within—ring sections separate, support pylons snap, emergency pod bays are sealed and dark, and debris spirals into the void. No explosion, only slow structural failure in silence. Emphasize scale, finality, and isolation with cold black space and fading station lights. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 10,
+          "title": "Severance",
+          "llmPrompt": "Create a hopeful hard-sci-fi resolution image, intimate interior composition. In a dim artifact lab, two crew members stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark.",
+          "endingType": "successful"
+        }
+      ]
+    }
+  ]
+}
