@@ -93,7 +93,7 @@ The artifact floats in its magnetic cradle on the lower vault's central platform
 
 Dara's readings, pulled up on the vault terminal, confirm what you have circled toward across dozens of loops but never been able to prove. The artifact is the loop's anchor point. Every time the Fracture cluster reaches Varda Station, the artifact rewinds time—not as an attack, not as a weapon—but as a fail-safe built by whoever originally placed it here. Its logic is preservation: if the artifact changes hands, reality resets until the conditions of the covenant embedded in its waveform are met.
 
-The Fracture entities aren't invading Varda Station. They are following a distress beacon—this artifact, sending its signal across space for longer than humanity has been in this sector. They are trying to recover something they lost. The seventeen people who have died in every previous loop died not because the Fracture wanted them dead, but because no one on either side understood what was happening quickly enough to stop it.
+The Fracture entities aren't invading Varda Station. They are following a distress beacon—this artifact, sending its signal across space for longer than humanity has been in this sector. They are trying to recover something they lost. The seventeen people who have died in every previous loop died not because the Fracture wanted them dead, but because neither the station’s crew nor the Fracture understood what was happening quickly enough to prevent it.
 
 That understanding, standing in this vault with Dara's screen glowing and the artifact humming off-tempo against your ribs, is the first genuinely new thing you have felt in a very long time.
 
@@ -106,7 +106,7 @@ That understanding, standing in this vault with Dara's screen glowing and the ar
 Contact
 
 ### Content
-Your intercept team reaches the observation deck with seconds to spare before the outer pane cracks. Suits sealed, magnetic anchors set along the deck rail, weapons charged and safeties off—and then you do something no previous loop allowed: you feed the artifact's recorded resonance signature through the hull's external emitter array and broadcast it at the cluster's approach vector.
+Your intercept team reaches the observation deck with seconds to spare before the outer pane cracks. Suits sealed, magnetic anchors set along the deck rail, weapons charged and safeties off—and then you do something no previous loop allowed: you patch into the artifact's active beacon feed from the vault terminal and override its automated distress cycle, replacing it with a structured pulse—three short, three long, three short—shaped from the artifact's own resonance but modulated to show deliberate intent. Not a distress call repeating itself. A conscious reply.
 
 The Fracture entities stop. Through the reinforced glass you see them clearly for the first time, the whole cluster spread across the starfield: dozens of angular silhouettes, dark and jagged against the void, each one distinct, each one held absolutely still in a way that takes your breath away. They are not rock or debris. They are deliberate.
 
@@ -164,7 +164,7 @@ Severance
 ### Content
 Dara cuts the power coupling in one precise movement while you brace the magnetic cradle with both hands against the artifact's resistance. The hum against your sternum—your constant companion through every version of this day—drops in pitch, stutters twice, and goes completely still. The resonance signature on her screen flattens to a line.
 
-Outside, the Fracture cluster completes its final approach and then disperses. Without the beacon, there is nothing to home on. They separate into the dark with the unhurried drift of things that have somewhere else to be and are no longer in a hurry.
+Outside, the Fracture cluster completes its final approach and then disperses. Without the beacon, there is nothing to home on. One by one, the angular shapes separate into the dark with the unhurried drift of things that have somewhere else to be and are no longer in a hurry.
 
 Varda Station runs its damage assessments on a breach that never came. Voss files a proximity alert and closes it within the hour. The seventeen people who have died in every previous version of this morning eat breakfast and argue about the duty roster and notice nothing unusual about the day.
 
@@ -174,7 +174,7 @@ Dara looks at you, confused and a little concerned. "You okay? You look like you
 
 You sit down on the floor of the artifact room—the magnetic cradle humming with ordinary, empty electricity above you—and you start writing. Every loop. Every death, yours and other people's. Every small adjustment you made and whether it helped. Every face you learned to recognise, couldn't save, and then saved, and couldn't tell. You write until your hand cramps and then keep writing. You sign your name at the bottom. You feel, for the first time in a span your memory cannot fully measure, like a person with a future instead of a loop.
 
-The debrief takes five weeks. The station council votes unanimously to publish the full artifact record. Whatever the Fracture were looking for across all that dark and silence, they deserve to know their message was received. Neither side can yet translate it. But the message exists, and you exist, and you are no longer standing in the same second over and over—and for now, that is more than enough.
+The debrief takes five weeks. The station council votes unanimously to publish the full artifact record. Whatever the Fracture were answering when they crossed all that dark and silence, the record should show that someone here finally understood. Neither species can yet translate the other. But the beacon called, and something came, and you are no longer standing in the same second over and over—and for now, that is more than enough.
 
 ### Choices
 The End

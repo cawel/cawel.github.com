@@ -23,7 +23,7 @@ At the bronze doors, a carved warning catches your lantern light: "When the thir
 Cartographer's Hall
 
 ### Content
-You enter a vaulted chamber lined with tide maps stitched on whale-skin. The charts cover centuries of surge patterns and seasonal drift—more data than any living cartographer has assembled. A translucent librarian materializes near the central column, studying you with the patient disappointment of someone who has answered this question many times before.
+You enter a vaulted chamber lined with tide maps stitched on whale-skin. The charts cover centuries of surge patterns and seasonal drift—more data than any living cartographer has assembled. A translucent librarian materializes near the central column. It regards you for a long moment, then speaks in a voice like water over stone: "What do you seek?" The tone carries the patient disappointment of someone who has asked this question many times before and rarely been satisfied with the answer.
 
 You answer truthfully: your harbor is running out of time, and you need forecasts to keep people alive. Something in your honesty seems to satisfy a condition. The spirit points toward the lighthouse vault where the codex is kept, then fades without another word.
 
@@ -42,7 +42,7 @@ The second bell shudders through the walls before you take a step. You have one 
 
 ### Choices
 1. Read the forbidden volume for immediate total knowledge -> 6
-2. Refuse and return to pursue the codex properly -> 2
+2. Leave the abyss wing and search for the codex vault -> 4
 
 ## Chapter 4
 ### Title
@@ -54,7 +54,7 @@ You surface into a dry vault beneath the old lighthouse lens, the air strangely 
 A note tucked inside the front cover reads: "Knowledge that saves must be shared, or it turns to tyranny." You can leave now with the codex and publish methods for all captains, or take it quietly and control who benefits.
 
 ### Choices
-1. Study quickly, then return to share forecasts openly -> 5
+1. Study the codex further before leaving -> 5
 2. Take the codex in secret and keep control private -> 7
 
 ## Chapter 5

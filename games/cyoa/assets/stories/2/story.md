@@ -36,7 +36,7 @@ You stay still and listen. Someone inside Hartwell's office knows the schedule, 
 Chen on Scene
 
 ### Content
-Detective Chen arrives in under seven minutes, which is fast for a call that went out four minutes ago. She identifies the crescent sigil painted on the sarcophagus lid immediately—the Midnight Collective, a trafficking ring that moves anomalous artifacts to private buyers. She asks you to wear a wire and help her expose an internal accomplice.
+Detective Chen arrives four minutes after your call—fast enough that she must have already been nearby, or already moving before you dialed. She identifies the crescent sigil painted on the sarcophagus lid immediately—the Midnight Collective, a trafficking ring that moves anomalous artifacts to private buyers. She tells you the museum’s director, Hartwell, is connected to a secure transport convoy leaving the building tonight, and that the Collective may have leveraged her access. She asks you to wear a wire and help her expose an internal accomplice.
 
 Her confidence is useful. It also feels rehearsed, as if she already knows what happened before hearing your report. You decide how much of that to trust.
 
@@ -75,7 +75,7 @@ A call fragment still running on the desk phone catches your attention—muffled
 Operation Nightglass
 
 ### Content
-Chen launches an immediate intercept of Hartwell's convoy before your evidence is fully catalogued. In the confusion at the river bridge, masked Collective agents hit both teams at once, seize the tablet, and drop into the flood tunnels below. The operation collapses in under three minutes.
+Chen launches an immediate intercept of Hartwell's convoy before your evidence is fully catalogued. At the river bridge, the operation falls apart: masked Collective agents—a third faction, allied with neither Chen’s unit nor Hartwell’s escort—ambush both teams at once, seize the tablet, and drop into the flood tunnels below. The operation collapses in under three minutes.
 
 You stand at the tunnel entrance with Chen beside you, the tablet gone. Either her unit was compromised from inside, or this operation was designed from the start to flush it into those tunnels.
 
