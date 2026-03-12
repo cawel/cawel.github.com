@@ -25,9 +25,9 @@ Tonight's air tastes of ash and old fear. Something that feeds on sleeping child
 The Hidden Hall
 
 ### Content
-The wardrobe opens not onto hanging coats but onto a moonlit hallway that has no business existing inside this house. It stretches further than it should, lined on both sides with framed portraits of cats—all sizes, all colours, all postures of watchful authority—each pair of painted eyes catching the starlight that filters through small, high windows. You have lived here three years and never known this hall existed. Whatever held the door shut before tonight, the key dissolved it.
+The wardrobe opens not onto hanging coats but onto a moonlit hallway that has no business existing inside this house. It stretches further than it should, lined on both sides with framed portraits of cats—all sizes, all colours, all postures of watchful authority—each pair of painted eyes catching the starlight that filters through small, high windows. Whatever held the door shut before tonight, the brass key dissolved it.
 
-A silver moth descends from the ceiling and lands on your nose. Its wings are the pale blue of a February moon, pulsing cold light with each slow beat. "You are the keybearer now," it says, in a voice like a finger drawn around the rim of a glass. "The dream-thief—a creature that feeds on sleeping children's fears—comes before dawn. It has been circling the house since midnight." It lifts off your nose and hovers, waiting. At the corridor's end, two doors stand side by side: one glowing with a bell sigil in copper-warm light, one marked with a carved pawprint in the dark wood.
+A silver moth descends from the ceiling and lands on your nose. Its wings are the pale blue of a February moon, pulsing cold light with each slow beat. "You are the keybearer now," it says, in a voice like a finger drawn around the rim of a glass. "The dream-thief—a creature called the Shadow Owl, which feeds on sleeping children's fears—comes before dawn. It has been circling the house since midnight." It lifts off your nose and hovers, waiting. At the corridor's end, two doors stand side by side: one glowing with a bell sigil in copper-warm light, one marked with a carved pawprint in the dark wood.
 
 The portraits watch you pass. You recognise no faces, but you recognise the posture: the specific held attention of an animal that takes its responsibilities seriously.
 
@@ -49,7 +49,7 @@ You read it twice. It describes the guardian lineage clearly: each generation, o
 You sit with the letters for a moment longer than the urgency strictly allows. The grandmother knew about you. She wrote your name. The youngest child's nightmares, the ash in tonight's air, the key in the crack beneath the window—none of it is coincidence. You have been prepared for this. Now you have two paths toward it.
 
 ### Choices
-1. Race to the nursery roof and attack the Shadow Owl immediately -> 6
+1. Race across the rooftiles and attack the Shadow Owl immediately -> 6
 2. Use the key on the cedar wardrobe to reach the guardian's hall -> 2
 
 ## Chapter 4
@@ -59,13 +59,13 @@ Bell Tower Chamber
 ### Content
 The bell-marked door opens onto a miniature tower built inside the house's architecture—a hollow space above the attic you never knew existed, its curved walls hung with dozens of bells in ascending sizes, each one a different alloy, each one inscribed with the name of a sleeping room. A parchment map on the floor marks the house's bedrooms in ink that glows faintly, room by room, as if tracking the breathing of the people inside them.
 
-The silver moth is already here, hovering before the largest bell. It teaches you the sequence once: a pattern of seven rings, specific bells in a specific order, which will cast a lattice of dreamlight through the entire house and shut every dream-predator out until sunrise. The wrong sequence will do the opposite—amplify fear, open rather than seal. "Trust memory, not panic," the moth says, and the weight in its voice suggests it has watched guardians panic before and knows how it ends. Through the tower's small round window, a vast shadow crosses the moonlit roof. The Shadow Owl is already circling, each slow wingbeat pushing cold air down the chimney in pulses you can feel on your whiskers.
+The silver moth is already here, hovering before the largest bell. It teaches you the sequence once: a pattern of seven rings, specific bells in a specific order, which will cast a lattice of dreamlight through the entire house and shut every dream-predator out until sunrise. The wrong sequence will do the opposite—amplify fear, open rather than seal. "Trust memory, not panic," the moth says, and the weight in its voice suggests it has watched guardians panic before and knows how it ends. Through the tower's small round window, a vast shadow crosses the moonlit roof. The Shadow Owl—a dream predator that feeds on sleeping children's fears—is already circling, each slow wingbeat pushing cold air down the chimney in pulses you can feel on your whiskers.
 
-You have seen the sequence once. It is already settling in your memory the way a hunting route settles, the way the creak of a specific stair settles—the way your body remembers things that matter. But there is something else you could do: charge directly, drive it back before it finds a window to test.
+You have seen the sequence once. It is already settling in your memory the way a hunting route settles, the way the creak of a specific stair settles—the way your body remembers things that matter. But there is something else you could do: charge directly and drive it back before it finds a window to test.
 
 ### Choices
 1. Ring the sequence exactly to shield the family -> 8
-2. Rush the bells by instinct and charge the owl -> 6
+2. Abandon the bells and charge the Shadow Owl directly -> 6
 
 ## Chapter 5
 ### Title
@@ -76,7 +76,7 @@ The pawprint door opens onto air—and then onto a garden that floats, impossibl
 
 A tomcat steps from the shadows at the garden's edge: translucent, his form made of light more than fur, amber eyes steady and unhurried. He moves like a cat who has been exactly where he is for a very long time. On the flat stone before him sit two small offerings. The first is a sprig of moonmint—sharp-scented, its leaves sending a thin silver smoke into the air—which sharpens the body for combat, gives speed and nerve. The second is a hollow acorn filled with starlace dew, cold and faintly luminous, which stills the mind and opens sight beyond ordinary sight: the moon-roads, guardian paths arcing above sleeping towns, invisible to everyone else.
 
-"One gift, one direction," the tomcat says. His voice carries the particular quality of someone who has offered this choice before and has no preference which you take—only that you choose well. The Shadow Owl's cry cuts across the chimneys below, closer than it was a minute ago. The youngest child's warmth flickers through the garden floor: still steady, but the night is not getting younger.
+"One gift, one direction," the tomcat says. His voice carries the particular quality of someone who has offered this choice before and has no preference which you take—only that you choose well. The Shadow Owl's cry—the hunting call of the dream predator circling this house—cuts across the chimneys below, closer than it was a minute ago. The youngest child's warmth flickers through the garden floor: still steady, but the night is not getting younger.
 
 ### Choices
 1. Take the moonmint and leap straight into the fight -> 6
@@ -87,7 +87,7 @@ A tomcat steps from the shadows at the garden's edge: translucent, his form made
 The Shadow Owl
 
 ### Content
-You launch from the ridge of the roof with everything you have: claws out, key between your teeth, the kind of commitment that leaves no room for retreat. For one second you are fast enough, high enough, certain enough—and then the Shadow Owl turns its head and sees you, and you understand that you have no real idea how large it is.
+You find the Shadow Owl on the rooftop, already settling toward the nursery window. You launch at it with everything you have: claws out, key between your teeth, the kind of commitment that leaves no room for retreat. For one second you are fast enough, high enough, certain enough—and then the creature turns its head and sees you, and you understand that you have no real idea how large it is.
 
 Each feather is stitched from soot and old grief, dense and cold as packed ash. Its wingspan swallows the rooftop's shadow twice over. It catches you midair with a grip like cold iron around your ribs, effortless, and hurls you across the slates. You strike the chimney stack and the key spins from your mouth, sliding to the gutter's edge. Without it, the guardian's hall goes dark. Without it, the dreamlight it might have called cannot reach the nursery windows.
 

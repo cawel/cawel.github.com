@@ -137,7 +137,10 @@ test("repo: getStoriesImageMetadata caches successful image metadata fetch", asy
     return {
       ok: true,
       async json() {
-        return [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }];
+        return {
+          imageSpec: null,
+          stories: [{ number: 1, chapters: [{ number: 1 }] }],
+        };
       },
       url,
     };
@@ -152,8 +155,14 @@ test("repo: getStoriesImageMetadata caches successful image metadata fetch", asy
     const second = await getStoriesImageMetadata();
 
     assert.equal(fetchCount, 1);
-    assert.deepEqual(first, [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }]);
-    assert.deepEqual(second, [{ storyNumber: 1, firstChapter: { chapterNumber: 1 } }]);
+    assert.deepEqual(first, {
+      imageSpec: null,
+      stories: [{ number: 1, chapters: [{ number: 1 }] }],
+    });
+    assert.deepEqual(second, {
+      imageSpec: null,
+      stories: [{ number: 1, chapters: [{ number: 1 }] }],
+    });
   } finally {
     globalThis.fetch = previousFetch;
   }
@@ -184,8 +193,8 @@ test("repo: getStoriesImageMetadata returns empty array when image metadata fetc
     const second = await getStoriesImageMetadata();
 
     assert.equal(fetchCount, 1);
-    assert.deepEqual(first, []);
-    assert.deepEqual(second, []);
+    assert.deepEqual(first, { imageSpec: null, stories: [] });
+    assert.deepEqual(second, { imageSpec: null, stories: [] });
   } finally {
     globalThis.fetch = previousFetch;
     console.error = previousConsoleError;

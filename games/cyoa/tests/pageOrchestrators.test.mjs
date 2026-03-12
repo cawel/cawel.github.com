@@ -129,13 +129,15 @@ The End`;
       return {
         ok: true,
         async json() {
-          return [
-            {
-              storyNumber: 901,
-              firstChapter: { chapterNumber: 1 },
-              endings: [{ chapterNumber: 2 }],
-            },
-          ];
+          return {
+            imageSpec: null,
+            stories: [
+              {
+                number: 901,
+                chapters: [{ number: 1 }, { number: 2 }],
+              },
+            ],
+          };
         },
       };
     }
@@ -160,8 +162,12 @@ The End`;
     assert.equal(first.chapter?.title, "Start");
     assert.equal(second.chapter?.title, "End");
     assert.equal(third.chapter?.title, "No Image Chapter");
-    assert.deepEqual(first.chapterImagePaths, [withBasePath("/assets/stories/901/1.webp")]);
-    assert.deepEqual(second.chapterImagePaths, [withBasePath("/assets/stories/901/2.webp")]);
+    assert.deepEqual(first.chapterImagePaths, [
+      withBasePath("/assets/stories/901/1.webp"),
+    ]);
+    assert.deepEqual(second.chapterImagePaths, [
+      withBasePath("/assets/stories/901/2.webp"),
+    ]);
     assert.equal(third.chapterImagePaths, null);
   } finally {
     __storyPageTestHooks.clearParsedStoryCache();
