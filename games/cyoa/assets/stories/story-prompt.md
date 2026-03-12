@@ -78,6 +78,12 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Any invented entity, phenomenon, or faction central to the story must be described with at least one concrete sensory or visual detail the first time it appears.
   - When the protagonist survives a threat that kills another character, the narrative must make the physical reason explicit and plausible (different positions, barriers, sealed compartments, etc.).
   - State the location of key objects explicitly when those locations are pivotal to the plot.
+  - **Pronoun clarity**: After a collective noun (e.g., "the swarm", "the cluster"), do not switch to a plural pronoun ("they") without an explicit bridging phrase that shows the group splitting into individuals.
+  - **Timeline and number consistency**: When numeric details appear (distances, durations, counts), verify they do not contradict each other within the same chapter or across connected chapters.
+  - **Faction and allegiance clarity**: When multiple groups act in the same scene, state each group's allegiance or opposition explicitly on first appearance. Never assume the reader can infer who is allied with whom.
+  - **Dialogue before response**: If the protagonist answers a question or responds to a request, the question or request must appear on the page first. Do not imply dialogue that was never shown.
+  - **Action must follow from context**: Any action the protagonist takes must make logical sense given what the reader already knows at that point in the story. If the action requires knowledge the reader doesn't yet have, provide that knowledge first.
+  - **Choice-outcome coherence**: The narrative following a choice must honor the intent the reader expressed by selecting it. If the reader chose to share information openly, the next chapter must not assume the opposite. A new temptation may appear, but it must be framed as a distinct decision, not a silent reversal.
 
 
 ## Tone
@@ -142,6 +148,8 @@ Follow this format exactly so the story can be parsed by the app:
 - Reward attentive readers (foreshadowing payoff, clues, callbacks).
 - Let early risk-taking influence later options.
 - Make final outcomes feel inevitable in hindsight.
+- **Cycle-proof all backward links**: If a choice sends the reader back to an earlier chapter, verify that re-entering that chapter does not repeat a one-time event (a bell tolling, a door opening, a countdown step) that would be illogical a second time. If the event cannot repeat, do not create the backward link.
+- **Path-independent character introductions**: Every named character or faction that appears in a chapter must be introduced or identified within that chapter's text, because the reader may reach it from any valid path. Do not assume the reader has visited a specific earlier chapter.
 
 
 ## Content Safety for Quality
