@@ -2,7 +2,7 @@
 .home-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
   min-height: 100%;
 }
 
@@ -10,14 +10,24 @@
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  margin-top: 45px;
+  margin-top: 36px;
   margin-bottom: 6px;
   color: var(--story-choice-text-hover);
 }
 
+.home-tagline {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--story-choice-text-color);
+  opacity: 0.75;
+  margin: 0;
+}
+
 .stories-grid {
   width: min(980px, 100%);
-  margin: 4px auto 0;
+  margin: 40px auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   gap: 40px;
@@ -143,7 +153,7 @@
 
   .stories-grid {
     width: 100%;
-    margin-top: 0;
+    margin-top: 28px;
     gap: 12px;
     grid-template-columns: 1fr;
   }

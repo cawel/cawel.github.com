@@ -62,7 +62,8 @@ export function renderHomePageTemplate(stories) {
     mainClass: "home-main",
     containerClass: "home-container",
     content: `
-      <h1 class="home-title">Where Will You Begin?</h1>
+      <h1 class="home-title">Choose Your Story</h1>
+      <p class="home-tagline">What Happens Next Is Up to You</p>
       <div class="stories-grid" role="list">
         ${storiesHtml}
       </div>
