@@ -4,62 +4,80 @@
     "title": "The Mysterious Forest",
     "emoji": "🌲",
     "approxTime": "6-8 min",
-    "keywords": ["forest", "ruins", "mystery"]
+    "keywords": ["forest", "ruins", "mystery"],
+    "chapters": 10,
+    "tone": "Mysterious"
   },
   {
     "number": 2,
     "title": "Midnight at Hollow Moon Museum",
     "emoji": "🏺",
     "approxTime": "2-3 min",
-    "keywords": ["museum", "conspiracy", "paranormal"]
+    "keywords": ["museum", "conspiracy", "paranormal"],
+    "chapters": 10,
+    "tone": "Suspenseful"
   },
   {
     "number": 3,
     "title": "The Last Broadcast",
     "emoji": "🛰️",
     "approxTime": "3-6 min",
-    "keywords": ["space", "signal", "survival"]
+    "keywords": ["space", "signal", "survival"],
+    "chapters": 10,
+    "tone": "Dramatic"
   },
   {
     "number": 4,
     "title": "The Clockwork Carnival",
     "emoji": "🎠",
     "approxTime": "5-7 min",
-    "keywords": ["carnival", "clockwork", "wish"]
+    "keywords": ["carnival", "clockwork", "wish"],
+    "chapters": 8,
+    "tone": "Surreal / Strange"
   },
   {
     "number": 5,
     "title": "The Sunken Library",
     "emoji": "📚",
     "approxTime": "2-3 min",
-    "keywords": ["library", "tides", "secrets"]
+    "keywords": ["library", "tides", "secrets"],
+    "chapters": 8,
+    "tone": "Mysterious"
   },
   {
     "number": 6,
     "title": "Echoes of the Perseid Gate",
     "emoji": "🚀",
     "approxTime": "3-5 min",
-    "keywords": ["spaceship", "anomaly", "gate"]
+    "keywords": ["spaceship", "anomaly", "gate"],
+    "chapters": 10,
+    "tone": "Epic / Heroic"
   },
   {
     "number": 7,
     "title": "Whiskers and the Midnight Key",
     "emoji": "🐈",
     "approxTime": "4-7 min",
-    "keywords": ["cat", "attic", "magic"]
+    "keywords": ["cat", "attic", "magic"],
+    "chapters": 8,
+    "tone": "Whimsical"
   },
   {
     "number": 8,
     "title": "Crown of the Underforge",
     "emoji": "🧙",
     "approxTime": "5-9 min",
-    "keywords": ["wizards", "dwarves", "dungeons"]
+    "keywords": ["wizards", "dwarves", "dungeons"],
+    "chapters": 9,
+    "tone": "Epic / Heroic"
   },
   {
     "number": 9,
     "title": "The Fracture Hour",
     "emoji": "⚡",
     "approxTime": "4-7 min",
-    "keywords": ["loop", "countdown", "contact"]
+    "keywords": ["loop", "countdown", "contact"],
+    "chapters": 10,
+    "tone": "Suspenseful"
   }
 ]
