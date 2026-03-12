@@ -54,7 +54,7 @@ export async function getStoryContent(storyId) {
 }
 
 /**
- * @returns {Promise<any[]>}
+ * @returns {Promise<{imageSpec: object|null, stories: any[]}>}
  */
 export async function getStoriesImageMetadata() {
   if (!storiesImageMetadataPromise) {
@@ -67,7 +67,7 @@ export async function getStoriesImageMetadata() {
       })
       .catch((error) => {
         console.error("[story] Unable to load stories image metadata:", error);
-        return [];
+        return { imageSpec: null, stories: [] };
       });
   }
 

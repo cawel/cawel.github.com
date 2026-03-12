@@ -87,8 +87,11 @@ function normalizeChapterNumber(value) {
 function getStoryImageChapterNumbers(imageMetadata, storyId) {
   const storyIdAsString = String(storyId);
   const storyIdAsNumber = Number.parseInt(storyIdAsString, 10);
-  const entry = imageMetadata.find((storyImageEntry) => {
-    const number = storyImageEntry?.storyNumber;
+  const stories = Array.isArray(imageMetadata?.stories)
+    ? imageMetadata.stories
+    : [];
+  const entry = stories.find((storyImageEntry) => {
+    const number = storyImageEntry?.number;
     return (
       String(number) === storyIdAsString ||
       (!Number.isNaN(storyIdAsNumber) && Number(number) === storyIdAsNumber)
@@ -100,17 +103,10 @@ function getStoryImageChapterNumbers(imageMetadata, storyId) {
   }
 
   const chapterNumbers = new Set();
-  const firstChapterNumber = normalizeChapterNumber(
-    entry?.firstChapter?.chapterNumber,
-  );
-  if (firstChapterNumber !== null) {
-    chapterNumbers.add(firstChapterNumber);
-  }
-
-  for (const ending of Array.isArray(entry?.endings) ? entry.endings : []) {
-    const endingChapterNumber = normalizeChapterNumber(ending?.chapterNumber);
-    if (endingChapterNumber !== null) {
-      chapterNumbers.add(endingChapterNumber);
+  for (const chapter of Array.isArray(entry?.chapters) ? entry.chapters : []) {
+    const chapterNumber = normalizeChapterNumber(chapter?.number);
+    if (chapterNumber !== null) {
+      chapterNumbers.add(chapterNumber);
     }
   }
 
@@ -161,9 +157,10 @@ export async function loadStoryPageData(params) {
       storyId,
       chapterNumber,
       chapter: storyData ? storyData[chapterNumber] : null,
-      chapterImagePaths: hasChapter && hasImageMetadata
-        ? getStoryChapterImagePaths(storyId, chapterNumber)
-        : null,
+      chapterImagePaths:
+        hasChapter && hasImageMetadata
+          ? getStoryChapterImagePaths(storyId, chapterNumber)
+          : null,
       error: null,
     };
   } catch (error) {
