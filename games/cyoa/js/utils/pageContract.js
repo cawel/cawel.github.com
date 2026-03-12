@@ -14,6 +14,7 @@ export function normalizePageContract(page) {
   return {
     load: page.load || (async (params) => params),
     render: page.render,
+    update: typeof page.update === "function" ? page.update : null,
     bind: page.bind || (async () => null),
   };
 }

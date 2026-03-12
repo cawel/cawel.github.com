@@ -30,11 +30,41 @@ import { normalizePageContract } from "./utils/pageContract.js";
 /** @typedef {import("./types.js").RouterApi} RouterApi */
 
 /**
+ * @typedef {{
+ *   route: string,
+ *   matcher: RegExp,
+ *   paramNames: string[],
+ * }} CompiledRoute
+ */
+
+/**
+ * @param {string} route
+ * @returns {CompiledRoute}
+ */
+function compileRoute(route) {
+  const paramNames = (route.match(/:[^/]+/g) || []).map((segment) =>
+    segment.slice(1),
+  );
+  const routePattern = route.replace(/:[^/]+/g, "([^/]+)");
+
+  return {
+    route,
+    matcher: new RegExp(`^${routePattern}$`),
+    paramNames,
+  };
+}
+
+/**
  * @param {Record<string, PageContract>} routes
  * @returns {RouterApi}
  */
 export function createRouter(routes) {
   let currentCleanup = null;
+  let activeRenderId = 0;
+  let activeRoute = null;
+  let activeModel = null;
+  let activeParams = null;
+  const compiledRoutes = Object.keys(routes).map(compileRoute);
 
   const getCurrentRoute = () => {
     const hash = window.location.hash ? window.location.hash.slice(1) : "/";
@@ -71,29 +101,22 @@ export function createRouter(routes) {
    * @returns {MatchedRoute|null}
    */
   const getRouteParams = (pathname) => {
-    const matchedRoute = Object.keys(routes).find((route) => {
-      const routePattern = route.replace(/:[^/]+/g, "[^/]+");
-      const regex = new RegExp(`^${routePattern}$`);
-      return regex.test(pathname);
-    });
+    const matchedRoute = compiledRoutes.find((route) => route.matcher.test(pathname));
 
-    if (!matchedRoute) return null;
+    if (!matchedRoute) {
+      return null;
+    }
 
-    const paramNames = (matchedRoute.match(/:[^/]+/g) || []).map((p) =>
-      p.slice(1),
-    );
-    const routePattern = matchedRoute.replace(/:[^/]+/g, "([^/]+)");
-    const regex = new RegExp(`^${routePattern}$`);
-    const matches = pathname.match(regex);
+    const matches = pathname.match(matchedRoute.matcher);
 
     const params = {};
     if (matches) {
-      paramNames.forEach((name, index) => {
+      matchedRoute.paramNames.forEach((name, index) => {
         params[name] = matches[index + 1];
       });
     }
 
-    return { params, route: matchedRoute };
+    return { params, route: matchedRoute.route };
   };
 
   /**
@@ -101,11 +124,18 @@ export function createRouter(routes) {
    * @returns {Promise<void>}
    */
   const render = async (container) => {
+    const renderId = ++activeRenderId;
     const path = getCurrentRoute();
     const routeData = getRouteParams(path);
 
     if (!routeData) {
+      if (renderId !== activeRenderId) {
+        return;
+      }
       clearCurrentRouteBindings();
+      activeRoute = null;
+      activeModel = null;
+      activeParams = null;
       container.innerHTML = renderNotFoundPage();
       return;
     }
@@ -113,15 +143,58 @@ export function createRouter(routes) {
     try {
       const lifecycle = normalizeRouteHandler(routes[routeData.route]);
       const model = await lifecycle.load(routeData.params);
+      if (renderId !== activeRenderId) {
+        return;
+      }
+
+      const canUpdateInPlace =
+        activeRoute === routeData.route && typeof lifecycle.update === "function";
+      if (canUpdateInPlace) {
+        const didUpdate = await lifecycle.update(
+          container,
+          model,
+          routeData.params,
+          {
+            model: activeModel,
+            params: activeParams,
+            route: activeRoute,
+          },
+        );
+        if (renderId !== activeRenderId) {
+          return;
+        }
+
+        if (didUpdate) {
+          activeModel = model;
+          activeParams = routeData.params;
+          return;
+        }
+      }
+
       const content = await lifecycle.render(model, routeData.params);
+      if (renderId !== activeRenderId) {
+        return;
+      }
 
       clearCurrentRouteBindings();
       container.innerHTML = content;
 
       const cleanup = await lifecycle.bind(container, model, routeData.params);
+      if (renderId !== activeRenderId) {
+        return;
+      }
       currentCleanup = typeof cleanup === "function" ? cleanup : null;
+      activeRoute = routeData.route;
+      activeModel = model;
+      activeParams = routeData.params;
     } catch (error) {
+      if (renderId !== activeRenderId) {
+        return;
+      }
       clearCurrentRouteBindings();
+      activeRoute = null;
+      activeModel = null;
+      activeParams = null;
       container.innerHTML = renderLoadErrorPage({
         title: "Error rendering page",
         details: error instanceof Error ? error.message : String(error),

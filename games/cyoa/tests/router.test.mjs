@@ -108,3 +108,113 @@ test("router: renders load error page when lifecycle throws", async () => {
     assert.match(container.innerHTML, /boom/);
   }, { includeWindow: true });
 });
+
+test("router: uses update hook for same route transitions", async () => {
+  await withDomEnvironment(async () => {
+    let renderCount = 0;
+    let bindCount = 0;
+    let updateCount = 0;
+
+    const container = { innerHTML: "" };
+    const storyContainer = {
+      _html: "",
+      set innerHTML(value) {
+        this._html = String(value);
+        container.innerHTML = `<main><div class="story-container">${this._html}</div></main>`;
+      },
+      get innerHTML() {
+        return this._html;
+      },
+    };
+    container.querySelector = (selector) => {
+      if (selector === ".story-container") {
+        return storyContainer;
+      }
+      return null;
+    };
+
+    const router = createRouter({
+      "/story/:storyId/:chapterId": {
+        load: async (params) => ({
+          title: `Story ${params.storyId}`,
+          chapter: params.chapterId,
+        }),
+        render: async (model) => {
+          renderCount += 1;
+          return `<main><div class="story-container"><h2>${model.title}</h2><p>${model.chapter}</p></div></main>`;
+        },
+        update: async (root, model) => {
+          updateCount += 1;
+          const storyContainer = root.querySelector(".story-container");
+          if (!storyContainer) {
+            return false;
+          }
+          storyContainer.innerHTML = `<h2>${model.title}</h2><p>${model.chapter}</p>`;
+          return true;
+        },
+        bind: async () => {
+          bindCount += 1;
+          return null;
+        },
+      },
+    });
+
+    window.location.hash = "#/story/9/1";
+    await router.render(container);
+
+    window.location.hash = "#/story/9/2";
+    await router.render(container);
+
+    assert.equal(renderCount, 1);
+    assert.equal(bindCount, 1);
+    assert.equal(updateCount, 1);
+    assert.match(container.innerHTML, /<p>2<\/p>/);
+  }, { includeWindow: true });
+});
+
+test("router: falls back to render when update hook returns false", async () => {
+  await withDomEnvironment(async () => {
+    let renderCount = 0;
+    let bindCount = 0;
+    let updateCount = 0;
+
+    const container = {
+      innerHTML: "",
+      querySelector() {
+        return null;
+      },
+    };
+
+    const router = createRouter({
+      "/story/:storyId/:chapterId": {
+        load: async (params) => ({
+          title: `Story ${params.storyId}`,
+          chapter: params.chapterId,
+        }),
+        render: async (model) => {
+          renderCount += 1;
+          return `<main><h2>${model.title}</h2><p>${model.chapter}</p></main>`;
+        },
+        update: async () => {
+          updateCount += 1;
+          return false;
+        },
+        bind: async () => {
+          bindCount += 1;
+          return null;
+        },
+      },
+    });
+
+    window.location.hash = "#/story/9/1";
+    await router.render(container);
+
+    window.location.hash = "#/story/9/2";
+    await router.render(container);
+
+    assert.equal(updateCount, 1);
+    assert.equal(renderCount, 2);
+    assert.equal(bindCount, 2);
+    assert.match(container.innerHTML, /<p>2<\/p>/);
+  }, { includeWindow: true });
+});

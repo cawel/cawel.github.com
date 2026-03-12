@@ -11,6 +11,7 @@ import { normalizePageContract } from "./pageContract.js";
  * @returns {{
  *   load: (params: Record<string, string>) => Promise<any>,
  *   render: (model: any, params?: Record<string, string>) => Promise<string>,
+ *   update: (container: HTMLElement|{ innerHTML: string }, model: any, params?: Record<string, string>, previous?: { model?: any, params?: Record<string, string>, route?: string }) => Promise<boolean>,
  *   bind: (container: HTMLElement|{ innerHTML: string }, model?: any, params?: Record<string, string>) => Promise<(() => void)|null>
  * }}
  */
@@ -42,6 +43,13 @@ export function createLazyPage(moduleLoader, exportName) {
     render: async (model, params) => {
       const page = await getPage();
       return page.render(model, params);
+    },
+    update: async (container, model, params, previous) => {
+      const page = await getPage();
+      if (typeof page.update === "function") {
+        return page.update(container, model, params, previous);
+      }
+      return false;
     },
     bind: async (container, model, params) => {
       const page = await getPage();

@@ -36,6 +36,7 @@
  * @typedef {{
  *   load?: (params: RouteParams) => Promise<any>|any,
  *   render: (model: any, params?: RouteParams) => Promise<string>|string,
+ *   update?: (container: HTMLElement|{ innerHTML: string }, model: any, params?: RouteParams, previous?: { model?: any, params?: RouteParams, route?: string }) => Promise<boolean>|boolean,
  *   bind?: (container: HTMLElement|{ innerHTML: string }, model?: any, params?: RouteParams) => Promise<(() => void)|null|undefined>|(() => void)|null|undefined,
  * }} PageContract
  */

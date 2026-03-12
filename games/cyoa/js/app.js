@@ -61,6 +61,33 @@ function setupAppStateDebugging() {
   });
 }
 
+function warmAppDataCaches() {
+  const warm = async () => {
+    try {
+      const { getStoriesMetadata, getStoriesImageMetadata } = await import(
+        "./services/storiesRepository.js"
+      );
+      await Promise.allSettled([
+        getStoriesMetadata(),
+        getStoriesImageMetadata(),
+      ]);
+    } catch {
+      // Ignore warmup failures and defer to normal request-time loading.
+    }
+  };
+
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(() => {
+      void warm();
+    });
+    return;
+  }
+
+  setTimeout(() => {
+    void warm();
+  }, 0);
+}
+
 function bootstrapApp() {
   const appContainer = resolveAppContainer();
   if (!appContainer) {
@@ -79,6 +106,7 @@ function bootstrapApp() {
   header.mount();
   window.addEventListener("hashchange", renderPage);
   renderPage();
+  warmAppDataCaches();
 }
 
 bootstrapApp();

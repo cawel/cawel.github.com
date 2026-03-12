@@ -9,7 +9,31 @@ import { getStoryChapterImagePaths } from "../utils/storyPaths.js";
 
 const parsedStoryPromiseById = new Map();
 const storyImageChapterNumbersPromiseById = new Map();
+const MAX_STORY_CACHE_ENTRIES = 5;
 const DEBUG_STORY_IMAGE_ELIGIBILITY = false;
+
+function touchLruEntry(cache, key) {
+  if (!cache.has(key)) {
+    return null;
+  }
+
+  const value = cache.get(key);
+  cache.delete(key);
+  cache.set(key, value);
+  return value;
+}
+
+function setLruEntry(cache, key, value, maxEntries) {
+  if (cache.has(key)) {
+    cache.delete(key);
+  }
+  cache.set(key, value);
+
+  while (cache.size > maxEntries) {
+    const oldestKey = cache.keys().next().value;
+    cache.delete(oldestKey);
+  }
+}
 
 function logImageEligibility({
   storyId,
@@ -37,18 +61,26 @@ function normalizeChapterNumber(value) {
  */
 async function loadStoryData(storyId) {
   const key = String(storyId);
-  if (!parsedStoryPromiseById.has(key)) {
-    const parsedPromise = getStoryContent(storyId)
-      .then((storyContentText) => parseStory(storyContentText))
-      .catch((error) => {
-        parsedStoryPromiseById.delete(key);
-        throw error;
-      });
-
-    parsedStoryPromiseById.set(key, parsedPromise);
+  const cachedStory = touchLruEntry(parsedStoryPromiseById, key);
+  if (cachedStory) {
+    return cachedStory;
   }
 
-  return parsedStoryPromiseById.get(key);
+  const parsedPromise = getStoryContent(storyId)
+    .then((storyContentText) => parseStory(storyContentText))
+    .catch((error) => {
+      parsedStoryPromiseById.delete(key);
+      throw error;
+    });
+
+  setLruEntry(
+    parsedStoryPromiseById,
+    key,
+    parsedPromise,
+    MAX_STORY_CACHE_ENTRIES,
+  );
+
+  return parsedPromise;
 }
 
 function getStoryImageChapterNumbers(imageMetadata, storyId) {
@@ -86,15 +118,26 @@ function getStoryImageChapterNumbers(imageMetadata, storyId) {
  */
 async function loadStoryImageChapterNumbers(storyId) {
   const key = String(storyId);
-  if (!storyImageChapterNumbersPromiseById.has(key)) {
-    const chapterNumbersPromise = getStoriesImageMetadata()
-      .then((imageMetadata) => getStoryImageChapterNumbers(imageMetadata, key))
-      .catch(() => new Set());
-
-    storyImageChapterNumbersPromiseById.set(key, chapterNumbersPromise);
+  const cachedImageMetadata = touchLruEntry(
+    storyImageChapterNumbersPromiseById,
+    key,
+  );
+  if (cachedImageMetadata) {
+    return cachedImageMetadata;
   }
 
-  return storyImageChapterNumbersPromiseById.get(key);
+  const chapterNumbersPromise = getStoriesImageMetadata()
+    .then((imageMetadata) => getStoryImageChapterNumbers(imageMetadata, key))
+    .catch(() => new Set());
+
+  setLruEntry(
+    storyImageChapterNumbersPromiseById,
+    key,
+    chapterNumbersPromise,
+    MAX_STORY_CACHE_ENTRIES,
+  );
+
+  return chapterNumbersPromise;
 }
 
 function parseChapterNumber(chapterParam) {
@@ -153,4 +196,8 @@ export function clearStoryPageDataCache() {
 
 export function getParsedStoryCacheSize() {
   return parsedStoryPromiseById.size;
+}
+
+export function getParsedStoryCacheKeys() {
+  return Array.from(parsedStoryPromiseById.keys());
 }

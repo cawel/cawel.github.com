@@ -319,6 +319,21 @@ export function createHeader(onNavigateHome) {
     );
   };
 
+  const scheduleNonCriticalWork = (work) => {
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(() => {
+        if (!mounted) return;
+        work();
+      });
+      return;
+    }
+
+    setTimeout(() => {
+      if (!mounted) return;
+      work();
+    }, 0);
+  };
+
   const mount = () => {
     if (mounted) return;
 
@@ -329,10 +344,14 @@ export function createHeader(onNavigateHome) {
     themeController.initialize();
     exposeAudioControl();
     bindHeaderControls();
-    bindKeyboardShortcuts();
-    bindHeaderRevealZone();
 
     audioController.initialize();
+
+    // Defer keyboard and edge-reveal listeners until idle so first route paint is less contested.
+    scheduleNonCriticalWork(() => {
+      bindKeyboardShortcuts();
+      bindHeaderRevealZone();
+    });
 
     // Setup audio tracking once we have the correct main audio URL
     audioController.whenReady().then(() => {

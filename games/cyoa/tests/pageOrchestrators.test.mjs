@@ -5,6 +5,7 @@ import { renderHomePage } from "../js/pages/home.page.js";
 import { withBasePath } from "../js/utils/pathResolver.js";
 import {
   __storyPageTestHooks,
+  bindStoryPage,
   loadStoryPageData,
   renderStoryPage,
 } from "../js/pages/story.page.js";
@@ -172,5 +173,130 @@ The End`;
   } finally {
     __storyPageTestHooks.clearParsedStoryCache();
     globalThis.fetch = previousFetch;
+  }
+});
+
+test("page: story.page parsed-story cache evicts least-recently-used entries", async () => {
+  const previousFetch = globalThis.fetch;
+
+  globalThis.fetch = async (url) => {
+    const asString = String(url);
+    if (asString.includes("/assets/stories/metadata-images.json")) {
+      return {
+        ok: true,
+        async json() {
+          return { imageSpec: null, stories: [] };
+        },
+      };
+    }
+
+    const storyIdMatch = asString.match(/\/assets\/stories\/(\d+)\/story\.md/);
+    const storyId = storyIdMatch ? storyIdMatch[1] : "0";
+
+    return {
+      ok: true,
+      async text() {
+        return `# Story ${storyId}\n\n## Keywords\n- one\n- two\n- three\n\n## Chapter 1\n### Title\nStory ${storyId}\n\n### Content\nHello ${storyId}\n\n### Choices\nThe End`;
+      },
+    };
+  };
+
+  try {
+    __storyPageTestHooks.clearParsedStoryCache();
+
+    const ids = ["1201", "1202", "1203", "1204", "1205", "1206"];
+    for (const storyId of ids) {
+      await loadStoryPageData({ storyId, chapterId: "1" });
+    }
+
+    assert.equal(__storyPageTestHooks.getParsedStoryCacheSize(), 5);
+    assert.deepEqual(__storyPageTestHooks.getParsedStoryCacheKeys(), [
+      "1202",
+      "1203",
+      "1204",
+      "1205",
+      "1206",
+    ]);
+  } finally {
+    __storyPageTestHooks.clearParsedStoryCache();
+    globalThis.fetch = previousFetch;
+  }
+});
+
+test("page: story.page bindStoryPage handles illustration fallback chain", async () => {
+  let onLoad = null;
+  let onError = null;
+
+  const figureClassSet = new Set();
+  const figure = {
+    dataset: {
+      fallbackSources: "/assets/stories/2/fallback-2.webp|/assets/stories/2/fallback-3.webp",
+    },
+    setAttribute(name, value) {
+      this[name] = value;
+    },
+    removeAttribute(name) {
+      delete this[name];
+    },
+    classList: {
+      add(name) {
+        figureClassSet.add(name);
+      },
+    },
+  };
+
+  const image = {
+    src: "/assets/stories/2/fallback-1.webp",
+    complete: false,
+    naturalWidth: 0,
+    classList: {
+      contains(name) {
+        return name === "chapter-illustration-image";
+      },
+    },
+    closest(selector) {
+      if (selector === ".chapter-illustration") {
+        return figure;
+      }
+      return null;
+    },
+  };
+
+  const container = {
+    addEventListener(type, handler) {
+      if (type === "load") {
+        onLoad = handler;
+      }
+      if (type === "error") {
+        onError = handler;
+      }
+    },
+    removeEventListener() {},
+    querySelectorAll(selector) {
+      if (selector === ".chapter-illustration-image") {
+        return [image];
+      }
+      return [];
+    },
+  };
+
+  const cleanup = await bindStoryPage(container);
+
+  onError({ target: image });
+  assert.equal(image.src, "/assets/stories/2/fallback-2.webp");
+  assert.equal(figure.dataset.fallbackSources, "/assets/stories/2/fallback-3.webp");
+
+  onError({ target: image });
+  assert.equal(image.src, "/assets/stories/2/fallback-3.webp");
+  assert.equal(figure.dataset.fallbackSources, "");
+
+  onError({ target: image });
+  assert.equal(figure.hidden, "hidden");
+
+  onLoad({ target: image });
+  assert.equal(figureClassSet.has("chapter-illustration-loaded"), true);
+
+  if (typeof cleanup === "function") {
+    cleanup();
   }
 });

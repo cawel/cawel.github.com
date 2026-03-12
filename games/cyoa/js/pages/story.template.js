@@ -78,8 +78,6 @@ function renderChapterIllustration(chapterTitle, chapterImagePaths) {
         alt="${imageAlt}"
         loading="lazy"
         decoding="async"
-        onload="this.closest('.chapter-illustration')?.classList.add('chapter-illustration-loaded')"
-        onerror="const figure=this.closest('.chapter-illustration'); const remaining=(figure?.dataset.fallbackSources||'').split('|').filter(Boolean); if(remaining.length===0){figure?.setAttribute('hidden','hidden'); return;} const nextSource=remaining.shift(); if(figure){figure.dataset.fallbackSources=remaining.join('|');} this.src=nextSource;"
       />
     </figure>
   `;
@@ -138,6 +136,22 @@ function renderChoicesSection(storyId, chapter) {
  * @returns {string}
  */
 export function renderStoryChapter(storyId, chapter, chapterImagePaths = null) {
+  return renderStoryLayout(
+    renderStoryChapterBody(storyId, chapter, chapterImagePaths),
+  );
+}
+
+/**
+ * @param {string} storyId
+ * @param {StoryChapter} chapter
+ * @param {string[]|string|null} [chapterImagePaths]
+ * @returns {string}
+ */
+export function renderStoryChapterBody(
+  storyId,
+  chapter,
+  chapterImagePaths = null,
+) {
   const chapterImageHtml = renderChapterIllustration(
     chapter.title,
     chapterImagePaths,
@@ -145,9 +159,9 @@ export function renderStoryChapter(storyId, chapter, chapterImagePaths = null) {
   const chapterContentHtml = formatChapterContent(chapter.content);
   const choicesSectionHtml = renderChoicesSection(storyId, chapter);
 
-  return renderStoryLayout(`
+  return `
     <h2 class="chapter-title">${chapter.title}</h2>
     <div class="chapter-content">${chapterImageHtml}${chapterContentHtml}</div>
     ${choicesSectionHtml}
-  `);
+  `;
 }
