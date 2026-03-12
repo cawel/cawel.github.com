@@ -1,8 +1,8 @@
 # The Fracture Hour
 
 ## Keywords
-- belt
 - loop
+- countdown
 - contact
 
 ## Chapter 1
