@@ -166,6 +166,7 @@ Follow this format exactly so the story can be parsed by the app:
 
 - Create meaningful crossroads early (by chapter 2 or 3).
 - Branches may converge into a shared chapter when the story benefits from it, but **convergence chapters must work for every incoming path**: introduce or re-identify characters and context within the chapter so a reader arriving from any branch can follow without confusion. Do not collapse all branches into one near-identical path.
+- **Never reveal the branching structure**: Convergence chapters must read as if the reader's current path is the only path that exists. Do not use conditional phrasing (e.g., "whether she arrived through X or came with you") or meta-narrative framing that acknowledges multiple routes to the same scene. State facts about the current situation directly—the reader must never be reminded they are in a branching story.
 - Reward attentive readers (foreshadowing payoff, clues, callbacks).
 - Let early risk-taking influence later options.
 - Make final outcomes feel inevitable in hindsight.
