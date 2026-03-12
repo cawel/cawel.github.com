@@ -41,7 +41,11 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: color-mix(in srgb, var(--story-choice-text-color) 82%, var(--text-alt));
+  color: color-mix(
+    in srgb,
+    var(--story-choice-text-color) 82%,
+    var(--text-alt)
+  );
   opacity: 0.75;
   letter-spacing: 0.015em;
   font-size: 14px;

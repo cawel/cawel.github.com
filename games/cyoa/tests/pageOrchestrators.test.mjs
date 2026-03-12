@@ -230,7 +230,8 @@ test("page: story.page bindStoryPage handles illustration fallback chain", async
   const figureClassSet = new Set();
   const figure = {
     dataset: {
-      fallbackSources: "/assets/stories/2/fallback-2.webp|/assets/stories/2/fallback-3.webp",
+      fallbackSources:
+        "/assets/stories/2/fallback-2.webp|/assets/stories/2/fallback-3.webp",
     },
     setAttribute(name, value) {
       this[name] = value;
@@ -284,7 +285,10 @@ test("page: story.page bindStoryPage handles illustration fallback chain", async
 
   onError({ target: image });
   assert.equal(image.src, "/assets/stories/2/fallback-2.webp");
-  assert.equal(figure.dataset.fallbackSources, "/assets/stories/2/fallback-3.webp");
+  assert.equal(
+    figure.dataset.fallbackSources,
+    "/assets/stories/2/fallback-3.webp",
+  );
 
   onError({ target: image });
   assert.equal(image.src, "/assets/stories/2/fallback-3.webp");

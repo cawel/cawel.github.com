@@ -64,9 +64,8 @@ function setupAppStateDebugging() {
 function warmAppDataCaches() {
   const warm = async () => {
     try {
-      const { getStoriesMetadata, getStoriesImageMetadata } = await import(
-        "./services/storiesRepository.js"
-      );
+      const { getStoriesMetadata, getStoriesImageMetadata } =
+        await import("./services/storiesRepository.js");
       await Promise.allSettled([
         getStoriesMetadata(),
         getStoriesImageMetadata(),

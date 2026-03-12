@@ -160,8 +160,10 @@ export function renderStoryChapterBody(
   const choicesSectionHtml = renderChoicesSection(storyId, chapter);
 
   return `
-    <h2 class="chapter-title">${chapter.title}</h2>
-    <div class="chapter-content">${chapterImageHtml}${chapterContentHtml}</div>
-    ${choicesSectionHtml}
+    <div class="chapter-body">
+      <h2 class="chapter-title">${chapter.title}</h2>
+      <div class="chapter-content">${chapterImageHtml}${chapterContentHtml}</div>
+      ${choicesSectionHtml}
+    </div>
   `;
 }

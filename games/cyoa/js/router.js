@@ -101,7 +101,9 @@ export function createRouter(routes) {
    * @returns {MatchedRoute|null}
    */
   const getRouteParams = (pathname) => {
-    const matchedRoute = compiledRoutes.find((route) => route.matcher.test(pathname));
+    const matchedRoute = compiledRoutes.find((route) =>
+      route.matcher.test(pathname),
+    );
 
     if (!matchedRoute) {
       return null;
@@ -148,7 +150,8 @@ export function createRouter(routes) {
       }
 
       const canUpdateInPlace =
-        activeRoute === routeData.route && typeof lifecycle.update === "function";
+        activeRoute === routeData.route &&
+        typeof lifecycle.update === "function";
       if (canUpdateInPlace) {
         const didUpdate = await lifecycle.update(
           container,
