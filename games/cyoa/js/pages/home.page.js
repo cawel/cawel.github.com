@@ -3,6 +3,7 @@
  */
 
 import { getStoriesMetadata } from "../services/storiesRepository.js";
+import { createPage } from "../utils/pageContract.js";
 import { bindHomeStoryCardNavigation } from "./home.view.js";
 import { renderHomePageTemplate } from "./home.template.js";
 
@@ -44,8 +45,8 @@ export async function bindHomePage(container) {
 }
 
 /** @type {PageContract} */
-export const homePage = {
+export const homePage = createPage({
   load: loadHomePageData,
   render: renderHomePage,
   bind: bindHomePage,
-};
+});

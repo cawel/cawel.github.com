@@ -3,34 +3,36 @@ import {
   getStoryContentPath,
   getStoriesImageMetadataPath,
 } from "../utils/storyPaths.js";
+import { getOrCreateCachedRequest } from "../utils/requestCache.js";
 
 /** @typedef {import("../types.js").StoryMetadata} StoryMetadata */
 
-let storiesMetadataPromise = null;
-let storiesImageMetadataPromise = null;
+const requestCache = new Map();
 const storyContentPromiseById = new Map();
 
 /**
  * @returns {Promise<StoryMetadata[]>}
  */
 export async function getStoriesMetadata() {
-  if (!storiesMetadataPromise) {
-    storiesMetadataPromise = fetch(
-      withBasePath("/assets/stories/metadata-stories.json"),
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load stories metadata");
-        }
-        return response.json();
-      })
-      .catch((error) => {
+  return getOrCreateCachedRequest(
+    requestCache,
+    "storiesMetadata",
+    async () => {
+      const response = await fetch(
+        withBasePath("/assets/stories/metadata-stories.json"),
+      );
+      if (!response.ok) {
+        throw new Error("Failed to load stories metadata");
+      }
+      return response.json();
+    },
+    {
+      onError: (error) => {
         console.error("[home] Unable to load stories metadata:", error);
         return [];
-      });
-  }
-
-  return storiesMetadataPromise;
+      },
+    },
+  );
 }
 
 /**
@@ -39,37 +41,34 @@ export async function getStoriesMetadata() {
  */
 export async function getStoryContent(storyId) {
   const key = String(storyId);
-  if (!storyContentPromiseById.has(key)) {
-    const request = fetch(getStoryContentPath(storyId)).then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to load story ${storyId}`);
-      }
-      return response.text();
-    });
-
-    storyContentPromiseById.set(key, request);
-  }
-
-  return storyContentPromiseById.get(key);
+  return getOrCreateCachedRequest(storyContentPromiseById, key, async () => {
+    const response = await fetch(getStoryContentPath(storyId));
+    if (!response.ok) {
+      throw new Error(`Failed to load story ${storyId}`);
+    }
+    return response.text();
+  });
 }
 
 /**
  * @returns {Promise<{imageSpec: object|null, stories: any[]}>}
  */
 export async function getStoriesImageMetadata() {
-  if (!storiesImageMetadataPromise) {
-    storiesImageMetadataPromise = fetch(getStoriesImageMetadataPath())
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load stories image metadata");
-        }
-        return response.json();
-      })
-      .catch((error) => {
+  return getOrCreateCachedRequest(
+    requestCache,
+    "storiesImageMetadata",
+    async () => {
+      const response = await fetch(getStoriesImageMetadataPath());
+      if (!response.ok) {
+        throw new Error("Failed to load stories image metadata");
+      }
+      return response.json();
+    },
+    {
+      onError: (error) => {
         console.error("[story] Unable to load stories image metadata:", error);
         return { imageSpec: null, stories: [] };
-      });
-  }
-
-  return storiesImageMetadataPromise;
+      },
+    },
+  );
 }

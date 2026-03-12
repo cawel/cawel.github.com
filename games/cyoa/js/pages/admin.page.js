@@ -4,6 +4,7 @@
 
 import { getValidationExample } from "../utils/storyParser.js";
 import { getStoryContent } from "../services/storiesRepository.js";
+import { createPage } from "../utils/pageContract.js";
 import {
   bindAdminPageEvents,
   clearValidationResultHtml,
@@ -113,8 +114,8 @@ function onStorySelectChange() {
 }
 
 /** @type {PageContract} */
-export const adminPage = {
+export const adminPage = createPage({
   load: loadAdminPageData,
   render: renderAdminPage,
   bind: bindAdminPage,
-};
+});

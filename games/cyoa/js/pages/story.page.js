@@ -2,12 +2,12 @@
  * Story page - displays a story with chapters and choices
  */
 
-import { parseStory } from "../utils/storyParser.js";
 import {
-  getStoryContent,
-  getStoriesImageMetadata,
-} from "../services/storiesRepository.js";
-import { getStoryChapterImagePaths } from "../utils/storyPaths.js";
+  clearStoryPageDataCache,
+  getParsedStoryCacheSize,
+  loadStoryPageModel,
+} from "../services/storyPageDataService.js";
+import { createPage } from "../utils/pageContract.js";
 import {
   renderStoryChapter,
   renderStoryErrorState,
@@ -16,34 +16,6 @@ import {
 
 /** @typedef {import("../types.js").StoryChapter} StoryChapter */
 /** @typedef {import("../types.js").PageContract} PageContract */
-
-const parsedStoryPromiseById = new Map();
-const storyImageChapterNumbersPromiseById = new Map();
-const DEBUG_STORY_IMAGE_ELIGIBILITY = false;
-
-function clearParsedStoryCache() {
-  parsedStoryPromiseById.clear();
-  storyImageChapterNumbersPromiseById.clear();
-}
-
-function getParsedStoryCacheSize() {
-  return parsedStoryPromiseById.size;
-}
-
-function logImageEligibility({
-  storyId,
-  chapterNumber,
-  hasChapter,
-  hasImageMetadata,
-}) {
-  if (!DEBUG_STORY_IMAGE_ELIGIBILITY) {
-    return;
-  }
-
-  console.debug(
-    `[story:image] story=${storyId} chapter=${chapterNumber} hasChapter=${hasChapter} hasImageMetadata=${hasImageMetadata}`,
-  );
-}
 
 /**
  * @typedef {object} StoryPageModel
@@ -54,124 +26,12 @@ function logImageEligibility({
  * @property {string|null} error
  */
 
-function parseChapterNumber(chapterParam) {
-  const requestedChapter = Number.parseInt(chapterParam || "1", 10);
-  return Number.isNaN(requestedChapter) ? 1 : requestedChapter;
-}
-
-/**
- * @param {string} storyId
- * @returns {Promise<Record<number, StoryChapter>>}
- */
-async function loadStoryData(storyId) {
-  const key = String(storyId);
-  if (!parsedStoryPromiseById.has(key)) {
-    const parsedPromise = getStoryContent(storyId)
-      .then((storyContentText) => parseStory(storyContentText))
-      .catch((error) => {
-        parsedStoryPromiseById.delete(key);
-        throw error;
-      });
-
-    parsedStoryPromiseById.set(key, parsedPromise);
-  }
-
-  return parsedStoryPromiseById.get(key);
-}
-
-function normalizeChapterNumber(value) {
-  const parsed = Number.parseInt(String(value), 10);
-  return Number.isNaN(parsed) ? null : parsed;
-}
-
-function getStoryImageChapterNumbers(imageMetadata, storyId) {
-  const storyIdAsString = String(storyId);
-  const storyIdAsNumber = Number.parseInt(storyIdAsString, 10);
-  const stories = Array.isArray(imageMetadata?.stories)
-    ? imageMetadata.stories
-    : [];
-  const entry = stories.find((storyImageEntry) => {
-    const number = storyImageEntry?.number;
-    return (
-      String(number) === storyIdAsString ||
-      (!Number.isNaN(storyIdAsNumber) && Number(number) === storyIdAsNumber)
-    );
-  });
-
-  if (!entry) {
-    return new Set();
-  }
-
-  const chapterNumbers = new Set();
-  for (const chapter of Array.isArray(entry?.chapters) ? entry.chapters : []) {
-    const chapterNumber = normalizeChapterNumber(chapter?.number);
-    if (chapterNumber !== null) {
-      chapterNumbers.add(chapterNumber);
-    }
-  }
-
-  return chapterNumbers;
-}
-
-/**
- * @param {string} storyId
- * @returns {Promise<Set<number>>}
- */
-async function loadStoryImageChapterNumbers(storyId) {
-  const key = String(storyId);
-  if (!storyImageChapterNumbersPromiseById.has(key)) {
-    const chapterNumbersPromise = getStoriesImageMetadata()
-      .then((imageMetadata) => getStoryImageChapterNumbers(imageMetadata, key))
-      .catch(() => new Set());
-
-    storyImageChapterNumbersPromiseById.set(key, chapterNumbersPromise);
-  }
-
-  return storyImageChapterNumbersPromiseById.get(key);
-}
-
 /**
  * @param {{ storyId: string, chapterId?: string }} params
  * @returns {Promise<StoryPageModel>}
  */
 export async function loadStoryPageData(params) {
-  const storyId = params.storyId;
-  const chapterNumber = parseChapterNumber(params.chapterId);
-
-  try {
-    const [storyData, imageChapterNumbers] = await Promise.all([
-      loadStoryData(storyId),
-      loadStoryImageChapterNumbers(storyId),
-    ]);
-    const hasChapter = Boolean(storyData?.[chapterNumber]);
-    const hasImageMetadata = imageChapterNumbers.has(chapterNumber);
-
-    logImageEligibility({
-      storyId,
-      chapterNumber,
-      hasChapter,
-      hasImageMetadata,
-    });
-
-    return {
-      storyId,
-      chapterNumber,
-      chapter: storyData ? storyData[chapterNumber] : null,
-      chapterImagePaths:
-        hasChapter && hasImageMetadata
-          ? getStoryChapterImagePaths(storyId, chapterNumber)
-          : null,
-      error: null,
-    };
-  } catch (error) {
-    return {
-      storyId,
-      chapterNumber,
-      chapter: null,
-      chapterImagePaths: null,
-      error: error instanceof Error ? error.message : String(error),
-    };
-  }
+  return loadStoryPageModel(params);
 }
 
 /**
@@ -195,12 +55,12 @@ export async function renderStoryPage(model) {
 }
 
 /** @type {PageContract} */
-export const storyPage = {
+export const storyPage = createPage({
   load: loadStoryPageData,
   render: renderStoryPage,
-};
+});
 
 export const __storyPageTestHooks = {
-  clearParsedStoryCache,
+  clearParsedStoryCache: clearStoryPageDataCache,
   getParsedStoryCacheSize,
 };

@@ -22,6 +22,7 @@
  */
 
 import { renderLoadErrorPage, renderNotFoundPage } from "./utils/errorUI.js";
+import { normalizePageContract } from "./utils/pageContract.js";
 
 /** @typedef {import("./types.js").RouteParams} RouteParams */
 /** @typedef {import("./types.js").PageContract} PageContract */
@@ -56,17 +57,13 @@ export function createRouter(routes) {
    * @returns {PageContract}
    */
   const normalizeRouteHandler = (handler) => {
-    if (!handler || typeof handler.render !== "function") {
+    try {
+      return normalizePageContract(handler);
+    } catch {
       throw new Error(
         "Route handler must be a lifecycle object with a render function",
       );
     }
-
-    return {
-      load: handler.load || (async (params) => params),
-      render: handler.render,
-      bind: handler.bind || (async () => null),
-    };
   };
 
   /**

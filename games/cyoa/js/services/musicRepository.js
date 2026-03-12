@@ -1,4 +1,5 @@
 import { withBasePath } from "../utils/pathResolver.js";
+import { getOrCreateCachedRequest } from "../utils/requestCache.js";
 
 const tracksPromiseByFolder = new Map();
 const metadataPromiseByFolder = new Map();
@@ -24,34 +25,40 @@ function getMetadataManifestPath(folderPath) {
 
 export async function getMusicTracksList(folderPath) {
   const key = normalizeFolderPath(folderPath);
-  if (!tracksPromiseByFolder.has(key)) {
-    const request = fetch(getTracksManifestPath(folderPath))
-      .then(async (response) => {
-        if (!response.ok) return [];
-        const listedFiles = await response.json();
-        return Array.isArray(listedFiles) ? listedFiles : [];
-      })
-      .catch(() => []);
+  return getOrCreateCachedRequest(
+    tracksPromiseByFolder,
+    key,
+    async () => {
+      const response = await fetch(getTracksManifestPath(folderPath));
+      if (!response.ok) {
+        return [];
+      }
 
-    tracksPromiseByFolder.set(key, request);
-  }
-
-  return tracksPromiseByFolder.get(key);
+      const listedFiles = await response.json();
+      return Array.isArray(listedFiles) ? listedFiles : [];
+    },
+    {
+      onError: () => [],
+    },
+  );
 }
 
 export async function getMusicMetadataList(folderPath) {
   const key = normalizeFolderPath(folderPath);
-  if (!metadataPromiseByFolder.has(key)) {
-    const request = fetch(getMetadataManifestPath(folderPath))
-      .then(async (response) => {
-        if (!response.ok) return [];
-        const metadata = await response.json();
-        return Array.isArray(metadata) ? metadata : [];
-      })
-      .catch(() => []);
+  return getOrCreateCachedRequest(
+    metadataPromiseByFolder,
+    key,
+    async () => {
+      const response = await fetch(getMetadataManifestPath(folderPath));
+      if (!response.ok) {
+        return [];
+      }
 
-    metadataPromiseByFolder.set(key, request);
-  }
-
-  return metadataPromiseByFolder.get(key);
+      const metadata = await response.json();
+      return Array.isArray(metadata) ? metadata : [];
+    },
+    {
+      onError: () => [],
+    },
+  );
 }

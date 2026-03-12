@@ -1,3 +1,5 @@
+import { normalizePageContract } from "./pageContract.js";
+
 /**
  * Creates a lazy-loaded page contract wrapper.
  *
@@ -19,12 +21,13 @@ export function createLazyPage(moduleLoader, exportName) {
     if (!pagePromise) {
       pagePromise = moduleLoader().then((module) => {
         const page = module?.[exportName];
-        if (!page || typeof page.render !== "function") {
+        try {
+          return normalizePageContract(page);
+        } catch {
           throw new Error(
             `Lazy page export '${exportName}' must provide a render function`,
           );
         }
-        return page;
       });
     }
 
@@ -34,10 +37,7 @@ export function createLazyPage(moduleLoader, exportName) {
   return {
     load: async (params) => {
       const page = await getPage();
-      if (typeof page.load === "function") {
-        return page.load(params);
-      }
-      return params;
+      return page.load(params);
     },
     render: async (model, params) => {
       const page = await getPage();
@@ -45,10 +45,7 @@ export function createLazyPage(moduleLoader, exportName) {
     },
     bind: async (container, model, params) => {
       const page = await getPage();
-      if (typeof page.bind === "function") {
-        return page.bind(container, model, params);
-      }
-      return null;
+      return page.bind(container, model, params);
     },
   };
 }
