@@ -17,6 +17,7 @@ import { bindTransportControls } from "./ui/transport-controls.js";
 
 const dom = {
   grid: document.getElementById("grid"),
+  gridWrapper: document.getElementById("gridWrapper"),
   beatGuides: document.getElementById("beatGuides"),
   vBar: document.getElementById("vBar"),
   playBtn: document.getElementById("playBtn"),
@@ -38,6 +39,46 @@ const initializeSoundSelect = () => {
     option.selected = sound.value === DEFAULT_SOUND;
     dom.soundSelect.appendChild(option);
   }
+};
+
+const GRID_LAYOUT = {
+  maxCellSize: 32,
+  minCellSize: 4,
+  maxGap: 2,
+  minGap: 1,
+  labelWidthWide: 30,
+  labelWidthNarrow: 24,
+};
+
+const updateResponsiveGridMetrics = () => {
+  if (!dom.gridWrapper) return;
+
+  const { cols } = sequencer.getState();
+  if (!cols) return;
+
+  const viewportWidth = document.documentElement.clientWidth;
+  const bodyStyles = window.getComputedStyle(document.body);
+  const bodyPaddingX =
+    Number.parseFloat(bodyStyles.paddingLeft || "0") +
+    Number.parseFloat(bodyStyles.paddingRight || "0");
+  const availableWidth = Math.max(0, viewportWidth - bodyPaddingX);
+  if (!availableWidth) return;
+
+  const labelWidth =
+    availableWidth < 520
+      ? GRID_LAYOUT.labelWidthNarrow
+      : GRID_LAYOUT.labelWidthWide;
+  const gap =
+    availableWidth < 520 ? GRID_LAYOUT.minGap : GRID_LAYOUT.maxGap;
+  const rawCellSize = (availableWidth - labelWidth - cols * gap) / cols;
+  const cellSize = Math.min(
+    GRID_LAYOUT.maxCellSize,
+    Math.max(GRID_LAYOUT.minCellSize, rawCellSize),
+  );
+
+  dom.gridWrapper.style.setProperty("--note-label-width", `${labelWidth}px`);
+  dom.gridWrapper.style.setProperty("--grid-gap", `${gap}px`);
+  dom.gridWrapper.style.setProperty("--grid-cell-size", `${cellSize}px`);
 };
 
 initializeSoundSelect();
@@ -75,7 +116,11 @@ bindTransportControls({
 });
 
 // ----- Sequencer events -----
-sequencer.on("grid", gridView.renderGrid);
+sequencer.on("grid", (nextGridState) => {
+  gridView.renderGrid(nextGridState);
+  updateResponsiveGridMetrics();
+  gridView.renderBeatGuides(nextGridState.cols);
+});
 sequencer.on("state", ({ stepIndex }) => {
   // State emits the *next* step index after tick. Use it only for stopped state.
   if (!transport.isPlaying()) playheadView.renderPlayhead({ stepIndex });
@@ -100,6 +145,8 @@ sequencer.on("step", ({ stepIndex, hits }) => {
     notes: s.notes,
     cols: s.cols,
   });
+  updateResponsiveGridMetrics();
+  gridView.renderBeatGuides(s.cols);
   playheadView.renderPlayhead({ stepIndex: s.stepIndex });
 }
 
@@ -126,6 +173,7 @@ dom.soundSelect.addEventListener("change", (e) => {
 
 window.addEventListener("resize", () => {
   const { cols, stepIndex } = sequencer.getState();
+  updateResponsiveGridMetrics();
   gridView.renderBeatGuides(cols);
   if (!transport.isPlaying()) return;
   playheadView.positionPlayhead(

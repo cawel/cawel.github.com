@@ -1,7 +1,11 @@
 #gridWrapper {
+  --grid-cell-size: 32px;
+  --grid-gap: 2px;
+  --note-label-width: 30px;
   margin-top: 2rem;
+  width: fit-content;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -31,13 +35,13 @@
 
 .row {
   display: flex;
-  gap: 2px;
+  gap: var(--grid-gap);
   align-items: center;
 }
 
 .noteLabel {
-  flex: 0 0 30px;
-  width: 30px;
+  flex: 0 0 var(--note-label-width);
+  width: var(--note-label-width);
   font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
@@ -49,8 +53,10 @@
 }
 
 .cell {
-  width: 32px;
-  height: 32px;
+  flex: 0 0 var(--grid-cell-size);
+  width: var(--grid-cell-size);
+  height: var(--grid-cell-size);
+  aspect-ratio: 1 / 1;
   background: #2b353b;
   border-radius: 4px;
   cursor: pointer;
