@@ -35,7 +35,7 @@ const initializeSoundSelect = () => {
   for (const sound of SOUNDS) {
     const option = document.createElement("option");
     option.value = sound.value;
-    option.textContent = `${sound.marker}  ${sound.label}`;
+    option.textContent = `${sound.marker}\u00a0\u00a0\u00a0\u00a0${sound.label}`;
     option.selected = sound.value === DEFAULT_SOUND;
     dom.soundSelect.appendChild(option);
   }
