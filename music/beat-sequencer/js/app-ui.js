@@ -10,6 +10,7 @@
 import { createSequencer } from "./core/sequencer-core.js";
 import { createTransport } from "./core/transport-clock.js";
 import { createAudioEngine } from "./core/audio-engine.js";
+import { createPatternStorage } from "./core/pattern-storage.js";
 import { DEFAULT_SOUND, SOUNDS, SOUND_COLORS } from "./core/sound-metadata.js";
 import { createGridView } from "./ui/grid-view.js";
 import { createPlayheadView } from "./ui/playhead-view.js";
@@ -22,6 +23,9 @@ const dom = {
   vBar: document.getElementById("vBar"),
   playBtn: document.getElementById("playBtn"),
   stopBtn: document.getElementById("stopBtn"),
+  clearBtn: document.getElementById("clearBtn"),
+  memoryBtn: document.getElementById("memoryBtn"),
+  recallBtn: document.getElementById("recallBtn"),
   tempoSlider: document.getElementById("tempoSlider"),
   tempoLabel: document.getElementById("tempoLabel"),
   colSelect: document.getElementById("colSelect"),
@@ -92,6 +96,7 @@ let selectedSound = dom.soundSelect.value || DEFAULT_SOUND;
 const audio = createAudioEngine();
 const sequencer = createSequencer();
 const transport = createTransport({ sequencer, audioCtx: audio.ctx });
+const patternStorage = createPatternStorage({ storage: window.localStorage });
 
 const gridView = createGridView({
   gridEl: dom.grid,
@@ -111,8 +116,31 @@ const playheadView = createPlayheadView({
 bindTransportControls({
   playBtn: dom.playBtn,
   stopBtn: dom.stopBtn,
+  clearBtn: dom.clearBtn,
+  memoryBtn: dom.memoryBtn,
+  recallBtn: dom.recallBtn,
   audio,
+  sequencer,
   transport,
+  hasStoredPattern: () => patternStorage.hasPattern(),
+  onMemory: () => {
+    const pattern = sequencer.exportPattern();
+    return patternStorage.savePattern(pattern);
+  },
+  onRecall: () => {
+    const pattern = patternStorage.loadPattern();
+    if (!pattern) return false;
+
+    const restored = sequencer.applyPattern(pattern);
+    if (!restored) return false;
+
+    dom.colSelect.value = String(pattern.cols);
+    dom.octSelect.value = String(pattern.octaves);
+    dom.tempoSlider.value = String(pattern.tempo);
+    dom.tempoLabel.textContent = String(pattern.tempo);
+    transport.onTempoChange();
+    return true;
+  },
 });
 
 // ----- Sequencer events -----

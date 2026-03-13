@@ -138,6 +138,59 @@ export function createSequencer({
     return grid[row][col];
   };
 
+  const clearGrid = () => {
+    grid = makeEmptyGrid(notes.length, numCols);
+
+    emit("grid", {
+      grid: snapshotGrid(),
+      notes: snapshotNotes(),
+      cols: numCols,
+    });
+  };
+
+  const exportPattern = () => ({
+    cols: numCols,
+    octaves: numOctaves,
+    tempo: bpm,
+    grid: snapshotGrid(),
+  });
+
+  const applyPattern = ({ cols, octaves: nextOctaves, tempo: nextTempo, grid: nextGrid }) => {
+    if (!Number.isInteger(cols) || cols <= 0) return false;
+    if (!Number.isInteger(nextOctaves) || nextOctaves <= 0) return false;
+    if (typeof nextTempo !== "number" || !Number.isFinite(nextTempo) || nextTempo <= 0) {
+      return false;
+    }
+    if (!Array.isArray(nextGrid)) return false;
+
+    numCols = cols;
+    numOctaves = nextOctaves;
+    bpm = nextTempo;
+    notes = buildNotes();
+    stepIndex = 0;
+
+    const rebuilt = makeEmptyGrid(notes.length, numCols);
+    for (let row = 0; row < rebuilt.length; row++) {
+      const sourceRow = Array.isArray(nextGrid[row]) ? nextGrid[row] : null;
+      if (!sourceRow) continue;
+
+      for (let col = 0; col < numCols; col++) {
+        const sourceVal = sourceRow[col] ?? null;
+        rebuilt[row][col] = sourceVal == null ? null : String(sourceVal);
+      }
+    }
+
+    grid = rebuilt;
+
+    emit("grid", {
+      grid: snapshotGrid(),
+      notes: snapshotNotes(),
+      cols: numCols,
+    });
+    emit("state", { stepIndex });
+    return true;
+  };
+
   /**
    * Deterministic tick: advances exactly one step.
    * Emits hits for the current column, then advances playhead.
@@ -171,6 +224,9 @@ export function createSequencer({
     setOctaves,
     setCell,
     clearCell,
+    clearGrid,
+    exportPattern,
+    applyPattern,
     stepOnce,
     reset,
   };

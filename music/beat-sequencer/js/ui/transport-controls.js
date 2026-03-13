@@ -7,7 +7,19 @@
  * Owns transport button enabled/disabled state and click animations.
  */
 
-export function bindTransportControls({ playBtn, stopBtn, audio, transport }) {
+export function bindTransportControls({
+  playBtn,
+  stopBtn,
+  clearBtn,
+  memoryBtn,
+  recallBtn,
+  audio,
+  sequencer,
+  transport,
+  hasStoredPattern,
+  onMemory,
+  onRecall,
+}) {
   const setTransportState = (playing) => {
     playBtn.disabled = playing;
     stopBtn.disabled = !playing;
@@ -15,6 +27,7 @@ export function bindTransportControls({ playBtn, stopBtn, audio, transport }) {
 
   // Initial state: stopped
   setTransportState(false);
+  recallBtn.disabled = !hasStoredPattern();
 
   const animateButton = (btn) => {
     if (btn.disabled) return;
@@ -33,6 +46,24 @@ export function bindTransportControls({ playBtn, stopBtn, audio, transport }) {
     animateButton(stopBtn);
     transport.stop();
     setTransportState(false);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    animateButton(clearBtn);
+    sequencer.clearGrid();
+  });
+
+  memoryBtn.addEventListener("click", () => {
+    animateButton(memoryBtn);
+    const saved = onMemory();
+    if (saved) recallBtn.disabled = false;
+  });
+
+  recallBtn.addEventListener("click", () => {
+    if (recallBtn.disabled) return;
+    animateButton(recallBtn);
+    const recalled = onRecall();
+    if (!recalled) recallBtn.disabled = true;
   });
 
   document.addEventListener("keydown", async (e) => {
@@ -55,6 +86,11 @@ export function bindTransportControls({ playBtn, stopBtn, audio, transport }) {
       animateButton(stopBtn);
       transport.stop();
       setTransportState(false);
+    }
+
+    if (e.code === "KeyC") {
+      animateButton(clearBtn);
+      sequencer.clearGrid();
     }
   });
 

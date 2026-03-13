@@ -101,3 +101,40 @@ test("setCell/getCell/clearCell explicit APIs work as expected", () => {
   assert.equal(cleared, null);
   assert.equal(seq.getCell({ row: 0, col: 1 }), null);
 });
+
+test("clearGrid removes all active cells", () => {
+  const seq = createSequencer({ columns: 4, octaves: 2 });
+
+  seq.setCell({ row: 0, col: 0, soundType: "sine" });
+  seq.setCell({ row: 3, col: 2, soundType: "square" });
+  seq.setCell({ row: 8, col: 1, soundType: "triangle" });
+
+  seq.clearGrid();
+
+  const grid = seq.getGrid();
+  const anyActive = grid.some((row) => row.some((cell) => cell !== null));
+  assert.equal(anyActive, false);
+});
+
+test("applyPattern restores exported pattern state", () => {
+  const source = createSequencer({ columns: 16, octaves: 4, tempo: 120 });
+  source.setColumns(32);
+  source.setOctaves(3);
+  source.setTempo(180);
+  source.setCell({ row: 0, col: 0, soundType: "sine" });
+  source.setCell({ row: 5, col: 10, soundType: "square" });
+
+  const exported = source.exportPattern();
+
+  const target = createSequencer({ columns: 16, octaves: 1, tempo: 100 });
+  const applied = target.applyPattern(exported);
+  assert.equal(applied, true);
+
+  const state = target.getState();
+  assert.equal(state.cols, 32);
+  assert.equal(state.octaves, 3);
+  assert.equal(state.tempo, 180);
+  assert.equal(state.stepIndex, 0);
+  assert.equal(target.getCell({ row: 0, col: 0 }), "sine");
+  assert.equal(target.getCell({ row: 5, col: 10 }), "square");
+});

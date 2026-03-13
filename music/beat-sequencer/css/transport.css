@@ -15,7 +15,20 @@
   display: flex;
   gap: 0.95rem;
   justify-content: center;
+  align-items: center;
   padding: 0.35rem 0.15rem 0.2rem;
+}
+
+.transport-separator {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(
+    180deg,
+    rgba(209, 231, 239, 0),
+    rgba(209, 231, 239, 0.55),
+    rgba(209, 231, 239, 0)
+  );
+  margin: 0 0.1rem;
 }
 
 button {
@@ -65,6 +78,36 @@ button.stop::before {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 3px;
+}
+
+button.clear {
+  background: linear-gradient(170deg, #ffe3a0, #f0b64f);
+  box-shadow: 0 6px 10px rgba(73, 52, 15, 0.45);
+  color: #3f2d0b;
+  font-family: "Rajdhani", "Barlow", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+button.memory {
+  background: linear-gradient(170deg, #b4f0e3, #58c5ad);
+  box-shadow: 0 6px 10px rgba(10, 56, 47, 0.42);
+  color: #11372f;
+  font-family: "Rajdhani", "Barlow", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 0.84rem;
+  line-height: 1;
+}
+
+button.recall {
+  background: linear-gradient(170deg, #b7dbff, #5c9fda);
+  box-shadow: 0 6px 10px rgba(9, 42, 71, 0.42);
+  color: #102f4a;
+  font-family: "Rajdhani", "Barlow", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+  line-height: 1;
 }
 
 button.anticipate {
