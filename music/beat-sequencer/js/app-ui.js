@@ -134,7 +134,7 @@ const playheadView = createPlayheadView({
   isPlaying: transport.isPlaying,
 });
 
-bindTransportControls({
+const transportControls = bindTransportControls({
   playBtn: dom.playBtn,
   stopBtn: dom.stopBtn,
   clearBtn: dom.clearBtn,
@@ -144,6 +144,8 @@ bindTransportControls({
   sequencer,
   transport,
   hasStoredPattern: () => patternStorage.hasPattern(),
+  matchesStoredPattern: () =>
+    patternStorage.matchesStoredPattern(sequencer.exportPattern()),
   onMemory: () => {
     const pattern = sequencer.exportPattern();
     return patternStorage.savePattern(pattern);
@@ -169,6 +171,7 @@ sequencer.on("grid", (nextGridState) => {
   gridView.renderGrid(nextGridState);
   updateResponsiveGridMetrics();
   gridView.renderBeatGuides(nextGridState.cols);
+  transportControls.syncStorageButtons();
 });
 sequencer.on("state", ({ stepIndex }) => {
   // State emits the *next* step index after tick. Use it only for stopped state.
@@ -206,6 +209,7 @@ dom.tempoSlider.addEventListener("input", (e) => {
   dom.tempoLabel.textContent = v;
   sequencer.setTempo(v);
   transport.onTempoChange();
+  transportControls.syncStorageButtons();
 });
 
 dom.colSelect.addEventListener("change", (e) => {

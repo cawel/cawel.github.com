@@ -69,3 +69,33 @@ test("pattern storage returns null for corrupt data", () => {
   assert.equal(patternStorage.hasPattern(), false);
   assert.equal(patternStorage.loadPattern(), null);
 });
+
+test("pattern storage caches persisted value for repeated checks", () => {
+  let reads = 0;
+  const storage = {
+    getItem: (key) => {
+      reads += 1;
+      if (key !== STORAGE_KEY) return null;
+      return JSON.stringify({
+        version: 1,
+        cols: 16,
+        octaves: 2,
+        tempo: 120,
+        grid: [["sine", null]],
+      });
+    },
+    setItem: () => {},
+  };
+
+  const patternStorage = createPatternStorage({ storage });
+
+  assert.equal(patternStorage.hasPattern(), true);
+  assert.equal(patternStorage.hasPattern(), true);
+  assert.equal(patternStorage.matchesStoredPattern({
+    cols: 16,
+    octaves: 2,
+    tempo: 120,
+    grid: [["sine", null]],
+  }), true);
+  assert.equal(reads, 1);
+});

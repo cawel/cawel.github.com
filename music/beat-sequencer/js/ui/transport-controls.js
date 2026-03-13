@@ -17,6 +17,7 @@ export function bindTransportControls({
   sequencer,
   transport,
   hasStoredPattern,
+  matchesStoredPattern,
   onMemory,
   onRecall,
 }) {
@@ -25,9 +26,15 @@ export function bindTransportControls({
     stopBtn.disabled = !playing;
   };
 
+  const syncStorageButtons = () => {
+    const hasStored = hasStoredPattern();
+    recallBtn.disabled = !hasStored;
+    memoryBtn.disabled = hasStored && matchesStoredPattern();
+  };
+
   // Initial state: stopped
   setTransportState(false);
-  recallBtn.disabled = !hasStoredPattern();
+  syncStorageButtons();
 
   const animateButton = (btn) => {
     if (btn.disabled) return;
@@ -56,14 +63,18 @@ export function bindTransportControls({
   memoryBtn.addEventListener("click", () => {
     animateButton(memoryBtn);
     const saved = onMemory();
-    if (saved) recallBtn.disabled = false;
+    if (saved) syncStorageButtons();
   });
 
   recallBtn.addEventListener("click", () => {
     if (recallBtn.disabled) return;
     animateButton(recallBtn);
     const recalled = onRecall();
-    if (!recalled) recallBtn.disabled = true;
+    if (!recalled) {
+      recallBtn.disabled = true;
+      return;
+    }
+    syncStorageButtons();
   });
 
   document.addEventListener("keydown", async (e) => {
@@ -94,5 +105,5 @@ export function bindTransportControls({
     }
   });
 
-  return { setTransportState };
+  return { setTransportState, syncStorageButtons };
 }

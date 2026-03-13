@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 
 import { bindTransportControls } from "../js/ui/transport-controls.js";
 
-test("recall button is disabled by default and enables after successful memory save", () => {
+test("recall is disabled by default and save disables when stored state matches", () => {
   const dom = new JSDOM(`<!doctype html><body>
     <button id="play"></button>
     <button id="stop"></button>
@@ -21,13 +21,16 @@ test("recall button is disabled by default and enables after successful memory s
   globalThis.document = dom.window.document;
 
   try {
+    let hasStored = false;
+    let matchesStored = false;
+
     const playBtn = document.getElementById("play");
     const stopBtn = document.getElementById("stop");
     const clearBtn = document.getElementById("clear");
     const memoryBtn = document.getElementById("memory");
     const recallBtn = document.getElementById("recall");
 
-    bindTransportControls({
+    const controls = bindTransportControls({
       playBtn,
       stopBtn,
       clearBtn,
@@ -41,15 +44,26 @@ test("recall button is disabled by default and enables after successful memory s
         toggle: () => {},
         isPlaying: () => false,
       },
-      hasStoredPattern: () => false,
-      onMemory: () => true,
+      hasStoredPattern: () => hasStored,
+      matchesStoredPattern: () => matchesStored,
+      onMemory: () => {
+        hasStored = true;
+        matchesStored = true;
+        return true;
+      },
       onRecall: () => true,
     });
 
     assert.equal(recallBtn.disabled, true);
+    assert.equal(memoryBtn.disabled, false);
 
     memoryBtn.dispatchEvent(new window.Event("click", { bubbles: true }));
     assert.equal(recallBtn.disabled, false);
+    assert.equal(memoryBtn.disabled, true);
+
+    matchesStored = false;
+    controls.syncStorageButtons();
+    assert.equal(memoryBtn.disabled, false);
   } finally {
     globalThis.window = oldWindow;
     globalThis.document = oldDocument;
