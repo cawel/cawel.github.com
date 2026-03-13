@@ -6,7 +6,7 @@ import {
   DEFAULT_SOUND,
   SOUNDS,
   SOUND_COLORS,
-} from "../js/core/sound-metadata.js";
+} from "../../js/core/sound-metadata.js";
 
 const indexHtml = readFileSync(join(process.cwd(), "index.html"), "utf8");
 

@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 
 import { JSDOM } from "jsdom";
 
-import { createSequencer } from "../js/core/sequencer-core.js";
-import { createGridView } from "../js/ui/grid-view.js";
-import { SOUND_COLORS } from "../js/core/sound-metadata.js";
+import { createSequencer } from "../../js/core/sequencer-core.js";
+import { createGridView } from "../../js/ui/grid-view.js";
+import { SOUND_COLORS } from "../../js/core/sound-metadata.js";
 
 test("newly set cell suppresses remove cue until mouse leaves", async () => {
   const dom = new JSDOM(

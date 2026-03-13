@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {
   createPatternStorage,
   STORAGE_KEY,
-} from "../js/core/pattern-storage.js";
+} from "../../js/core/pattern-storage.js";
 
 const createMemoryStorage = () => {
   const store = new Map();
@@ -91,11 +91,61 @@ test("pattern storage caches persisted value for repeated checks", () => {
 
   assert.equal(patternStorage.hasPattern(), true);
   assert.equal(patternStorage.hasPattern(), true);
-  assert.equal(patternStorage.matchesStoredPattern({
-    cols: 16,
-    octaves: 2,
-    tempo: 120,
-    grid: [["sine", null]],
-  }), true);
+  assert.equal(
+    patternStorage.matchesStoredPattern({
+      cols: 16,
+      octaves: 2,
+      tempo: 120,
+      grid: [["sine", null]],
+    }),
+    true,
+  );
   assert.equal(reads, 1);
+});
+
+test("pattern storage uses cache immediately after save", () => {
+  let reads = 0;
+  let writes = 0;
+  const store = new Map();
+  const storage = {
+    getItem: (key) => {
+      reads += 1;
+      return store.has(key) ? store.get(key) : null;
+    },
+    setItem: (key, value) => {
+      writes += 1;
+      store.set(key, value);
+    },
+  };
+
+  const patternStorage = createPatternStorage({ storage });
+
+  assert.equal(
+    patternStorage.savePattern({
+      cols: 8,
+      octaves: 1,
+      tempo: 100,
+      grid: [["sine", null]],
+    }),
+    true,
+  );
+  assert.equal(writes, 1);
+
+  assert.deepEqual(patternStorage.loadPattern(), {
+    cols: 8,
+    octaves: 1,
+    tempo: 100,
+    grid: [["sine", null]],
+  });
+  assert.equal(patternStorage.hasPattern(), true);
+  assert.equal(
+    patternStorage.matchesStoredPattern({
+      cols: 8,
+      octaves: 1,
+      tempo: 100,
+      grid: [["sine", null]],
+    }),
+    true,
+  );
+  assert.equal(reads, 0);
 });

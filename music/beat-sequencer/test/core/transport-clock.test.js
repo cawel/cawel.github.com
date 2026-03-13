@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createTransport } from "../js/core/transport-clock.js";
+import { createTransport } from "../../js/core/transport-clock.js";
 
 test("transport start/stop drives sequencer and lifecycle deterministically", () => {
   let stepCalls = 0;

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createSequencer } from "../js/core/sequencer-core.js";
+import { createSequencer } from "../../js/core/sequencer-core.js";
 
 test("stepOnce emits deterministic step sequence with wrap-around", () => {
   const seq = createSequencer({ columns: 4 });
