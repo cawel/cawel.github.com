@@ -16,6 +16,8 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Each decision must change direction, stakes, information, relationships, or survival odds.
   - Avoid fake choices that lead to almost identical outcomes.
   - Root choices in conflict—external (obstacles, opposing forces, hostile environment) or internal (the protagonist's competing values, fears, or loyalties). The best crossroads pit both against each other at once.
+  - **Stakes legibility before the choice**: The narrative must establish what is at risk *before* the reader chooses, not only after. Each chapter must do enough work that the reader feels the weight of the decision as they read the options — not only through consequences.
+  - **Distinct choice labels**: Each choice in a pair must be distinguishable by the kind of action or person it implies, not merely by *how* the same goal is pursued. If both choices amount to the same move with minor tactical variation, they are one choice reworded. Choices should diverge in value, risk, or relationship — selecting between them should mean deciding who the reader is, not just which technique they prefer.
 
 2. **Engaging characters**
   - Every named character must have a clear, visible motivation—shown through action or dialogue, not stated in narration.
@@ -54,6 +56,7 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Include at least **1 genuinely good/successful ending**.
   - Include at least **1 very bad ending** (failure, tragedy, or death).
   - Endings must feel like natural consequences of the reader's choices and a direct expression of the story's theme.
+  - **Thread closure**: An ending must resolve the concrete narrative threads it opened, not only its theme. Characters whose fate the story made the reader care about require a stated outcome. Questions raised as emotionally significant — a relationship's fate, a sacrifice's worth, whether a goal was achieved — must receive a clear answer, even if that answer is loss or deliberate ambiguity. Thematic resonance and narrative closure are both required; neither substitutes for the other.
 
 10. **Moral weight of dual legacies**: When an ending or reflection presents two contrasting ways the protagonist will be remembered or judged — one positive, one negative — make the intended relationship between them explicit in the prose. If the two verdicts are inseparable (claiming the positive outcome requires owning the negative mechanism that produced it), state that inseparability directly. Do not present a clearly positive verdict and a clearly negative one as symmetrical alternatives the reader must simply choose between; readers will resolve the asymmetry themselves and find no moral tension. The weight must come from the verdicts being *joined*, not from their opposition.
 
@@ -62,6 +65,7 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Earn emotional peaks through setup: characters and stakes must be established before they can be endangered, lost, or redeemed.
   - Avoid generic sentiment ("you feel afraid"). Show the physical and sensory experience of emotion—cold in the chest, the weight of silence, a name you can't bring yourself to say.
   - Let emotional tone shift across the story arc: early wonder, mounting dread, and hard-won resolution land harder when they contrast with each other.
+  - **Foreshadowing and payoff**: Plant at least one detail in each major branch that only acquires its full meaning in retrospect. Revelations should make earlier scenes feel inevitable rather than arbitrary — the reader should think "of course" rather than "where did that come from". A fact revealed late must have been visible earlier, even if the reader did not notice it at the time.
 
 12. **Pacing and structure**
   - Shape the whole story as a rising arc: an opening hook that establishes immediate danger or mystery, escalating complications through mid-chapters, a climax where the stakes are at their highest, and endings that resolve both plot and theme.
@@ -77,8 +81,15 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Avoid repetition and filler.
   - Favor specific details over generic descriptions.
   - Write each chapter as multiple paragraphs, not a single block. Break naturally at shifts in focus: scene-setting, action, interiority, and revelation each warrant their own paragraph.
+  - **Setting as pressure**: Use the environment as an active source of conflict, not only as atmosphere. A flooding corridor, a thinning crowd, a closing window of time — the setting should create obstacles the protagonist must reckon with. If the setting could be swapped out without changing any decision or consequence, it is not doing its job.
 
-14. **Reader clarity and internal consistency**
+14. **Dialogue craft**
+  - Every line of dialogue must do at least two things simultaneously: reveal character or relationship, advance the conflict, or withhold information the reader suspects exists. Dialogue that only conveys facts the narration already established is wasted.
+  - Avoid expository dialogue. Characters speak from within their own perspective and self-interest, not to explain the world to the reader. If a character needs to communicate a fact, show why they are motivated to say it *now* to *this* person.
+  - Subtext carries more weight than direct statement. What characters do not say, say only obliquely, or leave unfinished often matters more than what they declare outright. Let silence, deflection, and interruption carry emotional content.
+  - Keep each character's speech rhythms and vocabulary consistent and distinct. A reader should be able to identify who is speaking from diction and sentence structure alone, without dialogue tags.
+
+15. **Reader clarity and internal consistency**
   - Every element named in a choice must already appear in that chapter's content. Never introduce a key term for the first time in a choice line.
   - Any invented entity, phenomenon, or faction central to the story must be described with at least one concrete sensory or visual detail the first time it appears.
   - When the protagonist survives a threat that kills another character, the narrative must make the physical reason explicit and plausible (different positions, barriers, sealed compartments, etc.).
