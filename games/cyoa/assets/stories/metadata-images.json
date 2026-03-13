@@ -18,6 +18,42 @@
           "endingType": null
         },
         {
+          "number": 2,
+          "title": "The River Crossing",
+          "llmPrompt": "Create a cinematic fantasy digital painting, atmospheric riverbank dawn composition. A black-glass river with mirror-still water reflects the pale morning sky without a single ripple—no wind, no birdsong, utter unnatural stillness. To the right, a rope-bound ancient root bridge curves toward amber lanterns of Emberfen village through thinning mist. To the left, a river-grey ferryman stands motionless in a moored flat-bottomed boat, notched bone oar along the hull, eyes already fixed on a copper crescent token in the protagonist's fist with unmistakable recognition. Mood: a decision felt before it is named, quiet recognition across dark water, two paths offering themselves in very different languages, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "The Moon Arch",
+          "llmPrompt": "Create a cinematic fantasy digital painting, roofless ruin interior composition. A moss-eaten stone chamber where vines reclaim flagstones and pale green canopy light falls through the open ceiling. Ancient script cuts deep into the lintel above a half-buried archway. At the far wall, a stone pedestal draped in pale vine holds a crescent-shaped hollow in its surface, a breath of warmth rising toward an outstretched hand. On the flagstones below the pedestal, a bone-handled knife lies wedged between heaved paving stones—recently dropped, blade still dark. Mood: ancient covenant made physical, an unexpected clue measured in hours, cold enchantment and quiet dread, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Emberfen's Warning",
+          "llmPrompt": "Create a cinematic fantasy digital painting, tense village council scene. A low-ceilinged stone hall lit by tallow candles over a long table covered in hand-drawn maps of dense northern thicket—severed rootlines marked red. Elder Mara, spare and authoritative in clay-stained boots, presses her palms flat on the maps with the focused stillness of someone handing off a task she cannot carry further. Shuttered windows line the walls; outside, no dogs bark, no children stir. The protagonist sits across the table. Mood: a community fracturing along human fault lines, the weight of being the last reasonable option, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "The Ferryman's Price",
+          "llmPrompt": "Create a cinematic fantasy digital painting, liminal dark-river negotiation at half-light. A moss-covered stone quay where a flat-bottomed boat sits moored, its bone oar notched with tallies of past crossings. The river-grey ferryman stands at the stern, face worn beyond ordinary age, lit from below by a glowing stone stairway descending beneath a canopy of lamprey-pale hanging roots. The protagonist stands at the quay edge about to name a toll. Dark water beyond the lamp holds absolute stillness. Mood: the precise cost of supernatural passage, a threshold between the known and something older, the weight of naming what cannot be surrendered, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "Heartwood Judgment",
+          "llmPrompt": "Create a cinematic fantasy digital painting, cathedral-scale underground heartwood chamber. Root-columns as thick as old oaks rise from a living floor to a vaulted ceiling lit by slow-pulsing bioluminescent amber and green—the light itself watchful and alive. At the chamber center, a figure hangs suspended in a web of living vines, pale as birchwood and conscious, eyes finding the protagonist with relief and dread in equal measure. From the living floor, a bark-skinned entity twice human height rises, cold starlight threading its joint-lines, a deep amber crystal seed pulsing in its chest. Mood: ancient grievance made articulate, awe and judgment held in perfect balance, an impossible decision arriving, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Words of Stewardship",
+          "llmPrompt": "Create a cinematic fantasy digital painting, intimate library tower interior. A narrow stone room packed floor to ceiling with catalogued scrolls, lit by candlelight held dangerously close to brittle vellum. On a reading surface, a single unfolded document—older and different from its neighbours—lies open under careful hands, its seven words visible in formal script, rediscovered after being left to stay lost. A north-facing window holds the dark forest close outside. Mood: the power of a recovered sentence, a complicated grief resolved by something simple, urgency clarified into purpose, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
           "number": 8,
           "title": "Thorns of Defiance",
           "llmPrompt": "Create a dramatic dark-fantasy digital painting, dynamic low-angle composition. Living briar walls surge inward at twilight, roots split stone and wet soil, and a fallen explorer is trapped as a dropped knife sinks in mud. Rain streaks and thorn silhouettes frame the collapse. Palette: bruised greens, black bark, cold silver rain. Emotion: panic and irreversible loss. No explicit gore, no text, no watermark.",
@@ -48,6 +84,42 @@
           "endingType": null
         },
         {
+          "number": 2,
+          "title": "Split Trail",
+          "llmPrompt": "Create a cinematic neo-noir image, dim staff corridor split-decision composition. Polished concrete under emergency lighting where two sets of fresh muddy boot prints diverge at a junction—one trail descends toward a basement freight elevator, the other toward a cracked director's office door. Through the gap, two silhouettes argue in urgent low voices over frosted glass. The protagonist is flattened against the wall, flashlight off, radio clipped silent. Mood: institutional conspiracy surfacing from both directions at once, the choice between physical evidence and human intelligence made in a corridor where sound travels wrong, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Chen on Scene",
+          "llmPrompt": "Create a cinematic neo-noir image, Egyptian wing confrontation under sensor-pulse light. Detective Chen stands facing the protagonist over the open sarcophagus, red sensor light cycling across polished marble, wire kit visible under her jacket. Her flashlight illuminates the freshly applied crescent sigil on the sarcophagus lid—thick lacquer, recently brushed, theatrical. She speaks with the clipped authority of someone briefing a case they have already internally resolved. Mood: institutional power that knows more than it should, a calm account that maps tonight's events as though drafted before they happened, the first suspicion of a second agenda, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "The Hidden Vault",
+          "llmPrompt": "Create a cinematic neo-noir image, secret museum vault discovery scene. A hidden climate-controlled room revealed behind a false shelving unit, lit by cold blue LED strips humming at a painful frequency. Eleven foam-cut artifact cases sit occupied; one case stands empty—its label and removal timestamp visible on a printed transfer log beside a shipping manifest on the work surface. Evidence comprehensive and damning, arranged with institutional precision. Mood: the cold satisfaction of crime exposed in its own filing system, proof that explains everything and creates new dangers simultaneously, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "Ledger of Contradictions",
+          "llmPrompt": "Create a cinematic neo-noir image, director's office evidence tableau. A mahogany desk under a single warm lamp, an emergency ledger lying open to a page of repeated handwritten warnings in six different hands—the same instruction copied as though someone feared it being missed. A telephone receiver rests off its cradle, call log active. Cold coffee in a cup that was never collected. One piece of evidence exonerating a suspect, another implicating a trusted ally, both on the same desk in the same unlocked room. Mood: institutional complicity discovered by accident, evidence that resolves one angle while opening another, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "Operation Nightglass",
+          "llmPrompt": "Create a cinematic neo-noir image, river bridge midnight ambush. A bridge at 3:40 AM erupts with converging flashlights, drawn weapons, and masked operatives—a third faction hitting both police intercept team and museum convoy simultaneously. A panel van accelerates toward a flood tunnel entrance as agents from three groups collide on wet concrete. The tunnel mouth downstream swallows the getaway vehicle in darkness. Cordite and river damp in the cold air. Mood: an operation betrayed, every position pre-mapped by parties who were not supposed to know them, chaos that arrives precisely on schedule, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Hartwell's Disclosure",
+          "llmPrompt": "Create a cinematic neo-noir image, private office controlled disclosure scene. Director Hartwell stands at her desk where an unlocked evidence case has been opened and network dossiers spread under a focused lamp—not discovered, presented. Her expression carries the calculated weight of someone choosing exactly how much honesty the moment allows. The protagonist sits opposite, weighing what is offered against what accepting it requires. Mood: institutional secrecy that was genuinely protecting something, a justification both real and insufficient, an offer made with full awareness of its price, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
           "number": 8,
           "title": "Tunnel Collapse",
           "llmPrompt": "Create a high-tension noir-disaster ending scene, action-focused perspective in a collapsing flood tunnel. Concrete fractures overhead, debris crashes through rushing water, and a failing radio sparks as the protagonist transmits final evidence. Use harsh emergency light, spray, and motion blur to emphasize urgency. Palette: steel blue, gray concrete, red warning accents. No explicit gore, no text, no watermark.",
@@ -75,6 +147,36 @@
           "number": 1,
           "title": "Silence Over Earth",
           "llmPrompt": "Create a cinematic hard-sci-fi image, from inside an orbital station cupola. Earth fills the lower frame with city lights fading in synchronized waves, while dark control panels and a single anomalous signal trace glow on the comms console. The protagonist appears as a tense silhouette facing the signal. Use realistic orbital lighting and clean instrument detail. Mood: isolation, mystery, imminent global crisis, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 2,
+          "title": "Prime Number Voice",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, orbital comms contact scene. The station comms bay: two active screens—one showing the prime-number handshake transmitted (2, 3, 5, 7, 11), the other showing the alien signal's continuation extending beyond where the human sequence stopped. A third window holds clean English text appearing with the cadence of someone who learned the language from transcripts rather than conversation. Okafor watches across the console. Earth dims below the cupola. Mood: first contact handled with careful intellectual discipline, the weight of being the person at the keyboard at exactly this moment, mathematical trust before language, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Forced Descent",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, reentry and altered landscape. A capsule cuts through plasma blackout into amber sky—particulate density wrong, light the color of a hazard index that does not exist yet. Through the capsule window, crystalline patches in the changed landscape below reflect sunlight in colors soil should not produce. Reorganized weather formations frame the descent corridor. Mood: committed approach to a world already different from the one above it, the irreversible physics of a decision made in orbit, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Evidence Window",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, orbital analysis documentation session. The station console at full capacity—screens displaying novel isotope plumes tracing across the upper atmosphere from sites with no known industrial coordinates, migration clusters converging from four directions, active multilingual broadcasts referencing a council and a vote. The communications specialist works alone with the systematic discipline of someone building the most complete record any single observer will have. Earth turns below. Mood: scientific discipline under the pressure of catastrophe, the responsibility of documentation before descent, data that will matter to the people who access it next, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "Ground Convoy",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, post-event ground convoy scene. Three vehicles halt on a plain where the soil surface has changed at a molecular level—crystalline crust catching the light in wrong colors. Adaptation towers dot the landscape at regular intervals, antenna-like structures broadcasting something that modifies the air around them. A convoy leader briefs the protagonist beside an open vehicle door with the systematic focus of someone revising plans every six hours. Forty-three survivors across three vehicles. Mood: organized survival in completely changed terrain, a species adapting faster than it can govern itself, the strange calm of people who have decided to live through this and are doing it, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "The Convergence Vote",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, underground council chamber deliberation. A repurposed research station forty meters below the surface, generator-lit, packed beyond capacity. Early-adapted delegates—visibly different—sit beside unmodified representatives, mutual wariness not yet hostility. Wall displays show diverging mortality projections for competing frameworks. The protagonist stands at a central podium: the only person in the chamber who watched the event begin from orbit. Mood: science meeting ethics in a space running out of time, a testimony that could provide shared ground or be weaponized by the first faction to claim it, no ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
@@ -114,6 +216,30 @@
           "endingType": null
         },
         {
+          "number": 2,
+          "title": "The Mirror Maze of Echoes",
+          "llmPrompt": "Create a surreal whimsical-dark fantasy image, mirror maze memory gallery. A carnival corridor where every panel holds a precise, real memory—not distorted, not invented: a girl laughing unstoppably at fireworks the summer she was fourteen, an argument on a dock that never resolved, a coat-collar turned up on the night of a disappearance. Each reflection casts its own warm salt-and-summer light. At the passage center, a locked glass cabinet on a brass pedestal contains a clockwork compass whose needle points not to any cardinal direction but inward—below the carnival. Mood: grief held in perfect resolution, the specificity of things that cannot be re-experienced, a compass pointing toward a decision rather than a location, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "The Wheel Above Time",
+          "llmPrompt": "Create a surreal whimsical-dark fantasy image, Ferris wheel summit revelation. A wheel larger than the fairground could contain rises above low cloud, upper gondolas lost in fog. From the summit gondola, the carnival's true shape is visible below: gears the size of houses, leather drive belts at impossible angles underground, and at the center a Wishing Engine pulsing with pale fire—each flame a suspended debt. The conductor in deep-blue tarnished-button uniform sits in the facing seat, pointing to a gondola dial reading 2:17 AM. Mood: altitude giving understanding, a machine explained from the one angle that makes it legible, a passenger who already knows why you're here, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "The Wishing Engine",
+          "llmPrompt": "Create a surreal whimsical-dark fantasy image, cathedral-scale debt engine interior. Brass ribs and tensioned springs fill a cathedral-sized space under enormous pressure, the deep tonal hum of a ledger bearing weight across years. Near the base of the central column, a brass panel bears initials and a timestamp etched as though always part of the architecture. An unfurled brass scroll rests on the housing surface. The ringmaster in black coat and white porcelain mask stands beside the protagonist at the panel, present with the formality of a witness rather than a threat. Mood: the bureaucratic precision of magical obligation, a contract encountered inside a machine made of sound, a bargain fully explained before being offered once more, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "The Clockmaker's Terms",
+          "llmPrompt": "Create a surreal whimsical-dark fantasy image, intimate striped-tent clockmaker scene. An elderly clockmaker's workshop crammed with small clocks that disagree on the time, a single fat candle throwing warm unsteady shadows. The clockmaker sets a double-ended brass winding rod on the workbench between himself and the protagonist—worn at both grips, balanced in a way that communicates precision. Through the tent flap, the sky at its far edge holds the first pale signal of approaching dawn. Mood: the burden of being given one exact right method, a sequence that cannot be forced without destroying what it was meant to free, patience as the only available form of care, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
           "number": 6,
           "title": "Shattered Minute",
           "llmPrompt": "Create a catastrophic surreal whimsical-dark carnival-fantasy image, dynamic chaos composition. A colossal clockwork engine bursts in red sparks, mirror walls fracture, rides collapse, and dawn haze settles over scorched brass debris. Capture frantic motion, broken time motifs, and tragic inevitability. No explicit gore, no text, no watermark.",
@@ -141,6 +267,30 @@
           "number": 1,
           "title": "Steps Below the Harbor",
           "llmPrompt": "Create a mythic maritime fantasy image, atmospheric low-tide wide shot. Barnacled steps descend below the harbor toward monumental bronze doors of a sunken library. The viewer-protagonist carries a storm ledger and lantern as wind and spray lash the stone. Add bioluminescent hints in cracks, carved warnings, and looming architecture. Mood: urgent exploration and ancient secrecy, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 2,
+          "title": "Cartographer's Hall",
+          "llmPrompt": "Create a mythic maritime fantasy image, vaulted tide-map hall composition. A vast underground chamber lined wall to wall with centuries of tide maps stitched on whale-skin, edges curling in air that smells of brine and old ink. A translucent librarian spirit materializes near the central column—its outline flickering like light through deep water—regarding the protagonist with the patient consideration of ancient knowledge deciding whether to assist. Lantern light catches annotations in many different hands on the surrounding charts. Mood: generations of human observation preserved where no sunlight reaches, a spirit that still chooses who it trusts, knowledge that has earned the right to be careful, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Abyss Wing",
+          "llmPrompt": "Create a mythic maritime fantasy image, forbidden wing interior atmosphere. A deeper, colder passage lit by sourceless blue luminescence. Chained volumes line the walls and hum at a sub-vocal frequency felt in the teeth—a resonance that settles and stays. At the far end, one iron-bound book sits unchained on a reading stand, its cover engraved with a promise of mastery, the only object in this corridor that was left deliberately accessible. Stone walls carry the second bell's vibration through the floor. Mood: the architecture of a deliberate temptation, beautiful handwriting on a warning, a promise that assumes the reader has resolve rather than questioning it, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Lighthouse Vault",
+          "llmPrompt": "Create a mythic maritime fantasy image, lighthouse vault discovery composition. A warm dry stone vault beneath an old lighthouse lens, nautical almanacs arranged by decade lining curved walls, a column of ambient light falling from the mechanism above. At the center, a shell-bound weather codex rests on a stone pedestal, its pages layered with pressure readings, storm tracks, and harbor annotations written in several different hands across time. A small note is tucked into the front cover. The muffled sounds of harbor and tide reach through the stone. Mood: knowledge built by many people over a long time, the quiet ethical weight of finding what was sought, a codex whose front cover already contains its instructions for use, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "The Reading Chamber",
+          "llmPrompt": "Create a mythic maritime fantasy image, pearl-lit reading alcove composition. A small recess off the lighthouse vault where the protagonist copies storm-warning thresholds and departure windows from the open codex onto a ledger page by warm lantern light against cold limestone walls. The third bell's faint vibration is just distinguishable through the stone from below—departure time audible, not yet critical. The codex lies open beyond the copied pages, showing additional charts that go further than civic necessity. Mood: urgency thinned enough to allow a genuine choice about what to take, knowledge just past the edge of what was asked for, the bell as time made audible, no ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
@@ -174,6 +324,42 @@
           "endingType": null
         },
         {
+          "number": 2,
+          "title": "Shear Zone",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, close-range gate approach under phase-stress. The research vessel Asterion in extreme proximity to the Perseid Gate's inner ring, hull phase-skipping in microbursts—bridge instruments showing dual position readings as the ship briefly occupies two coordinates simultaneously. Navigation officer Rhea is sharp at her console in the foreground. Beyond the bridge glass, manual control pylons are visible for the first time on the inner ring, anchored to ancient alloy in rows. Hull stress warnings across six panels. Mood: extraordinary data at dangerous cost, discovery and warning arriving in the same moment, the instant a mission changes into something it wasn't planned to be, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Lock Rhythm",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, passive analysis station scene. The gate hangs in the background at safe standoff distance—a studied object rather than a threat. Astrophysicist Kenji stands at his analysis station in the foreground, pointing to a harmonic cycle chart that maps the gate's eleven-minute pulse locked to the local magnetar wind, with one narrow transit window marked thirty-seven minutes out. Instruments read orderly at this distance. Mood: the satisfaction of understanding how something dangerous works, a window that converts danger into a decision, calm precision facing a structure that has been tearing ships apart, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Probe Debrief",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, recovered probe analysis scene. An unmanned probe sits on the docking bay surface coated in fine crystal dust acquired during transit—not present at launch. The analysis screen displays star maps of unmapped connected systems alongside a partially decoded maintenance warning in ancient script: lattice breach progressing, calibrate or collapse. Kenji reads from the tablet while the bridge crew gathers. Mood: the gate reclassified from anomaly to archaeology, a fault log in a dead language, unmapped systems in the corner of a chart that was supposed to show empty space, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "Dead System Beacon",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, post-transit derelict system wide composition. The Asterion has emerged into total silence—no inhabited worlds, no active transmissions, no light from settlements. Massive orbital structures from an advanced civilization drift as dark silhouettes against cold starfield, intact but lightless, long unattended. A single faint maintenance AI signal pulses on one instrument panel—patient, ancient, broadcasting on a frequency that suggests it has been waiting for someone qualified to answer for centuries. Mood: an absent civilization's scale, a machine still performing its duty, infrastructure asking for a decision from the first people to find it, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "Three Overrides",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, simultaneous pylon override sequence. Three pressure-suited crew members at separate positions on the inner ring scaffold, each at a manual override panel embedded in ancient alloy, counting shared timing intervals across distance. Between them, radiation bloom spikes irregularly as the lattice fault cycles—dosimetry warnings rising on each suit's wrist display. The scaffold dwarfs the figures. Mood: three people in three radiation corridors trusting each other with a shared sequence, the cost distributed exactly as decided, the scale of duty made visible in the architecture they are crossing, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 7,
+          "title": "Closure Clock",
+          "llmPrompt": "Create an epic hard-sci-fi concept art image, demolition commitment countdown. Demolition charges deployed and aligned on the gate's primary stress points, visible on both the main viewport and targeting display. An irreversible countdown timer anchors the bridge screen, already past its abort threshold. Astrophysicist Kenji stands at his station, hands flat on the console—still and silent, the posture of someone who disagrees without overriding. The gate outside continues its low harmonic glow. Mood: a permanent door closing in the name of safety, the weight of irreversibility carried in silence rather than argument, a countdown that is already a past tense, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
           "number": 8,
           "title": "One Runner",
           "llmPrompt": "Create a heroic-tragic hard-sci-fi concept art image, kinetic perspective along an exposed pylon scaffold. A single suited astronaut sprints through a radiation bloom toward a final manual override as telemetry warning lights fade. Emphasize sacrifice, scale, and imminent loss with stark lighting and particle haze. No explicit gore, no text, no watermark.",
@@ -201,6 +387,30 @@
           "number": 1,
           "title": "The Key Under the Moonbeam",
           "llmPrompt": "Create a storybook magical-night illustration, cozy cinematic attic composition. A black cat protagonist discovers a glowing brass key in moonlight beside an old cedar wardrobe. Below, the sleeping house feels warm and safe, contrasting with faint supernatural tension above. Include soft dust motes, rune glow, and moonbeams across floorboards. Tone: heartwarming mystery and protective courage, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 2,
+          "title": "The Hidden Hall",
+          "llmPrompt": "Create a storybook illustration, moonlit portrait corridor inside wardrobe. A hallway longer than the house should contain stretches into dim starlight, lined on both sides with framed cat portraits—every painted pair of eyes watchful and specific, every posture carried authority across generations. Small high windows let in stellar light at intervals. At the corridor's far end, two doors stand side by side: one glowing copper-warm with a bell sigil, one dark with a carved pawprint. A silver moth with February-moon wings hovers close, pulse of cold blue light the only movement. Mood: ancestral guardianship made visible, solemn wonder at a lineage only now becoming understood, two equal doors at corridor's end, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Grandma's Letters",
+          "llmPrompt": "Create a storybook illustration, attic midnight letter-reading composition. A cedar-scented attic where an old trunk stands open under a lamp's warm circle, ribbon-tied bundles of letters stacked inside. A black cat sits upright before an unfolded letter whose careful handwriting addresses the cat by name—the salutation personal and deliberate. On a shelf above, a framed grandmother's photograph watches the scene. In the letter's margins, pencil sketches of a hunched feathered silhouette with too-wide wings—the creature this letter was written to prepare against. Mood: being named and prepared by someone already gone, love expressed as careful wartime strategy, the specific comfort of arriving exactly as expected, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Bell Tower Chamber",
+          "llmPrompt": "Create a storybook illustration, hidden bell tower chamber composition. A curved room tucked inside the house's attic architecture, hung with dozens of bells in ascending size—each a different alloy, each inscribed with the name of a sleeping room. A parchment map on the floor shows the house's bedrooms in gently glowing ink, tracking the warmth of the people inside. The silver moth hovers before the largest bell with the stillness of a teacher. Through the chamber's small circular window, a vast shadow—black as chimney smoke, wingspan too wide for the rooftop—crosses the moonlit tiles in a single slow wingbeat. Mood: the perfectly matched tool for exactly this emergency, sequence as the shape of protection, the creature outside the window making the bells' purpose unmistakably clear, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "Pawprint Garden",
+          "llmPrompt": "Create a storybook illustration, impossible floating rooftop garden composition. A silver-damp garden suspended above the rooftop under a star-dense sky, its grass frost-lit, flowers glowing in quiet colors. Through the garden's transparent floor, the sleeping family's rooms are visible below as amber warmth. A translucent tomcat—form made more of light than of fur, amber eyes unhurried—stands before a flat stone holding two small offerings: a sprig of silver-smoking moonmint and a hollow acorn of faintly luminous dew. Mood: a guardian lineage handing down a choice between two kinds of courage, the sleeping house visible through the floor as the thing being protected, a decision whose costs the tomcat will not name but will not hide, no ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
@@ -234,6 +444,36 @@
           "endingType": null
         },
         {
+          "number": 2,
+          "title": "Oathhall Alliance",
+          "llmPrompt": "Create an epic high-fantasy concept art image, alliance negotiation in a battle-scarred hall. The Oathhall: ancient stone hall with clan banners scorched black at the edges from recent sabotage, thin forge-smoke still reading in cold rafters. Clan-Mother Brynja stands at a long stone table reading the joint writ without expression—shorter than expected, broader, with the undemonstrative authority of someone managing a crisis on reserves of protocol three days old. Two clan-guards flank her. Through the back passage, failing pylon light flickers in the tunnel beyond. Mood: institutional trust tested to depletion, an alliance offered because no other option holds, the pragmatic calm of emergency command, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Wizard Tunnels",
+          "llmPrompt": "Create an epic high-fantasy concept art image, abandoned wizard tunnel infiltration. Narrow low passages under the Underforge, walls chalky with failing ancient wards—old spellwork drying and flaking at the seams. Fresh cipher scratch-marks at junction points glow faintly in torch-shadow. One intact floor-seal flares white under a boot, its resonance tone rolling through stone in all directions as an alarm already past recall. In the foreground, a young dwarven scout is wedged behind a collapsed arch with a twisted ankle, watching the protagonist crouch beside her with the rapid assessment of someone weighing options under time pressure. Mood: covert approach blown at the worst moment, intelligence exchanged between people who now share a deadline, the wrong kind of attention converging below, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Ash Ledger",
+          "llmPrompt": "Create an epic high-fantasy concept art image, archive sabotage evidence discovery scene. A lower Underforge chamber ankle-deep in ash and half-burned documents—evidence destruction that did not quite finish its work. By torchlight, the protagonist kneels over fragile scorched pages, piecing together handwriting from two sources: dwarven hardliners and wizard inner circle, both having tampered with the same pylons on a coordinated schedule designed to appear mutual. The architecture of a manufactured crisis laid out in its own destroyed paperwork. Mood: the specific clarity of understanding a false-flag operation, evidence that explains a war and endangers its finder in the same moment, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "Pylon Chambers",
+          "llmPrompt": "Create an epic high-fantasy concept art image, pylon stabilization confrontation scene. A mid-level Underforge chamber housing a column of forged iron wrapped in dwarven runework, its surface visibly oxidizing under too much heat—failing in real time. Brynja's lead engineer works steady-handed at the column base with flux tools, voice clipped to precision. A wizard envoy in deep robes stands at the chamber entrance, volatile spellfire cradled in an open hand—orange accelerant energy offered as the faster solution. The engineer's posture refuses it with technical conviction. Molten iron weeps from a ceiling joint. Mood: two expert solutions colliding in a failing chamber, good-faith disagreement between people who both know their craft, the wyrm's call resonating through the stone from below, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "The Crown Vault",
+          "llmPrompt": "Create an epic high-fantasy concept art image, crown vault convergence composition. A vault with a fifty-foot ceiling above a slow-moving lake of living iron, its bright surface reflecting the Crown of the Underforge suspended between three oath pillars by dwarven alloy chains engraved with covenant clauses. Every faction has arrived in the same moment: Clan-Mother Brynja at the entrance with clan guard; wizard envoys filling the upper gallery, robes shifting in rising heated air. Through the stone floor, the mountain trembles. Mood: every competing claim arriving at the same threshold simultaneously, the architecture of power that was never designed for a single hand, the next decision carrying the weight of the entire structure, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
           "number": 7,
           "title": "Fire Without Consent",
           "llmPrompt": "Create a catastrophic epic high-fantasy concept art image, dynamic perspective from a collapsing iron bridge. A lone crown-bearer stands unstable above a surging magma flood while a colossal enraged wyrm rises through smoke and falling chains. Surround with failing forge towers, snapping pylon lattice, molten debris, and emergency rune-lights flickering out. Palette: infernal orange, black iron, ember red. Emotion: tragic hubris and irreversible downfall. No explicit gore, no text, no watermark.",
@@ -261,6 +501,36 @@
           "number": 1,
           "title": "The Alarm You've Heard Before",
           "llmPrompt": "Create a cinematic hard-sci-fi image, claustrophobic interior shot aboard an industrial asteroid belt station. A suited protagonist sits upright in a narrow bunk as red alarm lights cycle across corrugated metal walls. The bunk, chair, and half-eaten ration bar are lit in eerie familiarity. Through a porthole, a dense asteroid field is barely visible in cold void. Mood: exhausted dread, déjà vu, urgent tension, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 2,
+          "title": "The Commander's Doubt",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, tense interior ops-room confrontation. A station commander stands behind a wide console cluttered with tracking screens and proximity arrays, gripping a ceramic mug, jaw set, evaluating a protagonist who has clearly interrupted his shift. Deep contrast lighting from monitor glow, reflections on polished metal panels, four subordinates bent at terminals in the background. Mood: institutional skepticism, controlled authority, unresolved tension. No ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 3,
+          "title": "Dara's Eureka",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, intimate engineering bay composition. A signal analyst sits surrounded by empty ration packs and forgotten coffee mugs, cable-tied hair, dark circles under sharp eyes, turning a glowing screen toward the viewer. The display shows a tight ascending waveform—each peak fractionally higher than the last. Warm amber instrument glow against cold industrial walls. Mood: exhausted breakthrough, barely-contained revelation, quiet dread. No ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 4,
+          "title": "Proof by Fire",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, dramatic ops-room wide shot at the moment of confirmation. A proximity alarm screams on every panel, red indicators flood the tracking wall, and through a reinforced viewport angular alien shapes slide across the starfield in tight formation. A station commander stares across the ops table at the protagonist, every trace of doubt stripped from his face. Mood: sudden vindication, controlled crisis, the instant before decisive action. No ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 5,
+          "title": "The Cascade",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, chaotic cargo corridor scene. Three groups converge in a low-ceilinged industrial passage: armed workers in hard-suits carrying rivet tools, station security in partial riot gear, and a distant engineering team at a sparking panel. The floor vibrates—deck plates flex and overhead conduits rattle as an unseen pulse travels through the hull. Debris has fallen; warning lights are split-second amber. Mood: institutional collapse, uncoordinated panic, no clear authority remaining. No ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 6,
+          "title": "The Artifact Room",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. The protagonist watches from the doorway. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
