@@ -14,7 +14,9 @@ const isPositiveInteger = (n) => Number.isInteger(n) && n > 0;
 const isValidGrid = (grid) =>
   Array.isArray(grid) &&
   grid.every(
-    (row) => Array.isArray(row) && row.every((cell) => cell == null || typeof cell === "string"),
+    (row) =>
+      Array.isArray(row) &&
+      row.every((cell) => cell == null || typeof cell === "string"),
   );
 
 const isValidPattern = (pattern) => {
@@ -22,7 +24,11 @@ const isValidPattern = (pattern) => {
   if (pattern.version !== STORAGE_VERSION) return false;
   if (!isPositiveInteger(pattern.cols)) return false;
   if (!isPositiveInteger(pattern.octaves)) return false;
-  if (typeof pattern.tempo !== "number" || !Number.isFinite(pattern.tempo) || pattern.tempo <= 0) {
+  if (
+    typeof pattern.tempo !== "number" ||
+    !Number.isFinite(pattern.tempo) ||
+    pattern.tempo <= 0
+  ) {
     return false;
   }
   if (!isValidGrid(pattern.grid)) return false;

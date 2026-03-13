@@ -19,6 +19,9 @@ import { bindTransportControls } from "./ui/transport-controls.js";
 const dom = {
   grid: document.getElementById("grid"),
   gridWrapper: document.getElementById("gridWrapper"),
+  buttons: document.getElementById("buttons"),
+  primaryButtons: document.querySelector(".primary-buttons"),
+  storageButtons: document.getElementById("storageButtons"),
   beatGuides: document.getElementById("beatGuides"),
   vBar: document.getElementById("vBar"),
   playBtn: document.getElementById("playBtn"),
@@ -72,8 +75,7 @@ const updateResponsiveGridMetrics = () => {
     availableWidth < 520
       ? GRID_LAYOUT.labelWidthNarrow
       : GRID_LAYOUT.labelWidthWide;
-  const gap =
-    availableWidth < 520 ? GRID_LAYOUT.minGap : GRID_LAYOUT.maxGap;
+  const gap = availableWidth < 520 ? GRID_LAYOUT.minGap : GRID_LAYOUT.maxGap;
   const rawCellSize = (availableWidth - labelWidth - cols * gap) / cols;
   const cellSize = Math.min(
     GRID_LAYOUT.maxCellSize,
@@ -84,6 +86,25 @@ const updateResponsiveGridMetrics = () => {
   dom.gridWrapper.style.setProperty("--grid-gap", `${gap}px`);
   dom.gridWrapper.style.setProperty("--grid-cell-size", `${cellSize}px`);
 };
+
+const updateButtonWrapState = () => {
+  if (!dom.buttons || !dom.primaryButtons || !dom.storageButtons) return;
+
+  const primaryRect = dom.primaryButtons.getBoundingClientRect();
+  const storageRect = dom.storageButtons.getBoundingClientRect();
+  const topDelta = storageRect.top - primaryRect.top;
+  const currentlyWrapped = dom.buttons.classList.contains("is-wrapped");
+  const wrapThreshold = currentlyWrapped ? 2 : 6;
+  const wrapped = topDelta > wrapThreshold;
+  dom.buttons.classList.toggle("is-wrapped", wrapped);
+};
+
+if (dom.buttons && typeof ResizeObserver !== "undefined") {
+  const buttonLayoutObserver = new ResizeObserver(() => {
+    updateButtonWrapState();
+  });
+  buttonLayoutObserver.observe(dom.buttons);
+}
 
 initializeSoundSelect();
 
@@ -174,6 +195,7 @@ sequencer.on("step", ({ stepIndex, hits }) => {
     cols: s.cols,
   });
   updateResponsiveGridMetrics();
+  updateButtonWrapState();
   gridView.renderBeatGuides(s.cols);
   playheadView.renderPlayhead({ stepIndex: s.stepIndex });
 }
@@ -202,6 +224,7 @@ dom.soundSelect.addEventListener("change", (e) => {
 window.addEventListener("resize", () => {
   const { cols, stepIndex } = sequencer.getState();
   updateResponsiveGridMetrics();
+  updateButtonWrapState();
   gridView.renderBeatGuides(cols);
   if (!transport.isPlaying()) return;
   playheadView.positionPlayhead(

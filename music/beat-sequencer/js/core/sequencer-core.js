@@ -155,10 +155,19 @@ export function createSequencer({
     grid: snapshotGrid(),
   });
 
-  const applyPattern = ({ cols, octaves: nextOctaves, tempo: nextTempo, grid: nextGrid }) => {
+  const applyPattern = ({
+    cols,
+    octaves: nextOctaves,
+    tempo: nextTempo,
+    grid: nextGrid,
+  }) => {
     if (!Number.isInteger(cols) || cols <= 0) return false;
     if (!Number.isInteger(nextOctaves) || nextOctaves <= 0) return false;
-    if (typeof nextTempo !== "number" || !Number.isFinite(nextTempo) || nextTempo <= 0) {
+    if (
+      typeof nextTempo !== "number" ||
+      !Number.isFinite(nextTempo) ||
+      nextTempo <= 0
+    ) {
       return false;
     }
     if (!Array.isArray(nextGrid)) return false;

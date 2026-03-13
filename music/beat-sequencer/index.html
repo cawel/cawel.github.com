@@ -73,40 +73,51 @@
       </div>
     </section>
 
-    <fieldset id="transportPanel" aria-label="Transport Section">
-      <div id="buttons" role="group" aria-label="Transport Controls">
-        <button
-          id="playBtn"
-          class="play"
-          aria-label="Play"
-          title="Play"
-        ></button>
-        <button
-          id="stopBtn"
-          class="stop"
-          aria-label="Stop"
-          title="Stop"
-          disabled
-        ></button>
-        <button
-          id="clearBtn"
-          class="clear"
-          aria-label="Clear grid"
-          title="Clear Grid"
-        >CLEAR</button>
-        <span class="transport-separator" aria-hidden="true"></span>
-        <button
-          id="memoryBtn"
-          class="memory"
-          aria-label="Save pattern to memory"
-          title="Save Pattern (Coming Soon)"
-        >MEMORY</button>
-        <button
-          id="recallBtn"
-          class="recall"
-          aria-label="Recall pattern from memory"
-          title="Recall Pattern (Coming Soon)"
-        >RECALL</button>
+    <fieldset id="actionPanel" aria-label="Playback and Pattern Controls">
+      <div id="buttons" role="group" aria-label="Playback and Storage Controls">
+        <div class="primary-buttons">
+          <button
+            id="playBtn"
+            class="play"
+            aria-label="Play"
+            title="Play"
+          ></button>
+          <button
+            id="stopBtn"
+            class="stop"
+            aria-label="Stop"
+            title="Stop"
+            disabled
+          ></button>
+          <button
+            id="clearBtn"
+            class="clear"
+            aria-label="Clear grid"
+            title="Clear Grid"
+          ></button>
+        </div>
+        <div
+          id="storageButtons"
+          class="storage-buttons"
+          aria-label="Storage Controls"
+        >
+          <button
+            id="memoryBtn"
+            class="memory"
+            aria-label="Save pattern"
+            title="Save Pattern"
+          >
+            SAVE
+          </button>
+          <button
+            id="recallBtn"
+            class="recall"
+            aria-label="Recall pattern from memory"
+            title="Recall Pattern"
+          >
+            RECALL
+          </button>
+        </div>
       </div>
     </fieldset>
 
@@ -117,7 +128,9 @@
     </div>
 
     <footer class="app-footer" aria-label="Application Footer">
-      <p class="footer-copy">Beat Sequencer &middot; <span id="footerYear"></span></p>
+      <p class="footer-copy">
+        Beat Sequencer &middot; <span id="footerYear"></span>
+      </p>
     </footer>
 
     <script type="module" src="./js/app-ui.js"></script>

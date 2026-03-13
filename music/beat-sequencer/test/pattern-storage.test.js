@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createPatternStorage, STORAGE_KEY } from "../js/core/pattern-storage.js";
+import {
+  createPatternStorage,
+  STORAGE_KEY,
+} from "../js/core/pattern-storage.js";
 
 const createMemoryStorage = () => {
   const store = new Map();

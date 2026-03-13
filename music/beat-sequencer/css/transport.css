@@ -1,5 +1,6 @@
-#transportPanel {
+#actionPanel {
   margin-top: 1rem;
+  margin-bottom: 1.15rem;
   background:
     linear-gradient(180deg, rgba(56, 74, 82, 0.34), rgba(15, 23, 26, 0.75)),
     linear-gradient(165deg, #2a3840, #1b262c);
@@ -13,22 +14,47 @@
 
 #buttons {
   display: flex;
-  gap: 0.95rem;
+  column-gap: 0.95rem;
+  row-gap: 0.75rem;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 0.35rem 0.15rem 0.2rem;
 }
 
-.transport-separator {
+.primary-buttons,
+.storage-buttons {
+  display: flex;
+  gap: 0.95rem;
+  align-items: center;
+}
+
+.storage-buttons {
+  position: relative;
+  padding-left: 0.95rem;
+  margin-left: 0.2rem;
+}
+
+.storage-buttons::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 1px;
   height: 42px;
+  transform: translateY(-50%);
   background: linear-gradient(
     180deg,
     rgba(209, 231, 239, 0),
     rgba(209, 231, 239, 0.55),
     rgba(209, 231, 239, 0)
   );
-  margin: 0 0.1rem;
+  opacity: 1;
+  transition: opacity 0.12s ease;
+}
+
+#buttons.is-wrapped .storage-buttons::before {
+  opacity: 0;
 }
 
 button {
@@ -83,11 +109,35 @@ button.stop::before {
 button.clear {
   background: linear-gradient(170deg, #ffe3a0, #f0b64f);
   box-shadow: 0 6px 10px rgba(73, 52, 15, 0.45);
-  color: #3f2d0b;
-  font-family: "Rajdhani", "Barlow", sans-serif;
-  letter-spacing: 0.06em;
-  font-size: 0.9rem;
-  line-height: 1;
+}
+
+button.clear::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4b360f;
+  border-radius: 4px;
+  background:
+    linear-gradient(#4b360f, #4b360f) 33% 0 / 2px 100% no-repeat,
+    linear-gradient(#4b360f, #4b360f) 66% 0 / 2px 100% no-repeat,
+    linear-gradient(#4b360f, #4b360f) 0 33% / 100% 2px no-repeat,
+    linear-gradient(#4b360f, #4b360f) 0 66% / 100% 2px no-repeat;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button.clear::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  border-radius: 999px;
+  background: #4b360f;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-35deg);
 }
 
 button.memory {
