@@ -27,9 +27,11 @@ Somewhere three decks below, an alien artifact hums in its magnetic cradle in th
 The Commander's Doubt
 
 ### Content
-Commander Voss runs pre-shift ops when you push through the hatch—four subordinates bent over terminals, a wall of tracking screens, and a ceramic coffee mug he sets down with the deliberate care of a man who has already decided you're wasting his time. You've seen that expression in a dozen versions of this conversation: the locked jaw, the flat assessment, the patience worn thin before you've opened your mouth.
+Commander Voss runs pre-shift ops when you push through the hatch—four subordinates bent over terminals, a wall of tracking screens, and a ceramic coffee mug he holds with the slow deliberate grip of a man who has already decided you're wasting his time. You've seen that expression in a dozen versions of this conversation: the locked jaw, the flat assessment, the patience worn thin before you've opened your mouth.
 
-You tell him a Fracture cluster will breach the observation deck at 06:47. Seventeen will die. The artifact in the lower vault is connected. Voss listens with his arms crossed, studies you for three full seconds—not dismissal, appraisal—and tells you station psych can see you within the hour.
+You tell him a Fracture cluster will breach the observation deck at 06:47. Seventeen will die. The artifact in the lower vault is connected. Voss listens, one hand still around his mug, studies you for three full seconds—not dismissal, appraisal—then sets his coffee down.
+
+"Alien breach, exact bearing, seventeen dead," he says. "And I'm guessing this isn't the first time you've told someone." He doesn't say it with contempt. He says it the way someone logs a discrepancy: flat, precise, covering his bases. Station psych can see you within the hour.
 
 You've burned loops on Voss. Rank won't move him. Urgency won't. Pleading makes it worse. But precise, verifiable data—coordinates he can check against his own instruments before the breach—cracked him once. The risk is real: give him that data and he'll either mobilize or lock you out of every system on the station.
 
@@ -37,7 +39,7 @@ In the lower corridors, the ring C construction crews are finishing a hull repai
 
 ### Choices
 1. Give Voss the exact breach coordinates and timing, down to the second -> 4
-2. Leave Voss—arm the construction workers in ring C yourself -> 5
+2. Leave Voss—get to ring C and find another way to stop the breach -> 5
 
 ## Chapter 3
 ### Title
@@ -55,8 +57,8 @@ She's the first person in any loop to reach this conclusion on her own. The hair
 "Whatever's coming," she says, tapping the readout, "it'll be here in about two hours."
 
 ### Choices
-1. Help Dara isolate the artifact before the Fracture can sync with it -> 6
-2. Ask Dara if the countdown can be redirected—weaponized against whatever's coming -> 5
+1. Go with Dara to the artifact vault—understand what the signal means before the Fracture arrives -> 6
+2. Push Dara to act now—reroute the array and intercept the signal before it reaches the station -> 5
 
 ## Chapter 4
 ### Title
@@ -71,7 +73,7 @@ At 06:47:21 the proximity alarm screams. Voss stares at you across the ops table
 
 "Talk fast," he says. Voice level. Whatever he's feeling, he's boxed it already.
 
-You outline two options. First: a coordinated intercept team on the observation deck, using the artifact's beacon signal to attempt communication before the breach. Second: seal the lower vault and trigger a controlled overload of the artifact's power coupling—collapse the beacon and the Fracture's reason for being here. Both carry risk. One gambles on contact. The other destroys what you don't understand.
+You outline two options. First: a coordinated intercept team on the observation deck, using the artifact's active output to attempt communication before the breach. Second: seal the lower vault and trigger a controlled overload of the artifact's power coupling—collapse whatever signal it's emitting and the Fracture's reason for being here. Both carry risk. One gambles on contact. The other destroys what you don't understand.
 
 "Your call," Voss says. "I'll back whichever you choose."
 
@@ -84,11 +86,11 @@ You outline two options. First: a coordinated intercept team on the observation 
 The Cascade
 
 ### Content
-Good intentions collide in the cargo corridors. Armed construction workers from ring C—some organized by crew who heard the proximity warnings, others who raided the equipment lockers on their own initiative—press toward the observation deck. In the engineering bay two sections forward, Dara Osei's team reroutes power to the artifact array without clearance, trying to stabilize readings that have been spiking all morning. Station security, alerted by reports of armed civilians, moves to intercept both groups. Three factions, fast and blind, each certain they're the only rational actors in a crisis no one has fully briefed.
+Good intentions collide in the cargo corridors. The ring C lockers are already open when you get there—stripped by workers who didn't wait for authorization. Armed construction workers—some responding to the automated proximity alerts the artifact's own pulses have been tripping since first shift, others who simply decided to act when the walls started groaning—press toward the observation deck. In the engineering bay two sections forward, Dara Osei's team reroutes power to the artifact array without clearance, trying to stabilize readings that have been spiking all morning. Station security, alerted by reports of armed civilians, moves to intercept both groups. Three factions, fast and blind, each certain they're the only rational actors in a crisis no one has fully briefed.
 
 The artifact pulses three times in rapid succession. Each burst travels through the deck plates like a physical blow—you feel it in your back teeth more than your ears. A frequency you've never registered in any previous loop. The walls groan and your vision smears at the edges for one nauseating second. In engineering, a pressure coupling detonates with a crack like a gunshot.
 
-The Fracture cluster is still eleven minutes out. You're already losing the station from the inside. Every previous loop, you kept these factions separate by choosing one ally. This loop they're all in motion at once, and you're standing in a corridor with debris drifting past your boots and no clear play remaining. The artifact vault is three sections below. The emergency pods are one section aft.
+The Fracture cluster is still eleven minutes out. You're already losing the station from the inside. Every previous loop, you kept these factions separate by choosing one ally. This loop they're all in motion at once, and you're standing in a corridor with debris skittering past your boots and no clear play remaining. The artifact vault is three sections below. The emergency pods are one section aft.
 
 ### Choices
 1. Sprint to the artifact vault and contain the pulse before it cascades further -> 6
@@ -101,9 +103,11 @@ The Artifact Room
 ### Content
 The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle on the central platform: a latticed sphere the size of your palm, its surface a mesh of interlocking curves in a material that scatters the utility lights wrong—giving back a faint iridescence no spectral register in the station's database can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own.
 
-Dara Osei—the station's lead signal analyst, the person who first identified the artifact's countdown pattern—is already at the vault console, bent over the readings with the composure of someone who has decided the crisis will wait until she finishes her analysis. Her data confirms what you've circled toward across dozens of loops but never proved.
+Dara Osei—the station's lead signal analyst, the person who first identified the artifact's countdown pattern—moves straight to the vault console and bends over the readings with the composure of someone who has decided the crisis will wait until she finishes her analysis. Dara pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks—the countdown she's been tracing—align with the cluster's vector in a single locked curve.
 
-The artifact is the loop's anchor. Each time the Fracture reaches Varda, it rewinds this morning—not as an attack, but as a fail-safe. Its logic is preservation: reality resets until conditions encoded in its waveform are met. The Fracture entities aren't invading. They're following a distress beacon—this artifact—sent across space for longer than humanity has occupied this sector. They're trying to recover something they lost. Seventeen people have died every loop not because the Fracture wanted them dead, but because neither side understood quickly enough what was happening.
+"It's not a countdown to an attack," she says. Her finger traces the peaks without touching the glass. "It's a homing signal. Whatever's in this cradle has been broadcasting a distress call. Whatever's coming has been answering it across a distance I can't calculate."
+
+The rest assembles itself. The artifact is the loop's anchor: each time the Fracture reaches Varda without the signal being answered, it rewinds the morning—not as aggression, but as a fail-safe. The Fracture aren't invading. They're following a beacon sent across space for longer than humanity has occupied this sector, trying to recover something they lost. Seventeen people have died every loop not because anyone intended harm, but because neither side understood what the other was saying before the breach.
 
 That understanding hits you like a door opening in a room you'd forgotten had walls.
 
@@ -116,7 +120,7 @@ That understanding hits you like a door opening in a room you'd forgotten had wa
 First Contact
 
 ### Content
-Your intercept team reaches the observation deck seconds before the outer pane cracks. Suits sealed, magnetic anchors locked along the rail, weapons charged—and then you do something no previous loop allowed. You patch into the artifact's active beacon from the vault terminal and override its distress cycle, replacing it with a structured pulse: three short, three long, three short. Shaped from the artifact's own resonance but modulated to show deliberate intent. Not a signal repeating itself. A conscious reply.
+Your intercept team reaches the observation deck seconds before the outer pane cracks. Suits sealed, magnetic anchors locked along the rail, weapons charged—and then you do something no previous loop allowed. You patch into the artifact's active signal through the ops uplink—Voss patched the vault array into the intercept team's comm channel before you took position—and interrupt its output, replacing it with a structured pulse: three short, three long, three short. Transmitted on the artifact's own frequency but structured to show deliberate, conscious intent. Not a signal repeating itself. A reply.
 
 The Fracture entities stop. Through the reinforced glass you see them clearly for the first time—dozens of angular silhouettes spread across the starfield, dark and jagged against the void, each one distinct, each one held absolutely still in a way that empties the air from your lungs.
 
@@ -124,9 +128,13 @@ Eleven minutes pass. No shared language. No protocol. Your team holds its breath
 
 The artifact pulses once—soft, clear—and goes dark. The loop does not reset.
 
+You key your comm. "All units hold fire."
+
 You stand at the viewport long after your team lowers their weapons, watching the Fracture hold position in the silence outside the glass. This was never an invasion. The artifact was a beacon placed here before the station's founding, and the Fracture have been answering it across the dark for longer than you can calculate.
 
-You key your comm. "All units hold fire." The silence that follows is the first genuinely new moment you've experienced in a span your memory can no longer measure.
+Three hours later, without signal or ceremony, each angular shape separates and dissolves into its own trajectory. They received their answer. Whatever the artifact told them, it was enough to draw them across that distance—and enough to let them leave.
+
+The silence that follows is the first genuinely new moment you've experienced in a span your memory can no longer measure.
 
 ### Choices
 The End
@@ -136,7 +144,7 @@ The End
 Controlled Burn
 
 ### Content
-The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. Dara Osei—the station's lead signal analyst, the person who first mapped the artifact's countdown—runs the containment alignment at the vault console. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it.
+The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. Dara Osei—the station's lead signal analyst, the person who first mapped the artifact's countdown—runs the containment alignment at the vault console. Voss redirected her here the moment she filed a containment request with ops; the same instinct that drove her to map the countdown had already worked out how to end it. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it.
 
 You reach for the panel when the readings destabilize. She's already there. She shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
 
@@ -182,7 +190,7 @@ Dara looks at you. "You okay? You look like you've been awake for a week."
 
 "Longer."
 
-You sit on the floor of the vault, the empty cradle humming above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom. For the first time in a span your memory cannot fully measure, you feel like a person with a future instead of a loop.
+You sit on the floor of the vault, the empty cradle silent above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom. For the first time in a span your memory cannot fully measure, you feel like a person with a future instead of a loop.
 
 ### Choices
 The End
