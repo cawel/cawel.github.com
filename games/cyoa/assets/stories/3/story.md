@@ -87,7 +87,7 @@ Two factions have reached the council site and neither will yield. The Accelerat
 The Convergence Vote
 
 ### Content
-The council chamber is a repurposed research station forty meters underground, lit by generator banks and filled with people who have not slept in days. Hybrid envoys sit beside human delegates who regard them with a wariness that has not yet hardened into hostility. The recycled air smells of too many arguments held in too small a space.
+The council chamber is a repurposed research station forty meters underground, lit by generator banks and filled with people who have not slept in days. Early-adapted envoys — people who underwent the transformation in the first wave — sit beside unmodified delegates who regard them with a wariness that has not yet hardened into hostility. The recycled air smells of too many arguments held in too small a space.
 
 The debate has circled the same question for thirty-one hours: does survival justify removing consent? The Accelerationist position is not cruel—it is mathematical. Every hour of voluntary delay increases mortality in vulnerable regions. The Continuity position is not naive—it is foundational. A species that survives by eliminating choice has already lost something no subsequent generation can recover.
 
@@ -108,7 +108,7 @@ The transformation rolls out under emergency mandate within seventy-two hours. M
 
 The resistance zones are a harder accounting. Communities that refused modification are reclassified as adaptation-critical and processed under emergency protocols that leave no room for refusal. Dissent among the newly transformed is addressed through neurological stabilization—a phrase that means something specific, clinical, and irreversible. The people making these decisions are not monsters. They are following the logic you helped set in motion, extending it to conclusions you did not fully model when you stood in the chamber and said the word "endorse."
 
-History records you as the orbital witness who saved humanity's biological continuity. Survivors who still grieve in the old way call you the voice that signed away consent. Both descriptions are accurate. You spend a long time deciding which one you can live with.
+History records you as the orbital witness who saved humanity's biological continuity. The record is accurate. So is the one kept by survivors who still grieve in the old way, who call you the voice that signed away consent. You spend a long time understanding that these are not competing accounts. They are the same account. The survival and the mechanism that produced it arrived together, and there is no version of the ledger in which you hold one without the other.
 
 ### Choices
 The End
