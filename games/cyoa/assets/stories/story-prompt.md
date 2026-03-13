@@ -124,7 +124,7 @@ Follow this format exactly so the story can be parsed by the app:
 3. Chapters:
   - Start chapters at `## Chapter 1`
   - Use ascending chapter numbers without gaps
-  - Total chapter count: **10 to 20** chapters
+  - Total chapter count: **8 to 20** chapters
   - Each chapter must contain all three subsections in this order:
     - `### Title`
     - `### Content`
