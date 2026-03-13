@@ -295,21 +295,51 @@
         },
         {
           "number": 6,
-          "title": "Cataloged",
-          "llmPrompt": "Create a haunting tragic maritime-fantasy ending scene, dramatic interior composition. The abyss wing floods as a forbidden volume lies open, pages spiral in violent currents, and a lantern dies in the dark. Show the protagonist overwhelmed by both water pressure and impossible knowledge. Palette: deep teal, black water, pale glyph light. No explicit gore, no text, no watermark.",
-          "endingType": "very_bad"
+          "title": "The Deep Passage",
+          "llmPrompt": "Create a mythic maritime fantasy image, forbidden abyss wing descent. A blue-lit stone passage deep beneath a sunken library, chained volumes pressed flat in iron brackets on both walls. At the far end, a single reading stand holds an iron-bound book lying unchained on it—cover engraved with careful lettering, the only unchained object in the entire corridor, left there deliberately. As the viewer-protagonist reaches the stand, the passage behind seals with the quiet precision of a filing mechanism, the blue luminescence brightening a measured degree. No dramatic threat—only the patient architecture of a system completing its purpose. Mood: the precise moment of no return, beauty of irrevocable commitment, cold institutional certainty that has done this before, no ending spoilers, no text, no watermark.",
+          "endingType": null
         },
         {
           "number": 7,
-          "title": "Keeper in the Dark",
-          "llmPrompt": "Create a grim bad-ending maritime tableau, interior-to-exterior composition. From a wealthy watchtower window, the protagonist remains physically safe while a storm-wrecked harbor and broken docks stretch below in darkness. Emphasize isolation, guarded wealth, and social collapse. Theme: power without trust. No text, no watermark.",
-          "endingType": "bad"
+          "title": "Orin's Offer",
+          "llmPrompt": "Create a mythic maritime fantasy image, lighthouse vault proposition scene. The warm dry vault beneath the lighthouse lens, nautical almanacs lining curved walls. A lean weathered harbor pilot—Orin—stands across the stone pedestal from the viewer-protagonist, his satchel already full of almanacs, posture carrying the measured patience of a man who reads twelve variables before committing to a course. Between them on the pedestal, the weather codex lies open. Neither figure has moved toward the door. Mood: a proposal made from inside the same information asymmetry both people share, calculation disguised as partnership, a competent person offering an arrangement that assumes competence, no ending spoilers, no text, no watermark.",
+          "endingType": null
         },
         {
           "number": 8,
           "title": "Harbor of Lanterns",
           "llmPrompt": "Create a hopeful coastal-fantasy finale image, twilight harbor panorama. Coordinated lantern signals arc across docks while crews prepare safely using public storm charts. Place the protagonist among townspeople teaching and coordinating rather than commanding alone. Tone: civic resilience, shared knowledge, and collective survival. Warm amber-and-sea-blue palette, no text, no watermark.",
           "endingType": "successful"
+        },
+        {
+          "number": 9,
+          "title": "Cataloged",
+          "llmPrompt": "Create a haunting tragic maritime-fantasy ending scene, dramatic interior composition. The abyss wing floods as a forbidden volume lies open, pages spiral in violent currents, and a lantern dies in the dark. Show the protagonist overwhelmed by both water pressure and impossible knowledge. Palette: deep teal, black water, pale glyph light. No explicit gore, no text, no watermark.",
+          "endingType": "very_bad"
+        },
+        {
+          "number": 10,
+          "title": "The Long Winter",
+          "llmPrompt": "Create a mythic maritime fantasy image, harbor authority office at dusk. A professional interior lit by desk lanterns—charts on the walls, a locked strongbox on the desk—where the viewer-protagonist sits with the comfortable stillness of someone whose instincts the harbor has learned to respect but not question. Through a salt-hazed window, one fleet's vessels are visible clearing the harbor ahead of weather that has not yet arrived. On the desk, a shell-bound codex lies closed, its front cover face-down. Mood: the specific comfort of a kept secret, institutional trust built on withheld foundations, the harbor's quiet outside the window beginning to ask a question, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 11,
+          "title": "The Council Table",
+          "llmPrompt": "Create a mythic maritime fantasy image, harbor council deliberation scene. A long stone table in a low-ceilinged chamber where six council officials and a cartographer examine a shell-bound weather codex laid open at the center. Two councilmembers face each other across the table with the measured tension of people whose positions are not hostile but are genuinely incompatible—maps and annotated charts spread between them, each line of argument visible in their posture. The viewer-protagonist sits at one end, the codex within reach, the harbor's quiet visible through a single salt-paned window behind the council chair. Mood: institutional deliberation under time pressure, the weight of a decision being distributed across people who will share its consequences, no ending spoilers, no text, no watermark.",
+          "endingType": null
+        },
+        {
+          "number": 12,
+          "title": "Keeper in the Dark",
+          "llmPrompt": "Create a grim bad-ending maritime tableau, interior-to-exterior composition. From a fortified harbor authority window, the protagonist remains physically safe while a storm-wrecked harbor and broken docks stretch below in darkness. Emphasize isolation, guarded knowledge, and the specific cost of trust withheld too long. Theme: survival without absolution. No text, no watermark.",
+          "endingType": "bad"
+        },
+        {
+          "number": 13,
+          "title": "The Partial Charts",
+          "llmPrompt": "Create a bittersweet maritime-fantasy ending image, harbor edge at late autumn. The viewer-protagonist stands at the stone lip of the harbor wall in flat grey morning light, looking out at functioning docks—vessels moving, charts posted, people working—but the scene holds two competing notice boards visible in the mid-distance, each offering weather forecasts under different names. The harbor works. The sky is unforgiving and ordinary. Mood: an outcome that is good enough and will always be good enough, the particular weight of a calculation that saves lives but does not resolve, muted palette, no text, no watermark.",
+          "endingType": "bittersweet"
         }
       ]
     },

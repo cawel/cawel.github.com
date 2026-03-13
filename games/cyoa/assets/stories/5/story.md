@@ -1,107 +1,203 @@
 # The Sunken Library
 
 ## Keywords
-- library
-- tides
-- secrets
+- maritime
+- forbidden
+- trust
 
 ## Chapter 1
 ### Title
 Steps Below the Harbor
 
 ### Content
-You descend the barnacled steps that appear only at extreme low tide, salt wind cutting your face and the harbor bells groaning somewhere above. The stone is slick under your boots—green with algae, notched by decades of tidal grinding. You carry an empty storm ledger for the council, because each hurricane season has grown deadlier and this one may break the city. Rumor says the Sunken Library holds a weather codex that predicts impossible tides, and impossibility is exactly what your harbor needs.
+The bronze doors appear only at extreme low tide, and this morning the harbor has withdrawn further than any chart records. You descend the barnacled stairway carved into the seawall—one hand on the cold iron rail, the other gripping a storm ledger and a council mandate. Hurricane season arrives in three weeks. The last two shattered records. Someone must find the weather codex cited in the old navigators' logs, the one said to hold a century of pressure readings and storm-track patterns no living surveyor has reproduced.
 
-At the bronze doors, a carved warning catches your lantern light: "When the third bell tolls, leave or be cataloged." You do not know how long you have before the third bell. You step inside anyway.
+Salt spray finds your face even here, below the waterline. A carved inscription catches your lantern light at the threshold: "When the third bell tolls, leave or be cataloged." You do not know when the third bell last rang, or when the next will come. The doors stand open, breathing cold salt air from somewhere deeper inside.
+
+In the entry hall, two passages diverge. One leads right, lit by amber wall sconces beneath a cartographer's compass carved into the arch. The other descends left into blue-lit darkness, its threshold crossed by a chain hung at knee height.
 
 ### Choices
-1. Search the mapped halls for the weather codex -> 2
-2. Explore the restricted abyss wing for faster answers -> 3
+1. Take the amber-lit passage toward the mapped halls -> 2
+2. Step over the chain into the blue-lit restricted passage -> 3
 
 ## Chapter 2
 ### Title
 Cartographer's Hall
 
 ### Content
-You enter a vaulted chamber lined with tide maps stitched on whale-skin, their edges curling in air that smells of brine and old ink. The charts cover centuries of surge patterns and seasonal drift—more data than any living cartographer has assembled. A translucent librarian materializes near the central column, its outline flickering like light through deep water. It regards you for a long moment, then speaks in a voice like water over stone: "What do you seek?"
+The mapped hall opens into a vaulted chamber where centuries of tide charts line the walls on whale-skin, their edges lifting in brine-scented air. Annotations cover the earlier layers: different inks, different hands, generations of navigators writing corrections and extensions over each other's work across decades they would never share. The knowledge in this room was not discovered—it was accumulated, argument by argument, winter by winter.
 
-You answer truthfully: your harbor is running out of time, and you need forecasts to keep people alive. Something in your honesty satisfies a condition you cannot name. The spirit points toward a passage leading upward—the lighthouse vault, where the codex is kept—and fades without another word.
+A translucent figure materializes beside the central column before you can study the charts in full. Its form shifts like light filtered through moving water, its face composed and entirely without hurry. When it speaks, the voice comes from slightly behind the sound: "The weather codex. For storm warning." A statement, not a question. It points upward along a passage to the right—the lighthouse vault—then fades without further instruction, leaving you with the distinct impression that it has made this assessment many times before and found most of the answers unsatisfactory.
+
+From somewhere below, through the floor stone, you catch it: deliberate footsteps, quiet with the care of someone moving where they have no permission to be.
 
 ### Choices
-1. Follow the spirit's direction to the lighthouse vault -> 4
-2. Ignore it and seek forbidden shortcuts in the abyss wing -> 3
+1. Follow the spirit's direction toward the lighthouse vault -> 4
+2. Investigate the sounds from the restricted passage -> 3
 
 ## Chapter 3
 ### Title
 Abyss Wing
 
 ### Content
-The abyss wing is colder and deeper than the library's main halls, lit by a faint blue luminescence with no visible source. Chained volumes line the walls and hum when you pass—a low resonance that settles behind your teeth and stays there. One iron-bound book sits unchained on a reading stand, its cover engraved with a promise: complete mastery of hidden currents, available to any reader with the resolve to finish it.
+The restricted passage descends into a cold that the stone has absorbed over centuries—settled and unmoving, completely separate from the sea's chill above. Blue luminescence fills the corridor from no visible source. The chained volumes lining both walls are pressed flat against iron brackets, and as you pass, they produce a sub-vocal resonance you feel behind your teeth and in the root of your jaw.
 
-The second bell shudders through the walls. You have one bell left before the library's warning takes effect. The unchained book waits with the patience of something that has never needed to rush. Somewhere above, the lighthouse vault holds the weather codex—a slower path, but one the library seems willing to let you walk.
+The passage forks. The left branch descends into deeper darkness, where a single reading stand is visible at the bottom—an iron-bound book lying unchained on it, its cover engraved with letters legible even at this distance: A Complete Theory of Hidden Currents, for the Reader With Resolve Enough to Finish It. The right branch climbs back upward toward the mapped levels.
+
+The second bell rings through the stone walls. Not above, not ahead—through. The vibration comes from the material itself, as though the building registers time differently from the air inside it. One bell remains before the inscription at the entrance makes its claim. The unchained book waits at the bottom of the left passage with the patience of something that has always had time to wait.
 
 ### Choices
-1. Read the forbidden volume for immediate total knowledge -> 6
-2. Leave the abyss wing and search for the codex vault -> 4
+1. Descend to the reading stand and examine the unchained book -> 6
+2. Take the right passage back up toward the lighthouse vault -> 4
 
 ## Chapter 4
 ### Title
 Lighthouse Vault
 
 ### Content
-You surface into a dry vault beneath the old lighthouse lens. The air is strangely warm after the cold below, and the walls are lined with nautical almanacs arranged by decade. The shell-bound weather codex rests on a stone pedestal at the center, its pages filled with a century of pressure readings, migratory storm tracks, and harbor-depth annotations written in several different hands. Someone—many someones—built this knowledge over time.
+The vault sits dry and warm beneath the lighthouse lens. Curved walls hold nautical almanacs arranged by decade, the spines worn at different depths from different readers—some barely touched, some nearly smooth. A column of ambient light descends from the lens mechanism above and pools on the stone pedestal at the center, where the shell-bound weather codex rests. You open it carefully. The pages hold pressure readings, migratory storm tracks, and harbor annotations in several different hands—navigators writing alongside and through each other across three generations, arguing in the margins, agreeing in revision marks, producing something no one of them could have produced alone.
 
-A note tucked inside the front cover reads: "Knowledge that saves must be shared, or it turns to tyranny." You can leave now with the codex and publish its methods for every captain in the harbor, or take it quietly and control who benefits from what you found.
+Tucked inside the front cover, in careful unhurried script: "Knowledge that saves must be shared, or it becomes tyranny. The third bell is not a punishment. It is a deadline."
+
+You notice a set of boot prints in the thin vault dust that are not yours—confident, recently made, leading in from the passage and out again. Someone was here before you, turned at least some of these same pages, and left in a direction you have not yet come from.
 
 ### Choices
-1. Study the codex further before leaving -> 5
-2. Take the codex in secret and keep control private -> 7
+1. Settle in and study the codex carefully before deciding anything -> 5
+2. Take the codex and leave now, before whoever made those tracks returns -> 7
 
 ## Chapter 5
 ### Title
 The Reading Chamber
 
 ### Content
-In a pearl-lit alcove off the vault, you work quickly through the codex's remaining pages. You copy out what matters practically: pressure-drop triggers, departure windows, harbor warning thresholds written plainly enough for any crew to use without arcane training. The third bell sings somewhere below your feet—distant but unmistakable. You still have time to leave with a complete public plan.
+A pearl-lit alcove opens off the main vault—a recess fit for one person and one lantern—and you work through the codex's sections against cold limestone. Pressure-drop thresholds. Departure windows. Warning sequences phrased plainly enough that any pier captain could act on them without specialized training. The third bell sings through the stone floor, faint and distant: present, not critical. You still have time to leave in order.
 
-You look at the remaining charts. There is more here, and some of it would give you personal leverage over competing fleets—routes no one else could predict, windows no one else could exploit. The bell's echo has not quite faded. You have to decide now.
+In the final section, the codex shifts register. The public storm-warning material ends, and something else begins: proprietary current patterns invisible to standard instruments, sailing windows that would let one fleet arrive at seasonal markets days ahead of any competitor. This knowledge was placed in the same binding as the public material, but it does not belong to the same purpose. In the council's hands it becomes civic infrastructure. In a single captain's hands it becomes dominance over every other captain who woke at the same hour and read the same winds.
+
+Someone new entered the vault while you were in this alcove—the boot prints you noticed earlier have been joined by others, fresh enough that the dust has not yet resettled into them. They approached the codex. They turned pages. They left through the entrance, and they left deliberately.
 
 ### Choices
-1. Escape with the codex plan and brief the council -> 8
-2. Stay to gather one more hidden chart for personal leverage -> 7
+1. Close the codex and leave with your copied public-use notes -> 8
+2. Stay in the alcove and wait to see who comes back for the remaining pages -> 7
 
 ## Chapter 6
 ### Title
-Cataloged
+The Deep Passage
 
 ### Content
-You open the forbidden book. Your mind floods with too many currents at once—direction, depth, temperature, pressure, and a dozen forces you have no name for, arriving simultaneously and refusing to resolve into anything usable. The knowledge is complete. You simply cannot move through it, the way a person caught in a riptide cannot swim against every direction of water at once.
+The iron-bound book sits on its reading stand with the stillness of long preparation. Up close, the engraving reads in full: A Complete Theory of Hidden Currents, for the Reader With Resolve Enough to Finish It. There is no lock, no ward, no discouragement beyond the inscription at the library's entrance—which you received.
 
-The third bell tolls. Water surges through the abyss wing in a cold, orderly rush, and your lantern drowns first. The library does not destroy you. It archives you—your voice joining the stacks as a low cautionary whisper, available to the next desperate reader who needs a warning they will likely ignore.
+The third bell arrives as a vibration through the stone rather than a sound. It travels up through your boots and your spine and the back of your skull, and as it passes through you the library changes. The chained volumes in their brackets lift slightly against their iron bands. The blue luminescence brightens a measured degree. Behind you, the passage seals with the quiet precision of a filing system completing a task it was built for.
+
+You are not locked in. You are filed.
+
+There may still be a route upward—through the stacks, around the fork, back toward the mapped levels—if you move now. Two minutes, perhaps less. The book waits in front of you, open to nothing yet, its pages still white in the blue light.
 
 ### Choices
-The End
+1. Open the book and read -> 9
+2. Leave the book and find another way out through the stacks -> 4
 
 ## Chapter 7
 ### Title
-Keeper in the Dark
+Orin's Offer
 
 ### Content
-You keep the codex private and use its forecasts to route your own fleet through every safe window while rival captains sail blind. For two seasons your profit is remarkable. Your reputation for impossible luck becomes a story people tell in the harbor taverns, then a story they tell with suspicion, then a story they stop telling you to your face.
+You hear him before you see him—footsteps in the vault passage with the measured rhythm of someone who has counted his distance and knows exactly where each step lands. The man who steps into the vault is lean and weathered, with a harbor pilot's stillness: the kind of patience that comes from reading twelve variables before committing to a single course adjustment. He introduces himself as Orin. His satchel is already full. Several almanacs from the upper shelves, he says; he noticed you in the alcove and thought it more efficient to speak here than to meet later in the harbor carrying separate pieces of the same picture.
 
-Three captains you undercut go bankrupt. The harbor pilot cooperative collapses. Trust across the docks quietly fails. When the black-season superstorm arrives, you issue a late warning but no one believes a word you say anymore. You survive behind reinforced glass and watch through it. Most of the old docks do not survive with you. The codex is still in your hands. It is not worth what it cost.
+He lays out his proposal without preamble: pool the materials, coordinate the forecasting advantage, split the returns between your interests and his fleet's priority routes. The council will dilute whatever you bring them, he says—spread it too thin, give it away too cheaply, and it loses its value as an edge. He is not incorrect about the council. He is also a man whose fleet controls two of the harbor's four most profitable berths and has held them for eleven years.
+
+"The library didn't flood getting this material to you as a public service," he says. "Don't walk out with less than what it cost."
 
 ### Choices
-The End
+1. Accept the partnership arrangement -> 10
+2. Decline and bring the full codex to the council independently -> 11
 
 ## Chapter 8
 ### Title
 Harbor of Lanterns
 
 ### Content
-You publish the codex methods in full, hold open workshops on the pier, and help captains build a shared stormwatch network across every harbor district. The knowledge travels fast because you let it. Within a season, warning systems are running that have nothing to do with you personally—maintained by dockhands, fishermen, and harbor pilots who treat the data as common infrastructure.
+You lay the pressure-drop sequences and storm-window calculations before the harbor council without conditions—the full material, no retained advantage. The council's first instinct is procedure: committees, licensing subcommittees, a draft framework for managed distribution. You push through a parallel track of public workshops on the pier, and the knowledge moves faster than committees can follow it. Within a season, captains are comparing pressure observations on the dock as a matter of course, cooperatives are maintaining shared charts, and the warning network has become something no single person owns.
 
-The next hurricane season is brutal. But coordinated departures and shelter timing save hundreds of lives that would otherwise have been lost. Children in the harbor district grow up treating emergency bulletins as basic civic knowledge—something everyone has, not a secret held by the right people. You entered the library looking for power. You left with responsibility instead, and your harbor lived.
+The hurricane season that follows is severe. The one after it is worse. Neither is catastrophic. Coordinated departure windows and shelter timing save hundreds of lives that the previous two seasons' chaos had not been able to. In the harbor district, children grow up treating storm bulletins as infrastructure—the way they treat the tide tables posted outside the harbormaster's office, public by long practice and not requiring explanation.
+
+You came into the library carrying a mandate and walked out carrying a responsibility. Most years the harbor does not know your name for it. The system you helped build does not require it.
+
+### Choices
+The End
+
+## Chapter 9
+### Title
+Cataloged
+
+### Content
+The pages are dense, and the knowledge is complete. Direction, depth, temperature, pressure differential, tidal resonance, magnetic drift, and a dozen forces for which you have no vocabulary—all arriving simultaneously, all at equal volume, with equal claim on your attention. It is not that the knowledge is harmful. It is that a person cannot stand in a riptide and choose a direction. They are moved.
+
+Water enters the abyss wing. Not suddenly—it rises with the systematic patience of a tide attending to its work, cold around your ankles, then your knees. Your lantern drowns at your thigh. The library's infrastructure does not hurry, because it has always had time, and it has done this before, and it will do this again without particular adjustment.
+
+You are not destroyed. You are cataloged.
+
+Your voice joins the chained stacks as a low resonance—a sub-vocal hum that future readers will feel in their teeth when they pass the section you have become. The next one who stops to listen will be someone exactly like you. They will have found the same reading stand. They will be certain they have the resolve to finish it.
+
+### Choices
+The End
+
+## Chapter 10
+### Title
+The Long Winter
+
+### Content
+The arrangement with Orin runs as designed. His fleet clears port ahead of every significant weather event. Your standing with the harbor authority becomes inexplicable in the way that genuine competence always appears inexplicable to people looking for a simpler reason—they settle on instinct, intuition, a feel for the sea that cannot be taught.
+
+By the third season, a harbor pilot's cooperative circulates a report with graphs. One fleet's clear-out rate before storm events versus the field average. The pattern is not subtle. Orin says the scrutiny will pass; he has navigated this kind of attention before. He is probably right.
+
+The codex is still locked in your desk. The note in the front cover—Knowledge that saves must be shared, or it becomes tyranny—you have not read in over a year, because there is a specific art to not opening the front cover of something you need to keep closed.
+
+### Choices
+1. Trust Orin—the scrutiny will pass, as he says -> 12
+2. Break from the arrangement and bring the full codex to the council -> 11
+
+## Chapter 11
+### Title
+The Council Table
+
+### Content
+The council chamber is smaller than the weight of what you carry into it—a long table, six officials, the harbor's cartographer seated as a technical witness. You set the weather codex in the center and describe where it came from—the sunken library, the mandate, the spirit's identification of your purpose—and what it contains. The council listens with the focused quiet of people who understand exactly what they are looking at.
+
+The dispute surfaces in the second hour. One councilmember argues for a structured release: vetted captains, licensed access, managed dissemination over several seasons. The knowledge stays useful if it stays governed. Another argues for immediate full publication: post it on the harbor exchange before winter, let every captain read it and begin building shared charts before next season's storms arrive. The value is in the network, not in the control.
+
+The codex is still in your hands. The council chair sets her pen down and looks at you directly. The harbor outside has been quiet for two weeks; the pressure charts say the quiet will not last.
+
+### Choices
+1. Recommend full immediate public release -> 8
+2. Recommend a structured, controlled program -> 13
+
+## Chapter 12
+### Title
+Keeper in the Dark
+
+### Content
+The cooperative's report circulates, is discussed at two public meetings, and is shelved. The scrutiny passes. Orin was right about that, as he tends to be right about the harbor's tolerance for inconvenient patterns. A fourth season. A fifth. The codex remains in your desk. The note in the front cover remains unread.
+
+The superstorm that ends it does not arrive without warning. You issued the warning—eighteen hours late, after Orin's full fleet had cleared the harbor, and by then the trust needed to act on a harbor authority bulletin had been spent across three seasons of self-serving accuracy. The dockworkers' cooperative had stopped believing official forecasts eighteen months prior. The smaller captains ran their own calculations. Their calculations were wrong.
+
+You survive behind reinforced glass in the harbor authority office and watch through it. Most of the old docks are not built to what you watch through. The codex is still in your desk. The note in the front cover says what it has always said. You have spent five years making careful choices, and you now know precisely what each of them cost.
+
+### Choices
+The End
+
+## Chapter 13
+### Title
+The Partial Charts
+
+### Content
+The structured program takes eighteen months to design and implement—committee work, licensing frameworks, a careful public rollout timed to the off-season. During those eighteen months, Orin—through channels and lawyers you cannot match—secures a licensing arrangement for a parallel forecasting service built from material he copied in the library before you arrived. His service launches three weeks after the council's, slightly narrower in scope, sold at a price that cooperative captains cannot easily afford.
+
+The council's program is better. It is free. It launches first. But the following hurricane season runs with two competing forecast services and enough civic confusion to produce two coordination failures and eleven deaths that a unified system launched four months earlier would have prevented.
+
+The knowledge is out. People survive who would not have survived otherwise. The overall harm is less—measurably, significantly less—than if you had kept the material private. The outcome is good enough to have been worth doing.
+
+You stand at the harbor's edge in the weeks after and measure what you chose against the alternative. What was saved is real. What was lost is also real. The calculation does not resolve into a verdict, which may be the most honest thing it could do.
 
 ### Choices
 The End
