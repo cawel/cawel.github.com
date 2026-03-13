@@ -26,6 +26,7 @@ const dom = {
   colSelect: document.getElementById("colSelect"),
   octSelect: document.getElementById("octSelect"),
   soundSelect: document.getElementById("soundSelect"),
+  footerYear: document.getElementById("footerYear"),
 };
 
 const initializeSoundSelect = () => {
@@ -40,6 +41,10 @@ const initializeSoundSelect = () => {
 };
 
 initializeSoundSelect();
+
+if (dom.footerYear) {
+  dom.footerYear.textContent = String(new Date().getFullYear());
+}
 
 let selectedSound = dom.soundSelect.value || DEFAULT_SOUND;
 
