@@ -55,13 +55,15 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Include at least **1 very bad ending** (failure, tragedy, or death).
   - Endings must feel like natural consequences of the reader's choices and a direct expression of the story's theme.
 
-10. **Emotional resonance**
+10. **Moral weight of dual legacies**: When an ending or reflection presents two contrasting ways the protagonist will be remembered or judged — one positive, one negative — make the intended relationship between them explicit in the prose. If the two verdicts are inseparable (claiming the positive outcome requires owning the negative mechanism that produced it), state that inseparability directly. Do not present a clearly positive verdict and a clearly negative one as symmetrical alternatives the reader must simply choose between; readers will resolve the asymmetry themselves and find no moral tension. The weight must come from the verdicts being *joined*, not from their opposition.
+
+11. **Emotional resonance**
   - Before writing each chapter, identify the specific feeling it should produce—dread, wonder, hope, grief, relief, or moral tension—and build toward it deliberately.
   - Earn emotional peaks through setup: characters and stakes must be established before they can be endangered, lost, or redeemed.
   - Avoid generic sentiment ("you feel afraid"). Show the physical and sensory experience of emotion—cold in the chest, the weight of silence, a name you can't bring yourself to say.
   - Let emotional tone shift across the story arc: early wonder, mounting dread, and hard-won resolution land harder when they contrast with each other.
 
-11. **Pacing and structure**
+12. **Pacing and structure**
   - Shape the whole story as a rising arc: an opening hook that establishes immediate danger or mystery, escalating complications through mid-chapters, a climax where the stakes are at their highest, and endings that resolve both plot and theme.
   - Vary chapter intensity deliberately: place a brief, sharp chapter after a dense one to give the reader room to breathe before the next escalation.
   - The first paragraph of Chapter 1 must hook the reader by placing them in a specific moment with sensory detail and immediate stakes. Establish who "you" are — your role, your situation, and what is at risk — before the first choice appears.
@@ -69,20 +71,21 @@ The reader is always the protagonist and is addressed directly as **"you"**.
   - Do not rush toward choices; give each chapter enough grounding that the decision feels weighty. Do not linger so long that momentum stalls.
   - **Chapter size consistency**: All chapters should be similar in length. No chapter should differ from the story's average chapter word count by more than 25%.
 
-12. **Book-like prose style**
+13. **Book-like prose style**
   - Use cinematic but concise prose.
   - Prioritize active voice and strong verbs.
   - Avoid repetition and filler.
   - Favor specific details over generic descriptions.
   - Write each chapter as multiple paragraphs, not a single block. Break naturally at shifts in focus: scene-setting, action, interiority, and revelation each warrant their own paragraph.
 
-13. **Reader clarity and internal consistency**
+14. **Reader clarity and internal consistency**
   - Every element named in a choice must already appear in that chapter's content. Never introduce a key term for the first time in a choice line.
   - Any invented entity, phenomenon, or faction central to the story must be described with at least one concrete sensory or visual detail the first time it appears.
   - When the protagonist survives a threat that kills another character, the narrative must make the physical reason explicit and plausible (different positions, barriers, sealed compartments, etc.).
   - State the location of key objects explicitly when those locations are pivotal to the plot.
   - **Pronoun clarity**: After a collective noun (e.g., "the swarm", "the cluster"), do not switch to a plural pronoun ("they") without an explicit bridging phrase that shows the group splitting into individuals.
   - **Timeline and number consistency**: When numeric details appear (distances, durations, counts), verify they do not contradict each other within the same chapter or across connected chapters.
+  - **Ambiguous category modifiers**: When a noun is qualified by a modifier that implies membership in multiple categories — such as *hybrid*, *composite*, *adapted*, *crossbred*, or *mixed* — the text must immediately name the specific categories being combined. Do not allow the reader to guess at the implied combination. "Hybrid envoys" must specify what two things are being merged; "adapted survivors" must clarify what they have been adapted from and to.
   - **Faction and allegiance clarity**: When multiple groups act in the same scene, state each group's allegiance or opposition explicitly on first appearance. Give each faction a distinct name and a one-line description of their goal when they first appear. Never assume the reader can infer who is allied with whom.
   - **Show before reference**: If the protagonist responds to dialogue, a question, or an event, that dialogue, question, or event must appear on the page first. Do not imply interactions that were never shown.
   - **Action must follow from context**: Any action the protagonist takes must make logical sense given what the reader already knows at that point in the story. If the action requires knowledge the reader doesn't yet have, provide that knowledge first. This rule takes priority over creating surprise — consequences can still be unexpected while the protagonist's actions remain grounded in what has been established.
