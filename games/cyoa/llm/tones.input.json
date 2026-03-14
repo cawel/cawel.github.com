@@ -1,0 +1,64 @@
+{
+  "tones": [
+    {
+      "name": "Adventurous",
+      "guidance": "Maintain a forward-moving, action-driven voice with clear stakes and momentum."
+    },
+    {
+      "name": "Mysterious",
+      "guidance": "Use measured pacing, implication, and sensory details that suggest more than they reveal."
+    },
+    {
+      "name": "Suspenseful",
+      "guidance": "Use short declarative sentences, tight focus, and close narrative distance."
+    },
+    {
+      "name": "Humorous",
+      "guidance": "Maintain tonal consistency with lightness while preserving stakes and branch coherence."
+    },
+    {
+      "name": "Spooky",
+      "guidance": "Sustain eerie atmosphere and mounting unease without losing plot clarity."
+    },
+    {
+      "name": "Epic / Heroic",
+      "guidance": "Use elevated vocabulary, wider scope, and measured cadence."
+    },
+    {
+      "name": "Curious / Investigative",
+      "guidance": "Prioritize observation, inference, and discovery-driven progression."
+    },
+    {
+      "name": "Wonder / Exploratory",
+      "guidance": "Highlight awe, novelty, and world discovery while preserving conflict stakes."
+    },
+    {
+      "name": "Dramatic",
+      "guidance": "Emphasize character pressure, consequence, and emotional turning points."
+    },
+    {
+      "name": "Heartwarming",
+      "guidance": "Use compassionate, humane framing without removing meaningful conflict."
+    },
+    {
+      "name": "Hopeful / Inspirational",
+      "guidance": "Aim for earned uplift through sacrifice, resilience, and credible progress."
+    },
+    {
+      "name": "Whimsical",
+      "guidance": "Use playful diction, longer flowing sentences, and a lighter narrative presence."
+    },
+    {
+      "name": "Surreal / Strange",
+      "guidance": "Use unexpected juxtapositions, dream-logic transitions, and matter-of-fact delivery of impossible details."
+    },
+    {
+      "name": "Melancholic",
+      "guidance": "Use longer reflective sentences with muted imagery, dwelling on absence and memory rather than action."
+    },
+    {
+      "name": "Satirical",
+      "guidance": "Use precise dry wit, ironic understatement, and detached contrast that exposes absurdity."
+    }
+  ]
+}
