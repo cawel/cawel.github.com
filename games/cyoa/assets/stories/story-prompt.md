@@ -1,4 +1,5 @@
 # CYOA Master Prompt
+**Version 3**
 
 Use this prompt to generate a high-quality, replayable Choose Your Own Adventure story in markdown.
 

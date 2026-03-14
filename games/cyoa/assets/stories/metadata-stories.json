@@ -6,7 +6,8 @@
     "approxTime": "6-8 min",
     "keywords": ["forest", "ruins", "mystery"],
     "chapters": 10,
-    "tone": "Mysterious"
+    "tone": "Mysterious",
+    "promptVersion": 2
   },
   {
     "number": 2,
@@ -15,7 +16,8 @@
     "approxTime": "5-7 min",
     "keywords": ["museum", "conspiracy", "paranormal"],
     "chapters": 10,
-    "tone": "Suspenseful"
+    "tone": "Suspenseful",
+    "promptVersion": 2
   },
   {
     "number": 3,
@@ -24,7 +26,8 @@
     "approxTime": "3-6 min",
     "keywords": ["space", "signal", "survival"],
     "chapters": 10,
-    "tone": "Dramatic"
+    "tone": "Dramatic",
+    "promptVersion": 2
   },
   {
     "number": 4,
@@ -33,7 +36,8 @@
     "approxTime": "5-7 min",
     "keywords": ["carnival", "clockwork", "wish"],
     "chapters": 8,
-    "tone": "Surreal / Strange"
+    "tone": "Surreal / Strange",
+    "promptVersion": 2
   },
   {
     "number": 5,
@@ -42,7 +46,8 @@
     "approxTime": "4-8 min",
     "keywords": ["maritime", "forbidden", "trust"],
     "chapters": 13,
-    "tone": "Mysterious"
+    "tone": "Mysterious",
+    "promptVersion": 3
   },
   {
     "number": 6,
@@ -51,7 +56,8 @@
     "approxTime": "4-6 min",
     "keywords": ["spaceship", "anomaly", "gate"],
     "chapters": 10,
-    "tone": "Epic / Heroic"
+    "tone": "Epic / Heroic",
+    "promptVersion": 2
   },
   {
     "number": 7,
@@ -60,7 +66,8 @@
     "approxTime": "4-7 min",
     "keywords": ["cat", "attic", "magic"],
     "chapters": 8,
-    "tone": "Whimsical"
+    "tone": "Whimsical",
+    "promptVersion": 2
   },
   {
     "number": 8,
@@ -69,7 +76,8 @@
     "approxTime": "5-9 min",
     "keywords": ["wizards", "dwarves", "dungeons"],
     "chapters": 9,
-    "tone": "Epic / Heroic"
+    "tone": "Epic / Heroic",
+    "promptVersion": 2
   },
   {
     "number": 9,
@@ -78,6 +86,7 @@
     "approxTime": "4-7 min",
     "keywords": ["loop", "countdown", "contact"],
     "chapters": 10,
-    "tone": "Suspenseful"
+    "tone": "Suspenseful",
+    "promptVersion": 3
   }
 ]
