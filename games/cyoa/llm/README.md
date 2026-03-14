@@ -13,13 +13,20 @@ Run the same pipeline repeatedly to build many stories over time.
 
 - Canonical tone catalog lives in `llm/tones.input.json`.
 - Load its contents as `TONE_CATALOG_JSON` when running templates `01`, `02`, and `03`.
-- `DESIRED_TONES` must be chosen from tone names in that file.
+- `TONE` is mandatory for template `01` and must be chosen from the tone `name` values in that file.
+
+## Audience Input
+
+- Canonical audience catalog lives in `llm/audiences.input.json`.
+- Load its contents as `AUDIENCE_CATALOG_JSON` when running template `01`.
+- `AUDIENCE` must be chosen from the audience `name` values in that file.
 
 ## Pipeline (5 Steps)
 
 ### Step 1 — Concept & Foundation (`01-concept-foundation.prompt.md`)
 
 Generate 3–5 story concepts, each built around a **central value conflict**, a protagonist fault line, characters with cross-purposes, constraining world rules, and pre-planned **foreshadowing seeds**.
+The selected `AUDIENCE` and mandatory `TONE` are both interpreted through their catalogs so audience fit and tonal discipline are established before architecture and drafting.
 
 Pick one concept manually before moving on.
 
@@ -70,19 +77,21 @@ Not a pipeline step. Use after the story is finalized when you need `metadata-st
 ## Typical Manual Run
 
 1. Load `tones.input.json` as `TONE_CATALOG_JSON`.
-2. Run `01` → get concepts → pick one.
-3. Run `02` with chosen concept → get architecture.
-4. Run `03` with concept + architecture → get story draft.
-5. Run `04` on draft → get critique.
-6. Run `05` with draft + critique → get final story.
-7. (Optional) Run `06` for metadata.
+2. Load `audiences.input.json` as `AUDIENCE_CATALOG_JSON`.
+3. Run `01` → get concepts → pick one.
+4. Run `02` with chosen concept → get architecture.
+5. Run `03` with concept + architecture → get story draft.
+6. Run `04` on draft → get critique.
+7. Run `05` with draft + critique → get final story.
+8. (Optional) Run `06` for metadata.
 
 ## Suggested Reusable Inputs
 
 ```json
 {
-  "AUDIENCE": "teen_and_adult",
-  "DESIRED_TONES": ["Suspenseful", "Mysterious"],
+  "AUDIENCE": "Teen and Adult",
+  "AUDIENCE_CATALOG_JSON": "<contents of llm/audiences.input.json>",
+  "TONE": "Suspenseful",
   "TONE_CATALOG_JSON": "<contents of llm/tones.input.json>",
   "CANDIDATE_COUNT": 4,
   "CHAPTER_COUNT": 12,

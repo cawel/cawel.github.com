@@ -5,10 +5,11 @@ Generate candidate concepts for one branching Choose Your Own Adventure story.
 
 ## Inputs
 
-- Tone catalog JSON: {{TONE_CATALOG_JSON}}
+- Audience catalog JSON: {{AUDIENCE_CATALOG_JSON}} // load from llm/audiences.input.json
+- Audience: {{AUDIENCE}} // must be one of the audience catalog names
+- Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from llm/tones.input.json
+- Tone: {{TONE}} // must be one of the tone catalog names
 - Number of candidates: {{CANDIDATE_COUNT}} (recommended 3–5)
-- Audience: {{AUDIENCE}}
-- Desired tones (optional): {{DESIRED_TONES}} — must be names from the tone catalog
 
 ## What Makes a Strong Concept
 
@@ -24,7 +25,9 @@ A great CYOA concept is not a setting or a premise — it is a **dilemma engine*
 ## Hard Rules
 
 - No generic or interchangeable premises. If swapping the setting doesn't break the concept, the concept is too thin.
-- `tone` must come from the provided tone catalog. Do not invent new tone labels.
+- `AUDIENCE` must match a `name` from the provided audience catalog, and the concept should reflect that audience's reading profile, emphasis, and guardrails.
+- `TONE` is mandatory and must match a `name` from the provided tone catalog. Do not invent new tone labels.
+- Every concept in the output must use the exact selected `TONE` value.
 - Each concept must support at least 3 endings: one genuinely good, one very bad, and one bittersweet or tragic.
 - Keywords must be real dictionary words that help a reader decide if the story interests them.
 

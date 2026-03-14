@@ -1,0 +1,89 @@
+{
+  "audiences": [
+    {
+      "name": "Middle Grade",
+      "ageRange": "8-12",
+      "readingProfile": "Fast-moving adventure, clear stakes, low ambiguity, concrete imagery, emotionally legible conflict.",
+      "storyEmphasis": [
+        "immediate danger or curiosity hooks",
+        "clean cause-and-effect consequences",
+        "memorable side characters with readable motives",
+        "hopeful momentum even in darker moments"
+      ],
+      "guardrails": [
+        "avoid graphic violence",
+        "avoid bleak nihilism",
+        "keep prose accessible and concrete",
+        "make consequences serious but not emotionally crushing"
+      ]
+    },
+    {
+      "name": "Teen",
+      "ageRange": "13-17",
+      "readingProfile": "Strong tension, identity pressure, sharper social dynamics, emotional intensity, and more complex tradeoffs.",
+      "storyEmphasis": [
+        "choices that test loyalty, courage, and self-definition",
+        "rising consequences with visible social and personal cost",
+        "foreshadowing that rewards attentive readers",
+        "characters whose motives partially conflict even when allied"
+      ],
+      "guardrails": [
+        "avoid explicit sexual content",
+        "avoid gratuitous gore",
+        "allow darker outcomes if they feel earned",
+        "keep the prose vivid without becoming opaque"
+      ]
+    },
+    {
+      "name": "Teen and Adult",
+      "ageRange": "14+",
+      "readingProfile": "Broad-audience crossover: accessible surface, layered subtext, strong pacing, and emotionally credible consequences.",
+      "storyEmphasis": [
+        "branching choices with meaningful moral and practical tradeoffs",
+        "clear external stakes with layered emotional stakes",
+        "characters who remain sympathetic even when opposed",
+        "ending variety that includes success, failure, and bittersweet cost"
+      ],
+      "guardrails": [
+        "avoid explicit sexual content",
+        "avoid shock for its own sake",
+        "allow tension, grief, and sacrifice when narratively grounded",
+        "balance readability with literary texture"
+      ]
+    },
+    {
+      "name": "Adult",
+      "ageRange": "18+",
+      "readingProfile": "Denser subtext, harder moral ambiguity, slower-burn tension when useful, and more psychologically complex consequences.",
+      "storyEmphasis": [
+        "choices with conflicting obligations and incomplete information",
+        "consequence chains that reframe earlier scenes",
+        "dialogue with subtext and strategic withholding",
+        "endings that join triumph with loss or guilt when appropriate"
+      ],
+      "guardrails": [
+        "no explicit sexual content unless separately requested",
+        "violence should serve character and theme, not spectacle",
+        "favor emotional precision over melodrama",
+        "keep ambiguity legible rather than muddy"
+      ]
+    },
+    {
+      "name": "Family",
+      "ageRange": "all-ages",
+      "readingProfile": "Intergenerational readability: lively pacing, low barrier to entry, wonder and tension without harshness, and emotionally clear choices.",
+      "storyEmphasis": [
+        "adventure, discovery, and relationship-driven conflict",
+        "choices that feel meaningful without becoming punishing",
+        "humor or warmth as contrast to danger",
+        "satisfying endings with clear closure"
+      ],
+      "guardrails": [
+        "avoid graphic violence",
+        "avoid cruelty as entertainment",
+        "avoid dense jargon without context",
+        "keep dark moments recoverable in tone"
+      ]
+    }
+  ]
+}
