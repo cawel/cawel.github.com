@@ -176,19 +176,19 @@
         {
           "number": 6,
           "title": "The Convergence Vote",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, underground council chamber deliberation. A repurposed research station forty meters below the surface, generator-lit, packed beyond capacity. Early-adapted delegates—visibly different—sit beside unmodified representatives, mutual wariness not yet hostility. Wall displays show diverging mortality projections for competing frameworks. The protagonist stands at a central podium: the only person in the chamber who watched the event begin from orbit. Mood: science meeting ethics in a space running out of time, a testimony that could provide shared ground or be weaponized by the first faction to claim it, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, underground crisis-council chamber deliberation. A repurposed research station forty meters below the surface, generator-lit, over capacity, air visibly hot and stale. On one side, the Acceleration Directorate under a projected mortality board; on the other, the Continuity Compact beneath legal protocol displays. Their leads are distinct and in direct opposition: Dr. Sera Vonn with one hand on the model stream, Mara El-Tayeb answering from the opposite tier. At center, the protagonist testifies at the podium with orbital data overlays showing synchronized blackout, pulsed atmospheric spread, and tower-linked acceleration windows. Mood: policy and ethics colliding under a closing clock, testimony that can be used to force compromise or justify compulsion, no ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 7,
           "title": "Survival Without Choice",
-          "llmPrompt": "Create a dystopian dark-success sci-fi ending image, underground repurposed research station composition. Human and hybrid delegates crowd a low-ceilinged bunker chamber lit by generator banks, faces exhausted and morally hollow. A holo-map confirms biosphere stabilization, but the air feels heavy with what was sacrificed. Place the protagonist centered, carrying the weight of an irreversible decision. No text, no watermark.",
+          "llmPrompt": "Create a dystopian dark-success hard-sci-fi ending image, adaptation command floor composition. Mandatory rollout in progress: tower schedules tightening across a wall display while resistance enclaves are reclassified on adjacent monitors under administrative language. Officials work with calm procedural precision, no visible chaos. The protagonist stands foreground, isolated in sharp light, facing records that split into two verdict columns—lives saved and consent surrendered—both true at once. Mood: survival achieved through an irreversible mechanism, institutional efficiency carrying moral damage as routine, no text, no watermark.",
           "endingType": "dark_success"
         },
         {
           "number": 8,
           "title": "The Last Burn",
-          "llmPrompt": "Create an intense tragic sci-fi disaster ending scene, high-energy composition. Crystalline towers vent ionized haze, filtration systems fail, and the protagonist kneels beside a final warning beacon in a storm of glowing particles. Use stark orange vs steel-blue contrast, hard atmospheric bloom, and collapsing infrastructure detail. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Create an intense tragic hard-sci-fi ending scene, adaptation-tower sabotage composition. In ion fog, a breached tower node vents bright particulate as the protagonist in a failing suit transmits burst data from a single functioning uplink. Nearby, a partially disabled first node has already rerouted, signaling the plan is too late to fully stop the rollout. Use stark orange vs steel-blue contrast, harsh atmospheric bloom, and urgent telemetry light on a damaged visor. Mood: deliberate sacrifice for information transfer under terminal conditions, no explicit gore, no text, no watermark.",
           "endingType": "very_bad"
         },
         {
@@ -200,7 +200,7 @@
         {
           "number": 10,
           "title": "The Human Clause",
-          "llmPrompt": "Create a hopeful hard-sci-fi diplomatic finale image, ceremonial council composition. A multinational assembly ratifies a charter beneath a holographic Earth, with transparent data streams visible to all delegates. The protagonist watches the signing with restrained relief. Mood: dignity, accountability, and hard-won hope. No text, no watermark.",
+          "llmPrompt": "Create a hopeful hard-sci-fi diplomatic finale image, public oversight hearing composition. A post-crisis policy chamber where adaptation protocols are debated in open session beneath transparent audit displays and a holographic Earth. Delegates from former opposing blocs are still visibly in disagreement but bound to procedure; no one can bypass consent architecture now. The protagonist observes from the witness section with restrained relief as oversight records remain visible to everyone. Mood: exhausted legitimacy, accountability that survived emergency rule, hard-won hope without triumphalism, no text, no watermark.",
           "endingType": "successful"
         }
       ]
