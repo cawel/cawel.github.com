@@ -1,7 +1,19 @@
 # LLM Single-Story Pipeline
 
-Reusable prompt templates for generating **one high-quality branching CYOA story per run**.
-Run the same pipeline repeatedly to build many stories over time.
+Reusable prompt templates for crafting **one high-quality branching CYOA story per run**.
+Send one message per step, in sequence. Each run produces a finished, revised story.
+
+## Why a Pipeline
+
+A single "write me a great CYOA story" prompt produces mediocre output because it forces the model to be a concept designer, structural architect, prose writer, critic, and editor all at once. Roles bleed into each other and each one is compromised.
+
+This pipeline forces **role separation**: each step defines a specific identity with distinct quality criteria. A concept architect thinks like a novelist scoping dilemmas. A narrative architect thinks like a showrunner planning structure. A story writer focuses entirely on prose and craft. A critic reads the result as a stranger. A revision editor changes only what the critique demands.
+
+## Why One Message Per Step
+
+When a message opens with a role description, the model anchors its entire response to that identity. Combining roles in one message causes the model to hedge across all of them. The most damaging failure mode: a combined critique+revision prompt produces a softened critique, because the model already knows it will have to execute the fixes. When the same run handles both critique and revision, critique quality drops because the model starts optimizing for easy fixes instead of full honesty.
+
+**Send one message per step.** After each step, inspect the output, adjust if needed, then pass it to the next step as input. The two natural human decision points are after step 01 (pick a concept) and after step 03 (read the draft). The other steps are pure execution.
 
 ## Design Principles
 
