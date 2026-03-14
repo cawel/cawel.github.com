@@ -21,6 +21,18 @@ When a message opens with a role description, the model anchors its entire respo
 - One clear role per template.
 - Manual-friendly: run each step in sequence, inspect output, adjust, continue.
 
+## Story Length Input
+
+Three length options control chapter count, ending count, and approximate word count:
+
+| Length | Chapters | Endings | Approx. Words |
+|--------|----------|---------|---------------|
+| **short** (default) | 8–10 | 3 | 1 000–1 500 |
+| **medium** | 11–14 | 3–4 | 1 500–2 500 |
+| **long** | 15–20 | 4–5 | 2 500–3 500 |
+
+Pass `STORY_LENGTH` to steps `02`, `03`, and `04`. If omitted, default to **short**.
+
 ## Tone Input
 
 - Canonical tone catalog lives in `llm/tones.input.json`.
@@ -33,7 +45,7 @@ When a message opens with a role description, the model anchors its entire respo
 - Load its contents as `AUDIENCE_CATALOG_JSON` when running template `01`.
 - `AUDIENCE` must be chosen from the audience `name` values in that file.
 
-## Pipeline (5 Steps)
+## Pipeline (6 Steps)
 
 ### Step 1 — Concept & Foundation (`01-concept-foundation.prompt.md`)
 
@@ -82,9 +94,12 @@ Apply the critique. Two internal passes:
 
 Produces the final story markdown.
 
-### Independent Utility — Metadata Extractor (`06-metadata-extractor.prompt.md`)
+### Step 6 — Metadata & Image Prompts (`06-metadata-extractor.prompt.md`)
 
-Not a pipeline step. Use after the story is finalized when you need `metadata-stories.json` and `metadata-images.json` entries.
+Extract structured metadata from the finalized story for the application's data layer and image-generation workflow:
+
+- **Story metadata** (`metadata-stories.json` entry): title, emoji, reading time, keywords, chapter count, tone.
+- **Image metadata** (`metadata-images.json` entries): one cinematic image prompt per chapter with consistent art style across the story, ending type classification, and no spoilers for non-ending chapters.
 
 ## Typical Manual Run
 
@@ -95,7 +110,7 @@ Not a pipeline step. Use after the story is finalized when you need `metadata-st
 5. Run `03` with concept + architecture → get story draft.
 6. Run `04` on draft → get critique.
 7. Run `05` with draft + critique → get final story.
-8. (Optional) Run `06` for metadata.
+8. Run `06` with final story → get metadata + image prompts.
 
 ## Suggested Reusable Inputs
 
@@ -106,8 +121,7 @@ Not a pipeline step. Use after the story is finalized when you need `metadata-st
   "TONE": "Suspenseful",
   "TONE_CATALOG_JSON": "<contents of llm/tones.input.json>",
   "CANDIDATE_COUNT": 4,
-  "CHAPTER_COUNT": 12,
-  "ENDING_COUNT": 4
+  "STORY_LENGTH": "short"
 }
 ```
 

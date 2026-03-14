@@ -98,7 +98,7 @@ Follow this structure exactly so the story can be parsed by the app:
    - Exactly 3 keyword bullets: `- keyword`
    - Real dictionary words that help a reader decide if the story interests them.
 
-3. Chapters starting at `## Chapter 1`, ascending with no gaps (8–20 total).
+3. Chapters starting at `## Chapter 1`, ascending with no gaps. Follow the chapter count from the architecture (short: 8–10, medium: 11–14, long: 15–20).
    Each chapter contains in order:
    - `### Title` — hints at content/mood without spoiling
    - `### Content` — the story prose
@@ -107,13 +107,17 @@ Follow this structure exactly so the story can be parsed by the app:
 4. Choices format:
    - Non-ending: numbered choices like `1. Do something -> 4`
    - Ending: exactly `The End`
-   - Usually 2 choices per non-ending chapter (occasionally 3 if justified)
+   - Every non-ending chapter must have at least 2 choices (occasionally 3 if justified). No single-choice chapters.
 
 5. Endings: 3–5 ending chapters. At least 1 successful, at least 1 very bad.
 
 6. Branch depth: every path from Chapter 1 to an ending passes through at least 4 chapters.
 
 7. All chapters must be similar in length — no chapter beyond ±25% of the story average.
+
+## Pre-Flight Check
+
+Before writing any prose, trace every possible path from Chapter 1 to each ending in the architecture. Count the chapters in each path. If any path has fewer than 4 chapters, **stop and report the violation** instead of writing the story. Do not attempt to fix the architecture yourself — that is Step 2's job.
 
 ## Output Contract
 

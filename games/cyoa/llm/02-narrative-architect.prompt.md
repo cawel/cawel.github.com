@@ -10,8 +10,10 @@ You never design a chapter graph and call it done. A branch map without an emoti
 
 - Approved concept JSON: {{CONCEPT_JSON}}
 - Tone catalog JSON: {{TONE_CATALOG_JSON}}
-- Chapter count target: {{CHAPTER_COUNT}} (8–20)
-- Ending count target: {{ENDING_COUNT}} (3–5)
+- Story length: {{STORY_LENGTH}} — one of:
+  - **short** (default): 8–10 chapters, 3 endings, ~1 000–1 500 words
+  - **medium**: 11–14 chapters, 3–4 endings, ~1 500–2 500 words
+  - **long**: 15–20 chapters, 4–5 endings, ~2 500–3 500 words
 
 ## Your Job
 
@@ -70,6 +72,7 @@ Plan endings that are thematic verdicts, not just plot conclusions.
 - Include at least one discovery-focused branch and one danger-focused branch.
 - Tone must match the approved concept and be valid in the tone catalog.
 - Cycle-proof all backward links: re-entering a chapter must not repeat a one-time event.
+- **Minimum path depth**: Every possible path from Chapter 1 to any ending must pass through **at least 4 chapters** (i.e. the ending chapter's position in the path is ≥ 4). This is non-negotiable — no early-exit shortcuts. Before finalizing the branch map, enumerate every path and verify this constraint. If any path is too short, add intermediate chapters or reroute choices until every path qualifies.
 
 ## Output Format
 
@@ -110,6 +113,11 @@ Return only a valid JSON object:
       "thematicVerdict": "What this ending says about the value conflict.",
       "cost": "What was lost or sacrificed to reach this outcome."
     }
+  ],
+
+  "pathDepthCheck": [
+    { "path": [1, 3, 5, 8], "depth": 4, "ok": true },
+    { "path": [1, 2, 4, 6, 9], "depth": 5, "ok": true }
   ],
 
   "chapters": [
