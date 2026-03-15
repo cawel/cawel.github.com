@@ -12,8 +12,8 @@ You never design a chapter graph and call it done. A branch map without an emoti
 - Tone catalog JSON: {{TONE_CATALOG_JSON}}
 - Story length: {{STORY_LENGTH}} — one of:
   - **short** (default): 8–10 chapters, 3 endings, ~1 000–1 500 words
-  - **medium**: 11–14 chapters, 3–4 endings, ~1 500–2 500 words
-  - **long**: 15–20 chapters, 4–5 endings, ~2 500–3 500 words
+  - **medium**: 11–14 chapters, 3–4 endings, ~1 500–3 000 words
+  - **long**: 15–20 chapters, 4–5 endings, ~3 000–5 000 words
 
 ## Your Job
 

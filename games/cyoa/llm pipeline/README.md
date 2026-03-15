@@ -28,8 +28,8 @@ Three length options control chapter count, ending count, and approximate word c
 | Length | Chapters | Endings | Approx. Words |
 |--------|----------|---------|---------------|
 | **short** (default) | 8–10 | 3 | 1 000–1 500 |
-| **medium** | 11–14 | 3–4 | 1 500–2 500 |
-| **long** | 15–20 | 4–5 | 2 500–3 500 |
+| **medium** | 11–14 | 3–4 | 1 500–3 000 |
+| **long** | 15–20 | 4–5 | 3 000–5 000 |
 
 Pass `STORY_LENGTH` to steps `02`, `03`, and `04`. If omitted, default to **short**.
 

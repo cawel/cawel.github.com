@@ -107,17 +107,17 @@ The Fracture cluster is still eleven minutes out. You're already losing the stat
 The Artifact Room
 
 ### Content
-The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle: a latticed sphere the size of your palm, its surface a mesh of interlocking curves in a material that scatters the utility lights wrong — giving back a faint iridescence no spectral register can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own. Somewhere above, the station intercom still carries the faint crackle of voices — security, engineering, someone shouting a clearance code — but down here the vault swallows everything except the artifact's pulse.
+The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle: a latticed sphere the size of your palm, its surface a mesh of interlocking curves that scatter the utility lights wrong — giving back an iridescence no spectral register can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own. Down here the vault swallows everything except the artifact's pulse.
 
-Dara Osei — the station's lead signal analyst, the person who first identified the artifact's countdown — moves straight to the vault console and bends over the readings. She pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks align with the cluster's vector in a single locked curve.
+Dara Osei — the station's lead signal analyst, the person who first identified the artifact's countdown — moves straight to the vault console. She pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks align with the cluster's vector in a single locked curve.
 
-"It's not a countdown to an attack," she says. Her finger traces the peaks without touching the glass. "It's a homing signal. Whatever's in this cradle has been broadcasting a distress call. Whatever's coming has been answering it across a distance I can't calculate."
+"It's not a countdown to an attack," she says. Her finger traces the peaks without touching the glass. "It's a homing signal. Whatever's in this cradle has been broadcasting a distress call. Whatever's coming has been answering it across a distance I can't calculate." She pauses, and something crosses her face that isn't fear. "I've been listening to this for three tours and telling myself it was resonance. Part of me knew it wasn't."
 
-The rest assembles in a single terrible clarity: the artifact rewinds the morning each time the signal goes unanswered. The Fracture aren't invading — they're recovering something lost, and seventeen die every loop because neither side could hear the other.
+The rest assembles in terrible clarity: the artifact rewinds the morning each time the signal goes unanswered. The Fracture aren't invading — they're recovering something lost, and seventeen die every loop because the station read a rescue approach as an assault. The beacon called out. The Fracture answered. And every time, humans who couldn't recognize the answer died for nothing.
 
 That understanding hits you like a door opening in a room you'd forgotten had walls.
 
-Dara's hands hover over the vault console. "Two options," she says. "I can sever the power coupling — cut the beacon clean, collapse the loop without destroying the artifact. Or we overload the containment field — a controlled detonation. The artifact, the signal, the Fracture's reason for coming — gone in one burn." She looks at the latticed sphere. "One way we give it back. The other way we make sure nobody ever has to answer that signal again."
+Dara's hands hover over the vault console. "Two options. I sever the power coupling — cut the beacon, collapse the loop without destroying the artifact. Or we overload the containment field — a controlled detonation. The artifact, the signal, the Fracture's reason for coming — gone in one burn." She looks at the latticed sphere. "One way we give it back. The other way we make sure nobody ever has to answer that signal again."
 
 ### Choices
 1. Have Dara sever the power coupling while you stabilize the cradle — collapse the loop without destroying the artifact -> 10
@@ -128,21 +128,23 @@ Dara's hands hover over the vault console. "Two options," she says. "I can sever
 First Contact
 
 ### Content
-Your intercept team reaches the observation deck seconds before the outer pane cracks. Suits sealed, magnetic anchors locked along the rail, weapons charged—and then you do something no previous loop allowed. You patch into the artifact's active signal through the ops uplink—Voss patched the vault array into the intercept team's comm channel before you took position—and interrupt its output, replacing it with a structured pulse: three short, three long, three short. Transmitted on the artifact's own frequency but structured to show deliberate, conscious intent. Not a signal repeating itself. A reply.
+Your intercept team reaches the observation deck seconds before the outer pane cracks. Suits sealed, magnetic anchors locked along the rail, weapons charged—and then you do something no previous loop allowed. You patch into the artifact's active signal through the ops uplink and read its ascending waveform directly from the vault array feed. Each peak climbs fractionally higher than the last—an open shape, waiting to be completed. You invert it: descending where it climbed, closing what the beacon left open. Not a signal repeating itself. An answer.
 
-The Fracture entities stop. Through the reinforced glass you see them clearly for the first time—dozens of angular silhouettes spread across the starfield, dark and jagged against the void, each one distinct, each one held absolutely still in a way that empties the air from your lungs.
+The Fracture entities stop. Through the reinforced glass you see them clearly for the first time—dozens of angular silhouettes spread across the starfield, each one held absolutely still in a way that empties the air from your lungs.
 
-Eleven minutes pass. No shared language. No protocol. Your team holds its breath and its fire both. On the hull sensors, the cluster's formation tightens from assault spread into something closer to waiting. Listening.
+Eleven minutes pass. Your team holds its breath and its fire both. On the hull sensors, the cluster's formation tightens from assault spread into something closer to waiting.
 
-The artifact pulses once—soft, clear—and goes dark. The loop does not reset.
+The artifact pulses once—soft, clear—and goes dark. The beacon that rewound the morning each time its signal went unanswered has finally received the reply it was built to wait for. The loop does not reset.
 
 You key your comm. "All units hold fire."
 
-You stand at the viewport long after your team lowers their weapons, watching the Fracture hold position in the silence outside the glass. This was never an invasion. The artifact was a beacon placed here before the station's founding, and the Fracture have been answering it across the dark for longer than you can calculate.
+You stand at the viewport long after your team lowers their weapons. This was never an invasion. The artifact was a beacon placed here before the station's founding, and the Fracture have been answering it across the dark for longer than you can calculate.
 
-Three hours later, without signal or ceremony, each angular shape separates and dissolves into its own trajectory. They received their answer. Whatever the artifact told them, it was enough to draw them across that distance—and enough to let them leave.
+Three hours later, each angular shape separates and dissolves into its own trajectory. Whatever the artifact told them, it was enough to draw them across that distance—and enough to let them leave.
 
-The silence that follows is the first genuinely new moment you've experienced in a span your memory can no longer measure.
+The artifact is cold in its cradle. The sensor logs will be classified by morning. The first confirmed contact between humanity and another intelligence, and you are the only person who will remember it happened more than once.
+
+The silence that follows is the first genuinely new moment you've experienced in a span your memory can no longer measure. It is also the loneliest.
 
 ### Choices
 The End
@@ -198,7 +200,11 @@ Dara looks at you. "You okay? You look like you've been awake for a week."
 
 "Longer."
 
-You sit on the floor of the vault, the empty cradle silent above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom. For the first time in a span your memory cannot fully measure, you feel like a person with a future instead of a loop.
+You sit on the floor of the vault, the empty cradle silent above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom.
+
+Dara reads over your shoulder. She won't understand — not the repeated mornings, not the seventeen deaths she doesn't remember, not why you hesitated before severing a signal that might have been the only bridge between two civilizations. The empty cradle above you held something that called across distances you can't fathom, and you silenced it to save people who will never know they needed saving.
+
+For the first time in a span your memory cannot fully measure, you feel like a person with a future instead of a loop. The cost of that future sits in your hands, page after page, in handwriting only you can read.
 
 ### Choices
 The End

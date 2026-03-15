@@ -53,6 +53,8 @@ Address the `topPriorities` and any `craftScores` dimension scored below 3. Focu
 - Do not silently change choice targets.
 - Do not add meta-commentary or notes.
 - Preserve everything the critique did not flag.
+- **Minimum path depth**: Every path from Chapter 1 to an ending must pass through at least 4 chapters. Before finalising, enumerate every path and verify this constraint. If a structural fix would shorten a path below 4 chapters, add an intermediate chapter or reroute choices to preserve depth.
+- **Chapter word-count balance**: No chapter's word count may deviate from the story average by more than 25 %. After every content change — whether adding, cutting, or redistributing prose — recount all chapters and verify this constraint. If a craft improvement pushes a chapter over the threshold, trim elsewhere in that chapter (not in unchanged chapters) to compensate.
 
 ## Output Contract
 
