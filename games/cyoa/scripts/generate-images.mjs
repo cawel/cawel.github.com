@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import sharp from "sharp";
@@ -11,7 +11,25 @@ const OUTPUT_WIDTH = 1536;
 const OUTPUT_HEIGHT = 864;
 const WEBP_QUALITY = 90;
 const IMAGE_COLOR_SPACE = "srgb";
-const REQUEST_TIMEOUT_MS = 120000;
+const REQUEST_TIMEOUT_MS = Number(process.env.IMAGE_REQUEST_TIMEOUT_MS || 180000);
+const MAX_RETRIES = Number(process.env.IMAGE_MAX_RETRIES || 2);
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableStatus(status) {
+  return [408, 409, 429, 500, 502, 503, 504].includes(status);
+}
+
+async function fileExists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function chapterFilename(chapter) {
   return `${chapter.number}.webp`;
@@ -36,60 +54,87 @@ function pickTargetChapters(chapters) {
 }
 
 async function generateImage({ apiKey, model, size, prompt }) {
-  const controller = new AbortController();
-  const timeoutHandle = setTimeout(() => {
-    controller.abort();
-  }, REQUEST_TIMEOUT_MS);
+  let apiCalls = 0;
+  let lastError;
 
-  let response;
-  try {
-    response = await fetch("https://api.openai.com/v1/images/generations", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      signal: controller.signal,
-      body: JSON.stringify({
-        model,
-        prompt,
-        size,
-        quality: "high",
-      }),
-    });
-  } finally {
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+    const controller = new AbortController();
+    const timeoutHandle = setTimeout(() => {
+      controller.abort();
+    }, REQUEST_TIMEOUT_MS);
+
+    let response;
+    try {
+      apiCalls += 1;
+      response = await fetch("https://api.openai.com/v1/images/generations", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model,
+          prompt,
+          size,
+          quality: "high",
+        }),
+      });
+    } catch (error) {
+      clearTimeout(timeoutHandle);
+      lastError = error;
+
+      if (attempt < MAX_RETRIES) {
+        await sleep(1000 * (attempt + 1));
+        continue;
+      }
+
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`Image API request failed after retries: ${message}`);
+    }
+
     clearTimeout(timeoutHandle);
+
+    if (!response.ok) {
+      const details = await response.text();
+      lastError = new Error(
+        `Image API request failed (${response.status}): ${details}`,
+      );
+
+      if (attempt < MAX_RETRIES && isRetryableStatus(response.status)) {
+        await sleep(1000 * (attempt + 1));
+        continue;
+      }
+
+      throw lastError;
+    }
+
+    const payload = await response.json();
+    const data = payload?.data?.[0];
+    const modelVersionUsed = payload?.model || data?.model || model;
+
+    if (!data?.b64_json) {
+      throw new Error("Image API response missing b64_json image data.");
+    }
+
+    const pngBuffer = Buffer.from(data.b64_json, "base64");
+    const imageBuffer = await sharp(pngBuffer)
+      .resize(OUTPUT_WIDTH, OUTPUT_HEIGHT, {
+        fit: "cover",
+        position: "attention",
+      })
+      .toColourspace(IMAGE_COLOR_SPACE)
+      .webp({ quality: WEBP_QUALITY })
+      .toBuffer();
+
+    return {
+      imageBuffer,
+      modelVersionUsed,
+      apiCalls,
+    };
   }
 
-  if (!response.ok) {
-    const details = await response.text();
-    throw new Error(
-      `Image API request failed (${response.status}): ${details}`,
-    );
-  }
-
-  const payload = await response.json();
-  const data = payload?.data?.[0];
-  const modelVersionUsed = payload?.model || data?.model || model;
-
-  if (!data?.b64_json) {
-    throw new Error("Image API response missing b64_json image data.");
-  }
-
-  const pngBuffer = Buffer.from(data.b64_json, "base64");
-  const imageBuffer = await sharp(pngBuffer)
-    .resize(OUTPUT_WIDTH, OUTPUT_HEIGHT, {
-      fit: "cover",
-      position: "attention",
-    })
-    .toColourspace(IMAGE_COLOR_SPACE)
-    .webp({ quality: WEBP_QUALITY })
-    .toBuffer();
-
-  return {
-    imageBuffer,
-    modelVersionUsed,
-  };
+  throw lastError || new Error("Image generation failed.");
 }
 
 async function main() {
@@ -138,26 +183,46 @@ async function main() {
     images: [],
   };
 
+  const startTime = Date.now();
+  const forceRegenerate = process.env.IMAGE_FORCE_REGENERATE === "1";
   let successCount = 0;
+  let skippedCount = 0;
+  let failedCount = 0;
   const usedModelVersions = new Set();
 
   for (const chapter of targets) {
     const file = chapterFilename(chapter);
     const outputPath = path.join(outputDir, file);
+    const tempPath = `${outputPath}.tmp`;
+
+    if (!forceRegenerate && (await fileExists(outputPath))) {
+      manifest.images.push({
+        chapter: chapter.number,
+        title: chapter.title,
+        endingType: chapter.endingType ?? null,
+        file,
+        prompt: chapter.llmPrompt,
+        modelVersionUsed: null,
+        status: "skipped_existing",
+      });
+      skippedCount += 1;
+      console.log(`Skipped (already exists): ${outputPath}`);
+      continue;
+    }
 
     try {
-      manifest.apiCallsMade += 1;
-
-      const { imageBuffer, modelVersionUsed } = await generateImage({
+      const { imageBuffer, modelVersionUsed, apiCalls } = await generateImage({
         apiKey,
         model,
         size,
         prompt: chapter.llmPrompt,
       });
+      manifest.apiCallsMade += apiCalls;
 
       usedModelVersions.add(modelVersionUsed);
 
-      await writeFile(outputPath, imageBuffer);
+      await writeFile(tempPath, imageBuffer);
+      await rename(tempPath, outputPath);
 
       manifest.images.push({
         chapter: chapter.number,
@@ -182,12 +247,20 @@ async function main() {
         status: "failed",
         error: error instanceof Error ? error.message : String(error),
       });
+      failedCount += 1;
 
       console.error(`Failed chapter ${chapter.number}:`, error);
     }
   }
 
   manifest.imageModelVersionsUsed = [...usedModelVersions];
+  manifest.summary = {
+    targets: targets.length,
+    succeeded: successCount,
+    skippedExisting: skippedCount,
+    failed: failedCount,
+    durationMs: Date.now() - startTime,
+  };
 
   const manifestPath = path.join(outputDir, "manifest.json");
   await writeFile(
@@ -197,7 +270,7 @@ async function main() {
   );
   console.log(`Wrote manifest: ${manifestPath}`);
 
-  if (successCount === 0) {
+  if (successCount === 0 && skippedCount === 0) {
     process.exitCode = 1;
     throw new Error("Step 7 finished with zero successful image generations.");
   }
