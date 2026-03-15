@@ -71,7 +71,7 @@ Proof by Fire
 ### Content
 You give Commander Voss everything: the strike hits at 06:47:22, outer pane of the observation deck, bearing 224, declination negative twelve. You describe the four-second bass thrum the hull sensors will register before impact—a resonance like a held note on an instrument no one has built—and explain that ops will mistake it for a standard microimpact until it's too late.
 
-Then you wait. You've done this before. The waiting has never gotten easier.
+Then you wait. You've done this before. A subordinate at the near console glances between you and Voss. "Sir, should I flag this for station security?" "Not yet," Voss says, without looking away from you. The waiting has never gotten easier.
 
 At 06:47:21 the proximity alarm screams. Every screen in ops flares white. Two subordinates shove back from their terminals; a third knocks Voss's mug off the table — ceramic shattering on the deck plates. Voss doesn't flinch. He stares at you across the ops table with every trace of skepticism stripped from his face. The perimeter array lights up at the exact bearing, the exact declination. Outside the reinforced viewport, the dark moves — angular shapes sliding across the starfield in tight formation.
 
@@ -90,7 +90,7 @@ You outline two options. First: a coordinated intercept team on the observation 
 The Cascade
 
 ### Content
-Good intentions collide in the cargo corridors. The ring C lockers are already open when you get there—stripped by workers who didn't wait for authorization. Armed construction workers—some responding to the automated proximity alerts the artifact's own pulses have been tripping since first shift, others who simply decided to act when the walls started groaning—press toward the observation deck. In the engineering bay two sections forward, Dara Osei's team reroutes power to the artifact array without clearance, trying to stabilize readings that have been spiking all morning. Station security, alerted by reports of armed civilians, moves to intercept both groups. Three factions, fast and blind, each certain they're the only rational actors in a crisis no one has fully briefed.
+Good intentions collide in the cargo corridors. The ring C lockers are already open when you get there—stripped by workers who didn't wait for authorization. Armed construction workers—some responding to the automated proximity alerts the artifact's own pulses have been tripping since first shift, others who simply decided to act when the walls started groaning—press toward the observation deck. In the engineering bay two sections forward, Dara Osei's team reroutes power to the artifact array without clearance, trying to stabilize readings that have been spiking all morning. Station security, alerted by reports of armed civilians, moves to intercept both groups. Over the intercom, an ops officer demands a situation report that no one on this deck can provide — the chain of command fractured the moment the first unauthorized order went out. Three factions, fast and blind, each certain they're the only rational actors in a crisis no one has fully briefed.
 
 The artifact pulses three times in rapid succession. Each burst travels through the deck plates like a physical blow—you feel it in your back teeth more than your ears. A frequency you've never registered in any previous loop. The walls groan and your vision smears at the edges for one nauseating second. In engineering, a pressure coupling detonates with a crack like a gunshot.
 
@@ -154,7 +154,7 @@ The End
 Controlled Burn
 
 ### Content
-The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. Dara Osei — the station's lead signal analyst, the person who first mapped the artifact's countdown — runs the containment alignment at the vault console, her fingers moving across the controls with the precision of someone who worked out how to end this signal long before anyone asked her to. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it.
+The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. Dara Osei — the station's lead signal analyst, the person who first mapped the artifact's countdown — runs the containment alignment at the vault console, her fingers moving across the controls with the precision of someone who worked out how to end this signal long before anyone asked her to. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
 
 You reach for the panel when the readings destabilize. She's already there. She shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
 
@@ -203,6 +203,8 @@ Dara looks at you. "You okay? You look like you've been awake for a week."
 You sit on the floor of the vault, the empty cradle silent above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom.
 
 Dara reads over your shoulder. She won't understand — not the repeated mornings, not the seventeen deaths she doesn't remember, not why you hesitated before severing a signal that might have been the only bridge between two civilizations. The empty cradle above you held something that called across distances you can't fathom, and you silenced it to save people who will never know they needed saving.
+
+Three decks up, a ration bar waits on a shelf, two bites from the end. Tomorrow the morning will be new.
 
 For the first time in a span your memory cannot fully measure, you feel like a person with a future instead of a loop. The cost of that future sits in your hands, page after page, in handwriting only you can read.
 
