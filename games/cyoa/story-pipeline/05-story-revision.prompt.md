@@ -61,4 +61,4 @@ The first line of output must be `# ` followed by the story title.
 ## Output File
 
 Write this step's output to:
-`llm pipeline/output/05-story-final.md`
+`story-pipeline/output/05-story-final.md`

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "pipeline:step07": "node scripts/generate-images.mjs"
   },
   "dependencies": {
     "sharp": "^0.34.5"

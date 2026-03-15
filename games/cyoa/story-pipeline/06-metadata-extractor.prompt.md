@@ -86,4 +86,4 @@ Return only valid JSON:
 ## Output File
 
 Write this step's output to:
-`llm pipeline/output/06-metadata.json`
+`story-pipeline/output/06-metadata.json`

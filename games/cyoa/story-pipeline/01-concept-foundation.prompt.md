@@ -8,9 +8,9 @@ You draw on techniques from literary fiction (value conflict, dramatic irony, ch
 
 ## Inputs
 
-- Audience catalog JSON: {{AUDIENCE_CATALOG_JSON}} // load from llm/audiences.input.json
+- Audience catalog JSON: {{AUDIENCE_CATALOG_JSON}} // load from story-pipeline/audiences.input.json
 - Audience: {{AUDIENCE}} // must be one of the audience catalog names
-- Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from llm/tones.input.json
+- Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from story-pipeline/tones.input.json
 - Tone: {{TONE}} // must be one of the tone catalog names
 - Number of candidates: {{CANDIDATE_COUNT}} (recommended 3–5)
 
@@ -72,4 +72,4 @@ Return only a valid JSON array:
 ## Output File
 
 Write this step's output to:
-`llm pipeline/output/01-concepts.json`
+`story-pipeline/output/01-concepts.json`

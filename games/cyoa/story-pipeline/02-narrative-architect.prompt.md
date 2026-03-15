@@ -144,4 +144,4 @@ Return only a valid JSON object:
 ## Output File
 
 Write this step's output to:
-`llm pipeline/output/02-architecture.json`
+`story-pipeline/output/02-architecture.json`

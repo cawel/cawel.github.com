@@ -126,4 +126,4 @@ Return only valid JSON:
 ## Output File
 
 Write this step's output to:
-`llm pipeline/output/04-critique.json`
+`story-pipeline/output/04-critique.json`
