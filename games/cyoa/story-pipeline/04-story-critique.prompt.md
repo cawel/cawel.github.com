@@ -83,6 +83,13 @@ Evaluate each dimension. For each one, give a **score (1–5)** and a **specific
 - Are concrete narrative threads resolved (character fates, open questions)?
 - Do good endings cost something? Do bad endings have inevitability?
 
+### 2i. Causal and Logical Coherence
+
+- When the story explains an entity's motivation or nature, does the entity behave consistently with that explanation in _every_ chapter it appears in — across all branches?
+- When a character sends a signal or message and another entity reacts, does the reaction follow logically from the signal's meaning (not just the plot's dramatic needs)?
+- If a revelation on one branch explains a phenomenon, are all other branches depicting the same phenomenon compatible with that explanation?
+- Are cause-and-effect chains tight? When the text says "X happens because Y," is Y actually sufficient and consistent with the established facts?
+
 ## Output Format
 
 Return only valid JSON:
@@ -112,7 +119,8 @@ Return only valid JSON:
     "conflictAndTension": { "score": 0, "observation": "..." },
     "dialogue": { "score": 0, "observation": "..." },
     "pacingAndEmotion": { "score": 0, "observation": "..." },
-    "endings": { "score": 0, "observation": "..." }
+    "endings": { "score": 0, "observation": "..." },
+    "causalCoherence": { "score": 0, "observation": "..." }
   },
 
   "topPriorities": [

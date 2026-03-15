@@ -44,6 +44,8 @@ Address the `topPriorities` and any `craftScores` dimension scored below 3. Focu
 
 **Ending fixes**: If endings don't reflect the value conflict, add thematic weight. If narrative threads are left dangling, resolve them.
 
+**Causal coherence fixes**: If an entity's behaviour contradicts its revealed motivation on any branch, rewrite the behaviour to match the motivation — or revise the motivation to match the behaviour, whichever requires fewer changes. If a signal-response pair is illogical (e.g., an SOS causing retreat instead of approach), replace the signal or the response so the semantics match. If cross-branch explanations for the same phenomenon contradict each other, unify them.
+
 ## Guardrails
 
 - Keep the exact required markdown format.

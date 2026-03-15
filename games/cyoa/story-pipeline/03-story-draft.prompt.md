@@ -87,6 +87,9 @@ These prevent specific failures that break immersion.
 - **Choice-actor consistency**: If a choice says the protagonist acts, the following chapter shows the protagonist acting — not another character.
 - **Path-independent introductions**: Every named character appearing in a chapter must be introduced within that chapter, since the reader may arrive from any valid path.
 - **Convergence stealth**: Convergence chapters must read as if the reader's current path is the only path. No conditional phrasing that acknowledges other routes.
+- **Causal logic**: When the story explains _why_ an entity acts (motivation, nature, goal), that entity's behaviour in every chapter it appears in must be reconcilable with that explanation. If a revelation reframes an entity (e.g., "they were rescuers, not invaders"), go back through every branch where the entity appears and verify that its actions, reactions, and departures are logically consistent with the revealed motivation.
+- **Signal-response coherence**: When a character sends a signal or message and another entity reacts, the reaction must follow logically from what the signal _means_, not just from the dramatic needs of the plot. An SOS asks for help — a rescuer hearing an SOS would approach, not withdraw. A threat display would repel, not attract. Match the semantics of the signal to the behaviour of the responder.
+- **Cross-branch explanation consistency**: If a revelation on one branch explains a phenomenon (e.g., "the loop resets because the signal goes unanswered"), every other branch depicting the same phenomenon must be compatible with that explanation. Contradictory explanations across branches break the reader's trust in the story's internal world.
 
 ## Required Markdown Format
 
