@@ -11,7 +11,9 @@ const OUTPUT_WIDTH = 1536;
 const OUTPUT_HEIGHT = 864;
 const WEBP_QUALITY = 90;
 const IMAGE_COLOR_SPACE = "srgb";
-const REQUEST_TIMEOUT_MS = Number(process.env.IMAGE_REQUEST_TIMEOUT_MS || 180000);
+const REQUEST_TIMEOUT_MS = Number(
+  process.env.IMAGE_REQUEST_TIMEOUT_MS || 180000,
+);
 const MAX_RETRIES = Number(process.env.IMAGE_MAX_RETRIES || 2);
 
 function sleep(ms) {

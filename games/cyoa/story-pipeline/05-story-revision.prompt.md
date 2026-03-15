@@ -57,6 +57,7 @@ Address the `topPriorities` and any `craftScores` dimension scored below 3. Focu
 Return only the final revised story markdown.
 No explanations, no planning notes, no code fences.
 The first line of output must be `# ` followed by the story title.
+Do not JSON-escape punctuation in markdown prose. Use plain quotes (`"`) in text, not escaped quotes (`\\"`).
 
 ## Output File
 

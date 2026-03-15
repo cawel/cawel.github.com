@@ -124,6 +124,7 @@ Before writing any prose, trace every possible path from Chapter 1 to each endin
 Return only the final story markdown.
 No explanations, no planning notes, no code fences.
 The first line of output must be `# ` followed by the story title.
+Do not JSON-escape punctuation in markdown prose. Use plain quotes (`"`) in text, not escaped quotes (`\\"`).
 
 ## Output File
 

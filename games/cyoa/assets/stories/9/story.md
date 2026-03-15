@@ -117,7 +117,7 @@ The rest assembles in a single terrible clarity: the artifact rewinds the mornin
 
 That understanding hits you like a door opening in a room you'd forgotten had walls.
 
-Dara's hands hover over the vault console. \"Two options,\" she says. \"I can sever the power coupling — cut the beacon clean, collapse the loop without destroying the artifact. Or we overload the containment field — a controlled detonation. The artifact, the signal, the Fracture's reason for coming — gone in one burn.\" She looks at the latticed sphere. \"One way we give it back. The other way we make sure nobody ever has to answer that signal again.\"
+Dara's hands hover over the vault console. "Two options," she says. "I can sever the power coupling — cut the beacon clean, collapse the loop without destroying the artifact. Or we overload the containment field — a controlled detonation. The artifact, the signal, the Fracture's reason for coming — gone in one burn." She looks at the latticed sphere. "One way we give it back. The other way we make sure nobody ever has to answer that signal again."
 
 ### Choices
 1. Have Dara sever the power coupling while you stabilize the cradle — collapse the loop without destroying the artifact -> 10
