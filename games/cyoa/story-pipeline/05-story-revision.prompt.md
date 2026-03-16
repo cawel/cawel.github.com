@@ -29,6 +29,8 @@ Address every error in `structuralCheck.errors`. These are non-negotiable:
 
 Address the `topPriorities` and any `craftScores` dimension scored below 3. Focus on the priorities in order.
 
+If `craftScores.toneAdherence` or `craftScores.branchDistinctiveness` is below 3, treat those as mandatory repair targets in this pass (not optional polish).
+
 **Foreshadowing fixes**: If plants or payoffs are missing, weave them into existing prose. A planted detail should feel like a natural part of the scene. A payoff should make the reader think "of course."
 
 **Choice quality fixes**: If choices are tactical variants, rewrite them to present genuine value divergence. Ensure stakes are established in the chapter content before the choice appears.
@@ -44,6 +46,10 @@ Address the `topPriorities` and any `craftScores` dimension scored below 3. Focu
 **Pacing fixes**: If intensity is uniform, vary chapter lengths and density. If Chapter 1 opens generically, rewrite the first paragraph with sensory immediacy.
 
 **Ending fixes**: If endings don't reflect the value conflict, add thematic weight. If narrative threads are left dangling, resolve them.
+
+**Tone adherence fixes**: If tone drifts, revise diction, sentence cadence, and narrative distance to match the selected core tone while preserving local emotional variation. Prioritize minimal line edits that restore tonal consistency without flattening character voice.
+
+**Branch distinctiveness fixes**: If branches blur together, rewrite chapter goals/complications so sibling branches pursue different dramatic questions and cannot be swapped without breaking causality. Ensure each major branch contains at least one unique mid-story objective before any convergence.
 
 **Convergence stealth fixes**: If a convergence chapter contains a sentence whose meaning depends on knowing that other paths exist — including literary-seeming conditionals like "what she carries depends on what you gave her" or dual-outcome phrasing like "she says — or she says nothing" — rewrite it as a single committed statement. Pick one version of the outcome and write it as fact. Do not average across paths or hedge with conditionals. The reader on any incoming path must experience this chapter as the only path that ever existed.
 

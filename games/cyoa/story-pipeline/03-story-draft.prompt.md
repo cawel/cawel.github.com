@@ -18,6 +18,12 @@ Write one complete Choose Your Own Adventure story from the provided concept and
 
 These are not suggestions — they are the craft standards the story must meet.
 
+### Priority Order (Execute In This Order)
+
+- **P0 — Structural validity first**: format, chapter numbering, links, path depth, ending count, and chapter-length balance must be valid before craft polish.
+- **P1 — Coherence second**: enforce internal consistency (causality, continuity, convergence stealth, object locations, actor/choice coherence).
+- **P2 — Craft third**: once P0 and P1 are stable, optimize prose, tone fidelity, emotional resonance, and thematic ending impact.
+
 ### Voice and Prose
 
 - The reader is always the protagonist, addressed as **"you"**.

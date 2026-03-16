@@ -20,6 +20,11 @@ You never design a chapter graph and call it done. A branch map without an emoti
 
 Design the complete narrative architecture for one branching story. This is not just a chapter graph — it is a **storytelling blueprint** that plans how literary craft will work across branches.
 
+Execution order:
+1. Validate branch map structure and path depth first.
+2. Lock branch identity differentiation and emotional arcs.
+3. Layer foreshadowing, consequence chains, and ending logic.
+
 You must design five interconnected layers:
 
 ### Layer 1: Branch Map
@@ -31,6 +36,7 @@ The structural skeleton — which chapters exist, how choices connect them.
 - No self-links. Every target chapter must exist.
 - Assign each major branch a distinct dramatic identity: each branch must pursue a different core question (e.g., "whom do you trust?" vs "what do you risk to know the truth?") and must not be a cosmetic rewording of another path.
 - Add a branch-identity checkpoint by mid-story: by the midpoint chapter range, each major branch must contain at least one scene objective or complication that cannot appear on sibling branches.
+- Do not converge sibling branches before each has delivered at least one unique mid-story objective or complication.
 - Convergence chapters must work from any incoming path: re-identify characters and context so no reader is confused.
 - Convergence chapters must read as if the reader's current path is the only one. No conditional phrasing that acknowledges other routes.
 
@@ -41,6 +47,7 @@ Plan the **specific feeling** each chapter should produce — not vague moods bu
 - Shape each path as a rising arc: hook → escalation → climax → resolution.
 - Vary intensity deliberately: a brief sharp chapter after a dense one gives breathing room.
 - Chapter 1 must open with sensory immediacy and personal stakes.
+- For each chapter, define a tone execution note that specifies language-level delivery (diction, sentence cadence, narrative distance) so the selected tone remains consistent during drafting.
 
 ### Layer 3: Foreshadowing Plan
 
@@ -98,6 +105,22 @@ Return only a valid JSON object:
     }
   ],
 
+  "branchDistinctivenessCheck": [
+    {
+      "branchA": "...",
+      "branchB": "...",
+      "duplicatedBeats": ["..."],
+      "distinctivenessVerdict": "pass|fail"
+    }
+  ],
+
+  "topologyStats": {
+    "choiceNodes": 0,
+    "convergenceNodes": 0,
+    "maxOutDegree": 0,
+    "deadEndNonEndings": 0
+  },
+
   "foreshadowingPlan": [
     {
       "seed": "Description of the detail.",
@@ -138,6 +161,7 @@ Return only a valid JSON object:
       "title": "...",
       "narrativePurpose": "Why this chapter exists in the story.",
       "targetEmotion": "The specific feeling this chapter should produce.",
+      "toneExecutionNote": "How this chapter should express the selected tone via diction, cadence, and narrative distance.",
       "foreshadowingNotes": "What is planted or paid off here.",
       "characterBeats": "Key character moments or revelations.",
       "choices": [
