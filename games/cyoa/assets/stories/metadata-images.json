@@ -460,6 +460,12 @@
           "title": "Purr of Dawn",
           "llmPrompt": "Create a heartwarming magical storybook illustration, intimate bedroom composition at dawn. A fading dreamlight lattice dissolves into morning rays as a child wakes smiling and the black cat rests at bedside. The brass key cools to ordinary metal on the blanket. Palette: gentle gold and soft blue, comforting and triumphant. No text, no watermark.",
           "endingType": "successful"
+        },
+        {
+          "number": 9,
+          "title": "The Rooftop Gambit",
+          "llmPrompt": "Same style. Over-shoulder low-angle composition of a black cat on rain-slicked roof tiles at midnight, back turned to camera, muscles coiled and ready to spring. Above, the Shadow Owl's silhouette eclipses half the rooftop—wings vast, feathers black as chimney smoke. Nursery window glows faintly through the chimney stacks below. Mood: courage without armour, commitment in the face of overwhelming threat. No text, no watermark.",
+          "endingType": null
         }
       ]
     },

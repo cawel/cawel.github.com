@@ -49,7 +49,7 @@ You read it twice. It describes the guardian lineage clearly: each generation, o
 You sit with the letters for a moment longer than the urgency strictly allows. The grandmother knew about you. She wrote your name. The youngest child's nightmares, the ash in tonight's air, the key in the crack beneath the window—none of it is coincidence. You have been prepared for this. Now you have two paths toward it.
 
 ### Choices
-1. Race across the rooftiles and attack the Shadow Owl immediately -> 6
+1. Race across the rooftiles and attack the Shadow Owl immediately -> 9
 2. Use the key on the cedar wardrobe to reach the guardian's hall -> 2
 
 ## Chapter 4
@@ -117,11 +117,26 @@ The End
 Purr of Dawn
 
 ### Content
-You ring the sequence in the order the moth taught you—seven bells, seven notes, each strike precise and deliberate—and the house responds from the ground up. Dreamlight spreads from room to room like warmth spreading from a hearth, a golden lattice that seals every window, every threshold, every place a nightmare might slip through. Below you, the youngest child's breathing deepens and steadies and her warmth becomes something you can feel all the way up in the bell tower.
+You ring the sequence in the order the moth taught you—seven bells, seven notes, precise and deliberate—and the house responds. Dreamlight spreads from room to room like warmth, a golden lattice that seals every window, every threshold. Below you, the youngest child's breathing deepens. The Shadow Owl dives. It hits the lattice and cannot find a way through.
 
-The Shadow Owl dives. It hits the lattice and cannot find a way through. You meet it at the observation window where the dreamlight is brightest, key in your mouth, and what happens next is less a battle than a dissolution: the Shadow Owl's shadow-weave, denied the fear it needed to hold itself together, simply comes apart. Feather by feather, soot by soot, it unravels on the cold air above the rooftiles and becomes nothing more alarming than a smear of gray on the wind.
+You meet it at the tower's window, key steady in your mouth, and what happens is less a battle than dissolution: denied the fear it needed to hold itself together, the Shadow Owl unravels. Feather by feather, it becomes nothing but ash on the wind.
 
-The brass key cools to ordinary metal between your paws and the runes go dark, their work finished. By the time the sun tips over the chimney stacks, you are where you belong: curled at the foot of the youngest child's bed, listening to her breathe the steady rhythm of a child who slept well and will not remember why. She wakes slowly, finds you with her hand before she opens her eyes, and says your name once in the particular tone that means she is glad you are there. You purr. You were never worried. You were never worried at all.
+The brass key cools to ordinary metal between your paws. By dawn, you are where you belong: curled at the foot of the youngest child's bed. She wakes slowly, finds you with her hand before her eyes open, and says your name in the particular tone that means she's glad you're there. You purr. You were never worried at all.
 
 ### Choices
 The End
+
+## Chapter 9
+### Title
+The Rooftop Gambit
+
+### Content
+You are on the tiles before you've finished reading the last letter. The brass key burns cold against your jaws, a weight that feels like purpose. The youngest child's fear is a taste in your mouth—not the fear itself, but the ash that follows it, the aftermath of nightmares that won't release their grip. Above you, the night sky roils with something darker than cloud.
+
+The Shadow Owl circles once more over the chimney stack, and this time it does not keep its distance. You see its true size for the first time: each feather the span of your paw, its wings a span that eclipses half the rooftile. Fear is a useful thing. Fear tells you what you are up against. The key in your mouth says you are a guardian. The letters say guardians have died protecting this family before you. The youngest child below says this is what you chose, the instant you picked up this key.
+
+You coil your muscles. You have no other training, no other strategy but speed and commitment. The Shadow Owl dives.
+
+### Choices
+1. Launch directly at the Shadow Owl -> 6
+2. Retreat and use the key to reach the guardian's hall -> 2
