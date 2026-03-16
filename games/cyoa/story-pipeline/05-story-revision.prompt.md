@@ -53,6 +53,8 @@ If `craftScores.toneAdherence` or `craftScores.branchDistinctiveness` is below 3
 
 **Convergence stealth fixes**: If a convergence chapter contains a sentence whose meaning depends on knowing that other paths exist — including literary-seeming conditionals like "what she carries depends on what you gave her" or dual-outcome phrasing like "she says — or she says nothing" — rewrite it as a single committed statement. Pick one version of the outcome and write it as fact. Do not average across paths or hedge with conditionals. The reader on any incoming path must experience this chapter as the only path that ever existed.
 
+Before writing or editing any sentence in a convergence chapter, enumerate every chapter whose choices lead here. For each incoming chapter, ask: does the protagonist's implied **location and physical state** at the end of that chapter contradict anything stated in this chapter's opening? Common failure mode: adding an arrival sentence ("the vault is two decks below", "you seal the hatch behind you") that reads as travel for one incoming path but contradicts a reader already at that location via a different path. If any incoming path leaves the protagonist inside a location, do not open the convergence chapter with language that implies entering that location for the first time. Write the scene already in motion, using only details that are true regardless of which path was taken.
+
 **Causal coherence fixes**: If an entity's behaviour contradicts its revealed motivation on any branch, rewrite the behaviour to match the motivation — or revise the motivation to match the behaviour, whichever requires fewer changes. If a signal-response pair is illogical (e.g., an SOS causing retreat instead of approach), replace the signal or the response so the semantics match. If cross-branch explanations for the same phenomenon contradict each other, unify them.
 
 ## Guardrails
@@ -76,6 +78,7 @@ After all edits are complete, re-run Step 4's Part 1 structural checks against t
 - Choice numbering is sequential (1, 2, 3…) with no gaps.
 - Every non-ending chapter has at least 2 choices.
 - Chapters appear in ascending numeric order in the file.
+- For every convergence chapter (reachable from two or more distinct chapters), confirm that the opening sentences do not describe an arrival, approach, or transition that would be impossible or contradictory for any of its incoming paths. If the protagonist can already be inside a location on one path, the chapter must not open with language that implies entering that location for the first time.
 
 If any check fails, fix the violation before outputting. Do not output a story that would fail Step 4's structural checks.
 
