@@ -29,6 +29,8 @@ The structural skeleton — which chapters exist, how choices connect them.
 - Create meaningful crossroads early (by chapter 2 or 3).
 - Every path from Chapter 1 to an ending passes through at least 4 chapters.
 - No self-links. Every target chapter must exist.
+- Assign each major branch a distinct dramatic identity: each branch must pursue a different core question (e.g., "whom do you trust?" vs "what do you risk to know the truth?") and must not be a cosmetic rewording of another path.
+- Add a branch-identity checkpoint by mid-story: by the midpoint chapter range, each major branch must contain at least one scene objective or complication that cannot appear on sibling branches.
 - Convergence chapters must work from any incoming path: re-identify characters and context so no reader is confused.
 - Convergence chapters must read as if the reader's current path is the only one. No conditional phrasing that acknowledges other routes.
 
@@ -86,6 +88,15 @@ Return only a valid JSON object:
   "tone": "...",
   "valueConflict": "...",
   "protagonistFaultLine": "...",
+
+  "branchIdentityPlan": [
+    {
+      "branchLabel": "...",
+      "coreQuestion": "The distinct dramatic question this branch explores.",
+      "midpointDifferentiator": "A chapter-level objective/complication unique to this branch.",
+      "mustNotDuplicate": ["Sibling branch label"]
+    }
+  ],
 
   "foreshadowingPlan": [
     {

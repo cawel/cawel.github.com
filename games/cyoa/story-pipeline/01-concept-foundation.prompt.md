@@ -28,6 +28,7 @@ A great CYOA concept is not a setting or a premise — it is a **dilemma engine*
 ## Hard Rules
 
 - No generic or interchangeable premises. If swapping the setting doesn't break the concept, the concept is too thin.
+- Anti-cliche test: each concept must include at least one midpoint reframe that subverts a likely genre expectation while remaining logically implied by earlier details.
 - `AUDIENCE` must match a `name` from the provided audience catalog, and the concept should reflect that audience's reading profile, emphasis, and guardrails.
 - `TONE` is mandatory and must match a `name` from the provided tone catalog. Do not invent new tone labels.
 - Every concept in the output must use the exact selected `TONE` value.
@@ -63,6 +64,7 @@ Return only a valid JSON array:
       "Detail X: planted as [innocent meaning], pays off as [real meaning].",
       "Detail Y: planted as [innocent meaning], pays off as [real meaning]."
     ],
+    "antiClicheTurn": "A midpoint reframe that overturns a familiar genre assumption while remaining setup-consistent.",
     "replayHook": "What changes meaning on a second read.",
     "keywords": ["...", "...", "..."]
   }

@@ -91,6 +91,13 @@ Evaluate each dimension. For each one, give a **score (1–5)** and a **specific
 - If a revelation on one branch explains a phenomenon, are all other branches depicting the same phenomenon compatible with that explanation?
 - Are cause-and-effect chains tight? When the text says "X happens because Y," is Y actually sufficient and consistent with the established facts?
 
+### 2j. Branch Distinctiveness (No Branch Blur)
+
+- Compare sibling branches that diverge from the same choice point. Do they pursue genuinely different dramatic questions, or do they feel like near-duplicates with renamed scenery?
+- Flag "branch blur" when two branches share substantially the same scene objective, emotional beat sequence, and stakes progression.
+- Verify each major branch has at least one unique mid-story complication or objective that cannot be swapped into sibling branches without rewriting causality.
+- If branch blur is present, cite both chapter ranges and specify exactly which beats are duplicated.
+
 ## Output Format
 
 Return only valid JSON:
@@ -121,7 +128,8 @@ Return only valid JSON:
     "dialogue": { "score": 0, "observation": "..." },
     "pacingAndEmotion": { "score": 0, "observation": "..." },
     "endings": { "score": 0, "observation": "..." },
-    "causalCoherence": { "score": 0, "observation": "..." }
+    "causalCoherence": { "score": 0, "observation": "..." },
+    "branchDistinctiveness": { "score": 0, "observation": "..." }
   },
 
   "topPriorities": [
