@@ -3,29 +3,39 @@ header {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px 40px;
+  padding: 28px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
   position: relative;
   isolation: isolate;
+  z-index: 1;
 }
 
 header::before {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: -1px;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--bg-alt) 88%, var(--story-bg) 12%),
-    color-mix(in srgb, var(--bg-alt) 70%, var(--bg-muted) 30%)
-  );
+  background: color-mix(in srgb, var(--bg-alt) 88%, var(--story-bg) 12%);
   z-index: -1;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+  opacity: 1;
 }
 
 header.header-collapsed {
@@ -62,7 +72,11 @@ header.header-collapsed {
 }
 
 .mobile-menu-btn:hover {
-  background-color: color-mix(in srgb, var(--bg-muted) 50%, var(--story-bg) 50%);
+  background-color: color-mix(
+    in srgb,
+    var(--bg-muted) 50%,
+    var(--story-bg) 50%
+  );
   border-color: color-mix(in srgb, var(--story-title-color) 30%, var(--border));
 }
 
@@ -91,7 +105,11 @@ header.header-collapsed {
 }
 
 .audio-track-select:hover {
-  background-color: color-mix(in srgb, var(--bg-muted) 70%, var(--story-bg) 30%);
+  background-color: color-mix(
+    in srgb,
+    var(--bg-muted) 70%,
+    var(--story-bg) 30%
+  );
   border-color: color-mix(in srgb, var(--story-title-color) 28%, var(--border));
 }
 
@@ -112,7 +130,11 @@ header.header-collapsed {
   text-align: left;
   cursor: pointer;
   text-decoration: none;
-  color: color-mix(in srgb, var(--text) 86%, var(--story-choice-text-color) 14%);
+  color: color-mix(
+    in srgb,
+    var(--text) 86%,
+    var(--story-choice-text-color) 14%
+  );
   transition:
     opacity 0.2s,
     color 0.2s;
@@ -180,7 +202,11 @@ header.header-collapsed {
 .theme-control:hover,
 .admin-control:hover,
 .header-toggle:hover {
-  background-color: color-mix(in srgb, var(--bg-muted) 54%, var(--story-bg) 46%);
+  background-color: color-mix(
+    in srgb,
+    var(--bg-muted) 54%,
+    var(--story-bg) 46%
+  );
   border-color: color-mix(in srgb, var(--story-title-color) 30%, var(--border));
   transform: translateY(-1px);
 }
@@ -257,7 +283,7 @@ header.header-collapsed {
 
 @media (max-width: 1023px) {
   header {
-    padding: 10px 14px;
+    padding: 20px 24px;
   }
 
   .header-title {
@@ -311,7 +337,7 @@ header.header-collapsed {
 
 @media (max-width: 768px) {
   header {
-    padding: 7px 10px;
+    padding: 16px 20px;
     max-width: none;
     position: relative;
     flex-wrap: wrap;
@@ -340,7 +366,6 @@ header.header-collapsed {
     align-items: stretch;
     gap: 6px;
     padding-top: 6px;
-    border-top: 1px solid color-mix(in srgb, var(--story-border) 50%, var(--border));
   }
 
   header.mobile-menu-open .header-controls {
@@ -371,7 +396,11 @@ header.header-collapsed {
     min-height: 36px;
     justify-content: center;
     border: 1px solid color-mix(in srgb, var(--story-border) 45%, var(--border));
-    background-color: color-mix(in srgb, var(--bg-muted) 72%, var(--story-bg) 28%);
+    background-color: color-mix(
+      in srgb,
+      var(--bg-muted) 72%,
+      var(--story-bg) 28%
+    );
     padding: 6px 0;
   }
 
@@ -387,7 +416,11 @@ header.header-collapsed {
     width: 100%;
     min-height: 36px;
     border: 1px solid color-mix(in srgb, var(--story-border) 45%, var(--border));
-    background-color: color-mix(in srgb, var(--bg-muted) 72%, var(--story-bg) 28%);
+    background-color: color-mix(
+      in srgb,
+      var(--bg-muted) 72%,
+      var(--story-bg) 28%
+    );
     font-size: 16px;
     padding: 6px 10px;
   }

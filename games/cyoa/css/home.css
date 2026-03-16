@@ -1,5 +1,20 @@
 /* Home Page */
+main.home-main {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--story-title-color) 3%, var(--bg-alt)) 0%,
+    var(--bg-alt) 30%,
+    var(--bg) 80%
+  );
+}
+
 .home-container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -69,8 +84,13 @@
 }
 
 .story-card {
-  background: linear-gradient(145deg, var(--bg-alt), var(--bg-muted));
-  border: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--bg-alt) 68%, var(--story-bg) 32%);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--bg-alt) 74%, var(--story-bg) 26%) 0%,
+    color-mix(in srgb, var(--bg-muted) 84%, var(--story-bg) 16%) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--story-border) 54%, var(--border));
   border-radius: 8px;
   padding: 18px;
   margin-top: 2px;
@@ -83,18 +103,26 @@
     border-color 0.2s,
     box-shadow 0.2s,
     background 0.2s;
+  box-shadow:
+    0 8px 22px color-mix(in srgb, #000 24%, transparent),
+    inset 0 1px 0
+      color-mix(in srgb, var(--story-choice-text-hover) 11%, transparent);
 }
 
 .story-card:hover,
 .story-card:focus-visible {
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--bg-muted) 78%, var(--accent) 22%),
-    color-mix(in srgb, var(--bg-alt) 88%, var(--accent) 12%)
+    color-mix(in srgb, var(--bg-muted) 94%, var(--accent) 6%),
+    color-mix(in srgb, var(--bg-alt) 95%, var(--accent) 5%)
   );
   transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--story-title-color));
+  box-shadow:
+    0 10px 22px color-mix(in srgb, #000 22%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent),
+    inset 0 1px 0
+      color-mix(in srgb, var(--story-choice-text-hover) 8%, transparent);
 }
 
 .story-card:focus-visible {
@@ -148,6 +176,12 @@
 @media (max-width: 768px) {
   main.home-main {
     padding: 10px 8px;
+    border-radius: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-alt) 88%, var(--story-bg) 12%) 0%,
+      color-mix(in srgb, var(--bg-muted) 92%, var(--bg) 8%) 100%
+    );
   }
 
   .home-title {
