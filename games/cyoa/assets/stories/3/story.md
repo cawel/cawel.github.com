@@ -35,6 +35,8 @@ Her final log entry ends mid-sentence: *remember*
 
 No punctuation. No crash report. The file was saved deliberately, not interrupted.
 
+If you leave this terminal now, you leave with Maren's private logic and very little anyone else on this station would call proof. Whatever comes next will have to be navigated partly on trust — in her, in yourself, in the shape of the trail she expected you to follow.
+
 Rui stands in the doorway. She watched you read, and whatever crossed your face reminds her of something she carries too. "What did she find?" Rui asks. Her voice is steady, but one hand rests against the corridor wall as though listening through it. She lost a friend at Station Four. She has earned a version of the truth.
 
 Caldwell passes behind Rui without stopping, but his eyes linger on the terminal screen a beat too long. He has seen the logs. He does not ask about them.
@@ -50,9 +52,13 @@ Signal Architecture
 ### Content
 The comms array powers up with a crackle that scatters into the station's silence. The signal floods the displays — a waveform so densely patterned it looks almost like language. No known linguistic model matches it. No geological process produces anything this organized.
 
+The screen-light turns the control room surgical blue. Somewhere inside the pattern your eyes keep trying to invent repetition and failing. You realize only when you breathe out that you've been holding air in your chest long enough for it to hurt.
+
 Caldwell leans over your shoulder. "Try the 2.7 kilohertz band," he says — too casually. That frequency is not in the public data. He steps back when he sees your expression, already composing a better answer.
 
 Between equipment checks, Rui slips you a printout. She has been logging the station's ambient vibrations independently. The humming from below the deck plates — the sound the maintenance log dismissed as pipe resonance — correlates precisely with the signal's intensity peaks. Not an echo. A resonance. Something in the station's structure is keeping time with whatever is transmitting.
+
+If you leave the array now, you leave with numbers, correlations, and a frequency someone in corporate should never have known. It is evidence, not understanding — enough to force answers, not enough to tell you what Maren was trying to say.
 
 Two threads lead forward: the man who knows more than his briefing should allow, or the sound rising through the floor.
 
@@ -71,7 +77,7 @@ You pass a bulkhead and stop. Scratches on the wall — not damage. Maren's hand
 
 Caldwell appears at the far end of the corridor. He is not surprised to see you. "She filed that frequency notation with us eighteen months before the blackout," he says. The pause is calculation, not hesitation. "We did not dismiss it. We classified it. Stations Four, Seven, Twelve — all three crews reported the same physical sensation in the weeks before they went dark. We had a pattern and we wrote a suppression order instead." He sets the data core on a crate — a deliberate gesture from a man deciding to be useful. "I came here to evaluate whether this station should be sealed. The evaluation is changing."
 
-The signal does something to time here. You check your watch and cannot recall when you last looked at it. A thought arrives that does not feel entirely yours: *this has happened before*. It passes easily. Too easily.
+The signal does something to time here. You check your watch. The second hand jerks forward, stalls, and for one impossible beat seems to sweep backward over the same mark. Your stomach drops with it. You are suddenly certain you have already stood in this corridor, already seen Caldwell framed at the far end, already felt the next pulse of the hum in your teeth. Then the certainty loosens and leaves you holding the rail hard enough for your knuckles to pale.
 
 The corridor branches ahead. Maren's notation continues toward a sealed compartment at the station's lowest point. Behind you, the main deck — and the submersible — is still reachable.
 
