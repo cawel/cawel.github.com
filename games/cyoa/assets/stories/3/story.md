@@ -1,180 +1,185 @@
-# The Last Broadcast
+# The Quiet Frequency
 
 ## Keywords
-- space
+- deep-sea
 - signal
-- survival
+- silence
 
 ## Chapter 1
 ### Title
-Silence Over Earth
+Crush Depth
 
 ### Content
-You are on comms watch in Meridian Station's cupola when Earth goes silent at 03:12 UTC.
+The submersible settles against the docking clamp with a sound like a held breath releasing. Station Eleven sits at four thousand metres — the last deep-sea research station still transmitting after every other went silent on the same night, three years ago. The airlock tastes of recycled ozone and old metal.
 
-Not static. Silence.
+Caldwell, the corporate liaison, adjusts his collar and smiles like a man keeping an appointment. Rui, your pilot, does not smile. She lost a friend at Station Four.
 
-Ground control's beacon dies first. Commercial bands follow in a clean cascade. Even encrypted military channels drop in the same second. Through the cupola glass, city grids dim in coordinated waves moving east across North America.
+Maren Elster's workspace is untouched. Her handwriting covers the whiteboard in tight, slanted script. A coffee mug sits beside the dead monitor, the ceramic stained dark at the rim — but the handle is missing, snapped off. Whoever broke it did not bother to sweep up. You came here because of Maren. You came because you ignored her last three messages before the blackout, and the guilt has a texture now — something you can almost hold.
 
-Okafor, your station partner, drags a trace onto the spectral analyzer and freezes. One transmission occupies a Cold War emergency frequency that should be dead: precise cadence, non-human timing, a repeating coordinate in northern Canada. The signal does not request contact. It transmits as if it already accounted for you.
-
-No one briefs you for this moment. If you answer, you authorize first contact without a chain of command. If you do not, you descend blind toward a world that just changed shape.
+Rui runs diagnostics and delivers the news: the backup generator can restore one system. Maren's personal terminal, or the station's comms array. Not both. Caldwell tilts his head. "The comms array would be the prudent choice," he says, watching your face. From somewhere below the deck plates, a faint hum rises. The maintenance log on the wall calls it pipe resonance.
 
 ### Choices
-1. Reply to the signal with a structured contact protocol -> 2
-2. Ignore the signal and begin immediate re-entry planning -> 3
+1. Restore Maren's personal terminal — her private logs may hold the key -> 2
+2. Restore the station comms array — you need proper signal analysis tools -> 3
 
 ## Chapter 2
 ### Title
-Prime Number Voice
+Maren's Trail
 
 ### Content
-You key the channel and transmit prime numbers: 2, 3, 5, 7, 11.
+The terminal takes ninety seconds to boot. Maren's desktop appears — personal logs ordered by date, the last entry three years old.
 
-The return sequence mirrors yours, continues past your stop point, then shifts into plain English: DO NOT LAND YET. ATMOSPHERIC ADAPTATION EVENT IN PROGRESS. ORBITAL DATA REQUIRED AT CONVERGENCE COUNCIL.
+You read them in sequence. She documented the signal's structure with the precision of someone building a case, not losing her mind. Her annotations reference a coffee mug handle twice, once with the phrase "the handle knows." She mapped the station's hum as it grew louder week by week, writing: "Getting closer. Or I am."
 
-Okafor mutters, "It sounds like a committee memo from the end of the world."
+Her final log entry ends mid-sentence: *remember*
 
-More text scrolls. Okafor's hand drifts to the abort handle without him noticing — survivor groups converging, a crisis council forming, your orbital sensors requested to verify spread patterns no ground team can see. The sender identifies itself as contingency infrastructure and invites verification, not trust.
+No punctuation. No crash report. The file was saved deliberately, not interrupted.
 
-You can descend before the political window closes, or spend precious hours validating the claims. Speed or certainty. You cannot keep both.
+Rui stands in the doorway. She watched you read, and whatever crossed your face reminds her of something she carries too. "What did she find?" Rui asks. Her voice is steady, but one hand rests against the corridor wall as though listening through it. She lost a friend at Station Four. She has earned a version of the truth.
+
+Caldwell passes behind Rui without stopping, but his eyes linger on the terminal screen a beat too long. He has seen the logs. He does not ask about them.
 
 ### Choices
-1. Stay in orbit briefly and collect independent evidence first -> 4
-2. Treat the signal as high-risk and begin descent now -> 3
+1. Share Maren's logs with Rui — she deserves to know, and you need an ally -> 4
+2. Keep the logs to yourself — this is between you and Maren -> 4
 
 ## Chapter 3
 ### Title
-Forced Descent
+Signal Architecture
 
 ### Content
-You deorbit without a filed plan because there is no one left to clear one.
+The comms array powers up with a crackle that scatters into the station's silence. The signal floods the displays — a waveform so densely patterned it looks almost like language. No known linguistic model matches it. No geological process produces anything this organized.
 
-Re-entry is rougher than projected. A fuel-line pressure spike costs you eleven seconds of thrust and shifts your corridor west. Weather cells have reorganized into patterns the simulator cannot classify. During plasma blackout, fragmented ground traffic slips through: convoy frequencies, triage requests, one voice repeating a name in French until the carrier drops.
+Caldwell leans over your shoulder. "Try the 2.7 kilohertz band," he says — too casually. That frequency is not in the public data. He steps back when he sees your expression, already composing a better answer.
 
-You exit blackout into amber sky. Through the descent window, crystalline bloom covers former soil bands, reflecting sunlight in spectral colors your instruments label unknown material interaction. On a surviving ground frequency, someone says, "If you're descending, don't trust the terrain maps. Nothing down here matches."
+Between equipment checks, Rui slips you a printout. She has been logging the station's ambient vibrations independently. The humming from below the deck plates — the sound the maintenance log dismissed as pipe resonance — correlates precisely with the signal's intensity peaks. Not an echo. A resonance. Something in the station's structure is keeping time with whatever is transmitting.
 
-Two signals survive the noise. One: convoy transponders north of your touchdown, disciplined routing. Two: a council broadcast at the original coordinates, requesting technical witnesses. Eighteen percent maneuvering fuel remains — enough for one correction.
+Two threads lead forward: the man who knows more than his briefing should allow, or the sound rising through the floor.
 
 ### Choices
-1. Divert to the moving survivor convoy -> 5
-2. Land near the council site to enter the vote immediately -> 6
+1. Press Caldwell on the frequency he mentioned — he has been briefed on something you have not seen -> 4
+2. Follow Rui's correlation data to the lower deck — the humming is the answer -> 5
 
 ## Chapter 4
 ### Title
-Evidence Window
+The Lower Deck
 
 ### Content
-You spend six hours pulling multispectral sweeps across every orbital track you can hold.
+The lower deck is colder. The hum is no longer ambient — it presses against your sternum, a vibration you feel in your teeth. Overhead lights stutter at intervals that seem deliberate, as if the station is breathing on a schedule you have not learned.
 
-Isotope plumes appear over coordinates with no matching infrastructure. Migration clusters move in synchronized streams toward the Canadian interior. By the fourth hour, your neck aches and the station hums a half-tone lower from power draw. The atmospheric adaptation front advances in pulses tied to tower emissions — not random spread. One sweep over the Atlantic returns corrupted twice. You log the anomaly and move on. Something is governing the transition.
+You pass a bulkhead and stop. Scratches on the wall — not damage. Maren's handwriting, etched into paint with something sharp: a frequency notation and an arrow pointing further down the corridor. She was mapping a path through the sound.
 
-Okafor leans past your shoulder and stares at the overlay. "That's not random," he says. "That's infrastructure."
+Caldwell appears at the far end of the corridor. "Interesting notation," he says, leaning against the frame as though he has been waiting. "She filed a version of that with us eighteen months before the blackout. We dismissed it." His mouth tightens. "I am starting to think that was a mistake."
 
-You package the dataset with confidence intervals. If you descend with this archive, the council cannot argue from rumor. If you remain, you can keep documenting changes no one on the ground can see, but the vote below closes in nine hours.
+The signal does something to time here. You check your watch and cannot recall when you last looked at it. A thought arrives that does not feel entirely yours: *this has happened before*. It passes easily. Too easily.
+
+The corridor branches ahead. Maren's notation continues toward a sealed compartment at the station's lowest point. Behind you, the main deck — and the submersible — is still reachable.
 
 ### Choices
-1. Descend with the full dataset and testify in person -> 6
-2. Stay in orbit and prioritize long-range archival continuity -> 9
+1. Follow the frequency notation deeper — Maren was mapping a path -> 6
+2. Return to the main deck and use what you have gathered -> 7
 
 ## Chapter 5
 ### Title
-Ground Convoy
+Resonance
 
 ### Content
-You touch down hard on terrain sheeted in crystalline bloom — the same growth you saw from orbit, crunching like glass underfoot.
+You press your palm flat against the hull of the lower deck. The metal vibrates — not mechanically, not randomly, but in sequences. Long, short, clustered. The station's structure is conducting information through itself.
 
-The convoy reaches you before you finish post-landing checks: forty-three survivors in three vehicles, disciplined rotation on watch and triage. Their lead, Ilyas, briefs while walking. "We don't need another speech. We need someone the council can't accuse of guessing."
+Rui recognizes it. Her face goes still. "Station Four," she says. "My friend called me the night before they went dark. She said the walls were talking. I told her to sleep." Her hands curl at her sides. "She was not tired."
 
-He outlines the deadlock. The Acceleration Directorate demands mandatory transformation through centralized tower control — faster adaptation, lower mortality, no refusal. The Continuity Compact insists on consent-based protocols — voluntary transformation, baseline enclaves, independent oversight, even if casualties rise short-term. Both factions control parts of the tower network. Both claim science.
+The pipe resonance logged in every maintenance report for years was never pipes. Station Eleven's hull has been receiving a signal through direct physical vibration — below any frequency the electronics would detect. Every deep-sea station sat in the same geological current. Every station received. Only this one remains standing.
 
-On the ridgeline, adaptation towers pulse through ion haze. Ilyas can take you to the council, or you can try to disable the towers directly.
+Rui meets your eyes. "Whatever the crews heard, it didn't stop them from trying to understand. It stopped them from wanting to leave." She wants to map the resonance pattern. But mapping means more time at depth, and the submersible's ascent window narrows with every hour.
 
 ### Choices
-1. Go with Ilyas to the Convergence Council -> 6
-2. Attempt direct tower sabotage before the vote locks -> 8
+1. Continue the analysis with Rui — map the full resonance pattern before deciding anything -> 6
+2. This is what happened to the crews — call the ascent now -> 7
 
 ## Chapter 6
 ### Title
-The Convergence Vote
+The Cipher Chamber
 
 ### Content
-The chamber is a repurposed research station forty meters underground, over capacity, running on generator heat that makes every argument shorter.
+The sealed compartment opens onto a room Maren made entirely her own. Frequency charts paper every wall, layered and revised. Weeks of isolation distilled into a translation framework — a cipher between the signal's physical patterns and something approaching language.
 
-Directorate envoys sit under a projected mortality board. Dr. Sera Vonn speaks in clipped projections: "Delay is not neutral. Delay selects who dies first." Compact delegates answer through lead counsel Mara El-Tayeb: "Compulsion is not neutral either. Once consent is suspended, it does not return by apology."
+At the centre of her desk: a coffee mug handle, stripped clean of ceramic. The mug's body is gone — only the handle remains, placed deliberately upright. Inside its curve, etched into the ceramic with a needle: a frequency. The missing handle from her mug upstairs. She carried it down here and broke it open to expose what she had hidden inside.
 
-You testify to what you witnessed from orbit: synchronized blackout, city grids dimming in coordinated waves, atmospheric spread pulsing in rhythm with tower emissions. The room goes quiet in a way that means no one got what they wanted.
+"She built it into the ceramic," you say aloud, and saying it makes it real. The frequency is the final key.
 
-When the chair calls for recommendation, the real choice lands. Immediate casualty minimization with mandatory acceleration, or a consent framework that preserves agency at measurable cost.
+With it, the cipher aligns. Her scattered annotations snap into coherence — instructions, not confusion. Her final log entry, *remember*, was not interrupted. It was the first word she translated from the signal. A marker only you would recognize, because you are the one who needs to remember.
+
+She knew you would come here. She designed this trail to work through your guilt, not despite it.
 
 ### Choices
-1. Endorse mandatory acceleration under emergency authority -> 7
-2. Defend phased consent with transparent oversight -> 10
+1. Complete the translation — finish what Maren started, whatever it costs -> 9
+2. Take Maren's work to the surface — let the world finish what she started -> 8
 
 ## Chapter 7
 ### Title
-Survival Without Choice
+Ascent Window
 
 ### Content
-You endorse the Directorate plan.
+The main deck feels smaller than it did hours ago. The hum has risen to a frequency everyone can hear — Caldwell flinches each time it peaks. He stands by the airlock with a data core under his arm, the corporation's proprietary signal records. The real reason he came.
 
-Tower schedules tighten. Adaptation access expands by mandate. Mortality drops faster than conservative models predicted. Entire regions that would have collapsed remain viable because the timeline was forced ahead of fear.
+"The submersible has power for one ascent," Rui says from the pilot seat. Her voice carries the careful steadiness of someone who has already made calculations she is not sharing.
 
-Resistance enclaves are reclassified as noncompliant risk zones. In a stabilization corridor, you pass a woman gripping her child's hand, waiting for a procedure neither of them requested. She looks at you. She does not speak. She does not need to.
+Caldwell's professional warmth is gone. "We leave now, or I leave now. Your choice determines the passenger count." He means it. The data core is what he was sent for, and he will not risk it for your investigation.
 
-"Stabilization" becomes vocabulary for interventions no one can reverse. Temporary lasts long enough to become architecture.
+Rui watches you. Her hand rests near the hatch lock. She has not spoken to Caldwell directly since the lower deck — she knows what the data core is, and she knows you do too. "I trust your call," she says. Or she does not say it — she looks past you to Caldwell and reaches for the hatch release. The difference depends on whether you gave her a reason to stay.
 
-Outside, crystalline bloom has fused with the soil into something neither natural nor artificial. Years later, records keep your name in two columns — one for preventing civilizational die-off, one for normalizing survival by compulsion. Like the ground itself, both are true.
+The station hums beneath all three of you. Below, Maren's trail continues into the dark. Above, four thousand metres of black water and then daylight.
 
 ### Choices
-The End
+1. Board the submersible — take what you have and go -> 8
+2. Let them go — the signal is still here, and so is the answer -> 10
 
 ## Chapter 8
 ### Title
-The Last Burn
+Surface Light
 
 ### Content
-You choose towers over speeches and move alone through ion fog, crystalline bloom crunching under each step, with tools meant for maintenance, not demolition.
+The ascent takes seven hours. The submersible groans against the pressure differential at every depth threshold, and Rui's hands never leave the controls. Caldwell sits in the back with his data core and says nothing. The hum fades somewhere around fifteen hundred metres, replaced by the creak of contracting metal.
 
-The first node fails partially after six minutes of manual bypass. Output drops, then rebounds through an automatic reroute you did not know existed. The second node sits inside a containment trench. When your improvised cut opens the casing, ionized particulate blasts upward and your suit filters lose capacity in thirty seconds.
+You surface into grey morning light. The sun sits behind cloud cover, but after the station's fluorescents it feels like staring into something holy. Rui kills the engine. In the silence that follows, you hear it — or imagine you do. A hum. Low, oceanic, riding just below the audible threshold. It will follow you.
 
-You stop pretending this becomes a return trip.
+You carry Maren's partial work. Her cipher fragments, her name, her methodology. Enough to prove the signal is real, structured, and deliberate. Enough to force questions the corporation cannot bury. Not enough to know what the signal says.
 
-With failing lungs and one uplink, you transmit everything in packet bursts: node topography, hazard signatures, spread maps, the orbital archive. Every public frequency. No encryption. "This is Meridian crew, solo EVA," you say into the open channel, and your voice sounds like someone else's. Whether anyone receives it is not a question you survive to answer.
+Rui steadies the tow line and glances back at you. "We'll make sure they hear her name," she says — or she says nothing, eyes fixed forward, already composing the version of events Caldwell will approve. What Rui carries to the surface depends on what you gave her below.
 
 ### Choices
 The End
 
 ## Chapter 9
 ### Title
-Orbit of One
+The Full Translation
 
 ### Content
-You remain above and keep recording.
+You fit the frequency into the cipher framework. The key turns. The signal resolves into something your mind recognizes before your training does — not language exactly, but structured meaning carried in vibration.
 
-At first the decision feels disciplined: preserve a complete account while ground actors make policy. You map adaptation pulses, tower outages, and the narrowing of habitable bands with rigor no council memo matches.
+*Remember what was here before silence.*
 
-Then resupply windows close.
+Not a warning. Not a distress call. A monument. Something lived in the deep trenches long before the stations were built — something that communicated through the rock itself, patient and unhurried. When the stations arrived, the signal found an audience for the first time. The crews heard it without understanding. Maren understood it without surviving intact.
 
-You cut meals by percentage, then by day. You keep the transmitter alive as long as physics allows, feeding packets to any receiver still functioning. At each cycle, you run the same checksum ritual Okafor watched when the first message arrived. You can still hear him: "That's not random. That's infrastructure." He was right. You just cannot tell him.
+You understand, and the understanding rewrites something behind your eyes. Memories of the surface feel thinner now, as though they belong to someone you once read about. Maren is clearer than she ever was in life — her methodology, her patience, her precise and deliberate trail. The mug handle sits in your palm, warm from your grip, its purpose fulfilled.
 
-By the time you can no longer stand through a full watch, the archive is your only remaining task. Meridian drifts on failing reserves. You do not reach the surface. Your dataset does.
+You will surface. The submersible still has power. But the person who ascends will not be quite the one who descended. You carry the translation and the cost of having completed it. Both are yours now.
 
 ### Choices
 The End
 
 ## Chapter 10
 ### Title
-The Human Clause
+The Quiet Station
 
 ### Content
-You defend phased consent and insist the vote bind every protocol to external audit.
+The submersible detaches with a metallic sound that rings through the hull once and fades. Through the porthole, you watch its lights shrink into the dark water above — a small bright point, then nothing. Rui's face was the last thing you saw through the glass. She did not argue. She understood.
 
-The final framework, ratified after fourteen more hours, becomes the Human Clause: no involuntary modification, baseline enclaves, rotating oversight, and adaptation windows tied to the survivability data you proved viable. Neither side's ideal victory. That is why it passes.
+The station settles around you. Without the generator cycling for the submersible, the hum is the only sound — filling every corridor with a patience that feels geological. You sit in Maren's chair, at her desk, surrounded by her whiteboard equations like a conversation paused mid-sentence. The mug with the missing handle rests where she left it, incomplete.
 
-The cost is real. Casualties remain higher than under full mandate during the first phase. You attend briefings where each number carries a name someone still says in present tense.
+You came to find what happened to her. Now you know. She did not leave. She did not die the way the reports describe. She listened until listening became all she was, and the station took her in the way deep water takes a stone — slowly, completely, without malice.
 
-A year later, tower hearings are public. Vonn signs an audit charter she once argued would cost lives. El-Tayeb prosecutes a coercion case and wins on appeal. Okafor leaves orbital operations for treaty verification. Outside, crystalline bloom has thinned to translucent film over recovering soil. The species that walks on it is altered, tired, and still capable of argument without force. You call it survival with authorship intact.
+The signal continues. It does not need you. But it accepts your attention, your time, your quiet company. The station hums. You listen.
 
 ### Choices
 The End

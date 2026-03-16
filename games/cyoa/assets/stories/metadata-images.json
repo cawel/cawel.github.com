@@ -141,67 +141,67 @@
     },
     {
       "number": 3,
-      "storyTitle": "The Last Broadcast",
+      "storyTitle": "The Quiet Frequency",
       "chapters": [
         {
           "number": 1,
-          "title": "Silence Over Earth",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, from inside an orbital station cupola. Earth fills the lower frame with city lights fading in synchronized waves, while dark control panels and a single anomalous signal trace glow on the comms console. The protagonist appears as a tense silhouette facing the signal. Use realistic orbital lighting and clean instrument detail. Mood: isolation, mystery, imminent global crisis, no ending spoilers, no text, no watermark.",
+          "title": "Crush Depth",
+          "llmPrompt": "Cinematic deep-sea thriller digital painting, desaturated teal and cold amber palette with bioluminescent accents. Wide interior shot through a submersible airlock into a dead research station at four thousand metres. A protagonist silhouette steps onto corroded deck plates, flashlight beam catching whiteboard script and a coffee mug with a broken handle beside a dark monitor. Behind, two companions wait — a corporate liaison adjusting his collar, a pilot with grim stillness. Overhead fluorescents flicker. Through a porthole, absolute black ocean. Mood: guilt-laden arrival, crushing isolation. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
-          "title": "Prime Number Voice",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, orbital comms contact scene. The station comms bay: two active screens—one showing the prime-number handshake transmitted (2, 3, 5, 7, 11), the other showing the alien signal's continuation extending beyond where the human sequence stopped. A third window holds clean English text appearing with the cadence of someone who learned the language from transcripts rather than conversation. Okafor watches across the console. Earth dims below the cupola. Mood: first contact handled with careful intellectual discipline, the weight of being the person at the keyboard at exactly this moment, mathematical trust before language, no ending spoilers, no text, no watermark.",
+          "title": "Maren's Trail",
+          "llmPrompt": "Same style. Medium close-up, over-shoulder angle. A decades-old terminal boots to a blue-white desktop in a dark station workspace. The screen illuminates handwritten annotations pinned to the wall behind it — frequency graphs, the phrase 'the handle knows' underlined twice. A final log entry glows on screen, ending mid-sentence with the word 'remember' in italic. In the doorway behind the protagonist, a pilot leans one hand against the corridor wall as though listening through the metal. Cold fluorescent spill, warm screen glow. Mood: intimate forensic grief. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
-          "title": "Forced Descent",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, reentry and altered landscape. A capsule cuts through plasma blackout into amber sky—particulate density wrong, light the color of a hazard index that does not exist yet. Through the capsule window, crystalline patches in the changed landscape below reflect sunlight in colors soil should not produce. Reorganized weather formations frame the descent corridor. Mood: committed approach to a world already different from the one above it, the irreversible physics of a decision made in orbit, no ending spoilers, no text, no watermark.",
+          "title": "Signal Architecture",
+          "llmPrompt": "Same style. Wide shot of a comms array console flooding with dense waveform data, green and amber traces filling multiple displays in a dark station bay. A corporate liaison leans over the protagonist's shoulder, face lit from below by the screens. On a side table, a printout shows ambient vibration data with hand-drawn correlation marks. Through the deck plates below, a faint amber glow pulses in sync with the signal peaks. Mood: pattern recognition, creeping unease. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
-          "title": "Evidence Window",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, orbital analysis documentation session. The station console at full capacity—screens displaying novel isotope plumes tracing across the upper atmosphere from sites with no known industrial coordinates, migration clusters converging from four directions, active multilingual broadcasts referencing a council and a vote. The communications specialist works alone with the systematic discipline of someone building the most complete record any single observer will have. Earth turns below. Mood: scientific discipline under the pressure of catastrophe, the responsibility of documentation before descent, data that will matter to the people who access it next, no ending spoilers, no text, no watermark.",
+          "title": "The Lower Deck",
+          "llmPrompt": "Same style. Low-angle corridor shot, narrow industrial passage receding into darkness. Overhead lights stutter at deliberate intervals. On the left wall, scratched handwriting — a frequency notation and an arrow etched into paint with something sharp. At the far end of the corridor, a man in a corporate suit leans against a doorframe, arms crossed, half-lit by a stuttering fluorescent. Cold teal steel, warm amber scratch marks. Mood: time distortion, institutional unease. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
-          "title": "Ground Convoy",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, post-event ground convoy scene. Three vehicles halt on a plain where the soil surface has changed at a molecular level—crystalline crust catching the light in wrong colors. Adaptation towers dot the landscape at regular intervals, antenna-like structures broadcasting something that modifies the air around them. A convoy leader briefs the protagonist beside an open vehicle door with the systematic focus of someone revising plans every six hours. Forty-three survivors across three vehicles. Mood: organized survival in completely changed terrain, a species adapting faster than it can govern itself, the strange calm of people who have decided to live through this and are doing it, no ending spoilers, no text, no watermark.",
+          "title": "Resonance",
+          "llmPrompt": "Same style. Close-up composition, a gloved hand pressed flat against a riveted steel hull wall. Visible vibration ripples spread from the contact point like sonar rings rendered in condensation. Behind the hand, a pilot stands rigid, face still, recognition and grief crossing her expression under cold utility lighting. The hull metal carries a faint amber glow at its seams. Mood: grief made physical, structural revelation. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
-          "title": "The Convergence Vote",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, underground crisis-council chamber deliberation. A repurposed research station forty meters below the surface, generator-lit, over capacity, air visibly hot and stale. On one side, the Acceleration Directorate under a projected mortality board; on the other, the Continuity Compact beneath legal protocol displays. Their leads are distinct and in direct opposition: Dr. Sera Vonn with one hand on the model stream, Mara El-Tayeb answering from the opposite tier. At center, the protagonist testifies at the podium with orbital data overlays showing synchronized blackout, pulsed atmospheric spread, and tower-linked acceleration windows. Mood: policy and ethics colliding under a closing clock, testimony that can be used to force compromise or justify compulsion, no ending spoilers, no text, no watermark.",
+          "title": "The Cipher Chamber",
+          "llmPrompt": "Same style. Interior wide shot of a sealed compartment wallpapered in layered frequency charts, revised and annotated obsessively. At the center desk, a single ceramic mug handle stands upright, stripped of its body, a frequency etched inside its curve catching the light. The protagonist reaches toward it. Around the room, scattered annotations snap into visible coherence — arrows, brackets, a translation framework emerging from apparent chaos. Warm amber desk lamp against cold teal walls. Mood: revelation through obsession, designed trail. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 7,
-          "title": "Survival Without Choice",
-          "llmPrompt": "Create a dystopian dark-success hard-sci-fi ending image, adaptation command floor composition. Mandatory rollout in progress: tower schedules tightening across a wall display while resistance enclaves are reclassified on adjacent monitors under administrative language. Officials work with calm procedural precision, no visible chaos. The protagonist stands foreground, isolated in sharp light, facing records that split into two verdict columns—lives saved and consent surrendered—both true at once. Mood: survival achieved through an irreversible mechanism, institutional efficiency carrying moral damage as routine, no text, no watermark.",
-          "endingType": "dark_success"
+          "title": "Ascent Window",
+          "llmPrompt": "Same style. Three-figure composition on the station main deck. A corporate liaison grips a data core under one arm near the airlock, professional warmth gone, body angled toward escape. A pilot sits in the submersible seat, hand near the hatch lock. The protagonist stands between them, lit from above by emergency amber. Through the airlock porthole, the submersible waits. Through the deck plates below, teal bioluminescent glow pulses upward. Mood: fracturing trust, the weight of a final choice. no text, no watermark.",
+          "endingType": null
         },
         {
           "number": 8,
-          "title": "The Last Burn",
-          "llmPrompt": "Create an intense tragic hard-sci-fi ending scene, adaptation-tower sabotage composition. In ion fog, a breached tower node vents bright particulate as the protagonist in a failing suit transmits burst data from a single functioning uplink. Nearby, a partially disabled first node has already rerouted, signaling the plan is too late to fully stop the rollout. Use stark orange vs steel-blue contrast, harsh atmospheric bloom, and urgent telemetry light on a damaged visor. Mood: deliberate sacrifice for information transfer under terminal conditions, no explicit gore, no text, no watermark.",
-          "endingType": "very_bad"
+          "title": "Surface Light",
+          "llmPrompt": "Same style. Wide shot from inside a surfacing submersible cockpit. Grey morning light floods through the canopy as the vessel breaches calm ocean surface. A pilot's hands rest on darkened controls. Through the glass, overcast sky and flat water stretch to the horizon. On the protagonist's lap, cipher fragments and handwritten notes. A faint hum hovers at the threshold of hearing, visualized as the barest amber distortion in the water below the hull. Mood: incomplete closure, haunted daylight. no text, no watermark.",
+          "endingType": "successful"
         },
         {
           "number": 9,
-          "title": "Orbit of One",
-          "llmPrompt": "Create a melancholic tragic space tableau, quiet long-shot framing. A near-empty orbital station drifts above an altered Earth, dim interior lights flicker, and a lone archive terminal still transmits into the void. Emphasize scale, silence, and profound loneliness. No text, no watermark.",
-          "endingType": "tragic"
+          "title": "The Full Translation",
+          "llmPrompt": "Same style. Intimate interior shot, the protagonist seated alone at the cipher desk, frequency key fitted into the framework. The charts on every wall glow with coherent amber light — the cipher resolved, annotations aligning into meaning. A ceramic mug handle rests warm in the protagonist's palm. The protagonist's posture is subtly changed, head tilted as though listening to something beneath language. Behind, the station corridor recedes into deep teal darkness. Mood: transcendent understanding at personal cost, bittersweet transformation. no text, no watermark.",
+          "endingType": "bittersweet"
         },
         {
           "number": 10,
-          "title": "The Human Clause",
-          "llmPrompt": "Create a hopeful hard-sci-fi diplomatic finale image, public oversight hearing composition. A post-crisis policy chamber where adaptation protocols are debated in open session beneath transparent audit displays and a holographic Earth. Delegates from former opposing blocs are still visibly in disagreement but bound to procedure; no one can bypass consent architecture now. The protagonist observes from the witness section with restrained relief as oversight records remain visible to everyone. Mood: exhausted legitimacy, accountability that survived emergency rule, hard-won hope without triumphalism, no text, no watermark.",
-          "endingType": "successful"
+          "title": "The Quiet Station",
+          "llmPrompt": "Same style. Wide contemplative shot through a station porthole. The submersible's lights shrink to a single bright point ascending into black water, then vanish. Inside, the protagonist sits in a dead researcher's chair, surrounded by whiteboard equations, a handleless mug nearby. The station hum is visualized as faint concentric amber rings pulsing through the walls and floor. Absolute stillness. No other human presence. Mood: chosen solitude, geological patience, quiet surrender. no text, no watermark.",
+          "endingType": "bad"
         }
       ]
     },

@@ -21,12 +21,12 @@
   },
   {
     "number": 3,
-    "title": "The Last Broadcast",
-    "emoji": "🛰️",
-    "approxTime": "3-6 min",
-    "keywords": ["space", "signal", "survival"],
+    "title": "The Quiet Frequency",
+    "emoji": "🌊",
+    "approxTime": "4-5 min",
+    "keywords": ["deep-sea", "signal", "silence"],
     "chapters": 10,
-    "tone": "Dramatic",
+    "tone": "Mysterious",
     "promptVersion": 3
   },
   {
