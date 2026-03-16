@@ -94,7 +94,13 @@ Good intentions collide in the cargo corridors. The ring C lockers are already o
 
 The artifact pulses three times in rapid succession. Each burst travels through the deck plates like a physical blow—you feel it in your back teeth more than your ears. A frequency you've never registered in any previous loop. The walls groan and your vision smears at the edges for one nauseating second. In engineering, a pressure coupling detonates with a crack like a gunshot.
 
-A security officer's voice cuts through the station intercom, clipped and furious: "All civilians clear ring C — lethal force is authorized past bulkhead nine." Somewhere ahead, a construction worker shouts back: "We're trying to save your station, you idiot!"
+A security officer's voice cuts through the station intercom, clipped and furious: "All civilians clear ring C — lethal force is authorized past bulkhead nine."
+
+A construction worker in a hard-suit nearly shoulders you into the wall. You grab his arm. "Who gave the order to arm?"
+
+He shakes you off without stopping. "Nobody. That's the point."
+
+Somewhere ahead, another worker shouts back at the intercom: "We're trying to save your station, you idiot!"
 
 The Fracture cluster is still eleven minutes out. You're already losing the station from the inside. Every previous loop, you kept these factions separate by choosing one ally. This loop they're all in motion at once, and you're standing in a corridor with debris skittering past your boots and no clear play remaining. The artifact vault is three sections below. The emergency pods are one section aft.
 
@@ -107,7 +113,7 @@ The Fracture cluster is still eleven minutes out. You're already losing the stat
 The Artifact Room
 
 ### Content
-The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle: a latticed sphere the size of your palm, its surface a mesh of interlocking curves that scatter the utility lights wrong — giving back an iridescence no spectral register can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own. Down here the vault swallows everything except the artifact's pulse.
+The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle: a latticed sphere the size of your palm, its surface a mesh of interlocking curves that scatter the utility lights wrong — giving back an iridescence no spectral register can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own.
 
 Dara Osei — the station's lead signal analyst, the person who first identified the artifact's countdown — moves straight to the vault console. She pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks align with the cluster's vector in a single locked curve.
 
@@ -154,7 +160,7 @@ The End
 Controlled Burn
 
 ### Content
-The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. Dara Osei — the station's lead signal analyst, the person who first mapped the artifact's countdown — runs the containment alignment at the vault console, her fingers moving across the controls with the precision of someone who worked out how to end this signal long before anyone asked her to. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
+The lower vault is two decks below ops. Dara Osei is already at the console when you seal the hatch behind you — she hasn't needed anyone to explain the situation since her waveform locked onto the Fracture's approach vector. The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. She runs the containment alignment with the precision of someone who worked out how to end this signal long before anyone asked her to. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
 
 You reach for the panel when the readings destabilize. She's already there. She shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
 
