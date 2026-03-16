@@ -74,6 +74,8 @@ After all edits are complete, re-run Step 4's Part 1 structural checks against t
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
 - No chapter's word count deviates from the story average by more than 25 %.
 - Choice numbering is sequential (1, 2, 3…) with no gaps.
+- Every non-ending chapter has at least 2 choices.
+- Chapters appear in ascending numeric order in the file.
 
 If any check fails, fix the violation before outputting. Do not output a story that would fail Step 4's structural checks.
 

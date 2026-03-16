@@ -19,8 +19,9 @@ Verify every item. Report each failure as an error.
 - One `# Title` exists.
 - `## Keywords` section has exactly 3 real-word bullets.
 - Chapter count matches the story length from the architecture (mini: 8-10, short: 8-10, medium: 11-14, long: 15-20).
-- Chapters use ascending numbers with no gaps.
+- Chapters use ascending numbers with no gaps, and must appear in that ascending order in the file. Error code: `CHAPTERS_OUT_OF_ORDER`.
 - Each chapter has `### Title`, `### Content`, `### Choices` in order.
+- Non-ending chapters must have at least 2 choices. A single-choice non-ending chapter is a structural error. Error code: `INSUFFICIENT_CHOICES`.
 - Non-ending choices target existing chapters with no self-links.
 - Every chapter except Chapter 1 must be reachable from Chapter 1 via at least one chain of choices. Error code: `ORPHAN_CHAPTER`.
 - Non-ending choice numbering starts at `1` and is sequential with no gaps (1, 2, 3...). Error code: `CHOICE_NUMBERING_INVALID`.
