@@ -146,7 +146,7 @@
         {
           "number": 1,
           "title": "Crush Depth",
-          "llmPrompt": "Cinematic deep-sea thriller digital painting, desaturated teal and cold amber palette with bioluminescent accents. Wide interior shot through a submersible airlock into a dead research station at four thousand metres. A protagonist silhouette steps onto corroded deck plates, flashlight beam catching whiteboard script and a coffee mug with a broken handle beside a dark monitor. Behind, two companions wait — a corporate liaison adjusting his collar, a pilot with grim stillness. Overhead fluorescents flicker. Through a porthole, absolute black ocean. Mood: guilt-laden arrival, crushing isolation. no text, no watermark.",
+          "llmPrompt": "Cinematic deep-sea thriller digital painting, desaturated teal and cold amber palette with bioluminescent accents. Wide interior shot through a submersible airlock into a dead research station at four thousand metres. A protagonist silhouette steps onto corroded deck plates, flashlight beam catching whiteboard script and a coffee mug with a broken handle beside a dark monitor. Behind, two companions wait — a corporate liaison adjusting his collar, a woman pilot standing with grim stillness. Overhead fluorescents flicker. Through a porthole, absolute black ocean. Mood: guilt-laden arrival, crushing isolation. no text, no watermark.",
           "endingType": null
         },
         {
@@ -194,7 +194,7 @@
         {
           "number": 9,
           "title": "The Full Translation",
-          "llmPrompt": "Same style. Intimate interior shot, the protagonist seated alone at the cipher desk, frequency key fitted into the framework. The charts on every wall glow with coherent amber light — the cipher resolved, annotations aligning into meaning. A ceramic mug handle rests warm in the protagonist's palm. The protagonist's posture is subtly changed, head tilted as though listening to something beneath language. Behind, the station corridor recedes into deep teal darkness. Mood: transcendent understanding at personal cost, bittersweet transformation. no text, no watermark.",
+          "llmPrompt": "Same style. Intimate interior shot, the protagonist seated alone at the cipher desk, frequency key fitted into the framework. The charts on every wall glow with coherent amber light — the cipher resolved, annotations aligning into meaning. A detached ceramic mug handle — the curved grip piece alone, its mug body absent — rests warm in the protagonist's palm. The protagonist's posture is subtly changed, head tilted as though listening to something beneath language. Behind, the station corridor recedes into deep teal darkness. Mood: transcendent understanding at personal cost, bittersweet transformation. no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
