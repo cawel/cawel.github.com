@@ -33,6 +33,7 @@ Verify every item. Report each failure as an error.
 - Choice text never introduces a key term not already in that chapter's content.
 - If a choice/action depends on a key object, that object's location must have been explicitly established in chapter content before use. Error code: `OBJECT_LOCATION_UNCLEAR`.
 - No convergence chapter uses conditional phrasing that acknowledges other paths. Flag both explicit forms ("if you chose…", "depending on your earlier decision…") and literary-seeming conditionals that expose the mechanic in disguise — e.g. "what X does depends on what you gave them", "she says — or she says nothing…", "the outcome traces back to your earlier choice". These disguised forms break immersion just as surely as explicit ones. Error code: `CONVERGENCE_CONDITIONAL_PHRASE`.
+- No convergence chapter opens with arrival or transition language that contradicts the protagonist's state on any incoming path. For each convergence chapter, enumerate all chapters whose choices lead to it and identify the protagonist's implied location at the end of each. If any incoming path leaves the protagonist already inside a location, flag any opening sentence that implies entering that location for the first time (e.g. "you seal the hatch behind you", "X is two decks below"). Error code: `CONVERGENCE_ARRIVAL_CONTRADICTION`.
 
 ## Part 2: Storytelling Craft
 
