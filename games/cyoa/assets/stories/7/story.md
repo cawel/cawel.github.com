@@ -27,7 +27,7 @@ The Hidden Hall
 ### Content
 The wardrobe opens not onto hanging coats but onto a moonlit hallway that has no business existing inside this house. It stretches further than it should, lined on both sides with framed portraits of cats—all sizes, all colours, all postures of watchful authority—each pair of painted eyes catching the starlight that filters through small, high windows. Whatever held the door shut before tonight, the brass key dissolved it.
 
-A silver moth descends from the ceiling and lands on your nose. Its wings are the pale blue of a February moon, pulsing cold light with each slow beat. "You are the keybearer now," it says, in a voice like a finger drawn around the rim of a glass. "The dream-thief—a creature called the Shadow Owl, which feeds on sleeping children's fears—comes before dawn. It has been circling the house since midnight." It lifts off your nose and hovers, waiting. At the corridor's end, two doors stand side by side: one glowing with a bell sigil in copper-warm light, one marked with a carved pawprint in the dark wood.
+A silver moth descends from the ceiling and lands on your nose. Its wings are the pale blue of a February moon, pulsing cold light with each slow beat. "You are the keybearer now," it says, in a voice like a finger drawn around the rim of a glass. "The dream-thief—a creature called the Shadow Owl, which feeds on sleeping children's fears—comes before dawn. It has been circling the house since midnight." It lifts off your nose and hovers, waiting. At the corridor's end, two doors stand side by side: one glowing with a bell sigil in copper-warm light, one marked with a carved pawprint in the dark wood. Warmth spills under the bell-marked threshold, steady and sheltering. A draft moves beneath the pawprint door instead, carrying night air and the wild high scent of rooftop weather.
 
 The portraits watch you pass. You recognise no faces, but you recognise the posture: the specific held attention of an animal that takes its responsibilities seriously.
 
@@ -46,7 +46,7 @@ The latest letter, dated the autumn before Grandma died, is addressed to you by 
 
 You read it twice. It describes the guardian lineage clearly: each generation, one house cat is chosen to protect the children from dream predators—creatures that slip through the dark and feed on the fears sleeping minds cannot defend. Tonight's threat is called the Shadow Owl, sketched in careful pencil in the letter's margin: a hunched silhouette with feathers black as chimney smoke, wingspan wide as the roof. The letter marks a route across the rooftiles to intercept it before it reaches the nursery window. A second letter, older and more formal, describes a guardian's hall hidden behind the cedar wardrobe—tools there, and allies—and notes that the brass key will open it.
 
-You sit with the letters for a moment longer than the urgency strictly allows. The grandmother knew about you. She wrote your name. The youngest child's nightmares, the ash in tonight's air, the key in the crack beneath the window—none of it is coincidence. You have been prepared for this. Now you have two paths toward it.
+You sit with the letters for a moment longer than the urgency strictly allows. Then the nursery floorboards answer with a small, sharp creak from below, and a moving wing-shadow slides across the attic wall. The grandmother knew about you. She wrote your name. The youngest child's nightmares, the ash in tonight's air, the key in the crack beneath the window—none of it is coincidence. You have been prepared for this. Now you have two paths toward it.
 
 ### Choices
 1. Race across the rooftiles and attack the Shadow Owl immediately -> 9
@@ -135,7 +135,7 @@ You are on the tiles before you've finished reading the last letter. The brass k
 
 The Shadow Owl circles once more over the chimney stack, and this time it does not keep its distance. You see its true size for the first time: each feather the span of your paw, its wings a span that eclipses half the rooftile. Fear is a useful thing. Fear tells you what you are up against. The key in your mouth says you are a guardian. The letters say guardians have died protecting this family before you. The youngest child below says this is what you chose, the instant you picked up this key.
 
-You coil your muscles. You have no other training, no other strategy but speed and commitment. The Shadow Owl dives.
+You coil your muscles where the letter's sketched route told you the owl would descend: between chimney stack and nursery window, at the one angle where a smaller body might still meet it head-on. That knowledge is something. It is not enough. You have no other training, no other strategy beyond speed, timing, and commitment. The Shadow Owl dives.
 
 ### Choices
 1. Launch directly at the Shadow Owl -> 6
