@@ -111,6 +111,7 @@ Follow this structure exactly so the story can be parsed by the app:
    - Non-ending: numbered choices like `1. Do something -> 4`
    - Ending: exactly `The End`
    - Every non-ending chapter must have at least 2 choices (occasionally 3 if justified). No single-choice chapters.
+   - All choices within a chapter must target different chapters. Two choices pointing to the same target chapter are indistinguishable in effect and must never appear.
 
 5. Endings: 3–5 ending chapters. At least 1 successful, at least 1 very bad.
 

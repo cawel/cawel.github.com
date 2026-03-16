@@ -20,6 +20,7 @@ Work in two passes, producing one final output.
 Address every error in `structuralCheck.errors`. These are non-negotiable:
 
 - Fix broken links, missing sections, chapter gaps.
+- Fix duplicate choice targets: if two or more choices in a chapter point to the same chapter, reroute the duplicate(s) so each choice leads somewhere distinct. This requires adding a new intermediate chapter or repurposing an existing one — do not simply change the choice text while keeping the same target.
 - Fix word-count imbalances by redistributing content (not padding).
 - Fix any choice that introduces a term not present in the chapter.
 - Preserve branch topology unless a structural fix requires changing it.

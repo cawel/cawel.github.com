@@ -22,6 +22,7 @@ Verify every item. Report each failure as an error.
 - Chapters use ascending numbers with no gaps.
 - Each chapter has `### Title`, `### Content`, `### Choices` in order.
 - Non-ending choices target existing chapters with no self-links.
+- All choices within a single chapter target different chapters — duplicate targets are a structural error. Error code: `DUPLICATE_CHOICE_TARGET`.
 - Ending chapters have exactly `The End` in Choices.
 - 3–5 ending chapters total. At least 1 successful, 1 very bad.
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
