@@ -16,16 +16,16 @@ You have seen every chapter, every branch, every ending. You use that omniscient
 
 Produce one object with these fields:
 
-| Field           | Rules                                                                                                                                                         |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `number`        | Use `STORY_NUMBER`.                                                                                                                                           |
-| `title`         | Exact title from the story's `# Title` line.                                                                                                                  |
-| `emoji`         | One emoji that captures the story's dominant setting or mood. Avoid generic choices (no 📖, no ⭐).                                                           |
-| `approxTime`    | Estimate reading time as `"X-Y min"`. Base it on total word count ÷ 200 wpm for the shortest path and ÷ 200 wpm for the longest path. Round to whole minutes. |
-| `keywords`      | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
-| `chapters`      | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
-| `tone`          | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
-| `promptVersion` | Always set to `3`.                                                                                                                                            |
+| Field                  | Rules                                                                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `number`               | Use `STORY_NUMBER`.                                                                                                                                           |
+| `title`                | Exact title from the story's `# Title` line.                                                                                                                  |
+| `emoji`                | One emoji that captures the story's dominant setting or mood. Avoid generic choices (no 📖, no ⭐).                                                           |
+| `approxTime`           | Estimate reading time as `"X-Y min"`. Base it on total word count ÷ 200 wpm for the shortest path and ÷ 200 wpm for the longest path. Round to whole minutes. |
+| `keywords`             | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
+| `chapters`             | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
+| `tone`                 | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
+| `storyPipelineVersion` | Set to `1.1`                                                                                                                                                  |
 
 ## Task 2 — Chapter Image Metadata (`metadata-images.json` entry)
 
@@ -67,7 +67,7 @@ Return only valid JSON:
     "keywords": ["...", "...", "..."],
     "chapters": 0,
     "tone": "...",
-    "promptVersion": 3
+    "storyPipelineVersion": 1.1
   },
   "imageMeta": {
     "storyNumber": 0,
