@@ -7,7 +7,8 @@
     "keywords": ["forest", "ruins", "mystery"],
     "chapters": 10,
     "tone": "Mysterious",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 2,
@@ -17,7 +18,8 @@
     "keywords": ["museum", "conspiracy", "paranormal"],
     "chapters": 10,
     "tone": "Suspenseful",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 3,
@@ -27,7 +29,8 @@
     "keywords": ["deep-sea", "signal", "silence"],
     "chapters": 10,
     "tone": "Mysterious",
-    "storyPipelineVersion": 1.1
+    "createdWithStoryPipelineVersion": 1.1,
+    "revisedWithStoryPipelineVersion": 1.1
   },
   {
     "number": 4,
@@ -37,7 +40,8 @@
     "keywords": ["carnival", "clockwork", "wish"],
     "chapters": 8,
     "tone": "Surreal / Strange",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 5,
@@ -47,7 +51,8 @@
     "keywords": ["maritime", "forbidden", "trust"],
     "chapters": 13,
     "tone": "Mysterious",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 6,
@@ -57,7 +62,8 @@
     "keywords": ["spaceship", "anomaly", "gate"],
     "chapters": 10,
     "tone": "Epic / Heroic",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 7,
@@ -65,9 +71,10 @@
     "emoji": "🐈",
     "approxTime": "4-7 min",
     "keywords": ["cat", "attic", "magic"],
-    "chapters": 8,
+    "chapters": 9,
     "tone": "Whimsical",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 2.0
   },
   {
     "number": 8,
@@ -77,7 +84,8 @@
     "keywords": ["wizards", "dwarves", "dungeons"],
     "chapters": 9,
     "tone": "Epic / Heroic",
-    "storyPipelineVersion": 0
+    "createdWithStoryPipelineVersion": 0,
+    "revisedWithStoryPipelineVersion": 0
   },
   {
     "number": 9,
@@ -87,6 +95,7 @@
     "keywords": ["loop", "countdown", "contact"],
     "chapters": 10,
     "tone": "Suspenseful",
-    "storyPipelineVersion": 1.0
+    "createdWithStoryPipelineVersion": 1.0,
+    "revisedWithStoryPipelineVersion": 1.0
   }
 ]
