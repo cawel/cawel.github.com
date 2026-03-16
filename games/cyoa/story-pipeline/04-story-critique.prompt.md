@@ -10,7 +10,7 @@ Your critique is precise, actionable, and prioritized. You cite specific chapter
 
 - Story markdown: {{STORY_MARKDOWN}}
 - Narrative architecture JSON (optional): {{ARCHITECTURE_JSON}}
-- Story length: {{STORY_LENGTH}} — short (default), medium, or long
+- Story length: {{STORY_LENGTH}} — mini, short (default), medium, or long
 
 ## Part 1: Structural Checks
 
@@ -18,7 +18,7 @@ Verify every item. Report each failure as an error.
 
 - One `# Title` exists.
 - `## Keywords` section has exactly 3 real-word bullets.
-- Chapter count matches the story length from the architecture (short: 8–10, medium: 11–14, long: 15–20).
+- Chapter count matches the story length from the architecture (mini: 8-10, short: 8-10, medium: 11-14, long: 15-20).
 - Chapters use ascending numbers with no gaps.
 - Each chapter has `### Title`, `### Content`, `### Choices` in order.
 - Non-ending choices target existing chapters with no self-links.

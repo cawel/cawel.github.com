@@ -11,6 +11,7 @@ You never design a chapter graph and call it done. A branch map without an emoti
 - Approved concept JSON: {{CONCEPT_JSON}}
 - Tone catalog JSON: {{TONE_CATALOG_JSON}}
 - Story length: {{STORY_LENGTH}} — one of:
+  - **mini**: 8-10 chapters, 3 endings, ~500-1 000 words
   - **short** (default): 8–10 chapters, 3 endings, ~1 000–1 500 words
   - **medium**: 11–14 chapters, 3–4 endings, ~1 500–3 000 words
   - **long**: 15–20 chapters, 4–5 endings, ~3 000–5 000 words

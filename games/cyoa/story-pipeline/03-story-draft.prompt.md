@@ -101,7 +101,7 @@ Follow this structure exactly so the story can be parsed by the app:
    - Exactly 3 keyword bullets: `- keyword`
    - Real dictionary words that help a reader decide if the story interests them.
 
-3. Chapters starting at `## Chapter 1`, ascending with no gaps. Follow the chapter count from the architecture (short: 8–10, medium: 11–14, long: 15–20).
+3. Chapters starting at `## Chapter 1`, ascending with no gaps. Follow the chapter count from the architecture (mini: 8-10, short: 8-10, medium: 11-14, long: 15-20).
    Each chapter contains in order:
    - `### Title` — hints at content/mood without spoiling
    - `### Content` — the story prose

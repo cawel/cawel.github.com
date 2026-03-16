@@ -23,10 +23,11 @@ When a message opens with a role description, the model anchors its entire respo
 
 ## Story Length Input
 
-Three length options control chapter count, ending count, and approximate word count:
+Four length options control chapter count, ending count, and approximate word count:
 
 | Length | Chapters | Endings | Approx. Words |
 |--------|----------|---------|---------------|
+| **mini** | 8-10 | 3 | 500-1 000 |
 | **short** (default) | 8–10 | 3 | 1 000–1 500 |
 | **medium** | 11–14 | 3–4 | 1 500–3 000 |
 | **long** | 15–20 | 4–5 | 3 000–5 000 |
