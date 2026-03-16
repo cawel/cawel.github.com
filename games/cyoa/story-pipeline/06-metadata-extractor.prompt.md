@@ -37,9 +37,10 @@ Produce one image-prompt object per chapter. Every chapter gets an entry — no 
 2. **Composition**: Each prompt describes a single camera-frameable scene — angle, subject placement, lighting direction, key foreground/background elements.
 3. **Emotional peak**: Choose the most visually dramatic or emotionally resonant moment in the chapter. For choice chapters, depict the moment just **before** the decision — the tension, not the resolution.
 4. **No spoilers for non-ending chapters**: Do not reveal plot information the reader hasn't encountered yet on any path leading to this chapter. Endings may include tonal outcome cues.
-5. **Character depiction**: Describe characters by visible physical details (clothing, posture, expression, lighting on skin) — never by internal states. The protagonist is always seen from a cinematic angle (over-shoulder, low-angle, silhouette) — never a direct portrait.
-6. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`.
-7. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.`
+5. **Character depiction**: Describe characters by visible physical details (clothing, posture, expression, lighting on skin) — never by internal states. The protagonist is always seen from a cinematic angle (over-shoulder, low-angle, silhouette) — never a direct portrait. When a character's gender is established in the story, state it explicitly in the prompt — do not leave it ambiguous, as image models default to male for ungendered figures.
+6. **Object state fidelity**: When a key object appears in an image prompt, its physical state must exactly match the story. Never depict an object in its intact or canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly — e.g. "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter" — so the model cannot default to the complete version of the object.
+7. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`.
+8. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.`
 
 ### Prompt Structure
 
