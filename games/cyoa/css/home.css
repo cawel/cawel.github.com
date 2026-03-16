@@ -86,11 +86,11 @@ main.home-main {
 }
 
 .story-card {
-  background-color: color-mix(in srgb, var(--bg-alt) 68%, var(--story-bg) 32%);
+  background-color: color-mix(in srgb, var(--story-title-color) 10%, var(--bg-muted));
   background: linear-gradient(
     160deg,
-    color-mix(in srgb, var(--bg-alt) 74%, var(--story-bg) 26%) 0%,
-    color-mix(in srgb, var(--bg-muted) 84%, var(--story-bg) 16%) 100%
+    color-mix(in srgb, var(--story-title-color) 12%, var(--bg-muted)) 0%,
+    color-mix(in srgb, var(--story-title-color) 6%, var(--bg-muted)) 100%
   );
   border: 1px solid color-mix(in srgb, var(--story-border) 54%, var(--border));
   border-radius: 8px;
@@ -115,8 +115,8 @@ main.home-main {
 .story-card:focus-visible {
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--bg-muted) 94%, var(--accent) 6%),
-    color-mix(in srgb, var(--bg-alt) 95%, var(--accent) 5%)
+    color-mix(in srgb, var(--story-title-color) 18%, var(--bg-muted)) 0%,
+    color-mix(in srgb, var(--story-title-color) 10%, var(--bg-muted)) 100%
   );
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--accent) 30%, var(--story-title-color));
