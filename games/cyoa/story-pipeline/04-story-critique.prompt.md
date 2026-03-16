@@ -27,7 +27,7 @@ Verify every item. Report each failure as an error.
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
 - No chapter's word count deviates from the story average by more than 25%.
 - Choice text never introduces a key term not already in that chapter's content.
-- No convergence chapter uses conditional phrasing that acknowledges other paths.
+- No convergence chapter uses conditional phrasing that acknowledges other paths. Flag both explicit forms ("if you chose…", "depending on your earlier decision…") and literary-seeming conditionals that expose the mechanic in disguise — e.g. "what X does depends on what you gave them", "she says — or she says nothing…", "the outcome traces back to your earlier choice". These disguised forms break immersion just as surely as explicit ones. Error code: `CONVERGENCE_CONDITIONAL_PHRASE`.
 
 ## Part 2: Storytelling Craft
 

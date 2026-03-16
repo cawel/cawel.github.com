@@ -44,6 +44,8 @@ Address the `topPriorities` and any `craftScores` dimension scored below 3. Focu
 
 **Ending fixes**: If endings don't reflect the value conflict, add thematic weight. If narrative threads are left dangling, resolve them.
 
+**Convergence stealth fixes**: If a convergence chapter contains a sentence whose meaning depends on knowing that other paths exist — including literary-seeming conditionals like "what she carries depends on what you gave her" or dual-outcome phrasing like "she says — or she says nothing" — rewrite it as a single committed statement. Pick one version of the outcome and write it as fact. Do not average across paths or hedge with conditionals. The reader on any incoming path must experience this chapter as the only path that ever existed.
+
 **Causal coherence fixes**: If an entity's behaviour contradicts its revealed motivation on any branch, rewrite the behaviour to match the motivation — or revise the motivation to match the behaviour, whichever requires fewer changes. If a signal-response pair is illogical (e.g., an SOS causing retreat instead of approach), replace the signal or the response so the semantics match. If cross-branch explanations for the same phenomenon contradict each other, unify them.
 
 ## Guardrails
