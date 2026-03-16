@@ -56,7 +56,7 @@ This loop is different. Usually she's bent over the screens when you arrive. Thi
 
 She turns the screen toward you without prompting. A waveform pulses in a steady ascending pattern—tight, regular, each peak fractionally higher than the last. The artifact, she explains with the barely-contained focus of someone running on caffeine and revelation, is counting down. Not random decay. Not passive resonance. Convergence. Something is approaching, and the artifact is marking time until it arrives.
 
-She's the first person in any loop to reach this conclusion on her own. The hairs on your forearms stand straight.
+She's the first person in any loop to reach this conclusion on her own. A cooling fan in the equipment rack kicks into a higher whine, and you realize you've locked both hands around the back of her chair hard enough for your knuckles to ache. The hairs on your forearms stand straight.
 
 "Whatever's coming," she says, tapping the readout, "it'll be here in about two hours." She pulls up the station's signal array on a secondary display — the long-range sensor grid that feeds every comms channel on Varda. "If I reroute the array, I can intercept the artifact's output before it broadcasts beyond the hull. Buy us time. Or" — she hesitates — "we go down to the vault and figure out what it's actually saying."
 
@@ -115,7 +115,7 @@ The Artifact Room
 ### Content
 The vault door groans open on its emergency seal. Inside, the artifact floats in its magnetic cradle: a latticed sphere the size of your palm, its surface a mesh of interlocking curves that scatter the utility lights wrong — giving back an iridescence no spectral register can match. Up close it hums against your sternum like a second heartbeat, half a beat off from your own.
 
-Dara Osei — the station's lead signal analyst, the person who first identified the artifact's countdown — moves straight to the vault console. She pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks align with the cluster's vector in a single locked curve.
+Dara Osei is only a step ahead of you, already moving straight to the vault console. She pulls the waveform onto the main display and overlays it against the Fracture's approach trajectory. The ascending peaks align with the cluster's vector in a single locked curve.
 
 "It's not a countdown to an attack," she says. Her finger traces the peaks without touching the glass. "It's a homing signal. Whatever's in this cradle has been broadcasting a distress call. Whatever's coming has been answering it across a distance I can't calculate." She pauses, and something crosses her face that isn't fear. "I've been listening to this for three tours and telling myself it was resonance. Part of me knew it wasn't."
 
@@ -160,7 +160,7 @@ The End
 Controlled Burn
 
 ### Content
-Dara Osei is at the vault console, running the containment alignment with the precision of someone who worked out how to end this signal long before anyone asked her to. She hasn't needed anyone to explain the situation since her waveform locked onto the Fracture's approach vector. The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
+Dara has already pulled the overload sequence onto the vault console by the time you reach the containment screen. One look at the spike pattern told her what kind of decision this was, and she runs the alignment with the precision of someone who has spent three tours imagining how this signal might have to end. The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
 
 You reach for the panel when the readings destabilize. She's already there. She shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
 
