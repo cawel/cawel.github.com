@@ -173,9 +173,9 @@ The End
 The Quiet Station
 
 ### Content
-The submersible detaches with a metallic sound that rings through the hull once and fades. Through the porthole, you watch its lights shrink into the dark water above — a small bright point, then nothing. Rui's face was the last thing you saw through the glass. She did not argue. She understood.
+The submersible detaches. Through the porthole, you watch its lights shrink into the dark water above — a small bright point, then nothing. Rui's face was the last thing you saw through the glass. She did not argue. She understood.
 
-The station settles around you. Without the generator cycling for the submersible, the hum is the only sound — filling every corridor with a patience that feels geological.
+The station settles around you. Without the generator, the hum is the only sound — filling every corridor with a patience that feels geological.
 
 You tell yourself you stayed by choice. The thought arrives fully formed, confident, and then you cannot remember forming it. You think of the surface, of the city you flew from, of the colleague who sent you here — and the details have softened at the edges, like print left in light too long. Maren's name stays clear. Your own comes a fraction slower.
 
