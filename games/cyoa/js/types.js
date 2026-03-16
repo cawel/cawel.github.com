@@ -29,6 +29,7 @@
  *   emoji: string,
  *   approxTime: string,
  *   keywords: string[],
+ *   tone?: string,
  * }} StoryMetadata
  */
 

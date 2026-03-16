@@ -21,6 +21,7 @@ function renderStoryCard(story) {
   const emoji = escapeHtml(story.emoji);
   const approxTime = escapeHtml(story.approxTime);
   const keywords = escapeHtml(formatKeywords(story.keywords));
+  const tone = story.tone ? escapeHtml(story.tone) : "";
 
   return `
     <article class="story-card" data-story="${storyNumber}" role="button" tabindex="0" aria-label="Open ${title}">
@@ -37,6 +38,10 @@ function renderStoryCard(story) {
           <span class="story-card-meta-icon" aria-hidden="true">🔑</span>
           <span>${keywords}</span>
         </div>
+        ${tone ? `<div class="story-card-meta-line story-card-meta-line-tone">
+          <span class="story-card-meta-icon" aria-hidden="true">🎭</span>
+          <span>${tone}</span>
+        </div>` : ""}
       </div>
     </article>
   `;
