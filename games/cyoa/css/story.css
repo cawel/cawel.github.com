@@ -6,15 +6,16 @@ main.story-main {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 20px 40px;
+  padding: 0 40px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 main.story-main .story-container {
+  flex: 1;
   width: 100%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   background-color: var(--story-bg);
   padding: 56px 64px;
   border-radius: 0;
@@ -232,7 +233,6 @@ main.story-main .story-container {
 @media (max-width: 768px) {
   main.story-main {
     padding: 0;
-    background-color: var(--story-bg);
   }
 
   main.story-main .story-container {
