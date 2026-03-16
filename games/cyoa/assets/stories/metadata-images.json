@@ -560,7 +560,7 @@
         {
           "number": 6,
           "title": "The Artifact Room",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A woman signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. The protagonist watches from the doorway. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A woman signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. A pressure-suited figure seen from behind occupies the open vault hatchway in the foreground, face and body angled away from camera. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
@@ -572,7 +572,7 @@
         {
           "number": 8,
           "title": "Controlled Burn",
-          "llmPrompt": "Create a somber bittersweet sci-fi ending image, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one figure silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Create a somber bittersweet sci-fi ending image, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one woman silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
@@ -584,7 +584,7 @@
         {
           "number": 10,
           "title": "Severance",
-          "llmPrompt": "Create a hopeful hard-sci-fi resolution image, intimate interior composition. In a dim artifact lab, two crew members stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark.",
+          "llmPrompt": "Create a hopeful hard-sci-fi resolution image, intimate interior composition. In a dim artifact lab, a woman signal analyst and the suited protagonist stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark.",
           "endingType": "successful"
         }
       ]
