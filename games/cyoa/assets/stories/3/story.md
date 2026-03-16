@@ -41,7 +41,7 @@ Caldwell passes behind Rui without stopping, but his eyes linger on the terminal
 
 ### Choices
 1. Share Maren's logs with Rui — she deserves to know, and you need an ally -> 4
-2. Keep the logs to yourself — this is between you and Maren -> 4
+2. Keep the logs to yourself — the hum Maren described is below; follow her trail alone -> 5
 
 ## Chapter 3
 ### Title
@@ -126,7 +126,7 @@ The main deck feels smaller than it did hours ago. The hum has risen to a freque
 
 Caldwell's professional warmth is gone. "We leave now, or I leave now. Your choice determines the passenger count." He means it. The data core is what he was sent for, and he will not risk it for your investigation.
 
-Rui watches you. Her hand rests near the hatch lock. She has not spoken to Caldwell directly since the lower deck — she knows what the data core is, and she knows you do too. "I trust your call," she says. Or she does not say it — she looks past you to Caldwell and reaches for the hatch release. The difference depends on whether you gave her a reason to stay.
+Rui watches you. Her hand rests near the hatch lock. She has not spoken to Caldwell directly since the lower deck — she knows what the data core is, and she knows you do too. On this crew, there is only one person she trusts with this decision, and she is telling you with her body as clearly as she could with words.
 
 The station hums beneath all three of you. Below, Maren's trail continues into the dark. Above, four thousand metres of black water and then daylight.
 
@@ -145,7 +145,7 @@ You surface into grey morning light. The sun sits behind cloud cover, but after 
 
 You carry Maren's partial work. Her cipher fragments, her name, her methodology. Enough to prove the signal is real, structured, and deliberate. Enough to force questions the corporation cannot bury. Not enough to know what the signal says.
 
-Rui steadies the tow line and glances back at you. "We'll make sure they hear her name," she says — or she says nothing, eyes fixed forward, already composing the version of events Caldwell will approve. What Rui carries to the surface depends on what you gave her below.
+Rui steadies the tow line and glances back at you. "We'll make sure they hear her name," she says. Her voice has the steadiness of someone who has already decided what the account will say — and what it will leave out.
 
 ### Choices
 The End
@@ -175,11 +175,13 @@ The Quiet Station
 ### Content
 The submersible detaches with a metallic sound that rings through the hull once and fades. Through the porthole, you watch its lights shrink into the dark water above — a small bright point, then nothing. Rui's face was the last thing you saw through the glass. She did not argue. She understood.
 
-The station settles around you. Without the generator cycling for the submersible, the hum is the only sound — filling every corridor with a patience that feels geological. You sit in Maren's chair, at her desk, surrounded by her whiteboard equations like a conversation paused mid-sentence. The mug with the missing handle rests where she left it, incomplete.
+The station settles around you. Without the generator cycling for the submersible, the hum is the only sound — filling every corridor with a patience that feels geological.
 
-You came to find what happened to her. Now you know. She did not leave. She did not die the way the reports describe. She listened until listening became all she was, and the station took her in the way deep water takes a stone — slowly, completely, without malice.
+You tell yourself you stayed by choice. The thought arrives fully formed, confident, and then you cannot remember forming it. You think of the surface, of the city you flew from, of the colleague who sent you here — and the details have softened at the edges, like print left in light too long. Maren's name stays clear. Your own comes a fraction slower.
 
-The signal continues. It does not need you. But it accepts your attention, your time, your quiet company. The station hums. You listen.
+The crews did not disappear. They are still here, or something that was them is still here — reduced to attention, to reception, their surfaces worn away until only the capacity to listen remained. This is what the signal does, given enough time and enough quiet.
+
+You sit in Maren's chair. The hum moves through the deck plates and up through the seat and into your spine. You reach for the coffee mug and your fingers find only the empty circle where the handle was. In the silence between breaths, you cannot recall your own name. It will come back, you think. Then: it will come back. Then you stop thinking it.
 
 ### Choices
 The End
