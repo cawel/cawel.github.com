@@ -536,19 +536,19 @@
         {
           "number": 2,
           "title": "The Commander's Doubt",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, tense interior ops-room confrontation. A station commander stands behind a wide console cluttered with tracking screens and proximity arrays, gripping a ceramic mug, jaw set, evaluating a protagonist who has clearly interrupted his shift. Deep contrast lighting from monitor glow, reflections on polished metal panels, four subordinates bent at terminals in the background. Mood: institutional skepticism, controlled authority, unresolved tension. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, tense interior ops-room confrontation. A male station commander stands behind a wide console cluttered with tracking screens and proximity arrays, gripping a ceramic mug, jaw set, evaluating a protagonist who has clearly interrupted his shift. Deep contrast lighting from monitor glow, reflections on polished metal panels, four subordinates bent at terminals in the background. Mood: institutional skepticism, controlled authority, unresolved tension. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
           "title": "Dara's Eureka",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, intimate engineering bay composition. A signal analyst sits surrounded by empty ration packs and forgotten coffee mugs, cable-tied hair, dark circles under sharp eyes, turning a glowing screen toward the viewer. The display shows a tight ascending waveform—each peak fractionally higher than the last. Warm amber instrument glow against cold industrial walls. Mood: exhausted breakthrough, barely-contained revelation, quiet dread. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, intimate engineering bay composition. A woman signal analyst sits surrounded by empty ration packs and forgotten coffee mugs, cable-tied hair, dark circles under sharp eyes, turning a glowing screen toward the viewer. The display shows a tight ascending waveform—each peak fractionally higher than the last. Warm amber instrument glow against cold industrial walls. Mood: exhausted breakthrough, barely-contained revelation, quiet dread. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
           "title": "Proof by Fire",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, dramatic ops-room wide shot at the moment of confirmation. A proximity alarm screams on every panel, red indicators flood the tracking wall, and through a reinforced viewport angular alien shapes slide across the starfield in tight formation. A station commander stares across the ops table at the protagonist, every trace of doubt stripped from his face. Mood: sudden vindication, controlled crisis, the instant before decisive action. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, dramatic ops-room wide shot at the moment of confirmation. A proximity alarm screams on every panel, red indicators flood the tracking wall, and through a reinforced viewport angular alien shapes slide across the starfield in tight formation. A male station commander stares across the ops table at the protagonist, every trace of doubt stripped from his face. Mood: sudden vindication, controlled crisis, the instant before decisive action. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
@@ -560,7 +560,7 @@
         {
           "number": 6,
           "title": "The Artifact Room",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. The protagonist watches from the doorway. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A woman signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. The protagonist watches from the doorway. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
           "endingType": null
         },
         {
