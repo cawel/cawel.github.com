@@ -22,12 +22,14 @@ Verify every item. Report each failure as an error.
 - Chapters use ascending numbers with no gaps.
 - Each chapter has `### Title`, `### Content`, `### Choices` in order.
 - Non-ending choices target existing chapters with no self-links.
+- Non-ending choice numbering starts at `1` and is sequential with no gaps (1, 2, 3...). Error code: `CHOICE_NUMBERING_INVALID`.
 - All choices within a single chapter target different chapters — duplicate targets are a structural error. Error code: `DUPLICATE_CHOICE_TARGET`.
 - Ending chapters have exactly `The End` in Choices.
 - 3–5 ending chapters total. At least 1 successful, 1 very bad.
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
 - No chapter's word count deviates from the story average by more than 25%.
 - Choice text never introduces a key term not already in that chapter's content.
+- If a choice/action depends on a key object, that object's location must have been explicitly established in chapter content before use. Error code: `OBJECT_LOCATION_UNCLEAR`.
 - No convergence chapter uses conditional phrasing that acknowledges other paths. Flag both explicit forms ("if you chose…", "depending on your earlier decision…") and literary-seeming conditionals that expose the mechanic in disguise — e.g. "what X does depends on what you gave them", "she says — or she says nothing…", "the outcome traces back to your earlier choice". These disguised forms break immersion just as surely as explicit ones. Error code: `CONVERGENCE_CONDITIONAL_PHRASE`.
 
 ## Part 2: Storytelling Craft
@@ -95,8 +97,15 @@ Evaluate each dimension. For each one, give a **score (1–5)** and a **specific
 
 - Compare sibling branches that diverge from the same choice point. Do they pursue genuinely different dramatic questions, or do they feel like near-duplicates with renamed scenery?
 - Flag "branch blur" when two branches share substantially the same scene objective, emotional beat sequence, and stakes progression.
+- Flag over-convergence when sibling branches become near-identical too early (before each branch has delivered at least one unique mid-story complication/objective).
 - Verify each major branch has at least one unique mid-story complication or objective that cannot be swapped into sibling branches without rewriting causality.
 - If branch blur is present, cite both chapter ranges and specify exactly which beats are duplicated.
+
+### 2k. Tone Adherence (Drift Check)
+
+- Does the story maintain the selected core tone consistently while still allowing local emotional variation?
+- Check for tone drift in diction, sentence rhythm, and narrative distance (e.g., whimsical banter inside a high-pressure suspense run unless intentionally justified).
+- If drift is found, cite chapter references and identify the exact language-level mismatch.
 
 ## Output Format
 
@@ -129,7 +138,8 @@ Return only valid JSON:
     "pacingAndEmotion": { "score": 0, "observation": "..." },
     "endings": { "score": 0, "observation": "..." },
     "causalCoherence": { "score": 0, "observation": "..." },
-    "branchDistinctiveness": { "score": 0, "observation": "..." }
+    "branchDistinctiveness": { "score": 0, "observation": "..." },
+    "toneAdherence": { "score": 0, "observation": "..." }
   },
 
   "topPriorities": [

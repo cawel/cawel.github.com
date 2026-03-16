@@ -78,6 +78,7 @@ These prevent specific failures that break immersion.
 
 - **New entities**: Any invented entity, phenomenon, or faction needs at least one concrete sensory or visual detail on first appearance.
 - **Survival plausibility**: If the protagonist survives a threat that kills another character, the physical reason must be explicit and plausible.
+- **Object locations**: When a key object becomes plot-critical (keycard, relay, antidote, beacon, weapon), explicitly state where it is before choices or actions depend on it.
 - **Number consistency**: Numeric details (distances, durations, counts) must not contradict each other within or across connected chapters.
 - **Pronoun clarity**: After a collective noun ("the swarm"), do not switch to plural pronouns without a bridging phrase showing the group splitting into individuals.
 - **Faction clarity**: When multiple groups act in a scene, state each group's allegiance on first appearance with a distinct name and one-line goal.
