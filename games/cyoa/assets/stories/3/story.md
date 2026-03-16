@@ -69,7 +69,7 @@ The lower deck is colder. The hum is no longer ambient — it presses against yo
 
 You pass a bulkhead and stop. Scratches on the wall — not damage. Maren's handwriting, etched into paint with something sharp: a frequency notation and an arrow pointing further down the corridor. She was mapping a path through the sound.
 
-Caldwell appears at the far end of the corridor. "Interesting notation," he says, leaning against the frame as though he has been waiting. "She filed a version of that with us eighteen months before the blackout. We dismissed it." His mouth tightens. "I am starting to think that was a mistake."
+Caldwell appears at the far end of the corridor. He is not surprised to see you. "She filed that frequency notation with us eighteen months before the blackout," he says. The pause is calculation, not hesitation. "We did not dismiss it. We classified it. Stations Four, Seven, Twelve — all three crews reported the same physical sensation in the weeks before they went dark. We had a pattern and we wrote a suppression order instead." He sets the data core on a crate — a deliberate gesture from a man deciding to be useful. "I came here to evaluate whether this station should be sealed. The evaluation is changing."
 
 The signal does something to time here. You check your watch and cannot recall when you last looked at it. A thought arrives that does not feel entirely yours: *this has happened before*. It passes easily. Too easily.
 
@@ -90,7 +90,7 @@ Rui recognizes it. Her face goes still. "Station Four," she says. "My friend cal
 
 The pipe resonance logged in every maintenance report for years was never pipes. Station Eleven's hull has been receiving a signal through direct physical vibration — below any frequency the electronics would detect. Every deep-sea station sat in the same geological current. Every station received. Only this one remains standing.
 
-Rui meets your eyes. "Whatever the crews heard, it didn't stop them from trying to understand. It stopped them from wanting to leave." She wants to map the resonance pattern. But mapping means more time at depth, and the submersible's ascent window narrows with every hour.
+Rui meets your eyes. "Whatever the crews heard, it didn't stop them from trying to understand. It stopped them from wanting to leave." She pulls out her tablet and shows you the submersible's system log — a timer already running. "Six hours before the hydrothermal current shifts and closes our approach corridor. After that, forty-eight hours minimum." She lowers the tablet. Her voice stays even. "I want to map it. But you should know what the clock looks like."
 
 ### Choices
 1. Continue the analysis with Rui — map the full resonance pattern before deciding anything -> 6
@@ -159,7 +159,7 @@ You fit the frequency into the cipher framework. The key turns. The signal resol
 
 *Remember what was here before silence.*
 
-Not a warning. Not a distress call. A monument. Something lived in the deep trenches long before the stations were built — something that communicated through the rock itself, patient and unhurried. When the stations arrived, the signal found an audience for the first time. The crews heard it without understanding. Maren understood it without surviving intact.
+Not a warning. Not a distress call. A monument. Something lived in the deep trenches long before the stations were built — something that communicated through the rock itself, patient and unhurried. When the stations arrived, the signal found an audience for the first time. The crews heard it without understanding. Without that frame, there is only the pull — patient and accumulating, until the station feels more real than the surface ever did. Maren understood it without surviving intact. You understand it fully. Comprehension does not protect you, but it restores the will to leave.
 
 You understand, and the understanding rewrites something behind your eyes. Memories of the surface feel thinner now, as though they belong to someone you once read about. Maren is clearer than she ever was in life — her methodology, her patience, her precise and deliberate trail. The mug handle sits in your palm, warm from your grip, its purpose fulfilled.
 
