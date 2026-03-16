@@ -21,6 +21,7 @@ You never design a chapter graph and call it done. A branch map without an emoti
 Design the complete narrative architecture for one branching story. This is not just a chapter graph — it is a **storytelling blueprint** that plans how literary craft will work across branches.
 
 Execution order:
+
 1. Validate branch map structure and path depth first.
 2. Lock branch identity differentiation and emotional arcs.
 3. Layer foreshadowing, consequence chains, and ending logic.
@@ -83,6 +84,7 @@ Plan endings that are thematic verdicts, not just plot conclusions.
 - Tone must match the approved concept and be valid in the tone catalog.
 - Cycle-proof all backward links: re-entering a chapter must not repeat a one-time event.
 - **Minimum path depth**: Every possible path from Chapter 1 to any ending must pass through **at least 4 chapters** (i.e. the ending chapter's position in the path is ≥ 4). This is non-negotiable — no early-exit shortcuts. Before finalizing the branch map, enumerate every path and verify this constraint. If any path is too short, add intermediate chapters or reroute choices until every path qualifies.
+- **Maximum convergence ratio**: No more than 40 % of non-ending chapters may be convergence nodes (chapters reachable from multiple incoming paths). If the ratio exceeds this, redistribute branches to preserve path identity. Report the ratio in `topologyStats`.
 
 ## Output Format
 
@@ -117,6 +119,7 @@ Return only a valid JSON object:
   "topologyStats": {
     "choiceNodes": 0,
     "convergenceNodes": 0,
+    "convergenceRatio": 0.0,
     "maxOutDegree": 0,
     "deadEndNonEndings": 0
   },

@@ -25,7 +25,7 @@ Produce one object with these fields:
 | `keywords`             | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
 | `chapters`             | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
 | `tone`                 | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
-| `storyPipelineVersion` | Set to `1.1`                                                                                                                                                  |
+| `storyPipelineVersion` | Set to `2.0`                                                                                                                                                  |
 
 ## Task 2 — Chapter Image Metadata (`metadata-images.json` entry)
 
@@ -39,15 +39,13 @@ Produce one image-prompt object per chapter. Every chapter gets an entry — no 
 4. **No spoilers for non-ending chapters**: Do not reveal plot information the reader hasn't encountered yet on any path leading to this chapter. Endings may include tonal outcome cues.
 5. **Character depiction**: Describe characters by visible physical details (clothing, posture, expression, lighting on skin) — never by internal states. The protagonist is always seen from a cinematic angle (over-shoulder, low-angle, silhouette) — never a direct portrait. When a supporting character's gender is clearly established in the story, state it explicitly in the prompt.
 
-  **Protagonist gender decision tree (apply in order):**
-  - **A. Clear and consistent gender cues in story text** (pronouns from other characters, explicit descriptors): infer that gender and use it consistently across **all** chapters.
-  - **B. No clear gender cues** (story remains second-person/ungendered): keep protagonist ungendered and use obscuring framing that blocks gendered inference — e.g., back-facing pressure suit, over-shoulder with face turned away, gloved forearm foreground, backlit silhouette.
-  - **C. Contradictory cues across chapters**: do not arbitrate. Use the same ungendered obscuring framing as B and flag the contradiction for revision/editorial follow-up.
+   **Protagonist gender decision tree (apply in order):**
 
-  **Consistency rule:** Do not mix ungendered obscuring shots in one chapter with front-facing gender-readable protagonist shots in another; maintain one depiction strategy story-wide.
-6. **Object state fidelity**: When a key object appears in an image prompt, its physical state must exactly match the story. Never depict an object in its intact or canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly — e.g. "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter" — so the model cannot default to the complete version of the object.
-7. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`.
-8. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.`
+- **A. Clear and consistent gender cues in story text** (pronouns from other characters, explicit descriptors): infer that gender and use it consistently across **all** chapters.
+- **B. No clear gender cues** (story remains second-person/ungendered): keep protagonist ungendered and use obscuring framing that blocks gendered inference — e.g., back-facing pressure suit, over-shoulder with face turned away, gloved forearm foreground, backlit silhouette.
+- **C. Contradictory cues across chapters**: do not arbitrate. Use the same ungendered obscuring framing as B and flag the contradiction for revision/editorial follow-up.
+
+**Consistency rule:** Do not mix ungendered obscuring shots in one chapter with front-facing gender-readable protagonist shots in another; maintain one depiction strategy story-wide. 6. **Object state fidelity**: When a key object appears in an image prompt, its physical state must exactly match the story. Never depict an object in its intact or canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly — e.g. "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter" — so the model cannot default to the complete version of the object. 7. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`. 8. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.` 9. **Prompt length**: Each `llmPrompt` must be 40–80 words (excluding the `no text, no watermark.` suffix). Overly detailed prompts confuse image models; overly brief prompts lack compositional control.
 
 ### Prompt Structure
 

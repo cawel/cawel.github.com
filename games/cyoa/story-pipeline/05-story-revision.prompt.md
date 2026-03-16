@@ -65,6 +65,18 @@ If `craftScores.toneAdherence` or `craftScores.branchDistinctiveness` is below 3
 - **Minimum path depth**: Every path from Chapter 1 to an ending must pass through at least 4 chapters. Before finalising, enumerate every path and verify this constraint. If a structural fix would shorten a path below 4 chapters, add an intermediate chapter or reroute choices to preserve depth.
 - **Chapter word-count balance**: No chapter's word count may deviate from the story average by more than 25 %. After every content change — whether adding, cutting, or redistributing prose — recount all chapters and verify this constraint. If a craft improvement pushes a chapter over the threshold, trim elsewhere in that chapter (not in unchanged chapters) to compensate.
 
+## Post-Revision Verification
+
+After all edits are complete, re-run Step 4's Part 1 structural checks against the revised story:
+
+- All choice targets point to existing chapters with no self-links.
+- No orphaned chapters (every chapter except Chapter 1 is reachable from Chapter 1).
+- Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
+- No chapter's word count deviates from the story average by more than 25 %.
+- Choice numbering is sequential (1, 2, 3…) with no gaps.
+
+If any check fails, fix the violation before outputting. Do not output a story that would fail Step 4's structural checks.
+
 ## Output Contract
 
 Return only the final revised story markdown.

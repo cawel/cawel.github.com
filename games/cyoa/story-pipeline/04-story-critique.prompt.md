@@ -22,6 +22,7 @@ Verify every item. Report each failure as an error.
 - Chapters use ascending numbers with no gaps.
 - Each chapter has `### Title`, `### Content`, `### Choices` in order.
 - Non-ending choices target existing chapters with no self-links.
+- Every chapter except Chapter 1 must be reachable from Chapter 1 via at least one chain of choices. Error code: `ORPHAN_CHAPTER`.
 - Non-ending choice numbering starts at `1` and is sequential with no gaps (1, 2, 3...). Error code: `CHOICE_NUMBERING_INVALID`.
 - All choices within a single chapter target different chapters — duplicate targets are a structural error. Error code: `DUPLICATE_CHOICE_TARGET`.
 - Ending chapters have exactly `The End` in Choices.
@@ -34,7 +35,9 @@ Verify every item. Report each failure as an error.
 
 ## Part 2: Storytelling Craft
 
-Evaluate each dimension. For each one, give a **score (1–5)** and a **specific observation** with chapter references. A score of 3 means acceptable; below 3 means the story needs revision on that dimension.
+Evaluate each dimension. For each one, give a **score (1–5)** and a **specific observation** with chapter references.
+
+Score anchors: **1** = fundamental failure (broken or missing), **2** = below expectations (noticeable weakness), **3** = meets expectations (competent, no distraction), **4** = strong (memorable craft), **5** = exceptional (publishable standout). Below 3 means the story needs revision on that dimension.
 
 ### 2a. Foreshadowing and Payoff
 
