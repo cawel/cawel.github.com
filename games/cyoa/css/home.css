@@ -86,7 +86,11 @@ main.home-main {
 }
 
 .story-card {
-  background-color: color-mix(in srgb, var(--story-title-color) 10%, var(--bg-muted));
+  background-color: color-mix(
+    in srgb,
+    var(--story-title-color) 10%,
+    var(--bg-muted)
+  );
   background: linear-gradient(
     160deg,
     color-mix(in srgb, var(--story-title-color) 12%, var(--bg-muted)) 0%,

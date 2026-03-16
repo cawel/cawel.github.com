@@ -38,10 +38,14 @@ function renderStoryCard(story) {
           <span class="story-card-meta-icon" aria-hidden="true">🔑</span>
           <span>${keywords}</span>
         </div>
-        ${tone ? `<div class="story-card-meta-line story-card-meta-line-tone">
+        ${
+          tone
+            ? `<div class="story-card-meta-line story-card-meta-line-tone">
           <span class="story-card-meta-icon" aria-hidden="true">🎭</span>
           <span>${tone}</span>
-        </div>` : ""}
+        </div>`
+            : ""
+        }
       </div>
     </article>
   `;
