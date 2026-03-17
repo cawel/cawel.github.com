@@ -23,6 +23,10 @@ Address every error in `structuralCheck.errors`. These are non-negotiable:
 - Fix duplicate choice targets: if two or more choices in a chapter point to the same chapter, reroute the duplicate(s) so each choice leads somewhere distinct. This requires adding a new intermediate chapter or repurposing an existing one — do not simply change the choice text while keeping the same target.
 - Fix word-count imbalances by redistributing content (not padding).
 - Fix any choice that introduces a term not present in the chapter.
+- Fix choice fulfillment gaps by ensuring each target chapter opening honors the selected choice's promised direction/objective.
+- Fix path knowledge leaks by removing or reframing assertions that depend on unseen prior events for any incoming path.
+- Fix actor-state contradictions so "alone/with ally/object in hand/heading to location" states established by a choice remain true when opening the target chapter.
+- Fix missing social-choice callbacks so choices involving trust, secrecy, promises, accusations, sharing, or betrayal visibly echo within 1-2 chapters.
 - Preserve branch topology unless a structural fix requires changing it.
 
 ### Pass 2: Craft Improvements
@@ -79,6 +83,10 @@ After all edits are complete, re-run Step 4's Part 1 structural checks against t
 - Every non-ending chapter has at least 2 choices.
 - Chapters appear in ascending numeric order in the file.
 - For every convergence chapter (reachable from two or more distinct chapters), confirm that the opening sentences do not describe an arrival, approach, or transition that would be impossible or contradictory for any of its incoming paths. If the protagonist can already be inside a location on one path, the chapter must not open with language that implies entering that location for the first time.
+- Simulate every explicit choice edge (Chapter N choice -> Chapter M) and verify Chapter M's opening satisfies the selected choice's promised intent.
+- Verify no chapter asserts protagonist knowledge that is unavailable on any incoming path unless the chapter explicitly presents that information as newly discovered.
+- Verify immediate actor-state continuity for each choice edge (alone/with ally, carrying key object, heading to location).
+- Verify social commitment choices (share/hide/promise/accuse/trust/betray) receive a visible callback within 1-2 chapters.
 
 If any check fails, fix the violation before outputting. Do not output a story that would fail Step 4's structural checks.
 

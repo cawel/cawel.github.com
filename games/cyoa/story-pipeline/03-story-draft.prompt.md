@@ -88,6 +88,10 @@ These prevent specific failures that break immersion.
 - **Action from context**: The protagonist can only act on information the reader has already seen.
 - **Choice-outcome coherence**: The chapter following a choice must honor the intent of selecting it.
 - **Choice-actor consistency**: If a choice says the protagonist acts, the following chapter shows the protagonist acting — not another character.
+- **Choice-target continuity contract**: For every choice edge (Chapter N choice -> Chapter M), Chapter M's opening must immediately reflect that chosen action's promised direction, objective, or social move. If the choice says "confront X now," the next chapter cannot open as if the protagonist pursued a different first move. Resolve with a path-neutral bridge sentence only if it still honors the selected intent.
+- **Path-scoped knowledge integrity**: A chapter may not assert that the protagonist knows or witnessed facts unavailable on any incoming path. If incoming paths differ in what was seen (e.g., private logs vs signal dashboard), either keep statements to shared facts or restate the needed fact as newly discovered in the current chapter.
+- **Path-scoped actor-state integrity**: If a choice establishes immediate actor state (alone/with ally, carrying key object, heading to location), the target chapter's opening must honor that state for that incoming path.
+- **Consequence callback requirement**: Choices that encode social/relational commitments (share, hide, promise, accuse, trust, betray) must produce a visible callback within 1-2 chapters.
 - **Path-independent introductions**: Every named character appearing in a chapter must be introduced within that chapter, since the reader may arrive from any valid path.
 - **Convergence stealth**: Convergence chapters must read as if the reader's current path is the only path. Every sentence commits to a single fact, a single emotional state, a single outcome — as though no other version of the story exists. This rule is violated in two distinct ways:
   - _Conditional phrasing_: explicit branching language ("if you chose…") and literary-sounding disguised forms ("what she carries depends on what you gave her", "he says — or he says nothing") expose the mechanic and break immersion.
@@ -131,6 +135,7 @@ Before writing any prose:
 
 1. Trace every possible path from Chapter 1 to each ending in the architecture. Count the chapters in each path. If any path has fewer than 4 chapters, **stop and report the violation** instead of writing the story.
 2. Verify that every choice-target chapter in the architecture has a corresponding chapter entry. If a choice points to a chapter number that does not exist in the architecture's chapter list, **stop and report the missing chapter**.
+3. For every choice edge in the architecture, write a one-line continuity contract before drafting prose: `{chosen intent} -> {target opening state}`. If any contract cannot be satisfied without contradiction, **stop and report the edge**.
 
 Do not attempt to fix the architecture yourself — that is Step 2's job.
 
