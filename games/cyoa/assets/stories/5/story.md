@@ -102,7 +102,7 @@ There may still be a route upward—through the stacks, around the fork, back to
 Orin's Offer
 
 ### Content
-You hear him before you see him—footsteps in the vault passage with the measured rhythm of someone who has counted his distance and knows exactly where each step lands. The man who steps into the vault is lean and weathered, with a harbor pilot's stillness: the kind of patience that comes from reading twelve variables before committing to a single course adjustment. He introduces himself as Orin. His satchel is already full. Several almanacs from the upper shelves, he says; he noticed you in the alcove and thought it more efficient to speak here than to meet later in the harbor carrying separate pieces of the same picture.
+You have the codex wrapped in oilcloth and under one arm when you hear him—footsteps in the vault passage with the measured rhythm of someone who has counted his distance and knows exactly where each step lands. You are halfway back to the entrance when the man steps into the corridor and makes leaving a more complicated proposition. He is lean and weathered, with a harbor pilot's stillness: the kind of patience that comes from reading twelve variables before committing to a single course adjustment. He introduces himself as Orin. His satchel is already full. Several almanacs from the upper shelves, he says; he saw where you were headed and thought it more efficient to speak here than to meet later in the harbor carrying separate pieces of the same picture.
 
 He lays out his proposal without preamble: pool the materials, coordinate the forecasting advantage, split the returns between your interests and his fleet's priority routes. The council will dilute whatever you bring them, he says—spread it too thin, give it away too cheaply, and it loses its value as an edge. He is not incorrect about the council. He is also a man whose fleet controls two of the harbor's four most profitable berths and has held them for eleven years.
 
@@ -120,6 +120,8 @@ Harbor of Lanterns
 You lay the pressure-drop sequences and storm-window calculations before the harbor council without conditions—the full material, no retained advantage. The council's first instinct is procedure: committees, licensing subcommittees, a draft framework for managed distribution. You push through a parallel track of public workshops on the pier, and the knowledge moves faster than committees can follow it. Within a season, captains are comparing pressure observations on the dock as a matter of course, cooperatives are maintaining shared charts, and the warning network has become something no single person owns.
 
 The hurricane season that follows is severe. The one after it is worse. Neither is catastrophic. Coordinated departure windows and shelter timing save hundreds of lives that the previous two seasons' chaos had not been able to. In the harbor district, children grow up treating storm bulletins as infrastructure—the way they treat the tide tables posted outside the harbormaster's office, public by long practice and not requiring explanation.
+
+The warning carved above the library door proves truer than you first understood. The third bell was never only about escape. Leave in time, and the knowledge remains human enough to be carried back into daylight.
 
 You came into the library carrying a mandate and walked out carrying a responsibility. Most years the harbor does not know your name for it. The system you helped build does not require it.
 
@@ -151,7 +153,7 @@ The arrangement with Orin runs as designed. His fleet clears port ahead of every
 
 By the third season, a harbor pilot's cooperative circulates a report with graphs. One fleet's clear-out rate before storm events versus the field average. The pattern is not subtle. Orin says the scrutiny will pass; he has navigated this kind of attention before. He is probably right.
 
-The codex is still locked in your desk. The note in the front cover—Knowledge that saves must be shared, or it becomes tyranny—you have not read in over a year, because there is a specific art to not opening the front cover of something you need to keep closed.
+The codex is still locked in your desk, wrapped in oilcloth gone stiff with salt at the folds. The note in the front cover—Knowledge that saves must be shared, or it becomes tyranny—you have not read in over a year, because there is a specific art to not opening the front cover of something you need to keep closed.
 
 ### Choices
 1. Trust Orin—the scrutiny will pass, as he says -> 12
@@ -166,7 +168,7 @@ The council chamber is smaller than the weight of what you carry into it—a lon
 
 The dispute surfaces in the second hour. One councilmember argues for a structured release: vetted captains, licensed access, managed dissemination over several seasons. The knowledge stays useful if it stays governed. Another argues for immediate full publication: post it on the harbor exchange before winter, let every captain read it and begin building shared charts before next season's storms arrive. The value is in the network, not in the control.
 
-The codex is still in your hands. The council chair sets her pen down and looks at you directly. The harbor outside has been quiet for two weeks; the pressure charts say the quiet will not last.
+The codex is still in your hands. Your thumb rests in the warped groove where generations of readers have opened the front cover, and when the council chair sets her pen down and looks at you directly, you realize you have been holding the book too tightly. The harbor outside has been quiet for two weeks; the pressure charts say the quiet will not last.
 
 ### Choices
 1. Recommend full immediate public release -> 8
@@ -196,6 +198,8 @@ The structured program takes eighteen months to design and implement—committee
 The council's program is better. It is free. It launches first. But the following hurricane season runs with two competing forecast services and enough civic confusion to produce two coordination failures and eleven deaths that a unified system launched four months earlier would have prevented.
 
 The knowledge is out. People survive who would not have survived otherwise. The overall harm is less—measurably, significantly less—than if you had kept the material private. The outcome is good enough to have been worth doing.
+
+You think once of the warning over the library threshold and understand that leaving in time was never the difficult part. The difficult part was returning what you carried to the widest possible circle before it hardened into private right.
 
 You stand at the harbor's edge in the weeks after and measure what you chose against the alternative. What was saved is real. What was lost is also real. The calculation does not resolve into a verdict, which may be the most honest thing it could do.
 

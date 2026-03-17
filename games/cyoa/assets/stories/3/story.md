@@ -42,8 +42,8 @@ Rui stands in the doorway. She watched you read, and whatever crossed your face 
 Caldwell passes behind Rui without stopping, but his eyes linger on the terminal screen a beat too long. He has seen the logs. He does not ask about them.
 
 ### Choices
-1. Share Maren's logs with Rui — she deserves to know, and you need an ally -> 4
-2. Keep the logs to yourself — the hum Maren described is below; follow her trail alone -> 5
+1. Bring Rui in as an ally — you need a second set of eyes on Maren's trail -> 4
+2. Keep the logs to yourself — follow the hum immediately -> 5
 
 ## Chapter 3
 ### Title
@@ -63,7 +63,7 @@ If you leave the array now, you leave with numbers, correlations, and a frequenc
 Two threads lead forward: the man who knows more than his briefing should allow, or the sound rising through the floor.
 
 ### Choices
-1. Press Caldwell on the frequency he mentioned — he has been briefed on something you have not seen -> 4
+1. Track Caldwell to the lower deck and press him on the frequency he mentioned -> 4
 2. Follow Rui's correlation data to the lower deck — the humming is the answer -> 5
 
 ## Chapter 4
@@ -71,13 +71,15 @@ Two threads lead forward: the man who knows more than his briefing should allow,
 The Lower Deck
 
 ### Content
-The lower deck is colder. The hum is no longer ambient — it presses against your sternum, a vibration you feel in your teeth. Overhead lights stutter at intervals that seem deliberate, as if the station is breathing on a schedule you have not learned.
+You catch Caldwell at the top of the lower-deck ladder and make him answer before he can walk past. Rui arrives a step behind you and says she wants to hear every word.
+
+The lower deck is colder. The hum is no longer ambient — it presses against your sternum, a vibration you feel in your teeth. Overhead lights stutter as if the station is breathing on a schedule you have not learned.
 
 You pass a bulkhead and stop. Scratches on the wall — not damage. Maren's handwriting, etched into paint with something sharp: a frequency notation and an arrow pointing further down the corridor. She was mapping a path through the sound.
 
-Caldwell appears at the far end of the corridor. He is not surprised to see you. "She filed that frequency notation with us eighteen months before the blackout," he says. The pause is calculation, not hesitation. "We did not dismiss it. We classified it. Stations Four, Seven, Twelve — all three crews reported the same physical sensation in the weeks before they went dark. We had a pattern and we wrote a suppression order instead." He sets the data core on a crate — a deliberate gesture from a man deciding to be useful. "I came here to evaluate whether this station should be sealed. The evaluation is changing."
+Caldwell does not pretend surprise. "She filed that notation with us eighteen months before the blackout," he says. "We classified it. Stations Four, Seven, and Twelve reported the same physical sensation before they went dark. We wrote a suppression order." He sets the data core on a crate. "I came here to decide whether this station should be sealed. That decision is changing."
 
-The signal does something to time here. You check your watch. The second hand jerks forward, stalls, and for one impossible beat seems to sweep backward over the same mark. Your stomach drops with it. You are suddenly certain you have already stood in this corridor, already seen Caldwell framed at the far end, already felt the next pulse of the hum in your teeth. Then the certainty loosens and leaves you holding the rail hard enough for your knuckles to pale.
+The signal does something to time here. You check your watch. The second hand jerks forward, stalls, then sweeps backward over the same mark. Your stomach drops with it. For one impossible beat you are certain you have already stood in this corridor, already heard this confession, already felt the next pulse in your teeth. Then it breaks, and you realize you're gripping the rail hard enough for your knuckles to pale.
 
 The corridor branches ahead. Maren's notation continues toward a sealed compartment at the station's lowest point. Behind you, the main deck — and the submersible — is still reachable.
 
@@ -91,6 +93,8 @@ Resonance
 
 ### Content
 You press your palm flat against the hull of the lower deck. The metal vibrates — not mechanically, not randomly, but in sequences. Long, short, clustered. The station's structure is conducting information through itself.
+
+Rui studies your face as the vibration settles. "You keep editing your answers," she says. "Whatever you learned upstairs, stop carrying it alone."
 
 Rui recognizes it. Her face goes still. "Station Four," she says. "My friend called me the night before they went dark. She said the walls were talking. I told her to sleep." Her hands curl at her sides. "She was not tired."
 
@@ -113,7 +117,7 @@ At the centre of her desk: a coffee mug handle, stripped clean of ceramic. The m
 
 "She built it into the ceramic," you say aloud, and saying it makes it real. The frequency is the final key.
 
-With it, the cipher aligns. Her scattered annotations snap into coherence — instructions, not confusion. Her final log entry, *remember*, was not interrupted. It was the first word she translated from the signal. A marker only you would recognize, because you are the one who needs to remember.
+With it, the cipher aligns. Her scattered annotations snap into coherence — instructions, not confusion. One annotation is circled three times: *remember*. It is not a plea. It is the first word she translated from the signal. A marker only you would recognize, because you are the one who needs to remember.
 
 She knew you would come here. She designed this trail to work through your guilt, not despite it.
 

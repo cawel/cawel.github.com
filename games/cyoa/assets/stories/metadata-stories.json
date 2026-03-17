@@ -30,7 +30,7 @@
     "chapters": 10,
     "tone": "Mysterious",
     "createdWithStoryPipelineVersion": 1.1,
-    "revisedWithStoryPipelineVersion": 2.1
+    "revisedWithStoryPipelineVersion": 2.2
   },
   {
     "number": 4,
@@ -52,7 +52,7 @@
     "chapters": 13,
     "tone": "Mysterious",
     "createdWithStoryPipelineVersion": 0,
-    "revisedWithStoryPipelineVersion": 0
+    "revisedWithStoryPipelineVersion": 2.2
   },
   {
     "number": 6,
@@ -96,6 +96,6 @@
     "chapters": 10,
     "tone": "Suspenseful",
     "createdWithStoryPipelineVersion": 1.0,
-    "revisedWithStoryPipelineVersion": 2.1
+    "revisedWithStoryPipelineVersion": 2.2
   }
 ]

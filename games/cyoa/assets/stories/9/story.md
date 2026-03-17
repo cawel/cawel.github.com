@@ -160,9 +160,9 @@ The End
 Controlled Burn
 
 ### Content
-Dara has already pulled the overload sequence onto the vault console by the time you reach the containment screen. One look at the spike pattern told her what kind of decision this was, and she runs the alignment with the precision of someone who has spent three tours imagining how this signal might have to end. The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
+Dara has already pulled the overload sequence onto the vault console by the time you reach the containment screen. One look at the spike pattern told her what kind of decision this was, and she runs the alignment with the precision of someone who has spent three tours imagining how this signal might have to end. Voss's authority code lands on the console a second later and only confirms what she already chose. The vault's magnetic isolation holds through the pre-detonation sequence, containing the blast cone inside three metres of reinforced alloy. The controls require constant manual adjustment during the window; release them too early and the blast cone fails, taking the lower three decks with it. She doesn't ask whose call this was. It stopped mattering the moment she touched the controls.
 
-You reach for the panel when the readings destabilize. She's already there. She shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
+You reach for the panel when the readings destabilize. She's already there. "You've carried every dead loop alone," she says, not looking up. "Carry one where they live." Then she shoves you through the vault hatch with both hands and holds your eyes for exactly one second—not goodbye, something fiercer, something that insists you remember this. You seal the hatch from outside. The detonation is clean. The vault contains it completely.
 
 The Fracture cluster collapses inward, dropping off every sensor like a signal cut at the source. The loop, stripped of its anchor, simply ends. No reset. No copper taste rising in the back of your throat. Just the ordinary, unremarkable now.
 
@@ -207,6 +207,8 @@ Dara looks at you. "You okay? You look like you've been awake for a week."
 "Longer."
 
 You sit on the floor of the vault, the empty cradle silent above you, and start writing. Every loop. Every death, yours and theirs. Every adjustment, whether it helped. Every face you learned to read, couldn't save, and then saved without being able to explain why. You write until your hand cramps and then keep going. You sign your name at the bottom.
+
+You think of the morning's first split and how the day held only when evidence and trust met.
 
 Dara reads over your shoulder. She won't understand — not the repeated mornings, not the seventeen deaths she doesn't remember, not why you hesitated before severing a signal that might have been the only bridge between two civilizations. The empty cradle above you held something that called across distances you can't fathom, and you silenced it to save people who will never know they needed saving.
 
