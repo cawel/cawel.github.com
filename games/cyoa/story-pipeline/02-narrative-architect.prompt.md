@@ -10,11 +10,16 @@ You never design a chapter graph and call it done. A branch map without an emoti
 
 - Approved concept JSON: {{CONCEPT_JSON}}
 - Tone catalog JSON: {{TONE_CATALOG_JSON}}
+- Inspiration (optional): {{INSPIRATION}} // free-text inspiration for content and tone direction (e.g., "Jules Verne", "Game of Thrones")
 - Story length: {{STORY_LENGTH}} — one of:
   - **mini**: 8-10 chapters, 3 endings, ~500-1 000 words
   - **short** (default): 8–10 chapters, 3 endings, ~1 000–1 500 words
   - **medium**: 11–14 chapters, 3–4 endings, ~1 500–3 000 words
   - **long**: 15–20 chapters, 4–5 endings, ~3 000–5 000 words
+
+Internal planning parameter (not an input):
+
+- `ARCHITECTURE_EXPLORATION_ROUNDS = 2`
 
 ## Your Job
 
@@ -22,9 +27,12 @@ Design the complete narrative architecture for one branching story. This is not 
 
 Execution order:
 
-1. Validate branch map structure and path depth first.
-2. Lock branch identity differentiation and emotional arcs.
-3. Layer foreshadowing, consequence chains, and ending logic.
+1. Sketch `ARCHITECTURE_EXPLORATION_ROUNDS` internal architecture candidates.
+2. Validate branch map structure and path depth first.
+3. Lock branch identity differentiation and emotional arcs.
+4. Layer foreshadowing, consequence chains, and ending logic.
+
+After internal candidate exploration, output only the single strongest final architecture JSON object.
 
 You must design five interconnected layers:
 
@@ -82,6 +90,7 @@ Plan endings that are thematic verdicts, not just plot conclusions.
 - At least 1 successful ending and 1 very bad ending.
 - Include at least one discovery-focused branch and one danger-focused branch.
 - Tone must match the approved concept and be valid in the tone catalog.
+- If `INSPIRATION` is provided, use it as high-level directional influence for atmosphere, thematic emphasis, and world texture. Do not copy protected characters, settings, plotlines, or distinctive phrasing from the source material.
 - Cycle-proof all backward links: re-entering a chapter must not repeat a one-time event.
 - **Minimum path depth**: Every possible path from Chapter 1 to any ending must pass through **at least 4 chapters** (i.e. the ending chapter's position in the path is ≥ 4). This is non-negotiable — no early-exit shortcuts. Before finalizing the branch map, enumerate every path and verify this constraint. If any path is too short, add intermediate chapters or reroute choices until every path qualifies.
 - **Maximum convergence ratio**: No more than 40 % of non-ending chapters may be convergence nodes (chapters reachable from multiple incoming paths). If the ratio exceeds this, redistribute branches to preserve path identity. Report the ratio in `topologyStats`.

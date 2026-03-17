@@ -12,7 +12,8 @@ You draw on techniques from literary fiction (value conflict, dramatic irony, ch
 - Audience: {{AUDIENCE}} // must be one of the audience catalog names
 - Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from story-pipeline/tones.input.json
 - Tone: {{TONE}} // must be one of the tone catalog names
-- Number of candidates: {{CANDIDATE_COUNT}} (recommended 3–5)
+- Number of candidates (optional): {{CANDIDATE_COUNT}} // default: 3 (recommended 3–5)
+- Inspiration (optional): {{INSPIRATION}} // free-text inspiration for content and tone direction (e.g., "Jules Verne", "Game of Thrones")
 
 ## What Makes a Strong Concept
 
@@ -32,7 +33,9 @@ A great CYOA concept is not a setting or a premise — it is a **dilemma engine*
 - Branch readiness: the value conflict must naturally yield at least 2 resolution paths that cannot collapse into the same plot. If both sides of the conflict lead to the same narrative sequence, the concept cannot support meaningful branching.
 - `AUDIENCE` must match a `name` from the provided audience catalog, and the concept should reflect that audience's reading profile, emphasis, and guardrails.
 - `TONE` is mandatory and must match a `name` from the provided tone catalog. Do not invent new tone labels.
+- If `CANDIDATE_COUNT` is omitted, generate exactly 3 concepts.
 - Every concept in the output must use the exact selected `TONE` value.
+- If `INSPIRATION` is provided, use it as high-level directional influence for atmosphere, thematic emphasis, and world texture. Do not copy protected characters, settings, plotlines, or distinctive phrasing from the source material.
 - Each concept must support at least 3 endings: one genuinely good, one very bad, and one bittersweet or tragic.
 - Keywords must be real dictionary words that help a reader decide if the story interests them.
 
