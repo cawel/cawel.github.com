@@ -2,6 +2,7 @@
   {
     "number": 1,
     "approved": false,
+    "length": "long",
     "title": "The Mysterious Forest",
     "emoji": "🌲",
     "approxTime": "6-8 min",
@@ -14,6 +15,7 @@
   {
     "number": 2,
     "approved": false,
+    "length": "medium",
     "title": "Midnight at Hollow Moon Museum",
     "emoji": "🏺",
     "approxTime": "5-7 min",
@@ -26,6 +28,7 @@
   {
     "number": 3,
     "approved": true,
+    "length": "medium",
     "title": "The Quiet Frequency",
     "emoji": "🌊",
     "approxTime": "4-5 min",
@@ -38,6 +41,7 @@
   {
     "number": 4,
     "approved": false,
+    "length": "medium",
     "title": "The Clockwork Carnival",
     "emoji": "🎠",
     "approxTime": "5-7 min",
@@ -50,6 +54,7 @@
   {
     "number": 5,
     "approved": false,
+    "length": "medium",
     "title": "The Sunken Library",
     "emoji": "🌊",
     "approxTime": "4-7 min",
@@ -62,6 +67,7 @@
   {
     "number": 6,
     "approved": false,
+    "length": "medium",
     "title": "Echoes of the Perseid Gate",
     "emoji": "🚀",
     "approxTime": "4-6 min",
@@ -74,6 +80,7 @@
   {
     "number": 7,
     "approved": false,
+    "length": "medium",
     "title": "Whiskers and the Midnight Key",
     "emoji": "🐈",
     "approxTime": "4-7 min",
@@ -86,6 +93,7 @@
   {
     "number": 8,
     "approved": false,
+    "length": "medium",
     "title": "Crown of the Underforge",
     "emoji": "🧙",
     "approxTime": "5-9 min",
@@ -98,6 +106,7 @@
   {
     "number": 9,
     "approved": false,
+    "length": "long",
     "title": "The Fracture Hour",
     "emoji": "⏱️",
     "approxTime": "5-8 min",

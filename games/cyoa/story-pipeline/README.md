@@ -23,7 +23,10 @@ When a message opens with a role description, the model anchors its entire respo
 
 ## Story Length Input
 
-Four length options control chapter count, ending count, and approximate word count:
+Four length options control **target scope**. In practice, the most reliable classifier is total word count.
+
+Use these word-count bands as the source of truth when labeling `length` in metadata.
+Chapter and ending counts below are planning heuristics, but the word-count band is a hard output constraint for drafting, critique, and revision:
 
 | Length | Chapters | Endings | Approx. Words |
 |--------|----------|---------|---------------|
@@ -33,6 +36,14 @@ Four length options control chapter count, ending count, and approximate word co
 | **long** | 15–20 | 4–5 | 3 000–5 000 |
 
 Pass `STORY_LENGTH` to steps `02`, `03`, and `04`. If omitted, default to **short**.
+Pass `STORY_LENGTH` to step `05` as well so revision cannot silently drift out of band.
+
+For **mini**, the pipeline should behave conservatively:
+
+- Prefer **8 chapters** and **3 endings**
+- Target **700-900 words** total
+- Never exceed **1 000 words** total
+- Keep each chapter to one decisive beat and compress endings to short thematic verdicts
 
 ## Tone Input
 
@@ -66,6 +77,7 @@ Design the full storytelling blueprint across five layers:
 5. **Ending design** — each ending as a thematic verdict with cost and closure
 
 This is the step that turns a premise into a story that feels *crafted*.
+It is also where length feasibility is enforced before drafting starts; mini architectures should be explicitly compact enough to fit the word cap.
 
 ### Step 3 — Story Draft (`03-story-draft.prompt.md`)
 
@@ -76,12 +88,14 @@ Write the complete story in markdown. Craft priorities:
 - Show character motivations through action and dialogue
 - Use the environment as obstacle, not backdrop
 - Earn every emotional peak through setup
+- Stay inside the requested total word-count band; for **mini**, treat **1 000 words** as a hard ceiling, not a suggestion
 
 ### Step 4 — Story Critique (`04-story-critique.prompt.md`)
 
 Evaluate the draft on two axes:
 
 - **Structural integrity** — links, chapter counts, format, word balance
+- **Length compliance** — total story words must stay inside the requested band
 - **Literary craft** — scored 1–5 on: foreshadowing, choice quality, consequence linking, character consistency, conflict/tension, dialogue, pacing/emotion, endings
 
 Returns a JSON report with the top 3 improvement priorities.
@@ -93,14 +107,22 @@ Apply the critique. Two internal passes:
 1. Fix structural errors (non-negotiable)
 2. Address craft weaknesses flagged in the critique (priorities first)
 
+Revision must also preserve length compliance. If the story is a **mini**, Step 5 should cut or redistribute prose until the final story lands back inside **500-1 000 words**.
+
 Produces the final story markdown.
 
 ### Step 6 — Metadata & Image Prompts (`06-metadata-extractor.prompt.md`)
 
 Extract structured metadata from the finalized story for the application's data layer and image-generation workflow:
 
-- **Story metadata** (`metadata-stories.json` entry): title, emoji, reading time, keywords, chapter count, tone.
+- **Story metadata** (`metadata-stories.json` entry): title, emoji, reading time, keywords, chapter count, tone, and revision pipeline version.
 - **Image metadata** (`metadata-images.json` entries): one cinematic image prompt per chapter with consistent art style across the story, ending type classification, and no spoilers for non-ending chapters.
+
+Current Step 6 prompt conventions also enforce:
+
+- No character names inside image prompts
+- Explicit and consistent protagonist gender selection across chapters
+- Prompt length target of 50-100 words (excluding suffix)
 
 ### Step 7 — Image Generation (`07-image-generator.prompt.md` + `scripts/generate-images.mjs`)
 
@@ -173,3 +195,10 @@ Optional overrides:
 - `IMAGE_MODEL=gpt-image-1`
 
 Image resolution is fixed at `1536x864`.
+
+## Image Utility Scripts
+
+Repo utility scripts for local image processing live in:
+
+- `scripts/image-utils/crop_to_16_9.py`
+- `scripts/image-utils/png-to-webp.mjs`

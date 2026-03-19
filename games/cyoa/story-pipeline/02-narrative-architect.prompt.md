@@ -32,9 +32,22 @@ Execution order:
 3. Lock branch identity differentiation and emotional arcs.
 4. Layer foreshadowing, consequence chains, and ending logic.
 
+Before finalizing, validate that the architecture can actually be drafted inside the requested word band. Length is a hard production constraint, not a soft vibe.
+
 After internal candidate exploration, output only the single strongest final architecture JSON object.
 
 You must design five interconnected layers:
+
+### Length Discipline
+
+Plan the architecture so the drafting step can stay inside the requested total word count without collapsing coherence.
+
+- Treat the story-length word band as a hard cap.
+- For **mini**, strongly prefer **8 chapters** and exactly **3 endings**. Use 9-10 chapters only if the concept becomes incoherent at 8.
+- For **mini**, keep the structure sparse: no more than **2 major branch points after Chapter 1**, one decisive scene objective per chapter, and no branch may require more than one major revelation before an ending.
+- For **mini**, every chapter should be draftable as a compact scene in roughly **60-120 words of prose**. If a chapter premise obviously needs more space, simplify the architecture before output.
+- Avoid redundant branch beats. If two sibling branches would need similar investigation, confrontation, or exposition scenes, merge or differentiate them now.
+- Ending chapters must be short verdict scenes, not extended epilogues.
 
 ### Layer 1: Branch Map
 
@@ -94,6 +107,7 @@ Plan endings that are thematic verdicts, not just plot conclusions.
 - Cycle-proof all backward links: re-entering a chapter must not repeat a one-time event.
 - **Minimum path depth**: Every possible path from Chapter 1 to any ending must pass through **at least 4 chapters** (i.e. the ending chapter's position in the path is ≥ 4). This is non-negotiable — no early-exit shortcuts. Before finalizing the branch map, enumerate every path and verify this constraint. If any path is too short, add intermediate chapters or reroute choices until every path qualifies.
 - **Maximum convergence ratio**: No more than 40 % of non-ending chapters may be convergence nodes (chapters reachable from multiple incoming paths). If the ratio exceeds this, redistribute branches to preserve path identity. Report the ratio in `topologyStats`.
+- **Length feasibility**: The architecture must be draftable within the requested word band. For `mini`, this means the final branch map must comfortably fit inside **500-1 000 words total** with intact coherence, not by relying on oversized chapters or merged endings.
 
 ## Output Format
 
@@ -106,6 +120,14 @@ Return only a valid JSON object:
   "tone": "...",
   "valueConflict": "...",
   "protagonistFaultLine": "...",
+
+  "lengthPlan": {
+    "storyLength": "mini|short|medium|long",
+    "targetWordRange": [0, 0],
+    "recommendedChapterCount": 0,
+    "targetWordsPerChapter": [0, 0],
+    "compressionNotes": ["..."]
+  },
 
   "branchIdentityPlan": [
     {

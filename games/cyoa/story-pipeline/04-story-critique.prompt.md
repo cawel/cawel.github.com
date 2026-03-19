@@ -29,6 +29,7 @@ Verify every item. Report each failure as an error.
 - Ending chapters have exactly `The End` in Choices.
 - 3–5 ending chapters total. At least 1 successful, 1 very bad.
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
+- Total story word count must fall inside the requested story-length band. Error code: `STORY_WORD_COUNT_OUT_OF_BAND`.
 - No chapter's word count deviates from the story average by more than 25%.
 - Choice text never introduces a key term not already in that chapter's content.
 - If a choice/action depends on a key object, that object's location must have been explicitly established in chapter content before use. Error code: `OBJECT_LOCATION_UNCLEAR`.
@@ -131,6 +132,7 @@ Return only valid JSON:
       "chapterCount": 0,
       "endingCount": 0,
       "minPathDepth": 0,
+      "totalStoryWords": 0,
       "avgChapterWords": 0,
       "minChapterWords": 0,
       "maxChapterWords": 0

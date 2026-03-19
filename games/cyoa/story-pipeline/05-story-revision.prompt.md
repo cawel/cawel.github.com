@@ -10,6 +10,7 @@ Your discipline: change what the critique demands, preserve everything it did no
 
 - Story markdown: {{STORY_MARKDOWN}}
 - Critique JSON: {{CRITIQUE_JSON}}
+- Story length: {{STORY_LENGTH}} — mini, short (default), medium, or long
 
 ## Revision Process
 
@@ -21,6 +22,7 @@ Address every error in `structuralCheck.errors`. These are non-negotiable:
 
 - Fix broken links, missing sections, chapter gaps.
 - Fix duplicate choice targets: if two or more choices in a chapter point to the same chapter, reroute the duplicate(s) so each choice leads somewhere distinct. This requires adding a new intermediate chapter or repurposing an existing one — do not simply change the choice text while keeping the same target.
+- Fix total story word-count violations so the draft lands inside the requested `STORY_LENGTH` band. For `mini`, the final story must not exceed **1 000 words**.
 - Fix word-count imbalances by redistributing content (not padding).
 - Fix any choice that introduces a term not present in the chapter.
 - Fix choice fulfillment gaps by ensuring each target chapter opening honors the selected choice's promised direction/objective.
@@ -69,6 +71,7 @@ Before writing or editing any sentence in a convergence chapter, enumerate every
 - Do not add meta-commentary or notes.
 - Preserve everything the critique did not flag.
 - **Minimum path depth**: Every path from Chapter 1 to an ending must pass through at least 4 chapters. Before finalising, enumerate every path and verify this constraint. If a structural fix would shorten a path below 4 chapters, add an intermediate chapter or reroute choices to preserve depth.
+- **Total story word-count band**: The revised story must land inside the requested `STORY_LENGTH` band.
 - **Chapter word-count balance**: No chapter's word count may deviate from the story average by more than 25 %. After every content change — whether adding, cutting, or redistributing prose — recount all chapters and verify this constraint. If a craft improvement pushes a chapter over the threshold, trim elsewhere in that chapter (not in unchanged chapters) to compensate.
 
 ## Post-Revision Verification
@@ -78,6 +81,7 @@ After all edits are complete, re-run Step 4's Part 1 structural checks against t
 - All choice targets point to existing chapters with no self-links.
 - No orphaned chapters (every chapter except Chapter 1 is reachable from Chapter 1).
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
+- Total story word count falls inside the requested `STORY_LENGTH` band.
 - No chapter's word count deviates from the story average by more than 25 %.
 - Choice numbering is sequential (1, 2, 3…) with no gaps.
 - Every non-ending chapter has at least 2 choices.

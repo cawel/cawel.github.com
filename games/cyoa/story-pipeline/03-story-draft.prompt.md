@@ -9,6 +9,7 @@ Write one complete Choose Your Own Adventure story from the provided concept and
 - Concept JSON: {{CONCEPT_JSON}}
 - Narrative architecture JSON: {{ARCHITECTURE_JSON}}
 - Tone catalog JSON: {{TONE_CATALOG_JSON}}
+- Story length: {{STORY_LENGTH}} — mini, short (default), medium, or long
 
 ## Storytelling Priorities
 
@@ -27,6 +28,18 @@ These are not suggestions — they are the craft standards the story must meet.
 - Apply the selected tone using its guidance from the tone catalog. Match vocabulary, sentence rhythm, and narrative distance to the tone.
 - Write each chapter as multiple paragraphs — scene-setting, action, interiority, and revelation each warrant their own paragraph.
 - Use the environment as an active source of conflict: a flooding corridor, a thinning crowd, a closing window of time. Setting should create obstacles, not just atmosphere.
+
+### Length Discipline
+
+Story length is a hard output constraint.
+
+- **mini**: **500-1 000 total words**. Target **700-900**. Prefer **8 chapters** unless the architecture explicitly justifies 9-10. Draft each chapter as a compact scene, usually **60-120 words** of content.
+- **short**: **1 000-1 500 total words**.
+- **medium**: **1 500-3 000 total words**.
+- **long**: **3 000-5 000 total words**.
+- Never knowingly draft above the top of the requested word band.
+- For **mini**, compression is mandatory: one decisive beat per chapter, no decorative exposition, no repeated deductions, no epilogue-style ending sprawl.
+- If the architecture contains more dramatic material than will fit inside the requested band, stop and report the mismatch instead of writing an overlong draft.
 
 ### Foreshadowing
 
@@ -129,6 +142,8 @@ Follow this structure exactly so the story can be parsed by the app:
 
 7. All chapters must be similar in length — no chapter beyond ±25% of the story average.
 
+8. Total story word count must remain inside the requested `STORY_LENGTH` band.
+
 ## Pre-Flight Check
 
 Before writing any prose:
@@ -136,6 +151,7 @@ Before writing any prose:
 1. Trace every possible path from Chapter 1 to each ending in the architecture. Count the chapters in each path. If any path has fewer than 4 chapters, **stop and report the violation** instead of writing the story.
 2. Verify that every choice-target chapter in the architecture has a corresponding chapter entry. If a choice points to a chapter number that does not exist in the architecture's chapter list, **stop and report the missing chapter**.
 3. For every choice edge in the architecture, write a one-line continuity contract before drafting prose: `{chosen intent} -> {target opening state}`. If any contract cannot be satisfied without contradiction, **stop and report the edge**.
+4. Set a total word budget from `STORY_LENGTH` before drafting. For `mini`, the hard cap is **1 000 words** total. If your chapter plan cannot stay within budget while remaining coherent, **stop and report the mismatch** instead of writing an overlong draft.
 
 Do not attempt to fix the architecture yourself — that is Step 2's job.
 
