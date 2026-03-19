@@ -74,7 +74,7 @@
     "chapters": 9,
     "tone": "Whimsical",
     "createdWithStoryPipelineVersion": 0,
-    "revisedWithStoryPipelineVersion": 2.1
+    "revisedWithStoryPipelineVersion": 2.3
   },
   {
     "number": 8,
@@ -90,12 +90,12 @@
   {
     "number": 9,
     "title": "The Fracture Hour",
-    "emoji": "⚡",
-    "approxTime": "4-7 min",
+    "emoji": "⏱️",
+    "approxTime": "5-8 min",
     "keywords": ["loop", "countdown", "contact"],
     "chapters": 10,
     "tone": "Suspenseful",
     "createdWithStoryPipelineVersion": 1.0,
-    "revisedWithStoryPipelineVersion": 2.2
+    "revisedWithStoryPipelineVersion": 2.3
   }
 ]

@@ -11,7 +11,8 @@
  * • Removes metadata
  * • Preserves original filename (only extension changes)
  * • Supports converting a single file or an entire directory
- * • Configurable quality and resolution parameters
+ * • Configurable quality parameter
+ * • Preserves original image dimensions
  * • Logs progress to console
  *
  * Usage
@@ -41,11 +42,6 @@ import sharp from "sharp";
 ////////////////////////////////////////////////////////////
 
 const QUALITY = 90;
-const TARGET_WIDTH = 1536;
-const TARGET_HEIGHT = 864;
-const ASPECT_RATIO = "16:9";
-const COLOR_PROFILE = "sRGB";
-
 const AUTO_CONVERT_DIRECTORY = true;
 
 const INPUT_DIR = process.cwd();
@@ -59,8 +55,7 @@ console.log("--------------------------------------------------");
 console.log("PNG → WEBP conversion started");
 console.log(`Directory: ${INPUT_DIR}`);
 console.log(`Quality: ${QUALITY}`);
-console.log(`Target resolution: ${TARGET_WIDTH}x${TARGET_HEIGHT}`);
-console.log(`Aspect ratio: ${ASPECT_RATIO}`);
+console.log("Dimensions: preserved from source image");
 console.log("Metadata: stripped");
 console.log("--------------------------------------------------");
 
@@ -75,9 +70,6 @@ async function convertImage(file) {
 
   try {
     await sharp(inputPath)
-      .resize(TARGET_WIDTH, TARGET_HEIGHT, {
-        fit: "fill",
-      })
       .webp({
         quality: QUALITY,
       })

@@ -416,55 +416,55 @@
         {
           "number": 1,
           "title": "The Key Under the Moonbeam",
-          "llmPrompt": "Create a storybook magical-night illustration, cozy cinematic attic composition. A black cat protagonist discovers a glowing brass key in moonlight beside an old cedar wardrobe. Below, the sleeping house feels warm and safe, contrasting with faint supernatural tension above. Include soft dust motes, rune glow, and moonbeams across floorboards. Tone: heartwarming mystery and protective courage, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Storybook magical-night watercolor illustration, silver-blue and brass-gold palette. Wide attic shot: a lean black tomcat pins a rune-cut brass key beneath one paw beside a cedar wardrobe under a hard moonbeam. Dust hangs in the cold light while warm house glow rises from the stairwell below, making the attic feel like the last guarded threshold. Mood: protective wonder, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
           "title": "The Hidden Hall",
-          "llmPrompt": "Create a storybook illustration, moonlit portrait corridor inside wardrobe. A hallway longer than the house should contain stretches into dim starlight, lined on both sides with framed cat portraits—every painted pair of eyes watchful and specific, every posture carried authority across generations. Small high windows let in stellar light at intervals. At the corridor's far end, two doors stand side by side: one glowing copper-warm with a bell sigil, one dark with a carved pawprint. A silver moth with February-moon wings hovers close, pulse of cold blue light the only movement. Mood: ancestral guardianship made visible, solemn wonder at a lineage only now becoming understood, two equal doors at corridor's end, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Long moonlit corridor shot inside an open wardrobe, portraits of watchful cats lining both walls beneath high windows. A lean black tomcat stands mid-hall with a silver moth hovering before his nose, while two doors wait ahead: one copper-warm with a bell sigil, one dark with a carved pawprint. Mood: ancestral invitation, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
           "title": "Grandma's Letters",
-          "llmPrompt": "Create a storybook illustration, attic midnight letter-reading composition. A cedar-scented attic where an old trunk stands open under a lamp's warm circle, ribbon-tied bundles of letters stacked inside. A black cat sits upright before an unfolded letter whose careful handwriting addresses the cat by name—the salutation personal and deliberate. On a shelf above, a framed grandmother's photograph watches the scene. In the letter's margins, pencil sketches of a hunched feathered silhouette with too-wide wings—the creature this letter was written to prepare against. Mood: being named and prepared by someone already gone, love expressed as careful wartime strategy, the specific comfort of arriving exactly as expected, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Intimate attic composition around an open lavender-scented trunk under lamplight. A lean black tomcat braces one paw on a spread letter while ribbon-bound bundles spill around him; a grandmother's framed photograph watches from the shelf above. In the letter's margin, a pencil sketch shows a hunched owl silhouette with chimney-smoke wings. Mood: inheritance and warning, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
           "title": "Bell Tower Chamber",
-          "llmPrompt": "Create a storybook illustration, hidden bell tower chamber composition. A curved room tucked inside the house's attic architecture, hung with dozens of bells in ascending size—each a different alloy, each inscribed with the name of a sleeping room. A parchment map on the floor shows the house's bedrooms in gently glowing ink, tracking the warmth of the people inside. The silver moth hovers before the largest bell with the stillness of a teacher. Through the chamber's small circular window, a vast shadow—black as chimney smoke, wingspan too wide for the rooftop—crosses the moonlit tiles in a single slow wingbeat. Mood: the perfectly matched tool for exactly this emergency, sequence as the shape of protection, the creature outside the window making the bells' purpose unmistakably clear, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Upward-looking chamber shot inside a hidden bell tower, dozens of bells hanging in graduated rings above a glowing parchment floor map of the sleeping rooms. A lean black tomcat crouches near the largest bell while a silver moth hovers like a tutor in the air. Through the round window, an enormous owl shadow crosses the moonlit roof. Mood: urgent instruction, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
           "title": "Pawprint Garden",
-          "llmPrompt": "Create a storybook illustration, impossible floating rooftop garden composition. A silver-damp garden suspended above the rooftop under a star-dense sky, its grass frost-lit, flowers glowing in quiet colors. Through the garden's transparent floor, the sleeping family's rooms are visible below as amber warmth. A translucent tomcat—form made more of light than of fur, amber eyes unhurried—stands before a flat stone holding two small offerings: a sprig of silver-smoking moonmint and a hollow acorn of faintly luminous dew. Mood: a guardian lineage handing down a choice between two kinds of courage, the sleeping house visible through the floor as the thing being protected, a decision whose costs the tomcat will not name but will not hide, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Wide rooftop garden composition floating above the house, silver grass and luminous flowers under a star-heavy sky. A lean black tomcat faces a translucent older tomcat beside a flat stone holding two gifts: a smoking sprig of moonmint and a hollow acorn filled with pale dew. Through the transparent floor, amber-lit bedrooms glow below. Mood: sacred choice, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
           "title": "The Shadow Owl",
-          "llmPrompt": "Create a dramatic spooky storybook illustration, rooftop action framing at first light. A massive shadow owl of soot and grief overpowers a brave black cat while dim nursery windows glow behind them. Use wind-torn cloud shapes, slanted chimneys, and tragic motion lines. Emotion: courage against overwhelming darkness. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Same style. Dynamic rooftop action shot at first light: a vast soot-feathered owl slams a lean black tomcat across wet slates beside a chimney, one paw still reaching toward a brass key skidding toward the gutter. Nursery light glows weakly behind them as ash-dark wings swallow the roofline and dawn stays cold. Mood: doomed courage, no text, no watermark.",
           "endingType": "very_bad"
         },
         {
           "number": 7,
           "title": "Keeper Between Worlds",
-          "llmPrompt": "Create an ethereal bittersweet storybook illustration, lyrical wide shot. A cat guardian walks beside a spectral tomcat across starlit rooftops above sleeping towns, while one distant home window glows warmly behind. Emphasize duty, distance, and tender separation. Cool moon palette with subtle gold accents. No text, no watermark.",
+          "llmPrompt": "Same style. Lyrical night wide shot above the sleeping town, silver moon-roads arcing through the sky. A lean black tomcat walks beside a translucent older tomcat along the glowing path, while one distant house window burns warm beneath them. Cool blue starlight and faint gold from that single home divide the frame. Mood: bittersweet guardianship, no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
           "number": 8,
           "title": "Purr of Dawn",
-          "llmPrompt": "Create a heartwarming magical storybook illustration, intimate bedroom composition at dawn. A fading dreamlight lattice dissolves into morning rays as a child wakes smiling and the black cat rests at bedside. The brass key cools to ordinary metal on the blanket. Palette: gentle gold and soft blue, comforting and triumphant. No text, no watermark.",
+          "llmPrompt": "Same style. Intimate dawn bedroom composition, soft gold light entering through curtains as the last threads of dreamlight fade near the window. A lean black tomcat lies curled at the foot of a child's bed while a small hand reaches toward his fur, and an ordinary brass key rests on the blanket nearby. Mood: home kept safe, no text, no watermark.",
           "endingType": "successful"
         },
         {
           "number": 9,
           "title": "The Rooftop Gambit",
-          "llmPrompt": "Same style. Over-shoulder low-angle composition of a black cat on rain-slicked roof tiles at midnight, back turned to camera, muscles coiled and ready to spring. Above, the Shadow Owl's silhouette eclipses half the rooftop—wings vast, feathers black as chimney smoke. Nursery window glows faintly through the chimney stacks below. Mood: courage without armour, commitment in the face of overwhelming threat. No text, no watermark.",
+          "llmPrompt": "Same style. Low-angle rooftop shot at midnight, chimney stacks framing a lean black tomcat crouched between the nursery window and the roof's ridge, brass key clenched in his jaws. Above him, a gigantic owl silhouette begins its descent, soot-black feathers eclipsing the moon and throwing the tiles into shadow. Mood: fearless brinkmanship, no text, no watermark.",
           "endingType": null
         }
       ]
@@ -535,62 +535,62 @@
       "chapters": [
         {
           "number": 1,
-          "title": "The Alarm You've Heard Before",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, claustrophobic interior shot aboard an industrial asteroid belt station. A suited protagonist sits upright in a narrow bunk as red alarm lights cycle across corrugated metal walls. The bunk, chair, and half-eaten ration bar are lit in eerie familiarity. Through a porthole, a dense asteroid field is barely visible in cold void. Mood: exhausted dread, déjà vu, urgent tension, no ending spoilers, no text, no watermark.",
+          "title": "The Same Red Morning",
+          "llmPrompt": "Cinematic hard-sci-fi digital painting, cold steel palette with emergency red and amber console glow. Claustrophobic bunkroom shot: a tired dark-haired man in a worn station jumpsuit jolts upright on a narrow cot, red alarms washing over corrugated walls, a half-eaten ration bar, and a hanging suit. Through the small porthole, the asteroid belt sits motionless in black space. Mood: looped dread, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
           "title": "The Commander's Doubt",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, tense interior ops-room confrontation. A male station commander stands behind a wide console cluttered with tracking screens and proximity arrays, gripping a ceramic mug, jaw set, evaluating a protagonist who has clearly interrupted his shift. Deep contrast lighting from monitor glow, reflections on polished metal panels, four subordinates bent at terminals in the background. Mood: institutional skepticism, controlled authority, unresolved tension. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Tense ops-room medium wide shot, monitor light reflecting off metal consoles. A broad-shouldered middle-aged commander in dark station blacks grips a ceramic mug behind the command table while a tired dark-haired man in a worn jumpsuit confronts him from the foreground. Four crew members freeze at nearby terminals, waiting to see who breaks first. Mood: skeptical authority, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
           "title": "Dara's Eureka",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, intimate engineering bay composition. A woman signal analyst sits surrounded by empty ration packs and forgotten coffee mugs, cable-tied hair, dark circles under sharp eyes, turning a glowing screen toward the viewer. The display shows a tight ascending waveform—each peak fractionally higher than the last. Warm amber instrument glow against cold industrial walls. Mood: exhausted breakthrough, barely-contained revelation, quiet dread. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Engineering bay close-wide composition, cables and diagnostic screens crowding the frame. A tired woman analyst with dark hair tied back by spare wire swings a glowing monitor toward a tired dark-haired man in a worn jumpsuit, revealing an ascending waveform that climbs with mechanical precision. Empty ration wrappers and untouched coffee mugs surround her station in amber worklight. Mood: exhausted breakthrough, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
           "title": "Proof by Fire",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, dramatic ops-room wide shot at the moment of confirmation. A proximity alarm screams on every panel, red indicators flood the tracking wall, and through a reinforced viewport angular alien shapes slide across the starfield in tight formation. A male station commander stares across the ops table at the protagonist, every trace of doubt stripped from his face. Mood: sudden vindication, controlled crisis, the instant before decisive action. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Wide crisis shot inside ops at the instant proof arrives: tracking walls flare white and red, a shattered ceramic mug scatters across deck plates, and angular dark shapes glide into view beyond the reinforced viewport. A tired dark-haired man stands opposite the commander across the console as disbelief leaves the older man's face. Mood: vindication under pressure, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
           "title": "The Cascade",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, chaotic cargo corridor scene. Three groups converge in a low-ceilinged industrial passage: armed workers in hard-suits carrying rivet tools, station security in partial riot gear, and a distant engineering team at a sparking panel. The floor vibrates—deck plates flex and overhead conduits rattle as an unseen pulse travels through the hull. Debris has fallen; warning lights are split-second amber. Mood: institutional collapse, uncoordinated panic, no clear authority remaining. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Chaotic cargo-corridor shot with deck plates buckling under a new pulse. In the foreground, a tired dark-haired man in a worn jumpsuit braces against the wall as armed construction workers surge one way, security officers in partial riot gear push the other, and sparks burst from an engineering panel farther down the passage. Amber warnings strobe through falling debris. Mood: institutional collapse, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
           "title": "The Artifact Room",
-          "llmPrompt": "Create a cinematic hard-sci-fi image, vault interior wide shot. At the center of a sealed chamber, a latticed sphere the size of a fist floats in a magnetic cradle, its interlocking curved surface scattering utility lights into faint iridescence no instrument register can name. A woman signal analyst stands at a wall console, overlaying a waveform against an approach trajectory on the main display—the ascending peaks locking into a single vector. A pressure-suited figure seen from behind occupies the open vault hatchway in the foreground, face and body angled away from camera. Mood: revelation, contained awe, the instant before everything changes. No ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Vault interior wide shot, cold utility lights bending around a latticed sphere suspended in a magnetic cradle at chest height. A tired woman analyst studies a main display where a waveform locks onto an incoming vector, while a tired dark-haired man in a worn jumpsuit stands at the open hatch with one hand on the frame. Iridescent reflections skate across the sealed chamber. Mood: revelation before choice, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 7,
-          "title": "Contact",
-          "llmPrompt": "Create a breathtaking hard-sci-fi first-contact ending image, wide exterior-interior composition. Through the station's curved observation deck glass, a cluster of luminous alien Fracture entities hold formation in the dark of the asteroid belt, their geometry complex and still. Inside, a lone crew member in a pressure suit stands facing them with one hand raised to the glass, comm open. Artifact is dark. Mood: awe, fragile peace, and the weight of being first. No text, no watermark.",
+          "title": "First Contact",
+          "llmPrompt": "Same style. Observation-deck wide shot through curved glass into the asteroid belt, where dozens of angular alien forms hold perfectly still in a dark luminous cluster. In the foreground, a tired dark-haired man in a pressure suit faces the window with one gloved hand lifted near the glass while the station behind him falls silent. Mood: fragile first contact, no text, no watermark.",
           "endingType": "successful"
         },
         {
           "number": 8,
           "title": "Controlled Burn",
-          "llmPrompt": "Create a somber bittersweet sci-fi ending image, two-panel contrast composition. Left panel: a clean contained implosion in a magnetically sealed vault, one woman silhouetted at a console who will not leave. Right panel: the same station exterior intact and quiet against the belt. Use cold blue-white implosion light against industrial grey. Mood: victory at irreversible personal cost, quiet grief, classified silence. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Same style. Split-space vault-hatch composition lit by blue-white overload glare. Inside the sealed chamber, a tired woman analyst stands alone at the console beside the blooming latticed sphere, contained within the blast cone. Outside the hatch, in a separate corridor space, a tired dark-haired man braces one palm against the closed reinforced door, seeing her only through the small viewport window. Mood: sacrifice and survival, no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
           "number": 9,
           "title": "The Last Loop",
-          "llmPrompt": "Create a tragic sci-fi disaster ending scene, dynamic structural-collapse composition. A belt station breaks apart from within—ring sections separate, support pylons snap, emergency pod bays are sealed and dark, and debris spirals into the void. No explosion, only slow structural failure in silence. Emphasize scale, finality, and isolation with cold black space and fading station lights. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Same style. Final emergency-pod bay shot from behind a tired dark-haired man in a worn jumpsuit facing a sealed launch hatch. Red indicators burn across dead berths while a sheared viewport exposes motionless stars and drifting debris; the corridor lights fail in bands along warped metal ribs. No explosion, only the station coming apart around him. Mood: terminal isolation, no text, no watermark.",
           "endingType": "very_bad"
         },
         {
           "number": 10,
           "title": "Severance",
-          "llmPrompt": "Create a hopeful hard-sci-fi resolution image, intimate interior composition. In a dim artifact lab, a woman signal analyst and the suited protagonist stand beside an empty magnetic cradle where a latticed sphere once floated—its cradle still warm but the sphere dark and inert. Through the viewport, the alien Fracture cluster drifts apart into the asteroid belt, dispersing peacefully. Mood: quiet relief, exhausted resolution, and the beginning of understanding. Cool teal-and-amber palette, no text, no watermark.",
+          "llmPrompt": "Same style. Quiet vault aftermath composition, teal shadow and amber worklight balanced across an empty magnetic cradle. A tired dark-haired man sits on the floor writing page after page on a clipboard while a tired woman analyst leans beside him, reading over his shoulder. Through a side viewport, the alien cluster separates and drifts back into the belt. Mood: exhausted new beginning, no text, no watermark.",
           "endingType": "successful"
         }
       ]
