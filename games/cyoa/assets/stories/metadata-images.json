@@ -146,61 +146,61 @@
         {
           "number": 1,
           "title": "Crush Depth",
-          "llmPrompt": "Cinematic deep-sea thriller digital painting, desaturated teal and cold amber palette with bioluminescent accents. Wide interior shot through a submersible airlock into a dead research station at four thousand metres. A protagonist silhouette steps onto corroded deck plates, flashlight beam catching whiteboard script and a coffee mug with a broken handle beside a dark monitor. Behind, two companions wait — a corporate liaison adjusting his collar, a woman pilot standing with grim stillness. Overhead fluorescents flicker. Through a porthole, absolute black ocean. Mood: guilt-laden arrival, crushing isolation. no text, no watermark.",
+          "llmPrompt": "Cinematic deep-sea thriller digital painting, desaturated teal and cold amber palette. Wide shot through a submersible airlock into a silent research station at four thousand metres. A young woman in a thermal dive suit steps onto wet deck plates, flashlight sweeping across a whiteboard covered in tight handwriting and a stained coffee mug with its handle snapped off beside a dead monitor. Behind her in the hatch glow, a man in a crisp collar and a woman pilot watch from the airlock. Mood: claustrophobic dread, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
           "title": "Maren's Trail",
-          "llmPrompt": "Same style. Medium close-up, over-shoulder angle. A decades-old terminal boots to a blue-white desktop in a dark station workspace. The screen illuminates handwritten annotations pinned to the wall behind it — frequency graphs, the phrase 'the handle knows' underlined twice. A final log entry glows on screen, ending mid-sentence with the word 'remember' in italic. In the doorway behind the protagonist, a pilot leans one hand against the corridor wall as though listening through the metal. Cold fluorescent spill, warm screen glow. Mood: intimate forensic grief. no text, no watermark.",
+          "llmPrompt": "Same style. Over-shoulder shot of a young woman reading an old terminal booting in a dark workspace, blue screen glow washing over pinned frequency charts and a cryptic annotation sheet underlined twice. One unfinished log entry hangs on the monitor. In the doorway, the woman pilot braces one hand against the corridor wall as if listening through the metal. Cold fluorescent spill, warm screen glow. Mood: forensic grief, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
           "title": "Signal Architecture",
-          "llmPrompt": "Same style. Wide shot of a comms array console flooding with dense waveform data, green and amber traces filling multiple displays in a dark station bay. A corporate liaison leans over the protagonist's shoulder, face lit from below by the screens. On a side table, a printout shows ambient vibration data with hand-drawn correlation marks. Through the deck plates below, a faint amber glow pulses in sync with the signal peaks. Mood: pattern recognition, creeping unease. no text, no watermark.",
+          "llmPrompt": "Same style. Wide control-room shot, comms consoles flooding the darkness with dense green waveform traces. A young woman studies the screens while the corporate liaison leans over her shoulder, his face lit from below, too intent to seem casual. On a side table, a printout of vibration correlations curls beside a pencil. Beneath the deck plates, a faint amber pulse seems to answer the signal. Mood: analytic unease, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
           "title": "The Lower Deck",
-          "llmPrompt": "Same style. Low-angle corridor shot, narrow industrial passage receding into darkness. Overhead lights stutter at deliberate intervals. On the left wall, scratched handwriting — a frequency notation and an arrow etched into paint with something sharp. At the far end of the corridor, a man in a corporate suit leans against a doorframe, arms crossed, half-lit by a stuttering fluorescent. Cold teal steel, warm amber scratch marks. Mood: time distortion, institutional unease. no text, no watermark.",
+          "llmPrompt": "Same style. Low-angle view down a narrow lower-deck corridor, steel walls sweating cold, overhead fluorescents stuttering out of rhythm. A young woman grips the rail, her dive suit damp with condensation, while a scratched frequency notation and arrow scar the paint ahead. The corporate liaison waits half-lit near a sealed compartment door, his suit rumpled, posture of a man who has said too much. Mood: time-slip tension, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
           "title": "Resonance",
-          "llmPrompt": "Same style. Close-up composition, a gloved hand pressed flat against a riveted steel hull wall. Visible vibration ripples spread from the contact point like sonar rings rendered in condensation. Behind the hand, a pilot stands rigid, face still, recognition and grief crossing her expression under cold utility lighting. The hull metal carries a faint amber glow at its seams. Mood: grief made physical, structural revelation. no text, no watermark.",
+          "llmPrompt": "Same style. Close tactile composition: a young woman's bare palm pressed flat against a riveted hull wall as condensation shivers in patterned rings from the vibrating metal. Behind her, the woman pilot stands in profile under harsh utility light, shoulders locked, eyes fixed on the wall. Amber seams glow faintly along the steel, turning industrial hull into a resonating instrument. Mood: revelatory dread, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
           "title": "The Cipher Chamber",
-          "llmPrompt": "Same style. Interior wide shot of a sealed compartment wallpapered in layered frequency charts, revised and annotated obsessively. At the center desk, a single ceramic mug handle stands upright, stripped of its body, a frequency etched inside its curve catching the light. The protagonist reaches toward it. Around the room, scattered annotations snap into visible coherence — arrows, brackets, a translation framework emerging from apparent chaos. Warm amber desk lamp against cold teal walls. Mood: revelation through obsession, designed trail. no text, no watermark.",
+          "llmPrompt": "Same style. Interior wide shot of a hidden compartment papered with layered frequency charts and obsessive revisions. At the desk center, a detached ceramic mug handle stands upright by itself, the mug body absent. A young woman reaches toward the etched inner curve of the handle, her expression caught between recognition and grief. Warm amber lamp light pools over the desk against teal shadowed walls. Mood: grief sharpened into revelation, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 7,
           "title": "Ascent Window",
-          "llmPrompt": "Same style. Three-figure composition on the station main deck. A corporate liaison grips a data core under one arm near the airlock, professional warmth gone, body angled toward escape. A pilot sits in the submersible seat, hand near the hatch lock. The protagonist stands between them, lit from above by emergency amber. Through the airlock porthole, the submersible waits. Through the deck plates below, teal bioluminescent glow pulses upward. Mood: fracturing trust, the weight of a final choice. no text, no watermark.",
+          "llmPrompt": "Same style. Three-figure main-deck composition: the corporate liaison near the airlock clutching a data core under his arm, the woman pilot seated at the submersible controls with one hand hovering by the hatch lock, and between them a young woman standing under emergency amber light, facing the airlock. Through a porthole, black water presses against the glass. Mood: fractured trust, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 8,
           "title": "Surface Light",
-          "llmPrompt": "Same style. Wide shot from inside a surfacing submersible cockpit. Grey morning light floods through the canopy as the vessel breaches calm ocean surface. A pilot's hands rest on darkened controls. Through the glass, overcast sky and flat water stretch to the horizon. On the protagonist's lap, cipher fragments and handwritten notes. A faint hum hovers at the threshold of hearing, visualized as the barest amber distortion in the water below the hull. Mood: incomplete closure, haunted daylight. no text, no watermark.",
+          "llmPrompt": "Same style. Wide cockpit shot from inside a surfacing submersible as grey morning light spills through the canopy over calm ocean. The woman pilot's hands stay fixed on the controls. Beside her, a young woman holds cipher notes on her lap, face turned toward the rising light. Far below the hull, a barely visible amber distortion lingers in the water. Mood: haunted relief, no text, no watermark.",
           "endingType": "successful"
         },
         {
           "number": 9,
           "title": "The Full Translation",
-          "llmPrompt": "Same style. Intimate interior shot, the protagonist seated alone at the cipher desk, frequency key fitted into the framework. The charts on every wall glow with coherent amber light — the cipher resolved, annotations aligning into meaning. A detached ceramic mug handle — the curved grip piece alone, its mug body absent — rests warm in the protagonist's palm. The protagonist's posture is subtly changed, head tilted as though listening to something beneath language. Behind, the station corridor recedes into deep teal darkness. Mood: transcendent understanding at personal cost, bittersweet transformation. no text, no watermark.",
+          "llmPrompt": "Same style. Intimate desk-level shot inside the cipher chamber, walls of charts catching a coherent amber glow as the translation locks into place. A young woman sits alone at the desk, holding a detached ceramic mug handle — the curved grip piece by itself — warm in one hand, her eyes distant with comprehension. Beyond the desk lamp's pool of light, the corridor falls into deep teal darkness. Mood: bittersweet transcendence, no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
           "number": 10,
           "title": "The Quiet Station",
-          "llmPrompt": "Same style. Wide contemplative shot through a station porthole. The submersible's lights shrink to a single bright point ascending into black water, then vanish. Inside, the protagonist sits in a dead researcher's chair, surrounded by whiteboard equations, a handleless mug nearby. The station hum is visualized as faint concentric amber rings pulsing through the walls and floor. Absolute stillness. No other human presence. Mood: chosen solitude, geological patience, quiet surrender. no text, no watermark.",
+          "llmPrompt": "Same style. Wide contemplative shot through a station porthole as the submersible's lights shrink upward into black water. In the foreground, a young woman sits alone in a desk chair amid whiteboards and a handleless coffee mug, her posture settled as though she has stopped waiting. Faint amber resonance rings pulse through the walls and deck plates, the station otherwise perfectly still. Mood: chosen disappearance, no text, no watermark.",
           "endingType": "bad"
         }
       ]

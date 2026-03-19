@@ -1,4 +1,6 @@
 .DS_Store
 **/.DS_Store
 node_modules/
+scripts/**/__pycache__/
+scripts/**/*.pyc
 story-pipeline/output/

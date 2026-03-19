@@ -16,16 +16,16 @@ You have seen every chapter, every branch, every ending. You use that omniscient
 
 Produce one object with these fields:
 
-| Field                  | Rules                                                                                                                                                         |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `number`               | Use `STORY_NUMBER`.                                                                                                                                           |
-| `title`                | Exact title from the story's `# Title` line.                                                                                                                  |
-| `emoji`                | One emoji that captures the story's dominant setting or mood. Avoid generic choices (no 📖, no ⭐).                                                           |
-| `approxTime`           | Estimate reading time as `"X-Y min"`. Base it on total word count ÷ 200 wpm for the shortest path and ÷ 200 wpm for the longest path. Round to whole minutes. |
-| `keywords`             | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
-| `chapters`             | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
-| `tone`                 | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
-| `storyPipelineVersion` | Set to `2.2`                                                                                                                                                  |
+| Field                             | Rules                                                                                                                                                         |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `number`                          | Use `STORY_NUMBER`.                                                                                                                                           |
+| `title`                           | Exact title from the story's `# Title` line.                                                                                                                  |
+| `emoji`                           | One emoji that captures the story's dominant setting or mood. Avoid generic choices (no 📖, no ⭐).                                                           |
+| `approxTime`                      | Estimate reading time as `"X-Y min"`. Base it on total word count ÷ 200 wpm for the shortest path and ÷ 200 wpm for the longest path. Round to whole minutes. |
+| `keywords`                        | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
+| `chapters`                        | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
+| `tone`                            | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
+| `createdWithStoryPipelineVersion` | Set to `2.2`                                                                                                                                                  |
 
 ## Task 2 — Chapter Image Metadata (`metadata-images.json` entry)
 
@@ -37,15 +37,14 @@ Produce one image-prompt object per chapter. Every chapter gets an entry — no 
 2. **Composition**: Each prompt describes a single camera-frameable scene — angle, subject placement, lighting direction, key foreground/background elements.
 3. **Emotional peak**: Choose the most visually dramatic or emotionally resonant moment in the chapter. For choice chapters, depict the moment just **before** the decision — the tension, not the resolution.
 4. **No spoilers for non-ending chapters**: Do not reveal plot information the reader hasn't encountered yet on any path leading to this chapter. Endings may include tonal outcome cues.
-5. **Character depiction**: Describe characters by visible physical details (clothing, posture, expression, lighting on skin) — never by internal states. The protagonist is always seen from a cinematic angle (over-shoulder, low-angle, silhouette) — never a direct portrait. When a supporting character's gender is clearly established in the story, state it explicitly in the prompt.
+5. **Character depiction**: Describe characters by visible physical details (clothing, posture, expression, lighting on skin) — never by internal states or character names. **Never use character names in prompts** — image models cannot map names to consistent appearances, and names can trigger unintended associations. Instead, refer to each character by role and physical descriptors (e.g., "a tall woman in a leather coat", "the elderly shopkeeper", "the young boy").
 
-   **Protagonist gender decision tree (apply in order):**
-
-- **A. Clear and consistent gender cues in story text** (pronouns from other characters, explicit descriptors): infer that gender and use it consistently across **all** chapters.
-- **B. No clear gender cues** (story remains second-person/ungendered): keep protagonist ungendered and use obscuring framing that blocks gendered inference — e.g., back-facing pressure suit, over-shoulder with face turned away, gloved forearm foreground, backlit silhouette.
-- **C. Contradictory cues across chapters**: do not arbitrate. Use the same ungendered obscuring framing as B and flag the contradiction for revision/editorial follow-up.
-
-**Consistency rule:** Do not mix ungendered obscuring shots in one chapter with front-facing gender-readable protagonist shots in another; maintain one depiction strategy story-wide. 6. **Object state fidelity**: When a key object appears in an image prompt, its physical state must exactly match the story. Never depict an object in its intact or canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly — e.g. "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter" — so the model cannot default to the complete version of the object. 7. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`. 8. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.` 9. **Prompt length**: Each `llmPrompt` must be 40–80 words (excluding the `no text, no watermark.` suffix). Overly detailed prompts confuse image models; overly brief prompts lack compositional control.
+   **Gender consistency (mandatory):**
+   - **Protagonist**: Stories use second-person narration ("you") throughout, so the protagonist has no textual gender. Before writing any prompt, **pick one gender** for the protagonist and state it explicitly in every chapter prompt (e.g., "a young woman crouching…", "a broad-shouldered man standing…"). Never leave the protagonist's gender unspecified — image models will infer one inconsistently if you do.
+   - **Supporting characters**: Determine each supporting character's gender from the story text (pronouns, descriptors, narrative cues) and maintain it identically across all chapter prompts.
+   - The same character must keep the same gender, approximate age, and distinguishing physical traits in every prompt where they appear.
+   - Do not rely on obscuring framing (back-facing, silhouette) as a gender strategy — image models still infer and vary gender from body shape, hair, and clothing. Use these only as compositional choices.
+   - The protagonist may be shown from cinematic angles (over-shoulder, low-angle, side profile) but their stated gender must remain explicit in the prompt text regardless of camera angle. 6. **Object state fidelity**: When a key object appears in an image prompt, its physical state must exactly match the story. Never depict an object in its intact or canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly — e.g. "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter" — so the model cannot default to the complete version of the object. 7. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`. 8. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.` 9. **Prompt length**: Each `llmPrompt` must be 50–100 words (excluding the `no text, no watermark.` suffix). Overly detailed prompts confuse image models; overly brief prompts lack compositional control.
 
 ### Prompt Structure
 
