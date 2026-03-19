@@ -266,79 +266,79 @@
         {
           "number": 1,
           "title": "Steps Below the Harbor",
-          "llmPrompt": "Create a mythic maritime fantasy image, atmospheric low-tide wide shot. Barnacled steps descend below the harbor toward monumental bronze doors of a sunken library. The viewer-protagonist carries a storm ledger and lantern as wind and spray lash the stone. Add bioluminescent hints in cracks, carved warnings, and looming architecture. Mood: urgent exploration and ancient secrecy, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Mythic maritime fantasy digital painting, storm-muted teal and brass palette. Wide low-tide shot of barnacled steps descending beneath the seawall toward monumental bronze library doors. A young woman in a weathered harbor coat grips a lantern and storm ledger at the threshold while salt spray crosses the frame. Carved warning text glints in wet stone beside her. Mood: urgent exploration and ancient secrecy, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
           "title": "Cartographer's Hall",
-          "llmPrompt": "Create a mythic maritime fantasy image, vaulted tide-map hall composition. A vast underground chamber lined wall to wall with centuries of tide maps stitched on whale-skin, edges curling in air that smells of brine and old ink. A translucent librarian spirit materializes near the central column—its outline flickering like light through deep water—regarding the protagonist with the patient consideration of ancient knowledge deciding whether to assist. Lantern light catches annotations in many different hands on the surrounding charts. Mood: generations of human observation preserved where no sunlight reaches, a spirit that still chooses who it trusts, knowledge that has earned the right to be careful, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Vaulted hall composition packed with tide charts stitched on whale-skin, their edges lifting in damp brine air. In the foreground, a young woman raises her lantern toward a translucent librarian spirit forming beside a central column, its outline flickering like refracted seawater. Marginal notes in many inks catch warm light against cold stone. Mood: patient judgment and buried knowledge, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
           "title": "Abyss Wing",
-          "llmPrompt": "Create a mythic maritime fantasy image, forbidden wing interior atmosphere. A deeper, colder passage lit by sourceless blue luminescence. Chained volumes line the walls and hum at a sub-vocal frequency felt in the teeth—a resonance that settles and stays. At the far end, one iron-bound book sits unchained on a reading stand, its cover engraved with a promise of mastery, the only object in this corridor that was left deliberately accessible. Stone walls carry the second bell's vibration through the floor. Mood: the architecture of a deliberate temptation, beautiful handwriting on a warning, a promise that assumes the reader has resolve rather than questioning it, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Long blue-lit corridor shot in the restricted wing, chained volumes pressed flat in iron brackets along both walls. A young woman stands at the fork with one boot near the descending branch, lantern held low as a sub-vocal resonance seems to vibrate the stone itself. At the far end below, an iron-bound book lies unchained on a reading stand, waiting in stillness. Mood: deliberate temptation and cold dread, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
           "title": "Lighthouse Vault",
-          "llmPrompt": "Create a mythic maritime fantasy image, lighthouse vault discovery composition. A warm dry stone vault beneath an old lighthouse lens, nautical almanacs arranged by decade lining curved walls, a column of ambient light falling from the mechanism above. At the center, a shell-bound weather codex rests on a stone pedestal, its pages layered with pressure readings, storm tracks, and harbor annotations written in several different hands across time. A small note is tucked into the front cover. The muffled sounds of harbor and tide reach through the stone. Mood: knowledge built by many people over a long time, the quiet ethical weight of finding what was sought, a codex whose front cover already contains its instructions for use, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Medium-wide vault shot beneath the lighthouse lens, warm dry stone and curved shelves of decade-marked almanacs framing a central pedestal. A young woman leans over a shell-bound weather codex opened to layered pressure tracks and margin debates in many hands. A note peeks from the front cover while fresh boot prints cross thin dust near the passage. Mood: discovery under moral weight, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
           "title": "The Reading Chamber",
-          "llmPrompt": "Create a mythic maritime fantasy image, pearl-lit reading alcove composition. A small recess off the lighthouse vault where the protagonist copies storm-warning thresholds and departure windows from the open codex onto a ledger page by warm lantern light against cold limestone walls. The third bell's faint vibration is just distinguishable through the stone from below—departure time audible, not yet critical. The codex lies open beyond the copied pages, showing additional charts that go further than civic necessity. Mood: urgency thinned enough to allow a genuine choice about what to take, knowledge just past the edge of what was asked for, the bell as time made audible, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Tight alcove composition in pearl-tinted light: a young woman kneels beside an open codex, copying storm thresholds into a ledger while warm lantern glow cuts across cold limestone. Beyond her notes, additional pages show proprietary current routes unlike the civic warning material. Dust in the entrance passage has been newly disturbed by returning boots. Mood: thinning time and ethical pressure, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
           "title": "The Deep Passage",
-          "llmPrompt": "Create a mythic maritime fantasy image, forbidden abyss wing descent. A blue-lit stone passage deep beneath a sunken library, chained volumes pressed flat in iron brackets on both walls. At the far end, a single reading stand holds an iron-bound book lying unchained on it—cover engraved with careful lettering, the only unchained object in the entire corridor, left there deliberately. As the viewer-protagonist reaches the stand, the passage behind seals with the quiet precision of a filing mechanism, the blue luminescence brightening a measured degree. No dramatic threat—only the patient architecture of a system completing its purpose. Mood: the precise moment of no return, beauty of irrevocable commitment, cold institutional certainty that has done this before, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Deep-abyss corridor shot with blue luminescence rising as a young woman reaches an unchained iron-bound book on its stand. Behind her, a stone passage panel has begun sealing shut with mechanical precision, while chained volumes along both walls lift subtly against their iron bands. Her lantern light is trapped between closing geometry and unread pages. Mood: exact moment of no return, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 7,
           "title": "Orin's Offer",
-          "llmPrompt": "Create a mythic maritime fantasy image, lighthouse vault proposition scene. The warm dry vault beneath the lighthouse lens, nautical almanacs lining curved walls. A lean weathered harbor pilot—Orin—stands across the stone pedestal from the viewer-protagonist, his satchel already full of almanacs, posture carrying the measured patience of a man who reads twelve variables before committing to a course. Between them on the pedestal, the weather codex lies open. Neither figure has moved toward the door. Mood: a proposal made from inside the same information asymmetry both people share, calculation disguised as partnership, a competent person offering an arrangement that assumes competence, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Confrontational vault composition: a lean weathered harbor pilot with a full satchel stands across a stone pedestal from a young woman holding the codex wrapped in oilcloth. Nautical almanacs line curved walls beneath lens-light, and neither figure has stepped aside from the corridor exit. The codex lies half-open between them, turning negotiation into a standoff. Mood: partnership as calculated leverage, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 8,
           "title": "Harbor of Lanterns",
-          "llmPrompt": "Create a hopeful coastal-fantasy finale image, twilight harbor panorama. Coordinated lantern signals arc across docks while crews prepare safely using public storm charts. Place the protagonist among townspeople teaching and coordinating rather than commanding alone. Tone: civic resilience, shared knowledge, and collective survival. Warm amber-and-sea-blue palette, no text, no watermark.",
+          "llmPrompt": "Same style. Twilight harbor panorama with warm amber-and-sea-blue light: coordinated lantern signals arc across docks as crews align departures from shared public storm charts pinned to pier boards. In the foreground, a young woman kneels beside dockworkers and cooperative captains, tracing pressure lines on a communal map rather than directing from above. Waves strike pilings under a sky heavy with weather. Mood: civic resilience and shared survival, no text, no watermark.",
           "endingType": "successful"
         },
         {
           "number": 9,
           "title": "Cataloged",
-          "llmPrompt": "Create a haunting tragic maritime-fantasy ending scene, dramatic interior composition. The abyss wing floods as a forbidden volume lies open, pages spiral in violent currents, and a lantern dies in the dark. Show the protagonist overwhelmed by both water pressure and impossible knowledge. Palette: deep teal, black water, pale glyph light. No explicit gore, no text, no watermark.",
+          "llmPrompt": "Same style. Tragic interior composition in deep teal and pale glyph light: the abyss wing floods knee-high around an open iron-bound volume while loose pages spiral in violent current. A young woman braces against the reading stand, eyes fixed on text as her lantern dies at the waterline and chained stacks hum around her. No visible escape route remains in frame. Mood: irreversible enmeshment, no text, no watermark.",
           "endingType": "very_bad"
         },
         {
           "number": 10,
           "title": "The Long Winter",
-          "llmPrompt": "Create a mythic maritime fantasy image, harbor authority office at dusk. A professional interior lit by desk lanterns—charts on the walls, a locked strongbox on the desk—where the viewer-protagonist sits with the comfortable stillness of someone whose instincts the harbor has learned to respect but not question. Through a salt-hazed window, one fleet's vessels are visible clearing the harbor ahead of weather that has not yet arrived. On the desk, a shell-bound codex lies closed, its front cover face-down. Mood: the specific comfort of a kept secret, institutional trust built on withheld foundations, the harbor's quiet outside the window beginning to ask a question, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Dusk office composition in the harbor authority: desk lanterns illuminate wall charts, a locked strongbox, and a shell-bound codex face-down on worn wood. A young woman sits still at the desk while, through a salt-hazed window, one fleet departs into open water ahead of weather that has not yet reached the port. Paper reports with comparative departure graphs lie partially hidden under her hand. Mood: quiet advantage curdling into unease, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 11,
           "title": "The Council Table",
-          "llmPrompt": "Create a mythic maritime fantasy image, harbor council deliberation scene. A long stone table in a low-ceilinged chamber where six council officials and a cartographer examine a shell-bound weather codex laid open at the center. Two councilmembers face each other across the table with the measured tension of people whose positions are not hostile but are genuinely incompatible—maps and annotated charts spread between them, each line of argument visible in their posture. The viewer-protagonist sits at one end, the codex within reach, the harbor's quiet visible through a single salt-paned window behind the council chair. Mood: institutional deliberation under time pressure, the weight of a decision being distributed across people who will share its consequences, no ending spoilers, no text, no watermark.",
+          "llmPrompt": "Same style. Council-chamber deliberation scene: six officials and a cartographer ring a long stone table where the shell-bound codex lies open over mapped storm tracks. A young woman at one end keeps one hand on the codex while two councilmembers oppose each other across annotated charts, their postures precise and incompatible. Through a salt-paned window, a windless harbor waits under low cloud. Mood: public duty under narrowing time, no text, no watermark.",
           "endingType": null
         },
         {
           "number": 12,
           "title": "Keeper in the Dark",
-          "llmPrompt": "Create a grim bad-ending maritime tableau, interior-to-exterior composition. From a fortified harbor authority window, the protagonist remains physically safe while a storm-wrecked harbor and broken docks stretch below in darkness. Emphasize isolation, guarded knowledge, and the specific cost of trust withheld too long. Theme: survival without absolution. No text, no watermark.",
+          "llmPrompt": "Same style. Grim interior-to-exterior tableau at storm night: from behind reinforced office glass, a young woman watches broken docks and black water tearing through the harbor district while emergency beacons fail in sequence. The office interior remains intact, with the codex's locked strongbox visible in foreground shadow. Rain stripes the window, separating physical safety from civic collapse below. Mood: survival without absolution, no text, no watermark.",
           "endingType": "bad"
         },
         {
           "number": 13,
           "title": "The Partial Charts",
-          "llmPrompt": "Create a bittersweet maritime-fantasy ending image, harbor edge at late autumn. The viewer-protagonist stands at the stone lip of the harbor wall in flat grey morning light, looking out at functioning docks—vessels moving, charts posted, people working—but the scene holds two competing notice boards visible in the mid-distance, each offering weather forecasts under different names. The harbor works. The sky is unforgiving and ordinary. Mood: an outcome that is good enough and will always be good enough, the particular weight of a calculation that saves lives but does not resolve, muted palette, no text, no watermark.",
+          "llmPrompt": "Same style. Late-autumn harbor edge composition under flat grey light: a young woman stands at the stone wall watching functioning docks where crews work from posted charts, while two competing forecast boards face each other mid-distance under different seals. Traffic moves, lives are saved, and confusion still hangs in the air like mist. The sea looks ordinary and unforgiving beyond the breakwater. Mood: measurable good with unresolved cost, no text, no watermark.",
           "endingType": "bittersweet"
         }
       ]

@@ -46,13 +46,13 @@
   {
     "number": 5,
     "title": "The Sunken Library",
-    "emoji": "📚",
-    "approxTime": "4-8 min",
+    "emoji": "🌊",
+    "approxTime": "4-7 min",
     "keywords": ["maritime", "forbidden", "trust"],
     "chapters": 13,
     "tone": "Mysterious",
     "createdWithStoryPipelineVersion": 0,
-    "revisedWithStoryPipelineVersion": 2.2
+    "revisedWithStoryPipelineVersion": 2.3
   },
   {
     "number": 6,

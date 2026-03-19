@@ -151,7 +151,7 @@ The Long Winter
 ### Content
 The arrangement with Orin runs as designed. His fleet clears port ahead of every significant weather event. Your standing with the harbor authority becomes inexplicable in the way that genuine competence always appears inexplicable to people looking for a simpler reason—they settle on instinct, intuition, a feel for the sea that cannot be taught.
 
-By the third season, a harbor pilot's cooperative circulates a report with graphs. One fleet's clear-out rate before storm events versus the field average. The pattern is not subtle. Orin says the scrutiny will pass; he has navigated this kind of attention before. He is probably right.
+By the third season, a harbor pilot's cooperative circulates a report with graphs. One fleet's clear-out rate before storm events versus the field average. The pattern is not subtle. On the same weeks Orin's ships leave clean, smaller captains remain in queue for tug slots and miss their safest departure windows by hours. Orin says the scrutiny will pass; he has navigated this kind of attention before. He is probably right.
 
 The codex is still locked in your desk, wrapped in oilcloth gone stiff with salt at the folds. The note in the front cover—Knowledge that saves must be shared, or it becomes tyranny—you have not read in over a year, because there is a specific art to not opening the front cover of something you need to keep closed.
 
@@ -168,7 +168,7 @@ The council chamber is smaller than the weight of what you carry into it—a lon
 
 The dispute surfaces in the second hour. One councilmember argues for a structured release: vetted captains, licensed access, managed dissemination over several seasons. The knowledge stays useful if it stays governed. Another argues for immediate full publication: post it on the harbor exchange before winter, let every captain read it and begin building shared charts before next season's storms arrive. The value is in the network, not in the control.
 
-The codex is still in your hands. Your thumb rests in the warped groove where generations of readers have opened the front cover, and when the council chair sets her pen down and looks at you directly, you realize you have been holding the book too tightly. The harbor outside has been quiet for two weeks; the pressure charts say the quiet will not last.
+The codex is still in your hands. Your thumb rests in the warped groove where generations of readers have opened the front cover, and when the council chair sets her pen down and looks at you directly, your grip tightens hard enough to crease the oilcloth at the spine before you force your fingers to loosen. The harbor outside has been quiet for two weeks; the pressure charts say the quiet will not last.
 
 ### Choices
 1. Recommend full immediate public release -> 8
@@ -199,7 +199,7 @@ The council's program is better. It is free. It launches first. But the followin
 
 The knowledge is out. People survive who would not have survived otherwise. The overall harm is less—measurably, significantly less—than if you had kept the material private. The outcome is good enough to have been worth doing.
 
-You think once of the warning over the library threshold and understand that leaving in time was never the difficult part. The difficult part was returning what you carried to the widest possible circle before it hardened into private right.
+You think once of the warning over the library threshold—"When the third bell tolls, leave or be cataloged"—and understand that leaving in time was never the difficult part. The difficult part was returning what you carried to the widest possible circle before it hardened into private right.
 
 You stand at the harbor's edge in the weeks after and measure what you chose against the alternative. What was saved is real. What was lost is also real. The calculation does not resolve into a verdict, which may be the most honest thing it could do.
 
