@@ -178,6 +178,7 @@ export async function updateStoryPage(container, model) {
     model.chapterImagePaths,
   );
   hydrateIllustrations(storyContainer);
+  window.scrollTo({ top: 0, behavior: "instant" });
   return true;
 }
 
