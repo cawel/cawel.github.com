@@ -25,7 +25,7 @@ Produce one object with these fields:
 | `keywords`                        | The 3 keywords from the story's `## Keywords` section, verbatim.                                                                                              |
 | `chapters`                        | Total chapter count (count all `## Chapter N` headings).                                                                                                      |
 | `tone`                            | The story's dominant tone. Must match a `name` value from the tone catalog if one was used during earlier pipeline steps.                                     |
-| `revisedWithStoryPipelineVersion` | Set to `2.3`                                                                                                                                                  |
+| `revisedWithStoryPipelineVersion` | Set to `2.4`                                                                                                                                                  |
 
 ## Task 2 — Chapter Image Metadata (`metadata-images.json` entry)
 
