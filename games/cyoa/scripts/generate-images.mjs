@@ -11,7 +11,7 @@ const OUTPUT_WIDTH = 1536;
 const OUTPUT_HEIGHT = 864;
 const WEBP_QUALITY = 90;
 const IMAGE_COLOR_SPACE = "srgb";
-const DISABLE_CROP = process.env.IMAGE_DISABLE_CROP === "1";
+const ENABLE_CROP = process.env.IMAGE_ENABLE_CROP === "1";
 
 function readPositiveIntEnv(name, fallback) {
   const raw = process.env[name];
@@ -73,7 +73,7 @@ function parseImagePayload(payload, fallbackModel) {
 async function renderWebp(pngBuffer) {
   const imagePipeline = sharp(pngBuffer);
 
-  if (!DISABLE_CROP) {
+  if (ENABLE_CROP) {
     imagePipeline.resize(OUTPUT_WIDTH, OUTPUT_HEIGHT, {
       fit: "cover",
       position: "attention",
@@ -214,11 +214,11 @@ async function main() {
     imageModelRequested: model,
     imageModelVersionsUsed: [],
     apiCallsMade: 0,
-    size: DISABLE_CROP ? "source" : `${OUTPUT_WIDTH}x${OUTPUT_HEIGHT}`,
+    size: ENABLE_CROP ? `${OUTPUT_WIDTH}x${OUTPUT_HEIGHT}` : "source",
     apiRequestedSize: size,
     sourceMetadata: inputPath,
     config: {
-      disableCrop: DISABLE_CROP,
+      enableCrop: ENABLE_CROP,
       requestTimeoutMs: REQUEST_TIMEOUT_MS,
       maxRetries: MAX_RETRIES,
       retryBaseDelayMs: RETRY_BASE_DELAY_MS,
