@@ -2,15 +2,15 @@
   {
     "number": 1,
     "approved": false,
-    "length": "long",
-    "title": "The Mysterious Forest",
-    "emoji": "🌲",
-    "approxTime": "6-8 min",
-    "keywords": ["forest", "ruins", "mystery"],
-    "chapters": 10,
-    "tone": "Mysterious",
-    "createdWithStoryPipelineVersion": 0,
-    "revisedWithStoryPipelineVersion": 0
+    "length": "mini",
+    "title": "The Case of the Cooperative Alibi",
+    "emoji": "🕵️",
+    "approxTime": "2-3 min",
+    "keywords": ["detective", "alibi", "humor"],
+    "chapters": 8,
+    "tone": "Humorous",
+    "createdWithStoryPipelineVersion": 2.3,
+    "revisedWithStoryPipelineVersion": 2.3
   },
   {
     "number": 2,

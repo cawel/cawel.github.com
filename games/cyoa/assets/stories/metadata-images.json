@@ -9,66 +9,54 @@
   "stories": [
     {
       "number": 1,
-      "storyTitle": "The Mysterious Forest",
+      "storyTitle": "The Case of the Cooperative Alibi",
       "chapters": [
         {
           "number": 1,
-          "title": "The Bell and the Token",
-          "llmPrompt": "Create a cinematic fantasy digital painting, atmospheric dawn wide shot. Viewer-protagonist kneeling on wet moss in an ancient fog-heavy forest, holding a warm copper token engraved with a crescent moon. Show two clearly diverging routes: a narrow deer trail toward pale river light and a vine-choked stone archway half-buried in ruined masonry. Add drifting mist layers, dew on ferns, distant bell silhouette, and subtle tension in the lighting. Mood: mysterious adventure with quiet dread, no ending spoilers, no text, no watermark.",
+          "title": "Monday Morning, One Dead Accountant",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Wide street-level composition outside a cramped accounting office on an overcast morning. A male detective in a rumpled trench coat stands foreground with notebook open while five neighbors crowd the doorway, pointing at each other with strained politeness. Show a chalk outline, a toppled umbrella stand, scattered receipts, and a lipstick-stained coffee cup. Mood: deadpan civic panic before answers. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
-          "title": "The River Crossing",
-          "llmPrompt": "Create a cinematic fantasy digital painting, atmospheric riverbank dawn composition. A black-glass river with mirror-still water reflects the pale morning sky without a single ripple—no wind, no birdsong, utter unnatural stillness. To the right, a rope-bound ancient root bridge curves toward amber lanterns of Emberfen village through thinning mist. To the left, a river-grey ferryman stands motionless in a moored flat-bottomed boat, notched bone oar along the hull, eyes already fixed on a copper crescent token in the protagonist's fist with unmistakable recognition. Mood: a decision felt before it is named, quiet recognition across dark water, two paths offering themselves in very different languages, no ending spoilers, no text, no watermark.",
+          "title": "Five Alibis, All Identical",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Medium-wide diner interior with red vinyl booths and buzzing fluorescents. The same male detective in a rumpled trench coat questions suspects at separate tables while each holds matching alibi notecards and identical pie slices. Add synchronized wristwatches and a wall clock frozen at 7:12. Keep faces politely rehearsed and slightly tense. Mood: absurd coordination presented as normal behavior. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
-          "title": "The Moon Arch",
-          "llmPrompt": "Create a cinematic fantasy digital painting, roofless ruin interior composition. A moss-eaten stone chamber where vines reclaim flagstones and pale green canopy light falls through the open ceiling. Ancient script cuts deep into the lintel above a half-buried archway. At the far wall, a stone pedestal draped in pale vine holds a crescent-shaped hollow in its surface, a breath of warmth rising toward an outstretched hand. On the flagstones below the pedestal, a bone-handled knife lies wedged between heaved paving stones—recently dropped, blade still dark. Mood: ancient covenant made physical, an unexpected clue measured in hours, cold enchantment and quiet dread, no ending spoilers, no text, no watermark.",
+          "title": "The Group Chat in a Shoebox",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Interior evening shot of a cluttered apartment turned evidence room. A male detective in a rumpled trench coat kneels beside an open shoebox packed with folded timing notes and coordinated alibi slips. Foreground string board, kettle steam, and a stern cat on a bookshelf; a nervous neighbor peers from the doorway. Keep the mood clever and mischievous, not violent. Mood: conspiracy built from ordinary stationery. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
-          "title": "Emberfen's Warning",
-          "llmPrompt": "Create a cinematic fantasy digital painting, tense village council scene. A low-ceilinged stone hall lit by tallow candles over a long table covered in hand-drawn maps of dense northern thicket—severed rootlines marked red. Elder Mara, spare and authoritative in clay-stained boots, presses her palms flat on the maps with the focused stillness of someone handing off a task she cannot carry further. Shuttered windows line the walls; outside, no dogs bark, no children stir. The protagonist sits across the table. Mood: a community fracturing along human fault lines, the weight of being the last reasonable option, no ending spoilers, no text, no watermark.",
+          "title": "Interview at the Bowling Alley",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Nighttime retro bowling alley composition from lane level. A male detective in a rumpled trench coat sits near lane seven questioning two suspects in rental shoes while a third pretends to repair the scoring monitor in back. Include shared bus tickets, duplicate house keys, and a community roster board among props. Keep neon reflections on polished wood and awkward body language. Mood: comic interrogation under synthetic lights. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
-          "title": "The Ferryman's Price",
-          "llmPrompt": "Create a cinematic fantasy digital painting, liminal dark-river negotiation at half-light. A moss-covered stone quay where a flat-bottomed boat sits moored, its bone oar notched with tallies of past crossings. The river-grey ferryman stands at the stern, face worn beyond ordinary age, lit from below by a glowing stone stairway descending beneath a canopy of lamprey-pale hanging roots. The protagonist stands at the quay edge about to name a toll. Dark water beyond the lamp holds absolute stillness. Mood: the precise cost of supernatural passage, a threshold between the known and something older, the weight of naming what cannot be surrendered, no ending spoilers, no text, no watermark.",
+          "title": "The Reveal Nobody Enjoys",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Library meeting-room wide shot with folding chairs in a semicircle and a corkboard of timelines, receipts, and map lines. A male detective in a rumpled trench coat gestures at the board while five suspects sit together, defensive and embarrassed. Place a framed portrait and accounting ledgers on a side table, with one flickering fluorescent tube overhead. Keep tension awkward rather than explosive. Mood: public reveal nobody wants to applaud. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
-          "title": "Heartwood Judgment",
-          "llmPrompt": "Create a cinematic fantasy digital painting, cathedral-scale underground heartwood chamber. Root-columns as thick as old oaks rise from a living floor to a vaulted ceiling lit by slow-pulsing bioluminescent amber and green—the light itself watchful and alive. At the chamber center, a figure hangs suspended in a web of living vines, pale as birchwood and conscious, eyes finding the protagonist with relief and dread in equal measure. From the living floor, a bark-skinned entity twice human height rises, cold starlight threading its joint-lines, a deep amber crystal seed pulsing in its chest. Mood: ancient grievance made articulate, awe and judgment held in perfect balance, an impossible decision arriving, no ending spoilers, no text, no watermark.",
-          "endingType": null
-        },
-        {
-          "number": 7,
-          "title": "Words of Stewardship",
-          "llmPrompt": "Create a cinematic fantasy digital painting, intimate library tower interior. A narrow stone room packed floor to ceiling with catalogued scrolls, lit by candlelight held dangerously close to brittle vellum. On a reading surface, a single unfolded document—older and different from its neighbours—lies open under careful hands, its seven words visible in formal script, rediscovered after being left to stay lost. A north-facing window holds the dark forest close outside. Mood: the power of a recovered sentence, a complicated grief resolved by something simple, urgency clarified into purpose, no ending spoilers, no text, no watermark.",
-          "endingType": null
-        },
-        {
-          "number": 8,
-          "title": "Thorns of Defiance",
-          "llmPrompt": "Create a dramatic dark-fantasy digital painting, dynamic low-angle composition. Living briar walls surge inward at twilight, roots split stone and wet soil, and a fallen explorer is trapped as a dropped knife sinks in mud. Rain streaks and thorn silhouettes frame the collapse. Palette: bruised greens, black bark, cold silver rain. Emotion: panic and irreversible loss. No explicit gore, no text, no watermark.",
+          "title": "Ending: The Convenient Arrest",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Rainy dusk on city hall steps, low-angle composition with wet reflections. A male detective in a rumpled trench coat is handcuffed by stern officers while five suspects huddle under one shared umbrella, stunned and helpless. In background, a smug official near a black sedan oversees evidence boxes moved away from the scene. Keep the frame bitter and ironic, with civic grandeur turned hostile. Mood: very bad ending, injustice wins in public view. no text, no watermark.",
           "endingType": "very_bad"
         },
         {
-          "number": 9,
-          "title": "Stillness Crown",
-          "llmPrompt": "Create a haunting bittersweet fantasy digital painting, wide contemplative framing. A lone guardian stands on a ridge above a mirror-still valley where river and village are orderly but eerily lifeless. Use muted desaturated tones, immaculate symmetry, and windless atmosphere to suggest peace without joy. Emotion: control won at emotional cost. No text, no watermark.",
+          "number": 7,
+          "title": "Ending: Community Service Truth",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Community-center auditorium after a hearing, medium-wide composition with stacked chairs and food boxes. A male detective in a rumpled trench coat reads from a podium while five conspirators in volunteer vests work under official supervision. Use warm practical fixtures against cool evening window light to balance relief and fatigue. Keep expressions tired, accountable, and quietly cooperative. Mood: bittersweet ending, truth emerges but nobody celebrates. no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
-          "number": 10,
-          "title": "Spring Oath",
-          "llmPrompt": "Create a hopeful fantasy digital painting, cinematic dawn composition. In a radiant forest chamber, villagers and a bark-and-starlight warden complete a peace oath as vines release a rescued ranger. Birds rise through sunbeams, spores glow in warm air, and old ruins look newly alive. Palette: warm greens, gold light, soft amber highlights. Tone: restorative victory and renewal. No text, no watermark.",
+          "number": 8,
+          "title": "Ending: The Cooperative Confession",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Morning courtroom wide shot with soft sunlight across wood benches. A male detective in a rumpled trench coat presents evidence while five suspects stand together and confess; the judge watches with stern approval and townspeople in gallery seats relax visibly. Include recurring motifs: shared umbrella, matching notecards, and a sealed ledger on the evidence table. Keep the tone earned and lightly warm. Mood: successful ending through collective honesty. no text, no watermark.",
           "endingType": "successful"
         }
       ]

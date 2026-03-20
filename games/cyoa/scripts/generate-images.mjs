@@ -11,13 +11,32 @@ const OUTPUT_WIDTH = 1536;
 const OUTPUT_HEIGHT = 864;
 const WEBP_QUALITY = 90;
 const IMAGE_COLOR_SPACE = "srgb";
-const REQUEST_TIMEOUT_MS = Number(
-  process.env.IMAGE_REQUEST_TIMEOUT_MS || 180000,
-);
-const MAX_RETRIES = Number(process.env.IMAGE_MAX_RETRIES || 2);
+const DISABLE_CROP = process.env.IMAGE_DISABLE_CROP === "1";
+
+function readPositiveIntEnv(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === "") {
+    return fallback;
+  }
+
+  const value = Number(raw);
+  if (!Number.isFinite(value) || value < 0) {
+    throw new Error(`Invalid ${name}: expected non-negative number, got '${raw}'.`);
+  }
+
+  return Math.floor(value);
+}
+
+const REQUEST_TIMEOUT_MS = readPositiveIntEnv("IMAGE_REQUEST_TIMEOUT_MS", 240000);
+const MAX_RETRIES = readPositiveIntEnv("IMAGE_MAX_RETRIES", 1);
+const RETRY_BASE_DELAY_MS = readPositiveIntEnv("IMAGE_RETRY_BASE_DELAY_MS", 1000);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function retryDelay(attempt) {
+  return RETRY_BASE_DELAY_MS * (attempt + 1);
 }
 
 function isRetryableStatus(status) {
@@ -35,6 +54,36 @@ async function fileExists(filePath) {
 
 function chapterFilename(chapter) {
   return `${chapter.number}.webp`;
+}
+
+function parseImagePayload(payload, fallbackModel) {
+  const data = payload?.data?.[0];
+  const modelVersionUsed = payload?.model || data?.model || fallbackModel;
+
+  if (!data?.b64_json) {
+    throw new Error("Image API response missing b64_json image data.");
+  }
+
+  return {
+    pngBuffer: Buffer.from(data.b64_json, "base64"),
+    modelVersionUsed,
+  };
+}
+
+async function renderWebp(pngBuffer) {
+  const imagePipeline = sharp(pngBuffer);
+
+  if (!DISABLE_CROP) {
+    imagePipeline.resize(OUTPUT_WIDTH, OUTPUT_HEIGHT, {
+      fit: "cover",
+      position: "attention",
+    });
+  }
+
+  return imagePipeline
+    .toColourspace(IMAGE_COLOR_SPACE)
+    .webp({ quality: WEBP_QUALITY })
+    .toBuffer();
 }
 
 function pickTargetChapters(chapters) {
@@ -61,14 +110,11 @@ async function generateImage({ apiKey, model, size, prompt }) {
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
     const controller = new AbortController();
-    const timeoutHandle = setTimeout(() => {
-      controller.abort();
-    }, REQUEST_TIMEOUT_MS);
+    const timeoutHandle = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-    let response;
     try {
       apiCalls += 1;
-      response = await fetch("https://api.openai.com/v1/images/generations", {
+      const response = await fetch("https://api.openai.com/v1/images/generations", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -82,58 +128,47 @@ async function generateImage({ apiKey, model, size, prompt }) {
           quality: "high",
         }),
       });
+      if (!response.ok) {
+        const details = await response.text();
+        const statusError = new Error(
+          `Image API request failed (${response.status}): ${details}`,
+        );
+
+        if (attempt < MAX_RETRIES && isRetryableStatus(response.status)) {
+          lastError = statusError;
+          await sleep(retryDelay(attempt));
+          continue;
+        }
+
+        throw statusError;
+      }
+
+      const payload = await response.json();
+      const { pngBuffer, modelVersionUsed } = parseImagePayload(payload, model);
+      const imageBuffer = await renderWebp(pngBuffer);
+
+      return {
+        imageBuffer,
+        modelVersionUsed,
+        apiCalls,
+      };
     } catch (error) {
-      clearTimeout(timeoutHandle);
-      lastError = error;
+      const isAbort = error instanceof Error && error.name === "AbortError";
+      lastError = isAbort
+        ? new Error(`Image API request timed out after ${REQUEST_TIMEOUT_MS}ms.`)
+        : error;
 
       if (attempt < MAX_RETRIES) {
-        await sleep(1000 * (attempt + 1));
+        await sleep(retryDelay(attempt));
         continue;
       }
 
-      const message = error instanceof Error ? error.message : String(error);
+      const message =
+        lastError instanceof Error ? lastError.message : String(lastError);
       throw new Error(`Image API request failed after retries: ${message}`);
+    } finally {
+      clearTimeout(timeoutHandle);
     }
-
-    clearTimeout(timeoutHandle);
-
-    if (!response.ok) {
-      const details = await response.text();
-      lastError = new Error(
-        `Image API request failed (${response.status}): ${details}`,
-      );
-
-      if (attempt < MAX_RETRIES && isRetryableStatus(response.status)) {
-        await sleep(1000 * (attempt + 1));
-        continue;
-      }
-
-      throw lastError;
-    }
-
-    const payload = await response.json();
-    const data = payload?.data?.[0];
-    const modelVersionUsed = payload?.model || data?.model || model;
-
-    if (!data?.b64_json) {
-      throw new Error("Image API response missing b64_json image data.");
-    }
-
-    const pngBuffer = Buffer.from(data.b64_json, "base64");
-    const imageBuffer = await sharp(pngBuffer)
-      .resize(OUTPUT_WIDTH, OUTPUT_HEIGHT, {
-        fit: "cover",
-        position: "attention",
-      })
-      .toColourspace(IMAGE_COLOR_SPACE)
-      .webp({ quality: WEBP_QUALITY })
-      .toBuffer();
-
-    return {
-      imageBuffer,
-      modelVersionUsed,
-      apiCalls,
-    };
   }
 
   throw lastError || new Error("Image generation failed.");
@@ -179,9 +214,15 @@ async function main() {
     imageModelRequested: model,
     imageModelVersionsUsed: [],
     apiCallsMade: 0,
-    size: `${OUTPUT_WIDTH}x${OUTPUT_HEIGHT}`,
+    size: DISABLE_CROP ? "source" : `${OUTPUT_WIDTH}x${OUTPUT_HEIGHT}`,
     apiRequestedSize: size,
     sourceMetadata: inputPath,
+    config: {
+      disableCrop: DISABLE_CROP,
+      requestTimeoutMs: REQUEST_TIMEOUT_MS,
+      maxRetries: MAX_RETRIES,
+      retryBaseDelayMs: RETRY_BASE_DELAY_MS,
+    },
     images: [],
   };
 
@@ -204,6 +245,7 @@ async function main() {
         endingType: chapter.endingType ?? null,
         file,
         prompt: chapter.llmPrompt,
+        apiCalls: 0,
         modelVersionUsed: null,
         status: "skipped_existing",
       });
@@ -232,6 +274,7 @@ async function main() {
         endingType: chapter.endingType ?? null,
         file,
         prompt: chapter.llmPrompt,
+        apiCalls,
         modelVersionUsed,
         status: "ok",
       });
@@ -245,6 +288,7 @@ async function main() {
         endingType: chapter.endingType ?? null,
         file,
         prompt: chapter.llmPrompt,
+        apiCalls: 0,
         modelVersionUsed: null,
         status: "failed",
         error: error instanceof Error ? error.message : String(error),
