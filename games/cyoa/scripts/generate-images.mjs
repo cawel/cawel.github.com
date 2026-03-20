@@ -21,15 +21,23 @@ function readPositiveIntEnv(name, fallback) {
 
   const value = Number(raw);
   if (!Number.isFinite(value) || value < 0) {
-    throw new Error(`Invalid ${name}: expected non-negative number, got '${raw}'.`);
+    throw new Error(
+      `Invalid ${name}: expected non-negative number, got '${raw}'.`,
+    );
   }
 
   return Math.floor(value);
 }
 
-const REQUEST_TIMEOUT_MS = readPositiveIntEnv("IMAGE_REQUEST_TIMEOUT_MS", 240000);
+const REQUEST_TIMEOUT_MS = readPositiveIntEnv(
+  "IMAGE_REQUEST_TIMEOUT_MS",
+  240000,
+);
 const MAX_RETRIES = readPositiveIntEnv("IMAGE_MAX_RETRIES", 1);
-const RETRY_BASE_DELAY_MS = readPositiveIntEnv("IMAGE_RETRY_BASE_DELAY_MS", 1000);
+const RETRY_BASE_DELAY_MS = readPositiveIntEnv(
+  "IMAGE_RETRY_BASE_DELAY_MS",
+  1000,
+);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -110,24 +118,30 @@ async function generateImage({ apiKey, model, size, prompt }) {
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
     const controller = new AbortController();
-    const timeoutHandle = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timeoutHandle = setTimeout(
+      () => controller.abort(),
+      REQUEST_TIMEOUT_MS,
+    );
 
     try {
       apiCalls += 1;
-      const response = await fetch("https://api.openai.com/v1/images/generations", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://api.openai.com/v1/images/generations",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          signal: controller.signal,
+          body: JSON.stringify({
+            model,
+            prompt,
+            size,
+            quality: "high",
+          }),
         },
-        signal: controller.signal,
-        body: JSON.stringify({
-          model,
-          prompt,
-          size,
-          quality: "high",
-        }),
-      });
+      );
       if (!response.ok) {
         const details = await response.text();
         const statusError = new Error(
@@ -155,7 +169,9 @@ async function generateImage({ apiKey, model, size, prompt }) {
     } catch (error) {
       const isAbort = error instanceof Error && error.name === "AbortError";
       lastError = isAbort
-        ? new Error(`Image API request timed out after ${REQUEST_TIMEOUT_MS}ms.`)
+        ? new Error(
+            `Image API request timed out after ${REQUEST_TIMEOUT_MS}ms.`,
+          )
         : error;
 
       if (attempt < MAX_RETRIES) {
