@@ -40,8 +40,18 @@ The Story Visual Bible must include:
 - fixed palette family (2-3 dominant color families)
 - fixed lighting character (for example: low-key contrast with practical highlights)
 - fixed camera language (for example: cinematic lensing, slight film-grain texture)
+- fixed primary environment baseline (location type, architectural style, room layout landmarks, era cues)
+- fixed environmental material/prop baseline (dominant surfaces, repeated furniture/objects, texture cues)
+- fixed practical light sources in-world (for example: chandelier + wall sconces + window spill) so lighting stays location-consistent
 - fixed protagonist appearance baseline (gender, approximate age, silhouette, clothing motif)
 - fixed recurring character appearance baselines when they reappear
+
+Also build an internal **Environment Continuity Bible** for the story's main setting.
+
+- If the story is mostly in one place, treat that location as persistent and describe the same anchor landmarks whenever that location reappears.
+- Do not force identical environments across all chapters; when characters travel or scenes move, use the new location described by the chapter text.
+- If a chapter changes location, make the transition explicit and only use environments supported by the chapter text.
+- Track environment state over time (for example: crowd density, damage, moved furniture, opened curtains, spilled objects) and reflect only states already true by that chapter.
 
 Do not output the Visual Bible as a separate JSON field. Encode it by repeating a consistent style anchor in every chapter prompt.
 
@@ -63,10 +73,12 @@ Do not output the Visual Bible as a separate JSON field. Encode it by repeating 
 - The protagonist may be shown from cinematic angles (over-shoulder, low-angle, side profile), but their stated gender must remain explicit regardless of camera angle.
 
 7. **Character continuity lock**: For recurring characters, repeat 2-3 stable appearance tokens across prompts (for example: coat color, build, hair style, signature accessory) so the model keeps visual identity consistent.
-8. **Object state fidelity**: When a key object appears, its physical state must exactly match the story. Never depict an object in intact/canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly (for example: "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter").
-9. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`.
-10. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.`
-11. **Prompt length**: Each `llmPrompt` must be 50-100 words (excluding the `no text, no watermark.` suffix). Overly detailed prompts confuse image models; overly brief prompts lack compositional control.
+8. **Environment continuity lock**: For each recurring location, reuse 2-4 stable environment anchors (for example: "crystal chandeliers", "checker marble floor", "gold-trimmed mirrors", "orchestra dais"). Keep spatial logic coherent from chapter to chapter, while allowing explicit text-supported location changes.
+9. **Environment state fidelity**: Environment details must match the chapter moment: people present/absent, weather visibility through windows, object placement, and any damage/disarray should reflect only what has happened so far.
+10. **Object state fidelity**: When a key object appears, its physical state must exactly match the story. Never depict an object in intact/canonical form if the story describes it as broken, detached, partial, or transformed. Name the altered state explicitly (for example: "a ceramic handle detached from its mug", "a cracked seal", "a shredded letter").
+11. **Ending type**: Set `endingType` to one of: `successful`, `bittersweet`, `bad`, `very_bad`, `tragic`, `dark_success`, `neutral_bad`. Non-ending chapters use `null`.
+12. **Suffix**: Every `llmPrompt` must end with: `no text, no watermark.`
+13. **Prompt length**: Each `llmPrompt` must be 50-100 words (excluding the `no text, no watermark.` suffix). Overly detailed prompts confuse image models; overly brief prompts lack compositional control.
 
 ### Style Consistency QA (required before output)
 
@@ -77,7 +89,9 @@ Run this internal checklist before returning JSON:
 3. Palette family and lighting language remain consistent across all chapters.
 4. Protagonist gender and baseline appearance tokens are consistent in all chapters where shown.
 5. Recurring supporting characters keep consistent gender and stable visual traits.
-6. Non-ending prompts do not leak ending outcomes.
+6. Recurring locations repeat stable environment anchors and preserve spatial logic.
+7. Chapter-specific environment state matches the timeline (no anachronistic damage, props, or crowd changes).
+8. Non-ending prompts do not leak ending outcomes.
 
 ### Prompt Structure
 
@@ -86,7 +100,7 @@ Each `llmPrompt` should follow this order:
 1. Repeated style anchor sentence (include medium + rendering mode + palette + lighting)
 2. Composition and camera angle
 3. Subject and action
-4. Environment and lighting
+4. Environment anchors and current environment state
 5. Mood keyword
 6. `no text, no watermark.`
 
@@ -104,7 +118,7 @@ Return only valid JSON:
     "keywords": ["...", "...", "..."],
     "chapters": 0,
     "tone": "...",
-    "revisedWithStoryPipelineVersion": 2.3
+    "revisedWithStoryPipelineVersion": 2.4
   },
   "imageMeta": {
     "storyNumber": 0,

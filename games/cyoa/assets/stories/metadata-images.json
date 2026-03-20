@@ -13,51 +13,51 @@
       "chapters": [
         {
           "number": 1,
-          "title": "Monday Morning, One Dead Accountant",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Wide street-level composition outside a cramped accounting office on an overcast morning. A male detective in a rumpled trench coat stands foreground with notebook open while five neighbors crowd the doorway, pointing at each other with strained politeness. Show a chalk outline, a toppled umbrella stand, scattered receipts, and a lipstick-stained coffee cup. Mood: deadpan civic panic before answers. no text, no watermark.",
+          "title": "Soup, Silk, and Sudden Death",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Wide composition in the Belmont ballroom with lily arrangements, a white linen charity table marked by fresh consomme, and mirrored bar reflections. A young woman in a tailored dark suit leans toward the scene while clustered guests and uniformed staff hold tense, rehearsed smiles. Mood: polished panic before the first crack in the alibi. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 2,
-          "title": "Five Alibis, All Identical",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Medium-wide diner interior with red vinyl booths and buzzing fluorescents. The same male detective in a rumpled trench coat questions suspects at separate tables while each holds matching alibi notecards and identical pie slices. Add synchronized wristwatches and a wall clock frozen at 7:12. Keep faces politely rehearsed and slightly tense. Mood: absurd coordination presented as normal behavior. no text, no watermark.",
+          "title": "Felix and the Pocket of Secrets",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Medium shot at the edge of the same Belmont ballroom, keeping lilies, mirrored bar glow, and the stained white charity table in frame. A young woman in a tailored dark suit pulls a slim waiter into a quieter pocket while an inspector in the background snaps open a broken pocketwatch. Mood: fragile trust under social pressure. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 3,
-          "title": "The Group Chat in a Shoebox",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Interior evening shot of a cluttered apartment turned evidence room. A male detective in a rumpled trench coat kneels beside an open shoebox packed with folded timing notes and coordinated alibi slips. Foreground string board, kettle steam, and a stern cat on a bookshelf; a nervous neighbor peers from the doorway. Keep the mood clever and mischievous, not violent. Mood: conspiracy built from ordinary stationery. no text, no watermark.",
+          "title": "The Mathematics of Bad Manners",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Low-angle investigative view in the same Belmont ballroom, reusing lily centerpieces, mirrored reflections, and the white linen table with consomme splash geometry. A young woman in a tailored dark suit crouches to trace the stain direction while warped figures appear in security glass behind her. Guests remain in tense clusters pretending calm. Mood: deduction cutting through polite theater. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 4,
-          "title": "Interview at the Bowling Alley",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Nighttime retro bowling alley composition from lane level. A male detective in a rumpled trench coat sits near lane seven questioning two suspects in rental shoes while a third pretends to repair the scoring monitor in back. Include shared bus tickets, duplicate house keys, and a community roster board among props. Keep neon reflections on polished wood and awkward body language. Mood: comic interrogation under synthetic lights. no text, no watermark.",
+          "title": "Who Was Worth Saving",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Intimate side-room composition directly off the Belmont ballroom, with ballroom lilies and mirror glow spilling through a half-closed door. A young woman in a tailored dark suit faces a poised hostess while a nervous waiter clutches a narrow ledger between them. Keep venue continuity with white linen details, brass trim, and soft carpet shadow. Mood: truth cornered in private. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 5,
-          "title": "The Reveal Nobody Enjoys",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Library meeting-room wide shot with folding chairs in a semicircle and a corkboard of timelines, receipts, and map lines. A male detective in a rumpled trench coat gestures at the board while five suspects sit together, defensive and embarrassed. Place a framed portrait and accounting ledgers on a side table, with one flickering fluorescent tube overhead. Keep tension awkward rather than explosive. Mood: public reveal nobody wants to applaud. no text, no watermark.",
+          "title": "A Room That Wants Theater",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Dynamic wide shot back in the same Belmont ballroom, anchored by lilies, mirrored bar flashes, and the old consomme stain on white linen. A young woman in a tailored dark suit addresses the room while an inspector and a shaken waiter stand exposed at center and guests lean forward with hungry curiosity. Mood: public spectacle at the brink of collapse. no text, no watermark.",
           "endingType": null
         },
         {
           "number": 6,
-          "title": "Ending: The Convenient Arrest",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Rainy dusk on city hall steps, low-angle composition with wet reflections. A male detective in a rumpled trench coat is handcuffed by stern officers while five suspects huddle under one shared umbrella, stunned and helpless. In background, a smug official near a black sedan oversees evidence boxes moved away from the scene. Keep the frame bitter and ironic, with civic grandeur turned hostile. Mood: very bad ending, injustice wins in public view. no text, no watermark.",
-          "endingType": "very_bad"
+          "title": "Justice Served, Quietly",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Quiet resolution scene in the small side room adjoining the Belmont ballroom, with chandelier haze and lily arrangements visible through the doorway. A young woman in a tailored dark suit sits across from a rigid man while an inspector closes a broken pocketwatch beside an open ledger on a plain table. Keep the same venue materials and restrained palette. Mood: successful justice delivered without applause. no text, no watermark.",
+          "endingType": "successful"
         },
         {
           "number": 7,
-          "title": "Ending: Community Service Truth",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Community-center auditorium after a hearing, medium-wide composition with stacked chairs and food boxes. A male detective in a rumpled trench coat reads from a podium while five conspirators in volunteer vests work under official supervision. Use warm practical fixtures against cool evening window light to balance relief and fatigue. Keep expressions tired, accountable, and quietly cooperative. Mood: bittersweet ending, truth emerges but nobody celebrates. no text, no watermark.",
+          "title": "A Perfectly Public Success",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Full ballroom tableau in the Belmont venue, preserving lilies, white linen tables, mirrored bar reflections, and chandelier haze. A young woman in a tailored dark suit stands as an inspector escorts a middle-aged man past watching guests; an open ledger and recoiling faces show consequences spreading beyond the culprit. Keep composition formal but crowded. Mood: bittersweet victory with collateral damage in plain sight. no text, no watermark.",
           "endingType": "bittersweet"
         },
         {
           "number": 8,
-          "title": "Ending: The Cooperative Confession",
-          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Morning courtroom wide shot with soft sunlight across wood benches. A male detective in a rumpled trench coat presents evidence while five suspects stand together and confess; the judge watches with stern approval and townspeople in gallery seats relax visibly. Include recurring motifs: shared umbrella, matching notecards, and a sealed ledger on the evidence table. Keep the tone earned and lightly warm. Mood: successful ending through collective honesty. no text, no watermark.",
-          "endingType": "successful"
+          "title": "The Ovation Before the Collapse",
+          "llmPrompt": "Cinematic humorous detective digital painting, illustrated brushwork, teal-and-amber accents, low-key contrast lighting, subtle film-grain texture. Grand accusation scene in the same Belmont ballroom, with familiar lilies, white charity linen, mirrored highlights, and clustered spectators turned theatrical. A young woman in a tailored dark suit points across the room while a poised hostess flares with anger and one guarded man near the exits watches timing with cold focus. Keep the atmosphere elegant yet unstable. Mood: very bad ending, applause before irreversible failure. no text, no watermark.",
+          "endingType": "very_bad"
         }
       ]
     },
