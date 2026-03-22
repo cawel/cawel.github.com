@@ -29,6 +29,21 @@
     var(--story-choice-icon-color) 68%,
     var(--text) 32%
   );
+  --story-card-approved-banner-bg: color-mix(
+    in srgb,
+    #b14945 64%,
+    var(--bg-muted) 36%
+  );
+  --story-card-approved-banner-border: color-mix(
+    in srgb,
+    #cb5950 72%,
+    transparent
+  );
+  --story-card-approved-banner-text: color-mix(
+    in srgb,
+    #c9a79f 42%,
+    var(--story-choice-text-color) 58%
+  );
 }
 
 /* Minimalist theme */

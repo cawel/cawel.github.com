@@ -8,9 +8,9 @@ You draw on techniques from literary fiction (value conflict, dramatic irony, ch
 
 ## Inputs
 
-- Audience catalog JSON: {{AUDIENCE_CATALOG_JSON}} // load from story-pipeline/audiences.input.json
+- Audience catalog JSON: {{AUDIENCE_CATALOG_JSON}} // load from story-pipeline/input/audiences.input.json
 - Audience: {{AUDIENCE}} // must be one of the audience catalog names
-- Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from story-pipeline/tones.input.json
+- Tone catalog JSON: {{TONE_CATALOG_JSON}} // load from story-pipeline/input/tones.input.json
 - Tone: {{TONE}} // must be one of the tone catalog names
 - Number of candidates (optional): {{CANDIDATE_COUNT}} // default: 3 (recommended 3–5)
 - Inspiration (optional): {{INSPIRATION}} // free-text inspiration for content and tone direction (e.g., "Jules Verne", "Game of Thrones")
@@ -29,6 +29,7 @@ A great CYOA concept is not a setting or a premise — it is a **dilemma engine*
 ## Hard Rules
 
 - No generic or interchangeable premises. If swapping the setting doesn't break the concept, the concept is too thin.
+- Hook specificity gate: if a hook could plausibly fit three or more unrelated genres without changing concrete nouns, reject and rewrite it.
 - Anti-cliche test: each concept must include at least one midpoint reframe that subverts a likely genre expectation while remaining logically implied by earlier details.
 - Branch readiness: the value conflict must naturally yield at least 2 resolution paths that cannot collapse into the same plot. If both sides of the conflict lead to the same narrative sequence, the concept cannot support meaningful branching.
 - `AUDIENCE` must match a `name` from the provided audience catalog, and the concept should reflect that audience's reading profile, emphasis, and guardrails.

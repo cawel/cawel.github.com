@@ -22,9 +22,16 @@ function renderStoryCard(story) {
   const approxTime = escapeHtml(story.approxTime);
   const keywords = escapeHtml(formatKeywords(story.keywords));
   const tone = story.tone ? escapeHtml(story.tone) : "";
+  const approved = Boolean(story.approved);
+  const approvalLabel = approved ? " (approved)" : "";
 
   return `
-    <article class="story-card" data-story="${storyNumber}" role="button" tabindex="0" aria-label="Open ${title}">
+    <article class="story-card${approved ? " story-card-approved" : ""}" data-story="${storyNumber}" role="button" tabindex="0" aria-label="Open ${title}${approvalLabel}">
+      ${
+        approved
+          ? '<span class="story-card-approval-banner" aria-hidden="true">Approved</span>'
+          : ""
+      }
       <div class="story-card-title">
         <span class="story-card-emoji" aria-hidden="true">${emoji}</span>
         <span>${title}</span>

@@ -16,6 +16,17 @@ Your discipline: change what the critique demands, preserve everything it did no
 
 Work in two passes, producing one final output.
 
+### Execution Order Contract (Mandatory)
+
+Apply revisions in this exact sequence:
+
+1. Resolve all `structuralCheck.errors` first, in listed order.
+2. Resolve any `craftSeverity.blocking` items next (if provided in critique output).
+3. Address `topPriorities` in order.
+4. Address remaining below-3 craft dimensions.
+
+Do not start lower-priority work while higher-priority items remain unresolved.
+
 ### Pass 1: Structural Fixes
 
 Address every error in `structuralCheck.errors`. These are non-negotiable:
@@ -27,9 +38,21 @@ Address every error in `structuralCheck.errors`. These are non-negotiable:
 - Fix any choice that introduces a term not present in the chapter.
 - Fix choice fulfillment gaps by ensuring each target chapter opening honors the selected choice's promised direction/objective.
 - Fix path knowledge leaks by removing or reframing assertions that depend on unseen prior events for any incoming path.
+- Fix undefined domain/world terms by defining them in plain language at first use in the same chapter.
+- Fix missing inference bridges by adding explicit clue -> inference -> conclusion sentences where deductions are currently implied.
+- Fix offstage speaker issues so quoted speech is only spoken by characters present, unless clearly framed as reported/quoted text.
+- Fix motivation/mechanism clarity gaps so decisive actor motivations and outcome mechanisms are understandable before endings on all relevant paths.
 - Fix actor-state contradictions so "alone/with ally/object in hand/heading to location" states established by a choice remain true when opening the target chapter.
 - Fix missing social-choice callbacks so choices involving trust, secrecy, promises, accusations, sharing, or betrayal visibly echo within 1-2 chapters.
+- Fix missing long-tail callbacks so at least one major early choice (Chapter 1 or first major split) has a visible consequence before endings.
 - Preserve branch topology unless a structural fix requires changing it.
+
+These three checks are always mandatory in Pass 1 if present in critique errors and must never be treated as optional polish:
+
+- `CHAPTER_WORD_IMBALANCE`
+- `CHOICE_TERM_UNGROUNDED`
+- `CHOICE_FULFILLMENT_GAP`
+- `LONG_TAIL_CALLBACK_MISSING`
 
 ### Pass 2: Craft Improvements
 
@@ -42,6 +65,8 @@ If `craftScores.toneAdherence` or `craftScores.branchDistinctiveness` is below 3
 **Choice quality fixes**: If choices are tactical variants, rewrite them to present genuine value divergence. Ensure stakes are established in the chapter content before the choice appears.
 
 **Consequence linking fixes**: If early choices don't echo later, add callbacks — a scar from an earlier fight, a character remembering what the reader chose, changed environment from a prior action.
+
+**Legibility fixes**: Replace ambiguous shorthand with concrete, reader-facing logic. If the text uses a compact domain phrase (for example, "poison window"), define it immediately and show why the evidence supports the conclusion.
 
 **Character fixes**: If motivations are narrated rather than shown, convert exposition into dialogue or action. If speech patterns are interchangeable, differentiate vocabulary and rhythm.
 
@@ -91,8 +116,11 @@ After all edits are complete, re-run Step 4's Part 1 structural checks against t
 - Verify no chapter asserts protagonist knowledge that is unavailable on any incoming path unless the chapter explicitly presents that information as newly discovered.
 - Verify immediate actor-state continuity for each choice edge (alone/with ally, carrying key object, heading to location).
 - Verify social commitment choices (share/hide/promise/accuse/trust/betray) receive a visible callback within 1-2 chapters.
+- Verify at least one major early choice has a visible long-tail callback before endings.
 
 If any check fails, fix the violation before outputting. Do not output a story that would fail Step 4's structural checks.
+
+Treat any structural failure as blocking: do not output with unresolved structural warnings.
 
 ## Output Contract
 

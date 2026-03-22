@@ -178,7 +178,18 @@ export async function updateStoryPage(container, model) {
     model.chapterImagePaths,
   );
   hydrateIllustrations(storyContainer);
-  window.scrollTo({ top: 0, behavior: "instant" });
+  
+  // Scroll to top, accounting for header height
+  const header = document.querySelector("header");
+  const headerHeight = header && !header.classList.contains("header-collapsed") 
+    ? header.offsetHeight 
+    : 0;
+  
+  // Use requestAnimationFrame to ensure scroll happens after DOM updates
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: -headerHeight, behavior: "instant" });
+  });
+  
   return true;
 }
 

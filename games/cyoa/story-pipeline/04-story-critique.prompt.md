@@ -30,13 +30,18 @@ Verify every item. Report each failure as an error.
 - 3–5 ending chapters total. At least 1 successful, 1 very bad.
 - Every path from Chapter 1 to an ending passes through ≥ 4 chapters.
 - Total story word count must fall inside the requested story-length band. Error code: `STORY_WORD_COUNT_OUT_OF_BAND`.
-- No chapter's word count deviates from the story average by more than 25%.
-- Choice text never introduces a key term not already in that chapter's content.
+- No chapter's word count deviates from the story average by more than 25%. Error code: `CHAPTER_WORD_IMBALANCE`.
+- Choice text never introduces a key term not already in that chapter's content. Error code: `CHOICE_TERM_UNGROUNDED`.
 - If a choice/action depends on a key object, that object's location must have been explicitly established in chapter content before use. Error code: `OBJECT_LOCATION_UNCLEAR`.
 - For every choice edge (Chapter N choice -> Chapter M), Chapter M's opening must satisfy the selected choice's promised intent/direction. Flag mismatches where the next chapter opens as if a different first move was taken. Error code: `CHOICE_FULFILLMENT_GAP`.
 - No chapter may assert protagonist knowledge that is unavailable on at least one incoming path. If a chapter references a prior event, log, or conversation, verify the protagonist could have seen it on every path that reaches this chapter, or that the chapter restates it as new discovery. Error code: `PATH_KNOWLEDGE_LEAK`.
+- If a chapter introduces a domain/world term that is not clear from common language (for example, "poison window," "resonance lock," "blood tithe clause"), require a plain-language definition in the same chapter. Error code: `UNDEFINED_STORY_TERM`.
+- If a chapter claims a major conclusion (for example, culpability, timeline, allegiance, causation, relationship turn, magical mechanism) from evidence/events, verify the chain evidence -> inference -> conclusion is explicit on-page. Missing links are an error. Error code: `INFERENCE_BRIDGE_MISSING`.
+- No quoted dialogue may be attributed to a character who is not physically present in-scene unless explicitly framed as reported/quoted text. Error code: `OFFSTAGE_SPEAKER`.
+- Before ending chapters, the story must have made both decisive motivation and outcome mechanism legible in plain language on all relevant incoming paths. Error code: `MOTIVE_OR_MECHANISM_UNCLEAR`.
 - If a choice establishes immediate actor state (alone/with ally, carrying key object, heading to location), the target chapter opening must honor that state. Error code: `ACTOR_STATE_CONTRADICTION`.
 - Choices with social commitment verbs (share, hide, promise, accuse, trust, betray) must produce a visible callback within 1-2 chapters. Error code: `CONSEQUENCE_CALLBACK_MISSING`.
+- At least one major early choice (from Chapter 1 or first major split) must produce a visible long-tail callback before endings. Error code: `LONG_TAIL_CALLBACK_MISSING`.
 - No convergence chapter uses conditional phrasing that acknowledges other paths. Flag both explicit forms ("if you chose…", "depending on your earlier decision…") and literary-seeming conditionals that expose the mechanic in disguise — e.g. "what X does depends on what you gave them", "she says — or she says nothing…", "the outcome traces back to your earlier choice". These disguised forms break immersion just as surely as explicit ones. Error code: `CONVERGENCE_CONDITIONAL_PHRASE`.
 - No convergence chapter opens with arrival or transition language that contradicts the protagonist's state on any incoming path. For each convergence chapter, enumerate all chapters whose choices lead to it and identify the protagonist's implied location at the end of each. If any incoming path leaves the protagonist already inside a location, flag any opening sentence that implies entering that location for the first time (e.g. "you seal the hatch behind you", "X is two decks below"). Error code: `CONVERGENCE_ARRIVAL_CONTRADICTION`.
 
@@ -45,6 +50,15 @@ Verify every item. Report each failure as an error.
 Evaluate each dimension. For each one, give a **score (1–5)** and a **specific observation** with chapter references.
 
 Score anchors: **1** = fundamental failure (broken or missing), **2** = below expectations (noticeable weakness), **3** = meets expectations (competent, no distraction), **4** = strong (memorable craft), **5** = exceptional (publishable standout). Below 3 means the story needs revision on that dimension.
+
+### 2.0 Scoring Discipline (Mandatory)
+
+- Scores are evidence-bound, not vibe-bound. If you cannot cite a clean on-page explanation, do not award a 4 or 5 for that dimension.
+- Treat `causalCoherence` as the highest-priority craft integrity dimension. It should carry slightly more weight than other craft dimensions when forming `topPriorities`.
+- Any unresolved contradiction or missing causal bridge in core plot logic caps `causalCoherence` at **2**.
+- Any unresolved motivation/mechanism ambiguity before endings caps `endings` at **2**.
+- Any unresolved offstage-speaker or undefined-story-term issue caps `characterConsistency` or `dialogue` at **2** (choose the tighter fit and explain why).
+- Classify each craft deficit as `blocking` or `nonBlocking` in `craftSeverity`: use `blocking` for any score below 3 in `causalCoherence`, `endings`, `branchDistinctiveness`, or `toneAdherence`; use `nonBlocking` for all other below-3 dimensions.
 
 ### 2a. Foreshadowing and Payoff
 
@@ -119,6 +133,12 @@ Score anchors: **1** = fundamental failure (broken or missing), **2** = below ex
 
 ## Output Format
 
+### Structural Output Discipline (Mandatory)
+
+- Do not emit structural "warnings" outside `structuralCheck.errors`.
+- Any failed Part 1 check must be represented as an item in `structuralCheck.errors`.
+- `structuralCheck.pass` must be `false` if `structuralCheck.errors.length > 0`, otherwise `true`.
+
 Return only valid JSON:
 
 ```json
@@ -151,6 +171,11 @@ Return only valid JSON:
     "causalCoherence": { "score": 0, "observation": "..." },
     "branchDistinctiveness": { "score": 0, "observation": "..." },
     "toneAdherence": { "score": 0, "observation": "..." }
+  },
+
+  "craftSeverity": {
+    "blocking": ["Dimension name with score and chapter references."],
+    "nonBlocking": ["Dimension name with score and chapter references."]
   },
 
   "topPriorities": [

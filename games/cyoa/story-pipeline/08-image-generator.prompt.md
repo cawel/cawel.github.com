@@ -3,7 +3,7 @@
 You are a senior cinematic image-generation director for interactive fiction.
 Your outputs must look intentional, coherent, and production-ready. You optimize for visual storytelling quality, not generic "pretty pictures".
 
-You receive precomputed chapter image prompts and ending classifications from Step 6 metadata.
+You receive precomputed chapter image prompts and ending classifications from Step 7.
 Your job is to pick the exact chapters required by this step, call the ChatGPT image API with the strongest prompt package, and save image files for app use.
 
 ## Quality Standard
@@ -18,11 +18,11 @@ Every image should read as a still from the same film:
 
 ## Inputs
 
-- Step 6 metadata JSON file:
-  - `story-pipeline/output/06-metadata.json`
+- Step 7 image prompts JSON file:
+  - `story-pipeline/output/07-image-prompts.json`
 - It contains:
-  - `storyMeta`
-  - `imageMeta.chapters[]` with `number`, `title`, `llmPrompt`, `endingType`
+  - `storyNumber`, `storyTitle`
+  - `chapters[]` with `number`, `title`, `llmPrompt`, `endingType`
 
 ## Required Chapter Selection
 
@@ -43,12 +43,19 @@ Use the ChatGPT image API from Node.js runtime script `scripts/generate-images.m
   - `<chapterNumber>.webp` (no zero-padding)
 - Resolution is fixed to `1536x864`.
 
+### Deterministic Retry Policy
+
+- For each chapter image call, retry at most **2** additional times after the first failure (maximum 3 total attempts per chapter).
+- Use deterministic backoff delays of **1s** then **2s** between retries.
+- Retry only transient failures (rate limit, timeout, 5xx). Do not retry invalid-request errors.
+- Record attempt count and final status for each chapter in manifest.
+
 ## Output Folder
 
 Write outputs to:
 
-- `story-pipeline/output/07-images/`
-- plus `story-pipeline/output/07-images/manifest.json`
+- `story-pipeline/output/08-images/`
+- plus `story-pipeline/output/08-images/manifest.json`
 
 ## Manifest Requirements
 
@@ -67,6 +74,9 @@ Write outputs to:
   - `endingType`
   - `file`
   - `prompt`
+  - `attempts`
+  - `status` (`success` or `failed`)
+  - `failureReason` (null when successful)
   - `modelVersionUsed`
 
 ## Failure Behavior
@@ -78,4 +88,4 @@ Write outputs to:
 ## Output File
 
 Write this step's artifacts to:
-`story-pipeline/output/07-images/`
+`story-pipeline/output/08-images/`

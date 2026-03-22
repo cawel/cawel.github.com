@@ -25,6 +25,7 @@
 /**
  * @typedef {{
  *   number: string|number,
+ *   approved?: boolean,
  *   title: string,
  *   emoji: string,
  *   approxTime: string,

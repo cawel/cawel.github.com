@@ -21,6 +21,18 @@ When a message opens with a role description, the model anchors its entire respo
 - One clear role per template.
 - Manual-friendly: run each step in sequence, inspect output, adjust, continue.
 
+## What Matters Most
+
+If you optimize only a few things for output quality, optimize these first:
+
+1. **Structural determinism**: chapter graph validity, path depth, format, and ending constraints must be hard-gated.
+2. **Causal legibility**: core chains must read as evidence -> inference -> conclusion on-page.
+3. **Consequence visibility**: choices should echo within 1-2 chapters and at least once late.
+4. **Path-scoped continuity**: no knowledge leaks, actor-state contradictions, or offstage dialogue.
+5. **Length discipline**: keep strict word-band compliance and chapter balance.
+
+Quality drops fastest when these are soft rules or mixed with low-priority polish in the same pass.
+
 ## Story Length Input
 
 Four length options control **target scope**. In practice, the most reliable classifier is total word count.
@@ -47,22 +59,23 @@ For **mini**, the pipeline should behave conservatively:
 
 ## Tone Input
 
-- Canonical tone catalog lives in `story-pipeline/tones.input.json`.
+- Canonical tone catalog lives in `story-pipeline/input/tones.input.json`.
 - Load its contents as `TONE_CATALOG_JSON` when running templates `01`, `02`, and `03`.
 - `TONE` is mandatory for template `01` and must be chosen from the tone `name` values in that file.
 
 ## Audience Input
 
-- Canonical audience catalog lives in `story-pipeline/audiences.input.json`.
+- Canonical audience catalog lives in `story-pipeline/input/audiences.input.json`.
 - Load its contents as `AUDIENCE_CATALOG_JSON` when running template `01`.
 - `AUDIENCE` must be chosen from the audience `name` values in that file.
 
-## Pipeline (7 Steps)
+## Pipeline (8 Steps)
 
 ### Step 1 — Concept & Foundation (`01-concept-foundation.prompt.md`)
 
 Generate 3–5 story concepts, each built around a **central value conflict**, a protagonist fault line, characters with cross-purposes, constraining world rules, and pre-planned **foreshadowing seeds**.
 The selected `AUDIENCE` and mandatory `TONE` are both interpreted through their catalogs so audience fit and tonal discipline are established before architecture and drafting.
+Includes a hook-specificity rejection gate: if a hook could fit multiple unrelated genres without changing concrete nouns, it must be rewritten.
 
 Pick one concept manually before moving on.
 
@@ -78,6 +91,7 @@ Design the full storytelling blueprint across five layers:
 
 This is the step that turns a premise into a story that feels *crafted*.
 It is also where length feasibility is enforced before drafting starts; mini architectures should be explicitly compact enough to fit the word cap.
+Deadline fields in output (`nearTermCallbackByChapter`, `longTailCallbackByChapter`, `mustBeClearByChapter`) must be real chapter numbers, not placeholders.
 
 ### Step 3 — Story Draft (`03-story-draft.prompt.md`)
 
@@ -89,6 +103,7 @@ Write the complete story in markdown. Craft priorities:
 - Use the environment as obstacle, not backdrop
 - Earn every emotional peak through setup
 - Stay inside the requested total word-count band; for **mini**, treat **1 000 words** as a hard ceiling, not a suggestion
+- Run a per-chapter micro-check before output: opening contract met, non-ending final paragraph has decision pressure, and no choice-only key terms
 
 ### Step 4 — Story Critique (`04-story-critique.prompt.md`)
 
@@ -99,6 +114,7 @@ Evaluate the draft on two axes:
 - **Literary craft** — scored 1–5 on: foreshadowing, choice quality, consequence linking, character consistency, conflict/tension, dialogue, pacing/emotion, endings
 
 Returns a JSON report with the top 3 improvement priorities.
+Also returns `craftSeverity` with `blocking` vs `nonBlocking` craft deficits to guide Step 5 execution order.
 
 ### Step 5 — Story Revision (`05-story-revision.prompt.md`)
 
@@ -108,37 +124,48 @@ Apply the critique. Two internal passes:
 2. Address craft weaknesses flagged in the critique (priorities first)
 
 Revision must also preserve length compliance. If the story is a **mini**, Step 5 should cut or redistribute prose until the final story lands back inside **500-1 000 words**.
+Revision execution order is explicit: structural errors -> blocking craft deficits -> top priorities -> remaining below-3 craft dimensions.
 
 Produces the final story markdown.
 
-### Step 6 — Metadata & Image Prompts (`06-metadata-extractor.prompt.md`)
+### Step 6 — Story Metadata (`06-metadata-extractor.prompt.md`)
 
-Extract structured metadata from the finalized story for the application's data layer and image-generation workflow:
+Extract structured metadata from the finalized story for the application's data layer:
 
 - **Story metadata** (`metadata-stories.json` entry): title, emoji, reading time, keywords, chapter count, tone, and revision pipeline version.
-- **Image metadata** (`metadata-images.json` entries): one cinematic image prompt per chapter with consistent art style across the story, ending type classification, and no spoilers for non-ending chapters.
+- Tone resolution is deterministic: architecture tone first, otherwise inferred tone, and catalog-valid `name` matching when tone catalog is provided.
+- `revisedWithStoryPipelineVersion` is standardized to `3.0`.
 
-Current Step 6 prompt conventions also enforce:
+Output: `story-pipeline/output/06-metadata.json`
 
-- No character names inside image prompts
-- Explicit and consistent protagonist gender selection across chapters
-- Prompt length target of 50-100 words (excluding suffix)
+### Step 7 — Chapter Image Prompts (`07-image-prompt-generator.prompt.md`)
 
-### Step 7 — Image Generation (`07-image-generator.prompt.md` + `scripts/generate-images.mjs`)
+Produce one cinematic image prompt per chapter, with a cohesive visual identity across the whole story:
 
-Generate final image files by calling the ChatGPT image API using Step 6 output.
+- Builds an internal **Story Visual Bible** (style anchor, palette, lighting, character baselines) applied unchanged to every prompt.
+- Builds an internal **Environment Continuity Bible** to keep recurring locations spatially coherent.
+- Enforces no character names in prompts, explicit and consistent protagonist gender, and a 50-100 word prompt length target (excluding suffix).
+- Classifies each chapter's `endingType` (`successful`, `bittersweet`, `bad`, etc.) or `null` for non-endings.
+- Adds a brevity override: if a prompt exceeds 100 words, compress by removing non-essential adjectives and duplicate style qualifiers first.
 
-- Input: `story-pipeline/output/06-metadata.json`
+Output: `story-pipeline/output/07-image-prompts.json`
+
+### Step 8 — Image Generation (`08-image-generator.prompt.md` + `scripts/generate-images.mjs`)
+
+Generate final image files by calling the ChatGPT image API using Step 7 output.
+
+- Input: `story-pipeline/output/07-image-prompts.json`
 - Images generated for:
   - Chapter 1
   - Every ending chapter (`endingType != null`)
-- Output folder: `story-pipeline/output/07-images/`
-- Manifest: `story-pipeline/output/07-images/manifest.json` (includes `apiCallsMade`, `imageModelRequested`, and `imageModelVersionsUsed`)
+- Output folder: `story-pipeline/output/08-images/`
+- Deterministic retries per chapter: up to 3 total attempts with fixed 1s then 2s backoff for transient failures.
+- Manifest: `story-pipeline/output/08-images/manifest.json` (includes `apiCallsMade`, `imageModelRequested`, `imageModelVersionsUsed`, plus per-image `attempts`, `status`, and `failureReason`)
 
 ## Typical Manual Run
 
-1. Load `tones.input.json` as `TONE_CATALOG_JSON`.
-2. Load `audiences.input.json` as `AUDIENCE_CATALOG_JSON`.
+1. Load `input/tones.input.json` as `TONE_CATALOG_JSON`.
+2. Load `input/audiences.input.json` as `AUDIENCE_CATALOG_JSON`.
 3. Run `01` and save output to `story-pipeline/output/01-concepts.json`.
 4. Pick one concept from `01-concepts.json`.
 5. Run `02` with chosen concept and save output to `story-pipeline/output/02-architecture.json`.
@@ -146,7 +173,8 @@ Generate final image files by calling the ChatGPT image API using Step 6 output.
 7. Run `04` on draft and save output to `story-pipeline/output/04-critique.json`.
 8. Run `05` with draft + critique and save output to `story-pipeline/output/05-story-final.md`.
 9. Run `06` with final story and save output to `story-pipeline/output/06-metadata.json`.
-10. Run `07` to generate image files in `story-pipeline/output/07-images/`.
+10. Run `07` with final story + Step 6 metadata and save output to `story-pipeline/output/07-image-prompts.json`.
+11. Run `08` to generate image files in `story-pipeline/output/08-images/`.
 
 ## Output Files
 
@@ -160,16 +188,17 @@ Store each step result in `story-pipeline/output/` using these filenames:
 | `04` | `story-pipeline/output/04-critique.json` |
 | `05` | `story-pipeline/output/05-story-final.md` |
 | `06` | `story-pipeline/output/06-metadata.json` |
-| `07` | `story-pipeline/output/07-images/` (WebP files + `manifest.json`) |
+| `07` | `story-pipeline/output/07-image-prompts.json` |
+| `08` | `story-pipeline/output/08-images/` (WebP files + `manifest.json`) |
 
 ## Suggested Reusable Inputs
 
 ```json
 {
   "AUDIENCE": "Teen and Adult",
-  "AUDIENCE_CATALOG_JSON": "<contents of story-pipeline/audiences.input.json>",
+  "AUDIENCE_CATALOG_JSON": "<contents of story-pipeline/input/audiences.input.json>",
   "TONE": "Suspenseful",
-  "TONE_CATALOG_JSON": "<contents of story-pipeline/tones.input.json>",
+  "TONE_CATALOG_JSON": "<contents of story-pipeline/input/tones.input.json>",
   "CANDIDATE_COUNT": 4,
   "STORY_LENGTH": "short"
 }
@@ -182,7 +211,7 @@ Store each step result in `story-pipeline/output/` using these filenames:
 - Never mix prose commentary with structured outputs.
 - After each step, write the output to its matching file in `story-pipeline/output/`.
 
-## Step 7 Runtime
+## Step 8 Runtime
 
 Use environment variable `OPENAI_API_KEY` and run:
 
@@ -190,8 +219,8 @@ Use environment variable `OPENAI_API_KEY` and run:
 
 Optional overrides:
 
-- `IMAGE_INPUT=story-pipeline/output/06-metadata.json`
-- `IMAGE_OUTPUT_DIR=story-pipeline/output/07-images`
+- `IMAGE_INPUT=story-pipeline/output/07-image-prompts.json`
+- `IMAGE_OUTPUT_DIR=story-pipeline/output/08-images`
 - `IMAGE_MODEL=gpt-image-1`
 
 Image resolution is fixed at `1536x864`.

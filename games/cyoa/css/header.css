@@ -17,38 +17,53 @@ header::before {
   content: "";
   position: absolute;
   top: 0;
-  bottom: -1px;
+  bottom: 0;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
-  background: color-mix(in srgb, var(--bg-alt) 88%, var(--story-bg) 12%);
+  background: color-mix(in srgb, var(--bg-alt) 72%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: -1;
 }
 
 header::after {
   content: "";
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 50%;
   width: 100vw;
-  height: 1px;
+  height: 7px;
   transform: translateX(-50%);
   pointer-events: none;
-  background: color-mix(in srgb, var(--text) 12%, transparent);
-  opacity: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--story-title-color) 22%, transparent) 100%
+  );
+  opacity: 0.8;
 }
 
 header.header-collapsed {
   display: none;
 }
 
-.header-controls,
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .audio-controls-row,
 .theme-controls-row,
 .font-controls-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  background: color-mix(in srgb, var(--bg-muted) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--story-border) 30%, transparent);
+  border-radius: 8px;
+  padding: 3px 5px;
 }
 
 .theme-select,
@@ -126,7 +141,7 @@ header.header-collapsed {
   gap: 12px;
   font-size: 24px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
   text-align: left;
   cursor: pointer;
   text-decoration: none;
@@ -135,17 +150,20 @@ header.header-collapsed {
     var(--text) 86%,
     var(--story-choice-text-color) 14%
   );
+  text-shadow: 0 0 18px color-mix(in srgb, var(--story-title-color) 30%, transparent);
   transition:
     opacity 0.2s,
-    color 0.2s;
+    color 0.2s,
+    text-shadow 0.2s;
   background: none;
   border: none;
   font-family: "Merriweather", Georgia, serif;
 }
 
 .header-title:hover {
-  opacity: 0.7;
+  opacity: 0.85;
   color: color-mix(in srgb, var(--text) 75%, var(--story-title-color) 25%);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--story-title-color) 52%, transparent);
 }
 
 .header-emoji {
@@ -161,14 +179,13 @@ header.header-collapsed {
 .theme-control,
 .admin-control,
 .header-toggle {
-  background: color-mix(in srgb, var(--bg-muted) 72%, transparent);
-  border: 1px solid color-mix(in srgb, var(--story-border) 44%, var(--border));
+  background: transparent;
+  border: none;
   cursor: pointer;
   padding: 5px 7px;
-  border-radius: 6px;
+  border-radius: 5px;
   transition:
     background-color 0.2s,
-    border-color 0.2s,
     transform 0.15s;
   color: var(--text);
   display: flex;
@@ -207,7 +224,6 @@ header.header-collapsed {
     var(--bg-muted) 54%,
     var(--story-bg) 46%
   );
-  border-color: color-mix(in srgb, var(--story-title-color) 30%, var(--border));
   transform: translateY(-1px);
 }
 

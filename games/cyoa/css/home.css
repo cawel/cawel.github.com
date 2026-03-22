@@ -86,17 +86,21 @@ main.home-main {
 }
 
 .story-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background-color: color-mix(
     in srgb,
-    var(--story-title-color) 10%,
+    var(--story-title-color) 4%,
     var(--bg-muted)
   );
   background: linear-gradient(
     160deg,
-    color-mix(in srgb, var(--story-title-color) 12%, var(--bg-muted)) 0%,
-    color-mix(in srgb, var(--story-title-color) 6%, var(--bg-muted)) 100%
+    color-mix(in srgb, var(--story-title-color) 5%, var(--bg-muted)) 0%,
+    color-mix(in srgb, var(--story-title-color) 2%, var(--bg-muted)) 100%
   );
   border: 1px solid color-mix(in srgb, var(--story-border) 54%, var(--border));
+  border-left: 4px solid color-mix(in srgb, var(--story-title-color) 28%, var(--story-border));
   border-radius: 8px;
   padding: 18px;
   margin-top: 2px;
@@ -111,8 +115,37 @@ main.home-main {
     background 0.2s;
   box-shadow:
     0 8px 22px color-mix(in srgb, #000 24%, transparent),
+    inset 0 2px 4px color-mix(in srgb, #000 8%, transparent),
+    inset -1px 0 0 color-mix(in srgb, var(--story-title-color) 12%, transparent),
     inset 0 1px 0
       color-mix(in srgb, var(--story-choice-text-hover) 11%, transparent);
+}
+
+.story-card::before,
+.story-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.story-card::before {
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--story-title-color) 8%, transparent) 0%,
+    transparent 50%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 100%
+  );
+  opacity: 0.5;
+  border-radius: 8px;
+}
+
+.story-card::after {
+  z-index: 0;
+  display: none;
 }
 
 .story-card:hover,
@@ -123,7 +156,7 @@ main.home-main {
     color-mix(in srgb, var(--story-title-color) 10%, var(--bg-muted)) 100%
   );
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--story-title-color));
+  border-left-color: color-mix(in srgb, var(--story-title-color) 62%, var(--story-border));
   box-shadow:
     0 10px 22px color-mix(in srgb, #000 22%, transparent),
     0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent),
@@ -131,11 +164,23 @@ main.home-main {
       color-mix(in srgb, var(--story-choice-text-hover) 8%, transparent);
 }
 
+.story-card:hover::before,
+.story-card:focus-visible::before {
+  opacity: 0.85;
+}
+
+.story-card:hover::after,
+.story-card:focus-visible::after {
+  opacity: 0.16;
+}
+
 .story-card:focus-visible {
   outline: none;
 }
 
 .story-card-title {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -144,12 +189,61 @@ main.home-main {
   color: var(--story-title-color);
 }
 
+.story-card-approval-banner {
+  position: absolute;
+  top: 14px;
+  right: -54px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 188px;
+  padding: 7px 0 6px;
+  transform: rotate(36deg);
+  transform-origin: center;
+  background: linear-gradient(
+    180deg,
+    color-mix(
+      in srgb,
+      var(--story-card-approved-banner-bg) 72%,
+      transparent
+    ) 0%,
+    color-mix(
+      in srgb,
+      var(--story-card-approved-banner-bg) 54%,
+      transparent
+    ) 100%
+  );
+  color: var(--story-card-approved-banner-text);
+  border-top: 1px solid var(--story-card-approved-banner-border);
+  border-bottom: 1px solid color-mix(
+    in srgb,
+    var(--story-card-approved-banner-border) 78%,
+    transparent
+  );
+  box-shadow:
+    0 3px 8px color-mix(in srgb, #000 8%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #fff 4%, transparent);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0.56;
+  white-space: nowrap;
+  text-shadow: none;
+  pointer-events: none;
+}
+
 .story-card-emoji {
   font-size: 24px;
   line-height: 1;
 }
 
 .story-card-meta {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -205,6 +299,16 @@ main.home-main {
   .story-card {
     padding: 14px;
     margin-top: 0;
+  }
+
+  .story-card-approval-banner {
+    top: 13px;
+    right: -44px;
+    width: 166px;
+    padding: 6px 0 5px;
+    transform: rotate(34deg);
+    font-size: 8px;
+    letter-spacing: 0.2em;
   }
 
   .story-card-title {
